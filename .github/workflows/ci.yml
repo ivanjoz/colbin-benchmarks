@@ -1,0 +1,71 @@
+name: ci
+
+# Builds the benchmarks and, more importantly, checks that the materialised
+# corpus still is what the manifest says it is.
+#
+# The second part is the one that matters for the paper. If a Go release ever
+# moves the math/rand stream, or somebody edits a corpus file by hand, this is
+# where it surfaces — rather than in a reviewer's inability to reproduce a table.
+on:
+  push:
+    branches: [main]
+    tags: ['v*', 'paper-*']
+  pull_request:
+  workflow_dispatch:
+  # The corpus check is a claim about the *toolchain*, not about this code, so it
+  # has to run even when nothing here changes. A Go patch release that moved the
+  # generator would otherwise sit undetected until the next push.
+  schedule:
+    - cron: '0 6 * * 1'
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          path: colbin-benchmarks
+
+      # TEMPORARY, and it goes away with the `replace` in go.mod. Until colbin
+      # tags a release containing the API these benchmarks use, this repository
+      # cannot build from its own contents alone. See the README.
+      - uses: actions/checkout@v7
+        with:
+          repository: ivanjoz/colbin
+          path: colbin
+
+      - uses: actions/setup-go@v7
+        with:
+          # From go.mod, which pins the patch release and not just the minor, so
+          # a reported number names the compiler that produced it.
+          go-version-file: colbin-benchmarks/go.mod
+
+      - name: vet
+        working-directory: colbin-benchmarks
+        run: go vet ./...
+
+      - name: gofmt
+        working-directory: colbin-benchmarks
+        # gofmt -l exits 0 whether or not it lists anything, so the listing is
+        # the check.
+        run: test -z "$(gofmt -l .)" || { gofmt -l .; exit 1; }
+
+      - name: test
+        working-directory: colbin-benchmarks
+        run: go test ./...
+
+      # The load-bearing step. Regenerates every scale, including the 2.4M-row
+      # one that is not committed, and fails if any checksum has moved.
+      - name: the corpus is still the published corpus
+        working-directory: colbin-benchmarks
+        run: go run ./cmd/materialize -check && go test ./corpusdata -run Manifest -v
+
+      # Compile the benchmarks and run one iteration each. Not a measurement —
+      # a shared runner cannot produce one worth reporting — just proof that
+      # every benchmark still runs.
+      - name: benchmarks compile and run
+        working-directory: colbin-benchmarks
+        run: go test ./bench -bench . -benchtime 1x -run '^$'

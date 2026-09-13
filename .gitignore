@@ -1,0 +1,17 @@
+# Test binaries and profiles
+*.test
+*.out
+coverage.*
+*.coverprofile
+profile.cov
+
+# Go workspace file
+go.work
+go.work.sum
+
+# Materialised corpus scales that are pinned by MANIFEST.sha256 but not stored.
+# See the README: regenerating all three takes about 1.5 seconds, so committing
+# 12.7 MB and ~250 MB to save that is a bad trade. small.json *is* committed and
+# must not be ignored.
+corpusdata/data/medium.json
+corpusdata/data/large.json
