@@ -25,17 +25,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      # Only this repository. colbin comes from its tag through the module proxy,
+      # exactly as it does in a reviewer's clean clone.
       - uses: actions/checkout@v7
         with:
           path: colbin-benchmarks
-
-      # TEMPORARY, and it goes away with the `replace` in go.mod. Until colbin
-      # tags a release containing the API these benchmarks use, this repository
-      # cannot build from its own contents alone. See the README.
-      - uses: actions/checkout@v7
-        with:
-          repository: ivanjoz/colbin
-          path: colbin
 
       - uses: actions/setup-go@v7
         with:

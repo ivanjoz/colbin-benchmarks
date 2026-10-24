@@ -93,17 +93,13 @@ still contains the map the first one depends on.
 
 ## Before citing this
 
-Two things must be true, and one is not yet:
-
-1. **Drop the `replace` in `go.mod`.** It currently points at a sibling colbin
-   checkout, because the benchmarks use colbin API that is ahead of its newest
-   tag (`v0.2.0`). Until colbin cuts a tag containing that API, this repository
-   does not build on its own — which is the opposite of an artifact. Tag colbin,
-   raise the `require`, delete the `replace`, and confirm `go test ./...` passes
-   in a clean clone with nothing beside it.
-2. **Cite a tag, not a branch.** Cut `paper-v1` (or similar), and mint a DOI from
-   it via the GitHub–Zenodo integration. A bare GitHub URL is not a durable
-   citation; a DOI is.
+1. **No `replace` in `go.mod`.** colbin is required at a published tag
+   (`v0.6.2`) and resolved through the module proxy, so a clean clone with
+   nothing beside it builds and tests on its own. CI checks out only this
+   repository, which keeps that true.
+2. **Cite a tag, not a branch.** Cut `paper-v1` and mint a DOI from it via the
+   GitHub–Zenodo integration. A bare GitHub URL is not a durable citation; a
+   DOI is. The manual steps are in [RELEASING.md](RELEASING.md).
 
 The toolchain is pinned to `go1.27.0` in `go.mod` and CI resolves from there, so
 the compiler that produced a reported number is recorded rather than being

@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use these benchmarks, please cite the archived release."
+title: "colbin-benchmarks: reproducible benchmarks for the colbin serialization format"
+type: software
+authors:
+  - family-names: Angulo
+    given-names: Ivan J.
+repository-code: "https://github.com/ivanjoz/colbin-benchmarks"
+license: MIT
+# Filled in after Zenodo mints the DOI for the paper-v1 release. See RELEASING.md.
+# doi: 10.5281/zenodo.XXXXXXX
