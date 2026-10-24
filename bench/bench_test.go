@@ -54,6 +54,15 @@ var (
 	readingCodec = colbin.MustCodec[Reading]()
 )
 
+// must takes a Codec's encode result; every value here is one the codec accepts,
+// so an error is a broken benchmark rather than something to measure.
+func must(data []byte, err error) []byte {
+	if err != nil {
+		panic(err)
+	}
+	return data
+}
+
 // appendReading is what codec.Generate emits, and what a hot path should run.
 func appendReading(dst []byte, v *Reading) []byte {
 	w := wire.Writer{Buffer: append(dst, 0xD0)}
@@ -161,7 +170,7 @@ func BenchmarkColbinCodecAppend(b *testing.B) {
 	buffer := make([]byte, 0, 128)
 	b.ReportAllocs()
 	for b.Loop() {
-		buffer = readingCodec.Append(buffer[:0], &sample)
+		buffer = must(readingCodec.Append(buffer[:0], &sample))
 	}
 }
 
@@ -198,7 +207,7 @@ func BenchmarkColbinUnmarshal(b *testing.B) {
 }
 
 func BenchmarkColbinCodecUnmarshal(b *testing.B) {
-	message := readingCodec.Encode(&sample)
+	message := must(readingCodec.Encode(&sample))
 	var back Reading
 	b.ReportAllocs()
 	for b.Loop() {
@@ -266,7 +275,7 @@ func TestNestedSizes(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	cb := orderCodec.Encode(&nestedSample)
+	cb := must(orderCodec.Encode(&nestedSample))
 	t.Logf("one order with three lines: protobuf %d B, colbin %d B", len(pb), len(cb))
 
 	var back ColbinOrder
@@ -295,7 +304,7 @@ func BenchmarkColbinNestedAppend(b *testing.B) {
 	buffer := make([]byte, 0, 256)
 	b.ReportAllocs()
 	for b.Loop() {
-		buffer = orderCodec.Append(buffer[:0], &nestedSample)
+		buffer = must(orderCodec.Append(buffer[:0], &nestedSample))
 	}
 }
 
@@ -311,7 +320,7 @@ func BenchmarkProtobufNestedUnmarshal(b *testing.B) {
 }
 
 func BenchmarkColbinNestedUnmarshal(b *testing.B) {
-	message := orderCodec.Encode(&nestedSample)
+	message := must(orderCodec.Encode(&nestedSample))
 	var back ColbinOrder
 	b.ReportAllocs()
 	for b.Loop() {

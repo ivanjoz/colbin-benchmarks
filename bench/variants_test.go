@@ -105,12 +105,12 @@ func TestVariantSizes(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	tagged := readingCodec.Encode(&sample)
-	untagged := bareCodec.Encode(&bareSample)
+	tagged := must(readingCodec.Encode(&sample))
+	untagged := must(bareCodec.Encode(&bareSample))
 
 	colbin.SetPacked5(true)
-	packedReading := colbin.MustCodec[Reading]().Encode(&sample)
-	packedProduct := colbin.MustCodec[ColbinProduct]().Encode(&productSample)
+	packedReading := must(colbin.MustCodec[Reading]().Encode(&sample))
+	packedProduct := must(colbin.MustCodec[ColbinProduct]().Encode(&productSample))
 	colbin.SetPacked5(false)
 
 	t.Logf("sensor reading: protobuf %d B · colbin+tags %d B · colbin untagged %d B · colbin+packed5 %d B",
@@ -120,14 +120,14 @@ func TestVariantSizes(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	plainProduct := productCodec.Encode(&productSample)
+	plainProduct := must(productCodec.Encode(&productSample))
 	// The wide baseline separates the two effects packed5 has: it packs the
 	// strings, and it forces the eight-bit key that costs a byte per field.
-	wideProduct := colbin.MustCodec[WideProduct]().Encode(&WideProduct{
+	wideProduct := must(colbin.MustCodec[WideProduct]().Encode(&WideProduct{
 		ID: productSample.ID, SKU: productSample.SKU, Name: productSample.Name,
 		PriceCents: productSample.PriceCents, Stock: productSample.Stock,
 		Categories: productSample.Categories,
-	})
+	}))
 	t.Logf("string-heavy product: protobuf %d B · colbin+tags %d B · colbin wide, no packing %d B · colbin+packed5 %d B",
 		len(pbProduct), len(plainProduct), len(wideProduct), len(packedProduct))
 	t.Logf("  → the wide key costs %d B, the packing saves %d B, net %+d B",
@@ -163,7 +163,7 @@ func BenchmarkVariantTaggedAppend(b *testing.B) {
 	buffer := make([]byte, 0, 128)
 	b.ReportAllocs()
 	for b.Loop() {
-		buffer = readingCodec.Append(buffer[:0], &sample)
+		buffer = must(readingCodec.Append(buffer[:0], &sample))
 	}
 }
 
@@ -171,7 +171,7 @@ func BenchmarkVariantUntaggedAppend(b *testing.B) {
 	buffer := make([]byte, 0, 128)
 	b.ReportAllocs()
 	for b.Loop() {
-		buffer = bareCodec.Append(buffer[:0], &bareSample)
+		buffer = must(bareCodec.Append(buffer[:0], &bareSample))
 	}
 }
 
@@ -180,13 +180,13 @@ func BenchmarkVariantPacked5Append(b *testing.B) {
 	b.ReportAllocs()
 	withPacked5(b, func(codec *colbin.Codec[Reading]) {
 		for b.Loop() {
-			buffer = codec.Append(buffer[:0], &sample)
+			buffer = must(codec.Append(buffer[:0], &sample))
 		}
 	})
 }
 
 func BenchmarkVariantTaggedUnmarshal(b *testing.B) {
-	data := readingCodec.Encode(&sample)
+	data := must(readingCodec.Encode(&sample))
 	var into Reading
 	b.ReportAllocs()
 	for b.Loop() {
@@ -197,7 +197,7 @@ func BenchmarkVariantTaggedUnmarshal(b *testing.B) {
 }
 
 func BenchmarkVariantUntaggedUnmarshal(b *testing.B) {
-	data := bareCodec.Encode(&bareSample)
+	data := must(bareCodec.Encode(&bareSample))
 	var into BareReading
 	b.ReportAllocs()
 	for b.Loop() {
@@ -211,7 +211,7 @@ func BenchmarkVariantPacked5Unmarshal(b *testing.B) {
 	var into Reading
 	b.ReportAllocs()
 	withPacked5(b, func(codec *colbin.Codec[Reading]) {
-		data := codec.Encode(&sample)
+		data := must(codec.Encode(&sample))
 		for b.Loop() {
 			if err := codec.Unmarshal(data, &into); err != nil {
 				b.Fatal(err)
@@ -253,12 +253,12 @@ func BenchmarkProductColbinAppend(b *testing.B) {
 	buffer := make([]byte, 0, 256)
 	b.ReportAllocs()
 	for b.Loop() {
-		buffer = productCodec.Append(buffer[:0], &productSample)
+		buffer = must(productCodec.Append(buffer[:0], &productSample))
 	}
 }
 
 func BenchmarkProductColbinUnmarshal(b *testing.B) {
-	data := productCodec.Encode(&productSample)
+	data := must(productCodec.Encode(&productSample))
 	var into ColbinProduct
 	b.ReportAllocs()
 	for b.Loop() {
@@ -273,7 +273,7 @@ func BenchmarkProductPacked5Append(b *testing.B) {
 	b.ReportAllocs()
 	withPacked5(b, func(codec *colbin.Codec[ColbinProduct]) {
 		for b.Loop() {
-			buffer = codec.Append(buffer[:0], &productSample)
+			buffer = must(codec.Append(buffer[:0], &productSample))
 		}
 	})
 }
@@ -282,7 +282,7 @@ func BenchmarkProductPacked5Unmarshal(b *testing.B) {
 	var into ColbinProduct
 	b.ReportAllocs()
 	withPacked5(b, func(codec *colbin.Codec[ColbinProduct]) {
-		data := codec.Encode(&productSample)
+		data := must(codec.Encode(&productSample))
 		for b.Loop() {
 			if err := codec.Unmarshal(data, &into); err != nil {
 				b.Fatal(err)

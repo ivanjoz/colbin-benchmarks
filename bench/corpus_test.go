@@ -125,16 +125,16 @@ func TestCorpusSizes(t *testing.T) {
 	report := []line{
 		{"users", len(corpusUsers),
 			protoSize(asMessages(protoUsers)...),
-			colbinSize(func(i int) []byte { return corpusUserCodec.Append(buffer[:0], &corpusUsers[i]) }, len(corpusUsers))},
+			colbinSize(func(i int) []byte { return must(corpusUserCodec.Append(buffer[:0], &corpusUsers[i])) }, len(corpusUsers))},
 		{"products", len(corpusProducts),
 			protoSize(asMessages(protoProducts)...),
-			colbinSize(func(i int) []byte { return corpusProductCodec.Append(buffer[:0], &corpusProducts[i]) }, len(corpusProducts))},
+			colbinSize(func(i int) []byte { return must(corpusProductCodec.Append(buffer[:0], &corpusProducts[i])) }, len(corpusProducts))},
 		{"sales (nested detail)", len(corpusSales),
 			protoSize(asMessages(protoSales)...),
-			colbinSize(func(i int) []byte { return corpusSaleCodec.Append(buffer[:0], &corpusSales[i]) }, len(corpusSales))},
+			colbinSize(func(i int) []byte { return must(corpusSaleCodec.Append(buffer[:0], &corpusSales[i])) }, len(corpusSales))},
 		{"metrics", len(corpusMetrics),
 			protoSize(asMessages(protoMetrics)...),
-			colbinSize(func(i int) []byte { return corpusMetricCodec.Append(buffer[:0], &corpusMetrics[i]) }, len(corpusMetrics))},
+			colbinSize(func(i int) []byte { return must(corpusMetricCodec.Append(buffer[:0], &corpusMetrics[i])) }, len(corpusMetrics))},
 	}
 
 	t.Logf("%-22s %7s %10s %10s %8s", "table", "rows", "protobuf", "colbin", "delta")
@@ -180,7 +180,7 @@ func BenchmarkCorpusSalesColbinAppend(b *testing.B) {
 	b.ReportAllocs()
 	for b.Loop() {
 		for index := range corpusSales {
-			buffer = corpusSaleCodec.Append(buffer[:0], &corpusSales[index])
+			buffer = must(corpusSaleCodec.Append(buffer[:0], &corpusSales[index]))
 		}
 	}
 }
@@ -208,7 +208,7 @@ func BenchmarkCorpusSalesProtobufUnmarshal(b *testing.B) {
 func BenchmarkCorpusSalesColbinUnmarshal(b *testing.B) {
 	encoded := make([][]byte, len(corpusSales))
 	for index := range corpusSales {
-		encoded[index] = corpusSaleCodec.Encode(&corpusSales[index])
+		encoded[index] = must(corpusSaleCodec.Encode(&corpusSales[index]))
 	}
 	var into corpus.Sale
 	b.ReportAllocs()
@@ -243,7 +243,7 @@ func BenchmarkCorpusUsersColbinAppend(b *testing.B) {
 	b.ReportAllocs()
 	for b.Loop() {
 		for index := range corpusUsers {
-			buffer = corpusUserCodec.Append(buffer[:0], &corpusUsers[index])
+			buffer = must(corpusUserCodec.Append(buffer[:0], &corpusUsers[index]))
 		}
 	}
 }
@@ -271,7 +271,7 @@ func BenchmarkCorpusUsersProtobufUnmarshal(b *testing.B) {
 func BenchmarkCorpusUsersColbinUnmarshal(b *testing.B) {
 	encoded := make([][]byte, len(corpusUsers))
 	for index := range corpusUsers {
-		encoded[index] = corpusUserCodec.Encode(&corpusUsers[index])
+		encoded[index] = must(corpusUserCodec.Encode(&corpusUsers[index]))
 	}
 	var into corpus.User
 	b.ReportAllocs()
@@ -306,7 +306,7 @@ func BenchmarkCorpusMetricsColbinAppend(b *testing.B) {
 	b.ReportAllocs()
 	for b.Loop() {
 		for index := range corpusMetrics {
-			buffer = corpusMetricCodec.Append(buffer[:0], &corpusMetrics[index])
+			buffer = must(corpusMetricCodec.Append(buffer[:0], &corpusMetrics[index]))
 		}
 	}
 }
