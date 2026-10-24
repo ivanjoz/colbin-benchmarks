@@ -1,0 +1,328 @@
+// Command gen writes, for every dataset, the code the code-generated formats
+// need, so that a dataset is a types.go and a loader and nothing more:
+//
+//	<ds>/types_msgp_gen.go   MessagePack methods, by tinylib/msgp
+//	<ds>/<ds>gen/pb/         protobuf messages and vtprotobuf methods
+//	<ds>/<ds>gen/fb/         FlatBuffers tables, by flatc
+//	<ds>/<ds>gen/untagged/   the types with their tags removed (colbin K8)
+//	<ds>/<ds>gen/*_gen.go    conversions, Arrow builders and readers, access
+//	                         functions, and one formats.Adapters per root type
+//
+// Every generator works from the Go types by reflection, so the Go struct is
+// the one schema all of them share — the same premise colbin starts from, and
+// the reason the comparison is of formats rather than of hand-tuned schemas.
+// A type a generator cannot carry is not forced: its adapter is left out and
+// the reason recorded, and the tables print "n/a".
+//
+// Generated code is committed. Running this needs flatc (tools/fetch-flatc.sh);
+// building and benchmarking do not.
+//
+//	go run ./cmd/gen            every dataset
+//	go run ./cmd/gen tpch       some
+package main
+
+import (
+	"bytes"
+	"fmt"
+	"go/format"
+	"os"
+	"os/exec"
+	"path/filepath"
+	"reflect"
+	"slices"
+	"strings"
+)
+
+const module = "github.com/ivanjoz/colbin-benchmarks"
+
+// A target is one dataset package and the root types measured from it.
+type target struct {
+	name  string // the package name, and its directory under datasets/
+	roots []root
+}
+
+type root struct {
+	typ reflect.Type
+	// access is the dotted path to the numeric field the access aggregate
+	// sums, or "" for none.
+	access string
+}
+
+func main() {
+	want := os.Args[1:]
+	for _, t := range targets {
+		if len(want) > 0 && !slices.Contains(want, t.name) {
+			continue
+		}
+		if err := generate(t); err != nil {
+			fmt.Fprintf(os.Stderr, "gen %s: %v\n", t.name, err)
+			os.Exit(1)
+		}
+	}
+}
+
+// writer accumulates generated Go source.
+type writer struct{ bytes.Buffer }
+
+func (w *writer) p(format string, args ...any) {
+	fmt.Fprintf(&w.Buffer, format, args...)
+	w.WriteByte('\n')
+}
+
+func writeGo(path string, w *writer) error {
+	source, err := format.Source(w.Bytes())
+	if err != nil {
+		os.WriteFile(path+".broken", w.Bytes(), 0o644)
+		return fmt.Errorf("%s: %w (unformatted source in %s.broken)", path, err, path)
+	}
+	return os.WriteFile(path, source, 0o644)
+}
+
+func generate(t target) error {
+	dir := filepath.Join("datasets", t.name)
+	genName := t.name + "gen"
+	genDir := filepath.Join(dir, genName)
+	genImport := module + "/datasets/" + t.name + "/" + genName
+
+	types := make([]reflect.Type, len(t.roots))
+	for index, r := range t.roots {
+		types[index] = r.typ
+	}
+	m, err := newModel(module+"/datasets/"+t.name, types)
+	if err != nil {
+		return err
+	}
+
+	if err := msgp(dir); err != nil {
+		return err
+	}
+	for _, sub := range []string{"pb", "fb", "untagged"} {
+		if err := os.RemoveAll(filepath.Join(genDir, sub)); err != nil {
+			return err
+		}
+	}
+	if err := os.MkdirAll(filepath.Join(genDir, "pb"), 0o755); err != nil {
+		return err
+	}
+	if err := writeUntagged(dir, filepath.Join(genDir, "untagged")); err != nil {
+		return err
+	}
+
+	skipped := map[reflect.Type]map[string]string{}
+	skip := func(r reflect.Type, format, reason string) {
+		if skipped[r] == nil {
+			skipped[r] = map[string]string{}
+		}
+		skipped[r][format] = reason
+	}
+
+	// protobuf and vtprotobuf.
+	pg := &protoGen{m: m, ok: m.supported(protoFieldOK), pkg: t.name, file: t.name + ".proto", goImport: genImport + "/pb"}
+	for _, r := range t.roots {
+		if reason := pg.ok[r.typ]; reason != "" {
+			skip(r.typ, "protobuf", reason)
+			skip(r.typ, "vtprotobuf", reason)
+		}
+	}
+	descriptor := pg.descriptor()
+	if len(descriptor.MessageType) > 0 {
+		files, err := plugins(descriptor)
+		if err != nil {
+			return err
+		}
+		for name, content := range files {
+			if err := os.WriteFile(filepath.Join(genDir, "pb", name), content, 0o644); err != nil {
+				return err
+			}
+		}
+		if err := os.WriteFile(filepath.Join(genDir, "pb", t.name+".proto"), pg.text(descriptor), 0o644); err != nil {
+			return err
+		}
+	}
+
+	// FlatBuffers.
+	fg := &fbGen{m: m, ok: m.supported(fbFieldOK)}
+	for _, r := range t.roots {
+		if reason := fg.ok[r.typ]; reason != "" {
+			skip(r.typ, "flatbuffers", reason)
+		} else if fg.root == nil {
+			fg.root = r.typ
+		}
+	}
+	hasFB := fg.root != nil
+	if hasFB {
+		if err := flatc(genDir, t.name, fg.schema()); err != nil {
+			return err
+		}
+	}
+
+	// Arrow.
+	ag := &arrowGen{m: m, ok: m.supported(arrowFieldOK)}
+	var arrowRoots, arrowRows []*structInfo
+	for _, r := range t.roots {
+		info := m.byType[r.typ]
+		if reason := ag.tabular(info); reason != "" {
+			skip(r.typ, "arrow", reason)
+			continue
+		}
+		arrowRoots = append(arrowRoots, info)
+		for _, f := range info.fields {
+			arrowRows = append(arrowRows, m.byType[structOf(f)])
+		}
+	}
+
+	// The code.
+	header := "// Code generated by cmd/gen. DO NOT EDIT.\n\npackage " + genName + "\n\n"
+	dsImport := fmt.Sprintf("ds %q\n", module+"/datasets/"+t.name)
+	if len(descriptor.MessageType) > 0 {
+		w := &writer{}
+		w.WriteString(header)
+		w.p("import (\n%s\n%q\n)\n", dsImport, genImport+"/pb")
+		pg.conversions(w)
+		if err := writeGo(filepath.Join(genDir, "proto_gen.go"), w); err != nil {
+			return err
+		}
+	}
+	if hasFB {
+		w := &writer{}
+		w.WriteString(header)
+		w.p("import (\nflatbuffers \"github.com/google/flatbuffers/go\"\n%s\n%q\n%q\n)\n", dsImport, module+"/formats", genImport+"/fb")
+		fg.code(w)
+		if err := writeGo(filepath.Join(genDir, "fb_gen.go"), w); err != nil {
+			return err
+		}
+	}
+	if len(arrowRoots) > 0 {
+		w := &writer{}
+		w.WriteString(header)
+		w.p("import (\n\"bytes\"\n\"strings\"\n\n\"github.com/apache/arrow-go/v18/arrow\"\n\"github.com/apache/arrow-go/v18/arrow/array\"\n\"github.com/apache/arrow-go/v18/arrow/memory\"\n\n%s\n%q\n)\n", dsImport, module+"/formats")
+		w.p("var _ = strings.Clone\n")
+		ag.code(w, arrowRows)
+		for _, info := range arrowRoots {
+			ag.root(w, info)
+		}
+		if err := writeGo(filepath.Join(genDir, "arrow_gen.go"), w); err != nil {
+			return err
+		}
+	}
+
+	// The adapters, one function per root.
+	w := &writer{}
+	w.WriteString(header)
+	w.p("import (\n\"bytes\"\n\"unsafe\"\n")
+	w.p("\"github.com/apache/arrow-go/v18/arrow\"\n\"github.com/apache/arrow-go/v18/arrow/array\"\n\"github.com/apache/arrow-go/v18/arrow/memory\"")
+	w.p("flatbuffers \"github.com/google/flatbuffers/go\"\n\"google.golang.org/protobuf/proto\"\n")
+	w.p("\"github.com/ivanjoz/colbin\"\n%s\n%q\n%q\n%q\n%q\n)\n", dsImport, module+"/formats", genImport+"/pb", genImport+"/fb", genImport+"/untagged")
+	w.p("var (\n_ = bytes.NewBuffer\n_ = arrow.Null\n_ = array.NewRecordBuilder\n_ = memory.NewGoAllocator\n_ = flatbuffers.NewBuilder\n_ proto.Message\n_ = pb.File_%s_proto\n_ = fb.GetRootAs%s\n)\n", t.name, fbRootName(fg))
+	for _, r := range t.roots {
+		info := m.byType[r.typ]
+		steps, err := m.resolve(info, r.access)
+		if err != nil {
+			return err
+		}
+		goT := m.goType(r.typ)
+
+		w.p("// %s is the generated code for %s, as a formats.Adapters.", info.name, goT)
+		w.p("func %s() formats.Adapters[%s] {", info.name, goT)
+		w.p("a := formats.Adapters[%s]{Skipped: map[string]string{}}", goT)
+		if pg.ok[r.typ] == "" {
+			w.p("a.Proto = &formats.ProtoAdapter[%s]{", goT)
+			w.p("New: func() proto.Message { return new(pb.%s) },", info.name)
+			w.p("To: func(v *%s) proto.Message { return toPB%s(v) },", goT, info.name)
+			w.p("From: func(m proto.Message) *%s { v := new(%s); fromPB%s(m.(*pb.%s), v); return v },", goT, goT, info.name, info.name)
+			if steps != nil {
+				w.p("Access: func(message proto.Message) float64 { m := message.(*pb.%s); var sum float64", info.name)
+				goAccess(w, steps, "m", 0, true)
+				w.p("return sum },")
+			}
+			w.p("}")
+		}
+		if fg.ok[r.typ] == "" {
+			w.p("a.FlatBuffers = &formats.FlatBuffersAdapter[%s]{", goT)
+			w.p("Build: func(b *flatbuffers.Builder, v *%s) { b.Finish(buildFB%s(b, v)) },", goT, info.name)
+			w.p("Read: func(data []byte, v *%s) { readFB%s(fb.GetRootAs%s(data, 0), v) },", goT, info.name, info.name)
+			if steps != nil {
+				w.p("Access: func(data []byte) float64 { t := fb.GetRootAs%s(data, 0); var sum float64", info.name)
+				fbAccess(w, steps, "t", 0)
+				w.p("return sum },")
+			}
+			w.p("}")
+		}
+		if slices.Contains(arrowRoots, info) {
+			w.p("a.Arrow = &formats.ArrowAdapter[%s]{Write: arrowWrite%s, Read: arrowRead%s}", goT, info.name, info.name)
+			if len(steps) >= 2 {
+				table := steps[0].index
+				w.p("a.Arrow.Access = func(data []byte, allocator memory.Allocator) (sum float64, err error) {")
+				w.p("err = formats.ArrowTable(data, %d, allocator, func(record arrow.RecordBatch) error { sum = %s; return nil })", table, arrowAccess(steps))
+				w.p("return sum, err }")
+			}
+		}
+		w.p("if codec, err := colbin.NewCodec[untagged.%s](); err == nil {", info.name)
+		w.p("a.Untagged = &formats.UntaggedAdapter[%s]{", goT)
+		w.p("Append: func(dst []byte, v *%s) ([]byte, error) { return codec.Append(dst, (*untagged.%s)(unsafe.Pointer(v))) },", goT, info.name)
+		w.p("Unmarshal: func(data []byte, v *%s) error { return codec.Unmarshal(data, (*untagged.%s)(unsafe.Pointer(v))) },", goT, info.name)
+		w.p("}")
+		w.p("} else { a.Skipped[formats.ColbinK8] = err.Error() }")
+		if steps != nil {
+			w.p("a.AccessGo = func(v *%s) float64 { var sum float64", goT)
+			goAccess(w, steps, "v", 0, false)
+			w.p("return sum }")
+		}
+		for format, reason := range skipped[r.typ] {
+			w.p("a.Skipped[%q] = %q", format, reason)
+		}
+		w.p("return a")
+		w.p("}\n")
+		w.p("// The untagged twin has to share %s's layout for the pointer conversion above.", info.name)
+		w.p("var _ = [1]struct{}{}[unsafe.Sizeof(%s{})-unsafe.Sizeof(untagged.%s{})]\n", goT, info.name)
+	}
+	return writeGo(filepath.Join(genDir, "adapters_gen.go"), w)
+}
+
+func fbRootName(g *fbGen) string {
+	if g.root == nil {
+		return ""
+	}
+	return g.root.Name()
+}
+
+// msgp runs tinylib/msgp over the dataset's type files.
+func msgp(dir string) error {
+	files, err := filepath.Glob(filepath.Join(dir, "types*.go"))
+	if err != nil {
+		return err
+	}
+	for _, file := range files {
+		if strings.HasSuffix(file, "_gen.go") || strings.HasSuffix(file, "_test.go") {
+			continue
+		}
+		out := strings.TrimSuffix(file, ".go") + "_msgp_gen.go"
+		command := exec.Command("go", "tool", "github.com/tinylib/msgp", "-file", file, "-o", out, "-tests=false", "-io=false")
+		var stderr bytes.Buffer
+		command.Stdout, command.Stderr = &stderr, &stderr
+		if err := command.Run(); err != nil {
+			return fmt.Errorf("msgp %s: %w\n%s", file, err, stderr.String())
+		}
+	}
+	return nil
+}
+
+// flatc writes the schema and runs flatc on it.
+func flatc(genDir, name string, schema []byte) error {
+	binary := filepath.Join("tools", "bin", "flatc")
+	if _, err := os.Stat(binary); err != nil {
+		return fmt.Errorf("flatc is not at %s: run tools/fetch-flatc.sh", binary)
+	}
+	if err := os.MkdirAll(filepath.Join(genDir, "fb"), 0o755); err != nil {
+		return err
+	}
+	path := filepath.Join(genDir, "fb", name+".fbs")
+	if err := os.WriteFile(path, schema, 0o644); err != nil {
+		return err
+	}
+	command := exec.Command(binary, "--go", "-o", genDir, path)
+	if out, err := command.CombinedOutput(); err != nil {
+		return fmt.Errorf("flatc: %w\n%s", err, out)
+	}
+	return nil
+}

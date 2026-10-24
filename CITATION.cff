@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you use these benchmarks, please cite the archived release."
+message: "If you use these benchmarks, please cite the paper and the tag you used."
 title: "colbin-benchmarks: reproducible benchmarks for the colbin serialization format"
 type: software
 authors:
@@ -7,5 +7,17 @@ authors:
     given-names: Ivan J.
 repository-code: "https://github.com/ivanjoz/colbin-benchmarks"
 license: MIT
-# Filled in after Zenodo mints the DOI for the paper-v1 release. See RELEASING.md.
-# doi: 10.5281/zenodo.XXXXXXX
+# Filled in once arXiv announces the paper. See RELEASING.md, step 6.
+# preferred-citation:
+#   type: article
+#   title: "<paper title>"
+#   authors:
+#     - family-names: Angulo
+#       given-names: Ivan J.
+#   year: 2026
+#   identifiers:
+#     - type: other
+#       value: "arXiv:YYMM.NNNNN"
+#     - type: doi
+#       value: "10.48550/arXiv.YYMM.NNNNN"
+#   url: "https://arxiv.org/abs/YYMM.NNNNN"

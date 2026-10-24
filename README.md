@@ -94,12 +94,12 @@ still contains the map the first one depends on.
 ## Before citing this
 
 1. **No `replace` in `go.mod`.** colbin is required at a published tag
-   (`v0.6.2`) and resolved through the module proxy, so a clean clone with
+   (`v0.6.3`) and resolved through the module proxy, so a clean clone with
    nothing beside it builds and tests on its own. CI checks out only this
    repository, which keeps that true.
-2. **Cite a tag, not a branch.** Cut `paper-v1` and mint a DOI from it via the
-   GitHub–Zenodo integration. A bare GitHub URL is not a durable citation; a
-   DOI is. The manual steps are in [RELEASING.md](RELEASING.md).
+2. **Cite a tag, not a branch.** The paper is on arXiv and names the tag
+   (`paper-v1`, …) and commit its numbers come from. A branch keeps moving; a
+   tag does not. The manual steps are in [RELEASING.md](RELEASING.md).
 
 The toolchain is pinned to `go1.27.0` in `go.mod` and CI resolves from there, so
 the compiler that produced a reported number is recorded rather than being

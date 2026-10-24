@@ -15,3 +15,10 @@ go.work.sum
 # must not be ignored.
 corpusdata/data/medium.json
 corpusdata/data/large.json
+plans/
+
+# Tool binaries fetched by tools/*.sh.
+tools/bin/
+
+# Downloaded datasets: scripts and checksums are committed, the data is not.
+datasets/data/
