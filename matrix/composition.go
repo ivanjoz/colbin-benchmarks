@@ -3,9 +3,11 @@ package matrix
 // What a value is made of, as colbin's layout sees it: how many of its rows go
 // out as columnar tables and how many as lists of structs, and how many bytes
 // the tables account for. The rule is colbin's own (codec/table.go): a slice of
-// structs is a table when every field of the struct is a bool, a number or a
-// string, and the slice holds at least tableThreshold elements. A struct with a
-// slice or a struct inside it stays a list at any length.
+// structs is a table when every field of the struct is a bool, a number, a
+// string, a pointer to one, or a slice of structs that are tables themselves
+// (a list column, whose elements are table rows at any length), and the slice
+// holds at least tableThreshold elements. A struct with a map, a nested struct
+// or a slice of scalars inside it stays a list at any length.
 
 import (
 	"fmt"
@@ -26,7 +28,10 @@ type Composition struct {
 	TableBytes int // colbin bytes of the slices written as tables, each alone
 }
 
-func transposable(t reflect.Type) bool {
+func transposable(t reflect.Type) bool { return transposableAt(t, 0) }
+
+// transposableAt bounds list columns at codec.maxListDepth levels.
+func transposableAt(t reflect.Type, lists int) bool {
 	if t.Kind() != reflect.Struct || t.NumField() == 0 {
 		return false
 	}
@@ -37,22 +42,42 @@ func transposable(t reflect.Type) bool {
 			continue
 		}
 		exported++
-		switch field.Type.Kind() {
-		case reflect.Bool, reflect.String,
-			reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64,
-			reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64,
-			reflect.Float32, reflect.Float64:
-		default:
+		if field.Type.Kind() == reflect.Slice && field.Type.Elem().Kind() == reflect.Struct {
+			if lists == 4 || !transposableAt(field.Type.Elem(), lists+1) {
+				return false
+			}
+			continue
+		}
+		kind := field.Type.Kind()
+		if kind == reflect.Pointer {
+			kind = field.Type.Elem().Kind()
+		}
+		if !scalarKind(kind) {
 			return false
 		}
 	}
 	return exported > 0
 }
 
+// scalarKind is what a column holds; a pointer to one is a nullable column.
+func scalarKind(kind reflect.Kind) bool {
+	switch kind {
+	case reflect.Bool, reflect.String,
+		reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64,
+		reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64,
+		reflect.Float32, reflect.Float64:
+		return true
+	}
+	return false
+}
+
 // compose walks v. Measuring table bytes encodes each table on its own, in a
 // one-field wrapper, which is within a few bytes of what it costs in place.
 func compose(v reflect.Value, threshold int) (Composition, error) {
 	var c Composition
+	// inTable is set below a table, whose list columns' elements are table rows
+	// already counted in its bytes.
+	inTable := false
 	var walk func(v reflect.Value) error
 	walk = func(v reflect.Value) error {
 		switch v.Kind() {
@@ -74,21 +99,28 @@ func compose(v reflect.Value, threshold int) (Composition, error) {
 				c.Values++
 				return nil
 			}
+			opened := false
 			if elem.Kind() == reflect.Struct {
 				c.Rows += v.Len()
-				if transposable(elem) && v.Len() >= threshold {
+				if inTable {
+					c.TableRows += v.Len()
+				} else if transposable(elem) && v.Len() >= threshold {
 					c.TableRows += v.Len()
 					size, err := tableBytes(v)
 					if err != nil {
 						return err
 					}
 					c.TableBytes += size
+					opened, inTable = true, true
 				}
 			}
 			for index := range v.Len() {
 				if err := walk(v.Index(index)); err != nil {
 					return err
 				}
+			}
+			if opened {
+				inTable = false
 			}
 		case reflect.Map:
 			iter := v.MapRange()
