@@ -6,51 +6,16 @@ package matrix
 import (
 	"path/filepath"
 
-	"github.com/ivanjoz/colbin-benchmarks/datasets/synthetic"
-	"github.com/ivanjoz/colbin-benchmarks/datasets/synthetic/syntheticgen"
+	"github.com/ivanjoz/colbin-benchmarks/datasets/publicbi"
 	"github.com/ivanjoz/colbin-benchmarks/datasets/tpch"
 	"github.com/ivanjoz/colbin-benchmarks/datasets/tpch/tpchgen"
 )
 
-// Cases is every case, in report order.
+// Cases is every case, in report order. Only public datasets are measured:
+// colbin's own synthetic corpus (datasets/synthetic) was shaped by its author
+// to exercise its layouts, so it is kept for colbin's tests and not reported.
 func Cases() []Case {
 	var cases []Case
-
-	// The synthetic corpus: colbin's own data, the baseline the rest are read
-	// against. The three single messages are bench/'s.
-	single := func(name string, load func() (*Loaded, error)) Case {
-		return Case{Name: "synthetic/" + name, Dataset: "synthetic", Timed: true,
-			Load: func(string) (*Loaded, error) { return load() }}
-	}
-	cases = append(cases,
-		single("reading", func() (*Loaded, error) {
-			return bind(&synthetic.OneReading, nil, syntheticgen.Reading())
-		}),
-		single("order", func() (*Loaded, error) {
-			return bind(&synthetic.OneOrder, nil, syntheticgen.Order())
-		}),
-		single("product", func() (*Loaded, error) {
-			return bind(&synthetic.OneProduct, nil, syntheticgen.Product())
-		}),
-	)
-	for _, scale := range []string{"small", "medium"} {
-		generate := func() *synthetic.Dataset { return synthetic.Generate(synthetic.Scales[scale]) }
-		cases = append(cases,
-			single(scale+"/metrics", func() (*Loaded, error) {
-				return bind(&synthetic.Metrics{Rows: generate().Metrics}, nil, syntheticgen.Metrics())
-			}),
-			single(scale+"/sales", func() (*Loaded, error) {
-				return bind(&synthetic.Sales{Rows: generate().Sales}, nil, syntheticgen.Sales())
-			}),
-			single(scale+"/events", func() (*Loaded, error) {
-				return bind(&synthetic.Events{Rows: generate().Events}, nil, syntheticgen.Events())
-			}),
-			single(scale+"/dataset", func() (*Loaded, error) {
-				return bind(generate(), nil, syntheticgen.Dataset())
-			}),
-		)
-	}
-
 	for _, sf := range tpch.Scales {
 		large := sf != "0.1"
 		files := func(data string) error {
@@ -82,5 +47,21 @@ func Cases() []Case {
 			},
 		)
 	}
+	cases = append(cases, schemastoreCases()...)
+	cases = append(cases, publicbiCases()...)
 	return cases
+}
+
+// publicbiCase is the case for one Public BI table; publicbi_gen.go lists them.
+func publicbiCase(workbook string, load func(data string) (*Loaded, error)) Case {
+	return Case{
+		Name: "publicbi/" + workbook, Dataset: "publicbi", Timed: true,
+		Fetch: "datasets/publicbi/fetch.sh " + workbook,
+		Load: func(data string) (*Loaded, error) {
+			if err := missing(publicbi.File(data, workbook)); err != nil {
+				return nil, err
+			}
+			return load(data)
+		},
+	}
 }

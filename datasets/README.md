@@ -19,11 +19,16 @@ cd datasets/data && sha256sum -c ../MANIFEST.sha256   # verify without the scrip
 
 | dataset | source | subset measured | shape | licence (redistributed?) |
 |---|---|---|---|---|
-| `synthetic` | `corpus.Generate`, seed 20260101 | scales small and medium; three single messages | 7 roots | MIT, generated (yes) |
 | `tpch` | TPC-H dbgen 2.17.3 (`gregrahn/tpch-kit@852ad0a`) | orders + lineitem at SF 0.1 (timed) and SF 1 (sized, `COLBIN_LARGE=1`) | `Nested`, `Normalized` | TPC EULA (no) |
+| `schemastore` | Viotti & Kinderkhedia's corpus (`jviotti/binary-json-size-benchmark@1075bc7`) | all 27 documents, typed and dynamic | one root per document, hand-written from their protobuf schemas | Apache-2.0 (not committed) |
+| `publicbi` | Public BI Benchmark, CWI (`cwida/public_bi_benchmark@cf99090`) | `<workbook>_1` of all 46 workbooks, first 16 384 rows | one root per table, generated from its CREATE TABLE | none stated for the data (no) |
 
 Each dataset directory holds `LICENSE-NOTE.md` with the licence and whether
 the data may be redistributed.
+
+`datasets/synthetic` is colbin's own generated corpus. Its author shaped it to
+exercise colbin's layouts, so it is not measured or reported here; it stays
+for colbin's own tests.
 
 ## How a dataset is built
 

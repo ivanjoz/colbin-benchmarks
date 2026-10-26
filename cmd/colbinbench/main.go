@@ -57,14 +57,16 @@ import (
 	"github.com/ivanjoz/colbin-benchmarks/matrix"
 )
 
-// defaultCases spans the shapes colbin's paths differ on: tables, lists of
-// structs, a mix, and one small message.
+// defaultCases spans the shapes colbin's paths differ on, from public data
+// only: tables, lists of structs, and small documents.
 var defaultCases = []string{
-	"tpch/sf0.1/normalized", // two wide tables: the column path
-	"tpch/sf0.1/nested",     // lists of short lists: the row path
-	"synthetic/medium/dataset",
-	"synthetic/medium/sales",
-	"synthetic/reading",
+	"tpch/sf0.1/normalized",      // two wide tables: the column path
+	"tpch/sf0.1/nested",          // lists of short lists: the row path
+	"publicbi/Bimbo",             // a real table with no nullable column: a table
+	"publicbi/Redfin1",           // a real table with nullable columns: a list
+	"schemastore/jsonresume",     // the largest document, nested lists
+	"schemastore/eslintrc",       // a flat document of small integers
+	"schemastore/circlecimatrix", // a small, deeply nested document
 }
 
 func main() {

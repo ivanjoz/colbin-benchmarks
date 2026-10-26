@@ -132,7 +132,10 @@ func TestSizes(t *testing.T) {
 			}
 			schema, err := colbin.SchemaOf(loaded.Value)
 			if err != nil {
-				t.Fatal(err)
+				// colbin refuses the type, so it has no composition to report;
+				// the formats table above already says n/a, and why.
+				t.Logf("no colbin composition: %v", err)
+				return
 			}
 			gobStream := -1
 			if loaded.GobStream != nil {

@@ -23,6 +23,7 @@ import (
 
 	"github.com/apache/arrow-go/v18/arrow/memory"
 	flatbuffers "github.com/google/flatbuffers/go"
+	"github.com/ivanjoz/colbin"
 	"github.com/tinylib/msgp/msgp"
 	"google.golang.org/protobuf/proto"
 )
@@ -294,13 +295,21 @@ func All[T any](value *T, adapters Adapters[T]) ([]Instance, []Skip) {
 	} else {
 		skip(Arrow, "not tabular")
 	}
-	instances = append(instances, NewColbin(value), NewColbinPacked5(value))
-	if adapters.Untagged != nil {
-		instances = append(instances, NewColbinUntagged(value, adapters.Untagged))
+	// A type colbin refuses is n/a for all its variants, with colbin's reason,
+	// rather than a panic out of MustCodec.
+	if _, err := colbin.NewCodec[T](); err != nil {
+		for _, format := range []string{Colbin, ColbinPacked5, ColbinK8, ColbinSD} {
+			skips = append(skips, Skip{format, err.Error()})
+		}
 	} else {
-		skip(ColbinK8, "no untagged twin")
+		instances = append(instances, NewColbin(value), NewColbinPacked5(value))
+		if adapters.Untagged != nil {
+			instances = append(instances, NewColbinUntagged(value, adapters.Untagged))
+		} else {
+			skip(ColbinK8, "no untagged twin")
+		}
+		instances = append(instances, NewColbinSelfDescribing(value))
 	}
-	instances = append(instances, NewColbinSelfDescribing(value))
 
 	// Every format that decodes to the Go type can compute the access
 	// aggregate by decoding and walking; the zero-copy ones were given an
