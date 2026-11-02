@@ -12,6 +12,12 @@ package formats
 // libzstd's 6 but does not write the same bytes, so its sizes are not libzstd's.
 // The frame carries no checksum, as libzstd's default does not. Adding a level
 // is one entry in Compressors and zstdLevels.
+//
+// Brotli is what browsers accept besides gzip, and what a web response is
+// most often sent with. It runs through andybalholm/brotli, a pure-Go port of
+// the reference encoder, at two levels: 11, the most a static asset is
+// compressed with ahead of time, and 5, typical of a server compressing each
+// response as it sends it. Both use the default window (lgwin 22).
 
 import (
 	"bytes"
@@ -19,11 +25,15 @@ import (
 	"fmt"
 	"sync"
 
+	"github.com/andybalholm/brotli"
 	"github.com/klauspost/compress/zstd"
 )
 
 // Compressor names, in the order tables print them.
-var Compressors = []string{"gzip", "zstd6"}
+var Compressors = []string{"gzip", "zstd6", "br5", "br11"}
+
+// brotliLevels maps each brotli entry of Compressors to its quality.
+var brotliLevels = map[string]int{"br5": 5, "br11": 11}
 
 // zstdLevels maps each zstd entry of Compressors to its zstd level.
 var zstdLevels = map[string]int{"zstd6": 6}
@@ -48,6 +58,8 @@ func CompressedSize(data []byte, compressor string) (int, error) {
 	switch {
 	case compressor == "gzip":
 		return gzipSize(data)
+	case brotliLevels[compressor] > 0:
+		return brotliSize(data, brotliLevels[compressor])
 	case level > 0:
 		encoder, err := zstdEncoder(level)
 		if err != nil {
@@ -96,6 +108,22 @@ func gzipSize(data []byte) (int, error) {
 	}
 	return out.Len(), nil
 }
+
+func brotliSize(data []byte, quality int) (int, error) {
+	var out bytes.Buffer
+	writer := brotli.NewWriterLevel(&out, quality)
+	if _, err := writer.Write(data); err != nil {
+		return 0, err
+	}
+	if err := writer.Close(); err != nil {
+		return 0, err
+	}
+	return out.Len(), nil
+}
+
+// BrotliVersion is the brotli implementation the brotli sizes were produced
+// with: the andybalholm/brotli version in go.mod. Raise it with the module.
+const BrotliVersion = "andybalholm/brotli v1.2.7"
 
 // ZstdVersion is the zstd implementation the zstd sizes were produced with:
 // the klauspost/compress version in go.mod. Raise it with the module.

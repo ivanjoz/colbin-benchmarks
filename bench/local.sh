@@ -24,8 +24,14 @@
 #   bench-browser-*.txt   with --all: web/run.mjs, one file per engine
 #   browser-paths-*.csv   with --all: which path colbin's decode took per case
 #   browser-verify.txt    with --all: web/verify.mjs, every format against the Go JSON
-#   freq.csv              the measured cores' frequency, once a second, during timings
+#   freq.csv              the measured cores' frequency, once a second, during timings (Go and browser)
 #   machine.txt           CPU, kernel, versions, commits, busiest processes, frequency summary
+#   SUMMARY.md            cmd/summary: tables by regime and by engine, with the machine
+#   wasm-breakeven.csv    responses needed for colbin's savings to pay for its module
+#
+# Sizes now include brotli at levels 5 and 11, which is slow on the largest
+# inputs: the sizes step of a full run takes far longer than it did with gzip
+# and zstd alone.
 set -euo pipefail
 
 command_line="$0 $*"
@@ -244,9 +250,6 @@ if [ -n "$bulk_cases" ]; then
 		"$bin/colbinbench" "${bench_flags[@]}" -cases "$name" -cores "${core_list[0]}" >>"$out/bench-bulk.txt"
 	done
 fi
-kill "$sampler" 2>/dev/null || true
-sampler=""
-
 # ---- the browser ------------------------------------------------------------
 
 if [ "$browser" = 1 ] && [ "$regime" != bulk ]; then
@@ -267,11 +270,15 @@ if [ "$browser" = 1 ] && [ "$regime" != bulk ]; then
 	echo "colbin: $(node -e 'console.log(require("./web/node_modules/colbin/package.json").version)') from $(readlink -f web/node_modules/colbin)" >>"$out/machine.txt"
 fi
 
+# The sampler covered the Go timings and the browser.
+kill "$sampler" 2>/dev/null || true
+sampler=""
+
 # ---- frequency summary --------------------------------------------------------
 
 {
 	echo
-	echo "== frequency of the measured cores during timings (MHz)"
+	echo "== frequency of the measured cores during timings, Go and browser (MHz)"
 	column=2
 	for core in "${core_list[@]}"; do
 		tail -n +2 "$out/freq.csv" | cut -d, -f"$column" | grep . | sort -n | awk -v core="$core" '
@@ -284,8 +291,13 @@ fi
 	done
 } >>"$out/machine.txt"
 
+# ---- SUMMARY.md and wasm-breakeven.csv -----------------------------------------
+
+go run ./cmd/summary -wasm web/node_modules/colbin/dist/colbin.wasm "$out" ||
+	echo "local.sh: the summary failed; the results themselves are complete" >&2
+
 echo
-echo "results in $out"
+echo "results in $out (start with SUMMARY.md)"
 echo "summarise with:"
 [ -f "$out/bench-web.txt" ] && echo "  benchstat -filter 'regime:web' $out/bench-web.txt"
 [ -f "$out/bench-bulk.txt" ] && echo "  benchstat -filter 'regime:bulk' $out/bench-bulk.txt"

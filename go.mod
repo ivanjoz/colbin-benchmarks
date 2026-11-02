@@ -10,6 +10,7 @@ toolchain go1.27.0
 
 require (
 	capnproto.org/go/capnp/v3 v3.1.0-alpha.2
+	github.com/andybalholm/brotli v1.2.7
 	github.com/apache/arrow-go/v18 v18.8.0
 	github.com/fxamacker/cbor/v2 v2.9.6
 	github.com/google/flatbuffers v25.12.19+incompatible

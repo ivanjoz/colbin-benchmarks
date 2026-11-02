@@ -160,7 +160,9 @@ Then:
 `go test ./matrix -run Sizes` with `COLBIN_RESULTS=results` writes:
 
 - `sizes.csv`: per case and format, bytes, bytes per row, gzip and zstd, both at level 6,
-  and round-trip status;
+  brotli at levels 5 and 11 (`br5`, `br11`: what a server compresses a response
+  with on the fly, and the most a static asset is compressed with), and
+  round-trip status;
 - `cases.csv`: per case, the rows that colbin writes as tables against lists,
   the bytes the tables account for, leaf values, colbin bytes per value, the
   schema section size and gob's steady-state stream size.
