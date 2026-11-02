@@ -491,6 +491,420 @@ func (r *arrowRLineItemRow) read(i int, v *ds.LineItemRow) {
 	v.Comment = string(strings.Clone(r.f15.Value(i)))
 }
 
+func arrowFieldsCustomer() []arrow.Field {
+	return []arrow.Field{
+		{Name: "cust_key", Type: arrow.PrimitiveTypes.Int32, Nullable: false},
+		{Name: "name", Type: arrow.BinaryTypes.String, Nullable: false},
+		{Name: "address", Type: arrow.BinaryTypes.String, Nullable: false},
+		{Name: "nation_key", Type: arrow.PrimitiveTypes.Int32, Nullable: false},
+		{Name: "phone", Type: arrow.BinaryTypes.String, Nullable: false},
+		{Name: "acct_bal", Type: arrow.PrimitiveTypes.Int64, Nullable: false},
+		{Name: "mkt_segment", Type: arrow.BinaryTypes.String, Nullable: false},
+		{Name: "comment", Type: arrow.BinaryTypes.String, Nullable: false},
+	}
+}
+
+type arrowBCustomer struct {
+	f0 *array.Int32Builder
+	f1 *array.StringBuilder
+	f2 *array.StringBuilder
+	f3 *array.Int32Builder
+	f4 *array.StringBuilder
+	f5 *array.Int64Builder
+	f6 *array.StringBuilder
+	f7 *array.StringBuilder
+}
+
+func newArrowBCustomer(fields []array.Builder) *arrowBCustomer {
+	b := &arrowBCustomer{}
+	b.f0 = fields[0].(*array.Int32Builder)
+	b.f1 = fields[1].(*array.StringBuilder)
+	b.f2 = fields[2].(*array.StringBuilder)
+	b.f3 = fields[3].(*array.Int32Builder)
+	b.f4 = fields[4].(*array.StringBuilder)
+	b.f5 = fields[5].(*array.Int64Builder)
+	b.f6 = fields[6].(*array.StringBuilder)
+	b.f7 = fields[7].(*array.StringBuilder)
+	return b
+}
+
+func (b *arrowBCustomer) append(v *ds.Customer) {
+	b.f0.Append(int32(v.CustKey))
+	b.f1.Append(string(v.Name))
+	b.f2.Append(string(v.Address))
+	b.f3.Append(int32(v.NationKey))
+	b.f4.Append(string(v.Phone))
+	b.f5.Append(int64(v.AcctBal))
+	b.f6.Append(string(v.MktSegment))
+	b.f7.Append(string(v.Comment))
+}
+
+type arrowRCustomer struct {
+	f0 *array.Int32
+	f1 *array.String
+	f2 *array.String
+	f3 *array.Int32
+	f4 *array.String
+	f5 *array.Int64
+	f6 *array.String
+	f7 *array.String
+}
+
+func newArrowRCustomer(columns []arrow.Array) *arrowRCustomer {
+	r := &arrowRCustomer{}
+	r.f0 = columns[0].(*array.Int32)
+	r.f1 = columns[1].(*array.String)
+	r.f2 = columns[2].(*array.String)
+	r.f3 = columns[3].(*array.Int32)
+	r.f4 = columns[4].(*array.String)
+	r.f5 = columns[5].(*array.Int64)
+	r.f6 = columns[6].(*array.String)
+	r.f7 = columns[7].(*array.String)
+	return r
+}
+
+func (r *arrowRCustomer) read(i int, v *ds.Customer) {
+	v.CustKey = int32(r.f0.Value(i))
+	v.Name = string(strings.Clone(r.f1.Value(i)))
+	v.Address = string(strings.Clone(r.f2.Value(i)))
+	v.NationKey = int32(r.f3.Value(i))
+	v.Phone = string(strings.Clone(r.f4.Value(i)))
+	v.AcctBal = int64(r.f5.Value(i))
+	v.MktSegment = string(strings.Clone(r.f6.Value(i)))
+	v.Comment = string(strings.Clone(r.f7.Value(i)))
+}
+
+func arrowFieldsPart() []arrow.Field {
+	return []arrow.Field{
+		{Name: "part_key", Type: arrow.PrimitiveTypes.Int32, Nullable: false},
+		{Name: "name", Type: arrow.BinaryTypes.String, Nullable: false},
+		{Name: "mfgr", Type: arrow.BinaryTypes.String, Nullable: false},
+		{Name: "brand", Type: arrow.BinaryTypes.String, Nullable: false},
+		{Name: "type", Type: arrow.BinaryTypes.String, Nullable: false},
+		{Name: "size", Type: arrow.PrimitiveTypes.Int32, Nullable: false},
+		{Name: "container", Type: arrow.BinaryTypes.String, Nullable: false},
+		{Name: "retail_price", Type: arrow.PrimitiveTypes.Int64, Nullable: false},
+		{Name: "comment", Type: arrow.BinaryTypes.String, Nullable: false},
+	}
+}
+
+type arrowBPart struct {
+	f0 *array.Int32Builder
+	f1 *array.StringBuilder
+	f2 *array.StringBuilder
+	f3 *array.StringBuilder
+	f4 *array.StringBuilder
+	f5 *array.Int32Builder
+	f6 *array.StringBuilder
+	f7 *array.Int64Builder
+	f8 *array.StringBuilder
+}
+
+func newArrowBPart(fields []array.Builder) *arrowBPart {
+	b := &arrowBPart{}
+	b.f0 = fields[0].(*array.Int32Builder)
+	b.f1 = fields[1].(*array.StringBuilder)
+	b.f2 = fields[2].(*array.StringBuilder)
+	b.f3 = fields[3].(*array.StringBuilder)
+	b.f4 = fields[4].(*array.StringBuilder)
+	b.f5 = fields[5].(*array.Int32Builder)
+	b.f6 = fields[6].(*array.StringBuilder)
+	b.f7 = fields[7].(*array.Int64Builder)
+	b.f8 = fields[8].(*array.StringBuilder)
+	return b
+}
+
+func (b *arrowBPart) append(v *ds.Part) {
+	b.f0.Append(int32(v.PartKey))
+	b.f1.Append(string(v.Name))
+	b.f2.Append(string(v.Mfgr))
+	b.f3.Append(string(v.Brand))
+	b.f4.Append(string(v.Type))
+	b.f5.Append(int32(v.Size))
+	b.f6.Append(string(v.Container))
+	b.f7.Append(int64(v.RetailPrice))
+	b.f8.Append(string(v.Comment))
+}
+
+type arrowRPart struct {
+	f0 *array.Int32
+	f1 *array.String
+	f2 *array.String
+	f3 *array.String
+	f4 *array.String
+	f5 *array.Int32
+	f6 *array.String
+	f7 *array.Int64
+	f8 *array.String
+}
+
+func newArrowRPart(columns []arrow.Array) *arrowRPart {
+	r := &arrowRPart{}
+	r.f0 = columns[0].(*array.Int32)
+	r.f1 = columns[1].(*array.String)
+	r.f2 = columns[2].(*array.String)
+	r.f3 = columns[3].(*array.String)
+	r.f4 = columns[4].(*array.String)
+	r.f5 = columns[5].(*array.Int32)
+	r.f6 = columns[6].(*array.String)
+	r.f7 = columns[7].(*array.Int64)
+	r.f8 = columns[8].(*array.String)
+	return r
+}
+
+func (r *arrowRPart) read(i int, v *ds.Part) {
+	v.PartKey = int32(r.f0.Value(i))
+	v.Name = string(strings.Clone(r.f1.Value(i)))
+	v.Mfgr = string(strings.Clone(r.f2.Value(i)))
+	v.Brand = string(strings.Clone(r.f3.Value(i)))
+	v.Type = string(strings.Clone(r.f4.Value(i)))
+	v.Size = int32(r.f5.Value(i))
+	v.Container = string(strings.Clone(r.f6.Value(i)))
+	v.RetailPrice = int64(r.f7.Value(i))
+	v.Comment = string(strings.Clone(r.f8.Value(i)))
+}
+
+func arrowFieldsPartSupp() []arrow.Field {
+	return []arrow.Field{
+		{Name: "part_key", Type: arrow.PrimitiveTypes.Int32, Nullable: false},
+		{Name: "supp_key", Type: arrow.PrimitiveTypes.Int32, Nullable: false},
+		{Name: "avail_qty", Type: arrow.PrimitiveTypes.Int32, Nullable: false},
+		{Name: "supply_cost", Type: arrow.PrimitiveTypes.Int64, Nullable: false},
+		{Name: "comment", Type: arrow.BinaryTypes.String, Nullable: false},
+	}
+}
+
+type arrowBPartSupp struct {
+	f0 *array.Int32Builder
+	f1 *array.Int32Builder
+	f2 *array.Int32Builder
+	f3 *array.Int64Builder
+	f4 *array.StringBuilder
+}
+
+func newArrowBPartSupp(fields []array.Builder) *arrowBPartSupp {
+	b := &arrowBPartSupp{}
+	b.f0 = fields[0].(*array.Int32Builder)
+	b.f1 = fields[1].(*array.Int32Builder)
+	b.f2 = fields[2].(*array.Int32Builder)
+	b.f3 = fields[3].(*array.Int64Builder)
+	b.f4 = fields[4].(*array.StringBuilder)
+	return b
+}
+
+func (b *arrowBPartSupp) append(v *ds.PartSupp) {
+	b.f0.Append(int32(v.PartKey))
+	b.f1.Append(int32(v.SuppKey))
+	b.f2.Append(int32(v.AvailQty))
+	b.f3.Append(int64(v.SupplyCost))
+	b.f4.Append(string(v.Comment))
+}
+
+type arrowRPartSupp struct {
+	f0 *array.Int32
+	f1 *array.Int32
+	f2 *array.Int32
+	f3 *array.Int64
+	f4 *array.String
+}
+
+func newArrowRPartSupp(columns []arrow.Array) *arrowRPartSupp {
+	r := &arrowRPartSupp{}
+	r.f0 = columns[0].(*array.Int32)
+	r.f1 = columns[1].(*array.Int32)
+	r.f2 = columns[2].(*array.Int32)
+	r.f3 = columns[3].(*array.Int64)
+	r.f4 = columns[4].(*array.String)
+	return r
+}
+
+func (r *arrowRPartSupp) read(i int, v *ds.PartSupp) {
+	v.PartKey = int32(r.f0.Value(i))
+	v.SuppKey = int32(r.f1.Value(i))
+	v.AvailQty = int32(r.f2.Value(i))
+	v.SupplyCost = int64(r.f3.Value(i))
+	v.Comment = string(strings.Clone(r.f4.Value(i)))
+}
+
+func arrowFieldsSupplier() []arrow.Field {
+	return []arrow.Field{
+		{Name: "supp_key", Type: arrow.PrimitiveTypes.Int32, Nullable: false},
+		{Name: "name", Type: arrow.BinaryTypes.String, Nullable: false},
+		{Name: "address", Type: arrow.BinaryTypes.String, Nullable: false},
+		{Name: "nation_key", Type: arrow.PrimitiveTypes.Int32, Nullable: false},
+		{Name: "phone", Type: arrow.BinaryTypes.String, Nullable: false},
+		{Name: "acct_bal", Type: arrow.PrimitiveTypes.Int64, Nullable: false},
+		{Name: "comment", Type: arrow.BinaryTypes.String, Nullable: false},
+	}
+}
+
+type arrowBSupplier struct {
+	f0 *array.Int32Builder
+	f1 *array.StringBuilder
+	f2 *array.StringBuilder
+	f3 *array.Int32Builder
+	f4 *array.StringBuilder
+	f5 *array.Int64Builder
+	f6 *array.StringBuilder
+}
+
+func newArrowBSupplier(fields []array.Builder) *arrowBSupplier {
+	b := &arrowBSupplier{}
+	b.f0 = fields[0].(*array.Int32Builder)
+	b.f1 = fields[1].(*array.StringBuilder)
+	b.f2 = fields[2].(*array.StringBuilder)
+	b.f3 = fields[3].(*array.Int32Builder)
+	b.f4 = fields[4].(*array.StringBuilder)
+	b.f5 = fields[5].(*array.Int64Builder)
+	b.f6 = fields[6].(*array.StringBuilder)
+	return b
+}
+
+func (b *arrowBSupplier) append(v *ds.Supplier) {
+	b.f0.Append(int32(v.SuppKey))
+	b.f1.Append(string(v.Name))
+	b.f2.Append(string(v.Address))
+	b.f3.Append(int32(v.NationKey))
+	b.f4.Append(string(v.Phone))
+	b.f5.Append(int64(v.AcctBal))
+	b.f6.Append(string(v.Comment))
+}
+
+type arrowRSupplier struct {
+	f0 *array.Int32
+	f1 *array.String
+	f2 *array.String
+	f3 *array.Int32
+	f4 *array.String
+	f5 *array.Int64
+	f6 *array.String
+}
+
+func newArrowRSupplier(columns []arrow.Array) *arrowRSupplier {
+	r := &arrowRSupplier{}
+	r.f0 = columns[0].(*array.Int32)
+	r.f1 = columns[1].(*array.String)
+	r.f2 = columns[2].(*array.String)
+	r.f3 = columns[3].(*array.Int32)
+	r.f4 = columns[4].(*array.String)
+	r.f5 = columns[5].(*array.Int64)
+	r.f6 = columns[6].(*array.String)
+	return r
+}
+
+func (r *arrowRSupplier) read(i int, v *ds.Supplier) {
+	v.SuppKey = int32(r.f0.Value(i))
+	v.Name = string(strings.Clone(r.f1.Value(i)))
+	v.Address = string(strings.Clone(r.f2.Value(i)))
+	v.NationKey = int32(r.f3.Value(i))
+	v.Phone = string(strings.Clone(r.f4.Value(i)))
+	v.AcctBal = int64(r.f5.Value(i))
+	v.Comment = string(strings.Clone(r.f6.Value(i)))
+}
+
+func arrowFieldsNation() []arrow.Field {
+	return []arrow.Field{
+		{Name: "nation_key", Type: arrow.PrimitiveTypes.Int32, Nullable: false},
+		{Name: "name", Type: arrow.BinaryTypes.String, Nullable: false},
+		{Name: "region_key", Type: arrow.PrimitiveTypes.Int32, Nullable: false},
+		{Name: "comment", Type: arrow.BinaryTypes.String, Nullable: false},
+	}
+}
+
+type arrowBNation struct {
+	f0 *array.Int32Builder
+	f1 *array.StringBuilder
+	f2 *array.Int32Builder
+	f3 *array.StringBuilder
+}
+
+func newArrowBNation(fields []array.Builder) *arrowBNation {
+	b := &arrowBNation{}
+	b.f0 = fields[0].(*array.Int32Builder)
+	b.f1 = fields[1].(*array.StringBuilder)
+	b.f2 = fields[2].(*array.Int32Builder)
+	b.f3 = fields[3].(*array.StringBuilder)
+	return b
+}
+
+func (b *arrowBNation) append(v *ds.Nation) {
+	b.f0.Append(int32(v.NationKey))
+	b.f1.Append(string(v.Name))
+	b.f2.Append(int32(v.RegionKey))
+	b.f3.Append(string(v.Comment))
+}
+
+type arrowRNation struct {
+	f0 *array.Int32
+	f1 *array.String
+	f2 *array.Int32
+	f3 *array.String
+}
+
+func newArrowRNation(columns []arrow.Array) *arrowRNation {
+	r := &arrowRNation{}
+	r.f0 = columns[0].(*array.Int32)
+	r.f1 = columns[1].(*array.String)
+	r.f2 = columns[2].(*array.Int32)
+	r.f3 = columns[3].(*array.String)
+	return r
+}
+
+func (r *arrowRNation) read(i int, v *ds.Nation) {
+	v.NationKey = int32(r.f0.Value(i))
+	v.Name = string(strings.Clone(r.f1.Value(i)))
+	v.RegionKey = int32(r.f2.Value(i))
+	v.Comment = string(strings.Clone(r.f3.Value(i)))
+}
+
+func arrowFieldsRegion() []arrow.Field {
+	return []arrow.Field{
+		{Name: "region_key", Type: arrow.PrimitiveTypes.Int32, Nullable: false},
+		{Name: "name", Type: arrow.BinaryTypes.String, Nullable: false},
+		{Name: "comment", Type: arrow.BinaryTypes.String, Nullable: false},
+	}
+}
+
+type arrowBRegion struct {
+	f0 *array.Int32Builder
+	f1 *array.StringBuilder
+	f2 *array.StringBuilder
+}
+
+func newArrowBRegion(fields []array.Builder) *arrowBRegion {
+	b := &arrowBRegion{}
+	b.f0 = fields[0].(*array.Int32Builder)
+	b.f1 = fields[1].(*array.StringBuilder)
+	b.f2 = fields[2].(*array.StringBuilder)
+	return b
+}
+
+func (b *arrowBRegion) append(v *ds.Region) {
+	b.f0.Append(int32(v.RegionKey))
+	b.f1.Append(string(v.Name))
+	b.f2.Append(string(v.Comment))
+}
+
+type arrowRRegion struct {
+	f0 *array.Int32
+	f1 *array.String
+	f2 *array.String
+}
+
+func newArrowRRegion(columns []arrow.Array) *arrowRRegion {
+	r := &arrowRRegion{}
+	r.f0 = columns[0].(*array.Int32)
+	r.f1 = columns[1].(*array.String)
+	r.f2 = columns[2].(*array.String)
+	return r
+}
+
+func (r *arrowRRegion) read(i int, v *ds.Region) {
+	v.RegionKey = int32(r.f0.Value(i))
+	v.Name = string(strings.Clone(r.f1.Value(i)))
+	v.Comment = string(strings.Clone(r.f2.Value(i)))
+}
+
 func arrowWriteNested(out *bytes.Buffer, v *ds.Nested, allocator memory.Allocator) error {
 	if err := formats.ArrowWriteTable(out, arrow.NewSchema(arrowFieldsOrder(), nil), allocator, len(v.Orders), func(fields []array.Builder) {
 		b := newArrowBOrder(fields)
@@ -534,6 +948,54 @@ func arrowWriteNormalized(out *bytes.Buffer, v *ds.Normalized, allocator memory.
 	}); err != nil {
 		return err
 	}
+	if err := formats.ArrowWriteTable(out, arrow.NewSchema(arrowFieldsCustomer(), nil), allocator, len(v.Customers), func(fields []array.Builder) {
+		b := newArrowBCustomer(fields)
+		for i := range v.Customers {
+			b.append(&v.Customers[i])
+		}
+	}); err != nil {
+		return err
+	}
+	if err := formats.ArrowWriteTable(out, arrow.NewSchema(arrowFieldsPart(), nil), allocator, len(v.Parts), func(fields []array.Builder) {
+		b := newArrowBPart(fields)
+		for i := range v.Parts {
+			b.append(&v.Parts[i])
+		}
+	}); err != nil {
+		return err
+	}
+	if err := formats.ArrowWriteTable(out, arrow.NewSchema(arrowFieldsPartSupp(), nil), allocator, len(v.PartSupps), func(fields []array.Builder) {
+		b := newArrowBPartSupp(fields)
+		for i := range v.PartSupps {
+			b.append(&v.PartSupps[i])
+		}
+	}); err != nil {
+		return err
+	}
+	if err := formats.ArrowWriteTable(out, arrow.NewSchema(arrowFieldsSupplier(), nil), allocator, len(v.Suppliers), func(fields []array.Builder) {
+		b := newArrowBSupplier(fields)
+		for i := range v.Suppliers {
+			b.append(&v.Suppliers[i])
+		}
+	}); err != nil {
+		return err
+	}
+	if err := formats.ArrowWriteTable(out, arrow.NewSchema(arrowFieldsNation(), nil), allocator, len(v.Nations), func(fields []array.Builder) {
+		b := newArrowBNation(fields)
+		for i := range v.Nations {
+			b.append(&v.Nations[i])
+		}
+	}); err != nil {
+		return err
+	}
+	if err := formats.ArrowWriteTable(out, arrow.NewSchema(arrowFieldsRegion(), nil), allocator, len(v.Regions), func(fields []array.Builder) {
+		b := newArrowBRegion(fields)
+		for i := range v.Regions {
+			b.append(&v.Regions[i])
+		}
+	}); err != nil {
+		return err
+	}
 	return nil
 }
 
@@ -553,6 +1015,274 @@ func arrowReadNormalized(data []byte, v *ds.Normalized, allocator memory.Allocat
 		v.Lines = formats.Resize(v.Lines, int(record.NumRows()))
 		for i := range v.Lines {
 			r.read(i, &v.Lines[i])
+		}
+		return nil
+	}); err != nil {
+		return err
+	}
+	if err := formats.ArrowTable(data, 2, allocator, func(record arrow.RecordBatch) error {
+		r := newArrowRCustomer(record.Columns())
+		v.Customers = formats.Resize(v.Customers, int(record.NumRows()))
+		for i := range v.Customers {
+			r.read(i, &v.Customers[i])
+		}
+		return nil
+	}); err != nil {
+		return err
+	}
+	if err := formats.ArrowTable(data, 3, allocator, func(record arrow.RecordBatch) error {
+		r := newArrowRPart(record.Columns())
+		v.Parts = formats.Resize(v.Parts, int(record.NumRows()))
+		for i := range v.Parts {
+			r.read(i, &v.Parts[i])
+		}
+		return nil
+	}); err != nil {
+		return err
+	}
+	if err := formats.ArrowTable(data, 4, allocator, func(record arrow.RecordBatch) error {
+		r := newArrowRPartSupp(record.Columns())
+		v.PartSupps = formats.Resize(v.PartSupps, int(record.NumRows()))
+		for i := range v.PartSupps {
+			r.read(i, &v.PartSupps[i])
+		}
+		return nil
+	}); err != nil {
+		return err
+	}
+	if err := formats.ArrowTable(data, 5, allocator, func(record arrow.RecordBatch) error {
+		r := newArrowRSupplier(record.Columns())
+		v.Suppliers = formats.Resize(v.Suppliers, int(record.NumRows()))
+		for i := range v.Suppliers {
+			r.read(i, &v.Suppliers[i])
+		}
+		return nil
+	}); err != nil {
+		return err
+	}
+	if err := formats.ArrowTable(data, 6, allocator, func(record arrow.RecordBatch) error {
+		r := newArrowRNation(record.Columns())
+		v.Nations = formats.Resize(v.Nations, int(record.NumRows()))
+		for i := range v.Nations {
+			r.read(i, &v.Nations[i])
+		}
+		return nil
+	}); err != nil {
+		return err
+	}
+	if err := formats.ArrowTable(data, 7, allocator, func(record arrow.RecordBatch) error {
+		r := newArrowRRegion(record.Columns())
+		v.Regions = formats.Resize(v.Regions, int(record.NumRows()))
+		for i := range v.Regions {
+			r.read(i, &v.Regions[i])
+		}
+		return nil
+	}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func arrowWriteOrdersTable(out *bytes.Buffer, v *ds.OrdersTable, allocator memory.Allocator) error {
+	if err := formats.ArrowWriteTable(out, arrow.NewSchema(arrowFieldsOrderRow(), nil), allocator, len(v.Rows), func(fields []array.Builder) {
+		b := newArrowBOrderRow(fields)
+		for i := range v.Rows {
+			b.append(&v.Rows[i])
+		}
+	}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func arrowReadOrdersTable(data []byte, v *ds.OrdersTable, allocator memory.Allocator) error {
+	if err := formats.ArrowTable(data, 0, allocator, func(record arrow.RecordBatch) error {
+		r := newArrowROrderRow(record.Columns())
+		v.Rows = formats.Resize(v.Rows, int(record.NumRows()))
+		for i := range v.Rows {
+			r.read(i, &v.Rows[i])
+		}
+		return nil
+	}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func arrowWriteLineItemTable(out *bytes.Buffer, v *ds.LineItemTable, allocator memory.Allocator) error {
+	if err := formats.ArrowWriteTable(out, arrow.NewSchema(arrowFieldsLineItemRow(), nil), allocator, len(v.Rows), func(fields []array.Builder) {
+		b := newArrowBLineItemRow(fields)
+		for i := range v.Rows {
+			b.append(&v.Rows[i])
+		}
+	}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func arrowReadLineItemTable(data []byte, v *ds.LineItemTable, allocator memory.Allocator) error {
+	if err := formats.ArrowTable(data, 0, allocator, func(record arrow.RecordBatch) error {
+		r := newArrowRLineItemRow(record.Columns())
+		v.Rows = formats.Resize(v.Rows, int(record.NumRows()))
+		for i := range v.Rows {
+			r.read(i, &v.Rows[i])
+		}
+		return nil
+	}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func arrowWriteCustomerTable(out *bytes.Buffer, v *ds.CustomerTable, allocator memory.Allocator) error {
+	if err := formats.ArrowWriteTable(out, arrow.NewSchema(arrowFieldsCustomer(), nil), allocator, len(v.Rows), func(fields []array.Builder) {
+		b := newArrowBCustomer(fields)
+		for i := range v.Rows {
+			b.append(&v.Rows[i])
+		}
+	}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func arrowReadCustomerTable(data []byte, v *ds.CustomerTable, allocator memory.Allocator) error {
+	if err := formats.ArrowTable(data, 0, allocator, func(record arrow.RecordBatch) error {
+		r := newArrowRCustomer(record.Columns())
+		v.Rows = formats.Resize(v.Rows, int(record.NumRows()))
+		for i := range v.Rows {
+			r.read(i, &v.Rows[i])
+		}
+		return nil
+	}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func arrowWritePartTable(out *bytes.Buffer, v *ds.PartTable, allocator memory.Allocator) error {
+	if err := formats.ArrowWriteTable(out, arrow.NewSchema(arrowFieldsPart(), nil), allocator, len(v.Rows), func(fields []array.Builder) {
+		b := newArrowBPart(fields)
+		for i := range v.Rows {
+			b.append(&v.Rows[i])
+		}
+	}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func arrowReadPartTable(data []byte, v *ds.PartTable, allocator memory.Allocator) error {
+	if err := formats.ArrowTable(data, 0, allocator, func(record arrow.RecordBatch) error {
+		r := newArrowRPart(record.Columns())
+		v.Rows = formats.Resize(v.Rows, int(record.NumRows()))
+		for i := range v.Rows {
+			r.read(i, &v.Rows[i])
+		}
+		return nil
+	}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func arrowWritePartSuppTable(out *bytes.Buffer, v *ds.PartSuppTable, allocator memory.Allocator) error {
+	if err := formats.ArrowWriteTable(out, arrow.NewSchema(arrowFieldsPartSupp(), nil), allocator, len(v.Rows), func(fields []array.Builder) {
+		b := newArrowBPartSupp(fields)
+		for i := range v.Rows {
+			b.append(&v.Rows[i])
+		}
+	}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func arrowReadPartSuppTable(data []byte, v *ds.PartSuppTable, allocator memory.Allocator) error {
+	if err := formats.ArrowTable(data, 0, allocator, func(record arrow.RecordBatch) error {
+		r := newArrowRPartSupp(record.Columns())
+		v.Rows = formats.Resize(v.Rows, int(record.NumRows()))
+		for i := range v.Rows {
+			r.read(i, &v.Rows[i])
+		}
+		return nil
+	}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func arrowWriteSupplierTable(out *bytes.Buffer, v *ds.SupplierTable, allocator memory.Allocator) error {
+	if err := formats.ArrowWriteTable(out, arrow.NewSchema(arrowFieldsSupplier(), nil), allocator, len(v.Rows), func(fields []array.Builder) {
+		b := newArrowBSupplier(fields)
+		for i := range v.Rows {
+			b.append(&v.Rows[i])
+		}
+	}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func arrowReadSupplierTable(data []byte, v *ds.SupplierTable, allocator memory.Allocator) error {
+	if err := formats.ArrowTable(data, 0, allocator, func(record arrow.RecordBatch) error {
+		r := newArrowRSupplier(record.Columns())
+		v.Rows = formats.Resize(v.Rows, int(record.NumRows()))
+		for i := range v.Rows {
+			r.read(i, &v.Rows[i])
+		}
+		return nil
+	}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func arrowWriteNationTable(out *bytes.Buffer, v *ds.NationTable, allocator memory.Allocator) error {
+	if err := formats.ArrowWriteTable(out, arrow.NewSchema(arrowFieldsNation(), nil), allocator, len(v.Rows), func(fields []array.Builder) {
+		b := newArrowBNation(fields)
+		for i := range v.Rows {
+			b.append(&v.Rows[i])
+		}
+	}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func arrowReadNationTable(data []byte, v *ds.NationTable, allocator memory.Allocator) error {
+	if err := formats.ArrowTable(data, 0, allocator, func(record arrow.RecordBatch) error {
+		r := newArrowRNation(record.Columns())
+		v.Rows = formats.Resize(v.Rows, int(record.NumRows()))
+		for i := range v.Rows {
+			r.read(i, &v.Rows[i])
+		}
+		return nil
+	}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func arrowWriteRegionTable(out *bytes.Buffer, v *ds.RegionTable, allocator memory.Allocator) error {
+	if err := formats.ArrowWriteTable(out, arrow.NewSchema(arrowFieldsRegion(), nil), allocator, len(v.Rows), func(fields []array.Builder) {
+		b := newArrowBRegion(fields)
+		for i := range v.Rows {
+			b.append(&v.Rows[i])
+		}
+	}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func arrowReadRegionTable(data []byte, v *ds.RegionTable, allocator memory.Allocator) error {
+	if err := formats.ArrowTable(data, 0, allocator, func(record arrow.RecordBatch) error {
+		r := newArrowRRegion(record.Columns())
+		v.Rows = formats.Resize(v.Rows, int(record.NumRows()))
+		for i := range v.Rows {
+			r.read(i, &v.Rows[i])
 		}
 		return nil
 	}); err != nil {

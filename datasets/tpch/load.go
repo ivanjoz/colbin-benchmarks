@@ -10,13 +10,14 @@ import (
 	"time"
 )
 
-// Scales are the scale factors fetch.sh generates, as dbgen spells them.
-var Scales = []string{"0.1", "1"}
+// SF is the scale factor fetch.sh generates and the matrix measures, as dbgen
+// spells it.
+const SF = "0.1"
 
 // Dir is where fetch.sh writes scale factor sf under the data directory.
 func Dir(data, sf string) string { return filepath.Join(data, "tpch", "sf"+sf) }
 
-// LoadNormalized reads orders.tbl and lineitem.tbl as dbgen wrote them.
+// LoadNormalized reads the eight .tbl files as dbgen wrote them.
 func LoadNormalized(data, sf string) (*Normalized, error) {
 	dir := Dir(data, sf)
 	var out Normalized
@@ -67,10 +68,101 @@ func LoadNormalized(data, sf string) (*Normalized, error) {
 	if err != nil {
 		return nil, err
 	}
+	err = readTable(filepath.Join(dir, "customer.tbl"), 8, func(f []string) error {
+		var row Customer
+		var err error
+		row.CustKey, err = parseInt32(f[0], err)
+		row.Name = f[1]
+		row.Address = f[2]
+		row.NationKey, err = parseInt32(f[3], err)
+		row.Phone = f[4]
+		row.AcctBal, err = parseCents(f[5], err)
+		row.MktSegment = f[6]
+		row.Comment = f[7]
+		out.Customers = append(out.Customers, row)
+		return err
+	})
+	if err != nil {
+		return nil, err
+	}
+	err = readTable(filepath.Join(dir, "part.tbl"), 9, func(f []string) error {
+		var row Part
+		var err error
+		row.PartKey, err = parseInt32(f[0], err)
+		row.Name = f[1]
+		row.Mfgr = f[2]
+		row.Brand = f[3]
+		row.Type = f[4]
+		row.Size, err = parseInt32(f[5], err)
+		row.Container = f[6]
+		row.RetailPrice, err = parseCents(f[7], err)
+		row.Comment = f[8]
+		out.Parts = append(out.Parts, row)
+		return err
+	})
+	if err != nil {
+		return nil, err
+	}
+	err = readTable(filepath.Join(dir, "partsupp.tbl"), 5, func(f []string) error {
+		var row PartSupp
+		var err error
+		row.PartKey, err = parseInt32(f[0], err)
+		row.SuppKey, err = parseInt32(f[1], err)
+		row.AvailQty, err = parseInt32(f[2], err)
+		row.SupplyCost, err = parseCents(f[3], err)
+		row.Comment = f[4]
+		out.PartSupps = append(out.PartSupps, row)
+		return err
+	})
+	if err != nil {
+		return nil, err
+	}
+	err = readTable(filepath.Join(dir, "supplier.tbl"), 7, func(f []string) error {
+		var row Supplier
+		var err error
+		row.SuppKey, err = parseInt32(f[0], err)
+		row.Name = f[1]
+		row.Address = f[2]
+		row.NationKey, err = parseInt32(f[3], err)
+		row.Phone = f[4]
+		row.AcctBal, err = parseCents(f[5], err)
+		row.Comment = f[6]
+		out.Suppliers = append(out.Suppliers, row)
+		return err
+	})
+	if err != nil {
+		return nil, err
+	}
+	err = readTable(filepath.Join(dir, "nation.tbl"), 4, func(f []string) error {
+		var row Nation
+		var err error
+		row.NationKey, err = parseInt32(f[0], err)
+		row.Name = f[1]
+		row.RegionKey, err = parseInt32(f[2], err)
+		row.Comment = f[3]
+		out.Nations = append(out.Nations, row)
+		return err
+	})
+	if err != nil {
+		return nil, err
+	}
+	err = readTable(filepath.Join(dir, "region.tbl"), 3, func(f []string) error {
+		var row Region
+		var err error
+		row.RegionKey, err = parseInt32(f[0], err)
+		row.Name = f[1]
+		row.Comment = f[2]
+		out.Regions = append(out.Regions, row)
+		return err
+	})
+	if err != nil {
+		return nil, err
+	}
 	return &out, nil
 }
 
-// LoadNested reads the same files and nests each order's lines inside it.
+// LoadNested reads the same files and nests each order's lines inside it; the
+// other six tables have no parent and child to nest, and are not in this shape.
 // dbgen writes lineitem in order-key order, so the lines of one order are
 // adjacent; a line out of that order is an error, not something to sort.
 func LoadNested(data, sf string) (*Nested, error) {

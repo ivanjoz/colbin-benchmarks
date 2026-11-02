@@ -16,13 +16,17 @@
 
 ## Subset
 
-`orders` and `lineitem` only (`dbgen -T o`), at scale factor 0.1 (150 000
-orders, 600 572 lines; timed) and 1 (1 500 000 orders, 6 001 215 lines; sized
-only, with `COLBIN_LARGE=1`, because it needs several gigabytes per format).
-Fixed before measurement.
+All eight tables (`dbgen` with no `-T`: orders, lineitem, customer, part,
+partsupp, supplier, nation, region), at scale factor 0.1 (866 602 rows, 150 000
+orders and 600 572 lines). The first
+version of this subset was orders and lineitem only; orders and lineitem are
+byte for byte the files that version used (their checksums did not move), and
+the other six tables were added to the normalized shape. Fixed before
+measurement of the full subset.
 
 ## Modelling
 
 See `types.go`: DECIMAL as int64 cents, DATE as int32 days since 1970-01-01,
 keys and INTEGER as int32, CHAR/VARCHAR as string. Two shapes — orders with
-their lines nested, and the two tables side by side — both reported.
+their lines nested (the only parent and child, so only those two tables), and
+all eight tables side by side — both reported.

@@ -4,25 +4,50 @@ import (
 	"reflect"
 
 	"github.com/ivanjoz/colbin-benchmarks/datasets/schemastore"
-	"github.com/ivanjoz/colbin-benchmarks/datasets/synthetic"
 	"github.com/ivanjoz/colbin-benchmarks/datasets/tpch"
+	"github.com/ivanjoz/colbin-benchmarks/datasets/tpcds"
 )
 
 // targets is every dataset package and the root types measured from it. A new
 // dataset adds its entry here and runs `go run ./cmd/gen <name>`.
 var targets = []target{
-	{name: "synthetic", roots: []root{
-		{typ: reflect.TypeFor[synthetic.Reading](), access: "Value"},
-		{typ: reflect.TypeFor[synthetic.Order](), access: "Lines.Price"},
-		{typ: reflect.TypeFor[synthetic.Product](), access: "PriceCents"},
-		{typ: reflect.TypeFor[synthetic.Metrics](), access: "Rows.Value"},
-		{typ: reflect.TypeFor[synthetic.Sales](), access: "Rows.Detail.TotalCents"},
-		{typ: reflect.TypeFor[synthetic.Events](), access: "Rows.At"},
-		{typ: reflect.TypeFor[synthetic.Dataset](), access: "Sales.Detail.TotalCents"},
-	}},
 	{name: "tpch", roots: []root{
 		{typ: reflect.TypeFor[tpch.Nested](), access: "Orders.Lines.ExtendedPrice"},
 		{typ: reflect.TypeFor[tpch.Normalized](), access: "Lines.ExtendedPrice"},
+		{typ: reflect.TypeFor[tpch.OrdersTable](), access: "Rows.OrderKey"},
+		{typ: reflect.TypeFor[tpch.LineItemTable](), access: "Rows.ExtendedPrice"},
+		{typ: reflect.TypeFor[tpch.CustomerTable](), access: "Rows.CustKey"},
+		{typ: reflect.TypeFor[tpch.PartTable](), access: "Rows.PartKey"},
+		{typ: reflect.TypeFor[tpch.PartSuppTable](), access: "Rows.PartKey"},
+		{typ: reflect.TypeFor[tpch.SupplierTable](), access: "Rows.SuppKey"},
+		{typ: reflect.TypeFor[tpch.NationTable](), access: "Rows.NationKey"},
+		{typ: reflect.TypeFor[tpch.RegionTable](), access: "Rows.RegionKey"},
+	}},
+	{name: "tpcds", roots: []root{
+		{typ: reflect.TypeFor[tpcds.CallCenterTable](), access: "Rows.CallCenterSk"},
+		{typ: reflect.TypeFor[tpcds.CatalogPageTable](), access: "Rows.CatalogPageSk"},
+		{typ: reflect.TypeFor[tpcds.CatalogReturnsTable](), access: "Rows.ReturnedDateSk"},
+		{typ: reflect.TypeFor[tpcds.CatalogSalesTable](), access: "Rows.ItemSk"},
+		{typ: reflect.TypeFor[tpcds.CustomerTable](), access: "Rows.CustomerSk"},
+		{typ: reflect.TypeFor[tpcds.CustomerAddressTable](), access: "Rows.AddressSk"},
+		{typ: reflect.TypeFor[tpcds.CustomerDemographicsTable](), access: "Rows.DemoSk"},
+		{typ: reflect.TypeFor[tpcds.DateDimTable](), access: "Rows.DateSk"},
+		{typ: reflect.TypeFor[tpcds.HouseholdDemographicsTable](), access: "Rows.DemoSk"},
+		{typ: reflect.TypeFor[tpcds.IncomeBandTable](), access: "Rows.IncomeBandSk"},
+		{typ: reflect.TypeFor[tpcds.InventoryTable](), access: "Rows.DateSk"},
+		{typ: reflect.TypeFor[tpcds.ItemTable](), access: "Rows.ItemSk"},
+		{typ: reflect.TypeFor[tpcds.PromotionTable](), access: "Rows.PromoSk"},
+		{typ: reflect.TypeFor[tpcds.ReasonTable](), access: "Rows.ReasonSk"},
+		{typ: reflect.TypeFor[tpcds.ShipModeTable](), access: "Rows.ShipModeSk"},
+		{typ: reflect.TypeFor[tpcds.StoreTable](), access: "Rows.StoreSk"},
+		{typ: reflect.TypeFor[tpcds.StoreReturnsTable](), access: "Rows.ItemSk"},
+		{typ: reflect.TypeFor[tpcds.StoreSalesTable](), access: "Rows.ItemSk"},
+		{typ: reflect.TypeFor[tpcds.TimeDimTable](), access: "Rows.TimeSk"},
+		{typ: reflect.TypeFor[tpcds.WarehouseTable](), access: "Rows.WarehouseSk"},
+		{typ: reflect.TypeFor[tpcds.WebPageTable](), access: "Rows.WebPageSk"},
+		{typ: reflect.TypeFor[tpcds.WebReturnsTable](), access: "Rows.ItemSk"},
+		{typ: reflect.TypeFor[tpcds.WebSalesTable](), access: "Rows.ItemSk"},
+		{typ: reflect.TypeFor[tpcds.WebSiteTable](), access: "Rows.SiteSk"},
 	}},
 	{name: "schemastore", roots: []root{
 		{typ: reflect.TypeFor[schemastore.CircleCIBlank]()},

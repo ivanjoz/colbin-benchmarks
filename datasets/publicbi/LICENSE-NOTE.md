@@ -15,11 +15,12 @@
 
 ## Subset
 
-The first table of every workbook (`<workbook>_1`, 46 tables) and of each its
-first 16 384 rows, or all of it where it is shorter (IUBLibrary_1 has 1 795,
-TrainsUK1_1 has 1). Fixed before measurement. `fetch.sh` streams each
-`.csv.bz2` through `subset/`, which stops reading after the last row used, so
-the 40 GB of the full benchmark is never downloaded.
+The first table of every workbook (`<workbook>_1`, 46 tables) and of each a
+seeded simple random sample of 16 384 rows, in table order, or all of it where
+it is shorter (IUBLibrary_1 has 1 795, TrainsUK1_1 has 1). `fetch.sh` streams
+each `.csv.bz2` (13 GB for the 46 tables) through `bzip2` and `subset/`, which
+reads the table once and writes only its sample. The rule, the seed and why
+not the first rows are in [`../README.md`](../README.md#how-the-subsets-were-chosen).
 
 ## Modelling
 

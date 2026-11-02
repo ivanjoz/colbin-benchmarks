@@ -7,7 +7,6 @@ package matrix
 import (
 	"math"
 	"reflect"
-	"strings"
 	"testing"
 
 	"github.com/ivanjoz/colbin"
@@ -17,9 +16,6 @@ func TestDictCheck(t *testing.T) {
 	defer colbin.SetDictionary(false)
 	logSum, cases, used := 0.0, 0, 0
 	for _, kase := range Cases() {
-		if strings.Contains(kase.Name, "/sf1/") {
-			continue // past the decoder's default row budget
-		}
 		loaded, err := kase.Load(DataDir())
 		if err != nil {
 			continue

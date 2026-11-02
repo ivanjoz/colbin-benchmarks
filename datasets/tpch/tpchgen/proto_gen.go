@@ -144,6 +144,42 @@ func toPBNormalized(v *ds.Normalized) *pb.Normalized {
 			m.Lines[i] = toPBLineItemRow(&v.Lines[i])
 		}
 	}
+	if len(v.Customers) > 0 {
+		m.Customers = make([]*pb.Customer, len(v.Customers))
+		for i := range v.Customers {
+			m.Customers[i] = toPBCustomer(&v.Customers[i])
+		}
+	}
+	if len(v.Parts) > 0 {
+		m.Parts = make([]*pb.Part, len(v.Parts))
+		for i := range v.Parts {
+			m.Parts[i] = toPBPart(&v.Parts[i])
+		}
+	}
+	if len(v.PartSupps) > 0 {
+		m.PartSupps = make([]*pb.PartSupp, len(v.PartSupps))
+		for i := range v.PartSupps {
+			m.PartSupps[i] = toPBPartSupp(&v.PartSupps[i])
+		}
+	}
+	if len(v.Suppliers) > 0 {
+		m.Suppliers = make([]*pb.Supplier, len(v.Suppliers))
+		for i := range v.Suppliers {
+			m.Suppliers[i] = toPBSupplier(&v.Suppliers[i])
+		}
+	}
+	if len(v.Nations) > 0 {
+		m.Nations = make([]*pb.Nation, len(v.Nations))
+		for i := range v.Nations {
+			m.Nations[i] = toPBNation(&v.Nations[i])
+		}
+	}
+	if len(v.Regions) > 0 {
+		m.Regions = make([]*pb.Region, len(v.Regions))
+		for i := range v.Regions {
+			m.Regions[i] = toPBRegion(&v.Regions[i])
+		}
+	}
 	return m
 }
 
@@ -164,6 +200,48 @@ func fromPBNormalized(m *pb.Normalized, v *ds.Normalized) {
 		v.Lines = make([]ds.LineItemRow, len(m.Lines))
 		for i, x := range m.Lines {
 			fromPBLineItemRow(x, &v.Lines[i])
+		}
+	}
+	v.Customers = nil
+	if len(m.Customers) > 0 {
+		v.Customers = make([]ds.Customer, len(m.Customers))
+		for i, x := range m.Customers {
+			fromPBCustomer(x, &v.Customers[i])
+		}
+	}
+	v.Parts = nil
+	if len(m.Parts) > 0 {
+		v.Parts = make([]ds.Part, len(m.Parts))
+		for i, x := range m.Parts {
+			fromPBPart(x, &v.Parts[i])
+		}
+	}
+	v.PartSupps = nil
+	if len(m.PartSupps) > 0 {
+		v.PartSupps = make([]ds.PartSupp, len(m.PartSupps))
+		for i, x := range m.PartSupps {
+			fromPBPartSupp(x, &v.PartSupps[i])
+		}
+	}
+	v.Suppliers = nil
+	if len(m.Suppliers) > 0 {
+		v.Suppliers = make([]ds.Supplier, len(m.Suppliers))
+		for i, x := range m.Suppliers {
+			fromPBSupplier(x, &v.Suppliers[i])
+		}
+	}
+	v.Nations = nil
+	if len(m.Nations) > 0 {
+		v.Nations = make([]ds.Nation, len(m.Nations))
+		for i, x := range m.Nations {
+			fromPBNation(x, &v.Nations[i])
+		}
+	}
+	v.Regions = nil
+	if len(m.Regions) > 0 {
+		v.Regions = make([]ds.Region, len(m.Regions))
+		for i, x := range m.Regions {
+			fromPBRegion(x, &v.Regions[i])
 		}
 	}
 }
@@ -246,4 +324,390 @@ func fromPBLineItemRow(m *pb.LineItemRow, v *ds.LineItemRow) {
 	v.ShipInstruct = string(m.ShipInstruct)
 	v.ShipMode = string(m.ShipMode)
 	v.Comment = string(m.Comment)
+}
+
+func toPBCustomer(v *ds.Customer) *pb.Customer {
+	if v == nil {
+		return nil
+	}
+	m := &pb.Customer{}
+	m.CustKey = int32(v.CustKey)
+	m.Name = string(v.Name)
+	m.Address = string(v.Address)
+	m.NationKey = int32(v.NationKey)
+	m.Phone = string(v.Phone)
+	m.AcctBal = int64(v.AcctBal)
+	m.MktSegment = string(v.MktSegment)
+	m.Comment = string(v.Comment)
+	return m
+}
+
+func fromPBCustomer(m *pb.Customer, v *ds.Customer) {
+	if m == nil {
+		*v = ds.Customer{}
+		return
+	}
+	v.CustKey = int32(m.CustKey)
+	v.Name = string(m.Name)
+	v.Address = string(m.Address)
+	v.NationKey = int32(m.NationKey)
+	v.Phone = string(m.Phone)
+	v.AcctBal = int64(m.AcctBal)
+	v.MktSegment = string(m.MktSegment)
+	v.Comment = string(m.Comment)
+}
+
+func toPBPart(v *ds.Part) *pb.Part {
+	if v == nil {
+		return nil
+	}
+	m := &pb.Part{}
+	m.PartKey = int32(v.PartKey)
+	m.Name = string(v.Name)
+	m.Mfgr = string(v.Mfgr)
+	m.Brand = string(v.Brand)
+	m.Type = string(v.Type)
+	m.Size = int32(v.Size)
+	m.Container = string(v.Container)
+	m.RetailPrice = int64(v.RetailPrice)
+	m.Comment = string(v.Comment)
+	return m
+}
+
+func fromPBPart(m *pb.Part, v *ds.Part) {
+	if m == nil {
+		*v = ds.Part{}
+		return
+	}
+	v.PartKey = int32(m.PartKey)
+	v.Name = string(m.Name)
+	v.Mfgr = string(m.Mfgr)
+	v.Brand = string(m.Brand)
+	v.Type = string(m.Type)
+	v.Size = int32(m.Size)
+	v.Container = string(m.Container)
+	v.RetailPrice = int64(m.RetailPrice)
+	v.Comment = string(m.Comment)
+}
+
+func toPBPartSupp(v *ds.PartSupp) *pb.PartSupp {
+	if v == nil {
+		return nil
+	}
+	m := &pb.PartSupp{}
+	m.PartKey = int32(v.PartKey)
+	m.SuppKey = int32(v.SuppKey)
+	m.AvailQty = int32(v.AvailQty)
+	m.SupplyCost = int64(v.SupplyCost)
+	m.Comment = string(v.Comment)
+	return m
+}
+
+func fromPBPartSupp(m *pb.PartSupp, v *ds.PartSupp) {
+	if m == nil {
+		*v = ds.PartSupp{}
+		return
+	}
+	v.PartKey = int32(m.PartKey)
+	v.SuppKey = int32(m.SuppKey)
+	v.AvailQty = int32(m.AvailQty)
+	v.SupplyCost = int64(m.SupplyCost)
+	v.Comment = string(m.Comment)
+}
+
+func toPBSupplier(v *ds.Supplier) *pb.Supplier {
+	if v == nil {
+		return nil
+	}
+	m := &pb.Supplier{}
+	m.SuppKey = int32(v.SuppKey)
+	m.Name = string(v.Name)
+	m.Address = string(v.Address)
+	m.NationKey = int32(v.NationKey)
+	m.Phone = string(v.Phone)
+	m.AcctBal = int64(v.AcctBal)
+	m.Comment = string(v.Comment)
+	return m
+}
+
+func fromPBSupplier(m *pb.Supplier, v *ds.Supplier) {
+	if m == nil {
+		*v = ds.Supplier{}
+		return
+	}
+	v.SuppKey = int32(m.SuppKey)
+	v.Name = string(m.Name)
+	v.Address = string(m.Address)
+	v.NationKey = int32(m.NationKey)
+	v.Phone = string(m.Phone)
+	v.AcctBal = int64(m.AcctBal)
+	v.Comment = string(m.Comment)
+}
+
+func toPBNation(v *ds.Nation) *pb.Nation {
+	if v == nil {
+		return nil
+	}
+	m := &pb.Nation{}
+	m.NationKey = int32(v.NationKey)
+	m.Name = string(v.Name)
+	m.RegionKey = int32(v.RegionKey)
+	m.Comment = string(v.Comment)
+	return m
+}
+
+func fromPBNation(m *pb.Nation, v *ds.Nation) {
+	if m == nil {
+		*v = ds.Nation{}
+		return
+	}
+	v.NationKey = int32(m.NationKey)
+	v.Name = string(m.Name)
+	v.RegionKey = int32(m.RegionKey)
+	v.Comment = string(m.Comment)
+}
+
+func toPBRegion(v *ds.Region) *pb.Region {
+	if v == nil {
+		return nil
+	}
+	m := &pb.Region{}
+	m.RegionKey = int32(v.RegionKey)
+	m.Name = string(v.Name)
+	m.Comment = string(v.Comment)
+	return m
+}
+
+func fromPBRegion(m *pb.Region, v *ds.Region) {
+	if m == nil {
+		*v = ds.Region{}
+		return
+	}
+	v.RegionKey = int32(m.RegionKey)
+	v.Name = string(m.Name)
+	v.Comment = string(m.Comment)
+}
+
+func toPBOrdersTable(v *ds.OrdersTable) *pb.OrdersTable {
+	if v == nil {
+		return nil
+	}
+	m := &pb.OrdersTable{}
+	if len(v.Rows) > 0 {
+		m.Rows = make([]*pb.OrderRow, len(v.Rows))
+		for i := range v.Rows {
+			m.Rows[i] = toPBOrderRow(&v.Rows[i])
+		}
+	}
+	return m
+}
+
+func fromPBOrdersTable(m *pb.OrdersTable, v *ds.OrdersTable) {
+	if m == nil {
+		*v = ds.OrdersTable{}
+		return
+	}
+	v.Rows = nil
+	if len(m.Rows) > 0 {
+		v.Rows = make([]ds.OrderRow, len(m.Rows))
+		for i, x := range m.Rows {
+			fromPBOrderRow(x, &v.Rows[i])
+		}
+	}
+}
+
+func toPBLineItemTable(v *ds.LineItemTable) *pb.LineItemTable {
+	if v == nil {
+		return nil
+	}
+	m := &pb.LineItemTable{}
+	if len(v.Rows) > 0 {
+		m.Rows = make([]*pb.LineItemRow, len(v.Rows))
+		for i := range v.Rows {
+			m.Rows[i] = toPBLineItemRow(&v.Rows[i])
+		}
+	}
+	return m
+}
+
+func fromPBLineItemTable(m *pb.LineItemTable, v *ds.LineItemTable) {
+	if m == nil {
+		*v = ds.LineItemTable{}
+		return
+	}
+	v.Rows = nil
+	if len(m.Rows) > 0 {
+		v.Rows = make([]ds.LineItemRow, len(m.Rows))
+		for i, x := range m.Rows {
+			fromPBLineItemRow(x, &v.Rows[i])
+		}
+	}
+}
+
+func toPBCustomerTable(v *ds.CustomerTable) *pb.CustomerTable {
+	if v == nil {
+		return nil
+	}
+	m := &pb.CustomerTable{}
+	if len(v.Rows) > 0 {
+		m.Rows = make([]*pb.Customer, len(v.Rows))
+		for i := range v.Rows {
+			m.Rows[i] = toPBCustomer(&v.Rows[i])
+		}
+	}
+	return m
+}
+
+func fromPBCustomerTable(m *pb.CustomerTable, v *ds.CustomerTable) {
+	if m == nil {
+		*v = ds.CustomerTable{}
+		return
+	}
+	v.Rows = nil
+	if len(m.Rows) > 0 {
+		v.Rows = make([]ds.Customer, len(m.Rows))
+		for i, x := range m.Rows {
+			fromPBCustomer(x, &v.Rows[i])
+		}
+	}
+}
+
+func toPBPartTable(v *ds.PartTable) *pb.PartTable {
+	if v == nil {
+		return nil
+	}
+	m := &pb.PartTable{}
+	if len(v.Rows) > 0 {
+		m.Rows = make([]*pb.Part, len(v.Rows))
+		for i := range v.Rows {
+			m.Rows[i] = toPBPart(&v.Rows[i])
+		}
+	}
+	return m
+}
+
+func fromPBPartTable(m *pb.PartTable, v *ds.PartTable) {
+	if m == nil {
+		*v = ds.PartTable{}
+		return
+	}
+	v.Rows = nil
+	if len(m.Rows) > 0 {
+		v.Rows = make([]ds.Part, len(m.Rows))
+		for i, x := range m.Rows {
+			fromPBPart(x, &v.Rows[i])
+		}
+	}
+}
+
+func toPBPartSuppTable(v *ds.PartSuppTable) *pb.PartSuppTable {
+	if v == nil {
+		return nil
+	}
+	m := &pb.PartSuppTable{}
+	if len(v.Rows) > 0 {
+		m.Rows = make([]*pb.PartSupp, len(v.Rows))
+		for i := range v.Rows {
+			m.Rows[i] = toPBPartSupp(&v.Rows[i])
+		}
+	}
+	return m
+}
+
+func fromPBPartSuppTable(m *pb.PartSuppTable, v *ds.PartSuppTable) {
+	if m == nil {
+		*v = ds.PartSuppTable{}
+		return
+	}
+	v.Rows = nil
+	if len(m.Rows) > 0 {
+		v.Rows = make([]ds.PartSupp, len(m.Rows))
+		for i, x := range m.Rows {
+			fromPBPartSupp(x, &v.Rows[i])
+		}
+	}
+}
+
+func toPBSupplierTable(v *ds.SupplierTable) *pb.SupplierTable {
+	if v == nil {
+		return nil
+	}
+	m := &pb.SupplierTable{}
+	if len(v.Rows) > 0 {
+		m.Rows = make([]*pb.Supplier, len(v.Rows))
+		for i := range v.Rows {
+			m.Rows[i] = toPBSupplier(&v.Rows[i])
+		}
+	}
+	return m
+}
+
+func fromPBSupplierTable(m *pb.SupplierTable, v *ds.SupplierTable) {
+	if m == nil {
+		*v = ds.SupplierTable{}
+		return
+	}
+	v.Rows = nil
+	if len(m.Rows) > 0 {
+		v.Rows = make([]ds.Supplier, len(m.Rows))
+		for i, x := range m.Rows {
+			fromPBSupplier(x, &v.Rows[i])
+		}
+	}
+}
+
+func toPBNationTable(v *ds.NationTable) *pb.NationTable {
+	if v == nil {
+		return nil
+	}
+	m := &pb.NationTable{}
+	if len(v.Rows) > 0 {
+		m.Rows = make([]*pb.Nation, len(v.Rows))
+		for i := range v.Rows {
+			m.Rows[i] = toPBNation(&v.Rows[i])
+		}
+	}
+	return m
+}
+
+func fromPBNationTable(m *pb.NationTable, v *ds.NationTable) {
+	if m == nil {
+		*v = ds.NationTable{}
+		return
+	}
+	v.Rows = nil
+	if len(m.Rows) > 0 {
+		v.Rows = make([]ds.Nation, len(m.Rows))
+		for i, x := range m.Rows {
+			fromPBNation(x, &v.Rows[i])
+		}
+	}
+}
+
+func toPBRegionTable(v *ds.RegionTable) *pb.RegionTable {
+	if v == nil {
+		return nil
+	}
+	m := &pb.RegionTable{}
+	if len(v.Rows) > 0 {
+		m.Rows = make([]*pb.Region, len(v.Rows))
+		for i := range v.Rows {
+			m.Rows[i] = toPBRegion(&v.Rows[i])
+		}
+	}
+	return m
+}
+
+func fromPBRegionTable(m *pb.RegionTable, v *ds.RegionTable) {
+	if m == nil {
+		*v = ds.RegionTable{}
+		return
+	}
+	v.Rows = nil
+	if len(m.Rows) > 0 {
+		v.Rows = make([]ds.Region, len(m.Rows))
+		for i, x := range m.Rows {
+			fromPBRegion(x, &v.Rows[i])
+		}
+	}
 }

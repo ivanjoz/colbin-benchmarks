@@ -20,12 +20,11 @@
 //	/tmp/cb -baseline /tmp/cb-old -ab /tmp/ab && benchstat /tmp/ab/old.txt /tmp/ab/new.txt
 //
 // colbin's vector kernels against its scalar loops is the same comparison.
-// On amd64 a build has the assembly kernels, GOEXPERIMENT=simd swaps them for
-// the simd/archsimd ones, and the purego tag leaves only the scalar loops:
+// On amd64 and arm64 a build has the assembly kernels, and the purego tag
+// leaves only the scalar loops:
 //
 //	go build -o /tmp/cb-asm ./cmd/colbinbench
 //	go build -tags purego -o /tmp/cb-purego ./cmd/colbinbench
-//	GOEXPERIMENT=simd go build -o /tmp/cb-simd ./cmd/colbinbench
 //	/tmp/cb-asm -baseline /tmp/cb-purego -ab /tmp/ab
 //
 // The numbers are for comparing two builds of colbin with each other, not for
@@ -219,6 +218,10 @@ func work(name string, formatNames, ops []string, count int, sample time.Duratio
 	}
 	out := bufio.NewWriter(os.Stdout)
 	defer out.Flush()
+	// A configuration line: it applies to every benchmark line after it, so
+	// benchstat can split the results by regime (-row .config, or a filter on
+	// regime:web).
+	fmt.Fprintf(out, "regime: %s\n", loaded.Regime())
 	if profile != "" {
 		// Loading is done; the profile holds the measured loops and the one
 		// round trip before them.

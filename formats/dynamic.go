@@ -40,7 +40,7 @@ type Document interface {
 // AllDynamic binds every format with a dynamic form to value.
 func AllDynamic[T Document](value *T) ([]Instance, []Skip) {
 	instances := []Instance{
-		NewJSON(value), newGobDynamic(value), NewCBOR(value), newMsgPackDynamic(value),
+		NewJSONv2(value), newGobDynamic(value), NewCBOR(value), newMsgPackDynamic(value),
 	}
 	skips := []Skip{}
 	if instance, err := newStructpb(value); err == nil {

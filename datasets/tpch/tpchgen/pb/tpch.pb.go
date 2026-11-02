@@ -341,6 +341,12 @@ type Normalized struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Orders        []*OrderRow            `protobuf:"bytes,1,rep,name=orders,proto3" json:"orders,omitempty"`
 	Lines         []*LineItemRow         `protobuf:"bytes,2,rep,name=lines,proto3" json:"lines,omitempty"`
+	Customers     []*Customer            `protobuf:"bytes,3,rep,name=customers,proto3" json:"customers,omitempty"`
+	Parts         []*Part                `protobuf:"bytes,4,rep,name=parts,proto3" json:"parts,omitempty"`
+	PartSupps     []*PartSupp            `protobuf:"bytes,5,rep,name=part_supps,json=partSupps,proto3" json:"part_supps,omitempty"`
+	Suppliers     []*Supplier            `protobuf:"bytes,6,rep,name=suppliers,proto3" json:"suppliers,omitempty"`
+	Nations       []*Nation              `protobuf:"bytes,7,rep,name=nations,proto3" json:"nations,omitempty"`
+	Regions       []*Region              `protobuf:"bytes,8,rep,name=regions,proto3" json:"regions,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -385,6 +391,48 @@ func (x *Normalized) GetOrders() []*OrderRow {
 func (x *Normalized) GetLines() []*LineItemRow {
 	if x != nil {
 		return x.Lines
+	}
+	return nil
+}
+
+func (x *Normalized) GetCustomers() []*Customer {
+	if x != nil {
+		return x.Customers
+	}
+	return nil
+}
+
+func (x *Normalized) GetParts() []*Part {
+	if x != nil {
+		return x.Parts
+	}
+	return nil
+}
+
+func (x *Normalized) GetPartSupps() []*PartSupp {
+	if x != nil {
+		return x.PartSupps
+	}
+	return nil
+}
+
+func (x *Normalized) GetSuppliers() []*Supplier {
+	if x != nil {
+		return x.Suppliers
+	}
+	return nil
+}
+
+func (x *Normalized) GetNations() []*Nation {
+	if x != nil {
+		return x.Nations
+	}
+	return nil
+}
+
+func (x *Normalized) GetRegions() []*Region {
+	if x != nil {
+		return x.Regions
 	}
 	return nil
 }
@@ -661,6 +709,862 @@ func (x *LineItemRow) GetComment() string {
 	return ""
 }
 
+type Customer struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	CustKey       int32                  `protobuf:"varint,1,opt,name=cust_key,json=custKey,proto3" json:"cust_key,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Address       string                 `protobuf:"bytes,3,opt,name=address,proto3" json:"address,omitempty"`
+	NationKey     int32                  `protobuf:"varint,4,opt,name=nation_key,json=nationKey,proto3" json:"nation_key,omitempty"`
+	Phone         string                 `protobuf:"bytes,5,opt,name=phone,proto3" json:"phone,omitempty"`
+	AcctBal       int64                  `protobuf:"zigzag64,6,opt,name=acct_bal,json=acctBal,proto3" json:"acct_bal,omitempty"`
+	MktSegment    string                 `protobuf:"bytes,7,opt,name=mkt_segment,json=mktSegment,proto3" json:"mkt_segment,omitempty"`
+	Comment       string                 `protobuf:"bytes,8,opt,name=comment,proto3" json:"comment,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Customer) Reset() {
+	*x = Customer{}
+	mi := &file_tpch_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Customer) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Customer) ProtoMessage() {}
+
+func (x *Customer) ProtoReflect() protoreflect.Message {
+	mi := &file_tpch_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Customer.ProtoReflect.Descriptor instead.
+func (*Customer) Descriptor() ([]byte, []int) {
+	return file_tpch_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *Customer) GetCustKey() int32 {
+	if x != nil {
+		return x.CustKey
+	}
+	return 0
+}
+
+func (x *Customer) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Customer) GetAddress() string {
+	if x != nil {
+		return x.Address
+	}
+	return ""
+}
+
+func (x *Customer) GetNationKey() int32 {
+	if x != nil {
+		return x.NationKey
+	}
+	return 0
+}
+
+func (x *Customer) GetPhone() string {
+	if x != nil {
+		return x.Phone
+	}
+	return ""
+}
+
+func (x *Customer) GetAcctBal() int64 {
+	if x != nil {
+		return x.AcctBal
+	}
+	return 0
+}
+
+func (x *Customer) GetMktSegment() string {
+	if x != nil {
+		return x.MktSegment
+	}
+	return ""
+}
+
+func (x *Customer) GetComment() string {
+	if x != nil {
+		return x.Comment
+	}
+	return ""
+}
+
+type Part struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PartKey       int32                  `protobuf:"varint,1,opt,name=part_key,json=partKey,proto3" json:"part_key,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Mfgr          string                 `protobuf:"bytes,3,opt,name=mfgr,proto3" json:"mfgr,omitempty"`
+	Brand         string                 `protobuf:"bytes,4,opt,name=brand,proto3" json:"brand,omitempty"`
+	Type          string                 `protobuf:"bytes,5,opt,name=type,proto3" json:"type,omitempty"`
+	Size          int32                  `protobuf:"varint,6,opt,name=size,proto3" json:"size,omitempty"`
+	Container     string                 `protobuf:"bytes,7,opt,name=container,proto3" json:"container,omitempty"`
+	RetailPrice   int64                  `protobuf:"varint,8,opt,name=retail_price,json=retailPrice,proto3" json:"retail_price,omitempty"`
+	Comment       string                 `protobuf:"bytes,9,opt,name=comment,proto3" json:"comment,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Part) Reset() {
+	*x = Part{}
+	mi := &file_tpch_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Part) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Part) ProtoMessage() {}
+
+func (x *Part) ProtoReflect() protoreflect.Message {
+	mi := &file_tpch_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Part.ProtoReflect.Descriptor instead.
+func (*Part) Descriptor() ([]byte, []int) {
+	return file_tpch_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *Part) GetPartKey() int32 {
+	if x != nil {
+		return x.PartKey
+	}
+	return 0
+}
+
+func (x *Part) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Part) GetMfgr() string {
+	if x != nil {
+		return x.Mfgr
+	}
+	return ""
+}
+
+func (x *Part) GetBrand() string {
+	if x != nil {
+		return x.Brand
+	}
+	return ""
+}
+
+func (x *Part) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *Part) GetSize() int32 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+func (x *Part) GetContainer() string {
+	if x != nil {
+		return x.Container
+	}
+	return ""
+}
+
+func (x *Part) GetRetailPrice() int64 {
+	if x != nil {
+		return x.RetailPrice
+	}
+	return 0
+}
+
+func (x *Part) GetComment() string {
+	if x != nil {
+		return x.Comment
+	}
+	return ""
+}
+
+type PartSupp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PartKey       int32                  `protobuf:"varint,1,opt,name=part_key,json=partKey,proto3" json:"part_key,omitempty"`
+	SuppKey       int32                  `protobuf:"varint,2,opt,name=supp_key,json=suppKey,proto3" json:"supp_key,omitempty"`
+	AvailQty      int32                  `protobuf:"varint,3,opt,name=avail_qty,json=availQty,proto3" json:"avail_qty,omitempty"`
+	SupplyCost    int64                  `protobuf:"varint,4,opt,name=supply_cost,json=supplyCost,proto3" json:"supply_cost,omitempty"`
+	Comment       string                 `protobuf:"bytes,5,opt,name=comment,proto3" json:"comment,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PartSupp) Reset() {
+	*x = PartSupp{}
+	mi := &file_tpch_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PartSupp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PartSupp) ProtoMessage() {}
+
+func (x *PartSupp) ProtoReflect() protoreflect.Message {
+	mi := &file_tpch_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PartSupp.ProtoReflect.Descriptor instead.
+func (*PartSupp) Descriptor() ([]byte, []int) {
+	return file_tpch_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *PartSupp) GetPartKey() int32 {
+	if x != nil {
+		return x.PartKey
+	}
+	return 0
+}
+
+func (x *PartSupp) GetSuppKey() int32 {
+	if x != nil {
+		return x.SuppKey
+	}
+	return 0
+}
+
+func (x *PartSupp) GetAvailQty() int32 {
+	if x != nil {
+		return x.AvailQty
+	}
+	return 0
+}
+
+func (x *PartSupp) GetSupplyCost() int64 {
+	if x != nil {
+		return x.SupplyCost
+	}
+	return 0
+}
+
+func (x *PartSupp) GetComment() string {
+	if x != nil {
+		return x.Comment
+	}
+	return ""
+}
+
+type Supplier struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	SuppKey       int32                  `protobuf:"varint,1,opt,name=supp_key,json=suppKey,proto3" json:"supp_key,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Address       string                 `protobuf:"bytes,3,opt,name=address,proto3" json:"address,omitempty"`
+	NationKey     int32                  `protobuf:"varint,4,opt,name=nation_key,json=nationKey,proto3" json:"nation_key,omitempty"`
+	Phone         string                 `protobuf:"bytes,5,opt,name=phone,proto3" json:"phone,omitempty"`
+	AcctBal       int64                  `protobuf:"zigzag64,6,opt,name=acct_bal,json=acctBal,proto3" json:"acct_bal,omitempty"`
+	Comment       string                 `protobuf:"bytes,7,opt,name=comment,proto3" json:"comment,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Supplier) Reset() {
+	*x = Supplier{}
+	mi := &file_tpch_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Supplier) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Supplier) ProtoMessage() {}
+
+func (x *Supplier) ProtoReflect() protoreflect.Message {
+	mi := &file_tpch_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Supplier.ProtoReflect.Descriptor instead.
+func (*Supplier) Descriptor() ([]byte, []int) {
+	return file_tpch_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *Supplier) GetSuppKey() int32 {
+	if x != nil {
+		return x.SuppKey
+	}
+	return 0
+}
+
+func (x *Supplier) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Supplier) GetAddress() string {
+	if x != nil {
+		return x.Address
+	}
+	return ""
+}
+
+func (x *Supplier) GetNationKey() int32 {
+	if x != nil {
+		return x.NationKey
+	}
+	return 0
+}
+
+func (x *Supplier) GetPhone() string {
+	if x != nil {
+		return x.Phone
+	}
+	return ""
+}
+
+func (x *Supplier) GetAcctBal() int64 {
+	if x != nil {
+		return x.AcctBal
+	}
+	return 0
+}
+
+func (x *Supplier) GetComment() string {
+	if x != nil {
+		return x.Comment
+	}
+	return ""
+}
+
+type Nation struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	NationKey     int32                  `protobuf:"varint,1,opt,name=nation_key,json=nationKey,proto3" json:"nation_key,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	RegionKey     int32                  `protobuf:"varint,3,opt,name=region_key,json=regionKey,proto3" json:"region_key,omitempty"`
+	Comment       string                 `protobuf:"bytes,4,opt,name=comment,proto3" json:"comment,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Nation) Reset() {
+	*x = Nation{}
+	mi := &file_tpch_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Nation) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Nation) ProtoMessage() {}
+
+func (x *Nation) ProtoReflect() protoreflect.Message {
+	mi := &file_tpch_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Nation.ProtoReflect.Descriptor instead.
+func (*Nation) Descriptor() ([]byte, []int) {
+	return file_tpch_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *Nation) GetNationKey() int32 {
+	if x != nil {
+		return x.NationKey
+	}
+	return 0
+}
+
+func (x *Nation) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Nation) GetRegionKey() int32 {
+	if x != nil {
+		return x.RegionKey
+	}
+	return 0
+}
+
+func (x *Nation) GetComment() string {
+	if x != nil {
+		return x.Comment
+	}
+	return ""
+}
+
+type Region struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	RegionKey     int32                  `protobuf:"varint,1,opt,name=region_key,json=regionKey,proto3" json:"region_key,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Comment       string                 `protobuf:"bytes,3,opt,name=comment,proto3" json:"comment,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Region) Reset() {
+	*x = Region{}
+	mi := &file_tpch_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Region) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Region) ProtoMessage() {}
+
+func (x *Region) ProtoReflect() protoreflect.Message {
+	mi := &file_tpch_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Region.ProtoReflect.Descriptor instead.
+func (*Region) Descriptor() ([]byte, []int) {
+	return file_tpch_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *Region) GetRegionKey() int32 {
+	if x != nil {
+		return x.RegionKey
+	}
+	return 0
+}
+
+func (x *Region) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Region) GetComment() string {
+	if x != nil {
+		return x.Comment
+	}
+	return ""
+}
+
+type OrdersTable struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Rows          []*OrderRow            `protobuf:"bytes,1,rep,name=rows,proto3" json:"rows,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *OrdersTable) Reset() {
+	*x = OrdersTable{}
+	mi := &file_tpch_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OrdersTable) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OrdersTable) ProtoMessage() {}
+
+func (x *OrdersTable) ProtoReflect() protoreflect.Message {
+	mi := &file_tpch_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OrdersTable.ProtoReflect.Descriptor instead.
+func (*OrdersTable) Descriptor() ([]byte, []int) {
+	return file_tpch_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *OrdersTable) GetRows() []*OrderRow {
+	if x != nil {
+		return x.Rows
+	}
+	return nil
+}
+
+type LineItemTable struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Rows          []*LineItemRow         `protobuf:"bytes,1,rep,name=rows,proto3" json:"rows,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LineItemTable) Reset() {
+	*x = LineItemTable{}
+	mi := &file_tpch_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LineItemTable) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LineItemTable) ProtoMessage() {}
+
+func (x *LineItemTable) ProtoReflect() protoreflect.Message {
+	mi := &file_tpch_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LineItemTable.ProtoReflect.Descriptor instead.
+func (*LineItemTable) Descriptor() ([]byte, []int) {
+	return file_tpch_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *LineItemTable) GetRows() []*LineItemRow {
+	if x != nil {
+		return x.Rows
+	}
+	return nil
+}
+
+type CustomerTable struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Rows          []*Customer            `protobuf:"bytes,1,rep,name=rows,proto3" json:"rows,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CustomerTable) Reset() {
+	*x = CustomerTable{}
+	mi := &file_tpch_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CustomerTable) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CustomerTable) ProtoMessage() {}
+
+func (x *CustomerTable) ProtoReflect() protoreflect.Message {
+	mi := &file_tpch_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CustomerTable.ProtoReflect.Descriptor instead.
+func (*CustomerTable) Descriptor() ([]byte, []int) {
+	return file_tpch_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *CustomerTable) GetRows() []*Customer {
+	if x != nil {
+		return x.Rows
+	}
+	return nil
+}
+
+type PartTable struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Rows          []*Part                `protobuf:"bytes,1,rep,name=rows,proto3" json:"rows,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PartTable) Reset() {
+	*x = PartTable{}
+	mi := &file_tpch_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PartTable) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PartTable) ProtoMessage() {}
+
+func (x *PartTable) ProtoReflect() protoreflect.Message {
+	mi := &file_tpch_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PartTable.ProtoReflect.Descriptor instead.
+func (*PartTable) Descriptor() ([]byte, []int) {
+	return file_tpch_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *PartTable) GetRows() []*Part {
+	if x != nil {
+		return x.Rows
+	}
+	return nil
+}
+
+type PartSuppTable struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Rows          []*PartSupp            `protobuf:"bytes,1,rep,name=rows,proto3" json:"rows,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PartSuppTable) Reset() {
+	*x = PartSuppTable{}
+	mi := &file_tpch_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PartSuppTable) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PartSuppTable) ProtoMessage() {}
+
+func (x *PartSuppTable) ProtoReflect() protoreflect.Message {
+	mi := &file_tpch_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PartSuppTable.ProtoReflect.Descriptor instead.
+func (*PartSuppTable) Descriptor() ([]byte, []int) {
+	return file_tpch_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *PartSuppTable) GetRows() []*PartSupp {
+	if x != nil {
+		return x.Rows
+	}
+	return nil
+}
+
+type SupplierTable struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Rows          []*Supplier            `protobuf:"bytes,1,rep,name=rows,proto3" json:"rows,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SupplierTable) Reset() {
+	*x = SupplierTable{}
+	mi := &file_tpch_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SupplierTable) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SupplierTable) ProtoMessage() {}
+
+func (x *SupplierTable) ProtoReflect() protoreflect.Message {
+	mi := &file_tpch_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SupplierTable.ProtoReflect.Descriptor instead.
+func (*SupplierTable) Descriptor() ([]byte, []int) {
+	return file_tpch_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *SupplierTable) GetRows() []*Supplier {
+	if x != nil {
+		return x.Rows
+	}
+	return nil
+}
+
+type NationTable struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Rows          []*Nation              `protobuf:"bytes,1,rep,name=rows,proto3" json:"rows,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *NationTable) Reset() {
+	*x = NationTable{}
+	mi := &file_tpch_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *NationTable) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*NationTable) ProtoMessage() {}
+
+func (x *NationTable) ProtoReflect() protoreflect.Message {
+	mi := &file_tpch_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use NationTable.ProtoReflect.Descriptor instead.
+func (*NationTable) Descriptor() ([]byte, []int) {
+	return file_tpch_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *NationTable) GetRows() []*Nation {
+	if x != nil {
+		return x.Rows
+	}
+	return nil
+}
+
+type RegionTable struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Rows          []*Region              `protobuf:"bytes,1,rep,name=rows,proto3" json:"rows,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RegionTable) Reset() {
+	*x = RegionTable{}
+	mi := &file_tpch_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RegionTable) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RegionTable) ProtoMessage() {}
+
+func (x *RegionTable) ProtoReflect() protoreflect.Message {
+	mi := &file_tpch_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RegionTable.ProtoReflect.Descriptor instead.
+func (*RegionTable) Descriptor() ([]byte, []int) {
+	return file_tpch_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *RegionTable) GetRows() []*Region {
+	if x != nil {
+		return x.Rows
+	}
+	return nil
+}
+
 var File_tpch_proto protoreflect.FileDescriptor
 
 const file_tpch_proto_rawDesc = "" +
@@ -703,11 +1607,19 @@ const file_tpch_proto_rawDesc = "" +
 	"\freceipt_date\x18\f \x01(\x05R\vreceiptDate\x12#\n" +
 	"\rship_instruct\x18\r \x01(\tR\fshipInstruct\x12\x1b\n" +
 	"\tship_mode\x18\x0e \x01(\tR\bshipMode\x12\x18\n" +
-	"\acomment\x18\x0f \x01(\tR\acomment\"]\n" +
+	"\acomment\x18\x0f \x01(\tR\acomment\"\xda\x02\n" +
 	"\n" +
 	"Normalized\x12&\n" +
 	"\x06orders\x18\x01 \x03(\v2\x0e.tpch.OrderRowR\x06orders\x12'\n" +
-	"\x05lines\x18\x02 \x03(\v2\x11.tpch.LineItemRowR\x05lines\"\xa1\x02\n" +
+	"\x05lines\x18\x02 \x03(\v2\x11.tpch.LineItemRowR\x05lines\x12,\n" +
+	"\tcustomers\x18\x03 \x03(\v2\x0e.tpch.CustomerR\tcustomers\x12 \n" +
+	"\x05parts\x18\x04 \x03(\v2\n" +
+	".tpch.PartR\x05parts\x12-\n" +
+	"\n" +
+	"part_supps\x18\x05 \x03(\v2\x0e.tpch.PartSuppR\tpartSupps\x12,\n" +
+	"\tsuppliers\x18\x06 \x03(\v2\x0e.tpch.SupplierR\tsuppliers\x12&\n" +
+	"\anations\x18\a \x03(\v2\f.tpch.NationR\anations\x12&\n" +
+	"\aregions\x18\b \x03(\v2\f.tpch.RegionR\aregions\"\xa1\x02\n" +
 	"\bOrderRow\x12\x1b\n" +
 	"\torder_key\x18\x01 \x01(\x05R\borderKey\x12\x19\n" +
 	"\bcust_key\x18\x02 \x01(\x05R\acustKey\x12!\n" +
@@ -741,7 +1653,73 @@ const file_tpch_proto_rawDesc = "" +
 	"\freceipt_date\x18\r \x01(\x05R\vreceiptDate\x12#\n" +
 	"\rship_instruct\x18\x0e \x01(\tR\fshipInstruct\x12\x1b\n" +
 	"\tship_mode\x18\x0f \x01(\tR\bshipMode\x12\x18\n" +
-	"\acomment\x18\x10 \x01(\tR\acommentBBZ@github.com/ivanjoz/colbin-benchmarks/datasets/tpch/tpchgen/pb;pbb\x06proto3"
+	"\acomment\x18\x10 \x01(\tR\acomment\"\xde\x01\n" +
+	"\bCustomer\x12\x19\n" +
+	"\bcust_key\x18\x01 \x01(\x05R\acustKey\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x18\n" +
+	"\aaddress\x18\x03 \x01(\tR\aaddress\x12\x1d\n" +
+	"\n" +
+	"nation_key\x18\x04 \x01(\x05R\tnationKey\x12\x14\n" +
+	"\x05phone\x18\x05 \x01(\tR\x05phone\x12\x19\n" +
+	"\bacct_bal\x18\x06 \x01(\x12R\aacctBal\x12\x1f\n" +
+	"\vmkt_segment\x18\a \x01(\tR\n" +
+	"mktSegment\x12\x18\n" +
+	"\acomment\x18\b \x01(\tR\acomment\"\xe2\x01\n" +
+	"\x04Part\x12\x19\n" +
+	"\bpart_key\x18\x01 \x01(\x05R\apartKey\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
+	"\x04mfgr\x18\x03 \x01(\tR\x04mfgr\x12\x14\n" +
+	"\x05brand\x18\x04 \x01(\tR\x05brand\x12\x12\n" +
+	"\x04type\x18\x05 \x01(\tR\x04type\x12\x12\n" +
+	"\x04size\x18\x06 \x01(\x05R\x04size\x12\x1c\n" +
+	"\tcontainer\x18\a \x01(\tR\tcontainer\x12!\n" +
+	"\fretail_price\x18\b \x01(\x03R\vretailPrice\x12\x18\n" +
+	"\acomment\x18\t \x01(\tR\acomment\"\x98\x01\n" +
+	"\bPartSupp\x12\x19\n" +
+	"\bpart_key\x18\x01 \x01(\x05R\apartKey\x12\x19\n" +
+	"\bsupp_key\x18\x02 \x01(\x05R\asuppKey\x12\x1b\n" +
+	"\tavail_qty\x18\x03 \x01(\x05R\bavailQty\x12\x1f\n" +
+	"\vsupply_cost\x18\x04 \x01(\x03R\n" +
+	"supplyCost\x12\x18\n" +
+	"\acomment\x18\x05 \x01(\tR\acomment\"\xbd\x01\n" +
+	"\bSupplier\x12\x19\n" +
+	"\bsupp_key\x18\x01 \x01(\x05R\asuppKey\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x18\n" +
+	"\aaddress\x18\x03 \x01(\tR\aaddress\x12\x1d\n" +
+	"\n" +
+	"nation_key\x18\x04 \x01(\x05R\tnationKey\x12\x14\n" +
+	"\x05phone\x18\x05 \x01(\tR\x05phone\x12\x19\n" +
+	"\bacct_bal\x18\x06 \x01(\x12R\aacctBal\x12\x18\n" +
+	"\acomment\x18\a \x01(\tR\acomment\"t\n" +
+	"\x06Nation\x12\x1d\n" +
+	"\n" +
+	"nation_key\x18\x01 \x01(\x05R\tnationKey\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x1d\n" +
+	"\n" +
+	"region_key\x18\x03 \x01(\x05R\tregionKey\x12\x18\n" +
+	"\acomment\x18\x04 \x01(\tR\acomment\"U\n" +
+	"\x06Region\x12\x1d\n" +
+	"\n" +
+	"region_key\x18\x01 \x01(\x05R\tregionKey\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x18\n" +
+	"\acomment\x18\x03 \x01(\tR\acomment\"1\n" +
+	"\vOrdersTable\x12\"\n" +
+	"\x04rows\x18\x01 \x03(\v2\x0e.tpch.OrderRowR\x04rows\"6\n" +
+	"\rLineItemTable\x12%\n" +
+	"\x04rows\x18\x01 \x03(\v2\x11.tpch.LineItemRowR\x04rows\"3\n" +
+	"\rCustomerTable\x12\"\n" +
+	"\x04rows\x18\x01 \x03(\v2\x0e.tpch.CustomerR\x04rows\"+\n" +
+	"\tPartTable\x12\x1e\n" +
+	"\x04rows\x18\x01 \x03(\v2\n" +
+	".tpch.PartR\x04rows\"3\n" +
+	"\rPartSuppTable\x12\"\n" +
+	"\x04rows\x18\x01 \x03(\v2\x0e.tpch.PartSuppR\x04rows\"3\n" +
+	"\rSupplierTable\x12\"\n" +
+	"\x04rows\x18\x01 \x03(\v2\x0e.tpch.SupplierR\x04rows\"/\n" +
+	"\vNationTable\x12 \n" +
+	"\x04rows\x18\x01 \x03(\v2\f.tpch.NationR\x04rows\"/\n" +
+	"\vRegionTable\x12 \n" +
+	"\x04rows\x18\x01 \x03(\v2\f.tpch.RegionR\x04rowsBBZ@github.com/ivanjoz/colbin-benchmarks/datasets/tpch/tpchgen/pb;pbb\x06proto3"
 
 var (
 	file_tpch_proto_rawDescOnce sync.Once
@@ -755,25 +1733,53 @@ func file_tpch_proto_rawDescGZIP() []byte {
 	return file_tpch_proto_rawDescData
 }
 
-var file_tpch_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_tpch_proto_msgTypes = make([]protoimpl.MessageInfo, 20)
 var file_tpch_proto_goTypes = []any{
-	(*Nested)(nil),      // 0: tpch.Nested
-	(*Order)(nil),       // 1: tpch.Order
-	(*LineItem)(nil),    // 2: tpch.LineItem
-	(*Normalized)(nil),  // 3: tpch.Normalized
-	(*OrderRow)(nil),    // 4: tpch.OrderRow
-	(*LineItemRow)(nil), // 5: tpch.LineItemRow
+	(*Nested)(nil),        // 0: tpch.Nested
+	(*Order)(nil),         // 1: tpch.Order
+	(*LineItem)(nil),      // 2: tpch.LineItem
+	(*Normalized)(nil),    // 3: tpch.Normalized
+	(*OrderRow)(nil),      // 4: tpch.OrderRow
+	(*LineItemRow)(nil),   // 5: tpch.LineItemRow
+	(*Customer)(nil),      // 6: tpch.Customer
+	(*Part)(nil),          // 7: tpch.Part
+	(*PartSupp)(nil),      // 8: tpch.PartSupp
+	(*Supplier)(nil),      // 9: tpch.Supplier
+	(*Nation)(nil),        // 10: tpch.Nation
+	(*Region)(nil),        // 11: tpch.Region
+	(*OrdersTable)(nil),   // 12: tpch.OrdersTable
+	(*LineItemTable)(nil), // 13: tpch.LineItemTable
+	(*CustomerTable)(nil), // 14: tpch.CustomerTable
+	(*PartTable)(nil),     // 15: tpch.PartTable
+	(*PartSuppTable)(nil), // 16: tpch.PartSuppTable
+	(*SupplierTable)(nil), // 17: tpch.SupplierTable
+	(*NationTable)(nil),   // 18: tpch.NationTable
+	(*RegionTable)(nil),   // 19: tpch.RegionTable
 }
 var file_tpch_proto_depIdxs = []int32{
-	1, // 0: tpch.Nested.orders:type_name -> tpch.Order
-	2, // 1: tpch.Order.lines:type_name -> tpch.LineItem
-	4, // 2: tpch.Normalized.orders:type_name -> tpch.OrderRow
-	5, // 3: tpch.Normalized.lines:type_name -> tpch.LineItemRow
-	4, // [4:4] is the sub-list for method output_type
-	4, // [4:4] is the sub-list for method input_type
-	4, // [4:4] is the sub-list for extension type_name
-	4, // [4:4] is the sub-list for extension extendee
-	0, // [0:4] is the sub-list for field type_name
+	1,  // 0: tpch.Nested.orders:type_name -> tpch.Order
+	2,  // 1: tpch.Order.lines:type_name -> tpch.LineItem
+	4,  // 2: tpch.Normalized.orders:type_name -> tpch.OrderRow
+	5,  // 3: tpch.Normalized.lines:type_name -> tpch.LineItemRow
+	6,  // 4: tpch.Normalized.customers:type_name -> tpch.Customer
+	7,  // 5: tpch.Normalized.parts:type_name -> tpch.Part
+	8,  // 6: tpch.Normalized.part_supps:type_name -> tpch.PartSupp
+	9,  // 7: tpch.Normalized.suppliers:type_name -> tpch.Supplier
+	10, // 8: tpch.Normalized.nations:type_name -> tpch.Nation
+	11, // 9: tpch.Normalized.regions:type_name -> tpch.Region
+	4,  // 10: tpch.OrdersTable.rows:type_name -> tpch.OrderRow
+	5,  // 11: tpch.LineItemTable.rows:type_name -> tpch.LineItemRow
+	6,  // 12: tpch.CustomerTable.rows:type_name -> tpch.Customer
+	7,  // 13: tpch.PartTable.rows:type_name -> tpch.Part
+	8,  // 14: tpch.PartSuppTable.rows:type_name -> tpch.PartSupp
+	9,  // 15: tpch.SupplierTable.rows:type_name -> tpch.Supplier
+	10, // 16: tpch.NationTable.rows:type_name -> tpch.Nation
+	11, // 17: tpch.RegionTable.rows:type_name -> tpch.Region
+	18, // [18:18] is the sub-list for method output_type
+	18, // [18:18] is the sub-list for method input_type
+	18, // [18:18] is the sub-list for extension type_name
+	18, // [18:18] is the sub-list for extension extendee
+	0,  // [0:18] is the sub-list for field type_name
 }
 
 func init() { file_tpch_proto_init() }
@@ -787,7 +1793,7 @@ func file_tpch_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_tpch_proto_rawDesc), len(file_tpch_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   20,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

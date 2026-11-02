@@ -71,7 +71,7 @@ func (s Skip) Error() string { return fmt.Sprintf("%s: %s", s.Format, s.Reason) 
 
 // Format names, in the order tables print them.
 const (
-	JSON           = "json"
+	JSONv2         = "json-v2"
 	Gob            = "gob"
 	CBOR           = "cbor"
 	MsgPack        = "msgpack"
@@ -80,6 +80,8 @@ const (
 	VTProtobuf     = "vtprotobuf"
 	FlatBuffers    = "flatbuffers"
 	Arrow          = "arrow"
+	Avro           = "avro"
+	CapnProto      = "capnproto"
 	Colbin         = "colbin"
 	ColbinPacked5  = "colbin+packed5"
 	ColbinK8       = "colbin-untagged"
@@ -88,6 +90,6 @@ const (
 
 // Order is every format name in table order.
 var Order = []string{
-	JSON, Gob, CBOR, MsgPack, MsgPackReflect, Protobuf, VTProtobuf, FlatBuffers, Arrow,
+	JSONv2, Gob, CBOR, MsgPack, MsgPackReflect, Protobuf, VTProtobuf, FlatBuffers, Arrow, Avro, CapnProto,
 	Colbin, ColbinPacked5, ColbinK8, ColbinSD,
 }

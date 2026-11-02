@@ -96,7 +96,7 @@ func generate(t target) error {
 	if err := msgp(dir); err != nil {
 		return err
 	}
-	for _, sub := range []string{"pb", "fb", "untagged"} {
+	for _, sub := range []string{"pb", "fb", "cp", "untagged"} {
 		if err := os.RemoveAll(filepath.Join(genDir, sub)); err != nil {
 			return err
 		}
@@ -156,6 +156,22 @@ func generate(t target) error {
 		}
 	}
 
+	// Cap'n Proto.
+	cg := &capnpGen{m: m, ok: m.supported(capnpFieldOK)}
+	var capnpRoots []*structInfo
+	for _, r := range t.roots {
+		if reason := cg.ok[r.typ]; reason != "" {
+			skip(r.typ, "capnproto", reason)
+		} else {
+			capnpRoots = append(capnpRoots, m.byType[r.typ])
+		}
+	}
+	if len(capnpRoots) > 0 {
+		if err := capnpc(genDir, t.name, cg.schema(genImport+"/cp")); err != nil {
+			return err
+		}
+	}
+
 	// Arrow.
 	ag := &arrowGen{m: m, ok: m.supported(arrowFieldOK)}
 	var arrowRoots, arrowRows []*structInfo
@@ -189,6 +205,18 @@ func generate(t target) error {
 		w.p("import (\nflatbuffers \"github.com/google/flatbuffers/go\"\n%s\n%q\n%q\n)\n", dsImport, module+"/formats", genImport+"/fb")
 		fg.code(w)
 		if err := writeGo(filepath.Join(genDir, "fb_gen.go"), w); err != nil {
+			return err
+		}
+	}
+	if len(capnpRoots) > 0 {
+		w := &writer{}
+		w.WriteString(header)
+		w.p("import (\n\"capnproto.org/go/capnp/v3\"\n\n%s\n%q\n%q\n)\n", dsImport, module+"/formats", genImport+"/cp")
+		cg.code(w)
+		for _, info := range capnpRoots {
+			cg.rootFuncs(w, info)
+		}
+		if err := writeGo(filepath.Join(genDir, "capnp_gen.go"), w); err != nil {
 			return err
 		}
 	}
@@ -248,6 +276,9 @@ func generate(t target) error {
 			}
 			w.p("}")
 		}
+		if slices.Contains(capnpRoots, info) {
+			w.p("a.Capnp = &formats.CapnpAdapter[%s]{Build: capnpBuild%s, Read: capnpRead%s}", goT, info.name, info.name)
+		}
 		if slices.Contains(arrowRoots, info) {
 			w.p("a.Arrow = &formats.ArrowAdapter[%s]{Write: arrowWrite%s, Read: arrowRead%s}", goT, info.name, info.name)
 			if len(steps) >= 2 {
@@ -303,6 +334,43 @@ func msgp(dir string) error {
 		if err := command.Run(); err != nil {
 			return fmt.Errorf("msgp %s: %w\n%s", file, err, stderr.String())
 		}
+	}
+	return nil
+}
+
+// capnpc writes the schema and runs capnp, with capnpc-go as its plugin, on it.
+func capnpc(genDir, name string, schema []byte) error {
+	binary, err := filepath.Abs(filepath.Join("tools", "bin", "capnp"))
+	if err != nil {
+		return err
+	}
+	plugin, err := filepath.Abs(filepath.Join("tools", "bin", "capnpc-go"))
+	if err != nil {
+		return err
+	}
+	for _, tool := range []string{binary, plugin} {
+		if _, err := os.Stat(tool); err != nil {
+			return fmt.Errorf("%s is missing: run tools/fetch-capnp.sh, and go build -o tools/bin/capnpc-go capnproto.org/go/capnp/v3/capnpc-go", tool)
+		}
+	}
+	goCapnp, err := exec.Command("go", "list", "-m", "-f", "{{.Dir}}", "capnproto.org/go/capnp/v3").Output()
+	if err != nil {
+		return fmt.Errorf("go-capnp: %w", err)
+	}
+	dir, err := filepath.Abs(filepath.Join(genDir, "cp"))
+	if err != nil {
+		return err
+	}
+	if err := os.MkdirAll(dir, 0o755); err != nil {
+		return err
+	}
+	path := filepath.Join(dir, name+".capnp")
+	if err := os.WriteFile(path, schema, 0o644); err != nil {
+		return err
+	}
+	command := exec.Command(binary, "compile", "--src-prefix="+dir, "-I"+filepath.Join(strings.TrimSpace(string(goCapnp)), "std"), "-o"+plugin+":"+dir, path)
+	if out, err := command.CombinedOutput(); err != nil {
+		return fmt.Errorf("capnp: %w\n%s", err, out)
 	}
 	return nil
 }

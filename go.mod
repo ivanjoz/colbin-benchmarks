@@ -9,11 +9,13 @@ go 1.27
 toolchain go1.27.0
 
 require (
-	github.com/DataDog/zstd v1.5.7
+	capnproto.org/go/capnp/v3 v3.1.0-alpha.2
 	github.com/apache/arrow-go/v18 v18.8.0
 	github.com/fxamacker/cbor/v2 v2.9.6
 	github.com/google/flatbuffers v25.12.19+incompatible
+	github.com/hamba/avro/v2 v2.31.0
 	github.com/ivanjoz/colbin v0.6.3
+	github.com/klauspost/compress v1.19.2
 	github.com/planetscale/vtprotobuf v0.6.0
 	github.com/tinylib/msgp v1.6.5
 	github.com/vmihailenco/msgpack/v5 v5.4.1
@@ -22,9 +24,13 @@ require (
 )
 
 require (
+	github.com/colega/zeropool v0.0.0-20230505084239-6fb4a4f75381 // indirect
+	github.com/go-viper/mapstructure/v2 v2.4.0 // indirect
 	github.com/goccy/go-json v0.10.6 // indirect
-	github.com/klauspost/compress v1.19.2 // indirect
+	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/klauspost/cpuid/v2 v2.4.0 // indirect
+	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
+	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/philhofer/fwd v1.2.0 // indirect
 	github.com/pierrec/lz4/v4 v4.1.29 // indirect
 	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect

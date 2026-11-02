@@ -11,6 +11,8 @@ package matrix
 //
 // Names are Matrix/<case>/<format>/<op>, which benchstat splits on "/". Each
 // reports ns/row beside ns/op, so cases of different sizes read on one scale.
+// Each case is preceded by a "regime: web|bulk" line (see WebRows), which
+// benchstat reads as configuration: summarise the two regimes apart.
 //
 // Nothing is timed that has not passed TestSizes' round trip: run that first
 // (reproduce.sh does). A format that fails it here is skipped, not timed.
@@ -18,6 +20,7 @@ package matrix
 import (
 	"bytes"
 	"errors"
+	"fmt"
 	"runtime"
 	"testing"
 
@@ -25,7 +28,7 @@ import (
 )
 
 func BenchmarkMatrix(b *testing.B) {
-	for _, c := range Selected() {
+	for _, c := range Cases() {
 		if !c.Timed {
 			continue
 		}
@@ -37,6 +40,9 @@ func BenchmarkMatrix(b *testing.B) {
 			if err != nil {
 				b.Fatal(err)
 			}
+			// A configuration line for benchstat, which applies to the case's
+			// benchmark lines below it; printed between benchmarks, never inside one.
+			fmt.Printf("regime: %s\n", loaded.Regime())
 			for _, instance := range loaded.Instances {
 				benchmarkFormat(b, instance, loaded)
 			}

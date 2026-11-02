@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
-# TPC-H orders and lineitem at scale factors 0.1 and 1, from dbgen.
+# TPC-H, all eight tables, at scale factor 0.1, from dbgen.
 #
 # dbgen is deterministic: the same dbgen at the same scale factor writes the
 # same bytes. So what is pinned is the dbgen source (by commit) and the output
 # (by checksum); the output itself is never committed — see LICENSE-NOTE.md.
 #
-#	datasets/tpch/fetch.sh            SF 0.1 and SF 1
-#	datasets/tpch/fetch.sh 0.1        one scale factor
+#	datasets/tpch/fetch.sh
 source "$(dirname "$0")/../lib.sh"
 
 # gregrahn/tpch-kit at this commit is TPC-H dbgen 2.17.3 with build fixes for
@@ -26,16 +25,15 @@ if [ ! -x "$src/dbgen/dbgen" ]; then
 		>/dev/null
 fi
 
-for sf in "${@:-0.1 1}"; do
-	for sf in $sf; do
-		out=$DATA/tpch/sf$sf
-		mkdir -p "$out"
-		if [ ! -f "$out/orders.tbl" ] || [ ! -f "$out/lineitem.tbl" ]; then
-			log "dbgen   SF $sf"
-			# -T o (lower case) writes orders and lineitem, which dbgen generates
-			# together. -T O is orders alone.
-			(cd "$src/dbgen" && DSS_PATH="$out" ./dbgen -q -f -s "$sf" -T o)
-		fi
-		verify "tpch/sf$sf/orders.tbl" "tpch/sf$sf/lineitem.tbl"
-	done
-done
+sf=0.1
+out=$DATA/tpch/sf$sf
+mkdir -p "$out"
+tables=(orders lineitem customer part partsupp supplier nation region)
+missing=0
+for table in "${tables[@]}"; do [ -f "$out/$table.tbl" ] || missing=1; done
+if [ "$missing" = 1 ]; then
+	log "dbgen   SF $sf"
+	# No -T: all eight tables.
+	(cd "$src/dbgen" && DSS_PATH="$out" ./dbgen -q -f -s "$sf")
+fi
+verify $(printf "tpch/sf$sf/%s.tbl " "${tables[@]}")

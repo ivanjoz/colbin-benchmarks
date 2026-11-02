@@ -44,6 +44,7 @@ func Arade() formats.Adapters[ds.Arade] {
 		Build: func(b *flatbuffers.Builder, v *ds.Arade) { b.Finish(buildFBArade(b, v)) },
 		Read:  func(data []byte, v *ds.Arade) { readFBArade(fb.GetRootAsArade(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.Arade]{Build: capnpBuildArade, Read: capnpReadArade}
 	a.Arrow = &formats.ArrowAdapter[ds.Arade]{Write: arrowWriteArade, Read: arrowReadArade}
 	if codec, err := colbin.NewCodec[untagged.Arade](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.Arade]{
@@ -75,6 +76,7 @@ func Bimbo() formats.Adapters[ds.Bimbo] {
 		Build: func(b *flatbuffers.Builder, v *ds.Bimbo) { b.Finish(buildFBBimbo(b, v)) },
 		Read:  func(data []byte, v *ds.Bimbo) { readFBBimbo(fb.GetRootAsBimbo(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.Bimbo]{Build: capnpBuildBimbo, Read: capnpReadBimbo}
 	a.Arrow = &formats.ArrowAdapter[ds.Bimbo]{Write: arrowWriteBimbo, Read: arrowReadBimbo}
 	if codec, err := colbin.NewCodec[untagged.Bimbo](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.Bimbo]{
@@ -110,6 +112,7 @@ func CMSprovider() formats.Adapters[ds.CMSprovider] {
 		Build: func(b *flatbuffers.Builder, v *ds.CMSprovider) { b.Finish(buildFBCMSprovider(b, v)) },
 		Read:  func(data []byte, v *ds.CMSprovider) { readFBCMSprovider(fb.GetRootAsCMSprovider(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.CMSprovider]{Build: capnpBuildCMSprovider, Read: capnpReadCMSprovider}
 	a.Arrow = &formats.ArrowAdapter[ds.CMSprovider]{Write: arrowWriteCMSprovider, Read: arrowReadCMSprovider}
 	if codec, err := colbin.NewCodec[untagged.CMSprovider](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.CMSprovider]{
@@ -145,6 +148,7 @@ func CityMaxCapita() formats.Adapters[ds.CityMaxCapita] {
 		Build: func(b *flatbuffers.Builder, v *ds.CityMaxCapita) { b.Finish(buildFBCityMaxCapita(b, v)) },
 		Read:  func(data []byte, v *ds.CityMaxCapita) { readFBCityMaxCapita(fb.GetRootAsCityMaxCapita(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.CityMaxCapita]{Build: capnpBuildCityMaxCapita, Read: capnpReadCityMaxCapita}
 	a.Arrow = &formats.ArrowAdapter[ds.CityMaxCapita]{Write: arrowWriteCityMaxCapita, Read: arrowReadCityMaxCapita}
 	if codec, err := colbin.NewCodec[untagged.CityMaxCapita](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.CityMaxCapita]{
@@ -182,6 +186,7 @@ func CommonGovernment() formats.Adapters[ds.CommonGovernment] {
 			readFBCommonGovernment(fb.GetRootAsCommonGovernment(data, 0), v)
 		},
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.CommonGovernment]{Build: capnpBuildCommonGovernment, Read: capnpReadCommonGovernment}
 	a.Arrow = &formats.ArrowAdapter[ds.CommonGovernment]{Write: arrowWriteCommonGovernment, Read: arrowReadCommonGovernment}
 	if codec, err := colbin.NewCodec[untagged.CommonGovernment](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.CommonGovernment]{
@@ -217,6 +222,7 @@ func Corporations() formats.Adapters[ds.Corporations] {
 		Build: func(b *flatbuffers.Builder, v *ds.Corporations) { b.Finish(buildFBCorporations(b, v)) },
 		Read:  func(data []byte, v *ds.Corporations) { readFBCorporations(fb.GetRootAsCorporations(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.Corporations]{Build: capnpBuildCorporations, Read: capnpReadCorporations}
 	a.Arrow = &formats.ArrowAdapter[ds.Corporations]{Write: arrowWriteCorporations, Read: arrowReadCorporations}
 	if codec, err := colbin.NewCodec[untagged.Corporations](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.Corporations]{
@@ -248,6 +254,7 @@ func Eixo() formats.Adapters[ds.Eixo] {
 		Build: func(b *flatbuffers.Builder, v *ds.Eixo) { b.Finish(buildFBEixo(b, v)) },
 		Read:  func(data []byte, v *ds.Eixo) { readFBEixo(fb.GetRootAsEixo(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.Eixo]{Build: capnpBuildEixo, Read: capnpReadEixo}
 	a.Arrow = &formats.ArrowAdapter[ds.Eixo]{Write: arrowWriteEixo, Read: arrowReadEixo}
 	if codec, err := colbin.NewCodec[untagged.Eixo](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.Eixo]{
@@ -281,6 +288,7 @@ func Euro2016() formats.Adapters[ds.Euro2016] {
 		Build: func(b *flatbuffers.Builder, v *ds.Euro2016) { b.Finish(buildFBEuro2016(b, v)) },
 		Read:  func(data []byte, v *ds.Euro2016) { readFBEuro2016(fb.GetRootAsEuro2016(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.Euro2016]{Build: capnpBuildEuro2016, Read: capnpReadEuro2016}
 	a.Arrow = &formats.ArrowAdapter[ds.Euro2016]{Write: arrowWriteEuro2016, Read: arrowReadEuro2016}
 	if codec, err := colbin.NewCodec[untagged.Euro2016](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.Euro2016]{
@@ -312,6 +320,7 @@ func Food() formats.Adapters[ds.Food] {
 		Build: func(b *flatbuffers.Builder, v *ds.Food) { b.Finish(buildFBFood(b, v)) },
 		Read:  func(data []byte, v *ds.Food) { readFBFood(fb.GetRootAsFood(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.Food]{Build: capnpBuildFood, Read: capnpReadFood}
 	a.Arrow = &formats.ArrowAdapter[ds.Food]{Write: arrowWriteFood, Read: arrowReadFood}
 	if codec, err := colbin.NewCodec[untagged.Food](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.Food]{
@@ -345,6 +354,7 @@ func Generico() formats.Adapters[ds.Generico] {
 		Build: func(b *flatbuffers.Builder, v *ds.Generico) { b.Finish(buildFBGenerico(b, v)) },
 		Read:  func(data []byte, v *ds.Generico) { readFBGenerico(fb.GetRootAsGenerico(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.Generico]{Build: capnpBuildGenerico, Read: capnpReadGenerico}
 	a.Arrow = &formats.ArrowAdapter[ds.Generico]{Write: arrowWriteGenerico, Read: arrowReadGenerico}
 	if codec, err := colbin.NewCodec[untagged.Generico](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.Generico]{
@@ -380,6 +390,7 @@ func HashTags() formats.Adapters[ds.HashTags] {
 		Build: func(b *flatbuffers.Builder, v *ds.HashTags) { b.Finish(buildFBHashTags(b, v)) },
 		Read:  func(data []byte, v *ds.HashTags) { readFBHashTags(fb.GetRootAsHashTags(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.HashTags]{Build: capnpBuildHashTags, Read: capnpReadHashTags}
 	a.Arrow = &formats.ArrowAdapter[ds.HashTags]{Write: arrowWriteHashTags, Read: arrowReadHashTags}
 	if codec, err := colbin.NewCodec[untagged.HashTags](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.HashTags]{
@@ -411,6 +422,7 @@ func Hatred() formats.Adapters[ds.Hatred] {
 		Build: func(b *flatbuffers.Builder, v *ds.Hatred) { b.Finish(buildFBHatred(b, v)) },
 		Read:  func(data []byte, v *ds.Hatred) { readFBHatred(fb.GetRootAsHatred(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.Hatred]{Build: capnpBuildHatred, Read: capnpReadHatred}
 	a.Arrow = &formats.ArrowAdapter[ds.Hatred]{Write: arrowWriteHatred, Read: arrowReadHatred}
 	if codec, err := colbin.NewCodec[untagged.Hatred](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.Hatred]{
@@ -446,6 +458,7 @@ func IGlocations1() formats.Adapters[ds.IGlocations1] {
 		Build: func(b *flatbuffers.Builder, v *ds.IGlocations1) { b.Finish(buildFBIGlocations1(b, v)) },
 		Read:  func(data []byte, v *ds.IGlocations1) { readFBIGlocations1(fb.GetRootAsIGlocations1(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.IGlocations1]{Build: capnpBuildIGlocations1, Read: capnpReadIGlocations1}
 	a.Arrow = &formats.ArrowAdapter[ds.IGlocations1]{Write: arrowWriteIGlocations1, Read: arrowReadIGlocations1}
 	if codec, err := colbin.NewCodec[untagged.IGlocations1](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.IGlocations1]{
@@ -481,6 +494,7 @@ func IGlocations2() formats.Adapters[ds.IGlocations2] {
 		Build: func(b *flatbuffers.Builder, v *ds.IGlocations2) { b.Finish(buildFBIGlocations2(b, v)) },
 		Read:  func(data []byte, v *ds.IGlocations2) { readFBIGlocations2(fb.GetRootAsIGlocations2(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.IGlocations2]{Build: capnpBuildIGlocations2, Read: capnpReadIGlocations2}
 	a.Arrow = &formats.ArrowAdapter[ds.IGlocations2]{Write: arrowWriteIGlocations2, Read: arrowReadIGlocations2}
 	if codec, err := colbin.NewCodec[untagged.IGlocations2](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.IGlocations2]{
@@ -516,6 +530,7 @@ func IUBLibrary() formats.Adapters[ds.IUBLibrary] {
 		Build: func(b *flatbuffers.Builder, v *ds.IUBLibrary) { b.Finish(buildFBIUBLibrary(b, v)) },
 		Read:  func(data []byte, v *ds.IUBLibrary) { readFBIUBLibrary(fb.GetRootAsIUBLibrary(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.IUBLibrary]{Build: capnpBuildIUBLibrary, Read: capnpReadIUBLibrary}
 	a.Arrow = &formats.ArrowAdapter[ds.IUBLibrary]{Write: arrowWriteIUBLibrary, Read: arrowReadIUBLibrary}
 	if codec, err := colbin.NewCodec[untagged.IUBLibrary](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.IUBLibrary]{
@@ -547,6 +562,7 @@ func MLB() formats.Adapters[ds.MLB] {
 		Build: func(b *flatbuffers.Builder, v *ds.MLB) { b.Finish(buildFBMLB(b, v)) },
 		Read:  func(data []byte, v *ds.MLB) { readFBMLB(fb.GetRootAsMLB(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.MLB]{Build: capnpBuildMLB, Read: capnpReadMLB}
 	a.Arrow = &formats.ArrowAdapter[ds.MLB]{Write: arrowWriteMLB, Read: arrowReadMLB}
 	if codec, err := colbin.NewCodec[untagged.MLB](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.MLB]{
@@ -580,6 +596,7 @@ func MedPayment1() formats.Adapters[ds.MedPayment1] {
 		Build: func(b *flatbuffers.Builder, v *ds.MedPayment1) { b.Finish(buildFBMedPayment1(b, v)) },
 		Read:  func(data []byte, v *ds.MedPayment1) { readFBMedPayment1(fb.GetRootAsMedPayment1(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.MedPayment1]{Build: capnpBuildMedPayment1, Read: capnpReadMedPayment1}
 	a.Arrow = &formats.ArrowAdapter[ds.MedPayment1]{Write: arrowWriteMedPayment1, Read: arrowReadMedPayment1}
 	if codec, err := colbin.NewCodec[untagged.MedPayment1](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.MedPayment1]{
@@ -615,6 +632,7 @@ func MedPayment2() formats.Adapters[ds.MedPayment2] {
 		Build: func(b *flatbuffers.Builder, v *ds.MedPayment2) { b.Finish(buildFBMedPayment2(b, v)) },
 		Read:  func(data []byte, v *ds.MedPayment2) { readFBMedPayment2(fb.GetRootAsMedPayment2(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.MedPayment2]{Build: capnpBuildMedPayment2, Read: capnpReadMedPayment2}
 	a.Arrow = &formats.ArrowAdapter[ds.MedPayment2]{Write: arrowWriteMedPayment2, Read: arrowReadMedPayment2}
 	if codec, err := colbin.NewCodec[untagged.MedPayment2](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.MedPayment2]{
@@ -650,6 +668,7 @@ func Medicare1() formats.Adapters[ds.Medicare1] {
 		Build: func(b *flatbuffers.Builder, v *ds.Medicare1) { b.Finish(buildFBMedicare1(b, v)) },
 		Read:  func(data []byte, v *ds.Medicare1) { readFBMedicare1(fb.GetRootAsMedicare1(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.Medicare1]{Build: capnpBuildMedicare1, Read: capnpReadMedicare1}
 	a.Arrow = &formats.ArrowAdapter[ds.Medicare1]{Write: arrowWriteMedicare1, Read: arrowReadMedicare1}
 	if codec, err := colbin.NewCodec[untagged.Medicare1](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.Medicare1]{
@@ -685,6 +704,7 @@ func Medicare2() formats.Adapters[ds.Medicare2] {
 		Build: func(b *flatbuffers.Builder, v *ds.Medicare2) { b.Finish(buildFBMedicare2(b, v)) },
 		Read:  func(data []byte, v *ds.Medicare2) { readFBMedicare2(fb.GetRootAsMedicare2(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.Medicare2]{Build: capnpBuildMedicare2, Read: capnpReadMedicare2}
 	a.Arrow = &formats.ArrowAdapter[ds.Medicare2]{Write: arrowWriteMedicare2, Read: arrowReadMedicare2}
 	if codec, err := colbin.NewCodec[untagged.Medicare2](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.Medicare2]{
@@ -720,6 +740,7 @@ func Medicare3() formats.Adapters[ds.Medicare3] {
 		Build: func(b *flatbuffers.Builder, v *ds.Medicare3) { b.Finish(buildFBMedicare3(b, v)) },
 		Read:  func(data []byte, v *ds.Medicare3) { readFBMedicare3(fb.GetRootAsMedicare3(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.Medicare3]{Build: capnpBuildMedicare3, Read: capnpReadMedicare3}
 	a.Arrow = &formats.ArrowAdapter[ds.Medicare3]{Write: arrowWriteMedicare3, Read: arrowReadMedicare3}
 	if codec, err := colbin.NewCodec[untagged.Medicare3](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.Medicare3]{
@@ -751,6 +772,7 @@ func Motos() formats.Adapters[ds.Motos] {
 		Build: func(b *flatbuffers.Builder, v *ds.Motos) { b.Finish(buildFBMotos(b, v)) },
 		Read:  func(data []byte, v *ds.Motos) { readFBMotos(fb.GetRootAsMotos(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.Motos]{Build: capnpBuildMotos, Read: capnpReadMotos}
 	a.Arrow = &formats.ArrowAdapter[ds.Motos]{Write: arrowWriteMotos, Read: arrowReadMotos}
 	if codec, err := colbin.NewCodec[untagged.Motos](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.Motos]{
@@ -786,6 +808,7 @@ func MulheresMil() formats.Adapters[ds.MulheresMil] {
 		Build: func(b *flatbuffers.Builder, v *ds.MulheresMil) { b.Finish(buildFBMulheresMil(b, v)) },
 		Read:  func(data []byte, v *ds.MulheresMil) { readFBMulheresMil(fb.GetRootAsMulheresMil(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.MulheresMil]{Build: capnpBuildMulheresMil, Read: capnpReadMulheresMil}
 	a.Arrow = &formats.ArrowAdapter[ds.MulheresMil]{Write: arrowWriteMulheresMil, Read: arrowReadMulheresMil}
 	if codec, err := colbin.NewCodec[untagged.MulheresMil](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.MulheresMil]{
@@ -817,6 +840,7 @@ func NYC() formats.Adapters[ds.NYC] {
 		Build: func(b *flatbuffers.Builder, v *ds.NYC) { b.Finish(buildFBNYC(b, v)) },
 		Read:  func(data []byte, v *ds.NYC) { readFBNYC(fb.GetRootAsNYC(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.NYC]{Build: capnpBuildNYC, Read: capnpReadNYC}
 	a.Arrow = &formats.ArrowAdapter[ds.NYC]{Write: arrowWriteNYC, Read: arrowReadNYC}
 	if codec, err := colbin.NewCodec[untagged.NYC](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.NYC]{
@@ -850,6 +874,7 @@ func PanCreactomy1() formats.Adapters[ds.PanCreactomy1] {
 		Build: func(b *flatbuffers.Builder, v *ds.PanCreactomy1) { b.Finish(buildFBPanCreactomy1(b, v)) },
 		Read:  func(data []byte, v *ds.PanCreactomy1) { readFBPanCreactomy1(fb.GetRootAsPanCreactomy1(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.PanCreactomy1]{Build: capnpBuildPanCreactomy1, Read: capnpReadPanCreactomy1}
 	a.Arrow = &formats.ArrowAdapter[ds.PanCreactomy1]{Write: arrowWritePanCreactomy1, Read: arrowReadPanCreactomy1}
 	if codec, err := colbin.NewCodec[untagged.PanCreactomy1](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.PanCreactomy1]{
@@ -885,6 +910,7 @@ func PanCreactomy2() formats.Adapters[ds.PanCreactomy2] {
 		Build: func(b *flatbuffers.Builder, v *ds.PanCreactomy2) { b.Finish(buildFBPanCreactomy2(b, v)) },
 		Read:  func(data []byte, v *ds.PanCreactomy2) { readFBPanCreactomy2(fb.GetRootAsPanCreactomy2(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.PanCreactomy2]{Build: capnpBuildPanCreactomy2, Read: capnpReadPanCreactomy2}
 	a.Arrow = &formats.ArrowAdapter[ds.PanCreactomy2]{Write: arrowWritePanCreactomy2, Read: arrowReadPanCreactomy2}
 	if codec, err := colbin.NewCodec[untagged.PanCreactomy2](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.PanCreactomy2]{
@@ -920,6 +946,7 @@ func Physicians() formats.Adapters[ds.Physicians] {
 		Build: func(b *flatbuffers.Builder, v *ds.Physicians) { b.Finish(buildFBPhysicians(b, v)) },
 		Read:  func(data []byte, v *ds.Physicians) { readFBPhysicians(fb.GetRootAsPhysicians(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.Physicians]{Build: capnpBuildPhysicians, Read: capnpReadPhysicians}
 	a.Arrow = &formats.ArrowAdapter[ds.Physicians]{Write: arrowWritePhysicians, Read: arrowReadPhysicians}
 	if codec, err := colbin.NewCodec[untagged.Physicians](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.Physicians]{
@@ -955,6 +982,7 @@ func Provider() formats.Adapters[ds.Provider] {
 		Build: func(b *flatbuffers.Builder, v *ds.Provider) { b.Finish(buildFBProvider(b, v)) },
 		Read:  func(data []byte, v *ds.Provider) { readFBProvider(fb.GetRootAsProvider(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.Provider]{Build: capnpBuildProvider, Read: capnpReadProvider}
 	a.Arrow = &formats.ArrowAdapter[ds.Provider]{Write: arrowWriteProvider, Read: arrowReadProvider}
 	if codec, err := colbin.NewCodec[untagged.Provider](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.Provider]{
@@ -990,6 +1018,7 @@ func RealEstate1() formats.Adapters[ds.RealEstate1] {
 		Build: func(b *flatbuffers.Builder, v *ds.RealEstate1) { b.Finish(buildFBRealEstate1(b, v)) },
 		Read:  func(data []byte, v *ds.RealEstate1) { readFBRealEstate1(fb.GetRootAsRealEstate1(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.RealEstate1]{Build: capnpBuildRealEstate1, Read: capnpReadRealEstate1}
 	a.Arrow = &formats.ArrowAdapter[ds.RealEstate1]{Write: arrowWriteRealEstate1, Read: arrowReadRealEstate1}
 	if codec, err := colbin.NewCodec[untagged.RealEstate1](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.RealEstate1]{
@@ -1025,6 +1054,7 @@ func RealEstate2() formats.Adapters[ds.RealEstate2] {
 		Build: func(b *flatbuffers.Builder, v *ds.RealEstate2) { b.Finish(buildFBRealEstate2(b, v)) },
 		Read:  func(data []byte, v *ds.RealEstate2) { readFBRealEstate2(fb.GetRootAsRealEstate2(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.RealEstate2]{Build: capnpBuildRealEstate2, Read: capnpReadRealEstate2}
 	a.Arrow = &formats.ArrowAdapter[ds.RealEstate2]{Write: arrowWriteRealEstate2, Read: arrowReadRealEstate2}
 	if codec, err := colbin.NewCodec[untagged.RealEstate2](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.RealEstate2]{
@@ -1056,6 +1086,7 @@ func Redfin1() formats.Adapters[ds.Redfin1] {
 		Build: func(b *flatbuffers.Builder, v *ds.Redfin1) { b.Finish(buildFBRedfin1(b, v)) },
 		Read:  func(data []byte, v *ds.Redfin1) { readFBRedfin1(fb.GetRootAsRedfin1(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.Redfin1]{Build: capnpBuildRedfin1, Read: capnpReadRedfin1}
 	a.Arrow = &formats.ArrowAdapter[ds.Redfin1]{Write: arrowWriteRedfin1, Read: arrowReadRedfin1}
 	if codec, err := colbin.NewCodec[untagged.Redfin1](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.Redfin1]{
@@ -1087,6 +1118,7 @@ func Redfin2() formats.Adapters[ds.Redfin2] {
 		Build: func(b *flatbuffers.Builder, v *ds.Redfin2) { b.Finish(buildFBRedfin2(b, v)) },
 		Read:  func(data []byte, v *ds.Redfin2) { readFBRedfin2(fb.GetRootAsRedfin2(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.Redfin2]{Build: capnpBuildRedfin2, Read: capnpReadRedfin2}
 	a.Arrow = &formats.ArrowAdapter[ds.Redfin2]{Write: arrowWriteRedfin2, Read: arrowReadRedfin2}
 	if codec, err := colbin.NewCodec[untagged.Redfin2](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.Redfin2]{
@@ -1118,6 +1150,7 @@ func Redfin3() formats.Adapters[ds.Redfin3] {
 		Build: func(b *flatbuffers.Builder, v *ds.Redfin3) { b.Finish(buildFBRedfin3(b, v)) },
 		Read:  func(data []byte, v *ds.Redfin3) { readFBRedfin3(fb.GetRootAsRedfin3(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.Redfin3]{Build: capnpBuildRedfin3, Read: capnpReadRedfin3}
 	a.Arrow = &formats.ArrowAdapter[ds.Redfin3]{Write: arrowWriteRedfin3, Read: arrowReadRedfin3}
 	if codec, err := colbin.NewCodec[untagged.Redfin3](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.Redfin3]{
@@ -1149,6 +1182,7 @@ func Redfin4() formats.Adapters[ds.Redfin4] {
 		Build: func(b *flatbuffers.Builder, v *ds.Redfin4) { b.Finish(buildFBRedfin4(b, v)) },
 		Read:  func(data []byte, v *ds.Redfin4) { readFBRedfin4(fb.GetRootAsRedfin4(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.Redfin4]{Build: capnpBuildRedfin4, Read: capnpReadRedfin4}
 	a.Arrow = &formats.ArrowAdapter[ds.Redfin4]{Write: arrowWriteRedfin4, Read: arrowReadRedfin4}
 	if codec, err := colbin.NewCodec[untagged.Redfin4](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.Redfin4]{
@@ -1184,6 +1218,7 @@ func Rentabilidad() formats.Adapters[ds.Rentabilidad] {
 		Build: func(b *flatbuffers.Builder, v *ds.Rentabilidad) { b.Finish(buildFBRentabilidad(b, v)) },
 		Read:  func(data []byte, v *ds.Rentabilidad) { readFBRentabilidad(fb.GetRootAsRentabilidad(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.Rentabilidad]{Build: capnpBuildRentabilidad, Read: capnpReadRentabilidad}
 	a.Arrow = &formats.ArrowAdapter[ds.Rentabilidad]{Write: arrowWriteRentabilidad, Read: arrowReadRentabilidad}
 	if codec, err := colbin.NewCodec[untagged.Rentabilidad](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.Rentabilidad]{
@@ -1215,6 +1250,7 @@ func Romance() formats.Adapters[ds.Romance] {
 		Build: func(b *flatbuffers.Builder, v *ds.Romance) { b.Finish(buildFBRomance(b, v)) },
 		Read:  func(data []byte, v *ds.Romance) { readFBRomance(fb.GetRootAsRomance(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.Romance]{Build: capnpBuildRomance, Read: capnpReadRomance}
 	a.Arrow = &formats.ArrowAdapter[ds.Romance]{Write: arrowWriteRomance, Read: arrowReadRomance}
 	if codec, err := colbin.NewCodec[untagged.Romance](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.Romance]{
@@ -1250,6 +1286,7 @@ func SalariesFrance() formats.Adapters[ds.SalariesFrance] {
 		Build: func(b *flatbuffers.Builder, v *ds.SalariesFrance) { b.Finish(buildFBSalariesFrance(b, v)) },
 		Read:  func(data []byte, v *ds.SalariesFrance) { readFBSalariesFrance(fb.GetRootAsSalariesFrance(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.SalariesFrance]{Build: capnpBuildSalariesFrance, Read: capnpReadSalariesFrance}
 	a.Arrow = &formats.ArrowAdapter[ds.SalariesFrance]{Write: arrowWriteSalariesFrance, Read: arrowReadSalariesFrance}
 	if codec, err := colbin.NewCodec[untagged.SalariesFrance](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.SalariesFrance]{
@@ -1287,6 +1324,7 @@ func TableroSistemaPenal() formats.Adapters[ds.TableroSistemaPenal] {
 			readFBTableroSistemaPenal(fb.GetRootAsTableroSistemaPenal(data, 0), v)
 		},
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.TableroSistemaPenal]{Build: capnpBuildTableroSistemaPenal, Read: capnpReadTableroSistemaPenal}
 	a.Arrow = &formats.ArrowAdapter[ds.TableroSistemaPenal]{Write: arrowWriteTableroSistemaPenal, Read: arrowReadTableroSistemaPenal}
 	if codec, err := colbin.NewCodec[untagged.TableroSistemaPenal](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.TableroSistemaPenal]{
@@ -1322,6 +1360,7 @@ func Taxpayer() formats.Adapters[ds.Taxpayer] {
 		Build: func(b *flatbuffers.Builder, v *ds.Taxpayer) { b.Finish(buildFBTaxpayer(b, v)) },
 		Read:  func(data []byte, v *ds.Taxpayer) { readFBTaxpayer(fb.GetRootAsTaxpayer(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.Taxpayer]{Build: capnpBuildTaxpayer, Read: capnpReadTaxpayer}
 	a.Arrow = &formats.ArrowAdapter[ds.Taxpayer]{Write: arrowWriteTaxpayer, Read: arrowReadTaxpayer}
 	if codec, err := colbin.NewCodec[untagged.Taxpayer](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.Taxpayer]{
@@ -1353,6 +1392,7 @@ func Telco() formats.Adapters[ds.Telco] {
 		Build: func(b *flatbuffers.Builder, v *ds.Telco) { b.Finish(buildFBTelco(b, v)) },
 		Read:  func(data []byte, v *ds.Telco) { readFBTelco(fb.GetRootAsTelco(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.Telco]{Build: capnpBuildTelco, Read: capnpReadTelco}
 	a.Arrow = &formats.ArrowAdapter[ds.Telco]{Write: arrowWriteTelco, Read: arrowReadTelco}
 	if codec, err := colbin.NewCodec[untagged.Telco](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.Telco]{
@@ -1388,6 +1428,7 @@ func TrainsUK1() formats.Adapters[ds.TrainsUK1] {
 		Build: func(b *flatbuffers.Builder, v *ds.TrainsUK1) { b.Finish(buildFBTrainsUK1(b, v)) },
 		Read:  func(data []byte, v *ds.TrainsUK1) { readFBTrainsUK1(fb.GetRootAsTrainsUK1(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.TrainsUK1]{Build: capnpBuildTrainsUK1, Read: capnpReadTrainsUK1}
 	a.Arrow = &formats.ArrowAdapter[ds.TrainsUK1]{Write: arrowWriteTrainsUK1, Read: arrowReadTrainsUK1}
 	if codec, err := colbin.NewCodec[untagged.TrainsUK1](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.TrainsUK1]{
@@ -1423,6 +1464,7 @@ func TrainsUK2() formats.Adapters[ds.TrainsUK2] {
 		Build: func(b *flatbuffers.Builder, v *ds.TrainsUK2) { b.Finish(buildFBTrainsUK2(b, v)) },
 		Read:  func(data []byte, v *ds.TrainsUK2) { readFBTrainsUK2(fb.GetRootAsTrainsUK2(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.TrainsUK2]{Build: capnpBuildTrainsUK2, Read: capnpReadTrainsUK2}
 	a.Arrow = &formats.ArrowAdapter[ds.TrainsUK2]{Write: arrowWriteTrainsUK2, Read: arrowReadTrainsUK2}
 	if codec, err := colbin.NewCodec[untagged.TrainsUK2](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.TrainsUK2]{
@@ -1458,6 +1500,7 @@ func USCensus() formats.Adapters[ds.USCensus] {
 		Build: func(b *flatbuffers.Builder, v *ds.USCensus) { b.Finish(buildFBUSCensus(b, v)) },
 		Read:  func(data []byte, v *ds.USCensus) { readFBUSCensus(fb.GetRootAsUSCensus(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.USCensus]{Build: capnpBuildUSCensus, Read: capnpReadUSCensus}
 	a.Arrow = &formats.ArrowAdapter[ds.USCensus]{Write: arrowWriteUSCensus, Read: arrowReadUSCensus}
 	if codec, err := colbin.NewCodec[untagged.USCensus](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.USCensus]{
@@ -1493,6 +1536,7 @@ func Uberlandia() formats.Adapters[ds.Uberlandia] {
 		Build: func(b *flatbuffers.Builder, v *ds.Uberlandia) { b.Finish(buildFBUberlandia(b, v)) },
 		Read:  func(data []byte, v *ds.Uberlandia) { readFBUberlandia(fb.GetRootAsUberlandia(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.Uberlandia]{Build: capnpBuildUberlandia, Read: capnpReadUberlandia}
 	a.Arrow = &formats.ArrowAdapter[ds.Uberlandia]{Write: arrowWriteUberlandia, Read: arrowReadUberlandia}
 	if codec, err := colbin.NewCodec[untagged.Uberlandia](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.Uberlandia]{
@@ -1524,6 +1568,7 @@ func Wins() formats.Adapters[ds.Wins] {
 		Build: func(b *flatbuffers.Builder, v *ds.Wins) { b.Finish(buildFBWins(b, v)) },
 		Read:  func(data []byte, v *ds.Wins) { readFBWins(fb.GetRootAsWins(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.Wins]{Build: capnpBuildWins, Read: capnpReadWins}
 	a.Arrow = &formats.ArrowAdapter[ds.Wins]{Write: arrowWriteWins, Read: arrowReadWins}
 	if codec, err := colbin.NewCodec[untagged.Wins](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.Wins]{
@@ -1557,6 +1602,7 @@ func YaleLanguages() formats.Adapters[ds.YaleLanguages] {
 		Build: func(b *flatbuffers.Builder, v *ds.YaleLanguages) { b.Finish(buildFBYaleLanguages(b, v)) },
 		Read:  func(data []byte, v *ds.YaleLanguages) { readFBYaleLanguages(fb.GetRootAsYaleLanguages(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.YaleLanguages]{Build: capnpBuildYaleLanguages, Read: capnpReadYaleLanguages}
 	a.Arrow = &formats.ArrowAdapter[ds.YaleLanguages]{Write: arrowWriteYaleLanguages, Read: arrowReadYaleLanguages}
 	if codec, err := colbin.NewCodec[untagged.YaleLanguages](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.YaleLanguages]{

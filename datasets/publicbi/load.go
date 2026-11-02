@@ -2,8 +2,9 @@
 // "White-box Compression", CIDR 2020): real tables from 46 Tableau Public
 // workbooks, the corpus BtrBlocks is measured on.
 //
-// The subset is the first table of every workbook (<workbook>_1), its first
-// 16 384 rows, fixed before anything was measured. The types are generated
+// The subset is the first table of every workbook (<workbook>_1), a seeded
+// random sample of 16 384 of its rows (see subset/ and datasets/README.md).
+// The types are generated
 // from the benchmark's own CREATE TABLE statements by typesgen, so no struct
 // here is hand-written; see typesgen for how SQL types map to Go.
 package publicbi

@@ -207,12 +207,102 @@ func buildFBNormalized(b *flatbuffers.Builder, v *ds.Normalized) flatbuffers.UOf
 		}
 		oLines = b.EndVector(n)
 	}
+	var oCustomers flatbuffers.UOffsetT
+	if n := len(v.Customers); n > 0 {
+		offsets := make([]flatbuffers.UOffsetT, n)
+		for i := range v.Customers {
+			offsets[i] = buildFBCustomer(b, &v.Customers[i])
+		}
+		fb.NormalizedStartCustomersVector(b, n)
+		for i := n - 1; i >= 0; i-- {
+			b.PrependUOffsetT(offsets[i])
+		}
+		oCustomers = b.EndVector(n)
+	}
+	var oParts flatbuffers.UOffsetT
+	if n := len(v.Parts); n > 0 {
+		offsets := make([]flatbuffers.UOffsetT, n)
+		for i := range v.Parts {
+			offsets[i] = buildFBPart(b, &v.Parts[i])
+		}
+		fb.NormalizedStartPartsVector(b, n)
+		for i := n - 1; i >= 0; i-- {
+			b.PrependUOffsetT(offsets[i])
+		}
+		oParts = b.EndVector(n)
+	}
+	var oPartSupps flatbuffers.UOffsetT
+	if n := len(v.PartSupps); n > 0 {
+		offsets := make([]flatbuffers.UOffsetT, n)
+		for i := range v.PartSupps {
+			offsets[i] = buildFBPartSupp(b, &v.PartSupps[i])
+		}
+		fb.NormalizedStartPartSuppsVector(b, n)
+		for i := n - 1; i >= 0; i-- {
+			b.PrependUOffsetT(offsets[i])
+		}
+		oPartSupps = b.EndVector(n)
+	}
+	var oSuppliers flatbuffers.UOffsetT
+	if n := len(v.Suppliers); n > 0 {
+		offsets := make([]flatbuffers.UOffsetT, n)
+		for i := range v.Suppliers {
+			offsets[i] = buildFBSupplier(b, &v.Suppliers[i])
+		}
+		fb.NormalizedStartSuppliersVector(b, n)
+		for i := n - 1; i >= 0; i-- {
+			b.PrependUOffsetT(offsets[i])
+		}
+		oSuppliers = b.EndVector(n)
+	}
+	var oNations flatbuffers.UOffsetT
+	if n := len(v.Nations); n > 0 {
+		offsets := make([]flatbuffers.UOffsetT, n)
+		for i := range v.Nations {
+			offsets[i] = buildFBNation(b, &v.Nations[i])
+		}
+		fb.NormalizedStartNationsVector(b, n)
+		for i := n - 1; i >= 0; i-- {
+			b.PrependUOffsetT(offsets[i])
+		}
+		oNations = b.EndVector(n)
+	}
+	var oRegions flatbuffers.UOffsetT
+	if n := len(v.Regions); n > 0 {
+		offsets := make([]flatbuffers.UOffsetT, n)
+		for i := range v.Regions {
+			offsets[i] = buildFBRegion(b, &v.Regions[i])
+		}
+		fb.NormalizedStartRegionsVector(b, n)
+		for i := n - 1; i >= 0; i-- {
+			b.PrependUOffsetT(offsets[i])
+		}
+		oRegions = b.EndVector(n)
+	}
 	fb.NormalizedStart(b)
 	if oOrders != 0 {
 		fb.NormalizedAddOrders(b, oOrders)
 	}
 	if oLines != 0 {
 		fb.NormalizedAddLines(b, oLines)
+	}
+	if oCustomers != 0 {
+		fb.NormalizedAddCustomers(b, oCustomers)
+	}
+	if oParts != 0 {
+		fb.NormalizedAddParts(b, oParts)
+	}
+	if oPartSupps != 0 {
+		fb.NormalizedAddPartSupps(b, oPartSupps)
+	}
+	if oSuppliers != 0 {
+		fb.NormalizedAddSuppliers(b, oSuppliers)
+	}
+	if oNations != 0 {
+		fb.NormalizedAddNations(b, oNations)
+	}
+	if oRegions != 0 {
+		fb.NormalizedAddRegions(b, oRegions)
 	}
 	return fb.NormalizedEnd(b)
 }
@@ -232,6 +322,54 @@ func readFBNormalized(t *fb.Normalized, v *ds.Normalized) {
 		for i := range v.Lines {
 			t.Lines(&c, i)
 			readFBLineItemRow(&c, &v.Lines[i])
+		}
+	}
+	v.Customers = formats.Resize(v.Customers, t.CustomersLength())
+	{
+		var c fb.Customer
+		for i := range v.Customers {
+			t.Customers(&c, i)
+			readFBCustomer(&c, &v.Customers[i])
+		}
+	}
+	v.Parts = formats.Resize(v.Parts, t.PartsLength())
+	{
+		var c fb.Part
+		for i := range v.Parts {
+			t.Parts(&c, i)
+			readFBPart(&c, &v.Parts[i])
+		}
+	}
+	v.PartSupps = formats.Resize(v.PartSupps, t.PartSuppsLength())
+	{
+		var c fb.PartSupp
+		for i := range v.PartSupps {
+			t.PartSupps(&c, i)
+			readFBPartSupp(&c, &v.PartSupps[i])
+		}
+	}
+	v.Suppliers = formats.Resize(v.Suppliers, t.SuppliersLength())
+	{
+		var c fb.Supplier
+		for i := range v.Suppliers {
+			t.Suppliers(&c, i)
+			readFBSupplier(&c, &v.Suppliers[i])
+		}
+	}
+	v.Nations = formats.Resize(v.Nations, t.NationsLength())
+	{
+		var c fb.Nation
+		for i := range v.Nations {
+			t.Nations(&c, i)
+			readFBNation(&c, &v.Nations[i])
+		}
+	}
+	v.Regions = formats.Resize(v.Regions, t.RegionsLength())
+	{
+		var c fb.Region
+		for i := range v.Regions {
+			t.Regions(&c, i)
+			readFBRegion(&c, &v.Regions[i])
 		}
 	}
 }
@@ -354,4 +492,492 @@ func readFBLineItemRow(t *fb.LineItemRow, v *ds.LineItemRow) {
 	v.ShipInstruct = string(t.ShipInstruct())
 	v.ShipMode = string(t.ShipMode())
 	v.Comment = string(t.Comment())
+}
+
+func buildFBCustomer(b *flatbuffers.Builder, v *ds.Customer) flatbuffers.UOffsetT {
+	var oName flatbuffers.UOffsetT
+	if v.Name != "" {
+		oName = b.CreateString(string(v.Name))
+	}
+	var oAddress flatbuffers.UOffsetT
+	if v.Address != "" {
+		oAddress = b.CreateString(string(v.Address))
+	}
+	var oPhone flatbuffers.UOffsetT
+	if v.Phone != "" {
+		oPhone = b.CreateString(string(v.Phone))
+	}
+	var oMktSegment flatbuffers.UOffsetT
+	if v.MktSegment != "" {
+		oMktSegment = b.CreateString(string(v.MktSegment))
+	}
+	var oComment flatbuffers.UOffsetT
+	if v.Comment != "" {
+		oComment = b.CreateString(string(v.Comment))
+	}
+	fb.CustomerStart(b)
+	fb.CustomerAddCustKey(b, int32(v.CustKey))
+	if oName != 0 {
+		fb.CustomerAddName(b, oName)
+	}
+	if oAddress != 0 {
+		fb.CustomerAddAddress(b, oAddress)
+	}
+	fb.CustomerAddNationKey(b, int32(v.NationKey))
+	if oPhone != 0 {
+		fb.CustomerAddPhone(b, oPhone)
+	}
+	fb.CustomerAddAcctBal(b, int64(v.AcctBal))
+	if oMktSegment != 0 {
+		fb.CustomerAddMktSegment(b, oMktSegment)
+	}
+	if oComment != 0 {
+		fb.CustomerAddComment(b, oComment)
+	}
+	return fb.CustomerEnd(b)
+}
+
+func readFBCustomer(t *fb.Customer, v *ds.Customer) {
+	v.CustKey = int32(t.CustKey())
+	v.Name = string(t.Name())
+	v.Address = string(t.Address())
+	v.NationKey = int32(t.NationKey())
+	v.Phone = string(t.Phone())
+	v.AcctBal = int64(t.AcctBal())
+	v.MktSegment = string(t.MktSegment())
+	v.Comment = string(t.Comment())
+}
+
+func buildFBPart(b *flatbuffers.Builder, v *ds.Part) flatbuffers.UOffsetT {
+	var oName flatbuffers.UOffsetT
+	if v.Name != "" {
+		oName = b.CreateString(string(v.Name))
+	}
+	var oMfgr flatbuffers.UOffsetT
+	if v.Mfgr != "" {
+		oMfgr = b.CreateString(string(v.Mfgr))
+	}
+	var oBrand flatbuffers.UOffsetT
+	if v.Brand != "" {
+		oBrand = b.CreateString(string(v.Brand))
+	}
+	var oType flatbuffers.UOffsetT
+	if v.Type != "" {
+		oType = b.CreateString(string(v.Type))
+	}
+	var oContainer flatbuffers.UOffsetT
+	if v.Container != "" {
+		oContainer = b.CreateString(string(v.Container))
+	}
+	var oComment flatbuffers.UOffsetT
+	if v.Comment != "" {
+		oComment = b.CreateString(string(v.Comment))
+	}
+	fb.PartStart(b)
+	fb.PartAddPartKey(b, int32(v.PartKey))
+	if oName != 0 {
+		fb.PartAddName(b, oName)
+	}
+	if oMfgr != 0 {
+		fb.PartAddMfgr(b, oMfgr)
+	}
+	if oBrand != 0 {
+		fb.PartAddBrand(b, oBrand)
+	}
+	if oType != 0 {
+		fb.PartAddType(b, oType)
+	}
+	fb.PartAddSize(b, int32(v.Size))
+	if oContainer != 0 {
+		fb.PartAddContainer(b, oContainer)
+	}
+	fb.PartAddRetailPrice(b, int64(v.RetailPrice))
+	if oComment != 0 {
+		fb.PartAddComment(b, oComment)
+	}
+	return fb.PartEnd(b)
+}
+
+func readFBPart(t *fb.Part, v *ds.Part) {
+	v.PartKey = int32(t.PartKey())
+	v.Name = string(t.Name())
+	v.Mfgr = string(t.Mfgr())
+	v.Brand = string(t.Brand())
+	v.Type = string(t.Type())
+	v.Size = int32(t.Size())
+	v.Container = string(t.Container())
+	v.RetailPrice = int64(t.RetailPrice())
+	v.Comment = string(t.Comment())
+}
+
+func buildFBPartSupp(b *flatbuffers.Builder, v *ds.PartSupp) flatbuffers.UOffsetT {
+	var oComment flatbuffers.UOffsetT
+	if v.Comment != "" {
+		oComment = b.CreateString(string(v.Comment))
+	}
+	fb.PartSuppStart(b)
+	fb.PartSuppAddPartKey(b, int32(v.PartKey))
+	fb.PartSuppAddSuppKey(b, int32(v.SuppKey))
+	fb.PartSuppAddAvailQty(b, int32(v.AvailQty))
+	fb.PartSuppAddSupplyCost(b, int64(v.SupplyCost))
+	if oComment != 0 {
+		fb.PartSuppAddComment(b, oComment)
+	}
+	return fb.PartSuppEnd(b)
+}
+
+func readFBPartSupp(t *fb.PartSupp, v *ds.PartSupp) {
+	v.PartKey = int32(t.PartKey())
+	v.SuppKey = int32(t.SuppKey())
+	v.AvailQty = int32(t.AvailQty())
+	v.SupplyCost = int64(t.SupplyCost())
+	v.Comment = string(t.Comment())
+}
+
+func buildFBSupplier(b *flatbuffers.Builder, v *ds.Supplier) flatbuffers.UOffsetT {
+	var oName flatbuffers.UOffsetT
+	if v.Name != "" {
+		oName = b.CreateString(string(v.Name))
+	}
+	var oAddress flatbuffers.UOffsetT
+	if v.Address != "" {
+		oAddress = b.CreateString(string(v.Address))
+	}
+	var oPhone flatbuffers.UOffsetT
+	if v.Phone != "" {
+		oPhone = b.CreateString(string(v.Phone))
+	}
+	var oComment flatbuffers.UOffsetT
+	if v.Comment != "" {
+		oComment = b.CreateString(string(v.Comment))
+	}
+	fb.SupplierStart(b)
+	fb.SupplierAddSuppKey(b, int32(v.SuppKey))
+	if oName != 0 {
+		fb.SupplierAddName(b, oName)
+	}
+	if oAddress != 0 {
+		fb.SupplierAddAddress(b, oAddress)
+	}
+	fb.SupplierAddNationKey(b, int32(v.NationKey))
+	if oPhone != 0 {
+		fb.SupplierAddPhone(b, oPhone)
+	}
+	fb.SupplierAddAcctBal(b, int64(v.AcctBal))
+	if oComment != 0 {
+		fb.SupplierAddComment(b, oComment)
+	}
+	return fb.SupplierEnd(b)
+}
+
+func readFBSupplier(t *fb.Supplier, v *ds.Supplier) {
+	v.SuppKey = int32(t.SuppKey())
+	v.Name = string(t.Name())
+	v.Address = string(t.Address())
+	v.NationKey = int32(t.NationKey())
+	v.Phone = string(t.Phone())
+	v.AcctBal = int64(t.AcctBal())
+	v.Comment = string(t.Comment())
+}
+
+func buildFBNation(b *flatbuffers.Builder, v *ds.Nation) flatbuffers.UOffsetT {
+	var oName flatbuffers.UOffsetT
+	if v.Name != "" {
+		oName = b.CreateString(string(v.Name))
+	}
+	var oComment flatbuffers.UOffsetT
+	if v.Comment != "" {
+		oComment = b.CreateString(string(v.Comment))
+	}
+	fb.NationStart(b)
+	fb.NationAddNationKey(b, int32(v.NationKey))
+	if oName != 0 {
+		fb.NationAddName(b, oName)
+	}
+	fb.NationAddRegionKey(b, int32(v.RegionKey))
+	if oComment != 0 {
+		fb.NationAddComment(b, oComment)
+	}
+	return fb.NationEnd(b)
+}
+
+func readFBNation(t *fb.Nation, v *ds.Nation) {
+	v.NationKey = int32(t.NationKey())
+	v.Name = string(t.Name())
+	v.RegionKey = int32(t.RegionKey())
+	v.Comment = string(t.Comment())
+}
+
+func buildFBRegion(b *flatbuffers.Builder, v *ds.Region) flatbuffers.UOffsetT {
+	var oName flatbuffers.UOffsetT
+	if v.Name != "" {
+		oName = b.CreateString(string(v.Name))
+	}
+	var oComment flatbuffers.UOffsetT
+	if v.Comment != "" {
+		oComment = b.CreateString(string(v.Comment))
+	}
+	fb.RegionStart(b)
+	fb.RegionAddRegionKey(b, int32(v.RegionKey))
+	if oName != 0 {
+		fb.RegionAddName(b, oName)
+	}
+	if oComment != 0 {
+		fb.RegionAddComment(b, oComment)
+	}
+	return fb.RegionEnd(b)
+}
+
+func readFBRegion(t *fb.Region, v *ds.Region) {
+	v.RegionKey = int32(t.RegionKey())
+	v.Name = string(t.Name())
+	v.Comment = string(t.Comment())
+}
+
+func buildFBOrdersTable(b *flatbuffers.Builder, v *ds.OrdersTable) flatbuffers.UOffsetT {
+	var oRows flatbuffers.UOffsetT
+	if n := len(v.Rows); n > 0 {
+		offsets := make([]flatbuffers.UOffsetT, n)
+		for i := range v.Rows {
+			offsets[i] = buildFBOrderRow(b, &v.Rows[i])
+		}
+		fb.OrdersTableStartRowsVector(b, n)
+		for i := n - 1; i >= 0; i-- {
+			b.PrependUOffsetT(offsets[i])
+		}
+		oRows = b.EndVector(n)
+	}
+	fb.OrdersTableStart(b)
+	if oRows != 0 {
+		fb.OrdersTableAddRows(b, oRows)
+	}
+	return fb.OrdersTableEnd(b)
+}
+
+func readFBOrdersTable(t *fb.OrdersTable, v *ds.OrdersTable) {
+	v.Rows = formats.Resize(v.Rows, t.RowsLength())
+	{
+		var c fb.OrderRow
+		for i := range v.Rows {
+			t.Rows(&c, i)
+			readFBOrderRow(&c, &v.Rows[i])
+		}
+	}
+}
+
+func buildFBLineItemTable(b *flatbuffers.Builder, v *ds.LineItemTable) flatbuffers.UOffsetT {
+	var oRows flatbuffers.UOffsetT
+	if n := len(v.Rows); n > 0 {
+		offsets := make([]flatbuffers.UOffsetT, n)
+		for i := range v.Rows {
+			offsets[i] = buildFBLineItemRow(b, &v.Rows[i])
+		}
+		fb.LineItemTableStartRowsVector(b, n)
+		for i := n - 1; i >= 0; i-- {
+			b.PrependUOffsetT(offsets[i])
+		}
+		oRows = b.EndVector(n)
+	}
+	fb.LineItemTableStart(b)
+	if oRows != 0 {
+		fb.LineItemTableAddRows(b, oRows)
+	}
+	return fb.LineItemTableEnd(b)
+}
+
+func readFBLineItemTable(t *fb.LineItemTable, v *ds.LineItemTable) {
+	v.Rows = formats.Resize(v.Rows, t.RowsLength())
+	{
+		var c fb.LineItemRow
+		for i := range v.Rows {
+			t.Rows(&c, i)
+			readFBLineItemRow(&c, &v.Rows[i])
+		}
+	}
+}
+
+func buildFBCustomerTable(b *flatbuffers.Builder, v *ds.CustomerTable) flatbuffers.UOffsetT {
+	var oRows flatbuffers.UOffsetT
+	if n := len(v.Rows); n > 0 {
+		offsets := make([]flatbuffers.UOffsetT, n)
+		for i := range v.Rows {
+			offsets[i] = buildFBCustomer(b, &v.Rows[i])
+		}
+		fb.CustomerTableStartRowsVector(b, n)
+		for i := n - 1; i >= 0; i-- {
+			b.PrependUOffsetT(offsets[i])
+		}
+		oRows = b.EndVector(n)
+	}
+	fb.CustomerTableStart(b)
+	if oRows != 0 {
+		fb.CustomerTableAddRows(b, oRows)
+	}
+	return fb.CustomerTableEnd(b)
+}
+
+func readFBCustomerTable(t *fb.CustomerTable, v *ds.CustomerTable) {
+	v.Rows = formats.Resize(v.Rows, t.RowsLength())
+	{
+		var c fb.Customer
+		for i := range v.Rows {
+			t.Rows(&c, i)
+			readFBCustomer(&c, &v.Rows[i])
+		}
+	}
+}
+
+func buildFBPartTable(b *flatbuffers.Builder, v *ds.PartTable) flatbuffers.UOffsetT {
+	var oRows flatbuffers.UOffsetT
+	if n := len(v.Rows); n > 0 {
+		offsets := make([]flatbuffers.UOffsetT, n)
+		for i := range v.Rows {
+			offsets[i] = buildFBPart(b, &v.Rows[i])
+		}
+		fb.PartTableStartRowsVector(b, n)
+		for i := n - 1; i >= 0; i-- {
+			b.PrependUOffsetT(offsets[i])
+		}
+		oRows = b.EndVector(n)
+	}
+	fb.PartTableStart(b)
+	if oRows != 0 {
+		fb.PartTableAddRows(b, oRows)
+	}
+	return fb.PartTableEnd(b)
+}
+
+func readFBPartTable(t *fb.PartTable, v *ds.PartTable) {
+	v.Rows = formats.Resize(v.Rows, t.RowsLength())
+	{
+		var c fb.Part
+		for i := range v.Rows {
+			t.Rows(&c, i)
+			readFBPart(&c, &v.Rows[i])
+		}
+	}
+}
+
+func buildFBPartSuppTable(b *flatbuffers.Builder, v *ds.PartSuppTable) flatbuffers.UOffsetT {
+	var oRows flatbuffers.UOffsetT
+	if n := len(v.Rows); n > 0 {
+		offsets := make([]flatbuffers.UOffsetT, n)
+		for i := range v.Rows {
+			offsets[i] = buildFBPartSupp(b, &v.Rows[i])
+		}
+		fb.PartSuppTableStartRowsVector(b, n)
+		for i := n - 1; i >= 0; i-- {
+			b.PrependUOffsetT(offsets[i])
+		}
+		oRows = b.EndVector(n)
+	}
+	fb.PartSuppTableStart(b)
+	if oRows != 0 {
+		fb.PartSuppTableAddRows(b, oRows)
+	}
+	return fb.PartSuppTableEnd(b)
+}
+
+func readFBPartSuppTable(t *fb.PartSuppTable, v *ds.PartSuppTable) {
+	v.Rows = formats.Resize(v.Rows, t.RowsLength())
+	{
+		var c fb.PartSupp
+		for i := range v.Rows {
+			t.Rows(&c, i)
+			readFBPartSupp(&c, &v.Rows[i])
+		}
+	}
+}
+
+func buildFBSupplierTable(b *flatbuffers.Builder, v *ds.SupplierTable) flatbuffers.UOffsetT {
+	var oRows flatbuffers.UOffsetT
+	if n := len(v.Rows); n > 0 {
+		offsets := make([]flatbuffers.UOffsetT, n)
+		for i := range v.Rows {
+			offsets[i] = buildFBSupplier(b, &v.Rows[i])
+		}
+		fb.SupplierTableStartRowsVector(b, n)
+		for i := n - 1; i >= 0; i-- {
+			b.PrependUOffsetT(offsets[i])
+		}
+		oRows = b.EndVector(n)
+	}
+	fb.SupplierTableStart(b)
+	if oRows != 0 {
+		fb.SupplierTableAddRows(b, oRows)
+	}
+	return fb.SupplierTableEnd(b)
+}
+
+func readFBSupplierTable(t *fb.SupplierTable, v *ds.SupplierTable) {
+	v.Rows = formats.Resize(v.Rows, t.RowsLength())
+	{
+		var c fb.Supplier
+		for i := range v.Rows {
+			t.Rows(&c, i)
+			readFBSupplier(&c, &v.Rows[i])
+		}
+	}
+}
+
+func buildFBNationTable(b *flatbuffers.Builder, v *ds.NationTable) flatbuffers.UOffsetT {
+	var oRows flatbuffers.UOffsetT
+	if n := len(v.Rows); n > 0 {
+		offsets := make([]flatbuffers.UOffsetT, n)
+		for i := range v.Rows {
+			offsets[i] = buildFBNation(b, &v.Rows[i])
+		}
+		fb.NationTableStartRowsVector(b, n)
+		for i := n - 1; i >= 0; i-- {
+			b.PrependUOffsetT(offsets[i])
+		}
+		oRows = b.EndVector(n)
+	}
+	fb.NationTableStart(b)
+	if oRows != 0 {
+		fb.NationTableAddRows(b, oRows)
+	}
+	return fb.NationTableEnd(b)
+}
+
+func readFBNationTable(t *fb.NationTable, v *ds.NationTable) {
+	v.Rows = formats.Resize(v.Rows, t.RowsLength())
+	{
+		var c fb.Nation
+		for i := range v.Rows {
+			t.Rows(&c, i)
+			readFBNation(&c, &v.Rows[i])
+		}
+	}
+}
+
+func buildFBRegionTable(b *flatbuffers.Builder, v *ds.RegionTable) flatbuffers.UOffsetT {
+	var oRows flatbuffers.UOffsetT
+	if n := len(v.Rows); n > 0 {
+		offsets := make([]flatbuffers.UOffsetT, n)
+		for i := range v.Rows {
+			offsets[i] = buildFBRegion(b, &v.Rows[i])
+		}
+		fb.RegionTableStartRowsVector(b, n)
+		for i := n - 1; i >= 0; i-- {
+			b.PrependUOffsetT(offsets[i])
+		}
+		oRows = b.EndVector(n)
+	}
+	fb.RegionTableStart(b)
+	if oRows != 0 {
+		fb.RegionTableAddRows(b, oRows)
+	}
+	return fb.RegionTableEnd(b)
+}
+
+func readFBRegionTable(t *fb.RegionTable, v *ds.RegionTable) {
+	v.Rows = formats.Resize(v.Rows, t.RowsLength())
+	{
+		var c fb.Region
+		for i := range v.Rows {
+			t.Rows(&c, i)
+			readFBRegion(&c, &v.Rows[i])
+		}
+	}
 }

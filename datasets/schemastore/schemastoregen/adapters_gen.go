@@ -48,6 +48,7 @@ func CircleCIBlank() formats.Adapters[ds.CircleCIBlank] {
 		Build: func(b *flatbuffers.Builder, v *ds.CircleCIBlank) { b.Finish(buildFBCircleCIBlank(b, v)) },
 		Read:  func(data []byte, v *ds.CircleCIBlank) { readFBCircleCIBlank(fb.GetRootAsCircleCIBlank(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.CircleCIBlank]{Build: capnpBuildCircleCIBlank, Read: capnpReadCircleCIBlank}
 	if codec, err := colbin.NewCodec[untagged.CircleCIBlank](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.CircleCIBlank]{
 			Append: func(dst []byte, v *ds.CircleCIBlank) ([]byte, error) {
@@ -83,6 +84,7 @@ func CircleCIMatrix() formats.Adapters[ds.CircleCIMatrix] {
 		Build: func(b *flatbuffers.Builder, v *ds.CircleCIMatrix) { b.Finish(buildFBCircleCIMatrix(b, v)) },
 		Read:  func(data []byte, v *ds.CircleCIMatrix) { readFBCircleCIMatrix(fb.GetRootAsCircleCIMatrix(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.CircleCIMatrix]{Build: capnpBuildCircleCIMatrix, Read: capnpReadCircleCIMatrix}
 	if codec, err := colbin.NewCodec[untagged.CircleCIMatrix](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.CircleCIMatrix]{
 			Append: func(dst []byte, v *ds.CircleCIMatrix) ([]byte, error) {
@@ -118,6 +120,7 @@ func CommitLint() formats.Adapters[ds.CommitLint] {
 		Build: func(b *flatbuffers.Builder, v *ds.CommitLint) { b.Finish(buildFBCommitLint(b, v)) },
 		Read:  func(data []byte, v *ds.CommitLint) { readFBCommitLint(fb.GetRootAsCommitLint(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.CommitLint]{Build: capnpBuildCommitLint, Read: capnpReadCommitLint}
 	if codec, err := colbin.NewCodec[untagged.CommitLint](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.CommitLint]{
 			Append: func(dst []byte, v *ds.CommitLint) ([]byte, error) {
@@ -155,6 +158,7 @@ func CommitLintBasic() formats.Adapters[ds.CommitLintBasic] {
 			readFBCommitLintBasic(fb.GetRootAsCommitLintBasic(data, 0), v)
 		},
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.CommitLintBasic]{Build: capnpBuildCommitLintBasic, Read: capnpReadCommitLintBasic}
 	if codec, err := colbin.NewCodec[untagged.CommitLintBasic](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.CommitLintBasic]{
 			Append: func(dst []byte, v *ds.CommitLintBasic) ([]byte, error) {
@@ -186,6 +190,7 @@ func EPR() formats.Adapters[ds.EPR] {
 		Build: func(b *flatbuffers.Builder, v *ds.EPR) { b.Finish(buildFBEPR(b, v)) },
 		Read:  func(data []byte, v *ds.EPR) { readFBEPR(fb.GetRootAsEPR(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.EPR]{Build: capnpBuildEPR, Read: capnpReadEPR}
 	if codec, err := colbin.NewCodec[untagged.EPR](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.EPR]{
 			Append: func(dst []byte, v *ds.EPR) ([]byte, error) {
@@ -219,6 +224,7 @@ func ESLintRC() formats.Adapters[ds.ESLintRC] {
 		Build: func(b *flatbuffers.Builder, v *ds.ESLintRC) { b.Finish(buildFBESLintRC(b, v)) },
 		Read:  func(data []byte, v *ds.ESLintRC) { readFBESLintRC(fb.GetRootAsESLintRC(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.ESLintRC]{Build: capnpBuildESLintRC, Read: capnpReadESLintRC}
 	if codec, err := colbin.NewCodec[untagged.ESLintRC](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.ESLintRC]{
 			Append: func(dst []byte, v *ds.ESLintRC) ([]byte, error) {
@@ -250,6 +256,7 @@ func ESMRC() formats.Adapters[ds.ESMRC] {
 		Build: func(b *flatbuffers.Builder, v *ds.ESMRC) { b.Finish(buildFBESMRC(b, v)) },
 		Read:  func(data []byte, v *ds.ESMRC) { readFBESMRC(fb.GetRootAsESMRC(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.ESMRC]{Build: capnpBuildESMRC, Read: capnpReadESMRC}
 	if codec, err := colbin.NewCodec[untagged.ESMRC](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.ESMRC]{
 			Append: func(dst []byte, v *ds.ESMRC) ([]byte, error) {
@@ -281,6 +288,7 @@ func GeoJSON() formats.Adapters[ds.GeoJSON] {
 		Build: func(b *flatbuffers.Builder, v *ds.GeoJSON) { b.Finish(buildFBGeoJSON(b, v)) },
 		Read:  func(data []byte, v *ds.GeoJSON) { readFBGeoJSON(fb.GetRootAsGeoJSON(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.GeoJSON]{Build: capnpBuildGeoJSON, Read: capnpReadGeoJSON}
 	if codec, err := colbin.NewCodec[untagged.GeoJSON](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.GeoJSON]{
 			Append: func(dst []byte, v *ds.GeoJSON) ([]byte, error) {
@@ -318,6 +326,7 @@ func GitHubFundingBlank() formats.Adapters[ds.GitHubFundingBlank] {
 			readFBGitHubFundingBlank(fb.GetRootAsGitHubFundingBlank(data, 0), v)
 		},
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.GitHubFundingBlank]{Build: capnpBuildGitHubFundingBlank, Read: capnpReadGitHubFundingBlank}
 	if codec, err := colbin.NewCodec[untagged.GitHubFundingBlank](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.GitHubFundingBlank]{
 			Append: func(dst []byte, v *ds.GitHubFundingBlank) ([]byte, error) {
@@ -353,6 +362,7 @@ func GitHubWorkflow() formats.Adapters[ds.GitHubWorkflow] {
 		Build: func(b *flatbuffers.Builder, v *ds.GitHubWorkflow) { b.Finish(buildFBGitHubWorkflow(b, v)) },
 		Read:  func(data []byte, v *ds.GitHubWorkflow) { readFBGitHubWorkflow(fb.GetRootAsGitHubWorkflow(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.GitHubWorkflow]{Build: capnpBuildGitHubWorkflow, Read: capnpReadGitHubWorkflow}
 	if codec, err := colbin.NewCodec[untagged.GitHubWorkflow](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.GitHubWorkflow]{
 			Append: func(dst []byte, v *ds.GitHubWorkflow) ([]byte, error) {
@@ -390,6 +400,7 @@ func GruntContribClean() formats.Adapters[ds.GruntContribClean] {
 			readFBGruntContribClean(fb.GetRootAsGruntContribClean(data, 0), v)
 		},
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.GruntContribClean]{Build: capnpBuildGruntContribClean, Read: capnpReadGruntContribClean}
 	if codec, err := colbin.NewCodec[untagged.GruntContribClean](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.GruntContribClean]{
 			Append: func(dst []byte, v *ds.GruntContribClean) ([]byte, error) {
@@ -427,6 +438,7 @@ func ImageOptimizerWebJob() formats.Adapters[ds.ImageOptimizerWebJob] {
 			readFBImageOptimizerWebJob(fb.GetRootAsImageOptimizerWebJob(data, 0), v)
 		},
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.ImageOptimizerWebJob]{Build: capnpBuildImageOptimizerWebJob, Read: capnpReadImageOptimizerWebJob}
 	a.Arrow = &formats.ArrowAdapter[ds.ImageOptimizerWebJob]{Write: arrowWriteImageOptimizerWebJob, Read: arrowReadImageOptimizerWebJob}
 	if codec, err := colbin.NewCodec[untagged.ImageOptimizerWebJob](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.ImageOptimizerWebJob]{
@@ -464,6 +476,7 @@ func JSONEReverseSort() formats.Adapters[ds.JSONEReverseSort] {
 			readFBJSONEReverseSort(fb.GetRootAsJSONEReverseSort(data, 0), v)
 		},
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.JSONEReverseSort]{Build: capnpBuildJSONEReverseSort, Read: capnpReadJSONEReverseSort}
 	if codec, err := colbin.NewCodec[untagged.JSONEReverseSort](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.JSONEReverseSort]{
 			Append: func(dst []byte, v *ds.JSONEReverseSort) ([]byte, error) {
@@ -499,6 +512,7 @@ func JSONESort() formats.Adapters[ds.JSONESort] {
 		Build: func(b *flatbuffers.Builder, v *ds.JSONESort) { b.Finish(buildFBJSONESort(b, v)) },
 		Read:  func(data []byte, v *ds.JSONESort) { readFBJSONESort(fb.GetRootAsJSONESort(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.JSONESort]{Build: capnpBuildJSONESort, Read: capnpReadJSONESort}
 	if codec, err := colbin.NewCodec[untagged.JSONESort](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.JSONESort]{
 			Append: func(dst []byte, v *ds.JSONESort) ([]byte, error) {
@@ -534,6 +548,7 @@ func JSONFeed() formats.Adapters[ds.JSONFeed] {
 		Build: func(b *flatbuffers.Builder, v *ds.JSONFeed) { b.Finish(buildFBJSONFeed(b, v)) },
 		Read:  func(data []byte, v *ds.JSONFeed) { readFBJSONFeed(fb.GetRootAsJSONFeed(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.JSONFeed]{Build: capnpBuildJSONFeed, Read: capnpReadJSONFeed}
 	if codec, err := colbin.NewCodec[untagged.JSONFeed](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.JSONFeed]{
 			Append: func(dst []byte, v *ds.JSONFeed) ([]byte, error) {
@@ -569,6 +584,7 @@ func JSONResume() formats.Adapters[ds.JSONResume] {
 		Build: func(b *flatbuffers.Builder, v *ds.JSONResume) { b.Finish(buildFBJSONResume(b, v)) },
 		Read:  func(data []byte, v *ds.JSONResume) { readFBJSONResume(fb.GetRootAsJSONResume(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.JSONResume]{Build: capnpBuildJSONResume, Read: capnpReadJSONResume}
 	if codec, err := colbin.NewCodec[untagged.JSONResume](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.JSONResume]{
 			Append: func(dst []byte, v *ds.JSONResume) ([]byte, error) {
@@ -604,6 +620,7 @@ func NetCoreProject() formats.Adapters[ds.NetCoreProject] {
 		Build: func(b *flatbuffers.Builder, v *ds.NetCoreProject) { b.Finish(buildFBNetCoreProject(b, v)) },
 		Read:  func(data []byte, v *ds.NetCoreProject) { readFBNetCoreProject(fb.GetRootAsNetCoreProject(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.NetCoreProject]{Build: capnpBuildNetCoreProject, Read: capnpReadNetCoreProject}
 	if codec, err := colbin.NewCodec[untagged.NetCoreProject](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.NetCoreProject]{
 			Append: func(dst []byte, v *ds.NetCoreProject) ([]byte, error) {
@@ -639,6 +656,7 @@ func Nightwatch() formats.Adapters[ds.Nightwatch] {
 		Build: func(b *flatbuffers.Builder, v *ds.Nightwatch) { b.Finish(buildFBNightwatch(b, v)) },
 		Read:  func(data []byte, v *ds.Nightwatch) { readFBNightwatch(fb.GetRootAsNightwatch(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.Nightwatch]{Build: capnpBuildNightwatch, Read: capnpReadNightwatch}
 	if codec, err := colbin.NewCodec[untagged.Nightwatch](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.Nightwatch]{
 			Append: func(dst []byte, v *ds.Nightwatch) ([]byte, error) {
@@ -686,6 +704,7 @@ func OpenWeatherMap() formats.Adapters[ds.OpenWeatherMap] {
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.Skipped["capnproto"] = "OpenWeatherMapSys.Message: the field name collides with a method capnpc-go generates"
 	a.Skipped["arrow"] = "root field Coord is not a []struct table"
 	return a
 }
@@ -711,6 +730,7 @@ func OpenWeatherRoadRisk() formats.Adapters[ds.OpenWeatherRoadRisk] {
 			readFBOpenWeatherRoadRisk(fb.GetRootAsOpenWeatherRoadRisk(data, 0), v)
 		},
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.OpenWeatherRoadRisk]{Build: capnpBuildOpenWeatherRoadRisk, Read: capnpReadOpenWeatherRoadRisk}
 	a.Arrow = &formats.ArrowAdapter[ds.OpenWeatherRoadRisk]{Write: arrowWriteOpenWeatherRoadRisk, Read: arrowReadOpenWeatherRoadRisk}
 	if codec, err := colbin.NewCodec[untagged.OpenWeatherRoadRisk](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.OpenWeatherRoadRisk]{
@@ -758,6 +778,7 @@ func PackageJSON() formats.Adapters[ds.PackageJSON] {
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.Skipped["capnproto"] = "PackageJSONDependencies.Which: the field name collides with a method capnpc-go generates"
 	a.Skipped["arrow"] = "root field Name is not a []struct table"
 	return a
 }
@@ -783,6 +804,7 @@ func PackageJSONLintRC() formats.Adapters[ds.PackageJSONLintRC] {
 			readFBPackageJSONLintRC(fb.GetRootAsPackageJSONLintRC(data, 0), v)
 		},
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.PackageJSONLintRC]{Build: capnpBuildPackageJSONLintRC, Read: capnpReadPackageJSONLintRC}
 	if codec, err := colbin.NewCodec[untagged.PackageJSONLintRC](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.PackageJSONLintRC]{
 			Append: func(dst []byte, v *ds.PackageJSONLintRC) ([]byte, error) {
@@ -820,6 +842,7 @@ func SAPCloudSDKPipeline() formats.Adapters[ds.SAPCloudSDKPipeline] {
 			readFBSAPCloudSDKPipeline(fb.GetRootAsSAPCloudSDKPipeline(data, 0), v)
 		},
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.SAPCloudSDKPipeline]{Build: capnpBuildSAPCloudSDKPipeline, Read: capnpReadSAPCloudSDKPipeline}
 	if codec, err := colbin.NewCodec[untagged.SAPCloudSDKPipeline](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.SAPCloudSDKPipeline]{
 			Append: func(dst []byte, v *ds.SAPCloudSDKPipeline) ([]byte, error) {
@@ -857,6 +880,7 @@ func TravisNotifications() formats.Adapters[ds.TravisNotifications] {
 			readFBTravisNotifications(fb.GetRootAsTravisNotifications(data, 0), v)
 		},
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.TravisNotifications]{Build: capnpBuildTravisNotifications, Read: capnpReadTravisNotifications}
 	if codec, err := colbin.NewCodec[untagged.TravisNotifications](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.TravisNotifications]{
 			Append: func(dst []byte, v *ds.TravisNotifications) ([]byte, error) {
@@ -892,6 +916,7 @@ func TSLintBasic() formats.Adapters[ds.TSLintBasic] {
 		Build: func(b *flatbuffers.Builder, v *ds.TSLintBasic) { b.Finish(buildFBTSLintBasic(b, v)) },
 		Read:  func(data []byte, v *ds.TSLintBasic) { readFBTSLintBasic(fb.GetRootAsTSLintBasic(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.TSLintBasic]{Build: capnpBuildTSLintBasic, Read: capnpReadTSLintBasic}
 	if codec, err := colbin.NewCodec[untagged.TSLintBasic](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.TSLintBasic]{
 			Append: func(dst []byte, v *ds.TSLintBasic) ([]byte, error) {
@@ -927,6 +952,7 @@ func TSLintExtend() formats.Adapters[ds.TSLintExtend] {
 		Build: func(b *flatbuffers.Builder, v *ds.TSLintExtend) { b.Finish(buildFBTSLintExtend(b, v)) },
 		Read:  func(data []byte, v *ds.TSLintExtend) { readFBTSLintExtend(fb.GetRootAsTSLintExtend(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.TSLintExtend]{Build: capnpBuildTSLintExtend, Read: capnpReadTSLintExtend}
 	if codec, err := colbin.NewCodec[untagged.TSLintExtend](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.TSLintExtend]{
 			Append: func(dst []byte, v *ds.TSLintExtend) ([]byte, error) {
@@ -962,6 +988,7 @@ func TSLintMulti() formats.Adapters[ds.TSLintMulti] {
 		Build: func(b *flatbuffers.Builder, v *ds.TSLintMulti) { b.Finish(buildFBTSLintMulti(b, v)) },
 		Read:  func(data []byte, v *ds.TSLintMulti) { readFBTSLintMulti(fb.GetRootAsTSLintMulti(data, 0), v) },
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.TSLintMulti]{Build: capnpBuildTSLintMulti, Read: capnpReadTSLintMulti}
 	if codec, err := colbin.NewCodec[untagged.TSLintMulti](); err == nil {
 		a.Untagged = &formats.UntaggedAdapter[ds.TSLintMulti]{
 			Append: func(dst []byte, v *ds.TSLintMulti) ([]byte, error) {

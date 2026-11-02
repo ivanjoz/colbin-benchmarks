@@ -1,6 +1,6 @@
 package formats
 
-// The formats that need nothing but the Go type: encoding/json, encoding/gob,
+// The formats that need nothing but the Go type: encoding/json/v2, encoding/gob,
 // CBOR and colbin. Each runs through the library's own entry point, configured
 // as the library documents for this use and no further: the comparison is with
 // the format a Go programmer gets, not with one tuned per dataset.
@@ -8,7 +8,7 @@ package formats
 import (
 	"bytes"
 	"encoding/gob"
-	"encoding/json"
+	"encoding/json/v2"
 	"reflect"
 
 	"github.com/fxamacker/cbor/v2"
@@ -17,12 +17,13 @@ import (
 	"github.com/ivanjoz/colbin"
 )
 
-// NewJSON is encoding/json: Marshal, and Unmarshal into the type.
-func NewJSON[T any](value *T) Instance {
+// NewJSONv2 is encoding/json/v2: Marshal, and Unmarshal into the type, with
+// the package's default options.
+func NewJSONv2[T any](value *T) Instance {
 	var last, held *T
 	held = new(T)
 	return Instance{
-		Format: JSON,
+		Format: JSONv2,
 		Encode: func(dst []byte) ([]byte, error) {
 			data, err := json.Marshal(value)
 			return appendOwned(dst, data), err

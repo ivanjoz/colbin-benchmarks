@@ -22,3 +22,8 @@ tools/bin/
 
 # Downloaded datasets: scripts and checksums are committed, the data is not.
 datasets/data/
+
+# lambda/deploy.py output.
+lambda/build/
+lambda/results/
+__pycache__/

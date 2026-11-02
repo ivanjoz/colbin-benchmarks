@@ -33,15 +33,15 @@ var lossy = map[string]string{
 }
 
 func TestSizes(t *testing.T) {
-	header := append([]string{"case", "dataset", "format", "bytes", "bytes_per_row"}, formats.Compressors...)
+	header := append([]string{"case", "dataset", "regime", "format", "bytes", "bytes_per_row"}, formats.Compressors...)
 	sizes := openTable(t, "sizes.csv", append(header, "status")...)
 	// empty pads the columns of a format that has no bytes to report.
 	empty := make([]string, 2+len(formats.Compressors))
-	shape := openTable(t, "cases.csv", "case", "dataset", "top_rows", "rows", "table_rows",
+	shape := openTable(t, "cases.csv", "case", "dataset", "regime", "top_rows", "rows", "table_rows",
 		"table_row_fraction", "values", "colbin_bytes", "table_bytes", "table_byte_fraction",
 		"schema_bytes", "gob_stream_bytes", "colbin_bytes_per_value")
 
-	for _, c := range Selected() {
+	for _, c := range Cases() {
 		t.Run(c.Name, func(t *testing.T) {
 			loaded, err := c.Load(DataDir())
 			if errors.Is(err, errNotFetched) {
@@ -106,7 +106,7 @@ func TestSizes(t *testing.T) {
 			for index, instance := range loaded.Instances {
 				encoded, status, compressed := results[index].encoded, results[index].status, results[index].compressed
 				if encoded == nil {
-					sizes.row(slices.Concat([]string{c.Name, c.Dataset, instance.Format}, empty, []string{status})...)
+					sizes.row(slices.Concat([]string{c.Name, c.Dataset, loaded.Regime(), instance.Format}, empty, []string{status})...)
 					t.Logf("%-16s %s", instance.Format, status)
 					continue
 				}
@@ -114,7 +114,7 @@ func TestSizes(t *testing.T) {
 					colbinBytes = len(encoded)
 				}
 				perRow := float64(len(encoded)) / float64(loaded.Rows)
-				fields := []string{c.Name, c.Dataset, instance.Format, strconv.Itoa(len(encoded)), fmt.Sprintf("%.2f", perRow)}
+				fields := []string{c.Name, c.Dataset, loaded.Regime(), instance.Format, strconv.Itoa(len(encoded)), fmt.Sprintf("%.2f", perRow)}
 				for _, size := range compressed {
 					fields = append(fields, strconv.Itoa(size))
 				}
@@ -122,7 +122,7 @@ func TestSizes(t *testing.T) {
 				t.Logf("%-16s %12d %9.2f %s  %s", instance.Format, len(encoded), perRow, columns(compressed), status)
 			}
 			for _, skip := range loaded.Skips {
-				sizes.row(slices.Concat([]string{c.Name, c.Dataset, skip.Format}, empty, []string{"n/a: " + skip.Reason})...)
+				sizes.row(slices.Concat([]string{c.Name, c.Dataset, loaded.Regime(), skip.Format}, empty, []string{"n/a: " + skip.Reason})...)
 				t.Logf("%-16s n/a: %s", skip.Format, skip.Reason)
 			}
 
@@ -143,7 +143,7 @@ func TestSizes(t *testing.T) {
 					gobStream = size
 				}
 			}
-			shape.row(c.Name, c.Dataset, strconv.Itoa(loaded.Rows), strconv.Itoa(composition.Rows),
+			shape.row(c.Name, c.Dataset, loaded.Regime(), strconv.Itoa(loaded.Rows), strconv.Itoa(composition.Rows),
 				strconv.Itoa(composition.TableRows), fraction(composition.TableRows, composition.Rows),
 				strconv.Itoa(composition.Values), strconv.Itoa(colbinBytes),
 				strconv.Itoa(composition.TableBytes), fraction(composition.TableBytes, colbinBytes),

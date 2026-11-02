@@ -6,11 +6,12 @@ package formats
 // what JSON's repeated keys cost and little of what a varint already saved.
 //
 // gzip runs at its default level (6), which is what an HTTP server applies.
-// zstd runs through libzstd itself (DataDog/zstd, cgo), not a reimplementation,
-// so that its level 6 is zstd's own level 6 — the same level gzip runs at. The
-// plan also asked for zstd 1, 3 and 19; 19 takes minutes per format on the
-// 100-200 MB encodings, so for now only 6 is measured. Adding a level is one
-// entry in Compressors and zstdLevels.
+// zstd runs through klauspost/compress, pure Go, so that nothing in the module
+// needs cgo. It has four encoder levels rather than libzstd's 22; zstd level 6
+// maps (EncoderLevelFromZstd) to SpeedBetterCompression, which is close to
+// libzstd's 6 but does not write the same bytes, so its sizes are not libzstd's.
+// The frame carries no checksum, as libzstd's default does not. Adding a level
+// is one entry in Compressors and zstdLevels.
 
 import (
 	"bytes"
@@ -18,13 +19,13 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/DataDog/zstd"
+	"github.com/klauspost/compress/zstd"
 )
 
 // Compressor names, in the order tables print them.
 var Compressors = []string{"gzip", "zstd6"}
 
-// zstdLevels maps each zstd entry of Compressors to its libzstd level.
+// zstdLevels maps each zstd entry of Compressors to its zstd level.
 var zstdLevels = map[string]int{"zstd6": 6}
 
 // Compressed returns the size of data under each of Compressors, in order.
@@ -41,29 +42,48 @@ func Compressed(data []byte) ([]int, error) {
 }
 
 // CompressedSize is the size of data under one of Compressors. Each call is
-// single-threaded — libzstd's multithreaded mode writes different bytes — so
-// a caller with many to do runs calls side by side instead.
+// single-threaded, so a caller with many to do runs calls side by side instead.
 func CompressedSize(data []byte, compressor string) (int, error) {
 	level := zstdLevels[compressor]
 	switch {
 	case compressor == "gzip":
 		return gzipSize(data)
 	case level > 0:
-		// CompressLevel writes into dst when it has the capacity, so reusing
-		// buffers keeps a dozen concurrent calls on 200 MB inputs from each
-		// allocating its own worst-case output.
+		encoder, err := zstdEncoder(level)
+		if err != nil {
+			return 0, err
+		}
+		// EncodeAll appends to dst, so reusing buffers keeps a dozen concurrent
+		// calls on 200 MB inputs from each allocating its own output.
 		buffer := outputs.Get().(*[]byte)
 		defer outputs.Put(buffer)
-		if bound := zstd.CompressBound(len(data)); cap(*buffer) < bound {
-			*buffer = make([]byte, bound)
-		}
-		out, err := zstd.CompressLevel(*buffer, data, level)
-		return len(out), err
+		*buffer = encoder.EncodeAll(data, (*buffer)[:0])
+		return len(*buffer), nil
 	}
 	return 0, fmt.Errorf("no compressor %q", compressor)
 }
 
 var outputs = sync.Pool{New: func() any { return new([]byte) }}
+
+// encoders holds one encoder per level. EncodeAll is safe for concurrent use;
+// WithEncoderConcurrency(1) keeps each call on one goroutine.
+var encoders sync.Map // int → *zstd.Encoder
+
+func zstdEncoder(level int) (*zstd.Encoder, error) {
+	if encoder, ok := encoders.Load(level); ok {
+		return encoder.(*zstd.Encoder), nil
+	}
+	encoder, err := zstd.NewWriter(nil,
+		zstd.WithEncoderLevel(zstd.EncoderLevelFromZstd(level)),
+		zstd.WithEncoderConcurrency(1),
+		zstd.WithEncoderCRC(false),
+	)
+	if err != nil {
+		return nil, err
+	}
+	actual, _ := encoders.LoadOrStore(level, encoder)
+	return actual.(*zstd.Encoder), nil
+}
 
 func gzipSize(data []byte) (int, error) {
 	var out bytes.Buffer
@@ -77,6 +97,6 @@ func gzipSize(data []byte) (int, error) {
 	return out.Len(), nil
 }
 
-// ZstdVersion is the libzstd the zstd sizes were produced with: the copy
-// DataDog/zstd v1.5.7 vendors (zstd.h, ZSTD_VERSION_*). Raise it with the module.
-const ZstdVersion = "libzstd 1.5.7"
+// ZstdVersion is the zstd implementation the zstd sizes were produced with:
+// the klauspost/compress version in go.mod. Raise it with the module.
+const ZstdVersion = "klauspost/compress v1.19.2"

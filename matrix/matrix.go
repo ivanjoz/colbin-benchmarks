@@ -5,8 +5,8 @@
 //	go test ./matrix -run '^$' -bench Matrix       the timings
 //
 // Datasets that need downloading are skipped, with the command that fetches
-// them, until they have been fetched; the synthetic corpus needs nothing. Data
-// is read from datasets/data, or from $COLBIN_DATA.
+// them, until they have been fetched. Data is read from datasets/data, or from
+// $COLBIN_DATA.
 //
 // Results go to $COLBIN_RESULTS (a directory) as CSV when it is set.
 package matrix
@@ -24,12 +24,8 @@ import (
 type Case struct {
 	Name    string // dataset/subset/shape, e.g. "tpch/sf0.1/nested"
 	Dataset string
-	// Timed cases are in the timing matrix; the others are sized only, because
-	// they are too large to time every format on (TPC-H SF 1) or because a
-	// smaller case of the same data already is.
+	// Timed cases are in the timing matrix; the others are sized only.
 	Timed bool
-	// Large cases need several gigabytes and run only with COLBIN_LARGE=1.
-	Large bool
 	// Fetch is the command that downloads the case's data, for the skip
 	// message; empty for a case that needs none.
 	Fetch string
@@ -47,6 +43,29 @@ type Loaded struct {
 	AccessGo func() float64
 	// GobStream is gob's size once a stream has sent the type.
 	GobStream func() (int, error)
+}
+
+// WebRows is the most rows a case may hold and still be in the web regime.
+//
+// colbin is evaluated as what a server sends a client instead of JSON, and a
+// response to a web client (a product list, a sales report) rarely holds more
+// than ten thousand rows. 16 384 = 2^14 is that bound, rounded up; it is also
+// the size of every Public BI sample. Cases above it form the bulk regime and
+// are reported apart, so that neither regime decides the other's summary.
+const WebRows = 16384
+
+// Regimes, as reported in the result tables.
+const (
+	RegimeWeb  = "web"
+	RegimeBulk = "bulk"
+)
+
+// Regime is the case's regime, by its row count alone.
+func (l *Loaded) Regime() string {
+	if l.Rows <= WebRows {
+		return RegimeWeb
+	}
+	return RegimeBulk
 }
 
 // bind is the Loaded for a typed root.
@@ -110,16 +129,3 @@ func missing(paths ...string) error {
 }
 
 var errNotFetched = fmt.Errorf("not fetched")
-
-// Selected is the cases this run should load, honouring COLBIN_LARGE.
-func Selected() []Case {
-	large := os.Getenv("COLBIN_LARGE") == "1"
-	var out []Case
-	for _, c := range Cases() {
-		if c.Large && !large {
-			continue
-		}
-		out = append(out, c)
-	}
-	return out
-}

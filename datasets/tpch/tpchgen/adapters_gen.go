@@ -74,6 +74,7 @@ func Nested() formats.Adapters[ds.Nested] {
 			return sum
 		},
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.Nested]{Build: capnpBuildNested, Read: capnpReadNested}
 	a.Arrow = &formats.ArrowAdapter[ds.Nested]{Write: arrowWriteNested, Read: arrowReadNested}
 	a.Arrow.Access = func(data []byte, allocator memory.Allocator) (sum float64, err error) {
 		err = formats.ArrowTable(data, 0, allocator, func(record arrow.RecordBatch) error {
@@ -148,6 +149,7 @@ func Normalized() formats.Adapters[ds.Normalized] {
 			return sum
 		},
 	}
+	a.Capnp = &formats.CapnpAdapter[ds.Normalized]{Build: capnpBuildNormalized, Read: capnpReadNormalized}
 	a.Arrow = &formats.ArrowAdapter[ds.Normalized]{Write: arrowWriteNormalized, Read: arrowReadNormalized}
 	a.Arrow.Access = func(data []byte, allocator memory.Allocator) (sum float64, err error) {
 		err = formats.ArrowTable(data, 1, allocator, func(record arrow.RecordBatch) error { sum = formats.ArrowSum(record.Column(5)); return nil })
@@ -178,3 +180,555 @@ func Normalized() formats.Adapters[ds.Normalized] {
 
 // The untagged twin has to share Normalized's layout for the pointer conversion above.
 var _ = [1]struct{}{}[unsafe.Sizeof(ds.Normalized{})-unsafe.Sizeof(untagged.Normalized{})]
+
+// OrdersTable is the generated code for ds.OrdersTable, as a formats.Adapters.
+func OrdersTable() formats.Adapters[ds.OrdersTable] {
+	a := formats.Adapters[ds.OrdersTable]{Skipped: map[string]string{}}
+	a.Proto = &formats.ProtoAdapter[ds.OrdersTable]{
+		New: func() proto.Message { return new(pb.OrdersTable) },
+		To:  func(v *ds.OrdersTable) proto.Message { return toPBOrdersTable(v) },
+		From: func(m proto.Message) *ds.OrdersTable {
+			v := new(ds.OrdersTable)
+			fromPBOrdersTable(m.(*pb.OrdersTable), v)
+			return v
+		},
+		Access: func(message proto.Message) float64 {
+			m := message.(*pb.OrdersTable)
+			var sum float64
+			for _, a0 := range m.Rows {
+				sum += float64(a0.OrderKey)
+			}
+			return sum
+		},
+	}
+	a.FlatBuffers = &formats.FlatBuffersAdapter[ds.OrdersTable]{
+		Build: func(b *flatbuffers.Builder, v *ds.OrdersTable) { b.Finish(buildFBOrdersTable(b, v)) },
+		Read:  func(data []byte, v *ds.OrdersTable) { readFBOrdersTable(fb.GetRootAsOrdersTable(data, 0), v) },
+		Access: func(data []byte) float64 {
+			t := fb.GetRootAsOrdersTable(data, 0)
+			var sum float64
+			{
+				var a0v fb.OrderRow
+				a0 := &a0v
+				for j, n := 0, t.RowsLength(); j < n; j++ {
+					t.Rows(a0, j)
+					sum += float64(a0.OrderKey())
+				}
+			}
+			return sum
+		},
+	}
+	a.Capnp = &formats.CapnpAdapter[ds.OrdersTable]{Build: capnpBuildOrdersTable, Read: capnpReadOrdersTable}
+	a.Arrow = &formats.ArrowAdapter[ds.OrdersTable]{Write: arrowWriteOrdersTable, Read: arrowReadOrdersTable}
+	a.Arrow.Access = func(data []byte, allocator memory.Allocator) (sum float64, err error) {
+		err = formats.ArrowTable(data, 0, allocator, func(record arrow.RecordBatch) error { sum = formats.ArrowSum(record.Column(0)); return nil })
+		return sum, err
+	}
+	if codec, err := colbin.NewCodec[untagged.OrdersTable](); err == nil {
+		a.Untagged = &formats.UntaggedAdapter[ds.OrdersTable]{
+			Append: func(dst []byte, v *ds.OrdersTable) ([]byte, error) {
+				return codec.Append(dst, (*untagged.OrdersTable)(unsafe.Pointer(v)))
+			},
+			Unmarshal: func(data []byte, v *ds.OrdersTable) error {
+				return codec.Unmarshal(data, (*untagged.OrdersTable)(unsafe.Pointer(v)))
+			},
+		}
+	} else {
+		a.Skipped[formats.ColbinK8] = err.Error()
+	}
+	a.AccessGo = func(v *ds.OrdersTable) float64 {
+		var sum float64
+		for j := range v.Rows {
+			a0 := &v.Rows[j]
+			sum += float64(a0.OrderKey)
+		}
+		return sum
+	}
+	return a
+}
+
+// The untagged twin has to share OrdersTable's layout for the pointer conversion above.
+var _ = [1]struct{}{}[unsafe.Sizeof(ds.OrdersTable{})-unsafe.Sizeof(untagged.OrdersTable{})]
+
+// LineItemTable is the generated code for ds.LineItemTable, as a formats.Adapters.
+func LineItemTable() formats.Adapters[ds.LineItemTable] {
+	a := formats.Adapters[ds.LineItemTable]{Skipped: map[string]string{}}
+	a.Proto = &formats.ProtoAdapter[ds.LineItemTable]{
+		New: func() proto.Message { return new(pb.LineItemTable) },
+		To:  func(v *ds.LineItemTable) proto.Message { return toPBLineItemTable(v) },
+		From: func(m proto.Message) *ds.LineItemTable {
+			v := new(ds.LineItemTable)
+			fromPBLineItemTable(m.(*pb.LineItemTable), v)
+			return v
+		},
+		Access: func(message proto.Message) float64 {
+			m := message.(*pb.LineItemTable)
+			var sum float64
+			for _, a0 := range m.Rows {
+				sum += float64(a0.ExtendedPrice)
+			}
+			return sum
+		},
+	}
+	a.FlatBuffers = &formats.FlatBuffersAdapter[ds.LineItemTable]{
+		Build: func(b *flatbuffers.Builder, v *ds.LineItemTable) { b.Finish(buildFBLineItemTable(b, v)) },
+		Read:  func(data []byte, v *ds.LineItemTable) { readFBLineItemTable(fb.GetRootAsLineItemTable(data, 0), v) },
+		Access: func(data []byte) float64 {
+			t := fb.GetRootAsLineItemTable(data, 0)
+			var sum float64
+			{
+				var a0v fb.LineItemRow
+				a0 := &a0v
+				for j, n := 0, t.RowsLength(); j < n; j++ {
+					t.Rows(a0, j)
+					sum += float64(a0.ExtendedPrice())
+				}
+			}
+			return sum
+		},
+	}
+	a.Capnp = &formats.CapnpAdapter[ds.LineItemTable]{Build: capnpBuildLineItemTable, Read: capnpReadLineItemTable}
+	a.Arrow = &formats.ArrowAdapter[ds.LineItemTable]{Write: arrowWriteLineItemTable, Read: arrowReadLineItemTable}
+	a.Arrow.Access = func(data []byte, allocator memory.Allocator) (sum float64, err error) {
+		err = formats.ArrowTable(data, 0, allocator, func(record arrow.RecordBatch) error { sum = formats.ArrowSum(record.Column(5)); return nil })
+		return sum, err
+	}
+	if codec, err := colbin.NewCodec[untagged.LineItemTable](); err == nil {
+		a.Untagged = &formats.UntaggedAdapter[ds.LineItemTable]{
+			Append: func(dst []byte, v *ds.LineItemTable) ([]byte, error) {
+				return codec.Append(dst, (*untagged.LineItemTable)(unsafe.Pointer(v)))
+			},
+			Unmarshal: func(data []byte, v *ds.LineItemTable) error {
+				return codec.Unmarshal(data, (*untagged.LineItemTable)(unsafe.Pointer(v)))
+			},
+		}
+	} else {
+		a.Skipped[formats.ColbinK8] = err.Error()
+	}
+	a.AccessGo = func(v *ds.LineItemTable) float64 {
+		var sum float64
+		for j := range v.Rows {
+			a0 := &v.Rows[j]
+			sum += float64(a0.ExtendedPrice)
+		}
+		return sum
+	}
+	return a
+}
+
+// The untagged twin has to share LineItemTable's layout for the pointer conversion above.
+var _ = [1]struct{}{}[unsafe.Sizeof(ds.LineItemTable{})-unsafe.Sizeof(untagged.LineItemTable{})]
+
+// CustomerTable is the generated code for ds.CustomerTable, as a formats.Adapters.
+func CustomerTable() formats.Adapters[ds.CustomerTable] {
+	a := formats.Adapters[ds.CustomerTable]{Skipped: map[string]string{}}
+	a.Proto = &formats.ProtoAdapter[ds.CustomerTable]{
+		New: func() proto.Message { return new(pb.CustomerTable) },
+		To:  func(v *ds.CustomerTable) proto.Message { return toPBCustomerTable(v) },
+		From: func(m proto.Message) *ds.CustomerTable {
+			v := new(ds.CustomerTable)
+			fromPBCustomerTable(m.(*pb.CustomerTable), v)
+			return v
+		},
+		Access: func(message proto.Message) float64 {
+			m := message.(*pb.CustomerTable)
+			var sum float64
+			for _, a0 := range m.Rows {
+				sum += float64(a0.CustKey)
+			}
+			return sum
+		},
+	}
+	a.FlatBuffers = &formats.FlatBuffersAdapter[ds.CustomerTable]{
+		Build: func(b *flatbuffers.Builder, v *ds.CustomerTable) { b.Finish(buildFBCustomerTable(b, v)) },
+		Read:  func(data []byte, v *ds.CustomerTable) { readFBCustomerTable(fb.GetRootAsCustomerTable(data, 0), v) },
+		Access: func(data []byte) float64 {
+			t := fb.GetRootAsCustomerTable(data, 0)
+			var sum float64
+			{
+				var a0v fb.Customer
+				a0 := &a0v
+				for j, n := 0, t.RowsLength(); j < n; j++ {
+					t.Rows(a0, j)
+					sum += float64(a0.CustKey())
+				}
+			}
+			return sum
+		},
+	}
+	a.Capnp = &formats.CapnpAdapter[ds.CustomerTable]{Build: capnpBuildCustomerTable, Read: capnpReadCustomerTable}
+	a.Arrow = &formats.ArrowAdapter[ds.CustomerTable]{Write: arrowWriteCustomerTable, Read: arrowReadCustomerTable}
+	a.Arrow.Access = func(data []byte, allocator memory.Allocator) (sum float64, err error) {
+		err = formats.ArrowTable(data, 0, allocator, func(record arrow.RecordBatch) error { sum = formats.ArrowSum(record.Column(0)); return nil })
+		return sum, err
+	}
+	if codec, err := colbin.NewCodec[untagged.CustomerTable](); err == nil {
+		a.Untagged = &formats.UntaggedAdapter[ds.CustomerTable]{
+			Append: func(dst []byte, v *ds.CustomerTable) ([]byte, error) {
+				return codec.Append(dst, (*untagged.CustomerTable)(unsafe.Pointer(v)))
+			},
+			Unmarshal: func(data []byte, v *ds.CustomerTable) error {
+				return codec.Unmarshal(data, (*untagged.CustomerTable)(unsafe.Pointer(v)))
+			},
+		}
+	} else {
+		a.Skipped[formats.ColbinK8] = err.Error()
+	}
+	a.AccessGo = func(v *ds.CustomerTable) float64 {
+		var sum float64
+		for j := range v.Rows {
+			a0 := &v.Rows[j]
+			sum += float64(a0.CustKey)
+		}
+		return sum
+	}
+	return a
+}
+
+// The untagged twin has to share CustomerTable's layout for the pointer conversion above.
+var _ = [1]struct{}{}[unsafe.Sizeof(ds.CustomerTable{})-unsafe.Sizeof(untagged.CustomerTable{})]
+
+// PartTable is the generated code for ds.PartTable, as a formats.Adapters.
+func PartTable() formats.Adapters[ds.PartTable] {
+	a := formats.Adapters[ds.PartTable]{Skipped: map[string]string{}}
+	a.Proto = &formats.ProtoAdapter[ds.PartTable]{
+		New: func() proto.Message { return new(pb.PartTable) },
+		To:  func(v *ds.PartTable) proto.Message { return toPBPartTable(v) },
+		From: func(m proto.Message) *ds.PartTable {
+			v := new(ds.PartTable)
+			fromPBPartTable(m.(*pb.PartTable), v)
+			return v
+		},
+		Access: func(message proto.Message) float64 {
+			m := message.(*pb.PartTable)
+			var sum float64
+			for _, a0 := range m.Rows {
+				sum += float64(a0.PartKey)
+			}
+			return sum
+		},
+	}
+	a.FlatBuffers = &formats.FlatBuffersAdapter[ds.PartTable]{
+		Build: func(b *flatbuffers.Builder, v *ds.PartTable) { b.Finish(buildFBPartTable(b, v)) },
+		Read:  func(data []byte, v *ds.PartTable) { readFBPartTable(fb.GetRootAsPartTable(data, 0), v) },
+		Access: func(data []byte) float64 {
+			t := fb.GetRootAsPartTable(data, 0)
+			var sum float64
+			{
+				var a0v fb.Part
+				a0 := &a0v
+				for j, n := 0, t.RowsLength(); j < n; j++ {
+					t.Rows(a0, j)
+					sum += float64(a0.PartKey())
+				}
+			}
+			return sum
+		},
+	}
+	a.Capnp = &formats.CapnpAdapter[ds.PartTable]{Build: capnpBuildPartTable, Read: capnpReadPartTable}
+	a.Arrow = &formats.ArrowAdapter[ds.PartTable]{Write: arrowWritePartTable, Read: arrowReadPartTable}
+	a.Arrow.Access = func(data []byte, allocator memory.Allocator) (sum float64, err error) {
+		err = formats.ArrowTable(data, 0, allocator, func(record arrow.RecordBatch) error { sum = formats.ArrowSum(record.Column(0)); return nil })
+		return sum, err
+	}
+	if codec, err := colbin.NewCodec[untagged.PartTable](); err == nil {
+		a.Untagged = &formats.UntaggedAdapter[ds.PartTable]{
+			Append: func(dst []byte, v *ds.PartTable) ([]byte, error) {
+				return codec.Append(dst, (*untagged.PartTable)(unsafe.Pointer(v)))
+			},
+			Unmarshal: func(data []byte, v *ds.PartTable) error {
+				return codec.Unmarshal(data, (*untagged.PartTable)(unsafe.Pointer(v)))
+			},
+		}
+	} else {
+		a.Skipped[formats.ColbinK8] = err.Error()
+	}
+	a.AccessGo = func(v *ds.PartTable) float64 {
+		var sum float64
+		for j := range v.Rows {
+			a0 := &v.Rows[j]
+			sum += float64(a0.PartKey)
+		}
+		return sum
+	}
+	return a
+}
+
+// The untagged twin has to share PartTable's layout for the pointer conversion above.
+var _ = [1]struct{}{}[unsafe.Sizeof(ds.PartTable{})-unsafe.Sizeof(untagged.PartTable{})]
+
+// PartSuppTable is the generated code for ds.PartSuppTable, as a formats.Adapters.
+func PartSuppTable() formats.Adapters[ds.PartSuppTable] {
+	a := formats.Adapters[ds.PartSuppTable]{Skipped: map[string]string{}}
+	a.Proto = &formats.ProtoAdapter[ds.PartSuppTable]{
+		New: func() proto.Message { return new(pb.PartSuppTable) },
+		To:  func(v *ds.PartSuppTable) proto.Message { return toPBPartSuppTable(v) },
+		From: func(m proto.Message) *ds.PartSuppTable {
+			v := new(ds.PartSuppTable)
+			fromPBPartSuppTable(m.(*pb.PartSuppTable), v)
+			return v
+		},
+		Access: func(message proto.Message) float64 {
+			m := message.(*pb.PartSuppTable)
+			var sum float64
+			for _, a0 := range m.Rows {
+				sum += float64(a0.PartKey)
+			}
+			return sum
+		},
+	}
+	a.FlatBuffers = &formats.FlatBuffersAdapter[ds.PartSuppTable]{
+		Build: func(b *flatbuffers.Builder, v *ds.PartSuppTable) { b.Finish(buildFBPartSuppTable(b, v)) },
+		Read:  func(data []byte, v *ds.PartSuppTable) { readFBPartSuppTable(fb.GetRootAsPartSuppTable(data, 0), v) },
+		Access: func(data []byte) float64 {
+			t := fb.GetRootAsPartSuppTable(data, 0)
+			var sum float64
+			{
+				var a0v fb.PartSupp
+				a0 := &a0v
+				for j, n := 0, t.RowsLength(); j < n; j++ {
+					t.Rows(a0, j)
+					sum += float64(a0.PartKey())
+				}
+			}
+			return sum
+		},
+	}
+	a.Capnp = &formats.CapnpAdapter[ds.PartSuppTable]{Build: capnpBuildPartSuppTable, Read: capnpReadPartSuppTable}
+	a.Arrow = &formats.ArrowAdapter[ds.PartSuppTable]{Write: arrowWritePartSuppTable, Read: arrowReadPartSuppTable}
+	a.Arrow.Access = func(data []byte, allocator memory.Allocator) (sum float64, err error) {
+		err = formats.ArrowTable(data, 0, allocator, func(record arrow.RecordBatch) error { sum = formats.ArrowSum(record.Column(0)); return nil })
+		return sum, err
+	}
+	if codec, err := colbin.NewCodec[untagged.PartSuppTable](); err == nil {
+		a.Untagged = &formats.UntaggedAdapter[ds.PartSuppTable]{
+			Append: func(dst []byte, v *ds.PartSuppTable) ([]byte, error) {
+				return codec.Append(dst, (*untagged.PartSuppTable)(unsafe.Pointer(v)))
+			},
+			Unmarshal: func(data []byte, v *ds.PartSuppTable) error {
+				return codec.Unmarshal(data, (*untagged.PartSuppTable)(unsafe.Pointer(v)))
+			},
+		}
+	} else {
+		a.Skipped[formats.ColbinK8] = err.Error()
+	}
+	a.AccessGo = func(v *ds.PartSuppTable) float64 {
+		var sum float64
+		for j := range v.Rows {
+			a0 := &v.Rows[j]
+			sum += float64(a0.PartKey)
+		}
+		return sum
+	}
+	return a
+}
+
+// The untagged twin has to share PartSuppTable's layout for the pointer conversion above.
+var _ = [1]struct{}{}[unsafe.Sizeof(ds.PartSuppTable{})-unsafe.Sizeof(untagged.PartSuppTable{})]
+
+// SupplierTable is the generated code for ds.SupplierTable, as a formats.Adapters.
+func SupplierTable() formats.Adapters[ds.SupplierTable] {
+	a := formats.Adapters[ds.SupplierTable]{Skipped: map[string]string{}}
+	a.Proto = &formats.ProtoAdapter[ds.SupplierTable]{
+		New: func() proto.Message { return new(pb.SupplierTable) },
+		To:  func(v *ds.SupplierTable) proto.Message { return toPBSupplierTable(v) },
+		From: func(m proto.Message) *ds.SupplierTable {
+			v := new(ds.SupplierTable)
+			fromPBSupplierTable(m.(*pb.SupplierTable), v)
+			return v
+		},
+		Access: func(message proto.Message) float64 {
+			m := message.(*pb.SupplierTable)
+			var sum float64
+			for _, a0 := range m.Rows {
+				sum += float64(a0.SuppKey)
+			}
+			return sum
+		},
+	}
+	a.FlatBuffers = &formats.FlatBuffersAdapter[ds.SupplierTable]{
+		Build: func(b *flatbuffers.Builder, v *ds.SupplierTable) { b.Finish(buildFBSupplierTable(b, v)) },
+		Read:  func(data []byte, v *ds.SupplierTable) { readFBSupplierTable(fb.GetRootAsSupplierTable(data, 0), v) },
+		Access: func(data []byte) float64 {
+			t := fb.GetRootAsSupplierTable(data, 0)
+			var sum float64
+			{
+				var a0v fb.Supplier
+				a0 := &a0v
+				for j, n := 0, t.RowsLength(); j < n; j++ {
+					t.Rows(a0, j)
+					sum += float64(a0.SuppKey())
+				}
+			}
+			return sum
+		},
+	}
+	a.Capnp = &formats.CapnpAdapter[ds.SupplierTable]{Build: capnpBuildSupplierTable, Read: capnpReadSupplierTable}
+	a.Arrow = &formats.ArrowAdapter[ds.SupplierTable]{Write: arrowWriteSupplierTable, Read: arrowReadSupplierTable}
+	a.Arrow.Access = func(data []byte, allocator memory.Allocator) (sum float64, err error) {
+		err = formats.ArrowTable(data, 0, allocator, func(record arrow.RecordBatch) error { sum = formats.ArrowSum(record.Column(0)); return nil })
+		return sum, err
+	}
+	if codec, err := colbin.NewCodec[untagged.SupplierTable](); err == nil {
+		a.Untagged = &formats.UntaggedAdapter[ds.SupplierTable]{
+			Append: func(dst []byte, v *ds.SupplierTable) ([]byte, error) {
+				return codec.Append(dst, (*untagged.SupplierTable)(unsafe.Pointer(v)))
+			},
+			Unmarshal: func(data []byte, v *ds.SupplierTable) error {
+				return codec.Unmarshal(data, (*untagged.SupplierTable)(unsafe.Pointer(v)))
+			},
+		}
+	} else {
+		a.Skipped[formats.ColbinK8] = err.Error()
+	}
+	a.AccessGo = func(v *ds.SupplierTable) float64 {
+		var sum float64
+		for j := range v.Rows {
+			a0 := &v.Rows[j]
+			sum += float64(a0.SuppKey)
+		}
+		return sum
+	}
+	return a
+}
+
+// The untagged twin has to share SupplierTable's layout for the pointer conversion above.
+var _ = [1]struct{}{}[unsafe.Sizeof(ds.SupplierTable{})-unsafe.Sizeof(untagged.SupplierTable{})]
+
+// NationTable is the generated code for ds.NationTable, as a formats.Adapters.
+func NationTable() formats.Adapters[ds.NationTable] {
+	a := formats.Adapters[ds.NationTable]{Skipped: map[string]string{}}
+	a.Proto = &formats.ProtoAdapter[ds.NationTable]{
+		New: func() proto.Message { return new(pb.NationTable) },
+		To:  func(v *ds.NationTable) proto.Message { return toPBNationTable(v) },
+		From: func(m proto.Message) *ds.NationTable {
+			v := new(ds.NationTable)
+			fromPBNationTable(m.(*pb.NationTable), v)
+			return v
+		},
+		Access: func(message proto.Message) float64 {
+			m := message.(*pb.NationTable)
+			var sum float64
+			for _, a0 := range m.Rows {
+				sum += float64(a0.NationKey)
+			}
+			return sum
+		},
+	}
+	a.FlatBuffers = &formats.FlatBuffersAdapter[ds.NationTable]{
+		Build: func(b *flatbuffers.Builder, v *ds.NationTable) { b.Finish(buildFBNationTable(b, v)) },
+		Read:  func(data []byte, v *ds.NationTable) { readFBNationTable(fb.GetRootAsNationTable(data, 0), v) },
+		Access: func(data []byte) float64 {
+			t := fb.GetRootAsNationTable(data, 0)
+			var sum float64
+			{
+				var a0v fb.Nation
+				a0 := &a0v
+				for j, n := 0, t.RowsLength(); j < n; j++ {
+					t.Rows(a0, j)
+					sum += float64(a0.NationKey())
+				}
+			}
+			return sum
+		},
+	}
+	a.Capnp = &formats.CapnpAdapter[ds.NationTable]{Build: capnpBuildNationTable, Read: capnpReadNationTable}
+	a.Arrow = &formats.ArrowAdapter[ds.NationTable]{Write: arrowWriteNationTable, Read: arrowReadNationTable}
+	a.Arrow.Access = func(data []byte, allocator memory.Allocator) (sum float64, err error) {
+		err = formats.ArrowTable(data, 0, allocator, func(record arrow.RecordBatch) error { sum = formats.ArrowSum(record.Column(0)); return nil })
+		return sum, err
+	}
+	if codec, err := colbin.NewCodec[untagged.NationTable](); err == nil {
+		a.Untagged = &formats.UntaggedAdapter[ds.NationTable]{
+			Append: func(dst []byte, v *ds.NationTable) ([]byte, error) {
+				return codec.Append(dst, (*untagged.NationTable)(unsafe.Pointer(v)))
+			},
+			Unmarshal: func(data []byte, v *ds.NationTable) error {
+				return codec.Unmarshal(data, (*untagged.NationTable)(unsafe.Pointer(v)))
+			},
+		}
+	} else {
+		a.Skipped[formats.ColbinK8] = err.Error()
+	}
+	a.AccessGo = func(v *ds.NationTable) float64 {
+		var sum float64
+		for j := range v.Rows {
+			a0 := &v.Rows[j]
+			sum += float64(a0.NationKey)
+		}
+		return sum
+	}
+	return a
+}
+
+// The untagged twin has to share NationTable's layout for the pointer conversion above.
+var _ = [1]struct{}{}[unsafe.Sizeof(ds.NationTable{})-unsafe.Sizeof(untagged.NationTable{})]
+
+// RegionTable is the generated code for ds.RegionTable, as a formats.Adapters.
+func RegionTable() formats.Adapters[ds.RegionTable] {
+	a := formats.Adapters[ds.RegionTable]{Skipped: map[string]string{}}
+	a.Proto = &formats.ProtoAdapter[ds.RegionTable]{
+		New: func() proto.Message { return new(pb.RegionTable) },
+		To:  func(v *ds.RegionTable) proto.Message { return toPBRegionTable(v) },
+		From: func(m proto.Message) *ds.RegionTable {
+			v := new(ds.RegionTable)
+			fromPBRegionTable(m.(*pb.RegionTable), v)
+			return v
+		},
+		Access: func(message proto.Message) float64 {
+			m := message.(*pb.RegionTable)
+			var sum float64
+			for _, a0 := range m.Rows {
+				sum += float64(a0.RegionKey)
+			}
+			return sum
+		},
+	}
+	a.FlatBuffers = &formats.FlatBuffersAdapter[ds.RegionTable]{
+		Build: func(b *flatbuffers.Builder, v *ds.RegionTable) { b.Finish(buildFBRegionTable(b, v)) },
+		Read:  func(data []byte, v *ds.RegionTable) { readFBRegionTable(fb.GetRootAsRegionTable(data, 0), v) },
+		Access: func(data []byte) float64 {
+			t := fb.GetRootAsRegionTable(data, 0)
+			var sum float64
+			{
+				var a0v fb.Region
+				a0 := &a0v
+				for j, n := 0, t.RowsLength(); j < n; j++ {
+					t.Rows(a0, j)
+					sum += float64(a0.RegionKey())
+				}
+			}
+			return sum
+		},
+	}
+	a.Capnp = &formats.CapnpAdapter[ds.RegionTable]{Build: capnpBuildRegionTable, Read: capnpReadRegionTable}
+	a.Arrow = &formats.ArrowAdapter[ds.RegionTable]{Write: arrowWriteRegionTable, Read: arrowReadRegionTable}
+	a.Arrow.Access = func(data []byte, allocator memory.Allocator) (sum float64, err error) {
+		err = formats.ArrowTable(data, 0, allocator, func(record arrow.RecordBatch) error { sum = formats.ArrowSum(record.Column(0)); return nil })
+		return sum, err
+	}
+	if codec, err := colbin.NewCodec[untagged.RegionTable](); err == nil {
+		a.Untagged = &formats.UntaggedAdapter[ds.RegionTable]{
+			Append: func(dst []byte, v *ds.RegionTable) ([]byte, error) {
+				return codec.Append(dst, (*untagged.RegionTable)(unsafe.Pointer(v)))
+			},
+			Unmarshal: func(data []byte, v *ds.RegionTable) error {
+				return codec.Unmarshal(data, (*untagged.RegionTable)(unsafe.Pointer(v)))
+			},
+		}
+	} else {
+		a.Skipped[formats.ColbinK8] = err.Error()
+	}
+	a.AccessGo = func(v *ds.RegionTable) float64 {
+		var sum float64
+		for j := range v.Rows {
+			a0 := &v.Rows[j]
+			sum += float64(a0.RegionKey)
+		}
+		return sum
+	}
+	return a
+}
+
+// The untagged twin has to share RegionTable's layout for the pointer conversion above.
+var _ = [1]struct{}{}[unsafe.Sizeof(ds.RegionTable{})-unsafe.Sizeof(untagged.RegionTable{})]

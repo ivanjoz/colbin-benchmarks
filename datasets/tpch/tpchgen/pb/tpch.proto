@@ -45,6 +45,12 @@ message LineItem {
 message Normalized {
   repeated OrderRow orders = 1;
   repeated LineItemRow lines = 2;
+  repeated Customer customers = 3;
+  repeated Part parts = 4;
+  repeated PartSupp part_supps = 5;
+  repeated Supplier suppliers = 6;
+  repeated Nation nations = 7;
+  repeated Region regions = 8;
 }
 
 message OrderRow {
@@ -76,4 +82,90 @@ message LineItemRow {
   string ship_instruct = 14;
   string ship_mode = 15;
   string comment = 16;
+}
+
+message Customer {
+  int32 cust_key = 1;
+  string name = 2;
+  string address = 3;
+  int32 nation_key = 4;
+  string phone = 5;
+  sint64 acct_bal = 6;
+  string mkt_segment = 7;
+  string comment = 8;
+}
+
+message Part {
+  int32 part_key = 1;
+  string name = 2;
+  string mfgr = 3;
+  string brand = 4;
+  string type = 5;
+  int32 size = 6;
+  string container = 7;
+  int64 retail_price = 8;
+  string comment = 9;
+}
+
+message PartSupp {
+  int32 part_key = 1;
+  int32 supp_key = 2;
+  int32 avail_qty = 3;
+  int64 supply_cost = 4;
+  string comment = 5;
+}
+
+message Supplier {
+  int32 supp_key = 1;
+  string name = 2;
+  string address = 3;
+  int32 nation_key = 4;
+  string phone = 5;
+  sint64 acct_bal = 6;
+  string comment = 7;
+}
+
+message Nation {
+  int32 nation_key = 1;
+  string name = 2;
+  int32 region_key = 3;
+  string comment = 4;
+}
+
+message Region {
+  int32 region_key = 1;
+  string name = 2;
+  string comment = 3;
+}
+
+message OrdersTable {
+  repeated OrderRow rows = 1;
+}
+
+message LineItemTable {
+  repeated LineItemRow rows = 1;
+}
+
+message CustomerTable {
+  repeated Customer rows = 1;
+}
+
+message PartTable {
+  repeated Part rows = 1;
+}
+
+message PartSuppTable {
+  repeated PartSupp rows = 1;
+}
+
+message SupplierTable {
+  repeated Supplier rows = 1;
+}
+
+message NationTable {
+  repeated Nation rows = 1;
+}
+
+message RegionTable {
+  repeated Region rows = 1;
 }

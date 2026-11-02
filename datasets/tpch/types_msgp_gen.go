@@ -7,6 +7,121 @@ import (
 )
 
 // MarshalMsg implements msgp.Marshaler
+func (z *Customer) MarshalMsg(b []byte) (o []byte, err error) {
+	o = msgp.Require(b, z.Msgsize())
+	// map header, size 8
+	// string "CustKey"
+	o = append(o, 0x88, 0xa7, 0x43, 0x75, 0x73, 0x74, 0x4b, 0x65, 0x79)
+	o = msgp.AppendInt32(o, z.CustKey)
+	// string "Name"
+	o = append(o, 0xa4, 0x4e, 0x61, 0x6d, 0x65)
+	o = msgp.AppendString(o, z.Name)
+	// string "Address"
+	o = append(o, 0xa7, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73)
+	o = msgp.AppendString(o, z.Address)
+	// string "NationKey"
+	o = append(o, 0xa9, 0x4e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x4b, 0x65, 0x79)
+	o = msgp.AppendInt32(o, z.NationKey)
+	// string "Phone"
+	o = append(o, 0xa5, 0x50, 0x68, 0x6f, 0x6e, 0x65)
+	o = msgp.AppendString(o, z.Phone)
+	// string "AcctBal"
+	o = append(o, 0xa7, 0x41, 0x63, 0x63, 0x74, 0x42, 0x61, 0x6c)
+	o = msgp.AppendInt64(o, z.AcctBal)
+	// string "MktSegment"
+	o = append(o, 0xaa, 0x4d, 0x6b, 0x74, 0x53, 0x65, 0x67, 0x6d, 0x65, 0x6e, 0x74)
+	o = msgp.AppendString(o, z.MktSegment)
+	// string "Comment"
+	o = append(o, 0xa7, 0x43, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74)
+	o = msgp.AppendString(o, z.Comment)
+	return
+}
+
+// UnmarshalMsg implements msgp.Unmarshaler
+func (z *Customer) UnmarshalMsg(bts []byte) (o []byte, err error) {
+	var field []byte
+	_ = field
+	var zb0001 uint32
+	zb0001, bts, err = msgp.ReadMapHeaderBytes(bts)
+	if err != nil {
+		err = msgp.WrapError(err)
+		return
+	}
+	for zb0001 > 0 {
+		zb0001--
+		field, bts, err = msgp.ReadMapKeyZC(bts)
+		if err != nil {
+			err = msgp.WrapError(err)
+			return
+		}
+		switch msgp.UnsafeString(field) {
+		case "CustKey":
+			z.CustKey, bts, err = msgp.ReadInt32Bytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "CustKey")
+				return
+			}
+		case "Name":
+			z.Name, bts, err = msgp.ReadStringBytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "Name")
+				return
+			}
+		case "Address":
+			z.Address, bts, err = msgp.ReadStringBytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "Address")
+				return
+			}
+		case "NationKey":
+			z.NationKey, bts, err = msgp.ReadInt32Bytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "NationKey")
+				return
+			}
+		case "Phone":
+			z.Phone, bts, err = msgp.ReadStringBytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "Phone")
+				return
+			}
+		case "AcctBal":
+			z.AcctBal, bts, err = msgp.ReadInt64Bytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "AcctBal")
+				return
+			}
+		case "MktSegment":
+			z.MktSegment, bts, err = msgp.ReadStringBytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "MktSegment")
+				return
+			}
+		case "Comment":
+			z.Comment, bts, err = msgp.ReadStringBytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "Comment")
+				return
+			}
+		default:
+			bts, err = msgp.Skip(bts)
+			if err != nil {
+				err = msgp.WrapError(err)
+				return
+			}
+		}
+	}
+	o = bts
+	return
+}
+
+// Msgsize returns an upper bound estimate of the number of bytes occupied by the serialized message
+func (z *Customer) Msgsize() (s int) {
+	s = 1 + 8 + msgp.Int32Size + 5 + msgp.StringPrefixSize + len(z.Name) + 8 + msgp.StringPrefixSize + len(z.Address) + 10 + msgp.Int32Size + 6 + msgp.StringPrefixSize + len(z.Phone) + 8 + msgp.Int64Size + 11 + msgp.StringPrefixSize + len(z.MktSegment) + 8 + msgp.StringPrefixSize + len(z.Comment)
+	return
+}
+
+// MarshalMsg implements msgp.Marshaler
 func (z *LineItem) MarshalMsg(b []byte) (o []byte, err error) {
 	o = msgp.Require(b, z.Msgsize())
 	// map header, size 15
@@ -372,6 +487,85 @@ func (z *LineItemRow) Msgsize() (s int) {
 }
 
 // MarshalMsg implements msgp.Marshaler
+func (z *Nation) MarshalMsg(b []byte) (o []byte, err error) {
+	o = msgp.Require(b, z.Msgsize())
+	// map header, size 4
+	// string "NationKey"
+	o = append(o, 0x84, 0xa9, 0x4e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x4b, 0x65, 0x79)
+	o = msgp.AppendInt32(o, z.NationKey)
+	// string "Name"
+	o = append(o, 0xa4, 0x4e, 0x61, 0x6d, 0x65)
+	o = msgp.AppendString(o, z.Name)
+	// string "RegionKey"
+	o = append(o, 0xa9, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x4b, 0x65, 0x79)
+	o = msgp.AppendInt32(o, z.RegionKey)
+	// string "Comment"
+	o = append(o, 0xa7, 0x43, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74)
+	o = msgp.AppendString(o, z.Comment)
+	return
+}
+
+// UnmarshalMsg implements msgp.Unmarshaler
+func (z *Nation) UnmarshalMsg(bts []byte) (o []byte, err error) {
+	var field []byte
+	_ = field
+	var zb0001 uint32
+	zb0001, bts, err = msgp.ReadMapHeaderBytes(bts)
+	if err != nil {
+		err = msgp.WrapError(err)
+		return
+	}
+	for zb0001 > 0 {
+		zb0001--
+		field, bts, err = msgp.ReadMapKeyZC(bts)
+		if err != nil {
+			err = msgp.WrapError(err)
+			return
+		}
+		switch msgp.UnsafeString(field) {
+		case "NationKey":
+			z.NationKey, bts, err = msgp.ReadInt32Bytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "NationKey")
+				return
+			}
+		case "Name":
+			z.Name, bts, err = msgp.ReadStringBytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "Name")
+				return
+			}
+		case "RegionKey":
+			z.RegionKey, bts, err = msgp.ReadInt32Bytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "RegionKey")
+				return
+			}
+		case "Comment":
+			z.Comment, bts, err = msgp.ReadStringBytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "Comment")
+				return
+			}
+		default:
+			bts, err = msgp.Skip(bts)
+			if err != nil {
+				err = msgp.WrapError(err)
+				return
+			}
+		}
+	}
+	o = bts
+	return
+}
+
+// Msgsize returns an upper bound estimate of the number of bytes occupied by the serialized message
+func (z *Nation) Msgsize() (s int) {
+	s = 1 + 10 + msgp.Int32Size + 5 + msgp.StringPrefixSize + len(z.Name) + 10 + msgp.Int32Size + 8 + msgp.StringPrefixSize + len(z.Comment)
+	return
+}
+
+// MarshalMsg implements msgp.Marshaler
 func (z *Nested) MarshalMsg(b []byte) (o []byte, err error) {
 	o = msgp.Require(b, z.Msgsize())
 	// map header, size 1
@@ -449,9 +643,9 @@ func (z *Nested) Msgsize() (s int) {
 // MarshalMsg implements msgp.Marshaler
 func (z *Normalized) MarshalMsg(b []byte) (o []byte, err error) {
 	o = msgp.Require(b, z.Msgsize())
-	// map header, size 2
+	// map header, size 8
 	// string "Orders"
-	o = append(o, 0x82, 0xa6, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x73)
+	o = append(o, 0x88, 0xa6, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x73)
 	o = msgp.AppendArrayHeader(o, uint32(len(z.Orders)))
 	for za0001 := range z.Orders {
 		o, err = z.Orders[za0001].MarshalMsg(o)
@@ -469,6 +663,71 @@ func (z *Normalized) MarshalMsg(b []byte) (o []byte, err error) {
 			err = msgp.WrapError(err, "Lines", za0002)
 			return
 		}
+	}
+	// string "Customers"
+	o = append(o, 0xa9, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x65, 0x72, 0x73)
+	o = msgp.AppendArrayHeader(o, uint32(len(z.Customers)))
+	for za0003 := range z.Customers {
+		o, err = z.Customers[za0003].MarshalMsg(o)
+		if err != nil {
+			err = msgp.WrapError(err, "Customers", za0003)
+			return
+		}
+	}
+	// string "Parts"
+	o = append(o, 0xa5, 0x50, 0x61, 0x72, 0x74, 0x73)
+	o = msgp.AppendArrayHeader(o, uint32(len(z.Parts)))
+	for za0004 := range z.Parts {
+		o, err = z.Parts[za0004].MarshalMsg(o)
+		if err != nil {
+			err = msgp.WrapError(err, "Parts", za0004)
+			return
+		}
+	}
+	// string "PartSupps"
+	o = append(o, 0xa9, 0x50, 0x61, 0x72, 0x74, 0x53, 0x75, 0x70, 0x70, 0x73)
+	o = msgp.AppendArrayHeader(o, uint32(len(z.PartSupps)))
+	for za0005 := range z.PartSupps {
+		o, err = z.PartSupps[za0005].MarshalMsg(o)
+		if err != nil {
+			err = msgp.WrapError(err, "PartSupps", za0005)
+			return
+		}
+	}
+	// string "Suppliers"
+	o = append(o, 0xa9, 0x53, 0x75, 0x70, 0x70, 0x6c, 0x69, 0x65, 0x72, 0x73)
+	o = msgp.AppendArrayHeader(o, uint32(len(z.Suppliers)))
+	for za0006 := range z.Suppliers {
+		o, err = z.Suppliers[za0006].MarshalMsg(o)
+		if err != nil {
+			err = msgp.WrapError(err, "Suppliers", za0006)
+			return
+		}
+	}
+	// string "Nations"
+	o = append(o, 0xa7, 0x4e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73)
+	o = msgp.AppendArrayHeader(o, uint32(len(z.Nations)))
+	for za0007 := range z.Nations {
+		o, err = z.Nations[za0007].MarshalMsg(o)
+		if err != nil {
+			err = msgp.WrapError(err, "Nations", za0007)
+			return
+		}
+	}
+	// string "Regions"
+	o = append(o, 0xa7, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x73)
+	o = msgp.AppendArrayHeader(o, uint32(len(z.Regions)))
+	for za0008 := range z.Regions {
+		// map header, size 3
+		// string "RegionKey"
+		o = append(o, 0x83, 0xa9, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x4b, 0x65, 0x79)
+		o = msgp.AppendInt32(o, z.Regions[za0008].RegionKey)
+		// string "Name"
+		o = append(o, 0xa4, 0x4e, 0x61, 0x6d, 0x65)
+		o = msgp.AppendString(o, z.Regions[za0008].Name)
+		// string "Comment"
+		o = append(o, 0xa7, 0x43, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74)
+		o = msgp.AppendString(o, z.Regions[za0008].Comment)
 	}
 	return
 }
@@ -529,6 +788,155 @@ func (z *Normalized) UnmarshalMsg(bts []byte) (o []byte, err error) {
 					return
 				}
 			}
+		case "Customers":
+			var zb0004 uint32
+			zb0004, bts, err = msgp.ReadArrayHeaderBytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "Customers")
+				return
+			}
+			if cap(z.Customers) >= int(zb0004) {
+				z.Customers = (z.Customers)[:zb0004]
+			} else {
+				z.Customers = make([]Customer, zb0004)
+			}
+			for za0003 := range z.Customers {
+				bts, err = z.Customers[za0003].UnmarshalMsg(bts)
+				if err != nil {
+					err = msgp.WrapError(err, "Customers", za0003)
+					return
+				}
+			}
+		case "Parts":
+			var zb0005 uint32
+			zb0005, bts, err = msgp.ReadArrayHeaderBytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "Parts")
+				return
+			}
+			if cap(z.Parts) >= int(zb0005) {
+				z.Parts = (z.Parts)[:zb0005]
+			} else {
+				z.Parts = make([]Part, zb0005)
+			}
+			for za0004 := range z.Parts {
+				bts, err = z.Parts[za0004].UnmarshalMsg(bts)
+				if err != nil {
+					err = msgp.WrapError(err, "Parts", za0004)
+					return
+				}
+			}
+		case "PartSupps":
+			var zb0006 uint32
+			zb0006, bts, err = msgp.ReadArrayHeaderBytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "PartSupps")
+				return
+			}
+			if cap(z.PartSupps) >= int(zb0006) {
+				z.PartSupps = (z.PartSupps)[:zb0006]
+			} else {
+				z.PartSupps = make([]PartSupp, zb0006)
+			}
+			for za0005 := range z.PartSupps {
+				bts, err = z.PartSupps[za0005].UnmarshalMsg(bts)
+				if err != nil {
+					err = msgp.WrapError(err, "PartSupps", za0005)
+					return
+				}
+			}
+		case "Suppliers":
+			var zb0007 uint32
+			zb0007, bts, err = msgp.ReadArrayHeaderBytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "Suppliers")
+				return
+			}
+			if cap(z.Suppliers) >= int(zb0007) {
+				z.Suppliers = (z.Suppliers)[:zb0007]
+			} else {
+				z.Suppliers = make([]Supplier, zb0007)
+			}
+			for za0006 := range z.Suppliers {
+				bts, err = z.Suppliers[za0006].UnmarshalMsg(bts)
+				if err != nil {
+					err = msgp.WrapError(err, "Suppliers", za0006)
+					return
+				}
+			}
+		case "Nations":
+			var zb0008 uint32
+			zb0008, bts, err = msgp.ReadArrayHeaderBytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "Nations")
+				return
+			}
+			if cap(z.Nations) >= int(zb0008) {
+				z.Nations = (z.Nations)[:zb0008]
+			} else {
+				z.Nations = make([]Nation, zb0008)
+			}
+			for za0007 := range z.Nations {
+				bts, err = z.Nations[za0007].UnmarshalMsg(bts)
+				if err != nil {
+					err = msgp.WrapError(err, "Nations", za0007)
+					return
+				}
+			}
+		case "Regions":
+			var zb0009 uint32
+			zb0009, bts, err = msgp.ReadArrayHeaderBytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "Regions")
+				return
+			}
+			if cap(z.Regions) >= int(zb0009) {
+				z.Regions = (z.Regions)[:zb0009]
+			} else {
+				z.Regions = make([]Region, zb0009)
+			}
+			for za0008 := range z.Regions {
+				var zb0010 uint32
+				zb0010, bts, err = msgp.ReadMapHeaderBytes(bts)
+				if err != nil {
+					err = msgp.WrapError(err, "Regions", za0008)
+					return
+				}
+				for zb0010 > 0 {
+					zb0010--
+					field, bts, err = msgp.ReadMapKeyZC(bts)
+					if err != nil {
+						err = msgp.WrapError(err, "Regions", za0008)
+						return
+					}
+					switch msgp.UnsafeString(field) {
+					case "RegionKey":
+						z.Regions[za0008].RegionKey, bts, err = msgp.ReadInt32Bytes(bts)
+						if err != nil {
+							err = msgp.WrapError(err, "Regions", za0008, "RegionKey")
+							return
+						}
+					case "Name":
+						z.Regions[za0008].Name, bts, err = msgp.ReadStringBytes(bts)
+						if err != nil {
+							err = msgp.WrapError(err, "Regions", za0008, "Name")
+							return
+						}
+					case "Comment":
+						z.Regions[za0008].Comment, bts, err = msgp.ReadStringBytes(bts)
+						if err != nil {
+							err = msgp.WrapError(err, "Regions", za0008, "Comment")
+							return
+						}
+					default:
+						bts, err = msgp.Skip(bts)
+						if err != nil {
+							err = msgp.WrapError(err, "Regions", za0008)
+							return
+						}
+					}
+				}
+			}
 		default:
 			bts, err = msgp.Skip(bts)
 			if err != nil {
@@ -550,6 +958,30 @@ func (z *Normalized) Msgsize() (s int) {
 	s += 6 + msgp.ArrayHeaderSize
 	for za0002 := range z.Lines {
 		s += z.Lines[za0002].Msgsize()
+	}
+	s += 10 + msgp.ArrayHeaderSize
+	for za0003 := range z.Customers {
+		s += z.Customers[za0003].Msgsize()
+	}
+	s += 6 + msgp.ArrayHeaderSize
+	for za0004 := range z.Parts {
+		s += z.Parts[za0004].Msgsize()
+	}
+	s += 10 + msgp.ArrayHeaderSize
+	for za0005 := range z.PartSupps {
+		s += z.PartSupps[za0005].Msgsize()
+	}
+	s += 10 + msgp.ArrayHeaderSize
+	for za0006 := range z.Suppliers {
+		s += z.Suppliers[za0006].Msgsize()
+	}
+	s += 8 + msgp.ArrayHeaderSize
+	for za0007 := range z.Nations {
+		s += z.Nations[za0007].Msgsize()
+	}
+	s += 8 + msgp.ArrayHeaderSize
+	for za0008 := range z.Regions {
+		s += 1 + 10 + msgp.Int32Size + 5 + msgp.StringPrefixSize + len(z.Regions[za0008].Name) + 8 + msgp.StringPrefixSize + len(z.Regions[za0008].Comment)
 	}
 	return
 }
@@ -831,5 +1263,393 @@ func (z *OrderRow) UnmarshalMsg(bts []byte) (o []byte, err error) {
 // Msgsize returns an upper bound estimate of the number of bytes occupied by the serialized message
 func (z *OrderRow) Msgsize() (s int) {
 	s = 1 + 9 + msgp.Int32Size + 8 + msgp.Int32Size + 12 + msgp.StringPrefixSize + len(z.OrderStatus) + 11 + msgp.Int64Size + 10 + msgp.Int32Size + 14 + msgp.StringPrefixSize + len(z.OrderPriority) + 6 + msgp.StringPrefixSize + len(z.Clerk) + 13 + msgp.Int32Size + 8 + msgp.StringPrefixSize + len(z.Comment)
+	return
+}
+
+// MarshalMsg implements msgp.Marshaler
+func (z *Part) MarshalMsg(b []byte) (o []byte, err error) {
+	o = msgp.Require(b, z.Msgsize())
+	// map header, size 9
+	// string "PartKey"
+	o = append(o, 0x89, 0xa7, 0x50, 0x61, 0x72, 0x74, 0x4b, 0x65, 0x79)
+	o = msgp.AppendInt32(o, z.PartKey)
+	// string "Name"
+	o = append(o, 0xa4, 0x4e, 0x61, 0x6d, 0x65)
+	o = msgp.AppendString(o, z.Name)
+	// string "Mfgr"
+	o = append(o, 0xa4, 0x4d, 0x66, 0x67, 0x72)
+	o = msgp.AppendString(o, z.Mfgr)
+	// string "Brand"
+	o = append(o, 0xa5, 0x42, 0x72, 0x61, 0x6e, 0x64)
+	o = msgp.AppendString(o, z.Brand)
+	// string "Type"
+	o = append(o, 0xa4, 0x54, 0x79, 0x70, 0x65)
+	o = msgp.AppendString(o, z.Type)
+	// string "Size"
+	o = append(o, 0xa4, 0x53, 0x69, 0x7a, 0x65)
+	o = msgp.AppendInt32(o, z.Size)
+	// string "Container"
+	o = append(o, 0xa9, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72)
+	o = msgp.AppendString(o, z.Container)
+	// string "RetailPrice"
+	o = append(o, 0xab, 0x52, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x50, 0x72, 0x69, 0x63, 0x65)
+	o = msgp.AppendInt64(o, z.RetailPrice)
+	// string "Comment"
+	o = append(o, 0xa7, 0x43, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74)
+	o = msgp.AppendString(o, z.Comment)
+	return
+}
+
+// UnmarshalMsg implements msgp.Unmarshaler
+func (z *Part) UnmarshalMsg(bts []byte) (o []byte, err error) {
+	var field []byte
+	_ = field
+	var zb0001 uint32
+	zb0001, bts, err = msgp.ReadMapHeaderBytes(bts)
+	if err != nil {
+		err = msgp.WrapError(err)
+		return
+	}
+	for zb0001 > 0 {
+		zb0001--
+		field, bts, err = msgp.ReadMapKeyZC(bts)
+		if err != nil {
+			err = msgp.WrapError(err)
+			return
+		}
+		switch msgp.UnsafeString(field) {
+		case "PartKey":
+			z.PartKey, bts, err = msgp.ReadInt32Bytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "PartKey")
+				return
+			}
+		case "Name":
+			z.Name, bts, err = msgp.ReadStringBytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "Name")
+				return
+			}
+		case "Mfgr":
+			z.Mfgr, bts, err = msgp.ReadStringBytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "Mfgr")
+				return
+			}
+		case "Brand":
+			z.Brand, bts, err = msgp.ReadStringBytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "Brand")
+				return
+			}
+		case "Type":
+			z.Type, bts, err = msgp.ReadStringBytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "Type")
+				return
+			}
+		case "Size":
+			z.Size, bts, err = msgp.ReadInt32Bytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "Size")
+				return
+			}
+		case "Container":
+			z.Container, bts, err = msgp.ReadStringBytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "Container")
+				return
+			}
+		case "RetailPrice":
+			z.RetailPrice, bts, err = msgp.ReadInt64Bytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "RetailPrice")
+				return
+			}
+		case "Comment":
+			z.Comment, bts, err = msgp.ReadStringBytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "Comment")
+				return
+			}
+		default:
+			bts, err = msgp.Skip(bts)
+			if err != nil {
+				err = msgp.WrapError(err)
+				return
+			}
+		}
+	}
+	o = bts
+	return
+}
+
+// Msgsize returns an upper bound estimate of the number of bytes occupied by the serialized message
+func (z *Part) Msgsize() (s int) {
+	s = 1 + 8 + msgp.Int32Size + 5 + msgp.StringPrefixSize + len(z.Name) + 5 + msgp.StringPrefixSize + len(z.Mfgr) + 6 + msgp.StringPrefixSize + len(z.Brand) + 5 + msgp.StringPrefixSize + len(z.Type) + 5 + msgp.Int32Size + 10 + msgp.StringPrefixSize + len(z.Container) + 12 + msgp.Int64Size + 8 + msgp.StringPrefixSize + len(z.Comment)
+	return
+}
+
+// MarshalMsg implements msgp.Marshaler
+func (z *PartSupp) MarshalMsg(b []byte) (o []byte, err error) {
+	o = msgp.Require(b, z.Msgsize())
+	// map header, size 5
+	// string "PartKey"
+	o = append(o, 0x85, 0xa7, 0x50, 0x61, 0x72, 0x74, 0x4b, 0x65, 0x79)
+	o = msgp.AppendInt32(o, z.PartKey)
+	// string "SuppKey"
+	o = append(o, 0xa7, 0x53, 0x75, 0x70, 0x70, 0x4b, 0x65, 0x79)
+	o = msgp.AppendInt32(o, z.SuppKey)
+	// string "AvailQty"
+	o = append(o, 0xa8, 0x41, 0x76, 0x61, 0x69, 0x6c, 0x51, 0x74, 0x79)
+	o = msgp.AppendInt32(o, z.AvailQty)
+	// string "SupplyCost"
+	o = append(o, 0xaa, 0x53, 0x75, 0x70, 0x70, 0x6c, 0x79, 0x43, 0x6f, 0x73, 0x74)
+	o = msgp.AppendInt64(o, z.SupplyCost)
+	// string "Comment"
+	o = append(o, 0xa7, 0x43, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74)
+	o = msgp.AppendString(o, z.Comment)
+	return
+}
+
+// UnmarshalMsg implements msgp.Unmarshaler
+func (z *PartSupp) UnmarshalMsg(bts []byte) (o []byte, err error) {
+	var field []byte
+	_ = field
+	var zb0001 uint32
+	zb0001, bts, err = msgp.ReadMapHeaderBytes(bts)
+	if err != nil {
+		err = msgp.WrapError(err)
+		return
+	}
+	for zb0001 > 0 {
+		zb0001--
+		field, bts, err = msgp.ReadMapKeyZC(bts)
+		if err != nil {
+			err = msgp.WrapError(err)
+			return
+		}
+		switch msgp.UnsafeString(field) {
+		case "PartKey":
+			z.PartKey, bts, err = msgp.ReadInt32Bytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "PartKey")
+				return
+			}
+		case "SuppKey":
+			z.SuppKey, bts, err = msgp.ReadInt32Bytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "SuppKey")
+				return
+			}
+		case "AvailQty":
+			z.AvailQty, bts, err = msgp.ReadInt32Bytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "AvailQty")
+				return
+			}
+		case "SupplyCost":
+			z.SupplyCost, bts, err = msgp.ReadInt64Bytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "SupplyCost")
+				return
+			}
+		case "Comment":
+			z.Comment, bts, err = msgp.ReadStringBytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "Comment")
+				return
+			}
+		default:
+			bts, err = msgp.Skip(bts)
+			if err != nil {
+				err = msgp.WrapError(err)
+				return
+			}
+		}
+	}
+	o = bts
+	return
+}
+
+// Msgsize returns an upper bound estimate of the number of bytes occupied by the serialized message
+func (z *PartSupp) Msgsize() (s int) {
+	s = 1 + 8 + msgp.Int32Size + 8 + msgp.Int32Size + 9 + msgp.Int32Size + 11 + msgp.Int64Size + 8 + msgp.StringPrefixSize + len(z.Comment)
+	return
+}
+
+// MarshalMsg implements msgp.Marshaler
+func (z Region) MarshalMsg(b []byte) (o []byte, err error) {
+	o = msgp.Require(b, z.Msgsize())
+	// map header, size 3
+	// string "RegionKey"
+	o = append(o, 0x83, 0xa9, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x4b, 0x65, 0x79)
+	o = msgp.AppendInt32(o, z.RegionKey)
+	// string "Name"
+	o = append(o, 0xa4, 0x4e, 0x61, 0x6d, 0x65)
+	o = msgp.AppendString(o, z.Name)
+	// string "Comment"
+	o = append(o, 0xa7, 0x43, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74)
+	o = msgp.AppendString(o, z.Comment)
+	return
+}
+
+// UnmarshalMsg implements msgp.Unmarshaler
+func (z *Region) UnmarshalMsg(bts []byte) (o []byte, err error) {
+	var field []byte
+	_ = field
+	var zb0001 uint32
+	zb0001, bts, err = msgp.ReadMapHeaderBytes(bts)
+	if err != nil {
+		err = msgp.WrapError(err)
+		return
+	}
+	for zb0001 > 0 {
+		zb0001--
+		field, bts, err = msgp.ReadMapKeyZC(bts)
+		if err != nil {
+			err = msgp.WrapError(err)
+			return
+		}
+		switch msgp.UnsafeString(field) {
+		case "RegionKey":
+			z.RegionKey, bts, err = msgp.ReadInt32Bytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "RegionKey")
+				return
+			}
+		case "Name":
+			z.Name, bts, err = msgp.ReadStringBytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "Name")
+				return
+			}
+		case "Comment":
+			z.Comment, bts, err = msgp.ReadStringBytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "Comment")
+				return
+			}
+		default:
+			bts, err = msgp.Skip(bts)
+			if err != nil {
+				err = msgp.WrapError(err)
+				return
+			}
+		}
+	}
+	o = bts
+	return
+}
+
+// Msgsize returns an upper bound estimate of the number of bytes occupied by the serialized message
+func (z Region) Msgsize() (s int) {
+	s = 1 + 10 + msgp.Int32Size + 5 + msgp.StringPrefixSize + len(z.Name) + 8 + msgp.StringPrefixSize + len(z.Comment)
+	return
+}
+
+// MarshalMsg implements msgp.Marshaler
+func (z *Supplier) MarshalMsg(b []byte) (o []byte, err error) {
+	o = msgp.Require(b, z.Msgsize())
+	// map header, size 7
+	// string "SuppKey"
+	o = append(o, 0x87, 0xa7, 0x53, 0x75, 0x70, 0x70, 0x4b, 0x65, 0x79)
+	o = msgp.AppendInt32(o, z.SuppKey)
+	// string "Name"
+	o = append(o, 0xa4, 0x4e, 0x61, 0x6d, 0x65)
+	o = msgp.AppendString(o, z.Name)
+	// string "Address"
+	o = append(o, 0xa7, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73)
+	o = msgp.AppendString(o, z.Address)
+	// string "NationKey"
+	o = append(o, 0xa9, 0x4e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x4b, 0x65, 0x79)
+	o = msgp.AppendInt32(o, z.NationKey)
+	// string "Phone"
+	o = append(o, 0xa5, 0x50, 0x68, 0x6f, 0x6e, 0x65)
+	o = msgp.AppendString(o, z.Phone)
+	// string "AcctBal"
+	o = append(o, 0xa7, 0x41, 0x63, 0x63, 0x74, 0x42, 0x61, 0x6c)
+	o = msgp.AppendInt64(o, z.AcctBal)
+	// string "Comment"
+	o = append(o, 0xa7, 0x43, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74)
+	o = msgp.AppendString(o, z.Comment)
+	return
+}
+
+// UnmarshalMsg implements msgp.Unmarshaler
+func (z *Supplier) UnmarshalMsg(bts []byte) (o []byte, err error) {
+	var field []byte
+	_ = field
+	var zb0001 uint32
+	zb0001, bts, err = msgp.ReadMapHeaderBytes(bts)
+	if err != nil {
+		err = msgp.WrapError(err)
+		return
+	}
+	for zb0001 > 0 {
+		zb0001--
+		field, bts, err = msgp.ReadMapKeyZC(bts)
+		if err != nil {
+			err = msgp.WrapError(err)
+			return
+		}
+		switch msgp.UnsafeString(field) {
+		case "SuppKey":
+			z.SuppKey, bts, err = msgp.ReadInt32Bytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "SuppKey")
+				return
+			}
+		case "Name":
+			z.Name, bts, err = msgp.ReadStringBytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "Name")
+				return
+			}
+		case "Address":
+			z.Address, bts, err = msgp.ReadStringBytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "Address")
+				return
+			}
+		case "NationKey":
+			z.NationKey, bts, err = msgp.ReadInt32Bytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "NationKey")
+				return
+			}
+		case "Phone":
+			z.Phone, bts, err = msgp.ReadStringBytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "Phone")
+				return
+			}
+		case "AcctBal":
+			z.AcctBal, bts, err = msgp.ReadInt64Bytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "AcctBal")
+				return
+			}
+		case "Comment":
+			z.Comment, bts, err = msgp.ReadStringBytes(bts)
+			if err != nil {
+				err = msgp.WrapError(err, "Comment")
+				return
+			}
+		default:
+			bts, err = msgp.Skip(bts)
+			if err != nil {
+				err = msgp.WrapError(err)
+				return
+			}
+		}
+	}
+	o = bts
+	return
+}
+
+// Msgsize returns an upper bound estimate of the number of bytes occupied by the serialized message
+func (z *Supplier) Msgsize() (s int) {
+	s = 1 + 8 + msgp.Int32Size + 5 + msgp.StringPrefixSize + len(z.Name) + 8 + msgp.StringPrefixSize + len(z.Address) + 10 + msgp.Int32Size + 6 + msgp.StringPrefixSize + len(z.Phone) + 8 + msgp.Int64Size + 8 + msgp.StringPrefixSize + len(z.Comment)
 	return
 }

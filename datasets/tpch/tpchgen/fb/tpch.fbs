@@ -40,6 +40,12 @@ table LineItem {
 table Normalized {
   orders: [OrderRow];
   lines: [LineItemRow];
+  customers: [Customer];
+  parts: [Part];
+  part_supps: [PartSupp];
+  suppliers: [Supplier];
+  nations: [Nation];
+  regions: [Region];
 }
 
 table OrderRow {
@@ -71,6 +77,92 @@ table LineItemRow {
   ship_instruct: string;
   ship_mode: string;
   comment: string;
+}
+
+table Customer {
+  cust_key: int;
+  name: string;
+  address: string;
+  nation_key: int;
+  phone: string;
+  acct_bal: long;
+  mkt_segment: string;
+  comment: string;
+}
+
+table Part {
+  part_key: int;
+  name: string;
+  mfgr: string;
+  brand: string;
+  type: string;
+  size: int;
+  container: string;
+  retail_price: long;
+  comment: string;
+}
+
+table PartSupp {
+  part_key: int;
+  supp_key: int;
+  avail_qty: int;
+  supply_cost: long;
+  comment: string;
+}
+
+table Supplier {
+  supp_key: int;
+  name: string;
+  address: string;
+  nation_key: int;
+  phone: string;
+  acct_bal: long;
+  comment: string;
+}
+
+table Nation {
+  nation_key: int;
+  name: string;
+  region_key: int;
+  comment: string;
+}
+
+table Region {
+  region_key: int;
+  name: string;
+  comment: string;
+}
+
+table OrdersTable {
+  rows: [OrderRow];
+}
+
+table LineItemTable {
+  rows: [LineItemRow];
+}
+
+table CustomerTable {
+  rows: [Customer];
+}
+
+table PartTable {
+  rows: [Part];
+}
+
+table PartSuppTable {
+  rows: [PartSupp];
+}
+
+table SupplierTable {
+  rows: [Supplier];
+}
+
+table NationTable {
+  rows: [Nation];
+}
+
+table RegionTable {
+  rows: [Region];
 }
 
 root_type Nested;

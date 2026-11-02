@@ -20,7 +20,9 @@ package formats
 import (
 	"bytes"
 	"errors"
+	"math"
 
+	"capnproto.org/go/capnp/v3"
 	"github.com/apache/arrow-go/v18/arrow/memory"
 	flatbuffers "github.com/google/flatbuffers/go"
 	"github.com/ivanjoz/colbin"
@@ -34,6 +36,7 @@ type Adapters[T any] struct {
 	Proto       *ProtoAdapter[T]
 	FlatBuffers *FlatBuffersAdapter[T]
 	Arrow       *ArrowAdapter[T]
+	Capnp       *CapnpAdapter[T]
 	Untagged    *UntaggedAdapter[T]
 
 	// AccessGo computes the dataset's access aggregate from a decoded value.
@@ -67,6 +70,13 @@ type ArrowAdapter[T any] struct {
 	Write  func(out *bytes.Buffer, value *T, allocator memory.Allocator) error
 	Read   func(data []byte, into *T, allocator memory.Allocator) error
 	Access func(data []byte, allocator memory.Allocator) (float64, error)
+}
+
+// CapnpAdapter builds a Cap'n Proto message from the Go value and reads one
+// back into it.
+type CapnpAdapter[T any] struct {
+	Build func(value *T) (*capnp.Message, error)
+	Read  func(message *capnp.Message, into *T) error
 }
 
 // UntaggedAdapter is colbin on a twin of the type with every `cb` tag removed,
@@ -237,6 +247,37 @@ func NewArrow[T any](value *T, adapter *ArrowAdapter[T]) Instance {
 	return instance
 }
 
+// NewCapnp builds the message from the Go value and reads it back into one,
+// both through the generated accessors, and writes it in the standard framing.
+// A message is read with the traversal limit lifted: the default stops at
+// 64 MiB, and a table of a few hundred thousand rows is the input here.
+func NewCapnp[T any](value *T, adapter *CapnpAdapter[T]) Instance {
+	var last, held *T
+	held = new(T)
+	read := func(data []byte, into *T) error {
+		message, err := capnp.Unmarshal(data)
+		if err != nil {
+			return err
+		}
+		message.ResetReadLimit(math.MaxUint64)
+		return adapter.Read(message, into)
+	}
+	return Instance{
+		Format: CapnProto,
+		Encode: func(dst []byte) ([]byte, error) {
+			message, err := adapter.Build(value)
+			if err != nil {
+				return dst, err
+			}
+			data, err := message.Marshal()
+			return appendOwned(dst, data), err
+		},
+		DecodeFresh: func(data []byte) error { last = new(T); return read(data, last) },
+		DecodeReuse: func(data []byte) error { return read(data, held) },
+		Back:        func() (any, error) { return last, nil },
+	}
+}
+
 // NewColbinUntagged is colbin on the untagged twin of the type: K8 keys.
 func NewColbinUntagged[T any](value *T, adapter *UntaggedAdapter[T]) Instance {
 	var last, held *T
@@ -275,7 +316,7 @@ func All[T any](value *T, adapters Adapters[T]) ([]Instance, []Skip) {
 		instances = append(instances, instance)
 	}
 
-	instances = append(instances, NewJSON(value), NewGob(value), NewCBOR(value))
+	instances = append(instances, NewJSONv2(value), NewGob(value), NewCBOR(value))
 	add(NewMsgPack(value))
 	instances = append(instances, NewMsgPackReflect(value))
 	if adapters.Proto != nil {
@@ -294,6 +335,12 @@ func All[T any](value *T, adapters Adapters[T]) ([]Instance, []Skip) {
 		instances = append(instances, NewArrow(value, adapters.Arrow))
 	} else {
 		skip(Arrow, "not tabular")
+	}
+	add(NewAvro(value))
+	if adapters.Capnp != nil {
+		instances = append(instances, NewCapnp(value, adapters.Capnp))
+	} else {
+		skip(CapnProto, "no generated schema")
 	}
 	// A type colbin refuses is n/a for all its variants, with colbin's reason,
 	// rather than a panic out of MustCodec.

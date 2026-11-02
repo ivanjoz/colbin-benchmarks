@@ -40,8 +40,14 @@ type LineItem struct {
 }
 
 type Normalized struct {
-	Orders []OrderRow
-	Lines  []LineItemRow
+	Orders    []OrderRow
+	Lines     []LineItemRow
+	Customers []Customer
+	Parts     []Part
+	PartSupps []PartSupp
+	Suppliers []Supplier
+	Nations   []Nation
+	Regions   []Region
 }
 
 type OrderRow struct {
@@ -73,4 +79,90 @@ type LineItemRow struct {
 	ShipInstruct  string
 	ShipMode      string
 	Comment       string
+}
+
+type Customer struct {
+	CustKey    int32
+	Name       string
+	Address    string
+	NationKey  int32
+	Phone      string
+	AcctBal    int64
+	MktSegment string
+	Comment    string
+}
+
+type Part struct {
+	PartKey     int32
+	Name        string
+	Mfgr        string
+	Brand       string
+	Type        string
+	Size        int32
+	Container   string
+	RetailPrice int64
+	Comment     string
+}
+
+type PartSupp struct {
+	PartKey    int32
+	SuppKey    int32
+	AvailQty   int32
+	SupplyCost int64
+	Comment    string
+}
+
+type Supplier struct {
+	SuppKey   int32
+	Name      string
+	Address   string
+	NationKey int32
+	Phone     string
+	AcctBal   int64
+	Comment   string
+}
+
+type Nation struct {
+	NationKey int32
+	Name      string
+	RegionKey int32
+	Comment   string
+}
+
+type Region struct {
+	RegionKey int32
+	Name      string
+	Comment   string
+}
+
+type OrdersTable struct {
+	Rows []OrderRow
+}
+
+type LineItemTable struct {
+	Rows []LineItemRow
+}
+
+type CustomerTable struct {
+	Rows []Customer
+}
+
+type PartTable struct {
+	Rows []Part
+}
+
+type PartSuppTable struct {
+	Rows []PartSupp
+}
+
+type SupplierTable struct {
+	Rows []Supplier
+}
+
+type NationTable struct {
+	Rows []Nation
+}
+
+type RegionTable struct {
+	Rows []Region
 }
