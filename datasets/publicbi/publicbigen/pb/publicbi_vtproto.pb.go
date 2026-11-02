@@ -106,12 +106,12 @@ func (m *AradeRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0x50
 	}
 	if m.F9 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.F9))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.F9)<<1)^uint32((m.F9>>31))))
 		i--
 		dAtA[i] = 0x48
 	}
 	if m.F8 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.F8))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.F8)<<1)^uint32((m.F8>>31))))
 		i--
 		dAtA[i] = 0x40
 	}
@@ -1187,7 +1187,7 @@ func (m *CommonGovernmentRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0xea
 	}
 	if m.FundingAgencyKey != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.FundingAgencyKey))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.FundingAgencyKey)<<1)^uint32((m.FundingAgencyKey>>31))))
 		i--
 		dAtA[i] = 0x1
 		i--
@@ -2233,7 +2233,7 @@ func (m *EixoRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0xd8
 	}
 	if m.DataDeInicio != nil {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(*m.DataDeInicio)<<1)^uint32((*m.DataDeInicio>>31))))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64(*m.DataDeInicio))
 		i--
 		dAtA[i] = 0x1
 		i--
@@ -2992,7 +2992,7 @@ func (m *GenericoRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0x68
 	}
 	if m.DeNpags != nil {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(*m.DeNpags))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(*m.DeNpags)<<1)^uint32((*m.DeNpags>>31))))
 		i--
 		dAtA[i] = 0x60
 	}
@@ -4094,7 +4094,7 @@ func (m *HatredRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0xaa
 	}
 	if m.Long != nil {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(*m.Long))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint64(*m.Long)<<1)^uint64((*m.Long>>63))))
 		i--
 		dAtA[i] = 0x1
 		i--
@@ -4482,7 +4482,7 @@ func (m *IGlocations2Row) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		copy(dAtA[i:], m.unknownFields)
 	}
 	if m.Calculation9330724145728972 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Calculation9330724145728972))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Calculation9330724145728972)<<1)^uint32((m.Calculation9330724145728972>>31))))
 		i--
 		dAtA[i] = 0x1
 		i--
@@ -4575,7 +4575,7 @@ func (m *IGlocations2Row) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0x40
 	}
 	if m.Latitude != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Latitude))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint64(m.Latitude)<<1)^uint64((m.Latitude>>63))))
 		i--
 		dAtA[i] = 0x38
 	}
@@ -7020,7 +7020,7 @@ func (m *MotosRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0x68
 	}
 	if m.DeNpags != nil {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(*m.DeNpags))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(*m.DeNpags)<<1)^uint32((*m.DeNpags>>31))))
 		i--
 		dAtA[i] = 0x60
 	}
@@ -7667,7 +7667,7 @@ func (m *MulheresMilRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0xd8
 	}
 	if m.DataDeInicio != nil {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(*m.DataDeInicio)<<1)^uint32((*m.DataDeInicio>>31))))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64(*m.DataDeInicio))
 		i--
 		dAtA[i] = 0x1
 		i--
@@ -8243,7 +8243,7 @@ func (m *NYCRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0x8a
 	}
 	if m.DueDate != nil {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(*m.DueDate))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint64(*m.DueDate)<<1)^uint64((*m.DueDate>>63))))
 		i--
 		dAtA[i] = 0x1
 		i--
@@ -10378,7 +10378,7 @@ func (m *Redfin1Row) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0x79
 	}
 	if m.MedianDomYoy != nil {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(*m.MedianDomYoy))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(*m.MedianDomYoy)<<1)^uint32((*m.MedianDomYoy>>31))))
 		i--
 		dAtA[i] = 0x70
 	}
@@ -10772,7 +10772,7 @@ func (m *Redfin2Row) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0x79
 	}
 	if m.MedianDomYoy != nil {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(*m.MedianDomYoy))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(*m.MedianDomYoy)<<1)^uint32((*m.MedianDomYoy>>31))))
 		i--
 		dAtA[i] = 0x70
 	}
@@ -11189,7 +11189,7 @@ func (m *Redfin3Row) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0x79
 	}
 	if m.MedianDomYoy != nil {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(*m.MedianDomYoy))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(*m.MedianDomYoy)<<1)^uint32((*m.MedianDomYoy>>31))))
 		i--
 		dAtA[i] = 0x70
 	}
@@ -11614,7 +11614,7 @@ func (m *Redfin4Row) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0x79
 	}
 	if m.MedianDomYoy != nil {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(*m.MedianDomYoy))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(*m.MedianDomYoy)<<1)^uint32((*m.MedianDomYoy>>31))))
 		i--
 		dAtA[i] = 0x70
 	}
@@ -12475,7 +12475,7 @@ func (m *RentabilidadRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0xba
 	}
 	if m.Latitud != nil {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(*m.Latitud))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint64(*m.Latitud)<<1)^uint64((*m.Latitud>>63))))
 		i--
 		dAtA[i] = 0x3
 		i--
@@ -13004,7 +13004,7 @@ func (m *RomanceRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0x3a
 	}
 	if m.Lat != nil {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(*m.Lat))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint64(*m.Lat)<<1)^uint64((*m.Lat>>63))))
 		i--
 		dAtA[i] = 0x30
 	}
@@ -14251,7 +14251,7 @@ func (m *TelcoRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0xf0
 	}
 	if m.Totaoutgoingrevp2 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Totaoutgoingrevp2))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint64(m.Totaoutgoingrevp2)<<1)^uint64((m.Totaoutgoingrevp2>>63))))
 		i--
 		dAtA[i] = 0xa
 		i--
@@ -16046,14 +16046,14 @@ func (m *USCensusRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0x98
 	}
 	if m.Wgtp7 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Wgtp7))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Wgtp7)<<1)^uint32((m.Wgtp7>>31))))
 		i--
 		dAtA[i] = 0x20
 		i--
 		dAtA[i] = 0x90
 	}
 	if m.Wgtp79 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Wgtp79))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Wgtp79)<<1)^uint32((m.Wgtp79>>31))))
 		i--
 		dAtA[i] = 0x20
 		i--
@@ -16123,7 +16123,7 @@ func (m *USCensusRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0xc0
 	}
 	if m.Wgtp6 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Wgtp6))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Wgtp6)<<1)^uint32((m.Wgtp6>>31))))
 		i--
 		dAtA[i] = 0x1f
 		i--
@@ -16137,21 +16137,21 @@ func (m *USCensusRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0xb0
 	}
 	if m.Wgtp68 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Wgtp68))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Wgtp68)<<1)^uint32((m.Wgtp68>>31))))
 		i--
 		dAtA[i] = 0x1f
 		i--
 		dAtA[i] = 0xa8
 	}
 	if m.Wgtp67 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Wgtp67))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Wgtp67)<<1)^uint32((m.Wgtp67>>31))))
 		i--
 		dAtA[i] = 0x1f
 		i--
 		dAtA[i] = 0xa0
 	}
 	if m.Wgtp66 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Wgtp66))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Wgtp66)<<1)^uint32((m.Wgtp66>>31))))
 		i--
 		dAtA[i] = 0x1f
 		i--
@@ -16165,7 +16165,7 @@ func (m *USCensusRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0x90
 	}
 	if m.Wgtp64 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Wgtp64))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Wgtp64)<<1)^uint32((m.Wgtp64>>31))))
 		i--
 		dAtA[i] = 0x1f
 		i--
@@ -16186,7 +16186,7 @@ func (m *USCensusRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0xf8
 	}
 	if m.Wgtp61 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Wgtp61))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Wgtp61)<<1)^uint32((m.Wgtp61>>31))))
 		i--
 		dAtA[i] = 0x1e
 		i--
@@ -16277,7 +16277,7 @@ func (m *USCensusRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0x90
 	}
 	if m.Wgtp4 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Wgtp4))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Wgtp4)<<1)^uint32((m.Wgtp4>>31))))
 		i--
 		dAtA[i] = 0x1e
 		i--
@@ -16291,14 +16291,14 @@ func (m *USCensusRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0x80
 	}
 	if m.Wgtp48 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Wgtp48))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Wgtp48)<<1)^uint32((m.Wgtp48>>31))))
 		i--
 		dAtA[i] = 0x1d
 		i--
 		dAtA[i] = 0xf8
 	}
 	if m.Wgtp47 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Wgtp47))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Wgtp47)<<1)^uint32((m.Wgtp47>>31))))
 		i--
 		dAtA[i] = 0x1d
 		i--
@@ -16319,7 +16319,7 @@ func (m *USCensusRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0xe0
 	}
 	if m.Wgtp44 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Wgtp44))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Wgtp44)<<1)^uint32((m.Wgtp44>>31))))
 		i--
 		dAtA[i] = 0x1d
 		i--
@@ -16340,7 +16340,7 @@ func (m *USCensusRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0xc8
 	}
 	if m.Wgtp41 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Wgtp41))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Wgtp41)<<1)^uint32((m.Wgtp41>>31))))
 		i--
 		dAtA[i] = 0x1d
 		i--
@@ -16354,7 +16354,7 @@ func (m *USCensusRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0xb8
 	}
 	if m.Wgtp3 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Wgtp3))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Wgtp3)<<1)^uint32((m.Wgtp3>>31))))
 		i--
 		dAtA[i] = 0x1d
 		i--
@@ -16389,7 +16389,7 @@ func (m *USCensusRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0x90
 	}
 	if m.Wgtp35 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Wgtp35))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Wgtp35)<<1)^uint32((m.Wgtp35>>31))))
 		i--
 		dAtA[i] = 0x1d
 		i--
@@ -16431,7 +16431,7 @@ func (m *USCensusRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0xe0
 	}
 	if m.Wgtp2 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Wgtp2))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Wgtp2)<<1)^uint32((m.Wgtp2>>31))))
 		i--
 		dAtA[i] = 0x1c
 		i--
@@ -16459,7 +16459,7 @@ func (m *USCensusRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0xc0
 	}
 	if m.Wgtp26 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Wgtp26))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Wgtp26)<<1)^uint32((m.Wgtp26>>31))))
 		i--
 		dAtA[i] = 0x1c
 		i--
@@ -16473,21 +16473,21 @@ func (m *USCensusRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0xb0
 	}
 	if m.Wgtp24 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Wgtp24))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Wgtp24)<<1)^uint32((m.Wgtp24>>31))))
 		i--
 		dAtA[i] = 0x1c
 		i--
 		dAtA[i] = 0xa8
 	}
 	if m.Wgtp23 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Wgtp23))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Wgtp23)<<1)^uint32((m.Wgtp23>>31))))
 		i--
 		dAtA[i] = 0x1c
 		i--
 		dAtA[i] = 0xa0
 	}
 	if m.Wgtp22 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Wgtp22))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Wgtp22)<<1)^uint32((m.Wgtp22>>31))))
 		i--
 		dAtA[i] = 0x1c
 		i--
@@ -16571,7 +16571,7 @@ func (m *USCensusRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0xc0
 	}
 	if m.Wgtp11 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Wgtp11))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Wgtp11)<<1)^uint32((m.Wgtp11>>31))))
 		i--
 		dAtA[i] = 0x1b
 		i--
@@ -16613,7 +16613,7 @@ func (m *USCensusRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0x90
 	}
 	if m.Pwgtp79 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Pwgtp79))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Pwgtp79)<<1)^uint32((m.Pwgtp79>>31))))
 		i--
 		dAtA[i] = 0x1b
 		i--
@@ -16683,7 +16683,7 @@ func (m *USCensusRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0xc0
 	}
 	if m.Pwgtp6 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Pwgtp6))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Pwgtp6)<<1)^uint32((m.Pwgtp6>>31))))
 		i--
 		dAtA[i] = 0x1a
 		i--
@@ -16697,21 +16697,21 @@ func (m *USCensusRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0xb0
 	}
 	if m.Pwgtp68 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Pwgtp68))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Pwgtp68)<<1)^uint32((m.Pwgtp68>>31))))
 		i--
 		dAtA[i] = 0x1a
 		i--
 		dAtA[i] = 0xa8
 	}
 	if m.Pwgtp67 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Pwgtp67))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Pwgtp67)<<1)^uint32((m.Pwgtp67>>31))))
 		i--
 		dAtA[i] = 0x1a
 		i--
 		dAtA[i] = 0xa0
 	}
 	if m.Pwgtp66 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Pwgtp66))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Pwgtp66)<<1)^uint32((m.Pwgtp66>>31))))
 		i--
 		dAtA[i] = 0x1a
 		i--
@@ -16725,7 +16725,7 @@ func (m *USCensusRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0x90
 	}
 	if m.Pwgtp64 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Pwgtp64))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Pwgtp64)<<1)^uint32((m.Pwgtp64>>31))))
 		i--
 		dAtA[i] = 0x1a
 		i--
@@ -16851,14 +16851,14 @@ func (m *USCensusRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0x80
 	}
 	if m.Pwgtp48 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Pwgtp48))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Pwgtp48)<<1)^uint32((m.Pwgtp48>>31))))
 		i--
 		dAtA[i] = 0x18
 		i--
 		dAtA[i] = 0xf8
 	}
 	if m.Pwgtp47 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Pwgtp47))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Pwgtp47)<<1)^uint32((m.Pwgtp47>>31))))
 		i--
 		dAtA[i] = 0x18
 		i--
@@ -16879,7 +16879,7 @@ func (m *USCensusRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0xe0
 	}
 	if m.Pwgtp44 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Pwgtp44))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Pwgtp44)<<1)^uint32((m.Pwgtp44>>31))))
 		i--
 		dAtA[i] = 0x18
 		i--
@@ -16900,7 +16900,7 @@ func (m *USCensusRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0xc8
 	}
 	if m.Pwgtp41 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Pwgtp41))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Pwgtp41)<<1)^uint32((m.Pwgtp41>>31))))
 		i--
 		dAtA[i] = 0x18
 		i--
@@ -16949,7 +16949,7 @@ func (m *USCensusRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0x90
 	}
 	if m.Pwgtp35 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Pwgtp35))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Pwgtp35)<<1)^uint32((m.Pwgtp35>>31))))
 		i--
 		dAtA[i] = 0x18
 		i--
@@ -16991,7 +16991,7 @@ func (m *USCensusRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0xe0
 	}
 	if m.Pwgtp2 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Pwgtp2))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Pwgtp2)<<1)^uint32((m.Pwgtp2>>31))))
 		i--
 		dAtA[i] = 0x17
 		i--
@@ -17019,7 +17019,7 @@ func (m *USCensusRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0xc0
 	}
 	if m.Pwgtp26 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Pwgtp26))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Pwgtp26)<<1)^uint32((m.Pwgtp26>>31))))
 		i--
 		dAtA[i] = 0x17
 		i--
@@ -17040,14 +17040,14 @@ func (m *USCensusRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0xa8
 	}
 	if m.Pwgtp23 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Pwgtp23))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Pwgtp23)<<1)^uint32((m.Pwgtp23>>31))))
 		i--
 		dAtA[i] = 0x17
 		i--
 		dAtA[i] = 0xa0
 	}
 	if m.Pwgtp22 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Pwgtp22))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Pwgtp22)<<1)^uint32((m.Pwgtp22>>31))))
 		i--
 		dAtA[i] = 0x17
 		i--
@@ -17096,7 +17096,7 @@ func (m *USCensusRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0xe8
 	}
 	if m.Pwgtp16 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Pwgtp16))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Pwgtp16)<<1)^uint32((m.Pwgtp16>>31))))
 		i--
 		dAtA[i] = 0x16
 		i--
@@ -17131,7 +17131,7 @@ func (m *USCensusRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0xc0
 	}
 	if m.Pwgtp11 != 0 {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(m.Pwgtp11))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(m.Pwgtp11)<<1)^uint32((m.Pwgtp11>>31))))
 		i--
 		dAtA[i] = 0x16
 		i--
@@ -17452,7 +17452,7 @@ func (m *USCensusRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0xd8
 	}
 	if m.Semp != nil {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(*m.Semp))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(*m.Semp)<<1)^uint32((*m.Semp>>31))))
 		i--
 		dAtA[i] = 0x13
 		i--
@@ -17778,14 +17778,14 @@ func (m *USCensusRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0xe8
 	}
 	if m.Pincp != nil {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(*m.Pincp))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(*m.Pincp)<<1)^uint32((*m.Pincp>>31))))
 		i--
 		dAtA[i] = 0x10
 		i--
 		dAtA[i] = 0xe0
 	}
 	if m.Pernp != nil {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(*m.Pernp))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(*m.Pernp)<<1)^uint32((*m.Pernp>>31))))
 		i--
 		dAtA[i] = 0x10
 		i--
@@ -18221,7 +18221,7 @@ func (m *USCensusRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0xf0
 	}
 	if m.Intp != nil {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(*m.Intp))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(*m.Intp)<<1)^uint32((*m.Intp>>31))))
 		i--
 		dAtA[i] = 0xc
 		i--
@@ -18326,7 +18326,7 @@ func (m *USCensusRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0xf8
 	}
 	if m.Hincp != nil {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(*m.Hincp))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(*m.Hincp)<<1)^uint32((*m.Hincp>>31))))
 		i--
 		dAtA[i] = 0xb
 		i--
@@ -18984,7 +18984,7 @@ func (m *USCensusRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0x88
 	}
 	if m.Fincp != nil {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64(*m.Fincp))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(*m.Fincp)<<1)^uint32((*m.Fincp>>31))))
 		i--
 		dAtA[i] = 0x6
 		i--
@@ -20199,7 +20199,7 @@ func (m *UberlandiaRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0xd8
 	}
 	if m.DataDeInicio != nil {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint32(*m.DataDeInicio)<<1)^uint32((*m.DataDeInicio>>31))))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64(*m.DataDeInicio))
 		i--
 		dAtA[i] = 0x1
 		i--
@@ -22467,7 +22467,7 @@ func (m *YaleLanguagesRow) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		dAtA[i] = 0x70
 	}
 	if m.Dischargedate != nil {
-		i = protohelpers.EncodeVarint(dAtA, i, uint64((uint64(*m.Dischargedate)<<1)^uint64((*m.Dischargedate>>63))))
+		i = protohelpers.EncodeVarint(dAtA, i, uint64(*m.Dischargedate))
 		i--
 		dAtA[i] = 0x68
 	}
@@ -22602,10 +22602,10 @@ func (m *AradeRow) SizeVT() (n int) {
 		n += 1 + l + protohelpers.SizeOfVarint(uint64(l))
 	}
 	if m.F8 != 0 {
-		n += 1 + protohelpers.SizeOfVarint(uint64(m.F8))
+		n += 1 + protohelpers.SizeOfZigzag(uint64(m.F8))
 	}
 	if m.F9 != 0 {
-		n += 1 + protohelpers.SizeOfVarint(uint64(m.F9))
+		n += 1 + protohelpers.SizeOfZigzag(uint64(m.F9))
 	}
 	if m.NumberOfRecords != 0 {
 		n += 1 + protohelpers.SizeOfVarint(uint64(m.NumberOfRecords))
@@ -23055,7 +23055,7 @@ func (m *CommonGovernmentRow) SizeVT() (n int) {
 		n += 2 + l + protohelpers.SizeOfVarint(uint64(l))
 	}
 	if m.FundingAgencyKey != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.FundingAgencyKey))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.FundingAgencyKey))
 	}
 	l = len(m.FundingAgencyName)
 	if l > 0 {
@@ -23401,7 +23401,7 @@ func (m *EixoRow) SizeVT() (n int) {
 		n += 2 + l + protohelpers.SizeOfVarint(uint64(l))
 	}
 	if m.DataDeInicio != nil {
-		n += 2 + protohelpers.SizeOfZigzag(uint64(*m.DataDeInicio))
+		n += 2 + protohelpers.SizeOfVarint(uint64(*m.DataDeInicio))
 	}
 	if m.DataDePrevisaodeTermino != nil {
 		n += 2 + protohelpers.SizeOfVarint(uint64(*m.DataDePrevisaodeTermino))
@@ -23792,7 +23792,7 @@ func (m *GenericoRow) SizeVT() (n int) {
 		n += 1 + protohelpers.SizeOfVarint(uint64(m.Corte))
 	}
 	if m.DeNpags != nil {
-		n += 1 + protohelpers.SizeOfVarint(uint64(*m.DeNpags))
+		n += 1 + protohelpers.SizeOfZigzag(uint64(*m.DeNpags))
 	}
 	if m.DiaSemana != 0 {
 		n += 1 + protohelpers.SizeOfVarint(uint64(m.DiaSemana))
@@ -24376,7 +24376,7 @@ func (m *HatredRow) SizeVT() (n int) {
 		n += 2 + l + protohelpers.SizeOfVarint(uint64(l))
 	}
 	if m.Long != nil {
-		n += 2 + protohelpers.SizeOfVarint(uint64(*m.Long))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(*m.Long))
 	}
 	if m.Name != nil {
 		l = len(*m.Name)
@@ -24550,7 +24550,7 @@ func (m *IGlocations2Row) SizeVT() (n int) {
 		n += 1 + protohelpers.SizeOfVarint(uint64(m.Id))
 	}
 	if m.Latitude != 0 {
-		n += 1 + protohelpers.SizeOfVarint(uint64(m.Latitude))
+		n += 1 + protohelpers.SizeOfZigzag(uint64(m.Latitude))
 	}
 	if m.LikeCount != 0 {
 		n += 1 + protohelpers.SizeOfVarint(uint64(m.LikeCount))
@@ -24598,7 +24598,7 @@ func (m *IGlocations2Row) SizeVT() (n int) {
 		n += 2 + l + protohelpers.SizeOfVarint(uint64(l))
 	}
 	if m.Calculation9330724145728972 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Calculation9330724145728972))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Calculation9330724145728972))
 	}
 	n += len(m.unknownFields)
 	return n
@@ -25590,7 +25590,7 @@ func (m *MotosRow) SizeVT() (n int) {
 		n += 1 + protohelpers.SizeOfVarint(uint64(m.Corte))
 	}
 	if m.DeNpags != nil {
-		n += 1 + protohelpers.SizeOfVarint(uint64(*m.DeNpags))
+		n += 1 + protohelpers.SizeOfZigzag(uint64(*m.DeNpags))
 	}
 	if m.DiaSemana != 0 {
 		n += 1 + protohelpers.SizeOfVarint(uint64(m.DiaSemana))
@@ -25820,7 +25820,7 @@ func (m *MulheresMilRow) SizeVT() (n int) {
 		n += 2 + l + protohelpers.SizeOfVarint(uint64(l))
 	}
 	if m.DataDeInicio != nil {
-		n += 2 + protohelpers.SizeOfZigzag(uint64(*m.DataDeInicio))
+		n += 2 + protohelpers.SizeOfVarint(uint64(*m.DataDeInicio))
 	}
 	if m.DataDePrevisaodeTermino != nil {
 		n += 2 + protohelpers.SizeOfVarint(uint64(*m.DataDePrevisaodeTermino))
@@ -26121,7 +26121,7 @@ func (m *NYCRow) SizeVT() (n int) {
 		n += 1 + l + protohelpers.SizeOfVarint(uint64(l))
 	}
 	if m.DueDate != nil {
-		n += 2 + protohelpers.SizeOfVarint(uint64(*m.DueDate))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(*m.DueDate))
 	}
 	if m.FacilityType != nil {
 		l = len(*m.FacilityType)
@@ -27100,7 +27100,7 @@ func (m *Redfin1Row) SizeVT() (n int) {
 		n += 1 + protohelpers.SizeOfZigzag(uint64(*m.MedianDomMom))
 	}
 	if m.MedianDomYoy != nil {
-		n += 1 + protohelpers.SizeOfVarint(uint64(*m.MedianDomYoy))
+		n += 1 + protohelpers.SizeOfZigzag(uint64(*m.MedianDomYoy))
 	}
 	if m.MedianListPpsf != nil {
 		n += 9
@@ -27264,7 +27264,7 @@ func (m *Redfin2Row) SizeVT() (n int) {
 		n += 1 + protohelpers.SizeOfZigzag(uint64(*m.MedianDomMom))
 	}
 	if m.MedianDomYoy != nil {
-		n += 1 + protohelpers.SizeOfVarint(uint64(*m.MedianDomYoy))
+		n += 1 + protohelpers.SizeOfZigzag(uint64(*m.MedianDomYoy))
 	}
 	if m.MedianListPpsf != nil {
 		n += 9
@@ -27428,7 +27428,7 @@ func (m *Redfin3Row) SizeVT() (n int) {
 		n += 1 + protohelpers.SizeOfZigzag(uint64(*m.MedianDomMom))
 	}
 	if m.MedianDomYoy != nil {
-		n += 1 + protohelpers.SizeOfVarint(uint64(*m.MedianDomYoy))
+		n += 1 + protohelpers.SizeOfZigzag(uint64(*m.MedianDomYoy))
 	}
 	if m.MedianListPpsf != nil {
 		n += 9
@@ -27601,7 +27601,7 @@ func (m *Redfin4Row) SizeVT() (n int) {
 		n += 1 + protohelpers.SizeOfZigzag(uint64(*m.MedianDomMom))
 	}
 	if m.MedianDomYoy != nil {
-		n += 1 + protohelpers.SizeOfVarint(uint64(*m.MedianDomYoy))
+		n += 1 + protohelpers.SizeOfZigzag(uint64(*m.MedianDomYoy))
 	}
 	if m.MedianListPpsf != nil {
 		n += 9
@@ -27922,7 +27922,7 @@ func (m *RentabilidadRow) SizeVT() (n int) {
 		n += 2 + protohelpers.SizeOfVarint(uint64(*m.LatitudAutoprev))
 	}
 	if m.Latitud != nil {
-		n += 2 + protohelpers.SizeOfVarint(uint64(*m.Latitud))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(*m.Latitud))
 	}
 	l = len(m.Locacion)
 	if l > 0 {
@@ -28260,7 +28260,7 @@ func (m *RomanceRow) SizeVT() (n int) {
 		n += 1 + l + protohelpers.SizeOfVarint(uint64(l))
 	}
 	if m.Lat != nil {
-		n += 1 + protohelpers.SizeOfVarint(uint64(*m.Lat))
+		n += 1 + protohelpers.SizeOfZigzag(uint64(*m.Lat))
 	}
 	if m.Link != nil {
 		l = len(*m.Link)
@@ -29297,7 +29297,7 @@ func (m *TelcoRow) SizeVT() (n int) {
 		n += 10
 	}
 	if m.Totaoutgoingrevp2 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Totaoutgoingrevp2))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Totaoutgoingrevp2))
 	}
 	if m.Totaoutgoingrevp3 != 0 {
 		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Totaoutgoingrevp3))
@@ -29820,7 +29820,7 @@ func (m *USCensusRow) SizeVT() (n int) {
 		n += 2 + protohelpers.SizeOfVarint(uint64(*m.Fiberop))
 	}
 	if m.Fincp != nil {
-		n += 2 + protohelpers.SizeOfVarint(uint64(*m.Fincp))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(*m.Fincp))
 	}
 	if m.Findp != 0 {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Findp))
@@ -30102,7 +30102,7 @@ func (m *USCensusRow) SizeVT() (n int) {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Hicov))
 	}
 	if m.Hincp != nil {
-		n += 2 + protohelpers.SizeOfVarint(uint64(*m.Hincp))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(*m.Hincp))
 	}
 	if m.Hins1 != 0 {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Hins1))
@@ -30147,7 +30147,7 @@ func (m *USCensusRow) SizeVT() (n int) {
 		n += 2 + protohelpers.SizeOfVarint(uint64(*m.Insp))
 	}
 	if m.Intp != nil {
-		n += 2 + protohelpers.SizeOfVarint(uint64(*m.Intp))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(*m.Intp))
 	}
 	if m.Jwap != nil {
 		n += 2 + protohelpers.SizeOfVarint(uint64(*m.Jwap))
@@ -30334,10 +30334,10 @@ func (m *USCensusRow) SizeVT() (n int) {
 		n += 2 + protohelpers.SizeOfVarint(uint64(*m.Partner))
 	}
 	if m.Pernp != nil {
-		n += 2 + protohelpers.SizeOfVarint(uint64(*m.Pernp))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(*m.Pernp))
 	}
 	if m.Pincp != nil {
-		n += 2 + protohelpers.SizeOfVarint(uint64(*m.Pincp))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(*m.Pincp))
 	}
 	if m.Plm != nil {
 		n += 2 + protohelpers.SizeOfVarint(uint64(*m.Plm))
@@ -30477,7 +30477,7 @@ func (m *USCensusRow) SizeVT() (n int) {
 		n += 2 + protohelpers.SizeOfVarint(uint64(*m.Sciengrlp))
 	}
 	if m.Semp != nil {
-		n += 2 + protohelpers.SizeOfVarint(uint64(*m.Semp))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(*m.Semp))
 	}
 	if m.Serialno != 0 {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Serialno))
@@ -30615,7 +30615,7 @@ func (m *USCensusRow) SizeVT() (n int) {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp10))
 	}
 	if m.Pwgtp11 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp11))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Pwgtp11))
 	}
 	if m.Pwgtp12 != 0 {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp12))
@@ -30630,7 +30630,7 @@ func (m *USCensusRow) SizeVT() (n int) {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp15))
 	}
 	if m.Pwgtp16 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp16))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Pwgtp16))
 	}
 	if m.Pwgtp17 != 0 {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp17))
@@ -30651,10 +30651,10 @@ func (m *USCensusRow) SizeVT() (n int) {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp21))
 	}
 	if m.Pwgtp22 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp22))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Pwgtp22))
 	}
 	if m.Pwgtp23 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp23))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Pwgtp23))
 	}
 	if m.Pwgtp24 != 0 {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp24))
@@ -30663,7 +30663,7 @@ func (m *USCensusRow) SizeVT() (n int) {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp25))
 	}
 	if m.Pwgtp26 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp26))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Pwgtp26))
 	}
 	if m.Pwgtp27 != 0 {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp27))
@@ -30675,7 +30675,7 @@ func (m *USCensusRow) SizeVT() (n int) {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp29))
 	}
 	if m.Pwgtp2 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp2))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Pwgtp2))
 	}
 	if m.Pwgtp30 != 0 {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp30))
@@ -30693,7 +30693,7 @@ func (m *USCensusRow) SizeVT() (n int) {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp34))
 	}
 	if m.Pwgtp35 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp35))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Pwgtp35))
 	}
 	if m.Pwgtp36 != 0 {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp36))
@@ -30714,7 +30714,7 @@ func (m *USCensusRow) SizeVT() (n int) {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp40))
 	}
 	if m.Pwgtp41 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp41))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Pwgtp41))
 	}
 	if m.Pwgtp42 != 0 {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp42))
@@ -30723,7 +30723,7 @@ func (m *USCensusRow) SizeVT() (n int) {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp43))
 	}
 	if m.Pwgtp44 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp44))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Pwgtp44))
 	}
 	if m.Pwgtp45 != 0 {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp45))
@@ -30732,10 +30732,10 @@ func (m *USCensusRow) SizeVT() (n int) {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp46))
 	}
 	if m.Pwgtp47 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp47))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Pwgtp47))
 	}
 	if m.Pwgtp48 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp48))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Pwgtp48))
 	}
 	if m.Pwgtp49 != 0 {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp49))
@@ -30789,25 +30789,25 @@ func (m *USCensusRow) SizeVT() (n int) {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp63))
 	}
 	if m.Pwgtp64 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp64))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Pwgtp64))
 	}
 	if m.Pwgtp65 != 0 {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp65))
 	}
 	if m.Pwgtp66 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp66))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Pwgtp66))
 	}
 	if m.Pwgtp67 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp67))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Pwgtp67))
 	}
 	if m.Pwgtp68 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp68))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Pwgtp68))
 	}
 	if m.Pwgtp69 != 0 {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp69))
 	}
 	if m.Pwgtp6 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp6))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Pwgtp6))
 	}
 	if m.Pwgtp70 != 0 {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp70))
@@ -30837,7 +30837,7 @@ func (m *USCensusRow) SizeVT() (n int) {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp78))
 	}
 	if m.Pwgtp79 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp79))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Pwgtp79))
 	}
 	if m.Pwgtp7 != 0 {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Pwgtp7))
@@ -30855,7 +30855,7 @@ func (m *USCensusRow) SizeVT() (n int) {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp10))
 	}
 	if m.Wgtp11 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp11))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Wgtp11))
 	}
 	if m.Wgtp12 != 0 {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp12))
@@ -30891,19 +30891,19 @@ func (m *USCensusRow) SizeVT() (n int) {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp21))
 	}
 	if m.Wgtp22 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp22))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Wgtp22))
 	}
 	if m.Wgtp23 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp23))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Wgtp23))
 	}
 	if m.Wgtp24 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp24))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Wgtp24))
 	}
 	if m.Wgtp25 != 0 {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp25))
 	}
 	if m.Wgtp26 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp26))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Wgtp26))
 	}
 	if m.Wgtp27 != 0 {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp27))
@@ -30915,7 +30915,7 @@ func (m *USCensusRow) SizeVT() (n int) {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp29))
 	}
 	if m.Wgtp2 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp2))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Wgtp2))
 	}
 	if m.Wgtp30 != 0 {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp30))
@@ -30933,7 +30933,7 @@ func (m *USCensusRow) SizeVT() (n int) {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp34))
 	}
 	if m.Wgtp35 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp35))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Wgtp35))
 	}
 	if m.Wgtp36 != 0 {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp36))
@@ -30948,13 +30948,13 @@ func (m *USCensusRow) SizeVT() (n int) {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp39))
 	}
 	if m.Wgtp3 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp3))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Wgtp3))
 	}
 	if m.Wgtp40 != 0 {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp40))
 	}
 	if m.Wgtp41 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp41))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Wgtp41))
 	}
 	if m.Wgtp42 != 0 {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp42))
@@ -30963,7 +30963,7 @@ func (m *USCensusRow) SizeVT() (n int) {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp43))
 	}
 	if m.Wgtp44 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp44))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Wgtp44))
 	}
 	if m.Wgtp45 != 0 {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp45))
@@ -30972,16 +30972,16 @@ func (m *USCensusRow) SizeVT() (n int) {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp46))
 	}
 	if m.Wgtp47 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp47))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Wgtp47))
 	}
 	if m.Wgtp48 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp48))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Wgtp48))
 	}
 	if m.Wgtp49 != 0 {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp49))
 	}
 	if m.Wgtp4 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp4))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Wgtp4))
 	}
 	if m.Wgtp50 != 0 {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp50))
@@ -31020,7 +31020,7 @@ func (m *USCensusRow) SizeVT() (n int) {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp60))
 	}
 	if m.Wgtp61 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp61))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Wgtp61))
 	}
 	if m.Wgtp62 != 0 {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp62))
@@ -31029,25 +31029,25 @@ func (m *USCensusRow) SizeVT() (n int) {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp63))
 	}
 	if m.Wgtp64 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp64))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Wgtp64))
 	}
 	if m.Wgtp65 != 0 {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp65))
 	}
 	if m.Wgtp66 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp66))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Wgtp66))
 	}
 	if m.Wgtp67 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp67))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Wgtp67))
 	}
 	if m.Wgtp68 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp68))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Wgtp68))
 	}
 	if m.Wgtp69 != 0 {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp69))
 	}
 	if m.Wgtp6 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp6))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Wgtp6))
 	}
 	if m.Wgtp70 != 0 {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp70))
@@ -31077,10 +31077,10 @@ func (m *USCensusRow) SizeVT() (n int) {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp78))
 	}
 	if m.Wgtp79 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp79))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Wgtp79))
 	}
 	if m.Wgtp7 != 0 {
-		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp7))
+		n += 2 + protohelpers.SizeOfZigzag(uint64(m.Wgtp7))
 	}
 	if m.Wgtp80 != 0 {
 		n += 2 + protohelpers.SizeOfVarint(uint64(m.Wgtp80))
@@ -31206,7 +31206,7 @@ func (m *UberlandiaRow) SizeVT() (n int) {
 		n += 2 + l + protohelpers.SizeOfVarint(uint64(l))
 	}
 	if m.DataDeInicio != nil {
-		n += 2 + protohelpers.SizeOfZigzag(uint64(*m.DataDeInicio))
+		n += 2 + protohelpers.SizeOfVarint(uint64(*m.DataDeInicio))
 	}
 	if m.DataDePrevisaodeTermino != nil {
 		n += 2 + protohelpers.SizeOfVarint(uint64(*m.DataDePrevisaodeTermino))
@@ -32313,7 +32313,7 @@ func (m *YaleLanguagesRow) SizeVT() (n int) {
 		n += 1 + l + protohelpers.SizeOfVarint(uint64(l))
 	}
 	if m.Dischargedate != nil {
-		n += 1 + protohelpers.SizeOfZigzag(uint64(*m.Dischargedate))
+		n += 1 + protohelpers.SizeOfVarint(uint64(*m.Dischargedate))
 	}
 	if m.Id != nil {
 		n += 1 + protohelpers.SizeOfVarint(uint64(*m.Id))
@@ -32685,7 +32685,7 @@ func (m *AradeRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field F8", wireType)
 			}
-			m.F8 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -32695,16 +32695,18 @@ func (m *AradeRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.F8 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.F8 = v
 		case 9:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field F9", wireType)
 			}
-			m.F9 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -32714,11 +32716,13 @@ func (m *AradeRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.F9 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.F9 = v
 		case 10:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field NumberOfRecords", wireType)
@@ -35705,7 +35709,7 @@ func (m *CommonGovernmentRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field FundingAgencyKey", wireType)
 			}
-			m.FundingAgencyKey = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -35715,11 +35719,13 @@ func (m *CommonGovernmentRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.FundingAgencyKey |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.FundingAgencyKey = v
 		case 29:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field FundingAgencyName", wireType)
@@ -38190,7 +38196,6 @@ func (m *EixoRow) UnmarshalVT(dAtA []byte) error {
 					break
 				}
 			}
-			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
 			m.DataDeInicio = &v
 		case 27:
 			if wireType != 0 {
@@ -41046,6 +41051,7 @@ func (m *GenericoRow) UnmarshalVT(dAtA []byte) error {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
 			m.DeNpags = &v
 		case 13:
 			if wireType != 0 {
@@ -45169,7 +45175,7 @@ func (m *HatredRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Long", wireType)
 			}
-			var v int64
+			var v uint64
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -45179,12 +45185,14 @@ func (m *HatredRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				v |= int64(b&0x7F) << shift
+				v |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			m.Long = &v
+			v = (v >> 1) ^ uint64((int64(v&1)<<63)>>63)
+			v2 := int64(v)
+			m.Long = &v2
 		case 21:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Name", wireType)
@@ -46313,7 +46321,7 @@ func (m *IGlocations2Row) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Latitude", wireType)
 			}
-			m.Latitude = 0
+			var v uint64
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -46323,11 +46331,13 @@ func (m *IGlocations2Row) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Latitude |= int64(b&0x7F) << shift
+				v |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = (v >> 1) ^ uint64((int64(v&1)<<63)>>63)
+			m.Latitude = int64(v)
 		case 8:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field LikeCount", wireType)
@@ -46682,7 +46692,7 @@ func (m *IGlocations2Row) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Calculation9330724145728972", wireType)
 			}
-			m.Calculation9330724145728972 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -46692,11 +46702,13 @@ func (m *IGlocations2Row) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Calculation9330724145728972 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Calculation9330724145728972 = v
 		default:
 			iNdEx = preIndex
 			skippy, err := protohelpers.Skip(dAtA[iNdEx:])
@@ -53321,6 +53333,7 @@ func (m *MotosRow) UnmarshalVT(dAtA []byte) error {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
 			m.DeNpags = &v
 		case 13:
 			if wireType != 0 {
@@ -54966,7 +54979,6 @@ func (m *MulheresMilRow) UnmarshalVT(dAtA []byte) error {
 					break
 				}
 			}
-			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
 			m.DataDeInicio = &v
 		case 27:
 			if wireType != 0 {
@@ -57287,7 +57299,7 @@ func (m *NYCRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field DueDate", wireType)
 			}
-			var v int64
+			var v uint64
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -57297,12 +57309,14 @@ func (m *NYCRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				v |= int64(b&0x7F) << shift
+				v |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			m.DueDate = &v
+			v = (v >> 1) ^ uint64((int64(v&1)<<63)>>63)
+			v2 := int64(v)
+			m.DueDate = &v2
 		case 17:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field FacilityType", wireType)
@@ -64067,6 +64081,7 @@ func (m *Redfin1Row) UnmarshalVT(dAtA []byte) error {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
 			m.MedianDomYoy = &v
 		case 15:
 			if wireType != 1 {
@@ -64947,6 +64962,7 @@ func (m *Redfin2Row) UnmarshalVT(dAtA []byte) error {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
 			m.MedianDomYoy = &v
 		case 15:
 			if wireType != 1 {
@@ -65827,6 +65843,7 @@ func (m *Redfin3Row) UnmarshalVT(dAtA []byte) error {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
 			m.MedianDomYoy = &v
 		case 15:
 			if wireType != 1 {
@@ -66751,6 +66768,7 @@ func (m *Redfin4Row) UnmarshalVT(dAtA []byte) error {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
 			m.MedianDomYoy = &v
 		case 15:
 			if wireType != 1 {
@@ -68721,7 +68739,7 @@ func (m *RentabilidadRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Latitud", wireType)
 			}
-			var v int64
+			var v uint64
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -68731,12 +68749,14 @@ func (m *RentabilidadRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				v |= int64(b&0x7F) << shift
+				v |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			m.Latitud = &v
+			v = (v >> 1) ^ uint64((int64(v&1)<<63)>>63)
+			v2 := int64(v)
+			m.Latitud = &v2
 		case 55:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Locacion", wireType)
@@ -70816,7 +70836,7 @@ func (m *RomanceRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Lat", wireType)
 			}
-			var v int64
+			var v uint64
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -70826,12 +70846,14 @@ func (m *RomanceRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				v |= int64(b&0x7F) << shift
+				v |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			m.Lat = &v
+			v = (v >> 1) ^ uint64((int64(v&1)<<63)>>63)
+			v2 := int64(v)
+			m.Lat = &v2
 		case 7:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Link", wireType)
@@ -76932,7 +76954,7 @@ func (m *TelcoRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Totaoutgoingrevp2", wireType)
 			}
-			m.Totaoutgoingrevp2 = 0
+			var v uint64
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -76942,11 +76964,13 @@ func (m *TelcoRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Totaoutgoingrevp2 |= int64(b&0x7F) << shift
+				v |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = (v >> 1) ^ uint64((int64(v&1)<<63)>>63)
+			m.Totaoutgoingrevp2 = int64(v)
 		case 174:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Totaoutgoingrevp3", wireType)
@@ -80295,6 +80319,7 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
 			m.Fincp = &v
 		case 97:
 			if wireType != 0 {
@@ -82129,6 +82154,7 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
 			m.Hincp = &v
 		case 191:
 			if wireType != 0 {
@@ -82421,6 +82447,7 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
 			m.Intp = &v
 		case 206:
 			if wireType != 0 {
@@ -83669,6 +83696,7 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
 			m.Pernp = &v
 		case 268:
 			if wireType != 0 {
@@ -83689,6 +83717,7 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
 			m.Pincp = &v
 		case 269:
 			if wireType != 0 {
@@ -84612,6 +84641,7 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
 			m.Semp = &v
 		case 315:
 			if wireType != 0 {
@@ -85524,7 +85554,7 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Pwgtp11", wireType)
 			}
-			m.Pwgtp11 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -85534,11 +85564,13 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Pwgtp11 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Pwgtp11 = v
 		case 360:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Pwgtp12", wireType)
@@ -85619,7 +85651,7 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Pwgtp16", wireType)
 			}
-			m.Pwgtp16 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -85629,11 +85661,13 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Pwgtp16 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Pwgtp16 = v
 		case 365:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Pwgtp17", wireType)
@@ -85752,7 +85786,7 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Pwgtp22", wireType)
 			}
-			m.Pwgtp22 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -85762,16 +85796,18 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Pwgtp22 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Pwgtp22 = v
 		case 372:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Pwgtp23", wireType)
 			}
-			m.Pwgtp23 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -85781,11 +85817,13 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Pwgtp23 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Pwgtp23 = v
 		case 373:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Pwgtp24", wireType)
@@ -85828,7 +85866,7 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Pwgtp26", wireType)
 			}
-			m.Pwgtp26 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -85838,11 +85876,13 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Pwgtp26 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Pwgtp26 = v
 		case 376:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Pwgtp27", wireType)
@@ -85904,7 +85944,7 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Pwgtp2", wireType)
 			}
-			m.Pwgtp2 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -85914,11 +85954,13 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Pwgtp2 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Pwgtp2 = v
 		case 380:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Pwgtp30", wireType)
@@ -86018,7 +86060,7 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Pwgtp35", wireType)
 			}
-			m.Pwgtp35 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -86028,11 +86070,13 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Pwgtp35 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Pwgtp35 = v
 		case 386:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Pwgtp36", wireType)
@@ -86151,7 +86195,7 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Pwgtp41", wireType)
 			}
-			m.Pwgtp41 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -86161,11 +86205,13 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Pwgtp41 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Pwgtp41 = v
 		case 393:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Pwgtp42", wireType)
@@ -86208,7 +86254,7 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Pwgtp44", wireType)
 			}
-			m.Pwgtp44 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -86218,11 +86264,13 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Pwgtp44 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Pwgtp44 = v
 		case 396:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Pwgtp45", wireType)
@@ -86265,7 +86313,7 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Pwgtp47", wireType)
 			}
-			m.Pwgtp47 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -86275,16 +86323,18 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Pwgtp47 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Pwgtp47 = v
 		case 399:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Pwgtp48", wireType)
 			}
-			m.Pwgtp48 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -86294,11 +86344,13 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Pwgtp48 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Pwgtp48 = v
 		case 400:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Pwgtp49", wireType)
@@ -86626,7 +86678,7 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Pwgtp64", wireType)
 			}
-			m.Pwgtp64 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -86636,11 +86688,13 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Pwgtp64 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Pwgtp64 = v
 		case 418:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Pwgtp65", wireType)
@@ -86664,7 +86718,7 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Pwgtp66", wireType)
 			}
-			m.Pwgtp66 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -86674,16 +86728,18 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Pwgtp66 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Pwgtp66 = v
 		case 420:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Pwgtp67", wireType)
 			}
-			m.Pwgtp67 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -86693,16 +86749,18 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Pwgtp67 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Pwgtp67 = v
 		case 421:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Pwgtp68", wireType)
 			}
-			m.Pwgtp68 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -86712,11 +86770,13 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Pwgtp68 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Pwgtp68 = v
 		case 422:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Pwgtp69", wireType)
@@ -86740,7 +86800,7 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Pwgtp6", wireType)
 			}
-			m.Pwgtp6 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -86750,11 +86810,13 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Pwgtp6 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Pwgtp6 = v
 		case 424:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Pwgtp70", wireType)
@@ -86930,7 +86992,7 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Pwgtp79", wireType)
 			}
-			m.Pwgtp79 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -86940,11 +87002,13 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Pwgtp79 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Pwgtp79 = v
 		case 434:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Pwgtp7", wireType)
@@ -87044,7 +87108,7 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp11", wireType)
 			}
-			m.Wgtp11 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -87054,11 +87118,13 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Wgtp11 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Wgtp11 = v
 		case 440:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp12", wireType)
@@ -87272,7 +87338,7 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp22", wireType)
 			}
-			m.Wgtp22 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -87282,16 +87348,18 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Wgtp22 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Wgtp22 = v
 		case 452:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp23", wireType)
 			}
-			m.Wgtp23 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -87301,16 +87369,18 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Wgtp23 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Wgtp23 = v
 		case 453:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp24", wireType)
 			}
-			m.Wgtp24 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -87320,11 +87390,13 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Wgtp24 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Wgtp24 = v
 		case 454:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp25", wireType)
@@ -87348,7 +87420,7 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp26", wireType)
 			}
-			m.Wgtp26 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -87358,11 +87430,13 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Wgtp26 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Wgtp26 = v
 		case 456:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp27", wireType)
@@ -87424,7 +87498,7 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp2", wireType)
 			}
-			m.Wgtp2 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -87434,11 +87508,13 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Wgtp2 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Wgtp2 = v
 		case 460:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp30", wireType)
@@ -87538,7 +87614,7 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp35", wireType)
 			}
-			m.Wgtp35 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -87548,11 +87624,13 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Wgtp35 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Wgtp35 = v
 		case 466:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp36", wireType)
@@ -87633,7 +87711,7 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp3", wireType)
 			}
-			m.Wgtp3 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -87643,11 +87721,13 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Wgtp3 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Wgtp3 = v
 		case 471:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp40", wireType)
@@ -87671,7 +87751,7 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp41", wireType)
 			}
-			m.Wgtp41 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -87681,11 +87761,13 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Wgtp41 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Wgtp41 = v
 		case 473:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp42", wireType)
@@ -87728,7 +87810,7 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp44", wireType)
 			}
-			m.Wgtp44 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -87738,11 +87820,13 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Wgtp44 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Wgtp44 = v
 		case 476:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp45", wireType)
@@ -87785,7 +87869,7 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp47", wireType)
 			}
-			m.Wgtp47 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -87795,16 +87879,18 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Wgtp47 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Wgtp47 = v
 		case 479:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp48", wireType)
 			}
-			m.Wgtp48 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -87814,11 +87900,13 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Wgtp48 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Wgtp48 = v
 		case 480:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp49", wireType)
@@ -87842,7 +87930,7 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp4", wireType)
 			}
-			m.Wgtp4 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -87852,11 +87940,13 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Wgtp4 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Wgtp4 = v
 		case 482:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp50", wireType)
@@ -88089,7 +88179,7 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp61", wireType)
 			}
-			m.Wgtp61 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -88099,11 +88189,13 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Wgtp61 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Wgtp61 = v
 		case 495:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp62", wireType)
@@ -88146,7 +88238,7 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp64", wireType)
 			}
-			m.Wgtp64 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -88156,11 +88248,13 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Wgtp64 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Wgtp64 = v
 		case 498:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp65", wireType)
@@ -88184,7 +88278,7 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp66", wireType)
 			}
-			m.Wgtp66 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -88194,16 +88288,18 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Wgtp66 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Wgtp66 = v
 		case 500:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp67", wireType)
 			}
-			m.Wgtp67 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -88213,16 +88309,18 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Wgtp67 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Wgtp67 = v
 		case 501:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp68", wireType)
 			}
-			m.Wgtp68 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -88232,11 +88330,13 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Wgtp68 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Wgtp68 = v
 		case 502:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp69", wireType)
@@ -88260,7 +88360,7 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp6", wireType)
 			}
-			m.Wgtp6 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -88270,11 +88370,13 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Wgtp6 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Wgtp6 = v
 		case 504:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp70", wireType)
@@ -88450,7 +88552,7 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp79", wireType)
 			}
-			m.Wgtp79 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -88460,16 +88562,18 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Wgtp79 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Wgtp79 = v
 		case 514:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp7", wireType)
 			}
-			m.Wgtp7 = 0
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -88479,11 +88583,13 @@ func (m *USCensusRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Wgtp7 |= int32(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
+			m.Wgtp7 = v
 		case 515:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Wgtp80", wireType)
@@ -89317,7 +89423,6 @@ func (m *UberlandiaRow) UnmarshalVT(dAtA []byte) error {
 					break
 				}
 			}
-			v = int32((uint32(v) >> 1) ^ uint32(((v&1)<<31)>>31))
 			m.DataDeInicio = &v
 		case 27:
 			if wireType != 0 {
@@ -96978,7 +97083,7 @@ func (m *YaleLanguagesRow) UnmarshalVT(dAtA []byte) error {
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Dischargedate", wireType)
 			}
-			var v uint64
+			var v int64
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return protohelpers.ErrIntOverflow
@@ -96988,14 +97093,12 @@ func (m *YaleLanguagesRow) UnmarshalVT(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				v |= uint64(b&0x7F) << shift
+				v |= int64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			v = (v >> 1) ^ uint64((int64(v&1)<<63)>>63)
-			v2 := int64(v)
-			m.Dischargedate = &v2
+			m.Dischargedate = &v
 		case 14:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)

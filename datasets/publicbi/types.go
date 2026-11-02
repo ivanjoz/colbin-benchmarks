@@ -60,17 +60,17 @@ type Arade struct {
 
 // AradeRow is one row of Arade_1.
 type AradeRow struct {
-	F1              string  `cb:"1"`                 // "F1" varchar(3) NOT NULL
-	F2              string  `cb:"2"`                 // "F2" varchar(5) NOT NULL
-	F3              int64   `cb:"3" pbi:"timestamp"` // "F3" timestamp NOT NULL
-	F4              int32   `cb:"4" pbi:"decimal,4"` // "F4" decimal(8, 4) NOT NULL
-	F5              int32   `cb:"5" pbi:"decimal,6"` // "F5" decimal(8, 6) NOT NULL
-	F6              *string `cb:"6"`                 // "F6" varchar(1)
-	F7              *string `cb:"7"`                 // "F7" varchar(1)
-	F8              int32   `cb:"8" pbi:"decimal,6"` // "F8" decimal(9, 6) NOT NULL
-	F9              int32   `cb:"9" pbi:"decimal,6"` // "F9" decimal(9, 6) NOT NULL
-	NumberOfRecords int16   `cb:"10"`                // "Number of Records" smallint NOT NULL
-	WNETBin         int16   `cb:"11"`                // "WNET (bin)" smallint NOT NULL
+	F1              string  `cb:"1"`                           // "F1" varchar(3) NOT NULL
+	F2              string  `cb:"2"`                           // "F2" varchar(5) NOT NULL
+	F3              int64   `cb:"3" pbi:"timestamp"`           // "F3" timestamp NOT NULL
+	F4              int32   `cb:"4" pbi:"decimal,4"`           // "F4" decimal(8, 4) NOT NULL
+	F5              int32   `cb:"5" pbi:"decimal,6"`           // "F5" decimal(8, 6) NOT NULL
+	F6              *string `cb:"6"`                           // "F6" varchar(1)
+	F7              *string `cb:"7"`                           // "F7" varchar(1)
+	F8              int32   `cb:"8" pbi:"decimal,6" pb:"sint"` // "F8" decimal(9, 6) NOT NULL
+	F9              int32   `cb:"9" pbi:"decimal,6" pb:"sint"` // "F9" decimal(9, 6) NOT NULL
+	NumberOfRecords int16   `cb:"10"`                          // "Number of Records" smallint NOT NULL
+	WNETBin         int16   `cb:"11"`                          // "WNET (bin)" smallint NOT NULL
 }
 
 // LoadArade reads Arade_1.csv.
@@ -227,7 +227,7 @@ type CommonGovernmentRow struct {
 	FkRecMat                     *int16  `cb:"25" pb:"sint"`       // "fk_rec_mat" smallint
 	Ftsdollar                    float64 `cb:"26"`                 // "ftsdollar" double NOT NULL
 	FundingAgency                *string `cb:"27"`                 // "funding_agency" varchar(4)
-	FundingAgencyKey             int32   `cb:"28"`                 // "funding_agency_key" integer NOT NULL
+	FundingAgencyKey             int32   `cb:"28" pb:"sint"`       // "funding_agency_key" integer NOT NULL
 	FundingAgencyName            string  `cb:"29"`                 // "funding_agency_name" varchar(40) NOT NULL
 	Gsadollar                    float64 `cb:"30"`                 // "gsadollar" double NOT NULL
 	Gsaotherdollar               float64 `cb:"31"`                 // "gsaotherdollar" double NOT NULL
@@ -338,7 +338,7 @@ type EixoRow struct {
 	DataDeNascimentoAluno               *int32  `cb:"23" pbi:"date" pb:"sint"` // "data de nascimento aluno" date
 	DataDaPublicacao                    *int32  `cb:"24" pbi:"date"`           // "data_da_publicacao" date
 	DataDeConclusao                     *string `cb:"25"`                      // "data_de_conclusao" varchar(10)
-	DataDeInicio                        *int32  `cb:"26" pbi:"date" pb:"sint"` // "data_de_inicio" date
+	DataDeInicio                        *int32  `cb:"26" pbi:"date"`           // "data_de_inicio" date
 	DataDePrevisaodeTermino             *int32  `cb:"27" pbi:"date"`           // "data_de_previsaode_termino" date
 	Desempregado                        *string `cb:"28"`                      // "desempregado" varchar(3)
 	DsEmail                             *string `cb:"29"`                      // "ds_email" varchar(129)
@@ -466,7 +466,7 @@ type GenericoRow struct {
 	Concatenar1     *string `cb:"9"`             // "Concatenar 1" varchar(54)
 	Concatenar2     *string `cb:"10"`            // "Concatenar 2" varchar(76)
 	Corte           int16   `cb:"11"`            // "Corte" smallint NOT NULL
-	DeNpags         *int16  `cb:"12"`            // "De_Npags" smallint
+	DeNpags         *int16  `cb:"12" pb:"sint"`  // "De_Npags" smallint
 	DiaSemana       int16   `cb:"13"`            // "Dia_Semana" smallint NOT NULL
 	Disco           *int16  `cb:"14"`            // "Disco" smallint
 	Duracion        *int16  `cb:"15"`            // "Duracion" smallint
@@ -648,7 +648,7 @@ type HatredRow struct {
 	Lat                *int64  `cb:"17" pbi:"decimal,8" pb:"sint"` // "Lat" decimal(11, 8)
 	Listed             *int32  `cb:"18"`                           // "Listed" integer
 	LocationType       string  `cb:"19"`                           // "Location Type" varchar(5) NOT NULL
-	Long               *int64  `cb:"20" pbi:"decimal,8"`           // "Long" decimal(10, 8)
+	Long               *int64  `cb:"20" pbi:"decimal,8" pb:"sint"` // "Long" decimal(10, 8)
 	Name               *string `cb:"21"`                           // "Name" varchar(20)
 	NumberOfRecords    int16   `cb:"22"`                           // "Number of Records" smallint NOT NULL
 	Region             string  `cb:"23"`                           // "Region" varchar(9) NOT NULL
@@ -714,7 +714,7 @@ type IGlocations2Row struct {
 	Country                     string  `cb:"4"`                            // "country" varchar(2) NOT NULL
 	CreatedTime                 int64   `cb:"5" pbi:"timestamp"`            // "created_time" timestamp NOT NULL
 	Id                          int32   `cb:"6"`                            // "id" integer NOT NULL
-	Latitude                    int64   `cb:"7" pbi:"decimal,8"`            // "latitude" decimal(10, 8) NOT NULL
+	Latitude                    int64   `cb:"7" pbi:"decimal,8" pb:"sint"`  // "latitude" decimal(10, 8) NOT NULL
 	LikeCount                   int32   `cb:"8"`                            // "like_count" integer NOT NULL
 	Link                        string  `cb:"9"`                            // "link" varchar(35) NOT NULL
 	Longitude                   int64   `cb:"10" pbi:"decimal,8" pb:"sint"` // "longitude" decimal(11, 8) NOT NULL
@@ -727,7 +727,7 @@ type IGlocations2Row struct {
 	Calculation3650724144057954 string  `cb:"17"`                           // "Calculation_3650724144057954" varchar(8) NOT NULL
 	Calculation4370724142342227 *string `cb:"18"`                           // "Calculation_4370724142342227" varchar(5)
 	Calculation8090724143600502 string  `cb:"19"`                           // "Calculation_8090724143600502" varchar(5) NOT NULL
-	Calculation9330724145728972 int32   `cb:"20" pbi:"decimal,2"`           // "Calculation_9330724145728972" decimal(4, 2) NOT NULL
+	Calculation9330724145728972 int32   `cb:"20" pbi:"decimal,2" pb:"sint"` // "Calculation_9330724145728972" decimal(4, 2) NOT NULL
 }
 
 // LoadIGlocations2 reads IGlocations2_1.csv.
@@ -1074,7 +1074,7 @@ type MotosRow struct {
 	Concatenar1     *string `cb:"9"`             // "Concatenar 1" varchar(54)
 	Concatenar2     *string `cb:"10"`            // "Concatenar 2" varchar(76)
 	Corte           int16   `cb:"11"`            // "Corte" smallint NOT NULL
-	DeNpags         *int16  `cb:"12"`            // "De_Npags" smallint
+	DeNpags         *int16  `cb:"12" pb:"sint"`  // "De_Npags" smallint
 	DiaSemana       int16   `cb:"13"`            // "Dia_Semana" smallint NOT NULL
 	Disco           *int16  `cb:"14"`            // "Disco" smallint
 	Duracion        *int16  `cb:"15"`            // "Duracion" smallint
@@ -1147,7 +1147,7 @@ type MulheresMilRow struct {
 	DataDeNascimentoAluno               *int32  `cb:"23" pbi:"date" pb:"sint"` // "data de nascimento aluno" date
 	DataDaPublicacao                    *int32  `cb:"24" pbi:"date"`           // "data_da_publicacao" date
 	DataDeConclusao                     *string `cb:"25"`                      // "data_de_conclusao" varchar(10)
-	DataDeInicio                        *int32  `cb:"26" pbi:"date" pb:"sint"` // "data_de_inicio" date
+	DataDeInicio                        *int32  `cb:"26" pbi:"date"`           // "data_de_inicio" date
 	DataDePrevisaodeTermino             *int32  `cb:"27" pbi:"date"`           // "data_de_previsaode_termino" date
 	Desempregado                        *string `cb:"28"`                      // "desempregado" varchar(3)
 	DsEmail                             *string `cb:"29"`                      // "ds_email" varchar(129)
@@ -1233,7 +1233,7 @@ type NYCRow struct {
 	CrossStreet1                *string `cb:"13"`                            // "Cross Street 1" varchar(36)
 	CrossStreet2                *string `cb:"14"`                            // "Cross Street 2" varchar(36)
 	DescriptorCol               *string `cb:"15"`                            // "Descriptor" varchar(82)
-	DueDate                     *int64  `cb:"16" pbi:"timestamp"`            // "Due Date" timestamp
+	DueDate                     *int64  `cb:"16" pbi:"timestamp" pb:"sint"`  // "Due Date" timestamp
 	FacilityType                *string `cb:"17"`                            // "Facility Type" varchar(15)
 	FerryDirection              *string `cb:"18"`                            // "Ferry Direction" varchar(19)
 	FerryTerminalName           *string `cb:"19"`                            // "Ferry Terminal Name" varchar(95)
@@ -1559,7 +1559,7 @@ type Redfin1Row struct {
 	InventoryYoy       *float64 `cb:"11"`                           // "inventory_yoy" double
 	MedianDom          *int32   `cb:"12" pbi:"decimal,1"`           // "median_dom" decimal(5, 1)
 	MedianDomMom       *int32   `cb:"13" pbi:"decimal,1" pb:"sint"` // "median_dom_mom" decimal(5, 1)
-	MedianDomYoy       *int32   `cb:"14" pbi:"decimal,1"`           // "median_dom_yoy" decimal(5, 1)
+	MedianDomYoy       *int32   `cb:"14" pbi:"decimal,1" pb:"sint"` // "median_dom_yoy" decimal(5, 1)
 	MedianListPpsf     *float64 `cb:"15"`                           // "median_list_ppsf" double
 	MedianListPpsfMom  *float64 `cb:"16"`                           // "median_list_ppsf_mom" double
 	MedianListPpsfYoy  *float64 `cb:"17"`                           // "median_list_ppsf_yoy" double
@@ -1618,7 +1618,7 @@ type Redfin2Row struct {
 	InventoryYoy       *float64 `cb:"11"`                           // "inventory_yoy" double
 	MedianDom          *int32   `cb:"12" pbi:"decimal,1"`           // "median_dom" decimal(5, 1)
 	MedianDomMom       *int32   `cb:"13" pbi:"decimal,1" pb:"sint"` // "median_dom_mom" decimal(5, 1)
-	MedianDomYoy       *int32   `cb:"14" pbi:"decimal,1"`           // "median_dom_yoy" decimal(5, 1)
+	MedianDomYoy       *int32   `cb:"14" pbi:"decimal,1" pb:"sint"` // "median_dom_yoy" decimal(5, 1)
 	MedianListPpsf     *float64 `cb:"15"`                           // "median_list_ppsf" double
 	MedianListPpsfMom  *float64 `cb:"16"`                           // "median_list_ppsf_mom" double
 	MedianListPpsfYoy  *float64 `cb:"17"`                           // "median_list_ppsf_yoy" double
@@ -1677,7 +1677,7 @@ type Redfin3Row struct {
 	InventoryYoy       *float64 `cb:"11"`                           // "inventory_yoy" double
 	MedianDom          *int32   `cb:"12" pbi:"decimal,1"`           // "median_dom" decimal(5, 1)
 	MedianDomMom       *int32   `cb:"13" pbi:"decimal,1" pb:"sint"` // "median_dom_mom" decimal(5, 1)
-	MedianDomYoy       *int32   `cb:"14" pbi:"decimal,1"`           // "median_dom_yoy" decimal(5, 1)
+	MedianDomYoy       *int32   `cb:"14" pbi:"decimal,1" pb:"sint"` // "median_dom_yoy" decimal(5, 1)
 	MedianListPpsf     *float64 `cb:"15"`                           // "median_list_ppsf" double
 	MedianListPpsfMom  *float64 `cb:"16"`                           // "median_list_ppsf_mom" double
 	MedianListPpsfYoy  *float64 `cb:"17"`                           // "median_list_ppsf_yoy" double
@@ -1739,7 +1739,7 @@ type Redfin4Row struct {
 	InventoryYoy                  *float64 `cb:"11"`                           // "inventory_yoy" double
 	MedianDom                     *int32   `cb:"12" pbi:"decimal,1"`           // "median_dom" decimal(5, 1)
 	MedianDomMom                  *int32   `cb:"13" pbi:"decimal,1" pb:"sint"` // "median_dom_mom" decimal(5, 1)
-	MedianDomYoy                  *int32   `cb:"14" pbi:"decimal,1"`           // "median_dom_yoy" decimal(5, 1)
+	MedianDomYoy                  *int32   `cb:"14" pbi:"decimal,1" pb:"sint"` // "median_dom_yoy" decimal(5, 1)
 	MedianListPpsf                *float64 `cb:"15"`                           // "median_list_ppsf" double
 	MedianListPpsfMom             *float64 `cb:"16"`                           // "median_list_ppsf_mom" double
 	MedianListPpsfYoy             *float64 `cb:"17"`                           // "median_list_ppsf_yoy" double
@@ -1842,7 +1842,7 @@ type RentabilidadRow struct {
 	JefeDeVentasNCB                                      *string  `cb:"51"`                            // "Jefe de Ventas NCB" varchar(3)
 	JefeDeVentas                                         string   `cb:"52"`                            // "Jefe de Ventas" varchar(3) NOT NULL
 	LatitudAUTOPREV                                      *int64   `cb:"53" pbi:"decimal,14"`           // "Latitud AUTO PREV" decimal(16, 14)
-	Latitud                                              *int64   `cb:"54"`                            // "Latitud" bigint
+	Latitud                                              *int64   `cb:"54" pb:"sint"`                  // "Latitud" bigint
 	Locacion                                             string   `cb:"55"`                            // "Locación" varchar(15) NOT NULL
 	LocacionCopy                                         string   `cb:"56"`                            // "Locación (copy)" varchar(15) NOT NULL
 	LongitudAUTOPREV                                     *int64   `cb:"57" pbi:"decimal,13" pb:"sint"` // "Longitud AUTO PREV" decimal(15, 13)
@@ -1945,18 +1945,18 @@ type Romance struct {
 
 // RomanceRow is one row of Romance_1.
 type RomanceRow struct {
-	F1              *int32   `cb:"1"`                  // "F1" integer
-	NumberOfRecords int16    `cb:"2"`                  // "Number of Records" smallint NOT NULL
-	Caption         *string  `cb:"3"`                  // "caption" varchar(8160)
-	CreatedTime     *int32   `cb:"4"`                  // "created_time" integer
-	Id              *string  `cb:"5"`                  // "id" varchar(55)
-	Lat             *int64   `cb:"6" pbi:"decimal,15"` // "lat" decimal(18, 15)
-	Link            *string  `cb:"7"`                  // "link" varchar(40)
-	Lng             *float64 `cb:"8"`                  // "lng" double
-	Location        *string  `cb:"9"`                  // "location" varchar(213)
-	Tags            *string  `cb:"10"`                 // "tags" varchar(950)
-	Term            *string  `cb:"11"`                 // "term" varchar(12)
-	User            *int64   `cb:"12"`                 // "user" bigint
+	F1              *int32   `cb:"1"`                            // "F1" integer
+	NumberOfRecords int16    `cb:"2"`                            // "Number of Records" smallint NOT NULL
+	Caption         *string  `cb:"3"`                            // "caption" varchar(8160)
+	CreatedTime     *int32   `cb:"4"`                            // "created_time" integer
+	Id              *string  `cb:"5"`                            // "id" varchar(55)
+	Lat             *int64   `cb:"6" pbi:"decimal,15" pb:"sint"` // "lat" decimal(18, 15)
+	Link            *string  `cb:"7"`                            // "link" varchar(40)
+	Lng             *float64 `cb:"8"`                            // "lng" double
+	Location        *string  `cb:"9"`                            // "location" varchar(213)
+	Tags            *string  `cb:"10"`                           // "tags" varchar(950)
+	Term            *string  `cb:"11"`                           // "term" varchar(12)
+	User            *int64   `cb:"12"`                           // "user" bigint
 }
 
 // LoadRomance reads Romance_1.csv.
@@ -2301,7 +2301,7 @@ type TelcoRow struct {
 	TOTALVASREVP4        int32   `cb:"170" pbi:"decimal,2"`           // "TOTAL_VAS_REV_P4" decimal(6, 2) NOT NULL
 	TOTALVASREVP6        int32   `cb:"171" pbi:"decimal,2"`           // "TOTAL_VAS_REV_P6" decimal(7, 2) NOT NULL
 	TOTAOUTGOINGREVP1    float64 `cb:"172"`                           // "TOTA_OUTGOING_REV_P1" double NOT NULL
-	TOTAOUTGOINGREVP2    int64   `cb:"173" pbi:"decimal,5"`           // "TOTA_OUTGOING_REV_P2" decimal(10, 5) NOT NULL
+	TOTAOUTGOINGREVP2    int64   `cb:"173" pbi:"decimal,5" pb:"sint"` // "TOTA_OUTGOING_REV_P2" decimal(10, 5) NOT NULL
 	TOTAOUTGOINGREVP3    int64   `cb:"174" pbi:"decimal,5" pb:"sint"` // "TOTA_OUTGOING_REV_P3" decimal(10, 5) NOT NULL
 	TOTAOUTGOINGREVP4    float64 `cb:"175"`                           // "TOTA_OUTGOING_REV_P4" double NOT NULL
 	TOTAOUTGOINGREVP6    float64 `cb:"176"`                           // "TOTA_OUTGOING_REV_P6" double NOT NULL
@@ -2395,525 +2395,525 @@ type USCensus struct {
 
 // USCensusRow is one row of USCensus_1.
 type USCensusRow struct {
-	ACCESS          *int16  `cb:"1"`   // "ACCESS" smallint
-	ACR             *int16  `cb:"2"`   // "ACR" smallint
-	ADJHSG          int32   `cb:"3"`   // "ADJHSG" integer NOT NULL
-	ADJINC          int32   `cb:"4"`   // "ADJINC" integer NOT NULL
-	ADJINC1         int32   `cb:"5"`   // "ADJINC1" integer NOT NULL
-	AGEP            int16   `cb:"6"`   // "AGEP" smallint NOT NULL
-	AGS             *int16  `cb:"7"`   // "AGS" smallint
-	ANC1P           int16   `cb:"8"`   // "ANC1P" smallint NOT NULL
-	ANC2P           int16   `cb:"9"`   // "ANC2P" smallint NOT NULL
-	ANC             int16   `cb:"10"`  // "ANC" smallint NOT NULL
-	BATH            *int16  `cb:"11"`  // "BATH" smallint
-	BDSP            *int16  `cb:"12"`  // "BDSP" smallint
-	BLD             *int16  `cb:"13"`  // "BLD" smallint
-	BROADBND        *int16  `cb:"14"`  // "BROADBND" smallint
-	BUS             *int16  `cb:"15"`  // "BUS" smallint
-	CITWP           *int16  `cb:"16"`  // "CITWP" smallint
-	CIT             int16   `cb:"17"`  // "CIT" smallint NOT NULL
-	COMPOTHX        *int16  `cb:"18"`  // "COMPOTHX" smallint
-	CONP            *int16  `cb:"19"`  // "CONP" smallint
-	COW             *int16  `cb:"20"`  // "COW" smallint
-	DDRS            *int16  `cb:"21"`  // "DDRS" smallint
-	DEAR            int16   `cb:"22"`  // "DEAR" smallint NOT NULL
-	DECADE          *int16  `cb:"23"`  // "DECADE" smallint
-	DEYE            int16   `cb:"24"`  // "DEYE" smallint NOT NULL
-	DIALUP          *int16  `cb:"25"`  // "DIALUP" smallint
-	DIS             int16   `cb:"26"`  // "DIS" smallint NOT NULL
-	DIVISION        int16   `cb:"27"`  // "DIVISION" smallint NOT NULL
-	DOUT            *int16  `cb:"28"`  // "DOUT" smallint
-	DPHY            *int16  `cb:"29"`  // "DPHY" smallint
-	DRATX           *int16  `cb:"30"`  // "DRATX" smallint
-	DRAT            *int16  `cb:"31"`  // "DRAT" smallint
-	DREM            *int16  `cb:"32"`  // "DREM" smallint
-	DRIVESP         *int16  `cb:"33"`  // "DRIVESP" smallint
-	DSL             *int16  `cb:"34"`  // "DSL" smallint
-	ELEP            *int16  `cb:"35"`  // "ELEP" smallint
-	ENG             *int16  `cb:"36"`  // "ENG" smallint
-	ESP             *int16  `cb:"37"`  // "ESP" smallint
-	ESR             *int16  `cb:"38"`  // "ESR" smallint
-	FACCESSP        *int16  `cb:"39"`  // "FACCESSP" smallint
-	FACRP           *int16  `cb:"40"`  // "FACRP" smallint
-	FAGEP           int16   `cb:"41"`  // "FAGEP" smallint NOT NULL
-	FAGSP           *int16  `cb:"42"`  // "FAGSP" smallint
-	FANCP           int16   `cb:"43"`  // "FANCP" smallint NOT NULL
-	FBATHP          *int16  `cb:"44"`  // "FBATHP" smallint
-	FBDSP           *int16  `cb:"45"`  // "FBDSP" smallint
-	FBLDP           *int16  `cb:"46"`  // "FBLDP" smallint
-	FBROADBNDP      *int16  `cb:"47"`  // "FBROADBNDP" smallint
-	FBUSP           *int16  `cb:"48"`  // "FBUSP" smallint
-	FCITP           int16   `cb:"49"`  // "FCITP" smallint NOT NULL
-	FCITWP          int16   `cb:"50"`  // "FCITWP" smallint NOT NULL
-	FCOMPOTHXP      *int16  `cb:"51"`  // "FCOMPOTHXP" smallint
-	FCONP           *int16  `cb:"52"`  // "FCONP" smallint
-	FCOWP           int16   `cb:"53"`  // "FCOWP" smallint NOT NULL
-	FDDRSP          int16   `cb:"54"`  // "FDDRSP" smallint NOT NULL
-	FDEARP          int16   `cb:"55"`  // "FDEARP" smallint NOT NULL
-	FDEYEP          int16   `cb:"56"`  // "FDEYEP" smallint NOT NULL
-	FDIALUPP        *int16  `cb:"57"`  // "FDIALUPP" smallint
-	FDISP           int16   `cb:"58"`  // "FDISP" smallint NOT NULL
-	FDOUTP          int16   `cb:"59"`  // "FDOUTP" smallint NOT NULL
-	FDPHYP          int16   `cb:"60"`  // "FDPHYP" smallint NOT NULL
-	FDRATP          int16   `cb:"61"`  // "FDRATP" smallint NOT NULL
-	FDRATXP         int16   `cb:"62"`  // "FDRATXP" smallint NOT NULL
-	FDREMP          int16   `cb:"63"`  // "FDREMP" smallint NOT NULL
-	FDSLP           *int16  `cb:"64"`  // "FDSLP" smallint
-	FELEP           *int16  `cb:"65"`  // "FELEP" smallint
-	FENGP           int16   `cb:"66"`  // "FENGP" smallint NOT NULL
-	FER             *int16  `cb:"67"`  // "FER" smallint
-	FESRP           int16   `cb:"68"`  // "FESRP" smallint NOT NULL
-	FES             *int16  `cb:"69"`  // "FES" smallint
-	FFERP           int16   `cb:"70"`  // "FFERP" smallint NOT NULL
-	FFIBEROPP       *int16  `cb:"71"`  // "FFIBEROPP" smallint
-	FFINCP          *int16  `cb:"72"`  // "FFINCP" smallint
-	FFODP           int16   `cb:"73"`  // "FFODP" smallint NOT NULL
-	FFSP            int16   `cb:"74"`  // "FFSP" smallint NOT NULL
-	FFULP           *int16  `cb:"75"`  // "FFULP" smallint
-	FGASP           *int16  `cb:"76"`  // "FGASP" smallint
-	FGCLP           int16   `cb:"77"`  // "FGCLP" smallint NOT NULL
-	FGCMP           int16   `cb:"78"`  // "FGCMP" smallint NOT NULL
-	FGCRP           int16   `cb:"79"`  // "FGCRP" smallint NOT NULL
-	FGRNTP          *int16  `cb:"80"`  // "FGRNTP" smallint
-	FHANDHELDP      *int16  `cb:"81"`  // "FHANDHELDP" smallint
-	FHFLP           *int16  `cb:"82"`  // "FHFLP" smallint
-	FHINCP          *int16  `cb:"83"`  // "FHINCP" smallint
-	FHINS1P         int16   `cb:"84"`  // "FHINS1P" smallint NOT NULL
-	FHINS2P         int16   `cb:"85"`  // "FHINS2P" smallint NOT NULL
-	FHINS3C         *int16  `cb:"86"`  // "FHINS3C" smallint
-	FHINS3P         int16   `cb:"87"`  // "FHINS3P" smallint NOT NULL
-	FHINS4C         *int16  `cb:"88"`  // "FHINS4C" smallint
-	FHINS4P         int16   `cb:"89"`  // "FHINS4P" smallint NOT NULL
-	FHINS5C         *int16  `cb:"90"`  // "FHINS5C" smallint
-	FHINS5P         int16   `cb:"91"`  // "FHINS5P" smallint NOT NULL
-	FHINS6P         int16   `cb:"92"`  // "FHINS6P" smallint NOT NULL
-	FHINS7P         int16   `cb:"93"`  // "FHINS7P" smallint NOT NULL
-	FHISP           int16   `cb:"94"`  // "FHISP" smallint NOT NULL
-	FIBEROP         *int16  `cb:"95"`  // "FIBEROP" smallint
-	FINCP           *int32  `cb:"96"`  // "FINCP" integer
-	FINDP           int16   `cb:"97"`  // "FINDP" smallint NOT NULL
-	FINSP           *int16  `cb:"98"`  // "FINSP" smallint
-	FINTP           int16   `cb:"99"`  // "FINTP" smallint NOT NULL
-	FJWDP           int16   `cb:"100"` // "FJWDP" smallint NOT NULL
-	FJWMNP          int16   `cb:"101"` // "FJWMNP" smallint NOT NULL
-	FJWRIP          int16   `cb:"102"` // "FJWRIP" smallint NOT NULL
-	FJWTRP          int16   `cb:"103"` // "FJWTRP" smallint NOT NULL
-	FKITP           *int16  `cb:"104"` // "FKITP" smallint
-	FLANP           int16   `cb:"105"` // "FLANP" smallint NOT NULL
-	FLANXP          int16   `cb:"106"` // "FLANXP" smallint NOT NULL
-	FLAPTOPP        *int16  `cb:"107"` // "FLAPTOPP" smallint
-	FMARHDP         int16   `cb:"108"` // "FMARHDP" smallint NOT NULL
-	FMARHMP         int16   `cb:"109"` // "FMARHMP" smallint NOT NULL
-	FMARHTP         int16   `cb:"110"` // "FMARHTP" smallint NOT NULL
-	FMARHWP         int16   `cb:"111"` // "FMARHWP" smallint NOT NULL
-	FMARHYP         int16   `cb:"112"` // "FMARHYP" smallint NOT NULL
-	FMARP           int16   `cb:"113"` // "FMARP" smallint NOT NULL
-	FMHP            *int16  `cb:"114"` // "FMHP" smallint
-	FMIGP           int16   `cb:"115"` // "FMIGP" smallint NOT NULL
-	FMIGSP          int16   `cb:"116"` // "FMIGSP" smallint NOT NULL
-	FMILPP          int16   `cb:"117"` // "FMILPP" smallint NOT NULL
-	FMILSP          int16   `cb:"118"` // "FMILSP" smallint NOT NULL
-	FMODEMP         *int16  `cb:"119"` // "FMODEMP" smallint
-	FMRGIP          *int16  `cb:"120"` // "FMRGIP" smallint
-	FMRGP           *int16  `cb:"121"` // "FMRGP" smallint
-	FMRGTP          *int16  `cb:"122"` // "FMRGTP" smallint
-	FMRGXP          *int16  `cb:"123"` // "FMRGXP" smallint
-	FMVP            int16   `cb:"124"` // "FMVP" smallint NOT NULL
-	FOCCP           int16   `cb:"125"` // "FOCCP" smallint NOT NULL
-	FOD1P           *int16  `cb:"126"` // "FOD1P" smallint
-	FOD2P           *int16  `cb:"127"` // "FOD2P" smallint
-	FOIP            int16   `cb:"128"` // "FOIP" smallint NOT NULL
-	FOTHSVCEXP      *int16  `cb:"129"` // "FOTHSVCEXP" smallint
-	FPAP            int16   `cb:"130"` // "FPAP" smallint NOT NULL
-	FPARC           *int16  `cb:"131"` // "FPARC" smallint
-	FPERNP          int16   `cb:"132"` // "FPERNP" smallint NOT NULL
-	FPINCP          int16   `cb:"133"` // "FPINCP" smallint NOT NULL
-	FPLMP           *int16  `cb:"134"` // "FPLMP" smallint
-	FPOBP           int16   `cb:"135"` // "FPOBP" smallint NOT NULL
-	FPOWSP          int16   `cb:"136"` // "FPOWSP" smallint NOT NULL
-	FPRIVCOVP       int16   `cb:"137"` // "FPRIVCOVP" smallint NOT NULL
-	FPUBCOVP        int16   `cb:"138"` // "FPUBCOVP" smallint NOT NULL
-	FRACP           int16   `cb:"139"` // "FRACP" smallint NOT NULL
-	FREFRP          *int16  `cb:"140"` // "FREFRP" smallint
-	FRELP           int16   `cb:"141"` // "FRELP" smallint NOT NULL
-	FRETP           int16   `cb:"142"` // "FRETP" smallint NOT NULL
-	FRMSP           *int16  `cb:"143"` // "FRMSP" smallint
-	FRNTMP          *int16  `cb:"144"` // "FRNTMP" smallint
-	FRNTP           *int16  `cb:"145"` // "FRNTP" smallint
-	FRWATPRP        *int16  `cb:"146"` // "FRWATPRP" smallint
-	FRWATP          *int16  `cb:"147"` // "FRWATP" smallint
-	FSATELLITEP     *int16  `cb:"148"` // "FSATELLITEP" smallint
-	FSCHGP          int16   `cb:"149"` // "FSCHGP" smallint NOT NULL
-	FSCHLP          int16   `cb:"150"` // "FSCHLP" smallint NOT NULL
-	FSCHP           int16   `cb:"151"` // "FSCHP" smallint NOT NULL
-	FSEMP           int16   `cb:"152"` // "FSEMP" smallint NOT NULL
-	FSEXP           int16   `cb:"153"` // "FSEXP" smallint NOT NULL
-	FSINKP          *int16  `cb:"154"` // "FSINKP" smallint
-	FSMOCP          *int16  `cb:"155"` // "FSMOCP" smallint
-	FSMP            *int16  `cb:"156"` // "FSMP" smallint
-	FSMXHP          *int16  `cb:"157"` // "FSMXHP" smallint
-	FSMXSP          *int16  `cb:"158"` // "FSMXSP" smallint
-	FSSIP           int16   `cb:"159"` // "FSSIP" smallint NOT NULL
-	FSSP            int16   `cb:"160"` // "FSSP" smallint NOT NULL
-	FSTOVP          *int16  `cb:"161"` // "FSTOVP" smallint
-	FS              int16   `cb:"162"` // "FS" smallint NOT NULL
-	FTAXP           *int16  `cb:"163"` // "FTAXP" smallint
-	FTELP           *int16  `cb:"164"` // "FTELP" smallint
-	FTENP           *int16  `cb:"165"` // "FTENP" smallint
-	FTOILP          *int16  `cb:"166"` // "FTOILP" smallint
-	FULP            *int16  `cb:"167"` // "FULP" smallint
-	FVACSP          *int16  `cb:"168"` // "FVACSP" smallint
-	FVALP           *int16  `cb:"169"` // "FVALP" smallint
-	FVEHP           *int16  `cb:"170"` // "FVEHP" smallint
-	FWAGP           int16   `cb:"171"` // "FWAGP" smallint NOT NULL
-	FWATP           *int16  `cb:"172"` // "FWATP" smallint
-	FWKHP           int16   `cb:"173"` // "FWKHP" smallint NOT NULL
-	FWKLP           int16   `cb:"174"` // "FWKLP" smallint NOT NULL
-	FWKWP           int16   `cb:"175"` // "FWKWP" smallint NOT NULL
-	FWRKP           int16   `cb:"176"` // "FWRKP" smallint NOT NULL
-	FYBLP           *int16  `cb:"177"` // "FYBLP" smallint
-	FYOEP           int16   `cb:"178"` // "FYOEP" smallint NOT NULL
-	GASP            *int16  `cb:"179"` // "GASP" smallint
-	GCL             *int16  `cb:"180"` // "GCL" smallint
-	GCM             *int16  `cb:"181"` // "GCM" smallint
-	GCR             *int16  `cb:"182"` // "GCR" smallint
-	GRNTP           *int16  `cb:"183"` // "GRNTP" smallint
-	GRPIP           *int16  `cb:"184"` // "GRPIP" smallint
-	HANDHELD        *int16  `cb:"185"` // "HANDHELD" smallint
-	HFL             *int16  `cb:"186"` // "HFL" smallint
-	HHL             *int16  `cb:"187"` // "HHL" smallint
-	HHT             *int16  `cb:"188"` // "HHT" smallint
-	HICOV           int16   `cb:"189"` // "HICOV" smallint NOT NULL
-	HINCP           *int32  `cb:"190"` // "HINCP" integer
-	HINS1           int16   `cb:"191"` // "HINS1" smallint NOT NULL
-	HINS2           int16   `cb:"192"` // "HINS2" smallint NOT NULL
-	HINS3           int16   `cb:"193"` // "HINS3" smallint NOT NULL
-	HINS4           int16   `cb:"194"` // "HINS4" smallint NOT NULL
-	HINS5           int16   `cb:"195"` // "HINS5" smallint NOT NULL
-	HINS6           int16   `cb:"196"` // "HINS6" smallint NOT NULL
-	HINS7           int16   `cb:"197"` // "HINS7" smallint NOT NULL
-	HISP            int16   `cb:"198"` // "HISP" smallint NOT NULL
-	HUGCL           *int16  `cb:"199"` // "HUGCL" smallint
-	HUPAC           *int16  `cb:"200"` // "HUPAC" smallint
-	HUPAOC          *int16  `cb:"201"` // "HUPAOC" smallint
-	HUPARC          *int16  `cb:"202"` // "HUPARC" smallint
-	INDP            *int16  `cb:"203"` // "INDP" smallint
-	INSP            *int16  `cb:"204"` // "INSP" smallint
-	INTP            *int32  `cb:"205"` // "INTP" integer
-	JWAP            *int16  `cb:"206"` // "JWAP" smallint
-	JWDP            *int16  `cb:"207"` // "JWDP" smallint
-	JWMNP           *int16  `cb:"208"` // "JWMNP" smallint
-	JWRIP           *int16  `cb:"209"` // "JWRIP" smallint
-	JWTR            *int16  `cb:"210"` // "JWTR" smallint
-	KIT             *int16  `cb:"211"` // "KIT" smallint
-	LANP            *int16  `cb:"212"` // "LANP" smallint
-	LANX            *int16  `cb:"213"` // "LANX" smallint
-	LAPTOP          *int16  `cb:"214"` // "LAPTOP" smallint
-	LNGI            *int16  `cb:"215"` // "LNGI" smallint
-	MARHD           *int16  `cb:"216"` // "MARHD" smallint
-	MARHM           *int16  `cb:"217"` // "MARHM" smallint
-	MARHT           *int16  `cb:"218"` // "MARHT" smallint
-	MARHW           *int16  `cb:"219"` // "MARHW" smallint
-	MARHYP          *int16  `cb:"220"` // "MARHYP" smallint
-	MAR             int16   `cb:"221"` // "MAR" smallint NOT NULL
-	MHP             *int16  `cb:"222"` // "MHP" smallint
-	MIGPUMA         *int32  `cb:"223"` // "MIGPUMA" integer
-	MIGSP           *int16  `cb:"224"` // "MIGSP" smallint
-	MIG             *int16  `cb:"225"` // "MIG" smallint
-	MIL             *int16  `cb:"226"` // "MIL" smallint
-	MLPA            *int16  `cb:"227"` // "MLPA" smallint
-	MLPB            *int16  `cb:"228"` // "MLPB" smallint
-	MLPCD           *int16  `cb:"229"` // "MLPCD" smallint
-	MLPE            *int16  `cb:"230"` // "MLPE" smallint
-	MLPFG           *int16  `cb:"231"` // "MLPFG" smallint
-	MLPH            *int16  `cb:"232"` // "MLPH" smallint
-	MLPI            *int16  `cb:"233"` // "MLPI" smallint
-	MLPJ            *int16  `cb:"234"` // "MLPJ" smallint
-	MLPK            *int16  `cb:"235"` // "MLPK" smallint
-	MODEM           *int16  `cb:"236"` // "MODEM" smallint
-	MRGI            *int16  `cb:"237"` // "MRGI" smallint
-	MRGP            *int16  `cb:"238"` // "MRGP" smallint
-	MRGT            *int16  `cb:"239"` // "MRGT" smallint
-	MRGX            *int16  `cb:"240"` // "MRGX" smallint
-	MSP             *int16  `cb:"241"` // "MSP" smallint
-	MULTG           *int16  `cb:"242"` // "MULTG" smallint
-	MV              *int16  `cb:"243"` // "MV" smallint
-	NAICSP          *string `cb:"244"` // "NAICSP" varchar(8)
-	NATIVITY        int16   `cb:"245"` // "NATIVITY" smallint NOT NULL
-	NOC             *int16  `cb:"246"` // "NOC" smallint
-	NOP             *int16  `cb:"247"` // "NOP" smallint
-	NPF             *int16  `cb:"248"` // "NPF" smallint
-	NPP             *int16  `cb:"249"` // "NPP" smallint
-	NP              int16   `cb:"250"` // "NP" smallint NOT NULL
-	NRC             *int16  `cb:"251"` // "NRC" smallint
-	NR              *int16  `cb:"252"` // "NR" smallint
-	NWAB            *int16  `cb:"253"` // "NWAB" smallint
-	NWAV            *int16  `cb:"254"` // "NWAV" smallint
-	NWLA            *int16  `cb:"255"` // "NWLA" smallint
-	NWLK            *int16  `cb:"256"` // "NWLK" smallint
-	NWRE            *int16  `cb:"257"` // "NWRE" smallint
-	NumberOfRecords int16   `cb:"258"` // "Number of Records" smallint NOT NULL
-	OCCP            *int16  `cb:"259"` // "OCCP" smallint
-	OCPIP           *int16  `cb:"260"` // "OCPIP" smallint
-	OC              int16   `cb:"261"` // "OC" smallint NOT NULL
-	OIP             *int32  `cb:"262"` // "OIP" integer
-	OTHSVCEX        *int16  `cb:"263"` // "OTHSVCEX" smallint
-	PAOC            *int16  `cb:"264"` // "PAOC" smallint
-	PAP             *int16  `cb:"265"` // "PAP" smallint
-	PARTNER         *int16  `cb:"266"` // "PARTNER" smallint
-	PERNP           *int32  `cb:"267"` // "PERNP" integer
-	PINCP           *int32  `cb:"268"` // "PINCP" integer
-	PLM             *int16  `cb:"269"` // "PLM" smallint
-	POBP            int16   `cb:"270"` // "POBP" smallint NOT NULL
-	POVPIP          *int16  `cb:"271"` // "POVPIP" smallint
-	POWPUMA         *int32  `cb:"272"` // "POWPUMA" integer
-	POWSP           *int16  `cb:"273"` // "POWSP" smallint
-	PRIVCOV         int16   `cb:"274"` // "PRIVCOV" smallint NOT NULL
-	PSF             *int16  `cb:"275"` // "PSF" smallint
-	PUBCOV          int16   `cb:"276"` // "PUBCOV" smallint NOT NULL
-	PUMA            int32   `cb:"277"` // "PUMA" integer NOT NULL
-	PUMA1           int32   `cb:"278"` // "PUMA1" integer NOT NULL
-	PWGTP           int16   `cb:"279"` // "PWGTP" smallint NOT NULL
-	QTRBIR          int16   `cb:"280"` // "QTRBIR" smallint NOT NULL
-	R18             *int16  `cb:"281"` // "R18" smallint
-	R60             *int16  `cb:"282"` // "R60" smallint
-	R65             *int16  `cb:"283"` // "R65" smallint
-	RAC1P           int16   `cb:"284"` // "RAC1P" smallint NOT NULL
-	RAC2P           int16   `cb:"285"` // "RAC2P" smallint NOT NULL
-	RAC3P           int16   `cb:"286"` // "RAC3P" smallint NOT NULL
-	RACAIAN         int16   `cb:"287"` // "RACAIAN" smallint NOT NULL
-	RACASN          int16   `cb:"288"` // "RACASN" smallint NOT NULL
-	RACBLK          int16   `cb:"289"` // "RACBLK" smallint NOT NULL
-	RACNH           int16   `cb:"290"` // "RACNH" smallint NOT NULL
-	RACNUM          int16   `cb:"291"` // "RACNUM" smallint NOT NULL
-	RACPI           int16   `cb:"292"` // "RACPI" smallint NOT NULL
-	RACSOR          int16   `cb:"293"` // "RACSOR" smallint NOT NULL
-	RACWHT          int16   `cb:"294"` // "RACWHT" smallint NOT NULL
-	RC              int16   `cb:"295"` // "RC" smallint NOT NULL
-	REFR            *int16  `cb:"296"` // "REFR" smallint
-	REGION          int16   `cb:"297"` // "REGION" smallint NOT NULL
-	RELP            int16   `cb:"298"` // "RELP" smallint NOT NULL
-	RESMODE         *int16  `cb:"299"` // "RESMODE" smallint
-	RETP            *int32  `cb:"300"` // "RETP" integer
-	RMSP            *int16  `cb:"301"` // "RMSP" smallint
-	RNTM            *int16  `cb:"302"` // "RNTM" smallint
-	RNTP            *int16  `cb:"303"` // "RNTP" smallint
-	RT              string  `cb:"304"` // "RT" varchar(1) NOT NULL
-	RT1             string  `cb:"305"` // "RT1" varchar(1) NOT NULL
-	RWATPR          *int16  `cb:"306"` // "RWATPR" smallint
-	RWAT            *int16  `cb:"307"` // "RWAT" smallint
-	SATELLITE       *int16  `cb:"308"` // "SATELLITE" smallint
-	SCHG            *int16  `cb:"309"` // "SCHG" smallint
-	SCHL            *int16  `cb:"310"` // "SCHL" smallint
-	SCH             *int16  `cb:"311"` // "SCH" smallint
-	SCIENGP         *int16  `cb:"312"` // "SCIENGP" smallint
-	SCIENGRLP       *int16  `cb:"313"` // "SCIENGRLP" smallint
-	SEMP            *int32  `cb:"314"` // "SEMP" integer
-	SERIALNO        int32   `cb:"315"` // "SERIALNO" integer NOT NULL
-	SERIALNO1       int32   `cb:"316"` // "SERIALNO1" integer NOT NULL
-	SEX             int16   `cb:"317"` // "SEX" smallint NOT NULL
-	SFN             *int16  `cb:"318"` // "SFN" smallint
-	SFR             *int16  `cb:"319"` // "SFR" smallint
-	SINK            *int16  `cb:"320"` // "SINK" smallint
-	SMOCP           *int16  `cb:"321"` // "SMOCP" smallint
-	SMP             *int16  `cb:"322"` // "SMP" smallint
-	SMX             *int16  `cb:"323"` // "SMX" smallint
-	SOCP            *string `cb:"324"` // "SOCP" varchar(6)
-	SPORDER         int16   `cb:"325"` // "SPORDER" smallint NOT NULL
-	SRNT            *int16  `cb:"326"` // "SRNT" smallint
-	SSIP            *int16  `cb:"327"` // "SSIP" smallint
-	SSMC            *int16  `cb:"328"` // "SSMC" smallint
-	SSP             *int32  `cb:"329"` // "SSP" integer
-	ST              int16   `cb:"330"` // "ST" smallint NOT NULL
-	STOV            *int16  `cb:"331"` // "STOV" smallint
-	ST1             int16   `cb:"332"` // "ST1" smallint NOT NULL
-	SVAL            *int16  `cb:"333"` // "SVAL" smallint
-	TAXP            *int16  `cb:"334"` // "TAXP" smallint
-	TEL             *int16  `cb:"335"` // "TEL" smallint
-	TEN             *int16  `cb:"336"` // "TEN" smallint
-	TOIL            *int16  `cb:"337"` // "TOIL" smallint
-	TYPE            int16   `cb:"338"` // "TYPE" smallint NOT NULL
-	TableName       string  `cb:"339"` // "Table Name" varchar(12) NOT NULL
-	TableName1      string  `cb:"340"` // "Table Name1" varchar(12) NOT NULL
-	VACS            *int64  `cb:"341"` // "VACS" bigint
-	VALP            *int32  `cb:"342"` // "VALP" integer
-	VEH             *int16  `cb:"343"` // "VEH" smallint
-	VPS             *int16  `cb:"344"` // "VPS" smallint
-	WAGP            *int32  `cb:"345"` // "WAGP" integer
-	WAOB            int16   `cb:"346"` // "WAOB" smallint NOT NULL
-	WATP            *int16  `cb:"347"` // "WATP" smallint
-	WGTP            int16   `cb:"348"` // "WGTP" smallint NOT NULL
-	WIF             *int16  `cb:"349"` // "WIF" smallint
-	WKEXREL         *int16  `cb:"350"` // "WKEXREL" smallint
-	WKHP            *int16  `cb:"351"` // "WKHP" smallint
-	WKL             *int16  `cb:"352"` // "WKL" smallint
-	WKW             *int16  `cb:"353"` // "WKW" smallint
-	WORKSTAT        *int16  `cb:"354"` // "WORKSTAT" smallint
-	WRK             *int16  `cb:"355"` // "WRK" smallint
-	YBL             *int16  `cb:"356"` // "YBL" smallint
-	YOEP            *int16  `cb:"357"` // "YOEP" smallint
-	Pwgtp10         int16   `cb:"358"` // "pwgtp10" smallint NOT NULL
-	Pwgtp11         int16   `cb:"359"` // "pwgtp11" smallint NOT NULL
-	Pwgtp12         int16   `cb:"360"` // "pwgtp12" smallint NOT NULL
-	Pwgtp13         int16   `cb:"361"` // "pwgtp13" smallint NOT NULL
-	Pwgtp14         int16   `cb:"362"` // "pwgtp14" smallint NOT NULL
-	Pwgtp15         int16   `cb:"363"` // "pwgtp15" smallint NOT NULL
-	Pwgtp16         int16   `cb:"364"` // "pwgtp16" smallint NOT NULL
-	Pwgtp17         int16   `cb:"365"` // "pwgtp17" smallint NOT NULL
-	Pwgtp18         int16   `cb:"366"` // "pwgtp18" smallint NOT NULL
-	Pwgtp19         int16   `cb:"367"` // "pwgtp19" smallint NOT NULL
-	Pwgtp1          int16   `cb:"368"` // "pwgtp1" smallint NOT NULL
-	Pwgtp20         int16   `cb:"369"` // "pwgtp20" smallint NOT NULL
-	Pwgtp21         int16   `cb:"370"` // "pwgtp21" smallint NOT NULL
-	Pwgtp22         int16   `cb:"371"` // "pwgtp22" smallint NOT NULL
-	Pwgtp23         int16   `cb:"372"` // "pwgtp23" smallint NOT NULL
-	Pwgtp24         int16   `cb:"373"` // "pwgtp24" smallint NOT NULL
-	Pwgtp25         int16   `cb:"374"` // "pwgtp25" smallint NOT NULL
-	Pwgtp26         int16   `cb:"375"` // "pwgtp26" smallint NOT NULL
-	Pwgtp27         int16   `cb:"376"` // "pwgtp27" smallint NOT NULL
-	Pwgtp28         int16   `cb:"377"` // "pwgtp28" smallint NOT NULL
-	Pwgtp29         int16   `cb:"378"` // "pwgtp29" smallint NOT NULL
-	Pwgtp2          int16   `cb:"379"` // "pwgtp2" smallint NOT NULL
-	Pwgtp30         int16   `cb:"380"` // "pwgtp30" smallint NOT NULL
-	Pwgtp31         int16   `cb:"381"` // "pwgtp31" smallint NOT NULL
-	Pwgtp32         int16   `cb:"382"` // "pwgtp32" smallint NOT NULL
-	Pwgtp33         int16   `cb:"383"` // "pwgtp33" smallint NOT NULL
-	Pwgtp34         int16   `cb:"384"` // "pwgtp34" smallint NOT NULL
-	Pwgtp35         int16   `cb:"385"` // "pwgtp35" smallint NOT NULL
-	Pwgtp36         int16   `cb:"386"` // "pwgtp36" smallint NOT NULL
-	Pwgtp37         int16   `cb:"387"` // "pwgtp37" smallint NOT NULL
-	Pwgtp38         int16   `cb:"388"` // "pwgtp38" smallint NOT NULL
-	Pwgtp39         int16   `cb:"389"` // "pwgtp39" smallint NOT NULL
-	Pwgtp3          int16   `cb:"390"` // "pwgtp3" smallint NOT NULL
-	Pwgtp40         int16   `cb:"391"` // "pwgtp40" smallint NOT NULL
-	Pwgtp41         int16   `cb:"392"` // "pwgtp41" smallint NOT NULL
-	Pwgtp42         int16   `cb:"393"` // "pwgtp42" smallint NOT NULL
-	Pwgtp43         int16   `cb:"394"` // "pwgtp43" smallint NOT NULL
-	Pwgtp44         int16   `cb:"395"` // "pwgtp44" smallint NOT NULL
-	Pwgtp45         int16   `cb:"396"` // "pwgtp45" smallint NOT NULL
-	Pwgtp46         int16   `cb:"397"` // "pwgtp46" smallint NOT NULL
-	Pwgtp47         int16   `cb:"398"` // "pwgtp47" smallint NOT NULL
-	Pwgtp48         int16   `cb:"399"` // "pwgtp48" smallint NOT NULL
-	Pwgtp49         int16   `cb:"400"` // "pwgtp49" smallint NOT NULL
-	Pwgtp4          int16   `cb:"401"` // "pwgtp4" smallint NOT NULL
-	Pwgtp50         int16   `cb:"402"` // "pwgtp50" smallint NOT NULL
-	Pwgtp51         int16   `cb:"403"` // "pwgtp51" smallint NOT NULL
-	Pwgtp52         int16   `cb:"404"` // "pwgtp52" smallint NOT NULL
-	Pwgtp53         int16   `cb:"405"` // "pwgtp53" smallint NOT NULL
-	Pwgtp54         int16   `cb:"406"` // "pwgtp54" smallint NOT NULL
-	Pwgtp55         int16   `cb:"407"` // "pwgtp55" smallint NOT NULL
-	Pwgtp56         int16   `cb:"408"` // "pwgtp56" smallint NOT NULL
-	Pwgtp57         int16   `cb:"409"` // "pwgtp57" smallint NOT NULL
-	Pwgtp58         int16   `cb:"410"` // "pwgtp58" smallint NOT NULL
-	Pwgtp59         int16   `cb:"411"` // "pwgtp59" smallint NOT NULL
-	Pwgtp5          int16   `cb:"412"` // "pwgtp5" smallint NOT NULL
-	Pwgtp60         int16   `cb:"413"` // "pwgtp60" smallint NOT NULL
-	Pwgtp61         int16   `cb:"414"` // "pwgtp61" smallint NOT NULL
-	Pwgtp62         int16   `cb:"415"` // "pwgtp62" smallint NOT NULL
-	Pwgtp63         int16   `cb:"416"` // "pwgtp63" smallint NOT NULL
-	Pwgtp64         int16   `cb:"417"` // "pwgtp64" smallint NOT NULL
-	Pwgtp65         int16   `cb:"418"` // "pwgtp65" smallint NOT NULL
-	Pwgtp66         int16   `cb:"419"` // "pwgtp66" smallint NOT NULL
-	Pwgtp67         int16   `cb:"420"` // "pwgtp67" smallint NOT NULL
-	Pwgtp68         int16   `cb:"421"` // "pwgtp68" smallint NOT NULL
-	Pwgtp69         int16   `cb:"422"` // "pwgtp69" smallint NOT NULL
-	Pwgtp6          int16   `cb:"423"` // "pwgtp6" smallint NOT NULL
-	Pwgtp70         int16   `cb:"424"` // "pwgtp70" smallint NOT NULL
-	Pwgtp71         int16   `cb:"425"` // "pwgtp71" smallint NOT NULL
-	Pwgtp72         int16   `cb:"426"` // "pwgtp72" smallint NOT NULL
-	Pwgtp73         int16   `cb:"427"` // "pwgtp73" smallint NOT NULL
-	Pwgtp74         int16   `cb:"428"` // "pwgtp74" smallint NOT NULL
-	Pwgtp75         int16   `cb:"429"` // "pwgtp75" smallint NOT NULL
-	Pwgtp76         int16   `cb:"430"` // "pwgtp76" smallint NOT NULL
-	Pwgtp77         int16   `cb:"431"` // "pwgtp77" smallint NOT NULL
-	Pwgtp78         int16   `cb:"432"` // "pwgtp78" smallint NOT NULL
-	Pwgtp79         int16   `cb:"433"` // "pwgtp79" smallint NOT NULL
-	Pwgtp7          int16   `cb:"434"` // "pwgtp7" smallint NOT NULL
-	Pwgtp80         int16   `cb:"435"` // "pwgtp80" smallint NOT NULL
-	Pwgtp8          int16   `cb:"436"` // "pwgtp8" smallint NOT NULL
-	Pwgtp9          int16   `cb:"437"` // "pwgtp9" smallint NOT NULL
-	Wgtp10          int16   `cb:"438"` // "wgtp10" smallint NOT NULL
-	Wgtp11          int16   `cb:"439"` // "wgtp11" smallint NOT NULL
-	Wgtp12          int16   `cb:"440"` // "wgtp12" smallint NOT NULL
-	Wgtp13          int16   `cb:"441"` // "wgtp13" smallint NOT NULL
-	Wgtp14          int16   `cb:"442"` // "wgtp14" smallint NOT NULL
-	Wgtp15          int16   `cb:"443"` // "wgtp15" smallint NOT NULL
-	Wgtp16          int16   `cb:"444"` // "wgtp16" smallint NOT NULL
-	Wgtp17          int16   `cb:"445"` // "wgtp17" smallint NOT NULL
-	Wgtp18          int16   `cb:"446"` // "wgtp18" smallint NOT NULL
-	Wgtp19          int16   `cb:"447"` // "wgtp19" smallint NOT NULL
-	Wgtp1           int16   `cb:"448"` // "wgtp1" smallint NOT NULL
-	Wgtp20          int16   `cb:"449"` // "wgtp20" smallint NOT NULL
-	Wgtp21          int16   `cb:"450"` // "wgtp21" smallint NOT NULL
-	Wgtp22          int16   `cb:"451"` // "wgtp22" smallint NOT NULL
-	Wgtp23          int16   `cb:"452"` // "wgtp23" smallint NOT NULL
-	Wgtp24          int16   `cb:"453"` // "wgtp24" smallint NOT NULL
-	Wgtp25          int16   `cb:"454"` // "wgtp25" smallint NOT NULL
-	Wgtp26          int16   `cb:"455"` // "wgtp26" smallint NOT NULL
-	Wgtp27          int16   `cb:"456"` // "wgtp27" smallint NOT NULL
-	Wgtp28          int16   `cb:"457"` // "wgtp28" smallint NOT NULL
-	Wgtp29          int16   `cb:"458"` // "wgtp29" smallint NOT NULL
-	Wgtp2           int16   `cb:"459"` // "wgtp2" smallint NOT NULL
-	Wgtp30          int16   `cb:"460"` // "wgtp30" smallint NOT NULL
-	Wgtp31          int16   `cb:"461"` // "wgtp31" smallint NOT NULL
-	Wgtp32          int16   `cb:"462"` // "wgtp32" smallint NOT NULL
-	Wgtp33          int16   `cb:"463"` // "wgtp33" smallint NOT NULL
-	Wgtp34          int16   `cb:"464"` // "wgtp34" smallint NOT NULL
-	Wgtp35          int16   `cb:"465"` // "wgtp35" smallint NOT NULL
-	Wgtp36          int16   `cb:"466"` // "wgtp36" smallint NOT NULL
-	Wgtp37          int16   `cb:"467"` // "wgtp37" smallint NOT NULL
-	Wgtp38          int16   `cb:"468"` // "wgtp38" smallint NOT NULL
-	Wgtp39          int16   `cb:"469"` // "wgtp39" smallint NOT NULL
-	Wgtp3           int16   `cb:"470"` // "wgtp3" smallint NOT NULL
-	Wgtp40          int16   `cb:"471"` // "wgtp40" smallint NOT NULL
-	Wgtp41          int16   `cb:"472"` // "wgtp41" smallint NOT NULL
-	Wgtp42          int16   `cb:"473"` // "wgtp42" smallint NOT NULL
-	Wgtp43          int16   `cb:"474"` // "wgtp43" smallint NOT NULL
-	Wgtp44          int16   `cb:"475"` // "wgtp44" smallint NOT NULL
-	Wgtp45          int16   `cb:"476"` // "wgtp45" smallint NOT NULL
-	Wgtp46          int16   `cb:"477"` // "wgtp46" smallint NOT NULL
-	Wgtp47          int16   `cb:"478"` // "wgtp47" smallint NOT NULL
-	Wgtp48          int16   `cb:"479"` // "wgtp48" smallint NOT NULL
-	Wgtp49          int16   `cb:"480"` // "wgtp49" smallint NOT NULL
-	Wgtp4           int16   `cb:"481"` // "wgtp4" smallint NOT NULL
-	Wgtp50          int16   `cb:"482"` // "wgtp50" smallint NOT NULL
-	Wgtp51          int16   `cb:"483"` // "wgtp51" smallint NOT NULL
-	Wgtp52          int16   `cb:"484"` // "wgtp52" smallint NOT NULL
-	Wgtp53          int16   `cb:"485"` // "wgtp53" smallint NOT NULL
-	Wgtp54          int16   `cb:"486"` // "wgtp54" smallint NOT NULL
-	Wgtp55          int16   `cb:"487"` // "wgtp55" smallint NOT NULL
-	Wgtp56          int16   `cb:"488"` // "wgtp56" smallint NOT NULL
-	Wgtp57          int16   `cb:"489"` // "wgtp57" smallint NOT NULL
-	Wgtp58          int16   `cb:"490"` // "wgtp58" smallint NOT NULL
-	Wgtp59          int16   `cb:"491"` // "wgtp59" smallint NOT NULL
-	Wgtp5           int16   `cb:"492"` // "wgtp5" smallint NOT NULL
-	Wgtp60          int16   `cb:"493"` // "wgtp60" smallint NOT NULL
-	Wgtp61          int16   `cb:"494"` // "wgtp61" smallint NOT NULL
-	Wgtp62          int16   `cb:"495"` // "wgtp62" smallint NOT NULL
-	Wgtp63          int16   `cb:"496"` // "wgtp63" smallint NOT NULL
-	Wgtp64          int16   `cb:"497"` // "wgtp64" smallint NOT NULL
-	Wgtp65          int16   `cb:"498"` // "wgtp65" smallint NOT NULL
-	Wgtp66          int16   `cb:"499"` // "wgtp66" smallint NOT NULL
-	Wgtp67          int16   `cb:"500"` // "wgtp67" smallint NOT NULL
-	Wgtp68          int16   `cb:"501"` // "wgtp68" smallint NOT NULL
-	Wgtp69          int16   `cb:"502"` // "wgtp69" smallint NOT NULL
-	Wgtp6           int16   `cb:"503"` // "wgtp6" smallint NOT NULL
-	Wgtp70          int16   `cb:"504"` // "wgtp70" smallint NOT NULL
-	Wgtp71          int16   `cb:"505"` // "wgtp71" smallint NOT NULL
-	Wgtp72          int16   `cb:"506"` // "wgtp72" smallint NOT NULL
-	Wgtp73          int16   `cb:"507"` // "wgtp73" smallint NOT NULL
-	Wgtp74          int16   `cb:"508"` // "wgtp74" smallint NOT NULL
-	Wgtp75          int16   `cb:"509"` // "wgtp75" smallint NOT NULL
-	Wgtp76          int16   `cb:"510"` // "wgtp76" smallint NOT NULL
-	Wgtp77          int16   `cb:"511"` // "wgtp77" smallint NOT NULL
-	Wgtp78          int16   `cb:"512"` // "wgtp78" smallint NOT NULL
-	Wgtp79          int16   `cb:"513"` // "wgtp79" smallint NOT NULL
-	Wgtp7           int16   `cb:"514"` // "wgtp7" smallint NOT NULL
-	Wgtp80          int16   `cb:"515"` // "wgtp80" smallint NOT NULL
-	Wgtp8           int16   `cb:"516"` // "wgtp8" smallint NOT NULL
-	Wgtp9           int16   `cb:"517"` // "wgtp9" smallint NOT NULL
-	WagpBin         *int16  `cb:"518"` // "Wagp (bin)" smallint
-	AgepBin         int16   `cb:"519"` // "Agep (bin)" smallint NOT NULL
+	ACCESS          *int16  `cb:"1"`             // "ACCESS" smallint
+	ACR             *int16  `cb:"2"`             // "ACR" smallint
+	ADJHSG          int32   `cb:"3"`             // "ADJHSG" integer NOT NULL
+	ADJINC          int32   `cb:"4"`             // "ADJINC" integer NOT NULL
+	ADJINC1         int32   `cb:"5"`             // "ADJINC1" integer NOT NULL
+	AGEP            int16   `cb:"6"`             // "AGEP" smallint NOT NULL
+	AGS             *int16  `cb:"7"`             // "AGS" smallint
+	ANC1P           int16   `cb:"8"`             // "ANC1P" smallint NOT NULL
+	ANC2P           int16   `cb:"9"`             // "ANC2P" smallint NOT NULL
+	ANC             int16   `cb:"10"`            // "ANC" smallint NOT NULL
+	BATH            *int16  `cb:"11"`            // "BATH" smallint
+	BDSP            *int16  `cb:"12"`            // "BDSP" smallint
+	BLD             *int16  `cb:"13"`            // "BLD" smallint
+	BROADBND        *int16  `cb:"14"`            // "BROADBND" smallint
+	BUS             *int16  `cb:"15"`            // "BUS" smallint
+	CITWP           *int16  `cb:"16"`            // "CITWP" smallint
+	CIT             int16   `cb:"17"`            // "CIT" smallint NOT NULL
+	COMPOTHX        *int16  `cb:"18"`            // "COMPOTHX" smallint
+	CONP            *int16  `cb:"19"`            // "CONP" smallint
+	COW             *int16  `cb:"20"`            // "COW" smallint
+	DDRS            *int16  `cb:"21"`            // "DDRS" smallint
+	DEAR            int16   `cb:"22"`            // "DEAR" smallint NOT NULL
+	DECADE          *int16  `cb:"23"`            // "DECADE" smallint
+	DEYE            int16   `cb:"24"`            // "DEYE" smallint NOT NULL
+	DIALUP          *int16  `cb:"25"`            // "DIALUP" smallint
+	DIS             int16   `cb:"26"`            // "DIS" smallint NOT NULL
+	DIVISION        int16   `cb:"27"`            // "DIVISION" smallint NOT NULL
+	DOUT            *int16  `cb:"28"`            // "DOUT" smallint
+	DPHY            *int16  `cb:"29"`            // "DPHY" smallint
+	DRATX           *int16  `cb:"30"`            // "DRATX" smallint
+	DRAT            *int16  `cb:"31"`            // "DRAT" smallint
+	DREM            *int16  `cb:"32"`            // "DREM" smallint
+	DRIVESP         *int16  `cb:"33"`            // "DRIVESP" smallint
+	DSL             *int16  `cb:"34"`            // "DSL" smallint
+	ELEP            *int16  `cb:"35"`            // "ELEP" smallint
+	ENG             *int16  `cb:"36"`            // "ENG" smallint
+	ESP             *int16  `cb:"37"`            // "ESP" smallint
+	ESR             *int16  `cb:"38"`            // "ESR" smallint
+	FACCESSP        *int16  `cb:"39"`            // "FACCESSP" smallint
+	FACRP           *int16  `cb:"40"`            // "FACRP" smallint
+	FAGEP           int16   `cb:"41"`            // "FAGEP" smallint NOT NULL
+	FAGSP           *int16  `cb:"42"`            // "FAGSP" smallint
+	FANCP           int16   `cb:"43"`            // "FANCP" smallint NOT NULL
+	FBATHP          *int16  `cb:"44"`            // "FBATHP" smallint
+	FBDSP           *int16  `cb:"45"`            // "FBDSP" smallint
+	FBLDP           *int16  `cb:"46"`            // "FBLDP" smallint
+	FBROADBNDP      *int16  `cb:"47"`            // "FBROADBNDP" smallint
+	FBUSP           *int16  `cb:"48"`            // "FBUSP" smallint
+	FCITP           int16   `cb:"49"`            // "FCITP" smallint NOT NULL
+	FCITWP          int16   `cb:"50"`            // "FCITWP" smallint NOT NULL
+	FCOMPOTHXP      *int16  `cb:"51"`            // "FCOMPOTHXP" smallint
+	FCONP           *int16  `cb:"52"`            // "FCONP" smallint
+	FCOWP           int16   `cb:"53"`            // "FCOWP" smallint NOT NULL
+	FDDRSP          int16   `cb:"54"`            // "FDDRSP" smallint NOT NULL
+	FDEARP          int16   `cb:"55"`            // "FDEARP" smallint NOT NULL
+	FDEYEP          int16   `cb:"56"`            // "FDEYEP" smallint NOT NULL
+	FDIALUPP        *int16  `cb:"57"`            // "FDIALUPP" smallint
+	FDISP           int16   `cb:"58"`            // "FDISP" smallint NOT NULL
+	FDOUTP          int16   `cb:"59"`            // "FDOUTP" smallint NOT NULL
+	FDPHYP          int16   `cb:"60"`            // "FDPHYP" smallint NOT NULL
+	FDRATP          int16   `cb:"61"`            // "FDRATP" smallint NOT NULL
+	FDRATXP         int16   `cb:"62"`            // "FDRATXP" smallint NOT NULL
+	FDREMP          int16   `cb:"63"`            // "FDREMP" smallint NOT NULL
+	FDSLP           *int16  `cb:"64"`            // "FDSLP" smallint
+	FELEP           *int16  `cb:"65"`            // "FELEP" smallint
+	FENGP           int16   `cb:"66"`            // "FENGP" smallint NOT NULL
+	FER             *int16  `cb:"67"`            // "FER" smallint
+	FESRP           int16   `cb:"68"`            // "FESRP" smallint NOT NULL
+	FES             *int16  `cb:"69"`            // "FES" smallint
+	FFERP           int16   `cb:"70"`            // "FFERP" smallint NOT NULL
+	FFIBEROPP       *int16  `cb:"71"`            // "FFIBEROPP" smallint
+	FFINCP          *int16  `cb:"72"`            // "FFINCP" smallint
+	FFODP           int16   `cb:"73"`            // "FFODP" smallint NOT NULL
+	FFSP            int16   `cb:"74"`            // "FFSP" smallint NOT NULL
+	FFULP           *int16  `cb:"75"`            // "FFULP" smallint
+	FGASP           *int16  `cb:"76"`            // "FGASP" smallint
+	FGCLP           int16   `cb:"77"`            // "FGCLP" smallint NOT NULL
+	FGCMP           int16   `cb:"78"`            // "FGCMP" smallint NOT NULL
+	FGCRP           int16   `cb:"79"`            // "FGCRP" smallint NOT NULL
+	FGRNTP          *int16  `cb:"80"`            // "FGRNTP" smallint
+	FHANDHELDP      *int16  `cb:"81"`            // "FHANDHELDP" smallint
+	FHFLP           *int16  `cb:"82"`            // "FHFLP" smallint
+	FHINCP          *int16  `cb:"83"`            // "FHINCP" smallint
+	FHINS1P         int16   `cb:"84"`            // "FHINS1P" smallint NOT NULL
+	FHINS2P         int16   `cb:"85"`            // "FHINS2P" smallint NOT NULL
+	FHINS3C         *int16  `cb:"86"`            // "FHINS3C" smallint
+	FHINS3P         int16   `cb:"87"`            // "FHINS3P" smallint NOT NULL
+	FHINS4C         *int16  `cb:"88"`            // "FHINS4C" smallint
+	FHINS4P         int16   `cb:"89"`            // "FHINS4P" smallint NOT NULL
+	FHINS5C         *int16  `cb:"90"`            // "FHINS5C" smallint
+	FHINS5P         int16   `cb:"91"`            // "FHINS5P" smallint NOT NULL
+	FHINS6P         int16   `cb:"92"`            // "FHINS6P" smallint NOT NULL
+	FHINS7P         int16   `cb:"93"`            // "FHINS7P" smallint NOT NULL
+	FHISP           int16   `cb:"94"`            // "FHISP" smallint NOT NULL
+	FIBEROP         *int16  `cb:"95"`            // "FIBEROP" smallint
+	FINCP           *int32  `cb:"96" pb:"sint"`  // "FINCP" integer
+	FINDP           int16   `cb:"97"`            // "FINDP" smallint NOT NULL
+	FINSP           *int16  `cb:"98"`            // "FINSP" smallint
+	FINTP           int16   `cb:"99"`            // "FINTP" smallint NOT NULL
+	FJWDP           int16   `cb:"100"`           // "FJWDP" smallint NOT NULL
+	FJWMNP          int16   `cb:"101"`           // "FJWMNP" smallint NOT NULL
+	FJWRIP          int16   `cb:"102"`           // "FJWRIP" smallint NOT NULL
+	FJWTRP          int16   `cb:"103"`           // "FJWTRP" smallint NOT NULL
+	FKITP           *int16  `cb:"104"`           // "FKITP" smallint
+	FLANP           int16   `cb:"105"`           // "FLANP" smallint NOT NULL
+	FLANXP          int16   `cb:"106"`           // "FLANXP" smallint NOT NULL
+	FLAPTOPP        *int16  `cb:"107"`           // "FLAPTOPP" smallint
+	FMARHDP         int16   `cb:"108"`           // "FMARHDP" smallint NOT NULL
+	FMARHMP         int16   `cb:"109"`           // "FMARHMP" smallint NOT NULL
+	FMARHTP         int16   `cb:"110"`           // "FMARHTP" smallint NOT NULL
+	FMARHWP         int16   `cb:"111"`           // "FMARHWP" smallint NOT NULL
+	FMARHYP         int16   `cb:"112"`           // "FMARHYP" smallint NOT NULL
+	FMARP           int16   `cb:"113"`           // "FMARP" smallint NOT NULL
+	FMHP            *int16  `cb:"114"`           // "FMHP" smallint
+	FMIGP           int16   `cb:"115"`           // "FMIGP" smallint NOT NULL
+	FMIGSP          int16   `cb:"116"`           // "FMIGSP" smallint NOT NULL
+	FMILPP          int16   `cb:"117"`           // "FMILPP" smallint NOT NULL
+	FMILSP          int16   `cb:"118"`           // "FMILSP" smallint NOT NULL
+	FMODEMP         *int16  `cb:"119"`           // "FMODEMP" smallint
+	FMRGIP          *int16  `cb:"120"`           // "FMRGIP" smallint
+	FMRGP           *int16  `cb:"121"`           // "FMRGP" smallint
+	FMRGTP          *int16  `cb:"122"`           // "FMRGTP" smallint
+	FMRGXP          *int16  `cb:"123"`           // "FMRGXP" smallint
+	FMVP            int16   `cb:"124"`           // "FMVP" smallint NOT NULL
+	FOCCP           int16   `cb:"125"`           // "FOCCP" smallint NOT NULL
+	FOD1P           *int16  `cb:"126"`           // "FOD1P" smallint
+	FOD2P           *int16  `cb:"127"`           // "FOD2P" smallint
+	FOIP            int16   `cb:"128"`           // "FOIP" smallint NOT NULL
+	FOTHSVCEXP      *int16  `cb:"129"`           // "FOTHSVCEXP" smallint
+	FPAP            int16   `cb:"130"`           // "FPAP" smallint NOT NULL
+	FPARC           *int16  `cb:"131"`           // "FPARC" smallint
+	FPERNP          int16   `cb:"132"`           // "FPERNP" smallint NOT NULL
+	FPINCP          int16   `cb:"133"`           // "FPINCP" smallint NOT NULL
+	FPLMP           *int16  `cb:"134"`           // "FPLMP" smallint
+	FPOBP           int16   `cb:"135"`           // "FPOBP" smallint NOT NULL
+	FPOWSP          int16   `cb:"136"`           // "FPOWSP" smallint NOT NULL
+	FPRIVCOVP       int16   `cb:"137"`           // "FPRIVCOVP" smallint NOT NULL
+	FPUBCOVP        int16   `cb:"138"`           // "FPUBCOVP" smallint NOT NULL
+	FRACP           int16   `cb:"139"`           // "FRACP" smallint NOT NULL
+	FREFRP          *int16  `cb:"140"`           // "FREFRP" smallint
+	FRELP           int16   `cb:"141"`           // "FRELP" smallint NOT NULL
+	FRETP           int16   `cb:"142"`           // "FRETP" smallint NOT NULL
+	FRMSP           *int16  `cb:"143"`           // "FRMSP" smallint
+	FRNTMP          *int16  `cb:"144"`           // "FRNTMP" smallint
+	FRNTP           *int16  `cb:"145"`           // "FRNTP" smallint
+	FRWATPRP        *int16  `cb:"146"`           // "FRWATPRP" smallint
+	FRWATP          *int16  `cb:"147"`           // "FRWATP" smallint
+	FSATELLITEP     *int16  `cb:"148"`           // "FSATELLITEP" smallint
+	FSCHGP          int16   `cb:"149"`           // "FSCHGP" smallint NOT NULL
+	FSCHLP          int16   `cb:"150"`           // "FSCHLP" smallint NOT NULL
+	FSCHP           int16   `cb:"151"`           // "FSCHP" smallint NOT NULL
+	FSEMP           int16   `cb:"152"`           // "FSEMP" smallint NOT NULL
+	FSEXP           int16   `cb:"153"`           // "FSEXP" smallint NOT NULL
+	FSINKP          *int16  `cb:"154"`           // "FSINKP" smallint
+	FSMOCP          *int16  `cb:"155"`           // "FSMOCP" smallint
+	FSMP            *int16  `cb:"156"`           // "FSMP" smallint
+	FSMXHP          *int16  `cb:"157"`           // "FSMXHP" smallint
+	FSMXSP          *int16  `cb:"158"`           // "FSMXSP" smallint
+	FSSIP           int16   `cb:"159"`           // "FSSIP" smallint NOT NULL
+	FSSP            int16   `cb:"160"`           // "FSSP" smallint NOT NULL
+	FSTOVP          *int16  `cb:"161"`           // "FSTOVP" smallint
+	FS              int16   `cb:"162"`           // "FS" smallint NOT NULL
+	FTAXP           *int16  `cb:"163"`           // "FTAXP" smallint
+	FTELP           *int16  `cb:"164"`           // "FTELP" smallint
+	FTENP           *int16  `cb:"165"`           // "FTENP" smallint
+	FTOILP          *int16  `cb:"166"`           // "FTOILP" smallint
+	FULP            *int16  `cb:"167"`           // "FULP" smallint
+	FVACSP          *int16  `cb:"168"`           // "FVACSP" smallint
+	FVALP           *int16  `cb:"169"`           // "FVALP" smallint
+	FVEHP           *int16  `cb:"170"`           // "FVEHP" smallint
+	FWAGP           int16   `cb:"171"`           // "FWAGP" smallint NOT NULL
+	FWATP           *int16  `cb:"172"`           // "FWATP" smallint
+	FWKHP           int16   `cb:"173"`           // "FWKHP" smallint NOT NULL
+	FWKLP           int16   `cb:"174"`           // "FWKLP" smallint NOT NULL
+	FWKWP           int16   `cb:"175"`           // "FWKWP" smallint NOT NULL
+	FWRKP           int16   `cb:"176"`           // "FWRKP" smallint NOT NULL
+	FYBLP           *int16  `cb:"177"`           // "FYBLP" smallint
+	FYOEP           int16   `cb:"178"`           // "FYOEP" smallint NOT NULL
+	GASP            *int16  `cb:"179"`           // "GASP" smallint
+	GCL             *int16  `cb:"180"`           // "GCL" smallint
+	GCM             *int16  `cb:"181"`           // "GCM" smallint
+	GCR             *int16  `cb:"182"`           // "GCR" smallint
+	GRNTP           *int16  `cb:"183"`           // "GRNTP" smallint
+	GRPIP           *int16  `cb:"184"`           // "GRPIP" smallint
+	HANDHELD        *int16  `cb:"185"`           // "HANDHELD" smallint
+	HFL             *int16  `cb:"186"`           // "HFL" smallint
+	HHL             *int16  `cb:"187"`           // "HHL" smallint
+	HHT             *int16  `cb:"188"`           // "HHT" smallint
+	HICOV           int16   `cb:"189"`           // "HICOV" smallint NOT NULL
+	HINCP           *int32  `cb:"190" pb:"sint"` // "HINCP" integer
+	HINS1           int16   `cb:"191"`           // "HINS1" smallint NOT NULL
+	HINS2           int16   `cb:"192"`           // "HINS2" smallint NOT NULL
+	HINS3           int16   `cb:"193"`           // "HINS3" smallint NOT NULL
+	HINS4           int16   `cb:"194"`           // "HINS4" smallint NOT NULL
+	HINS5           int16   `cb:"195"`           // "HINS5" smallint NOT NULL
+	HINS6           int16   `cb:"196"`           // "HINS6" smallint NOT NULL
+	HINS7           int16   `cb:"197"`           // "HINS7" smallint NOT NULL
+	HISP            int16   `cb:"198"`           // "HISP" smallint NOT NULL
+	HUGCL           *int16  `cb:"199"`           // "HUGCL" smallint
+	HUPAC           *int16  `cb:"200"`           // "HUPAC" smallint
+	HUPAOC          *int16  `cb:"201"`           // "HUPAOC" smallint
+	HUPARC          *int16  `cb:"202"`           // "HUPARC" smallint
+	INDP            *int16  `cb:"203"`           // "INDP" smallint
+	INSP            *int16  `cb:"204"`           // "INSP" smallint
+	INTP            *int32  `cb:"205" pb:"sint"` // "INTP" integer
+	JWAP            *int16  `cb:"206"`           // "JWAP" smallint
+	JWDP            *int16  `cb:"207"`           // "JWDP" smallint
+	JWMNP           *int16  `cb:"208"`           // "JWMNP" smallint
+	JWRIP           *int16  `cb:"209"`           // "JWRIP" smallint
+	JWTR            *int16  `cb:"210"`           // "JWTR" smallint
+	KIT             *int16  `cb:"211"`           // "KIT" smallint
+	LANP            *int16  `cb:"212"`           // "LANP" smallint
+	LANX            *int16  `cb:"213"`           // "LANX" smallint
+	LAPTOP          *int16  `cb:"214"`           // "LAPTOP" smallint
+	LNGI            *int16  `cb:"215"`           // "LNGI" smallint
+	MARHD           *int16  `cb:"216"`           // "MARHD" smallint
+	MARHM           *int16  `cb:"217"`           // "MARHM" smallint
+	MARHT           *int16  `cb:"218"`           // "MARHT" smallint
+	MARHW           *int16  `cb:"219"`           // "MARHW" smallint
+	MARHYP          *int16  `cb:"220"`           // "MARHYP" smallint
+	MAR             int16   `cb:"221"`           // "MAR" smallint NOT NULL
+	MHP             *int16  `cb:"222"`           // "MHP" smallint
+	MIGPUMA         *int32  `cb:"223"`           // "MIGPUMA" integer
+	MIGSP           *int16  `cb:"224"`           // "MIGSP" smallint
+	MIG             *int16  `cb:"225"`           // "MIG" smallint
+	MIL             *int16  `cb:"226"`           // "MIL" smallint
+	MLPA            *int16  `cb:"227"`           // "MLPA" smallint
+	MLPB            *int16  `cb:"228"`           // "MLPB" smallint
+	MLPCD           *int16  `cb:"229"`           // "MLPCD" smallint
+	MLPE            *int16  `cb:"230"`           // "MLPE" smallint
+	MLPFG           *int16  `cb:"231"`           // "MLPFG" smallint
+	MLPH            *int16  `cb:"232"`           // "MLPH" smallint
+	MLPI            *int16  `cb:"233"`           // "MLPI" smallint
+	MLPJ            *int16  `cb:"234"`           // "MLPJ" smallint
+	MLPK            *int16  `cb:"235"`           // "MLPK" smallint
+	MODEM           *int16  `cb:"236"`           // "MODEM" smallint
+	MRGI            *int16  `cb:"237"`           // "MRGI" smallint
+	MRGP            *int16  `cb:"238"`           // "MRGP" smallint
+	MRGT            *int16  `cb:"239"`           // "MRGT" smallint
+	MRGX            *int16  `cb:"240"`           // "MRGX" smallint
+	MSP             *int16  `cb:"241"`           // "MSP" smallint
+	MULTG           *int16  `cb:"242"`           // "MULTG" smallint
+	MV              *int16  `cb:"243"`           // "MV" smallint
+	NAICSP          *string `cb:"244"`           // "NAICSP" varchar(8)
+	NATIVITY        int16   `cb:"245"`           // "NATIVITY" smallint NOT NULL
+	NOC             *int16  `cb:"246"`           // "NOC" smallint
+	NOP             *int16  `cb:"247"`           // "NOP" smallint
+	NPF             *int16  `cb:"248"`           // "NPF" smallint
+	NPP             *int16  `cb:"249"`           // "NPP" smallint
+	NP              int16   `cb:"250"`           // "NP" smallint NOT NULL
+	NRC             *int16  `cb:"251"`           // "NRC" smallint
+	NR              *int16  `cb:"252"`           // "NR" smallint
+	NWAB            *int16  `cb:"253"`           // "NWAB" smallint
+	NWAV            *int16  `cb:"254"`           // "NWAV" smallint
+	NWLA            *int16  `cb:"255"`           // "NWLA" smallint
+	NWLK            *int16  `cb:"256"`           // "NWLK" smallint
+	NWRE            *int16  `cb:"257"`           // "NWRE" smallint
+	NumberOfRecords int16   `cb:"258"`           // "Number of Records" smallint NOT NULL
+	OCCP            *int16  `cb:"259"`           // "OCCP" smallint
+	OCPIP           *int16  `cb:"260"`           // "OCPIP" smallint
+	OC              int16   `cb:"261"`           // "OC" smallint NOT NULL
+	OIP             *int32  `cb:"262"`           // "OIP" integer
+	OTHSVCEX        *int16  `cb:"263"`           // "OTHSVCEX" smallint
+	PAOC            *int16  `cb:"264"`           // "PAOC" smallint
+	PAP             *int16  `cb:"265"`           // "PAP" smallint
+	PARTNER         *int16  `cb:"266"`           // "PARTNER" smallint
+	PERNP           *int32  `cb:"267" pb:"sint"` // "PERNP" integer
+	PINCP           *int32  `cb:"268" pb:"sint"` // "PINCP" integer
+	PLM             *int16  `cb:"269"`           // "PLM" smallint
+	POBP            int16   `cb:"270"`           // "POBP" smallint NOT NULL
+	POVPIP          *int16  `cb:"271"`           // "POVPIP" smallint
+	POWPUMA         *int32  `cb:"272"`           // "POWPUMA" integer
+	POWSP           *int16  `cb:"273"`           // "POWSP" smallint
+	PRIVCOV         int16   `cb:"274"`           // "PRIVCOV" smallint NOT NULL
+	PSF             *int16  `cb:"275"`           // "PSF" smallint
+	PUBCOV          int16   `cb:"276"`           // "PUBCOV" smallint NOT NULL
+	PUMA            int32   `cb:"277"`           // "PUMA" integer NOT NULL
+	PUMA1           int32   `cb:"278"`           // "PUMA1" integer NOT NULL
+	PWGTP           int16   `cb:"279"`           // "PWGTP" smallint NOT NULL
+	QTRBIR          int16   `cb:"280"`           // "QTRBIR" smallint NOT NULL
+	R18             *int16  `cb:"281"`           // "R18" smallint
+	R60             *int16  `cb:"282"`           // "R60" smallint
+	R65             *int16  `cb:"283"`           // "R65" smallint
+	RAC1P           int16   `cb:"284"`           // "RAC1P" smallint NOT NULL
+	RAC2P           int16   `cb:"285"`           // "RAC2P" smallint NOT NULL
+	RAC3P           int16   `cb:"286"`           // "RAC3P" smallint NOT NULL
+	RACAIAN         int16   `cb:"287"`           // "RACAIAN" smallint NOT NULL
+	RACASN          int16   `cb:"288"`           // "RACASN" smallint NOT NULL
+	RACBLK          int16   `cb:"289"`           // "RACBLK" smallint NOT NULL
+	RACNH           int16   `cb:"290"`           // "RACNH" smallint NOT NULL
+	RACNUM          int16   `cb:"291"`           // "RACNUM" smallint NOT NULL
+	RACPI           int16   `cb:"292"`           // "RACPI" smallint NOT NULL
+	RACSOR          int16   `cb:"293"`           // "RACSOR" smallint NOT NULL
+	RACWHT          int16   `cb:"294"`           // "RACWHT" smallint NOT NULL
+	RC              int16   `cb:"295"`           // "RC" smallint NOT NULL
+	REFR            *int16  `cb:"296"`           // "REFR" smallint
+	REGION          int16   `cb:"297"`           // "REGION" smallint NOT NULL
+	RELP            int16   `cb:"298"`           // "RELP" smallint NOT NULL
+	RESMODE         *int16  `cb:"299"`           // "RESMODE" smallint
+	RETP            *int32  `cb:"300"`           // "RETP" integer
+	RMSP            *int16  `cb:"301"`           // "RMSP" smallint
+	RNTM            *int16  `cb:"302"`           // "RNTM" smallint
+	RNTP            *int16  `cb:"303"`           // "RNTP" smallint
+	RT              string  `cb:"304"`           // "RT" varchar(1) NOT NULL
+	RT1             string  `cb:"305"`           // "RT1" varchar(1) NOT NULL
+	RWATPR          *int16  `cb:"306"`           // "RWATPR" smallint
+	RWAT            *int16  `cb:"307"`           // "RWAT" smallint
+	SATELLITE       *int16  `cb:"308"`           // "SATELLITE" smallint
+	SCHG            *int16  `cb:"309"`           // "SCHG" smallint
+	SCHL            *int16  `cb:"310"`           // "SCHL" smallint
+	SCH             *int16  `cb:"311"`           // "SCH" smallint
+	SCIENGP         *int16  `cb:"312"`           // "SCIENGP" smallint
+	SCIENGRLP       *int16  `cb:"313"`           // "SCIENGRLP" smallint
+	SEMP            *int32  `cb:"314" pb:"sint"` // "SEMP" integer
+	SERIALNO        int32   `cb:"315"`           // "SERIALNO" integer NOT NULL
+	SERIALNO1       int32   `cb:"316"`           // "SERIALNO1" integer NOT NULL
+	SEX             int16   `cb:"317"`           // "SEX" smallint NOT NULL
+	SFN             *int16  `cb:"318"`           // "SFN" smallint
+	SFR             *int16  `cb:"319"`           // "SFR" smallint
+	SINK            *int16  `cb:"320"`           // "SINK" smallint
+	SMOCP           *int16  `cb:"321"`           // "SMOCP" smallint
+	SMP             *int16  `cb:"322"`           // "SMP" smallint
+	SMX             *int16  `cb:"323"`           // "SMX" smallint
+	SOCP            *string `cb:"324"`           // "SOCP" varchar(6)
+	SPORDER         int16   `cb:"325"`           // "SPORDER" smallint NOT NULL
+	SRNT            *int16  `cb:"326"`           // "SRNT" smallint
+	SSIP            *int16  `cb:"327"`           // "SSIP" smallint
+	SSMC            *int16  `cb:"328"`           // "SSMC" smallint
+	SSP             *int32  `cb:"329"`           // "SSP" integer
+	ST              int16   `cb:"330"`           // "ST" smallint NOT NULL
+	STOV            *int16  `cb:"331"`           // "STOV" smallint
+	ST1             int16   `cb:"332"`           // "ST1" smallint NOT NULL
+	SVAL            *int16  `cb:"333"`           // "SVAL" smallint
+	TAXP            *int16  `cb:"334"`           // "TAXP" smallint
+	TEL             *int16  `cb:"335"`           // "TEL" smallint
+	TEN             *int16  `cb:"336"`           // "TEN" smallint
+	TOIL            *int16  `cb:"337"`           // "TOIL" smallint
+	TYPE            int16   `cb:"338"`           // "TYPE" smallint NOT NULL
+	TableName       string  `cb:"339"`           // "Table Name" varchar(12) NOT NULL
+	TableName1      string  `cb:"340"`           // "Table Name1" varchar(12) NOT NULL
+	VACS            *int64  `cb:"341"`           // "VACS" bigint
+	VALP            *int32  `cb:"342"`           // "VALP" integer
+	VEH             *int16  `cb:"343"`           // "VEH" smallint
+	VPS             *int16  `cb:"344"`           // "VPS" smallint
+	WAGP            *int32  `cb:"345"`           // "WAGP" integer
+	WAOB            int16   `cb:"346"`           // "WAOB" smallint NOT NULL
+	WATP            *int16  `cb:"347"`           // "WATP" smallint
+	WGTP            int16   `cb:"348"`           // "WGTP" smallint NOT NULL
+	WIF             *int16  `cb:"349"`           // "WIF" smallint
+	WKEXREL         *int16  `cb:"350"`           // "WKEXREL" smallint
+	WKHP            *int16  `cb:"351"`           // "WKHP" smallint
+	WKL             *int16  `cb:"352"`           // "WKL" smallint
+	WKW             *int16  `cb:"353"`           // "WKW" smallint
+	WORKSTAT        *int16  `cb:"354"`           // "WORKSTAT" smallint
+	WRK             *int16  `cb:"355"`           // "WRK" smallint
+	YBL             *int16  `cb:"356"`           // "YBL" smallint
+	YOEP            *int16  `cb:"357"`           // "YOEP" smallint
+	Pwgtp10         int16   `cb:"358"`           // "pwgtp10" smallint NOT NULL
+	Pwgtp11         int16   `cb:"359" pb:"sint"` // "pwgtp11" smallint NOT NULL
+	Pwgtp12         int16   `cb:"360"`           // "pwgtp12" smallint NOT NULL
+	Pwgtp13         int16   `cb:"361"`           // "pwgtp13" smallint NOT NULL
+	Pwgtp14         int16   `cb:"362"`           // "pwgtp14" smallint NOT NULL
+	Pwgtp15         int16   `cb:"363"`           // "pwgtp15" smallint NOT NULL
+	Pwgtp16         int16   `cb:"364" pb:"sint"` // "pwgtp16" smallint NOT NULL
+	Pwgtp17         int16   `cb:"365"`           // "pwgtp17" smallint NOT NULL
+	Pwgtp18         int16   `cb:"366"`           // "pwgtp18" smallint NOT NULL
+	Pwgtp19         int16   `cb:"367"`           // "pwgtp19" smallint NOT NULL
+	Pwgtp1          int16   `cb:"368"`           // "pwgtp1" smallint NOT NULL
+	Pwgtp20         int16   `cb:"369"`           // "pwgtp20" smallint NOT NULL
+	Pwgtp21         int16   `cb:"370"`           // "pwgtp21" smallint NOT NULL
+	Pwgtp22         int16   `cb:"371" pb:"sint"` // "pwgtp22" smallint NOT NULL
+	Pwgtp23         int16   `cb:"372" pb:"sint"` // "pwgtp23" smallint NOT NULL
+	Pwgtp24         int16   `cb:"373"`           // "pwgtp24" smallint NOT NULL
+	Pwgtp25         int16   `cb:"374"`           // "pwgtp25" smallint NOT NULL
+	Pwgtp26         int16   `cb:"375" pb:"sint"` // "pwgtp26" smallint NOT NULL
+	Pwgtp27         int16   `cb:"376"`           // "pwgtp27" smallint NOT NULL
+	Pwgtp28         int16   `cb:"377"`           // "pwgtp28" smallint NOT NULL
+	Pwgtp29         int16   `cb:"378"`           // "pwgtp29" smallint NOT NULL
+	Pwgtp2          int16   `cb:"379" pb:"sint"` // "pwgtp2" smallint NOT NULL
+	Pwgtp30         int16   `cb:"380"`           // "pwgtp30" smallint NOT NULL
+	Pwgtp31         int16   `cb:"381"`           // "pwgtp31" smallint NOT NULL
+	Pwgtp32         int16   `cb:"382"`           // "pwgtp32" smallint NOT NULL
+	Pwgtp33         int16   `cb:"383"`           // "pwgtp33" smallint NOT NULL
+	Pwgtp34         int16   `cb:"384"`           // "pwgtp34" smallint NOT NULL
+	Pwgtp35         int16   `cb:"385" pb:"sint"` // "pwgtp35" smallint NOT NULL
+	Pwgtp36         int16   `cb:"386"`           // "pwgtp36" smallint NOT NULL
+	Pwgtp37         int16   `cb:"387"`           // "pwgtp37" smallint NOT NULL
+	Pwgtp38         int16   `cb:"388"`           // "pwgtp38" smallint NOT NULL
+	Pwgtp39         int16   `cb:"389"`           // "pwgtp39" smallint NOT NULL
+	Pwgtp3          int16   `cb:"390"`           // "pwgtp3" smallint NOT NULL
+	Pwgtp40         int16   `cb:"391"`           // "pwgtp40" smallint NOT NULL
+	Pwgtp41         int16   `cb:"392" pb:"sint"` // "pwgtp41" smallint NOT NULL
+	Pwgtp42         int16   `cb:"393"`           // "pwgtp42" smallint NOT NULL
+	Pwgtp43         int16   `cb:"394"`           // "pwgtp43" smallint NOT NULL
+	Pwgtp44         int16   `cb:"395" pb:"sint"` // "pwgtp44" smallint NOT NULL
+	Pwgtp45         int16   `cb:"396"`           // "pwgtp45" smallint NOT NULL
+	Pwgtp46         int16   `cb:"397"`           // "pwgtp46" smallint NOT NULL
+	Pwgtp47         int16   `cb:"398" pb:"sint"` // "pwgtp47" smallint NOT NULL
+	Pwgtp48         int16   `cb:"399" pb:"sint"` // "pwgtp48" smallint NOT NULL
+	Pwgtp49         int16   `cb:"400"`           // "pwgtp49" smallint NOT NULL
+	Pwgtp4          int16   `cb:"401"`           // "pwgtp4" smallint NOT NULL
+	Pwgtp50         int16   `cb:"402"`           // "pwgtp50" smallint NOT NULL
+	Pwgtp51         int16   `cb:"403"`           // "pwgtp51" smallint NOT NULL
+	Pwgtp52         int16   `cb:"404"`           // "pwgtp52" smallint NOT NULL
+	Pwgtp53         int16   `cb:"405"`           // "pwgtp53" smallint NOT NULL
+	Pwgtp54         int16   `cb:"406"`           // "pwgtp54" smallint NOT NULL
+	Pwgtp55         int16   `cb:"407"`           // "pwgtp55" smallint NOT NULL
+	Pwgtp56         int16   `cb:"408"`           // "pwgtp56" smallint NOT NULL
+	Pwgtp57         int16   `cb:"409"`           // "pwgtp57" smallint NOT NULL
+	Pwgtp58         int16   `cb:"410"`           // "pwgtp58" smallint NOT NULL
+	Pwgtp59         int16   `cb:"411"`           // "pwgtp59" smallint NOT NULL
+	Pwgtp5          int16   `cb:"412"`           // "pwgtp5" smallint NOT NULL
+	Pwgtp60         int16   `cb:"413"`           // "pwgtp60" smallint NOT NULL
+	Pwgtp61         int16   `cb:"414"`           // "pwgtp61" smallint NOT NULL
+	Pwgtp62         int16   `cb:"415"`           // "pwgtp62" smallint NOT NULL
+	Pwgtp63         int16   `cb:"416"`           // "pwgtp63" smallint NOT NULL
+	Pwgtp64         int16   `cb:"417" pb:"sint"` // "pwgtp64" smallint NOT NULL
+	Pwgtp65         int16   `cb:"418"`           // "pwgtp65" smallint NOT NULL
+	Pwgtp66         int16   `cb:"419" pb:"sint"` // "pwgtp66" smallint NOT NULL
+	Pwgtp67         int16   `cb:"420" pb:"sint"` // "pwgtp67" smallint NOT NULL
+	Pwgtp68         int16   `cb:"421" pb:"sint"` // "pwgtp68" smallint NOT NULL
+	Pwgtp69         int16   `cb:"422"`           // "pwgtp69" smallint NOT NULL
+	Pwgtp6          int16   `cb:"423" pb:"sint"` // "pwgtp6" smallint NOT NULL
+	Pwgtp70         int16   `cb:"424"`           // "pwgtp70" smallint NOT NULL
+	Pwgtp71         int16   `cb:"425"`           // "pwgtp71" smallint NOT NULL
+	Pwgtp72         int16   `cb:"426"`           // "pwgtp72" smallint NOT NULL
+	Pwgtp73         int16   `cb:"427"`           // "pwgtp73" smallint NOT NULL
+	Pwgtp74         int16   `cb:"428"`           // "pwgtp74" smallint NOT NULL
+	Pwgtp75         int16   `cb:"429"`           // "pwgtp75" smallint NOT NULL
+	Pwgtp76         int16   `cb:"430"`           // "pwgtp76" smallint NOT NULL
+	Pwgtp77         int16   `cb:"431"`           // "pwgtp77" smallint NOT NULL
+	Pwgtp78         int16   `cb:"432"`           // "pwgtp78" smallint NOT NULL
+	Pwgtp79         int16   `cb:"433" pb:"sint"` // "pwgtp79" smallint NOT NULL
+	Pwgtp7          int16   `cb:"434"`           // "pwgtp7" smallint NOT NULL
+	Pwgtp80         int16   `cb:"435"`           // "pwgtp80" smallint NOT NULL
+	Pwgtp8          int16   `cb:"436"`           // "pwgtp8" smallint NOT NULL
+	Pwgtp9          int16   `cb:"437"`           // "pwgtp9" smallint NOT NULL
+	Wgtp10          int16   `cb:"438"`           // "wgtp10" smallint NOT NULL
+	Wgtp11          int16   `cb:"439" pb:"sint"` // "wgtp11" smallint NOT NULL
+	Wgtp12          int16   `cb:"440"`           // "wgtp12" smallint NOT NULL
+	Wgtp13          int16   `cb:"441"`           // "wgtp13" smallint NOT NULL
+	Wgtp14          int16   `cb:"442"`           // "wgtp14" smallint NOT NULL
+	Wgtp15          int16   `cb:"443"`           // "wgtp15" smallint NOT NULL
+	Wgtp16          int16   `cb:"444"`           // "wgtp16" smallint NOT NULL
+	Wgtp17          int16   `cb:"445"`           // "wgtp17" smallint NOT NULL
+	Wgtp18          int16   `cb:"446"`           // "wgtp18" smallint NOT NULL
+	Wgtp19          int16   `cb:"447"`           // "wgtp19" smallint NOT NULL
+	Wgtp1           int16   `cb:"448"`           // "wgtp1" smallint NOT NULL
+	Wgtp20          int16   `cb:"449"`           // "wgtp20" smallint NOT NULL
+	Wgtp21          int16   `cb:"450"`           // "wgtp21" smallint NOT NULL
+	Wgtp22          int16   `cb:"451" pb:"sint"` // "wgtp22" smallint NOT NULL
+	Wgtp23          int16   `cb:"452" pb:"sint"` // "wgtp23" smallint NOT NULL
+	Wgtp24          int16   `cb:"453" pb:"sint"` // "wgtp24" smallint NOT NULL
+	Wgtp25          int16   `cb:"454"`           // "wgtp25" smallint NOT NULL
+	Wgtp26          int16   `cb:"455" pb:"sint"` // "wgtp26" smallint NOT NULL
+	Wgtp27          int16   `cb:"456"`           // "wgtp27" smallint NOT NULL
+	Wgtp28          int16   `cb:"457"`           // "wgtp28" smallint NOT NULL
+	Wgtp29          int16   `cb:"458"`           // "wgtp29" smallint NOT NULL
+	Wgtp2           int16   `cb:"459" pb:"sint"` // "wgtp2" smallint NOT NULL
+	Wgtp30          int16   `cb:"460"`           // "wgtp30" smallint NOT NULL
+	Wgtp31          int16   `cb:"461"`           // "wgtp31" smallint NOT NULL
+	Wgtp32          int16   `cb:"462"`           // "wgtp32" smallint NOT NULL
+	Wgtp33          int16   `cb:"463"`           // "wgtp33" smallint NOT NULL
+	Wgtp34          int16   `cb:"464"`           // "wgtp34" smallint NOT NULL
+	Wgtp35          int16   `cb:"465" pb:"sint"` // "wgtp35" smallint NOT NULL
+	Wgtp36          int16   `cb:"466"`           // "wgtp36" smallint NOT NULL
+	Wgtp37          int16   `cb:"467"`           // "wgtp37" smallint NOT NULL
+	Wgtp38          int16   `cb:"468"`           // "wgtp38" smallint NOT NULL
+	Wgtp39          int16   `cb:"469"`           // "wgtp39" smallint NOT NULL
+	Wgtp3           int16   `cb:"470" pb:"sint"` // "wgtp3" smallint NOT NULL
+	Wgtp40          int16   `cb:"471"`           // "wgtp40" smallint NOT NULL
+	Wgtp41          int16   `cb:"472" pb:"sint"` // "wgtp41" smallint NOT NULL
+	Wgtp42          int16   `cb:"473"`           // "wgtp42" smallint NOT NULL
+	Wgtp43          int16   `cb:"474"`           // "wgtp43" smallint NOT NULL
+	Wgtp44          int16   `cb:"475" pb:"sint"` // "wgtp44" smallint NOT NULL
+	Wgtp45          int16   `cb:"476"`           // "wgtp45" smallint NOT NULL
+	Wgtp46          int16   `cb:"477"`           // "wgtp46" smallint NOT NULL
+	Wgtp47          int16   `cb:"478" pb:"sint"` // "wgtp47" smallint NOT NULL
+	Wgtp48          int16   `cb:"479" pb:"sint"` // "wgtp48" smallint NOT NULL
+	Wgtp49          int16   `cb:"480"`           // "wgtp49" smallint NOT NULL
+	Wgtp4           int16   `cb:"481" pb:"sint"` // "wgtp4" smallint NOT NULL
+	Wgtp50          int16   `cb:"482"`           // "wgtp50" smallint NOT NULL
+	Wgtp51          int16   `cb:"483"`           // "wgtp51" smallint NOT NULL
+	Wgtp52          int16   `cb:"484"`           // "wgtp52" smallint NOT NULL
+	Wgtp53          int16   `cb:"485"`           // "wgtp53" smallint NOT NULL
+	Wgtp54          int16   `cb:"486"`           // "wgtp54" smallint NOT NULL
+	Wgtp55          int16   `cb:"487"`           // "wgtp55" smallint NOT NULL
+	Wgtp56          int16   `cb:"488"`           // "wgtp56" smallint NOT NULL
+	Wgtp57          int16   `cb:"489"`           // "wgtp57" smallint NOT NULL
+	Wgtp58          int16   `cb:"490"`           // "wgtp58" smallint NOT NULL
+	Wgtp59          int16   `cb:"491"`           // "wgtp59" smallint NOT NULL
+	Wgtp5           int16   `cb:"492"`           // "wgtp5" smallint NOT NULL
+	Wgtp60          int16   `cb:"493"`           // "wgtp60" smallint NOT NULL
+	Wgtp61          int16   `cb:"494" pb:"sint"` // "wgtp61" smallint NOT NULL
+	Wgtp62          int16   `cb:"495"`           // "wgtp62" smallint NOT NULL
+	Wgtp63          int16   `cb:"496"`           // "wgtp63" smallint NOT NULL
+	Wgtp64          int16   `cb:"497" pb:"sint"` // "wgtp64" smallint NOT NULL
+	Wgtp65          int16   `cb:"498"`           // "wgtp65" smallint NOT NULL
+	Wgtp66          int16   `cb:"499" pb:"sint"` // "wgtp66" smallint NOT NULL
+	Wgtp67          int16   `cb:"500" pb:"sint"` // "wgtp67" smallint NOT NULL
+	Wgtp68          int16   `cb:"501" pb:"sint"` // "wgtp68" smallint NOT NULL
+	Wgtp69          int16   `cb:"502"`           // "wgtp69" smallint NOT NULL
+	Wgtp6           int16   `cb:"503" pb:"sint"` // "wgtp6" smallint NOT NULL
+	Wgtp70          int16   `cb:"504"`           // "wgtp70" smallint NOT NULL
+	Wgtp71          int16   `cb:"505"`           // "wgtp71" smallint NOT NULL
+	Wgtp72          int16   `cb:"506"`           // "wgtp72" smallint NOT NULL
+	Wgtp73          int16   `cb:"507"`           // "wgtp73" smallint NOT NULL
+	Wgtp74          int16   `cb:"508"`           // "wgtp74" smallint NOT NULL
+	Wgtp75          int16   `cb:"509"`           // "wgtp75" smallint NOT NULL
+	Wgtp76          int16   `cb:"510"`           // "wgtp76" smallint NOT NULL
+	Wgtp77          int16   `cb:"511"`           // "wgtp77" smallint NOT NULL
+	Wgtp78          int16   `cb:"512"`           // "wgtp78" smallint NOT NULL
+	Wgtp79          int16   `cb:"513" pb:"sint"` // "wgtp79" smallint NOT NULL
+	Wgtp7           int16   `cb:"514" pb:"sint"` // "wgtp7" smallint NOT NULL
+	Wgtp80          int16   `cb:"515"`           // "wgtp80" smallint NOT NULL
+	Wgtp8           int16   `cb:"516"`           // "wgtp8" smallint NOT NULL
+	Wgtp9           int16   `cb:"517"`           // "wgtp9" smallint NOT NULL
+	WagpBin         *int16  `cb:"518"`           // "Wagp (bin)" smallint
+	AgepBin         int16   `cb:"519"`           // "Agep (bin)" smallint NOT NULL
 }
 
 // LoadUSCensus reads USCensus_1.csv.
@@ -2954,7 +2954,7 @@ type UberlandiaRow struct {
 	DataDeNascimentoAluno               *int32  `cb:"23" pbi:"date" pb:"sint"` // "data de nascimento aluno" date
 	DataDaPublicacao                    *int32  `cb:"24" pbi:"date"`           // "data_da_publicacao" date
 	DataDeConclusao                     *string `cb:"25"`                      // "data_de_conclusao" varchar(10)
-	DataDeInicio                        *int32  `cb:"26" pbi:"date" pb:"sint"` // "data_de_inicio" date
+	DataDeInicio                        *int32  `cb:"26" pbi:"date"`           // "data_de_inicio" date
 	DataDePrevisaodeTermino             *int32  `cb:"27" pbi:"date"`           // "data_de_previsaode_termino" date
 	Desempregado                        *string `cb:"28"`                      // "desempregado" varchar(3)
 	DsEmail                             *string `cb:"29"`                      // "ds_email" varchar(129)
@@ -3297,36 +3297,36 @@ type YaleLanguages struct {
 
 // YaleLanguagesRow is one row of YaleLanguages_1.
 type YaleLanguagesRow struct {
-	BEGINPUBDATE                *string `cb:"1"`                            // "BEGIN_PUB_DATE" varchar(4)
-	BIBFORMAT                   string  `cb:"2"`                            // "BIB_FORMAT" varchar(2) NOT NULL
-	BIBID                       int32   `cb:"3"`                            // "BIB_ID" integer NOT NULL
-	CALLNOTYPE                  *string `cb:"4"`                            // "CALL_NO_TYPE" varchar(1)
-	CHARGEDATE                  int64   `cb:"5" pbi:"timestamp"`            // "CHARGE_DATE" timestamp NOT NULL
-	CLASSBROAD                  *string `cb:"6"`                            // "CLASS_BROAD" varchar(51)
-	CLASSGROUP                  *string `cb:"7"`                            // "CLASS_GROUP" varchar(15)
-	CLASSLETTER                 *string `cb:"8"`                            // "CLASS_LETTER" varchar(3)
-	CLASSNARROW                 *string `cb:"9"`                            // "CLASS_NARROW" varchar(99)
-	DATE                        *string `cb:"10"`                           // "DATE" varchar(4)
-	DATERANGECENTURY            *string `cb:"11"`                           // "DATE_RANGE_CENTURY" varchar(9)
-	DATERANGEDECADE             *string `cb:"12"`                           // "DATE_RANGE_DECADE" varchar(9)
-	DISCHARGEDATE               *int64  `cb:"13" pbi:"timestamp" pb:"sint"` // "DISCHARGE_DATE" timestamp
-	ID                          *int16  `cb:"14"`                           // "ID" smallint
-	ID1                         *int16  `cb:"15"`                           // "ID1" smallint
-	LANGUAGE                    string  `cb:"16"`                           // "LANGUAGE" varchar(3) NOT NULL
-	LCBROAD                     *string `cb:"17"`                           // "LC_BROAD" varchar(1)
-	LCNARROW                    *string `cb:"18"`                           // "LC_NARROW" varchar(3)
-	MFHDID                      int32   `cb:"19"`                           // "MFHD_ID" integer NOT NULL
-	NumberOfRecords             int16   `cb:"20"`                           // "Number of Records" smallint NOT NULL
-	PATRONGROUPCODE             *string `cb:"21"`                           // "PATRON_GROUP_CODE" varchar(9)
-	PATRONGROUPDISPLAY          *string `cb:"22"`                           // "PATRON_GROUP_DISPLAY" varchar(35)
-	PATRONGROUPID               *int16  `cb:"23"`                           // "PATRON_GROUP_ID" smallint
-	PATRONGROUPID1              int16   `cb:"24"`                           // "PATRON_GROUP_ID1" smallint NOT NULL
-	PATRONGROUPNAME             *string `cb:"25"`                           // "PATRON_GROUP_NAME" varchar(23)
-	PATRONTYPEPseudoVsPatron    *string `cb:"26"`                           // "PATRON_TYPE (Pseudo vs Patron)" varchar(12)
-	PLACECODE                   *string `cb:"27"`                           // "PLACE_CODE" varchar(3)
-	PatronGroup                 *string `cb:"28"`                           // "Patron Group" varchar(16)
-	RENEWALCOUNT                int16   `cb:"29"`                           // "RENEWAL_COUNT" smallint NOT NULL
-	Calculation1810108111146429 string  `cb:"30"`                           // "Calculation_1810108111146429" varchar(51) NOT NULL
+	BEGINPUBDATE                *string `cb:"1"`                  // "BEGIN_PUB_DATE" varchar(4)
+	BIBFORMAT                   string  `cb:"2"`                  // "BIB_FORMAT" varchar(2) NOT NULL
+	BIBID                       int32   `cb:"3"`                  // "BIB_ID" integer NOT NULL
+	CALLNOTYPE                  *string `cb:"4"`                  // "CALL_NO_TYPE" varchar(1)
+	CHARGEDATE                  int64   `cb:"5" pbi:"timestamp"`  // "CHARGE_DATE" timestamp NOT NULL
+	CLASSBROAD                  *string `cb:"6"`                  // "CLASS_BROAD" varchar(51)
+	CLASSGROUP                  *string `cb:"7"`                  // "CLASS_GROUP" varchar(15)
+	CLASSLETTER                 *string `cb:"8"`                  // "CLASS_LETTER" varchar(3)
+	CLASSNARROW                 *string `cb:"9"`                  // "CLASS_NARROW" varchar(99)
+	DATE                        *string `cb:"10"`                 // "DATE" varchar(4)
+	DATERANGECENTURY            *string `cb:"11"`                 // "DATE_RANGE_CENTURY" varchar(9)
+	DATERANGEDECADE             *string `cb:"12"`                 // "DATE_RANGE_DECADE" varchar(9)
+	DISCHARGEDATE               *int64  `cb:"13" pbi:"timestamp"` // "DISCHARGE_DATE" timestamp
+	ID                          *int16  `cb:"14"`                 // "ID" smallint
+	ID1                         *int16  `cb:"15"`                 // "ID1" smallint
+	LANGUAGE                    string  `cb:"16"`                 // "LANGUAGE" varchar(3) NOT NULL
+	LCBROAD                     *string `cb:"17"`                 // "LC_BROAD" varchar(1)
+	LCNARROW                    *string `cb:"18"`                 // "LC_NARROW" varchar(3)
+	MFHDID                      int32   `cb:"19"`                 // "MFHD_ID" integer NOT NULL
+	NumberOfRecords             int16   `cb:"20"`                 // "Number of Records" smallint NOT NULL
+	PATRONGROUPCODE             *string `cb:"21"`                 // "PATRON_GROUP_CODE" varchar(9)
+	PATRONGROUPDISPLAY          *string `cb:"22"`                 // "PATRON_GROUP_DISPLAY" varchar(35)
+	PATRONGROUPID               *int16  `cb:"23"`                 // "PATRON_GROUP_ID" smallint
+	PATRONGROUPID1              int16   `cb:"24"`                 // "PATRON_GROUP_ID1" smallint NOT NULL
+	PATRONGROUPNAME             *string `cb:"25"`                 // "PATRON_GROUP_NAME" varchar(23)
+	PATRONTYPEPseudoVsPatron    *string `cb:"26"`                 // "PATRON_TYPE (Pseudo vs Patron)" varchar(12)
+	PLACECODE                   *string `cb:"27"`                 // "PLACE_CODE" varchar(3)
+	PatronGroup                 *string `cb:"28"`                 // "Patron Group" varchar(16)
+	RENEWALCOUNT                int16   `cb:"29"`                 // "RENEWAL_COUNT" smallint NOT NULL
+	Calculation1810108111146429 string  `cb:"30"`                 // "Calculation_1810108111146429" varchar(51) NOT NULL
 }
 
 // LoadYaleLanguages reads YaleLanguages_1.csv.

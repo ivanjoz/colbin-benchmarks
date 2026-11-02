@@ -74,8 +74,8 @@ type AradeRow struct {
 	F5              int32                  `protobuf:"varint,5,opt,name=f5,proto3" json:"f5,omitempty"`
 	F6              *string                `protobuf:"bytes,6,opt,name=f6,proto3,oneof" json:"f6,omitempty"`
 	F7              *string                `protobuf:"bytes,7,opt,name=f7,proto3,oneof" json:"f7,omitempty"`
-	F8              int32                  `protobuf:"varint,8,opt,name=f8,proto3" json:"f8,omitempty"`
-	F9              int32                  `protobuf:"varint,9,opt,name=f9,proto3" json:"f9,omitempty"`
+	F8              int32                  `protobuf:"zigzag32,8,opt,name=f8,proto3" json:"f8,omitempty"`
+	F9              int32                  `protobuf:"zigzag32,9,opt,name=f9,proto3" json:"f9,omitempty"`
 	NumberOfRecords int32                  `protobuf:"varint,10,opt,name=number_of_records,json=numberOfRecords,proto3" json:"number_of_records,omitempty"`
 	WnetBin         int32                  `protobuf:"varint,11,opt,name=wnet_bin,json=wnetBin,proto3" json:"wnet_bin,omitempty"`
 	unknownFields   protoimpl.UnknownFields
@@ -1054,7 +1054,7 @@ type CommonGovernmentRow struct {
 	FkRecMat                     *int32                 `protobuf:"zigzag32,25,opt,name=fk_rec_mat,json=fkRecMat,proto3,oneof" json:"fk_rec_mat,omitempty"`
 	Ftsdollar                    float64                `protobuf:"fixed64,26,opt,name=ftsdollar,proto3" json:"ftsdollar,omitempty"`
 	FundingAgency                *string                `protobuf:"bytes,27,opt,name=funding_agency,json=fundingAgency,proto3,oneof" json:"funding_agency,omitempty"`
-	FundingAgencyKey             int32                  `protobuf:"varint,28,opt,name=funding_agency_key,json=fundingAgencyKey,proto3" json:"funding_agency_key,omitempty"`
+	FundingAgencyKey             int32                  `protobuf:"zigzag32,28,opt,name=funding_agency_key,json=fundingAgencyKey,proto3" json:"funding_agency_key,omitempty"`
 	FundingAgencyName            string                 `protobuf:"bytes,29,opt,name=funding_agency_name,json=fundingAgencyName,proto3" json:"funding_agency_name,omitempty"`
 	Gsadollar                    float64                `protobuf:"fixed64,30,opt,name=gsadollar,proto3" json:"gsadollar,omitempty"`
 	Gsaotherdollar               float64                `protobuf:"fixed64,31,opt,name=gsaotherdollar,proto3" json:"gsaotherdollar,omitempty"`
@@ -1876,7 +1876,7 @@ type EixoRow struct {
 	DataDeNascimentoAluno               *int32                 `protobuf:"zigzag32,23,opt,name=data_de_nascimento_aluno,json=dataDeNascimentoAluno,proto3,oneof" json:"data_de_nascimento_aluno,omitempty"`
 	DataDaPublicacao                    *int32                 `protobuf:"varint,24,opt,name=data_da_publicacao,json=dataDaPublicacao,proto3,oneof" json:"data_da_publicacao,omitempty"`
 	DataDeConclusao                     *string                `protobuf:"bytes,25,opt,name=data_de_conclusao,json=dataDeConclusao,proto3,oneof" json:"data_de_conclusao,omitempty"`
-	DataDeInicio                        *int32                 `protobuf:"zigzag32,26,opt,name=data_de_inicio,json=dataDeInicio,proto3,oneof" json:"data_de_inicio,omitempty"`
+	DataDeInicio                        *int32                 `protobuf:"varint,26,opt,name=data_de_inicio,json=dataDeInicio,proto3,oneof" json:"data_de_inicio,omitempty"`
 	DataDePrevisaodeTermino             *int32                 `protobuf:"varint,27,opt,name=data_de_previsaode_termino,json=dataDePrevisaodeTermino,proto3,oneof" json:"data_de_previsaode_termino,omitempty"`
 	Desempregado                        *string                `protobuf:"bytes,28,opt,name=desempregado,proto3,oneof" json:"desempregado,omitempty"`
 	DsEmail                             *string                `protobuf:"bytes,29,opt,name=ds_email,json=dsEmail,proto3,oneof" json:"ds_email,omitempty"`
@@ -2878,7 +2878,7 @@ type GenericoRow struct {
 	Concatenar1     *string                `protobuf:"bytes,9,opt,name=concatenar1,proto3,oneof" json:"concatenar1,omitempty"`
 	Concatenar2     *string                `protobuf:"bytes,10,opt,name=concatenar2,proto3,oneof" json:"concatenar2,omitempty"`
 	Corte           int32                  `protobuf:"varint,11,opt,name=corte,proto3" json:"corte,omitempty"`
-	DeNpags         *int32                 `protobuf:"varint,12,opt,name=de_npags,json=deNpags,proto3,oneof" json:"de_npags,omitempty"`
+	DeNpags         *int32                 `protobuf:"zigzag32,12,opt,name=de_npags,json=deNpags,proto3,oneof" json:"de_npags,omitempty"`
 	DiaSemana       int32                  `protobuf:"varint,13,opt,name=dia_semana,json=diaSemana,proto3" json:"dia_semana,omitempty"`
 	Disco           *int32                 `protobuf:"varint,14,opt,name=disco,proto3,oneof" json:"disco,omitempty"`
 	Duracion        *int32                 `protobuf:"varint,15,opt,name=duracion,proto3,oneof" json:"duracion,omitempty"`
@@ -4198,7 +4198,7 @@ type HatredRow struct {
 	Lat                *int64                 `protobuf:"zigzag64,17,opt,name=lat,proto3,oneof" json:"lat,omitempty"`
 	Listed             *int32                 `protobuf:"varint,18,opt,name=listed,proto3,oneof" json:"listed,omitempty"`
 	LocationType       string                 `protobuf:"bytes,19,opt,name=location_type,json=locationType,proto3" json:"location_type,omitempty"`
-	Long               *int64                 `protobuf:"varint,20,opt,name=long,proto3,oneof" json:"long,omitempty"`
+	Long               *int64                 `protobuf:"zigzag64,20,opt,name=long,proto3,oneof" json:"long,omitempty"`
 	Name               *string                `protobuf:"bytes,21,opt,name=name,proto3,oneof" json:"name,omitempty"`
 	NumberOfRecords    int32                  `protobuf:"varint,22,opt,name=number_of_records,json=numberOfRecords,proto3" json:"number_of_records,omitempty"`
 	Region             string                 `protobuf:"bytes,23,opt,name=region,proto3" json:"region,omitempty"`
@@ -4737,7 +4737,7 @@ type IGlocations2Row struct {
 	Country                     string                 `protobuf:"bytes,4,opt,name=country,proto3" json:"country,omitempty"`
 	CreatedTime                 int64                  `protobuf:"varint,5,opt,name=created_time,json=createdTime,proto3" json:"created_time,omitempty"`
 	Id                          int32                  `protobuf:"varint,6,opt,name=id,proto3" json:"id,omitempty"`
-	Latitude                    int64                  `protobuf:"varint,7,opt,name=latitude,proto3" json:"latitude,omitempty"`
+	Latitude                    int64                  `protobuf:"zigzag64,7,opt,name=latitude,proto3" json:"latitude,omitempty"`
 	LikeCount                   int32                  `protobuf:"varint,8,opt,name=like_count,json=likeCount,proto3" json:"like_count,omitempty"`
 	Link                        string                 `protobuf:"bytes,9,opt,name=link,proto3" json:"link,omitempty"`
 	Longitude                   int64                  `protobuf:"zigzag64,10,opt,name=longitude,proto3" json:"longitude,omitempty"`
@@ -4750,7 +4750,7 @@ type IGlocations2Row struct {
 	Calculation3650724144057954 string                 `protobuf:"bytes,17,opt,name=calculation3650724144057954,proto3" json:"calculation3650724144057954,omitempty"`
 	Calculation4370724142342227 *string                `protobuf:"bytes,18,opt,name=calculation4370724142342227,proto3,oneof" json:"calculation4370724142342227,omitempty"`
 	Calculation8090724143600502 string                 `protobuf:"bytes,19,opt,name=calculation8090724143600502,proto3" json:"calculation8090724143600502,omitempty"`
-	Calculation9330724145728972 int32                  `protobuf:"varint,20,opt,name=calculation9330724145728972,proto3" json:"calculation9330724145728972,omitempty"`
+	Calculation9330724145728972 int32                  `protobuf:"zigzag32,20,opt,name=calculation9330724145728972,proto3" json:"calculation9330724145728972,omitempty"`
 	unknownFields               protoimpl.UnknownFields
 	sizeCache                   protoimpl.SizeCache
 }
@@ -7262,7 +7262,7 @@ type MotosRow struct {
 	Concatenar1     *string                `protobuf:"bytes,9,opt,name=concatenar1,proto3,oneof" json:"concatenar1,omitempty"`
 	Concatenar2     *string                `protobuf:"bytes,10,opt,name=concatenar2,proto3,oneof" json:"concatenar2,omitempty"`
 	Corte           int32                  `protobuf:"varint,11,opt,name=corte,proto3" json:"corte,omitempty"`
-	DeNpags         *int32                 `protobuf:"varint,12,opt,name=de_npags,json=deNpags,proto3,oneof" json:"de_npags,omitempty"`
+	DeNpags         *int32                 `protobuf:"zigzag32,12,opt,name=de_npags,json=deNpags,proto3,oneof" json:"de_npags,omitempty"`
 	DiaSemana       int32                  `protobuf:"varint,13,opt,name=dia_semana,json=diaSemana,proto3" json:"dia_semana,omitempty"`
 	Disco           *int32                 `protobuf:"varint,14,opt,name=disco,proto3,oneof" json:"disco,omitempty"`
 	Duracion        *int32                 `protobuf:"varint,15,opt,name=duracion,proto3,oneof" json:"duracion,omitempty"`
@@ -7708,7 +7708,7 @@ type MulheresMilRow struct {
 	DataDeNascimentoAluno               *int32                 `protobuf:"zigzag32,23,opt,name=data_de_nascimento_aluno,json=dataDeNascimentoAluno,proto3,oneof" json:"data_de_nascimento_aluno,omitempty"`
 	DataDaPublicacao                    *int32                 `protobuf:"varint,24,opt,name=data_da_publicacao,json=dataDaPublicacao,proto3,oneof" json:"data_da_publicacao,omitempty"`
 	DataDeConclusao                     *string                `protobuf:"bytes,25,opt,name=data_de_conclusao,json=dataDeConclusao,proto3,oneof" json:"data_de_conclusao,omitempty"`
-	DataDeInicio                        *int32                 `protobuf:"zigzag32,26,opt,name=data_de_inicio,json=dataDeInicio,proto3,oneof" json:"data_de_inicio,omitempty"`
+	DataDeInicio                        *int32                 `protobuf:"varint,26,opt,name=data_de_inicio,json=dataDeInicio,proto3,oneof" json:"data_de_inicio,omitempty"`
 	DataDePrevisaodeTermino             *int32                 `protobuf:"varint,27,opt,name=data_de_previsaode_termino,json=dataDePrevisaodeTermino,proto3,oneof" json:"data_de_previsaode_termino,omitempty"`
 	Desempregado                        *string                `protobuf:"bytes,28,opt,name=desempregado,proto3,oneof" json:"desempregado,omitempty"`
 	DsEmail                             *string                `protobuf:"bytes,29,opt,name=ds_email,json=dsEmail,proto3,oneof" json:"ds_email,omitempty"`
@@ -8426,7 +8426,7 @@ type NYCRow struct {
 	CrossStreet1                *string                `protobuf:"bytes,13,opt,name=cross_street1,json=crossStreet1,proto3,oneof" json:"cross_street1,omitempty"`
 	CrossStreet2                *string                `protobuf:"bytes,14,opt,name=cross_street2,json=crossStreet2,proto3,oneof" json:"cross_street2,omitempty"`
 	DescriptorCol               *string                `protobuf:"bytes,15,opt,name=descriptor_col,json=descriptorCol,proto3,oneof" json:"descriptor_col,omitempty"`
-	DueDate                     *int64                 `protobuf:"varint,16,opt,name=due_date,json=dueDate,proto3,oneof" json:"due_date,omitempty"`
+	DueDate                     *int64                 `protobuf:"zigzag64,16,opt,name=due_date,json=dueDate,proto3,oneof" json:"due_date,omitempty"`
 	FacilityType                *string                `protobuf:"bytes,17,opt,name=facility_type,json=facilityType,proto3,oneof" json:"facility_type,omitempty"`
 	FerryDirection              *string                `protobuf:"bytes,18,opt,name=ferry_direction,json=ferryDirection,proto3,oneof" json:"ferry_direction,omitempty"`
 	FerryTerminalName           *string                `protobuf:"bytes,19,opt,name=ferry_terminal_name,json=ferryTerminalName,proto3,oneof" json:"ferry_terminal_name,omitempty"`
@@ -10768,7 +10768,7 @@ type Redfin1Row struct {
 	InventoryYoy       *float64               `protobuf:"fixed64,11,opt,name=inventory_yoy,json=inventoryYoy,proto3,oneof" json:"inventory_yoy,omitempty"`
 	MedianDom          *int32                 `protobuf:"varint,12,opt,name=median_dom,json=medianDom,proto3,oneof" json:"median_dom,omitempty"`
 	MedianDomMom       *int32                 `protobuf:"zigzag32,13,opt,name=median_dom_mom,json=medianDomMom,proto3,oneof" json:"median_dom_mom,omitempty"`
-	MedianDomYoy       *int32                 `protobuf:"varint,14,opt,name=median_dom_yoy,json=medianDomYoy,proto3,oneof" json:"median_dom_yoy,omitempty"`
+	MedianDomYoy       *int32                 `protobuf:"zigzag32,14,opt,name=median_dom_yoy,json=medianDomYoy,proto3,oneof" json:"median_dom_yoy,omitempty"`
 	MedianListPpsf     *float64               `protobuf:"fixed64,15,opt,name=median_list_ppsf,json=medianListPpsf,proto3,oneof" json:"median_list_ppsf,omitempty"`
 	MedianListPpsfMom  *float64               `protobuf:"fixed64,16,opt,name=median_list_ppsf_mom,json=medianListPpsfMom,proto3,oneof" json:"median_list_ppsf_mom,omitempty"`
 	MedianListPpsfYoy  *float64               `protobuf:"fixed64,17,opt,name=median_list_ppsf_yoy,json=medianListPpsfYoy,proto3,oneof" json:"median_list_ppsf_yoy,omitempty"`
@@ -11200,7 +11200,7 @@ type Redfin2Row struct {
 	InventoryYoy       *float64               `protobuf:"fixed64,11,opt,name=inventory_yoy,json=inventoryYoy,proto3,oneof" json:"inventory_yoy,omitempty"`
 	MedianDom          *int32                 `protobuf:"varint,12,opt,name=median_dom,json=medianDom,proto3,oneof" json:"median_dom,omitempty"`
 	MedianDomMom       *int32                 `protobuf:"zigzag32,13,opt,name=median_dom_mom,json=medianDomMom,proto3,oneof" json:"median_dom_mom,omitempty"`
-	MedianDomYoy       *int32                 `protobuf:"varint,14,opt,name=median_dom_yoy,json=medianDomYoy,proto3,oneof" json:"median_dom_yoy,omitempty"`
+	MedianDomYoy       *int32                 `protobuf:"zigzag32,14,opt,name=median_dom_yoy,json=medianDomYoy,proto3,oneof" json:"median_dom_yoy,omitempty"`
 	MedianListPpsf     *float64               `protobuf:"fixed64,15,opt,name=median_list_ppsf,json=medianListPpsf,proto3,oneof" json:"median_list_ppsf,omitempty"`
 	MedianListPpsfMom  *float64               `protobuf:"fixed64,16,opt,name=median_list_ppsf_mom,json=medianListPpsfMom,proto3,oneof" json:"median_list_ppsf_mom,omitempty"`
 	MedianListPpsfYoy  *float64               `protobuf:"fixed64,17,opt,name=median_list_ppsf_yoy,json=medianListPpsfYoy,proto3,oneof" json:"median_list_ppsf_yoy,omitempty"`
@@ -11632,7 +11632,7 @@ type Redfin3Row struct {
 	InventoryYoy       *float64               `protobuf:"fixed64,11,opt,name=inventory_yoy,json=inventoryYoy,proto3,oneof" json:"inventory_yoy,omitempty"`
 	MedianDom          *int32                 `protobuf:"varint,12,opt,name=median_dom,json=medianDom,proto3,oneof" json:"median_dom,omitempty"`
 	MedianDomMom       *int32                 `protobuf:"zigzag32,13,opt,name=median_dom_mom,json=medianDomMom,proto3,oneof" json:"median_dom_mom,omitempty"`
-	MedianDomYoy       *int32                 `protobuf:"varint,14,opt,name=median_dom_yoy,json=medianDomYoy,proto3,oneof" json:"median_dom_yoy,omitempty"`
+	MedianDomYoy       *int32                 `protobuf:"zigzag32,14,opt,name=median_dom_yoy,json=medianDomYoy,proto3,oneof" json:"median_dom_yoy,omitempty"`
 	MedianListPpsf     *float64               `protobuf:"fixed64,15,opt,name=median_list_ppsf,json=medianListPpsf,proto3,oneof" json:"median_list_ppsf,omitempty"`
 	MedianListPpsfMom  *float64               `protobuf:"fixed64,16,opt,name=median_list_ppsf_mom,json=medianListPpsfMom,proto3,oneof" json:"median_list_ppsf_mom,omitempty"`
 	MedianListPpsfYoy  *float64               `protobuf:"fixed64,17,opt,name=median_list_ppsf_yoy,json=medianListPpsfYoy,proto3,oneof" json:"median_list_ppsf_yoy,omitempty"`
@@ -12088,7 +12088,7 @@ type Redfin4Row struct {
 	InventoryYoy                  *float64               `protobuf:"fixed64,11,opt,name=inventory_yoy,json=inventoryYoy,proto3,oneof" json:"inventory_yoy,omitempty"`
 	MedianDom                     *int32                 `protobuf:"varint,12,opt,name=median_dom,json=medianDom,proto3,oneof" json:"median_dom,omitempty"`
 	MedianDomMom                  *int32                 `protobuf:"zigzag32,13,opt,name=median_dom_mom,json=medianDomMom,proto3,oneof" json:"median_dom_mom,omitempty"`
-	MedianDomYoy                  *int32                 `protobuf:"varint,14,opt,name=median_dom_yoy,json=medianDomYoy,proto3,oneof" json:"median_dom_yoy,omitempty"`
+	MedianDomYoy                  *int32                 `protobuf:"zigzag32,14,opt,name=median_dom_yoy,json=medianDomYoy,proto3,oneof" json:"median_dom_yoy,omitempty"`
 	MedianListPpsf                *float64               `protobuf:"fixed64,15,opt,name=median_list_ppsf,json=medianListPpsf,proto3,oneof" json:"median_list_ppsf,omitempty"`
 	MedianListPpsfMom             *float64               `protobuf:"fixed64,16,opt,name=median_list_ppsf_mom,json=medianListPpsfMom,proto3,oneof" json:"median_list_ppsf_mom,omitempty"`
 	MedianListPpsfYoy             *float64               `protobuf:"fixed64,17,opt,name=median_list_ppsf_yoy,json=medianListPpsfYoy,proto3,oneof" json:"median_list_ppsf_yoy,omitempty"`
@@ -12592,7 +12592,7 @@ type RentabilidadRow struct {
 	JefeDeVentasNcb                                      *string                `protobuf:"bytes,51,opt,name=jefe_de_ventas_ncb,json=jefeDeVentasNcb,proto3,oneof" json:"jefe_de_ventas_ncb,omitempty"`
 	JefeDeVentas                                         string                 `protobuf:"bytes,52,opt,name=jefe_de_ventas,json=jefeDeVentas,proto3" json:"jefe_de_ventas,omitempty"`
 	LatitudAutoprev                                      *int64                 `protobuf:"varint,53,opt,name=latitud_autoprev,json=latitudAutoprev,proto3,oneof" json:"latitud_autoprev,omitempty"`
-	Latitud                                              *int64                 `protobuf:"varint,54,opt,name=latitud,proto3,oneof" json:"latitud,omitempty"`
+	Latitud                                              *int64                 `protobuf:"zigzag64,54,opt,name=latitud,proto3,oneof" json:"latitud,omitempty"`
 	Locacion                                             string                 `protobuf:"bytes,55,opt,name=locacion,proto3" json:"locacion,omitempty"`
 	LocacionCopy                                         string                 `protobuf:"bytes,56,opt,name=locacion_copy,json=locacionCopy,proto3" json:"locacion_copy,omitempty"`
 	LongitudAutoprev                                     *int64                 `protobuf:"zigzag64,57,opt,name=longitud_autoprev,json=longitudAutoprev,proto3,oneof" json:"longitud_autoprev,omitempty"`
@@ -13752,7 +13752,7 @@ type RomanceRow struct {
 	Caption         *string                `protobuf:"bytes,3,opt,name=caption,proto3,oneof" json:"caption,omitempty"`
 	CreatedTime     *int32                 `protobuf:"varint,4,opt,name=created_time,json=createdTime,proto3,oneof" json:"created_time,omitempty"`
 	Id              *string                `protobuf:"bytes,5,opt,name=id,proto3,oneof" json:"id,omitempty"`
-	Lat             *int64                 `protobuf:"varint,6,opt,name=lat,proto3,oneof" json:"lat,omitempty"`
+	Lat             *int64                 `protobuf:"zigzag64,6,opt,name=lat,proto3,oneof" json:"lat,omitempty"`
 	Link            *string                `protobuf:"bytes,7,opt,name=link,proto3,oneof" json:"link,omitempty"`
 	Lng             *float64               `protobuf:"fixed64,8,opt,name=lng,proto3,oneof" json:"lng,omitempty"`
 	Location        *string                `protobuf:"bytes,9,opt,name=location,proto3,oneof" json:"location,omitempty"`
@@ -15231,7 +15231,7 @@ type TelcoRow struct {
 	Totalvasrevp4        int32                  `protobuf:"varint,170,opt,name=totalvasrevp4,proto3" json:"totalvasrevp4,omitempty"`
 	Totalvasrevp6        int32                  `protobuf:"varint,171,opt,name=totalvasrevp6,proto3" json:"totalvasrevp6,omitempty"`
 	Totaoutgoingrevp1    float64                `protobuf:"fixed64,172,opt,name=totaoutgoingrevp1,proto3" json:"totaoutgoingrevp1,omitempty"`
-	Totaoutgoingrevp2    int64                  `protobuf:"varint,173,opt,name=totaoutgoingrevp2,proto3" json:"totaoutgoingrevp2,omitempty"`
+	Totaoutgoingrevp2    int64                  `protobuf:"zigzag64,173,opt,name=totaoutgoingrevp2,proto3" json:"totaoutgoingrevp2,omitempty"`
 	Totaoutgoingrevp3    int64                  `protobuf:"zigzag64,174,opt,name=totaoutgoingrevp3,proto3" json:"totaoutgoingrevp3,omitempty"`
 	Totaoutgoingrevp4    float64                `protobuf:"fixed64,175,opt,name=totaoutgoingrevp4,proto3" json:"totaoutgoingrevp4,omitempty"`
 	Totaoutgoingrevp6    float64                `protobuf:"fixed64,176,opt,name=totaoutgoingrevp6,proto3" json:"totaoutgoingrevp6,omitempty"`
@@ -17162,7 +17162,7 @@ type USCensusRow struct {
 	Fhins7P         int32                  `protobuf:"varint,93,opt,name=fhins7_p,json=fhins7P,proto3" json:"fhins7_p,omitempty"`
 	Fhisp           int32                  `protobuf:"varint,94,opt,name=fhisp,proto3" json:"fhisp,omitempty"`
 	Fiberop         *int32                 `protobuf:"varint,95,opt,name=fiberop,proto3,oneof" json:"fiberop,omitempty"`
-	Fincp           *int32                 `protobuf:"varint,96,opt,name=fincp,proto3,oneof" json:"fincp,omitempty"`
+	Fincp           *int32                 `protobuf:"zigzag32,96,opt,name=fincp,proto3,oneof" json:"fincp,omitempty"`
 	Findp           int32                  `protobuf:"varint,97,opt,name=findp,proto3" json:"findp,omitempty"`
 	Finsp           *int32                 `protobuf:"varint,98,opt,name=finsp,proto3,oneof" json:"finsp,omitempty"`
 	Fintp           int32                  `protobuf:"varint,99,opt,name=fintp,proto3" json:"fintp,omitempty"`
@@ -17256,7 +17256,7 @@ type USCensusRow struct {
 	Hhl             *int32                 `protobuf:"varint,187,opt,name=hhl,proto3,oneof" json:"hhl,omitempty"`
 	Hht             *int32                 `protobuf:"varint,188,opt,name=hht,proto3,oneof" json:"hht,omitempty"`
 	Hicov           int32                  `protobuf:"varint,189,opt,name=hicov,proto3" json:"hicov,omitempty"`
-	Hincp           *int32                 `protobuf:"varint,190,opt,name=hincp,proto3,oneof" json:"hincp,omitempty"`
+	Hincp           *int32                 `protobuf:"zigzag32,190,opt,name=hincp,proto3,oneof" json:"hincp,omitempty"`
 	Hins1           int32                  `protobuf:"varint,191,opt,name=hins1,proto3" json:"hins1,omitempty"`
 	Hins2           int32                  `protobuf:"varint,192,opt,name=hins2,proto3" json:"hins2,omitempty"`
 	Hins3           int32                  `protobuf:"varint,193,opt,name=hins3,proto3" json:"hins3,omitempty"`
@@ -17271,7 +17271,7 @@ type USCensusRow struct {
 	Huparc          *int32                 `protobuf:"varint,202,opt,name=huparc,proto3,oneof" json:"huparc,omitempty"`
 	Indp            *int32                 `protobuf:"varint,203,opt,name=indp,proto3,oneof" json:"indp,omitempty"`
 	Insp            *int32                 `protobuf:"varint,204,opt,name=insp,proto3,oneof" json:"insp,omitempty"`
-	Intp            *int32                 `protobuf:"varint,205,opt,name=intp,proto3,oneof" json:"intp,omitempty"`
+	Intp            *int32                 `protobuf:"zigzag32,205,opt,name=intp,proto3,oneof" json:"intp,omitempty"`
 	Jwap            *int32                 `protobuf:"varint,206,opt,name=jwap,proto3,oneof" json:"jwap,omitempty"`
 	Jwdp            *int32                 `protobuf:"varint,207,opt,name=jwdp,proto3,oneof" json:"jwdp,omitempty"`
 	Jwmnp           *int32                 `protobuf:"varint,208,opt,name=jwmnp,proto3,oneof" json:"jwmnp,omitempty"`
@@ -17333,8 +17333,8 @@ type USCensusRow struct {
 	Paoc            *int32                 `protobuf:"varint,264,opt,name=paoc,proto3,oneof" json:"paoc,omitempty"`
 	Pap             *int32                 `protobuf:"varint,265,opt,name=pap,proto3,oneof" json:"pap,omitempty"`
 	Partner         *int32                 `protobuf:"varint,266,opt,name=partner,proto3,oneof" json:"partner,omitempty"`
-	Pernp           *int32                 `protobuf:"varint,267,opt,name=pernp,proto3,oneof" json:"pernp,omitempty"`
-	Pincp           *int32                 `protobuf:"varint,268,opt,name=pincp,proto3,oneof" json:"pincp,omitempty"`
+	Pernp           *int32                 `protobuf:"zigzag32,267,opt,name=pernp,proto3,oneof" json:"pernp,omitempty"`
+	Pincp           *int32                 `protobuf:"zigzag32,268,opt,name=pincp,proto3,oneof" json:"pincp,omitempty"`
 	Plm             *int32                 `protobuf:"varint,269,opt,name=plm,proto3,oneof" json:"plm,omitempty"`
 	Pobp            int32                  `protobuf:"varint,270,opt,name=pobp,proto3" json:"pobp,omitempty"`
 	Povpip          *int32                 `protobuf:"varint,271,opt,name=povpip,proto3,oneof" json:"povpip,omitempty"`
@@ -17380,7 +17380,7 @@ type USCensusRow struct {
 	Sch             *int32                 `protobuf:"varint,311,opt,name=sch,proto3,oneof" json:"sch,omitempty"`
 	Sciengp         *int32                 `protobuf:"varint,312,opt,name=sciengp,proto3,oneof" json:"sciengp,omitempty"`
 	Sciengrlp       *int32                 `protobuf:"varint,313,opt,name=sciengrlp,proto3,oneof" json:"sciengrlp,omitempty"`
-	Semp            *int32                 `protobuf:"varint,314,opt,name=semp,proto3,oneof" json:"semp,omitempty"`
+	Semp            *int32                 `protobuf:"zigzag32,314,opt,name=semp,proto3,oneof" json:"semp,omitempty"`
 	Serialno        int32                  `protobuf:"varint,315,opt,name=serialno,proto3" json:"serialno,omitempty"`
 	Serialno1       int32                  `protobuf:"varint,316,opt,name=serialno1,proto3" json:"serialno1,omitempty"`
 	Sex             int32                  `protobuf:"varint,317,opt,name=sex,proto3" json:"sex,omitempty"`
@@ -17425,47 +17425,47 @@ type USCensusRow struct {
 	Ybl             *int32                 `protobuf:"varint,356,opt,name=ybl,proto3,oneof" json:"ybl,omitempty"`
 	Yoep            *int32                 `protobuf:"varint,357,opt,name=yoep,proto3,oneof" json:"yoep,omitempty"`
 	Pwgtp10         int32                  `protobuf:"varint,358,opt,name=pwgtp10,proto3" json:"pwgtp10,omitempty"`
-	Pwgtp11         int32                  `protobuf:"varint,359,opt,name=pwgtp11,proto3" json:"pwgtp11,omitempty"`
+	Pwgtp11         int32                  `protobuf:"zigzag32,359,opt,name=pwgtp11,proto3" json:"pwgtp11,omitempty"`
 	Pwgtp12         int32                  `protobuf:"varint,360,opt,name=pwgtp12,proto3" json:"pwgtp12,omitempty"`
 	Pwgtp13         int32                  `protobuf:"varint,361,opt,name=pwgtp13,proto3" json:"pwgtp13,omitempty"`
 	Pwgtp14         int32                  `protobuf:"varint,362,opt,name=pwgtp14,proto3" json:"pwgtp14,omitempty"`
 	Pwgtp15         int32                  `protobuf:"varint,363,opt,name=pwgtp15,proto3" json:"pwgtp15,omitempty"`
-	Pwgtp16         int32                  `protobuf:"varint,364,opt,name=pwgtp16,proto3" json:"pwgtp16,omitempty"`
+	Pwgtp16         int32                  `protobuf:"zigzag32,364,opt,name=pwgtp16,proto3" json:"pwgtp16,omitempty"`
 	Pwgtp17         int32                  `protobuf:"varint,365,opt,name=pwgtp17,proto3" json:"pwgtp17,omitempty"`
 	Pwgtp18         int32                  `protobuf:"varint,366,opt,name=pwgtp18,proto3" json:"pwgtp18,omitempty"`
 	Pwgtp19         int32                  `protobuf:"varint,367,opt,name=pwgtp19,proto3" json:"pwgtp19,omitempty"`
 	Pwgtp1          int32                  `protobuf:"varint,368,opt,name=pwgtp1,proto3" json:"pwgtp1,omitempty"`
 	Pwgtp20         int32                  `protobuf:"varint,369,opt,name=pwgtp20,proto3" json:"pwgtp20,omitempty"`
 	Pwgtp21         int32                  `protobuf:"varint,370,opt,name=pwgtp21,proto3" json:"pwgtp21,omitempty"`
-	Pwgtp22         int32                  `protobuf:"varint,371,opt,name=pwgtp22,proto3" json:"pwgtp22,omitempty"`
-	Pwgtp23         int32                  `protobuf:"varint,372,opt,name=pwgtp23,proto3" json:"pwgtp23,omitempty"`
+	Pwgtp22         int32                  `protobuf:"zigzag32,371,opt,name=pwgtp22,proto3" json:"pwgtp22,omitempty"`
+	Pwgtp23         int32                  `protobuf:"zigzag32,372,opt,name=pwgtp23,proto3" json:"pwgtp23,omitempty"`
 	Pwgtp24         int32                  `protobuf:"varint,373,opt,name=pwgtp24,proto3" json:"pwgtp24,omitempty"`
 	Pwgtp25         int32                  `protobuf:"varint,374,opt,name=pwgtp25,proto3" json:"pwgtp25,omitempty"`
-	Pwgtp26         int32                  `protobuf:"varint,375,opt,name=pwgtp26,proto3" json:"pwgtp26,omitempty"`
+	Pwgtp26         int32                  `protobuf:"zigzag32,375,opt,name=pwgtp26,proto3" json:"pwgtp26,omitempty"`
 	Pwgtp27         int32                  `protobuf:"varint,376,opt,name=pwgtp27,proto3" json:"pwgtp27,omitempty"`
 	Pwgtp28         int32                  `protobuf:"varint,377,opt,name=pwgtp28,proto3" json:"pwgtp28,omitempty"`
 	Pwgtp29         int32                  `protobuf:"varint,378,opt,name=pwgtp29,proto3" json:"pwgtp29,omitempty"`
-	Pwgtp2          int32                  `protobuf:"varint,379,opt,name=pwgtp2,proto3" json:"pwgtp2,omitempty"`
+	Pwgtp2          int32                  `protobuf:"zigzag32,379,opt,name=pwgtp2,proto3" json:"pwgtp2,omitempty"`
 	Pwgtp30         int32                  `protobuf:"varint,380,opt,name=pwgtp30,proto3" json:"pwgtp30,omitempty"`
 	Pwgtp31         int32                  `protobuf:"varint,381,opt,name=pwgtp31,proto3" json:"pwgtp31,omitempty"`
 	Pwgtp32         int32                  `protobuf:"varint,382,opt,name=pwgtp32,proto3" json:"pwgtp32,omitempty"`
 	Pwgtp33         int32                  `protobuf:"varint,383,opt,name=pwgtp33,proto3" json:"pwgtp33,omitempty"`
 	Pwgtp34         int32                  `protobuf:"varint,384,opt,name=pwgtp34,proto3" json:"pwgtp34,omitempty"`
-	Pwgtp35         int32                  `protobuf:"varint,385,opt,name=pwgtp35,proto3" json:"pwgtp35,omitempty"`
+	Pwgtp35         int32                  `protobuf:"zigzag32,385,opt,name=pwgtp35,proto3" json:"pwgtp35,omitempty"`
 	Pwgtp36         int32                  `protobuf:"varint,386,opt,name=pwgtp36,proto3" json:"pwgtp36,omitempty"`
 	Pwgtp37         int32                  `protobuf:"varint,387,opt,name=pwgtp37,proto3" json:"pwgtp37,omitempty"`
 	Pwgtp38         int32                  `protobuf:"varint,388,opt,name=pwgtp38,proto3" json:"pwgtp38,omitempty"`
 	Pwgtp39         int32                  `protobuf:"varint,389,opt,name=pwgtp39,proto3" json:"pwgtp39,omitempty"`
 	Pwgtp3          int32                  `protobuf:"varint,390,opt,name=pwgtp3,proto3" json:"pwgtp3,omitempty"`
 	Pwgtp40         int32                  `protobuf:"varint,391,opt,name=pwgtp40,proto3" json:"pwgtp40,omitempty"`
-	Pwgtp41         int32                  `protobuf:"varint,392,opt,name=pwgtp41,proto3" json:"pwgtp41,omitempty"`
+	Pwgtp41         int32                  `protobuf:"zigzag32,392,opt,name=pwgtp41,proto3" json:"pwgtp41,omitempty"`
 	Pwgtp42         int32                  `protobuf:"varint,393,opt,name=pwgtp42,proto3" json:"pwgtp42,omitempty"`
 	Pwgtp43         int32                  `protobuf:"varint,394,opt,name=pwgtp43,proto3" json:"pwgtp43,omitempty"`
-	Pwgtp44         int32                  `protobuf:"varint,395,opt,name=pwgtp44,proto3" json:"pwgtp44,omitempty"`
+	Pwgtp44         int32                  `protobuf:"zigzag32,395,opt,name=pwgtp44,proto3" json:"pwgtp44,omitempty"`
 	Pwgtp45         int32                  `protobuf:"varint,396,opt,name=pwgtp45,proto3" json:"pwgtp45,omitempty"`
 	Pwgtp46         int32                  `protobuf:"varint,397,opt,name=pwgtp46,proto3" json:"pwgtp46,omitempty"`
-	Pwgtp47         int32                  `protobuf:"varint,398,opt,name=pwgtp47,proto3" json:"pwgtp47,omitempty"`
-	Pwgtp48         int32                  `protobuf:"varint,399,opt,name=pwgtp48,proto3" json:"pwgtp48,omitempty"`
+	Pwgtp47         int32                  `protobuf:"zigzag32,398,opt,name=pwgtp47,proto3" json:"pwgtp47,omitempty"`
+	Pwgtp48         int32                  `protobuf:"zigzag32,399,opt,name=pwgtp48,proto3" json:"pwgtp48,omitempty"`
 	Pwgtp49         int32                  `protobuf:"varint,400,opt,name=pwgtp49,proto3" json:"pwgtp49,omitempty"`
 	Pwgtp4          int32                  `protobuf:"varint,401,opt,name=pwgtp4,proto3" json:"pwgtp4,omitempty"`
 	Pwgtp50         int32                  `protobuf:"varint,402,opt,name=pwgtp50,proto3" json:"pwgtp50,omitempty"`
@@ -17483,13 +17483,13 @@ type USCensusRow struct {
 	Pwgtp61         int32                  `protobuf:"varint,414,opt,name=pwgtp61,proto3" json:"pwgtp61,omitempty"`
 	Pwgtp62         int32                  `protobuf:"varint,415,opt,name=pwgtp62,proto3" json:"pwgtp62,omitempty"`
 	Pwgtp63         int32                  `protobuf:"varint,416,opt,name=pwgtp63,proto3" json:"pwgtp63,omitempty"`
-	Pwgtp64         int32                  `protobuf:"varint,417,opt,name=pwgtp64,proto3" json:"pwgtp64,omitempty"`
+	Pwgtp64         int32                  `protobuf:"zigzag32,417,opt,name=pwgtp64,proto3" json:"pwgtp64,omitempty"`
 	Pwgtp65         int32                  `protobuf:"varint,418,opt,name=pwgtp65,proto3" json:"pwgtp65,omitempty"`
-	Pwgtp66         int32                  `protobuf:"varint,419,opt,name=pwgtp66,proto3" json:"pwgtp66,omitempty"`
-	Pwgtp67         int32                  `protobuf:"varint,420,opt,name=pwgtp67,proto3" json:"pwgtp67,omitempty"`
-	Pwgtp68         int32                  `protobuf:"varint,421,opt,name=pwgtp68,proto3" json:"pwgtp68,omitempty"`
+	Pwgtp66         int32                  `protobuf:"zigzag32,419,opt,name=pwgtp66,proto3" json:"pwgtp66,omitempty"`
+	Pwgtp67         int32                  `protobuf:"zigzag32,420,opt,name=pwgtp67,proto3" json:"pwgtp67,omitempty"`
+	Pwgtp68         int32                  `protobuf:"zigzag32,421,opt,name=pwgtp68,proto3" json:"pwgtp68,omitempty"`
 	Pwgtp69         int32                  `protobuf:"varint,422,opt,name=pwgtp69,proto3" json:"pwgtp69,omitempty"`
-	Pwgtp6          int32                  `protobuf:"varint,423,opt,name=pwgtp6,proto3" json:"pwgtp6,omitempty"`
+	Pwgtp6          int32                  `protobuf:"zigzag32,423,opt,name=pwgtp6,proto3" json:"pwgtp6,omitempty"`
 	Pwgtp70         int32                  `protobuf:"varint,424,opt,name=pwgtp70,proto3" json:"pwgtp70,omitempty"`
 	Pwgtp71         int32                  `protobuf:"varint,425,opt,name=pwgtp71,proto3" json:"pwgtp71,omitempty"`
 	Pwgtp72         int32                  `protobuf:"varint,426,opt,name=pwgtp72,proto3" json:"pwgtp72,omitempty"`
@@ -17499,13 +17499,13 @@ type USCensusRow struct {
 	Pwgtp76         int32                  `protobuf:"varint,430,opt,name=pwgtp76,proto3" json:"pwgtp76,omitempty"`
 	Pwgtp77         int32                  `protobuf:"varint,431,opt,name=pwgtp77,proto3" json:"pwgtp77,omitempty"`
 	Pwgtp78         int32                  `protobuf:"varint,432,opt,name=pwgtp78,proto3" json:"pwgtp78,omitempty"`
-	Pwgtp79         int32                  `protobuf:"varint,433,opt,name=pwgtp79,proto3" json:"pwgtp79,omitempty"`
+	Pwgtp79         int32                  `protobuf:"zigzag32,433,opt,name=pwgtp79,proto3" json:"pwgtp79,omitempty"`
 	Pwgtp7          int32                  `protobuf:"varint,434,opt,name=pwgtp7,proto3" json:"pwgtp7,omitempty"`
 	Pwgtp80         int32                  `protobuf:"varint,435,opt,name=pwgtp80,proto3" json:"pwgtp80,omitempty"`
 	Pwgtp8          int32                  `protobuf:"varint,436,opt,name=pwgtp8,proto3" json:"pwgtp8,omitempty"`
 	Pwgtp9          int32                  `protobuf:"varint,437,opt,name=pwgtp9,proto3" json:"pwgtp9,omitempty"`
 	Wgtp10          int32                  `protobuf:"varint,438,opt,name=wgtp10,proto3" json:"wgtp10,omitempty"`
-	Wgtp11          int32                  `protobuf:"varint,439,opt,name=wgtp11,proto3" json:"wgtp11,omitempty"`
+	Wgtp11          int32                  `protobuf:"zigzag32,439,opt,name=wgtp11,proto3" json:"wgtp11,omitempty"`
 	Wgtp12          int32                  `protobuf:"varint,440,opt,name=wgtp12,proto3" json:"wgtp12,omitempty"`
 	Wgtp13          int32                  `protobuf:"varint,441,opt,name=wgtp13,proto3" json:"wgtp13,omitempty"`
 	Wgtp14          int32                  `protobuf:"varint,442,opt,name=wgtp14,proto3" json:"wgtp14,omitempty"`
@@ -17517,37 +17517,37 @@ type USCensusRow struct {
 	Wgtp1           int32                  `protobuf:"varint,448,opt,name=wgtp1,proto3" json:"wgtp1,omitempty"`
 	Wgtp20          int32                  `protobuf:"varint,449,opt,name=wgtp20,proto3" json:"wgtp20,omitempty"`
 	Wgtp21          int32                  `protobuf:"varint,450,opt,name=wgtp21,proto3" json:"wgtp21,omitempty"`
-	Wgtp22          int32                  `protobuf:"varint,451,opt,name=wgtp22,proto3" json:"wgtp22,omitempty"`
-	Wgtp23          int32                  `protobuf:"varint,452,opt,name=wgtp23,proto3" json:"wgtp23,omitempty"`
-	Wgtp24          int32                  `protobuf:"varint,453,opt,name=wgtp24,proto3" json:"wgtp24,omitempty"`
+	Wgtp22          int32                  `protobuf:"zigzag32,451,opt,name=wgtp22,proto3" json:"wgtp22,omitempty"`
+	Wgtp23          int32                  `protobuf:"zigzag32,452,opt,name=wgtp23,proto3" json:"wgtp23,omitempty"`
+	Wgtp24          int32                  `protobuf:"zigzag32,453,opt,name=wgtp24,proto3" json:"wgtp24,omitempty"`
 	Wgtp25          int32                  `protobuf:"varint,454,opt,name=wgtp25,proto3" json:"wgtp25,omitempty"`
-	Wgtp26          int32                  `protobuf:"varint,455,opt,name=wgtp26,proto3" json:"wgtp26,omitempty"`
+	Wgtp26          int32                  `protobuf:"zigzag32,455,opt,name=wgtp26,proto3" json:"wgtp26,omitempty"`
 	Wgtp27          int32                  `protobuf:"varint,456,opt,name=wgtp27,proto3" json:"wgtp27,omitempty"`
 	Wgtp28          int32                  `protobuf:"varint,457,opt,name=wgtp28,proto3" json:"wgtp28,omitempty"`
 	Wgtp29          int32                  `protobuf:"varint,458,opt,name=wgtp29,proto3" json:"wgtp29,omitempty"`
-	Wgtp2           int32                  `protobuf:"varint,459,opt,name=wgtp2,proto3" json:"wgtp2,omitempty"`
+	Wgtp2           int32                  `protobuf:"zigzag32,459,opt,name=wgtp2,proto3" json:"wgtp2,omitempty"`
 	Wgtp30          int32                  `protobuf:"varint,460,opt,name=wgtp30,proto3" json:"wgtp30,omitempty"`
 	Wgtp31          int32                  `protobuf:"varint,461,opt,name=wgtp31,proto3" json:"wgtp31,omitempty"`
 	Wgtp32          int32                  `protobuf:"varint,462,opt,name=wgtp32,proto3" json:"wgtp32,omitempty"`
 	Wgtp33          int32                  `protobuf:"varint,463,opt,name=wgtp33,proto3" json:"wgtp33,omitempty"`
 	Wgtp34          int32                  `protobuf:"varint,464,opt,name=wgtp34,proto3" json:"wgtp34,omitempty"`
-	Wgtp35          int32                  `protobuf:"varint,465,opt,name=wgtp35,proto3" json:"wgtp35,omitempty"`
+	Wgtp35          int32                  `protobuf:"zigzag32,465,opt,name=wgtp35,proto3" json:"wgtp35,omitempty"`
 	Wgtp36          int32                  `protobuf:"varint,466,opt,name=wgtp36,proto3" json:"wgtp36,omitempty"`
 	Wgtp37          int32                  `protobuf:"varint,467,opt,name=wgtp37,proto3" json:"wgtp37,omitempty"`
 	Wgtp38          int32                  `protobuf:"varint,468,opt,name=wgtp38,proto3" json:"wgtp38,omitempty"`
 	Wgtp39          int32                  `protobuf:"varint,469,opt,name=wgtp39,proto3" json:"wgtp39,omitempty"`
-	Wgtp3           int32                  `protobuf:"varint,470,opt,name=wgtp3,proto3" json:"wgtp3,omitempty"`
+	Wgtp3           int32                  `protobuf:"zigzag32,470,opt,name=wgtp3,proto3" json:"wgtp3,omitempty"`
 	Wgtp40          int32                  `protobuf:"varint,471,opt,name=wgtp40,proto3" json:"wgtp40,omitempty"`
-	Wgtp41          int32                  `protobuf:"varint,472,opt,name=wgtp41,proto3" json:"wgtp41,omitempty"`
+	Wgtp41          int32                  `protobuf:"zigzag32,472,opt,name=wgtp41,proto3" json:"wgtp41,omitempty"`
 	Wgtp42          int32                  `protobuf:"varint,473,opt,name=wgtp42,proto3" json:"wgtp42,omitempty"`
 	Wgtp43          int32                  `protobuf:"varint,474,opt,name=wgtp43,proto3" json:"wgtp43,omitempty"`
-	Wgtp44          int32                  `protobuf:"varint,475,opt,name=wgtp44,proto3" json:"wgtp44,omitempty"`
+	Wgtp44          int32                  `protobuf:"zigzag32,475,opt,name=wgtp44,proto3" json:"wgtp44,omitempty"`
 	Wgtp45          int32                  `protobuf:"varint,476,opt,name=wgtp45,proto3" json:"wgtp45,omitempty"`
 	Wgtp46          int32                  `protobuf:"varint,477,opt,name=wgtp46,proto3" json:"wgtp46,omitempty"`
-	Wgtp47          int32                  `protobuf:"varint,478,opt,name=wgtp47,proto3" json:"wgtp47,omitempty"`
-	Wgtp48          int32                  `protobuf:"varint,479,opt,name=wgtp48,proto3" json:"wgtp48,omitempty"`
+	Wgtp47          int32                  `protobuf:"zigzag32,478,opt,name=wgtp47,proto3" json:"wgtp47,omitempty"`
+	Wgtp48          int32                  `protobuf:"zigzag32,479,opt,name=wgtp48,proto3" json:"wgtp48,omitempty"`
 	Wgtp49          int32                  `protobuf:"varint,480,opt,name=wgtp49,proto3" json:"wgtp49,omitempty"`
-	Wgtp4           int32                  `protobuf:"varint,481,opt,name=wgtp4,proto3" json:"wgtp4,omitempty"`
+	Wgtp4           int32                  `protobuf:"zigzag32,481,opt,name=wgtp4,proto3" json:"wgtp4,omitempty"`
 	Wgtp50          int32                  `protobuf:"varint,482,opt,name=wgtp50,proto3" json:"wgtp50,omitempty"`
 	Wgtp51          int32                  `protobuf:"varint,483,opt,name=wgtp51,proto3" json:"wgtp51,omitempty"`
 	Wgtp52          int32                  `protobuf:"varint,484,opt,name=wgtp52,proto3" json:"wgtp52,omitempty"`
@@ -17560,16 +17560,16 @@ type USCensusRow struct {
 	Wgtp59          int32                  `protobuf:"varint,491,opt,name=wgtp59,proto3" json:"wgtp59,omitempty"`
 	Wgtp5           int32                  `protobuf:"varint,492,opt,name=wgtp5,proto3" json:"wgtp5,omitempty"`
 	Wgtp60          int32                  `protobuf:"varint,493,opt,name=wgtp60,proto3" json:"wgtp60,omitempty"`
-	Wgtp61          int32                  `protobuf:"varint,494,opt,name=wgtp61,proto3" json:"wgtp61,omitempty"`
+	Wgtp61          int32                  `protobuf:"zigzag32,494,opt,name=wgtp61,proto3" json:"wgtp61,omitempty"`
 	Wgtp62          int32                  `protobuf:"varint,495,opt,name=wgtp62,proto3" json:"wgtp62,omitempty"`
 	Wgtp63          int32                  `protobuf:"varint,496,opt,name=wgtp63,proto3" json:"wgtp63,omitempty"`
-	Wgtp64          int32                  `protobuf:"varint,497,opt,name=wgtp64,proto3" json:"wgtp64,omitempty"`
+	Wgtp64          int32                  `protobuf:"zigzag32,497,opt,name=wgtp64,proto3" json:"wgtp64,omitempty"`
 	Wgtp65          int32                  `protobuf:"varint,498,opt,name=wgtp65,proto3" json:"wgtp65,omitempty"`
-	Wgtp66          int32                  `protobuf:"varint,499,opt,name=wgtp66,proto3" json:"wgtp66,omitempty"`
-	Wgtp67          int32                  `protobuf:"varint,500,opt,name=wgtp67,proto3" json:"wgtp67,omitempty"`
-	Wgtp68          int32                  `protobuf:"varint,501,opt,name=wgtp68,proto3" json:"wgtp68,omitempty"`
+	Wgtp66          int32                  `protobuf:"zigzag32,499,opt,name=wgtp66,proto3" json:"wgtp66,omitempty"`
+	Wgtp67          int32                  `protobuf:"zigzag32,500,opt,name=wgtp67,proto3" json:"wgtp67,omitempty"`
+	Wgtp68          int32                  `protobuf:"zigzag32,501,opt,name=wgtp68,proto3" json:"wgtp68,omitempty"`
 	Wgtp69          int32                  `protobuf:"varint,502,opt,name=wgtp69,proto3" json:"wgtp69,omitempty"`
-	Wgtp6           int32                  `protobuf:"varint,503,opt,name=wgtp6,proto3" json:"wgtp6,omitempty"`
+	Wgtp6           int32                  `protobuf:"zigzag32,503,opt,name=wgtp6,proto3" json:"wgtp6,omitempty"`
 	Wgtp70          int32                  `protobuf:"varint,504,opt,name=wgtp70,proto3" json:"wgtp70,omitempty"`
 	Wgtp71          int32                  `protobuf:"varint,505,opt,name=wgtp71,proto3" json:"wgtp71,omitempty"`
 	Wgtp72          int32                  `protobuf:"varint,506,opt,name=wgtp72,proto3" json:"wgtp72,omitempty"`
@@ -17579,8 +17579,8 @@ type USCensusRow struct {
 	Wgtp76          int32                  `protobuf:"varint,510,opt,name=wgtp76,proto3" json:"wgtp76,omitempty"`
 	Wgtp77          int32                  `protobuf:"varint,511,opt,name=wgtp77,proto3" json:"wgtp77,omitempty"`
 	Wgtp78          int32                  `protobuf:"varint,512,opt,name=wgtp78,proto3" json:"wgtp78,omitempty"`
-	Wgtp79          int32                  `protobuf:"varint,513,opt,name=wgtp79,proto3" json:"wgtp79,omitempty"`
-	Wgtp7           int32                  `protobuf:"varint,514,opt,name=wgtp7,proto3" json:"wgtp7,omitempty"`
+	Wgtp79          int32                  `protobuf:"zigzag32,513,opt,name=wgtp79,proto3" json:"wgtp79,omitempty"`
+	Wgtp7           int32                  `protobuf:"zigzag32,514,opt,name=wgtp7,proto3" json:"wgtp7,omitempty"`
 	Wgtp80          int32                  `protobuf:"varint,515,opt,name=wgtp80,proto3" json:"wgtp80,omitempty"`
 	Wgtp8           int32                  `protobuf:"varint,516,opt,name=wgtp8,proto3" json:"wgtp8,omitempty"`
 	Wgtp9           int32                  `protobuf:"varint,517,opt,name=wgtp9,proto3" json:"wgtp9,omitempty"`
@@ -21324,7 +21324,7 @@ type UberlandiaRow struct {
 	DataDeNascimentoAluno               *int32                 `protobuf:"zigzag32,23,opt,name=data_de_nascimento_aluno,json=dataDeNascimentoAluno,proto3,oneof" json:"data_de_nascimento_aluno,omitempty"`
 	DataDaPublicacao                    *int32                 `protobuf:"varint,24,opt,name=data_da_publicacao,json=dataDaPublicacao,proto3,oneof" json:"data_da_publicacao,omitempty"`
 	DataDeConclusao                     *string                `protobuf:"bytes,25,opt,name=data_de_conclusao,json=dataDeConclusao,proto3,oneof" json:"data_de_conclusao,omitempty"`
-	DataDeInicio                        *int32                 `protobuf:"zigzag32,26,opt,name=data_de_inicio,json=dataDeInicio,proto3,oneof" json:"data_de_inicio,omitempty"`
+	DataDeInicio                        *int32                 `protobuf:"varint,26,opt,name=data_de_inicio,json=dataDeInicio,proto3,oneof" json:"data_de_inicio,omitempty"`
 	DataDePrevisaodeTermino             *int32                 `protobuf:"varint,27,opt,name=data_de_previsaode_termino,json=dataDePrevisaodeTermino,proto3,oneof" json:"data_de_previsaode_termino,omitempty"`
 	Desempregado                        *string                `protobuf:"bytes,28,opt,name=desempregado,proto3,oneof" json:"desempregado,omitempty"`
 	DsEmail                             *string                `protobuf:"bytes,29,opt,name=ds_email,json=dsEmail,proto3,oneof" json:"ds_email,omitempty"`
@@ -24175,7 +24175,7 @@ type YaleLanguagesRow struct {
 	Date                        *string                `protobuf:"bytes,10,opt,name=date,proto3,oneof" json:"date,omitempty"`
 	Daterangecentury            *string                `protobuf:"bytes,11,opt,name=daterangecentury,proto3,oneof" json:"daterangecentury,omitempty"`
 	Daterangedecade             *string                `protobuf:"bytes,12,opt,name=daterangedecade,proto3,oneof" json:"daterangedecade,omitempty"`
-	Dischargedate               *int64                 `protobuf:"zigzag64,13,opt,name=dischargedate,proto3,oneof" json:"dischargedate,omitempty"`
+	Dischargedate               *int64                 `protobuf:"varint,13,opt,name=dischargedate,proto3,oneof" json:"dischargedate,omitempty"`
 	Id                          *int32                 `protobuf:"varint,14,opt,name=id,proto3,oneof" json:"id,omitempty"`
 	Id1                         *int32                 `protobuf:"varint,15,opt,name=id1,proto3,oneof" json:"id1,omitempty"`
 	Language                    string                 `protobuf:"bytes,16,opt,name=language,proto3" json:"language,omitempty"`
@@ -24452,8 +24452,8 @@ const file_publicbi_proto_rawDesc = "" +
 	"\x02f5\x18\x05 \x01(\x05R\x02f5\x12\x13\n" +
 	"\x02f6\x18\x06 \x01(\tH\x00R\x02f6\x88\x01\x01\x12\x13\n" +
 	"\x02f7\x18\a \x01(\tH\x01R\x02f7\x88\x01\x01\x12\x0e\n" +
-	"\x02f8\x18\b \x01(\x05R\x02f8\x12\x0e\n" +
-	"\x02f9\x18\t \x01(\x05R\x02f9\x12*\n" +
+	"\x02f8\x18\b \x01(\x11R\x02f8\x12\x0e\n" +
+	"\x02f9\x18\t \x01(\x11R\x02f9\x12*\n" +
 	"\x11number_of_records\x18\n" +
 	" \x01(\x05R\x0fnumberOfRecords\x12\x19\n" +
 	"\bwnet_bin\x18\v \x01(\x05R\awnetBinB\x05\n" +
@@ -24632,7 +24632,7 @@ const file_publicbi_proto_rawDesc = "" +
 	"fk_rec_mat\x18\x19 \x01(\x11H\x05R\bfkRecMat\x88\x01\x01\x12\x1c\n" +
 	"\tftsdollar\x18\x1a \x01(\x01R\tftsdollar\x12*\n" +
 	"\x0efunding_agency\x18\x1b \x01(\tH\x06R\rfundingAgency\x88\x01\x01\x12,\n" +
-	"\x12funding_agency_key\x18\x1c \x01(\x05R\x10fundingAgencyKey\x12.\n" +
+	"\x12funding_agency_key\x18\x1c \x01(\x11R\x10fundingAgencyKey\x12.\n" +
 	"\x13funding_agency_name\x18\x1d \x01(\tR\x11fundingAgencyName\x12\x1c\n" +
 	"\tgsadollar\x18\x1e \x01(\x01R\tgsadollar\x12&\n" +
 	"\x0egsaotherdollar\x18\x1f \x01(\x01R\x0egsaotherdollar\x12\x14\n" +
@@ -24771,7 +24771,7 @@ const file_publicbi_proto_rawDesc = "" +
 	"\x18data_de_nascimento_aluno\x18\x17 \x01(\x11H\fR\x15dataDeNascimentoAluno\x88\x01\x01\x121\n" +
 	"\x12data_da_publicacao\x18\x18 \x01(\x05H\rR\x10dataDaPublicacao\x88\x01\x01\x12/\n" +
 	"\x11data_de_conclusao\x18\x19 \x01(\tH\x0eR\x0fdataDeConclusao\x88\x01\x01\x12)\n" +
-	"\x0edata_de_inicio\x18\x1a \x01(\x11H\x0fR\fdataDeInicio\x88\x01\x01\x12@\n" +
+	"\x0edata_de_inicio\x18\x1a \x01(\x05H\x0fR\fdataDeInicio\x88\x01\x01\x12@\n" +
 	"\x1adata_de_previsaode_termino\x18\x1b \x01(\x05H\x10R\x17dataDePrevisaodeTermino\x88\x01\x01\x12'\n" +
 	"\fdesempregado\x18\x1c \x01(\tH\x11R\fdesempregado\x88\x01\x01\x12\x1e\n" +
 	"\bds_email\x18\x1d \x01(\tH\x12R\adsEmail\x88\x01\x01\x124\n" +
@@ -24928,7 +24928,7 @@ const file_publicbi_proto_rawDesc = "" +
 	"\vconcatenar2\x18\n" +
 	" \x01(\tH\x05R\vconcatenar2\x88\x01\x01\x12\x14\n" +
 	"\x05corte\x18\v \x01(\x05R\x05corte\x12\x1e\n" +
-	"\bde_npags\x18\f \x01(\x05H\x06R\adeNpags\x88\x01\x01\x12\x1d\n" +
+	"\bde_npags\x18\f \x01(\x11H\x06R\adeNpags\x88\x01\x01\x12\x1d\n" +
 	"\n" +
 	"dia_semana\x18\r \x01(\x05R\tdiaSemana\x12\x19\n" +
 	"\x05disco\x18\x0e \x01(\x05H\aR\x05disco\x88\x01\x01\x12\x1f\n" +
@@ -25158,7 +25158,7 @@ const file_publicbi_proto_rawDesc = "" +
 	"\x03lat\x18\x11 \x01(\x12H\x04R\x03lat\x88\x01\x01\x12\x1b\n" +
 	"\x06listed\x18\x12 \x01(\x05H\x05R\x06listed\x88\x01\x01\x12#\n" +
 	"\rlocation_type\x18\x13 \x01(\tR\flocationType\x12\x17\n" +
-	"\x04long\x18\x14 \x01(\x03H\x06R\x04long\x88\x01\x01\x12\x17\n" +
+	"\x04long\x18\x14 \x01(\x12H\x06R\x04long\x88\x01\x01\x12\x17\n" +
 	"\x04name\x18\x15 \x01(\tH\aR\x04name\x88\x01\x01\x12*\n" +
 	"\x11number_of_records\x18\x16 \x01(\x05R\x0fnumberOfRecords\x12\x16\n" +
 	"\x06region\x18\x17 \x01(\tR\x06region\x125\n" +
@@ -25215,7 +25215,7 @@ const file_publicbi_proto_rawDesc = "" +
 	"\acountry\x18\x04 \x01(\tR\acountry\x12!\n" +
 	"\fcreated_time\x18\x05 \x01(\x03R\vcreatedTime\x12\x0e\n" +
 	"\x02id\x18\x06 \x01(\x05R\x02id\x12\x1a\n" +
-	"\blatitude\x18\a \x01(\x03R\blatitude\x12\x1d\n" +
+	"\blatitude\x18\a \x01(\x12R\blatitude\x12\x1d\n" +
 	"\n" +
 	"like_count\x18\b \x01(\x05R\tlikeCount\x12\x12\n" +
 	"\x04link\x18\t \x01(\tR\x04link\x12\x1c\n" +
@@ -25232,7 +25232,7 @@ const file_publicbi_proto_rawDesc = "" +
 	"\x1bcalculation3650724144057954\x18\x11 \x01(\tR\x1bcalculation3650724144057954\x12E\n" +
 	"\x1bcalculation4370724142342227\x18\x12 \x01(\tH\x01R\x1bcalculation4370724142342227\x88\x01\x01\x12@\n" +
 	"\x1bcalculation8090724143600502\x18\x13 \x01(\tR\x1bcalculation8090724143600502\x12@\n" +
-	"\x1bcalculation9330724145728972\x18\x14 \x01(\x05R\x1bcalculation9330724145728972B\x14\n" +
+	"\x1bcalculation9330724145728972\x18\x14 \x01(\x11R\x1bcalculation9330724145728972B\x14\n" +
 	"\x12_number_of_recordsB\x1e\n" +
 	"\x1c_calculation4370724142342227\"9\n" +
 	"\n" +
@@ -25643,7 +25643,7 @@ const file_publicbi_proto_rawDesc = "" +
 	"\vconcatenar2\x18\n" +
 	" \x01(\tH\x05R\vconcatenar2\x88\x01\x01\x12\x14\n" +
 	"\x05corte\x18\v \x01(\x05R\x05corte\x12\x1e\n" +
-	"\bde_npags\x18\f \x01(\x05H\x06R\adeNpags\x88\x01\x01\x12\x1d\n" +
+	"\bde_npags\x18\f \x01(\x11H\x06R\adeNpags\x88\x01\x01\x12\x1d\n" +
 	"\n" +
 	"dia_semana\x18\r \x01(\x05R\tdiaSemana\x12\x19\n" +
 	"\x05disco\x18\x0e \x01(\x05H\aR\x05disco\x88\x01\x01\x12\x1f\n" +
@@ -25738,7 +25738,7 @@ const file_publicbi_proto_rawDesc = "" +
 	"\x18data_de_nascimento_aluno\x18\x17 \x01(\x11H\fR\x15dataDeNascimentoAluno\x88\x01\x01\x121\n" +
 	"\x12data_da_publicacao\x18\x18 \x01(\x05H\rR\x10dataDaPublicacao\x88\x01\x01\x12/\n" +
 	"\x11data_de_conclusao\x18\x19 \x01(\tH\x0eR\x0fdataDeConclusao\x88\x01\x01\x12)\n" +
-	"\x0edata_de_inicio\x18\x1a \x01(\x11H\x0fR\fdataDeInicio\x88\x01\x01\x12@\n" +
+	"\x0edata_de_inicio\x18\x1a \x01(\x05H\x0fR\fdataDeInicio\x88\x01\x01\x12@\n" +
 	"\x1adata_de_previsaode_termino\x18\x1b \x01(\x05H\x10R\x17dataDePrevisaodeTermino\x88\x01\x01\x12'\n" +
 	"\fdesempregado\x18\x1c \x01(\tH\x11R\fdesempregado\x88\x01\x01\x12\x1e\n" +
 	"\bds_email\x18\x1d \x01(\tH\x12R\adsEmail\x88\x01\x01\x124\n" +
@@ -25867,7 +25867,7 @@ const file_publicbi_proto_rawDesc = "" +
 	"\rcross_street1\x18\r \x01(\tH\x06R\fcrossStreet1\x88\x01\x01\x12(\n" +
 	"\rcross_street2\x18\x0e \x01(\tH\aR\fcrossStreet2\x88\x01\x01\x12*\n" +
 	"\x0edescriptor_col\x18\x0f \x01(\tH\bR\rdescriptorCol\x88\x01\x01\x12\x1e\n" +
-	"\bdue_date\x18\x10 \x01(\x03H\tR\adueDate\x88\x01\x01\x12(\n" +
+	"\bdue_date\x18\x10 \x01(\x12H\tR\adueDate\x88\x01\x01\x12(\n" +
 	"\rfacility_type\x18\x11 \x01(\tH\n" +
 	"R\ffacilityType\x88\x01\x01\x12,\n" +
 	"\x0fferry_direction\x18\x12 \x01(\tH\vR\x0eferryDirection\x88\x01\x01\x123\n" +
@@ -26303,7 +26303,7 @@ const file_publicbi_proto_rawDesc = "" +
 	"median_dom\x18\f \x01(\x05H\n" +
 	"R\tmedianDom\x88\x01\x01\x12)\n" +
 	"\x0emedian_dom_mom\x18\r \x01(\x11H\vR\fmedianDomMom\x88\x01\x01\x12)\n" +
-	"\x0emedian_dom_yoy\x18\x0e \x01(\x05H\fR\fmedianDomYoy\x88\x01\x01\x12-\n" +
+	"\x0emedian_dom_yoy\x18\x0e \x01(\x11H\fR\fmedianDomYoy\x88\x01\x01\x12-\n" +
 	"\x10median_list_ppsf\x18\x0f \x01(\x01H\rR\x0emedianListPpsf\x88\x01\x01\x124\n" +
 	"\x14median_list_ppsf_mom\x18\x10 \x01(\x01H\x0eR\x11medianListPpsfMom\x88\x01\x01\x124\n" +
 	"\x14median_list_ppsf_yoy\x18\x11 \x01(\x01H\x0fR\x11medianListPpsfYoy\x88\x01\x01\x12/\n" +
@@ -26398,7 +26398,7 @@ const file_publicbi_proto_rawDesc = "" +
 	"median_dom\x18\f \x01(\x05H\n" +
 	"R\tmedianDom\x88\x01\x01\x12)\n" +
 	"\x0emedian_dom_mom\x18\r \x01(\x11H\vR\fmedianDomMom\x88\x01\x01\x12)\n" +
-	"\x0emedian_dom_yoy\x18\x0e \x01(\x05H\fR\fmedianDomYoy\x88\x01\x01\x12-\n" +
+	"\x0emedian_dom_yoy\x18\x0e \x01(\x11H\fR\fmedianDomYoy\x88\x01\x01\x12-\n" +
 	"\x10median_list_ppsf\x18\x0f \x01(\x01H\rR\x0emedianListPpsf\x88\x01\x01\x124\n" +
 	"\x14median_list_ppsf_mom\x18\x10 \x01(\x01H\x0eR\x11medianListPpsfMom\x88\x01\x01\x124\n" +
 	"\x14median_list_ppsf_yoy\x18\x11 \x01(\x01H\x0fR\x11medianListPpsfYoy\x88\x01\x01\x12/\n" +
@@ -26493,7 +26493,7 @@ const file_publicbi_proto_rawDesc = "" +
 	"median_dom\x18\f \x01(\x05H\n" +
 	"R\tmedianDom\x88\x01\x01\x12)\n" +
 	"\x0emedian_dom_mom\x18\r \x01(\x11H\vR\fmedianDomMom\x88\x01\x01\x12)\n" +
-	"\x0emedian_dom_yoy\x18\x0e \x01(\x05H\fR\fmedianDomYoy\x88\x01\x01\x12-\n" +
+	"\x0emedian_dom_yoy\x18\x0e \x01(\x11H\fR\fmedianDomYoy\x88\x01\x01\x12-\n" +
 	"\x10median_list_ppsf\x18\x0f \x01(\x01H\rR\x0emedianListPpsf\x88\x01\x01\x124\n" +
 	"\x14median_list_ppsf_mom\x18\x10 \x01(\x01H\x0eR\x11medianListPpsfMom\x88\x01\x01\x124\n" +
 	"\x14median_list_ppsf_yoy\x18\x11 \x01(\x01H\x0fR\x11medianListPpsfYoy\x88\x01\x01\x12/\n" +
@@ -26594,7 +26594,7 @@ const file_publicbi_proto_rawDesc = "" +
 	"median_dom\x18\f \x01(\x05H\n" +
 	"R\tmedianDom\x88\x01\x01\x12)\n" +
 	"\x0emedian_dom_mom\x18\r \x01(\x11H\vR\fmedianDomMom\x88\x01\x01\x12)\n" +
-	"\x0emedian_dom_yoy\x18\x0e \x01(\x05H\fR\fmedianDomYoy\x88\x01\x01\x12-\n" +
+	"\x0emedian_dom_yoy\x18\x0e \x01(\x11H\fR\fmedianDomYoy\x88\x01\x01\x12-\n" +
 	"\x10median_list_ppsf\x18\x0f \x01(\x01H\rR\x0emedianListPpsf\x88\x01\x01\x124\n" +
 	"\x14median_list_ppsf_mom\x18\x10 \x01(\x01H\x0eR\x11medianListPpsfMom\x88\x01\x01\x124\n" +
 	"\x14median_list_ppsf_yoy\x18\x11 \x01(\x01H\x0fR\x11medianListPpsfYoy\x88\x01\x01\x12/\n" +
@@ -26735,7 +26735,7 @@ const file_publicbi_proto_rawDesc = "" +
 	"\x12jefe_de_ventas_ncb\x183 \x01(\tH\x17R\x0fjefeDeVentasNcb\x88\x01\x01\x12$\n" +
 	"\x0ejefe_de_ventas\x184 \x01(\tR\fjefeDeVentas\x12.\n" +
 	"\x10latitud_autoprev\x185 \x01(\x03H\x18R\x0flatitudAutoprev\x88\x01\x01\x12\x1d\n" +
-	"\alatitud\x186 \x01(\x03H\x19R\alatitud\x88\x01\x01\x12\x1a\n" +
+	"\alatitud\x186 \x01(\x12H\x19R\alatitud\x88\x01\x01\x12\x1a\n" +
 	"\blocacion\x187 \x01(\tR\blocacion\x12#\n" +
 	"\rlocacion_copy\x188 \x01(\tR\flocacionCopy\x120\n" +
 	"\x11longitud_autoprev\x189 \x01(\x12H\x1aR\x10longitudAutoprev\x88\x01\x01\x12\x1f\n" +
@@ -26896,7 +26896,7 @@ const file_publicbi_proto_rawDesc = "" +
 	"\acaption\x18\x03 \x01(\tH\x01R\acaption\x88\x01\x01\x12&\n" +
 	"\fcreated_time\x18\x04 \x01(\x05H\x02R\vcreatedTime\x88\x01\x01\x12\x13\n" +
 	"\x02id\x18\x05 \x01(\tH\x03R\x02id\x88\x01\x01\x12\x15\n" +
-	"\x03lat\x18\x06 \x01(\x03H\x04R\x03lat\x88\x01\x01\x12\x17\n" +
+	"\x03lat\x18\x06 \x01(\x12H\x04R\x03lat\x88\x01\x01\x12\x17\n" +
 	"\x04link\x18\a \x01(\tH\x05R\x04link\x88\x01\x01\x12\x15\n" +
 	"\x03lng\x18\b \x01(\x01H\x06R\x03lng\x88\x01\x01\x12\x1f\n" +
 	"\blocation\x18\t \x01(\tH\aR\blocation\x88\x01\x01\x12\x17\n" +
@@ -27360,7 +27360,7 @@ const file_publicbi_proto_rawDesc = "" +
 	"\rtotalvasrevp4\x18\xaa\x01 \x01(\x05R\rtotalvasrevp4\x12%\n" +
 	"\rtotalvasrevp6\x18\xab\x01 \x01(\x05R\rtotalvasrevp6\x12-\n" +
 	"\x11totaoutgoingrevp1\x18\xac\x01 \x01(\x01R\x11totaoutgoingrevp1\x12-\n" +
-	"\x11totaoutgoingrevp2\x18\xad\x01 \x01(\x03R\x11totaoutgoingrevp2\x12-\n" +
+	"\x11totaoutgoingrevp2\x18\xad\x01 \x01(\x12R\x11totaoutgoingrevp2\x12-\n" +
 	"\x11totaoutgoingrevp3\x18\xae\x01 \x01(\x12R\x11totaoutgoingrevp3\x12-\n" +
 	"\x11totaoutgoingrevp4\x18\xaf\x01 \x01(\x01R\x11totaoutgoingrevp4\x12-\n" +
 	"\x11totaoutgoingrevp6\x18\xb0\x01 \x01(\x01R\x11totaoutgoingrevp6\x12)\n" +
@@ -27561,7 +27561,7 @@ const file_publicbi_proto_rawDesc = "" +
 	"\bfhins7_p\x18] \x01(\x05R\afhins7P\x12\x14\n" +
 	"\x05fhisp\x18^ \x01(\x05R\x05fhisp\x12\x1d\n" +
 	"\afiberop\x18_ \x01(\x05H4R\afiberop\x88\x01\x01\x12\x19\n" +
-	"\x05fincp\x18` \x01(\x05H5R\x05fincp\x88\x01\x01\x12\x14\n" +
+	"\x05fincp\x18` \x01(\x11H5R\x05fincp\x88\x01\x01\x12\x14\n" +
 	"\x05findp\x18a \x01(\x05R\x05findp\x12\x19\n" +
 	"\x05finsp\x18b \x01(\x05H6R\x05finsp\x88\x01\x01\x12\x14\n" +
 	"\x05fintp\x18c \x01(\x05R\x05fintp\x12\x14\n" +
@@ -27657,7 +27657,7 @@ const file_publicbi_proto_rawDesc = "" +
 	"\x03hhl\x18\xbb\x01 \x01(\x05HcR\x03hhl\x88\x01\x01\x12\x16\n" +
 	"\x03hht\x18\xbc\x01 \x01(\x05HdR\x03hht\x88\x01\x01\x12\x15\n" +
 	"\x05hicov\x18\xbd\x01 \x01(\x05R\x05hicov\x12\x1a\n" +
-	"\x05hincp\x18\xbe\x01 \x01(\x05HeR\x05hincp\x88\x01\x01\x12\x15\n" +
+	"\x05hincp\x18\xbe\x01 \x01(\x11HeR\x05hincp\x88\x01\x01\x12\x15\n" +
 	"\x05hins1\x18\xbf\x01 \x01(\x05R\x05hins1\x12\x15\n" +
 	"\x05hins2\x18\xc0\x01 \x01(\x05R\x05hins2\x12\x15\n" +
 	"\x05hins3\x18\xc1\x01 \x01(\x05R\x05hins3\x12\x15\n" +
@@ -27672,7 +27672,7 @@ const file_publicbi_proto_rawDesc = "" +
 	"\x06huparc\x18\xca\x01 \x01(\x05HiR\x06huparc\x88\x01\x01\x12\x18\n" +
 	"\x04indp\x18\xcb\x01 \x01(\x05HjR\x04indp\x88\x01\x01\x12\x18\n" +
 	"\x04insp\x18\xcc\x01 \x01(\x05HkR\x04insp\x88\x01\x01\x12\x18\n" +
-	"\x04intp\x18\xcd\x01 \x01(\x05HlR\x04intp\x88\x01\x01\x12\x18\n" +
+	"\x04intp\x18\xcd\x01 \x01(\x11HlR\x04intp\x88\x01\x01\x12\x18\n" +
 	"\x04jwap\x18\xce\x01 \x01(\x05HmR\x04jwap\x88\x01\x01\x12\x18\n" +
 	"\x04jwdp\x18\xcf\x01 \x01(\x05HnR\x04jwdp\x88\x01\x01\x12\x1a\n" +
 	"\x05jwmnp\x18\xd0\x01 \x01(\x05HoR\x05jwmnp\x88\x01\x01\x12\x1a\n" +
@@ -27734,8 +27734,8 @@ const file_publicbi_proto_rawDesc = "" +
 	"\x04paoc\x18\x88\x02 \x01(\x05H\xa2\x01R\x04paoc\x88\x01\x01\x12\x17\n" +
 	"\x03pap\x18\x89\x02 \x01(\x05H\xa3\x01R\x03pap\x88\x01\x01\x12\x1f\n" +
 	"\apartner\x18\x8a\x02 \x01(\x05H\xa4\x01R\apartner\x88\x01\x01\x12\x1b\n" +
-	"\x05pernp\x18\x8b\x02 \x01(\x05H\xa5\x01R\x05pernp\x88\x01\x01\x12\x1b\n" +
-	"\x05pincp\x18\x8c\x02 \x01(\x05H\xa6\x01R\x05pincp\x88\x01\x01\x12\x17\n" +
+	"\x05pernp\x18\x8b\x02 \x01(\x11H\xa5\x01R\x05pernp\x88\x01\x01\x12\x1b\n" +
+	"\x05pincp\x18\x8c\x02 \x01(\x11H\xa6\x01R\x05pincp\x88\x01\x01\x12\x17\n" +
 	"\x03plm\x18\x8d\x02 \x01(\x05H\xa7\x01R\x03plm\x88\x01\x01\x12\x13\n" +
 	"\x04pobp\x18\x8e\x02 \x01(\x05R\x04pobp\x12\x1d\n" +
 	"\x06povpip\x18\x8f\x02 \x01(\x05H\xa8\x01R\x06povpip\x88\x01\x01\x12\x1f\n" +
@@ -27781,7 +27781,7 @@ const file_publicbi_proto_rawDesc = "" +
 	"\x03sch\x18\xb7\x02 \x01(\x05H\xba\x01R\x03sch\x88\x01\x01\x12\x1f\n" +
 	"\asciengp\x18\xb8\x02 \x01(\x05H\xbb\x01R\asciengp\x88\x01\x01\x12#\n" +
 	"\tsciengrlp\x18\xb9\x02 \x01(\x05H\xbc\x01R\tsciengrlp\x88\x01\x01\x12\x19\n" +
-	"\x04semp\x18\xba\x02 \x01(\x05H\xbd\x01R\x04semp\x88\x01\x01\x12\x1b\n" +
+	"\x04semp\x18\xba\x02 \x01(\x11H\xbd\x01R\x04semp\x88\x01\x01\x12\x1b\n" +
 	"\bserialno\x18\xbb\x02 \x01(\x05R\bserialno\x12\x1d\n" +
 	"\tserialno1\x18\xbc\x02 \x01(\x05R\tserialno1\x12\x11\n" +
 	"\x03sex\x18\xbd\x02 \x01(\x05R\x03sex\x12\x17\n" +
@@ -27828,47 +27828,47 @@ const file_publicbi_proto_rawDesc = "" +
 	"\x03ybl\x18\xe4\x02 \x01(\x05H\xdc\x01R\x03ybl\x88\x01\x01\x12\x19\n" +
 	"\x04yoep\x18\xe5\x02 \x01(\x05H\xdd\x01R\x04yoep\x88\x01\x01\x12\x19\n" +
 	"\apwgtp10\x18\xe6\x02 \x01(\x05R\apwgtp10\x12\x19\n" +
-	"\apwgtp11\x18\xe7\x02 \x01(\x05R\apwgtp11\x12\x19\n" +
+	"\apwgtp11\x18\xe7\x02 \x01(\x11R\apwgtp11\x12\x19\n" +
 	"\apwgtp12\x18\xe8\x02 \x01(\x05R\apwgtp12\x12\x19\n" +
 	"\apwgtp13\x18\xe9\x02 \x01(\x05R\apwgtp13\x12\x19\n" +
 	"\apwgtp14\x18\xea\x02 \x01(\x05R\apwgtp14\x12\x19\n" +
 	"\apwgtp15\x18\xeb\x02 \x01(\x05R\apwgtp15\x12\x19\n" +
-	"\apwgtp16\x18\xec\x02 \x01(\x05R\apwgtp16\x12\x19\n" +
+	"\apwgtp16\x18\xec\x02 \x01(\x11R\apwgtp16\x12\x19\n" +
 	"\apwgtp17\x18\xed\x02 \x01(\x05R\apwgtp17\x12\x19\n" +
 	"\apwgtp18\x18\xee\x02 \x01(\x05R\apwgtp18\x12\x19\n" +
 	"\apwgtp19\x18\xef\x02 \x01(\x05R\apwgtp19\x12\x17\n" +
 	"\x06pwgtp1\x18\xf0\x02 \x01(\x05R\x06pwgtp1\x12\x19\n" +
 	"\apwgtp20\x18\xf1\x02 \x01(\x05R\apwgtp20\x12\x19\n" +
 	"\apwgtp21\x18\xf2\x02 \x01(\x05R\apwgtp21\x12\x19\n" +
-	"\apwgtp22\x18\xf3\x02 \x01(\x05R\apwgtp22\x12\x19\n" +
-	"\apwgtp23\x18\xf4\x02 \x01(\x05R\apwgtp23\x12\x19\n" +
+	"\apwgtp22\x18\xf3\x02 \x01(\x11R\apwgtp22\x12\x19\n" +
+	"\apwgtp23\x18\xf4\x02 \x01(\x11R\apwgtp23\x12\x19\n" +
 	"\apwgtp24\x18\xf5\x02 \x01(\x05R\apwgtp24\x12\x19\n" +
 	"\apwgtp25\x18\xf6\x02 \x01(\x05R\apwgtp25\x12\x19\n" +
-	"\apwgtp26\x18\xf7\x02 \x01(\x05R\apwgtp26\x12\x19\n" +
+	"\apwgtp26\x18\xf7\x02 \x01(\x11R\apwgtp26\x12\x19\n" +
 	"\apwgtp27\x18\xf8\x02 \x01(\x05R\apwgtp27\x12\x19\n" +
 	"\apwgtp28\x18\xf9\x02 \x01(\x05R\apwgtp28\x12\x19\n" +
 	"\apwgtp29\x18\xfa\x02 \x01(\x05R\apwgtp29\x12\x17\n" +
-	"\x06pwgtp2\x18\xfb\x02 \x01(\x05R\x06pwgtp2\x12\x19\n" +
+	"\x06pwgtp2\x18\xfb\x02 \x01(\x11R\x06pwgtp2\x12\x19\n" +
 	"\apwgtp30\x18\xfc\x02 \x01(\x05R\apwgtp30\x12\x19\n" +
 	"\apwgtp31\x18\xfd\x02 \x01(\x05R\apwgtp31\x12\x19\n" +
 	"\apwgtp32\x18\xfe\x02 \x01(\x05R\apwgtp32\x12\x19\n" +
 	"\apwgtp33\x18\xff\x02 \x01(\x05R\apwgtp33\x12\x19\n" +
 	"\apwgtp34\x18\x80\x03 \x01(\x05R\apwgtp34\x12\x19\n" +
-	"\apwgtp35\x18\x81\x03 \x01(\x05R\apwgtp35\x12\x19\n" +
+	"\apwgtp35\x18\x81\x03 \x01(\x11R\apwgtp35\x12\x19\n" +
 	"\apwgtp36\x18\x82\x03 \x01(\x05R\apwgtp36\x12\x19\n" +
 	"\apwgtp37\x18\x83\x03 \x01(\x05R\apwgtp37\x12\x19\n" +
 	"\apwgtp38\x18\x84\x03 \x01(\x05R\apwgtp38\x12\x19\n" +
 	"\apwgtp39\x18\x85\x03 \x01(\x05R\apwgtp39\x12\x17\n" +
 	"\x06pwgtp3\x18\x86\x03 \x01(\x05R\x06pwgtp3\x12\x19\n" +
 	"\apwgtp40\x18\x87\x03 \x01(\x05R\apwgtp40\x12\x19\n" +
-	"\apwgtp41\x18\x88\x03 \x01(\x05R\apwgtp41\x12\x19\n" +
+	"\apwgtp41\x18\x88\x03 \x01(\x11R\apwgtp41\x12\x19\n" +
 	"\apwgtp42\x18\x89\x03 \x01(\x05R\apwgtp42\x12\x19\n" +
 	"\apwgtp43\x18\x8a\x03 \x01(\x05R\apwgtp43\x12\x19\n" +
-	"\apwgtp44\x18\x8b\x03 \x01(\x05R\apwgtp44\x12\x19\n" +
+	"\apwgtp44\x18\x8b\x03 \x01(\x11R\apwgtp44\x12\x19\n" +
 	"\apwgtp45\x18\x8c\x03 \x01(\x05R\apwgtp45\x12\x19\n" +
 	"\apwgtp46\x18\x8d\x03 \x01(\x05R\apwgtp46\x12\x19\n" +
-	"\apwgtp47\x18\x8e\x03 \x01(\x05R\apwgtp47\x12\x19\n" +
-	"\apwgtp48\x18\x8f\x03 \x01(\x05R\apwgtp48\x12\x19\n" +
+	"\apwgtp47\x18\x8e\x03 \x01(\x11R\apwgtp47\x12\x19\n" +
+	"\apwgtp48\x18\x8f\x03 \x01(\x11R\apwgtp48\x12\x19\n" +
 	"\apwgtp49\x18\x90\x03 \x01(\x05R\apwgtp49\x12\x17\n" +
 	"\x06pwgtp4\x18\x91\x03 \x01(\x05R\x06pwgtp4\x12\x19\n" +
 	"\apwgtp50\x18\x92\x03 \x01(\x05R\apwgtp50\x12\x19\n" +
@@ -27886,13 +27886,13 @@ const file_publicbi_proto_rawDesc = "" +
 	"\apwgtp61\x18\x9e\x03 \x01(\x05R\apwgtp61\x12\x19\n" +
 	"\apwgtp62\x18\x9f\x03 \x01(\x05R\apwgtp62\x12\x19\n" +
 	"\apwgtp63\x18\xa0\x03 \x01(\x05R\apwgtp63\x12\x19\n" +
-	"\apwgtp64\x18\xa1\x03 \x01(\x05R\apwgtp64\x12\x19\n" +
+	"\apwgtp64\x18\xa1\x03 \x01(\x11R\apwgtp64\x12\x19\n" +
 	"\apwgtp65\x18\xa2\x03 \x01(\x05R\apwgtp65\x12\x19\n" +
-	"\apwgtp66\x18\xa3\x03 \x01(\x05R\apwgtp66\x12\x19\n" +
-	"\apwgtp67\x18\xa4\x03 \x01(\x05R\apwgtp67\x12\x19\n" +
-	"\apwgtp68\x18\xa5\x03 \x01(\x05R\apwgtp68\x12\x19\n" +
+	"\apwgtp66\x18\xa3\x03 \x01(\x11R\apwgtp66\x12\x19\n" +
+	"\apwgtp67\x18\xa4\x03 \x01(\x11R\apwgtp67\x12\x19\n" +
+	"\apwgtp68\x18\xa5\x03 \x01(\x11R\apwgtp68\x12\x19\n" +
 	"\apwgtp69\x18\xa6\x03 \x01(\x05R\apwgtp69\x12\x17\n" +
-	"\x06pwgtp6\x18\xa7\x03 \x01(\x05R\x06pwgtp6\x12\x19\n" +
+	"\x06pwgtp6\x18\xa7\x03 \x01(\x11R\x06pwgtp6\x12\x19\n" +
 	"\apwgtp70\x18\xa8\x03 \x01(\x05R\apwgtp70\x12\x19\n" +
 	"\apwgtp71\x18\xa9\x03 \x01(\x05R\apwgtp71\x12\x19\n" +
 	"\apwgtp72\x18\xaa\x03 \x01(\x05R\apwgtp72\x12\x19\n" +
@@ -27902,13 +27902,13 @@ const file_publicbi_proto_rawDesc = "" +
 	"\apwgtp76\x18\xae\x03 \x01(\x05R\apwgtp76\x12\x19\n" +
 	"\apwgtp77\x18\xaf\x03 \x01(\x05R\apwgtp77\x12\x19\n" +
 	"\apwgtp78\x18\xb0\x03 \x01(\x05R\apwgtp78\x12\x19\n" +
-	"\apwgtp79\x18\xb1\x03 \x01(\x05R\apwgtp79\x12\x17\n" +
+	"\apwgtp79\x18\xb1\x03 \x01(\x11R\apwgtp79\x12\x17\n" +
 	"\x06pwgtp7\x18\xb2\x03 \x01(\x05R\x06pwgtp7\x12\x19\n" +
 	"\apwgtp80\x18\xb3\x03 \x01(\x05R\apwgtp80\x12\x17\n" +
 	"\x06pwgtp8\x18\xb4\x03 \x01(\x05R\x06pwgtp8\x12\x17\n" +
 	"\x06pwgtp9\x18\xb5\x03 \x01(\x05R\x06pwgtp9\x12\x17\n" +
 	"\x06wgtp10\x18\xb6\x03 \x01(\x05R\x06wgtp10\x12\x17\n" +
-	"\x06wgtp11\x18\xb7\x03 \x01(\x05R\x06wgtp11\x12\x17\n" +
+	"\x06wgtp11\x18\xb7\x03 \x01(\x11R\x06wgtp11\x12\x17\n" +
 	"\x06wgtp12\x18\xb8\x03 \x01(\x05R\x06wgtp12\x12\x17\n" +
 	"\x06wgtp13\x18\xb9\x03 \x01(\x05R\x06wgtp13\x12\x17\n" +
 	"\x06wgtp14\x18\xba\x03 \x01(\x05R\x06wgtp14\x12\x17\n" +
@@ -27920,37 +27920,37 @@ const file_publicbi_proto_rawDesc = "" +
 	"\x05wgtp1\x18\xc0\x03 \x01(\x05R\x05wgtp1\x12\x17\n" +
 	"\x06wgtp20\x18\xc1\x03 \x01(\x05R\x06wgtp20\x12\x17\n" +
 	"\x06wgtp21\x18\xc2\x03 \x01(\x05R\x06wgtp21\x12\x17\n" +
-	"\x06wgtp22\x18\xc3\x03 \x01(\x05R\x06wgtp22\x12\x17\n" +
-	"\x06wgtp23\x18\xc4\x03 \x01(\x05R\x06wgtp23\x12\x17\n" +
-	"\x06wgtp24\x18\xc5\x03 \x01(\x05R\x06wgtp24\x12\x17\n" +
+	"\x06wgtp22\x18\xc3\x03 \x01(\x11R\x06wgtp22\x12\x17\n" +
+	"\x06wgtp23\x18\xc4\x03 \x01(\x11R\x06wgtp23\x12\x17\n" +
+	"\x06wgtp24\x18\xc5\x03 \x01(\x11R\x06wgtp24\x12\x17\n" +
 	"\x06wgtp25\x18\xc6\x03 \x01(\x05R\x06wgtp25\x12\x17\n" +
-	"\x06wgtp26\x18\xc7\x03 \x01(\x05R\x06wgtp26\x12\x17\n" +
+	"\x06wgtp26\x18\xc7\x03 \x01(\x11R\x06wgtp26\x12\x17\n" +
 	"\x06wgtp27\x18\xc8\x03 \x01(\x05R\x06wgtp27\x12\x17\n" +
 	"\x06wgtp28\x18\xc9\x03 \x01(\x05R\x06wgtp28\x12\x17\n" +
 	"\x06wgtp29\x18\xca\x03 \x01(\x05R\x06wgtp29\x12\x15\n" +
-	"\x05wgtp2\x18\xcb\x03 \x01(\x05R\x05wgtp2\x12\x17\n" +
+	"\x05wgtp2\x18\xcb\x03 \x01(\x11R\x05wgtp2\x12\x17\n" +
 	"\x06wgtp30\x18\xcc\x03 \x01(\x05R\x06wgtp30\x12\x17\n" +
 	"\x06wgtp31\x18\xcd\x03 \x01(\x05R\x06wgtp31\x12\x17\n" +
 	"\x06wgtp32\x18\xce\x03 \x01(\x05R\x06wgtp32\x12\x17\n" +
 	"\x06wgtp33\x18\xcf\x03 \x01(\x05R\x06wgtp33\x12\x17\n" +
 	"\x06wgtp34\x18\xd0\x03 \x01(\x05R\x06wgtp34\x12\x17\n" +
-	"\x06wgtp35\x18\xd1\x03 \x01(\x05R\x06wgtp35\x12\x17\n" +
+	"\x06wgtp35\x18\xd1\x03 \x01(\x11R\x06wgtp35\x12\x17\n" +
 	"\x06wgtp36\x18\xd2\x03 \x01(\x05R\x06wgtp36\x12\x17\n" +
 	"\x06wgtp37\x18\xd3\x03 \x01(\x05R\x06wgtp37\x12\x17\n" +
 	"\x06wgtp38\x18\xd4\x03 \x01(\x05R\x06wgtp38\x12\x17\n" +
 	"\x06wgtp39\x18\xd5\x03 \x01(\x05R\x06wgtp39\x12\x15\n" +
-	"\x05wgtp3\x18\xd6\x03 \x01(\x05R\x05wgtp3\x12\x17\n" +
+	"\x05wgtp3\x18\xd6\x03 \x01(\x11R\x05wgtp3\x12\x17\n" +
 	"\x06wgtp40\x18\xd7\x03 \x01(\x05R\x06wgtp40\x12\x17\n" +
-	"\x06wgtp41\x18\xd8\x03 \x01(\x05R\x06wgtp41\x12\x17\n" +
+	"\x06wgtp41\x18\xd8\x03 \x01(\x11R\x06wgtp41\x12\x17\n" +
 	"\x06wgtp42\x18\xd9\x03 \x01(\x05R\x06wgtp42\x12\x17\n" +
 	"\x06wgtp43\x18\xda\x03 \x01(\x05R\x06wgtp43\x12\x17\n" +
-	"\x06wgtp44\x18\xdb\x03 \x01(\x05R\x06wgtp44\x12\x17\n" +
+	"\x06wgtp44\x18\xdb\x03 \x01(\x11R\x06wgtp44\x12\x17\n" +
 	"\x06wgtp45\x18\xdc\x03 \x01(\x05R\x06wgtp45\x12\x17\n" +
 	"\x06wgtp46\x18\xdd\x03 \x01(\x05R\x06wgtp46\x12\x17\n" +
-	"\x06wgtp47\x18\xde\x03 \x01(\x05R\x06wgtp47\x12\x17\n" +
-	"\x06wgtp48\x18\xdf\x03 \x01(\x05R\x06wgtp48\x12\x17\n" +
+	"\x06wgtp47\x18\xde\x03 \x01(\x11R\x06wgtp47\x12\x17\n" +
+	"\x06wgtp48\x18\xdf\x03 \x01(\x11R\x06wgtp48\x12\x17\n" +
 	"\x06wgtp49\x18\xe0\x03 \x01(\x05R\x06wgtp49\x12\x15\n" +
-	"\x05wgtp4\x18\xe1\x03 \x01(\x05R\x05wgtp4\x12\x17\n" +
+	"\x05wgtp4\x18\xe1\x03 \x01(\x11R\x05wgtp4\x12\x17\n" +
 	"\x06wgtp50\x18\xe2\x03 \x01(\x05R\x06wgtp50\x12\x17\n" +
 	"\x06wgtp51\x18\xe3\x03 \x01(\x05R\x06wgtp51\x12\x17\n" +
 	"\x06wgtp52\x18\xe4\x03 \x01(\x05R\x06wgtp52\x12\x17\n" +
@@ -27963,16 +27963,16 @@ const file_publicbi_proto_rawDesc = "" +
 	"\x06wgtp59\x18\xeb\x03 \x01(\x05R\x06wgtp59\x12\x15\n" +
 	"\x05wgtp5\x18\xec\x03 \x01(\x05R\x05wgtp5\x12\x17\n" +
 	"\x06wgtp60\x18\xed\x03 \x01(\x05R\x06wgtp60\x12\x17\n" +
-	"\x06wgtp61\x18\xee\x03 \x01(\x05R\x06wgtp61\x12\x17\n" +
+	"\x06wgtp61\x18\xee\x03 \x01(\x11R\x06wgtp61\x12\x17\n" +
 	"\x06wgtp62\x18\xef\x03 \x01(\x05R\x06wgtp62\x12\x17\n" +
 	"\x06wgtp63\x18\xf0\x03 \x01(\x05R\x06wgtp63\x12\x17\n" +
-	"\x06wgtp64\x18\xf1\x03 \x01(\x05R\x06wgtp64\x12\x17\n" +
+	"\x06wgtp64\x18\xf1\x03 \x01(\x11R\x06wgtp64\x12\x17\n" +
 	"\x06wgtp65\x18\xf2\x03 \x01(\x05R\x06wgtp65\x12\x17\n" +
-	"\x06wgtp66\x18\xf3\x03 \x01(\x05R\x06wgtp66\x12\x17\n" +
-	"\x06wgtp67\x18\xf4\x03 \x01(\x05R\x06wgtp67\x12\x17\n" +
-	"\x06wgtp68\x18\xf5\x03 \x01(\x05R\x06wgtp68\x12\x17\n" +
+	"\x06wgtp66\x18\xf3\x03 \x01(\x11R\x06wgtp66\x12\x17\n" +
+	"\x06wgtp67\x18\xf4\x03 \x01(\x11R\x06wgtp67\x12\x17\n" +
+	"\x06wgtp68\x18\xf5\x03 \x01(\x11R\x06wgtp68\x12\x17\n" +
 	"\x06wgtp69\x18\xf6\x03 \x01(\x05R\x06wgtp69\x12\x15\n" +
-	"\x05wgtp6\x18\xf7\x03 \x01(\x05R\x05wgtp6\x12\x17\n" +
+	"\x05wgtp6\x18\xf7\x03 \x01(\x11R\x05wgtp6\x12\x17\n" +
 	"\x06wgtp70\x18\xf8\x03 \x01(\x05R\x06wgtp70\x12\x17\n" +
 	"\x06wgtp71\x18\xf9\x03 \x01(\x05R\x06wgtp71\x12\x17\n" +
 	"\x06wgtp72\x18\xfa\x03 \x01(\x05R\x06wgtp72\x12\x17\n" +
@@ -27982,8 +27982,8 @@ const file_publicbi_proto_rawDesc = "" +
 	"\x06wgtp76\x18\xfe\x03 \x01(\x05R\x06wgtp76\x12\x17\n" +
 	"\x06wgtp77\x18\xff\x03 \x01(\x05R\x06wgtp77\x12\x17\n" +
 	"\x06wgtp78\x18\x80\x04 \x01(\x05R\x06wgtp78\x12\x17\n" +
-	"\x06wgtp79\x18\x81\x04 \x01(\x05R\x06wgtp79\x12\x15\n" +
-	"\x05wgtp7\x18\x82\x04 \x01(\x05R\x05wgtp7\x12\x17\n" +
+	"\x06wgtp79\x18\x81\x04 \x01(\x11R\x06wgtp79\x12\x15\n" +
+	"\x05wgtp7\x18\x82\x04 \x01(\x11R\x05wgtp7\x12\x17\n" +
 	"\x06wgtp80\x18\x83\x04 \x01(\x05R\x06wgtp80\x12\x15\n" +
 	"\x05wgtp8\x18\x84\x04 \x01(\x05R\x05wgtp8\x12\x15\n" +
 	"\x05wgtp9\x18\x85\x04 \x01(\x05R\x05wgtp9\x12 \n" +
@@ -28256,7 +28256,7 @@ const file_publicbi_proto_rawDesc = "" +
 	"\x18data_de_nascimento_aluno\x18\x17 \x01(\x11H\fR\x15dataDeNascimentoAluno\x88\x01\x01\x121\n" +
 	"\x12data_da_publicacao\x18\x18 \x01(\x05H\rR\x10dataDaPublicacao\x88\x01\x01\x12/\n" +
 	"\x11data_de_conclusao\x18\x19 \x01(\tH\x0eR\x0fdataDeConclusao\x88\x01\x01\x12)\n" +
-	"\x0edata_de_inicio\x18\x1a \x01(\x11H\x0fR\fdataDeInicio\x88\x01\x01\x12@\n" +
+	"\x0edata_de_inicio\x18\x1a \x01(\x05H\x0fR\fdataDeInicio\x88\x01\x01\x12@\n" +
 	"\x1adata_de_previsaode_termino\x18\x1b \x01(\x05H\x10R\x17dataDePrevisaodeTermino\x88\x01\x01\x12'\n" +
 	"\fdesempregado\x18\x1c \x01(\tH\x11R\fdesempregado\x88\x01\x01\x12\x1e\n" +
 	"\bds_email\x18\x1d \x01(\tH\x12R\adsEmail\x88\x01\x01\x124\n" +
@@ -28815,7 +28815,7 @@ const file_publicbi_proto_rawDesc = "" +
 	" \x01(\tH\x06R\x04date\x88\x01\x01\x12/\n" +
 	"\x10daterangecentury\x18\v \x01(\tH\aR\x10daterangecentury\x88\x01\x01\x12-\n" +
 	"\x0fdaterangedecade\x18\f \x01(\tH\bR\x0fdaterangedecade\x88\x01\x01\x12)\n" +
-	"\rdischargedate\x18\r \x01(\x12H\tR\rdischargedate\x88\x01\x01\x12\x13\n" +
+	"\rdischargedate\x18\r \x01(\x03H\tR\rdischargedate\x88\x01\x01\x12\x13\n" +
 	"\x02id\x18\x0e \x01(\x05H\n" +
 	"R\x02id\x88\x01\x01\x12\x15\n" +
 	"\x03id1\x18\x0f \x01(\x05H\vR\x03id1\x88\x01\x01\x12\x1a\n" +

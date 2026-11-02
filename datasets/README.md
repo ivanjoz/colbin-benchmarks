@@ -97,7 +97,12 @@ seen under the old rule. Results under an old rule are not mixed with new ones.
    because the head of a sorted table is not representative of it (above).
    After results under the head rule; the seed was fixed before any sampled
    table was measured. The head subsets are kept outside the manifest for a
-   comparison, not reported as results.
+   comparison, not reported as results: [publicbi/HEAD-VS-SAMPLE.md](publicbi/HEAD-VS-SAMPLE.md)
+   (sizes only; the sample is larger for every format, colbin's raw bytes most).
+   The Go types were regenerated from the sample (`typesgen`, then
+   `cmd/gen publicbi`): only `pb:"sint"` tags moved, as the sample holds
+   negatives in columns the head did not, and the reverse. No column's SQL
+   type, and so no Go type, changed.
 4. **Two regimes declared** (above), so that the cases far past the intended
    message size are reported apart. A reporting rule; no data changed.
 
