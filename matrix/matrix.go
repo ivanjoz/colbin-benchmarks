@@ -45,6 +45,8 @@ type Loaded struct {
 	// AccessGo is the access aggregate computed on the value itself, which
 	// every format's Access must reproduce. Nil when the case has none.
 	AccessGo func() float64
+	// AccessPath is the dotted path to the field AccessGo sums ("Rows.OrderKey").
+	AccessPath string
 	// GobStream is gob's size once a stream has sent the type.
 	GobStream func() (int, error)
 }
@@ -87,6 +89,7 @@ func bind[T any](value *T, err error, adapters formats.Adapters[T]) (*Loaded, er
 	}
 	if adapters.AccessGo != nil {
 		loaded.AccessGo = func() float64 { return adapters.AccessGo(value) }
+		loaded.AccessPath = adapters.AccessPath
 	}
 	return loaded, nil
 }

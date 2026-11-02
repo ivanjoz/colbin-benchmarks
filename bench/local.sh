@@ -5,6 +5,7 @@
 #   bench/local.sh --regime web          one regime only
 #   bench/local.sh --cases 'publicbi/*'  some cases (comma-separated globs, or "all")
 #   bench/local.sh --all                 the Go matrix, then the browser benchmark
+#   bench/local.sh --all --engines chromium
 #
 # Everything measured is pinned to one hardware thread per physical
 # performance core (--cores, default 0,2 for the i7-1355U this was written on:
@@ -21,6 +22,8 @@
 #   bench-web.txt         colbinbench, web cases
 #   bench-bulk.txt        colbinbench, bulk cases
 #   bench-browser-*.txt   with --all: web/run.mjs, one file per engine
+#   browser-paths-*.csv   with --all: which path colbin's decode took per case
+#   browser-verify.txt    with --all: web/verify.mjs, every format against the Go JSON
 #   freq.csv              the measured cores' frequency, once a second, during timings
 #   machine.txt           CPU, kernel, versions, commits, busiest processes, frequency summary
 set -euo pipefail
@@ -37,6 +40,7 @@ sample=100ms
 formats=all
 ops=encode,decode-fresh,decode-reuse,access
 browser=0
+engines=chromium,firefox,webkit
 checks=1
 min_mem_gb=8
 out=""
@@ -55,6 +59,7 @@ while [ $# -gt 0 ]; do
 	--out) out=$2; shift 2 ;;
 	--min-mem-gb) min_mem_gb=$2; shift 2 ;;
 	--all) browser=1; shift ;;
+	--engines) engines=$2; shift 2 ;;
 	--no-checks) checks=0; shift ;;
 	-h | --help) usage ;;
 	*) echo "local.sh: unknown argument $1" >&2; usage 2 ;;
@@ -244,9 +249,22 @@ sampler=""
 
 # ---- the browser ------------------------------------------------------------
 
-if [ "$browser" = 1 ]; then
-	echo "browser: web/run.mjs"
-	(cd web && node run.mjs --out "$out" --cores "$cores" --cases "$cases")
+if [ "$browser" = 1 ] && [ "$regime" != bulk ]; then
+	# The browser decodes the bytes the Go encoders write for the web cases,
+	# after every format has been checked against the Go JSON (web/README.md).
+	echo "browser: fixtures, verification, then $engines"
+	go run ./cmd/webfixtures -data "$data" -cases "$cases"
+	(
+		cd web
+		[ -d node_modules ] || npm ci
+		[ -d gen ] || npx buf generate
+		node verify.mjs --cases "$cases" >"$out/browser-verify.txt" || {
+			echo "local.sh: a format does not decode a fixture to the Go JSON value; see $out/browser-verify.txt" >&2
+			exit 1
+		}
+		node run.mjs --out "$out" --cores "$cores" --cases "$cases" --engines "$engines" --rounds "$count"
+	)
+	echo "colbin: $(node -e 'console.log(require("./web/node_modules/colbin/package.json").version)') from $(readlink -f web/node_modules/colbin)" >>"$out/machine.txt"
 fi
 
 # ---- frequency summary --------------------------------------------------------

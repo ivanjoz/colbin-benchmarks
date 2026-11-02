@@ -1,0 +1,15 @@
+# Protobuf decoders for the browser benchmark, from the .proto files cmd/gen
+# writes beside each dataset's Go code: `npm run gen` (buf and protoc-gen-es
+# are pinned in package.json). Output in web/gen/, which is not committed.
+version: v2
+inputs:
+  - directory: ../datasets/tpch/tpchgen/pb
+  - directory: ../datasets/tpcds/tpcdsgen/pb
+  - directory: ../datasets/publicbi/publicbigen/pb
+  - directory: ../datasets/schemastore/schemastoregen/pb
+plugins:
+  - local: protoc-gen-es
+    out: gen
+    opt:
+      - target=js
+      - import_extension=js

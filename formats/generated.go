@@ -39,6 +39,10 @@ type Adapters[T any] struct {
 	Capnp       *CapnpAdapter[T]
 	Untagged    *UntaggedAdapter[T]
 
+	// AccessPath is the dotted path from the root to the field AccessGo sums
+	// ("Rows.OrderKey"), for readers outside Go: cmd/webfixtures hands it to
+	// the browser benchmark.
+	AccessPath string
 	// AccessGo computes the dataset's access aggregate from a decoded value.
 	AccessGo func(*T) float64
 

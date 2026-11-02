@@ -95,6 +95,7 @@ func Nested() formats.Adapters[ds.Nested] {
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.AccessPath = "Orders.Lines.ExtendedPrice"
 	a.AccessGo = func(v *ds.Nested) float64 {
 		var sum float64
 		for j := range v.Orders {
@@ -167,6 +168,7 @@ func Normalized() formats.Adapters[ds.Normalized] {
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.AccessPath = "Lines.ExtendedPrice"
 	a.AccessGo = func(v *ds.Normalized) float64 {
 		var sum float64
 		for j := range v.Lines {
@@ -236,6 +238,7 @@ func OrdersTable() formats.Adapters[ds.OrdersTable] {
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.AccessPath = "Rows.OrderKey"
 	a.AccessGo = func(v *ds.OrdersTable) float64 {
 		var sum float64
 		for j := range v.Rows {
@@ -305,6 +308,7 @@ func LineItemTable() formats.Adapters[ds.LineItemTable] {
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.AccessPath = "Rows.ExtendedPrice"
 	a.AccessGo = func(v *ds.LineItemTable) float64 {
 		var sum float64
 		for j := range v.Rows {
@@ -374,6 +378,7 @@ func CustomerTable() formats.Adapters[ds.CustomerTable] {
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.AccessPath = "Rows.CustKey"
 	a.AccessGo = func(v *ds.CustomerTable) float64 {
 		var sum float64
 		for j := range v.Rows {
@@ -443,6 +448,7 @@ func PartTable() formats.Adapters[ds.PartTable] {
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.AccessPath = "Rows.PartKey"
 	a.AccessGo = func(v *ds.PartTable) float64 {
 		var sum float64
 		for j := range v.Rows {
@@ -512,6 +518,7 @@ func PartSuppTable() formats.Adapters[ds.PartSuppTable] {
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.AccessPath = "Rows.PartKey"
 	a.AccessGo = func(v *ds.PartSuppTable) float64 {
 		var sum float64
 		for j := range v.Rows {
@@ -581,6 +588,7 @@ func SupplierTable() formats.Adapters[ds.SupplierTable] {
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.AccessPath = "Rows.SuppKey"
 	a.AccessGo = func(v *ds.SupplierTable) float64 {
 		var sum float64
 		for j := range v.Rows {
@@ -650,6 +658,7 @@ func NationTable() formats.Adapters[ds.NationTable] {
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.AccessPath = "Rows.NationKey"
 	a.AccessGo = func(v *ds.NationTable) float64 {
 		var sum float64
 		for j := range v.Rows {
@@ -719,6 +728,7 @@ func RegionTable() formats.Adapters[ds.RegionTable] {
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.AccessPath = "Rows.RegionKey"
 	a.AccessGo = func(v *ds.RegionTable) float64 {
 		var sum float64
 		for j := range v.Rows {

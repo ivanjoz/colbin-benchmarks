@@ -30,3 +30,9 @@ __pycache__/
 
 # bench/local.sh and web/run.mjs output.
 results/
+
+# cmd/webfixtures output and the browser page bundle.
+web/fixtures/
+web/node_modules/
+web/bench/dist/
+web/gen/

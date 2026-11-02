@@ -295,6 +295,7 @@ func generate(t target) error {
 		w.p("}")
 		w.p("} else { a.Skipped[formats.ColbinK8] = err.Error() }")
 		if steps != nil {
+			w.p("a.AccessPath = %q", r.access)
 			w.p("a.AccessGo = func(v *%s) float64 { var sum float64", goT)
 			goAccess(w, steps, "v", 0, false)
 			w.p("return sum }")

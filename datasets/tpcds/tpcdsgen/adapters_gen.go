@@ -89,6 +89,7 @@ func CallCenterTable() formats.Adapters[ds.CallCenterTable] {
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.AccessPath = "Rows.CallCenterSk"
 	a.AccessGo = func(v *ds.CallCenterTable) float64 {
 		var sum float64
 		for j := range v.Rows {
@@ -160,6 +161,7 @@ func CatalogPageTable() formats.Adapters[ds.CatalogPageTable] {
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.AccessPath = "Rows.CatalogPageSk"
 	a.AccessGo = func(v *ds.CatalogPageTable) float64 {
 		var sum float64
 		for j := range v.Rows {
@@ -231,6 +233,7 @@ func CatalogReturnsTable() formats.Adapters[ds.CatalogReturnsTable] {
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.AccessPath = "Rows.ReturnedDateSk"
 	a.AccessGo = func(v *ds.CatalogReturnsTable) float64 {
 		var sum float64
 		for j := range v.Rows {
@@ -302,6 +305,7 @@ func CatalogSalesTable() formats.Adapters[ds.CatalogSalesTable] {
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.AccessPath = "Rows.ItemSk"
 	a.AccessGo = func(v *ds.CatalogSalesTable) float64 {
 		var sum float64
 		for j := range v.Rows {
@@ -371,6 +375,7 @@ func CustomerTable() formats.Adapters[ds.CustomerTable] {
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.AccessPath = "Rows.CustomerSk"
 	a.AccessGo = func(v *ds.CustomerTable) float64 {
 		var sum float64
 		for j := range v.Rows {
@@ -442,6 +447,7 @@ func CustomerAddressTable() formats.Adapters[ds.CustomerAddressTable] {
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.AccessPath = "Rows.AddressSk"
 	a.AccessGo = func(v *ds.CustomerAddressTable) float64 {
 		var sum float64
 		for j := range v.Rows {
@@ -515,6 +521,7 @@ func CustomerDemographicsTable() formats.Adapters[ds.CustomerDemographicsTable] 
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.AccessPath = "Rows.DemoSk"
 	a.AccessGo = func(v *ds.CustomerDemographicsTable) float64 {
 		var sum float64
 		for j := range v.Rows {
@@ -584,6 +591,7 @@ func DateDimTable() formats.Adapters[ds.DateDimTable] {
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.AccessPath = "Rows.DateSk"
 	a.AccessGo = func(v *ds.DateDimTable) float64 {
 		var sum float64
 		for j := range v.Rows {
@@ -657,6 +665,7 @@ func HouseholdDemographicsTable() formats.Adapters[ds.HouseholdDemographicsTable
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.AccessPath = "Rows.DemoSk"
 	a.AccessGo = func(v *ds.HouseholdDemographicsTable) float64 {
 		var sum float64
 		for j := range v.Rows {
@@ -728,6 +737,7 @@ func IncomeBandTable() formats.Adapters[ds.IncomeBandTable] {
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.AccessPath = "Rows.IncomeBandSk"
 	a.AccessGo = func(v *ds.IncomeBandTable) float64 {
 		var sum float64
 		for j := range v.Rows {
@@ -797,6 +807,7 @@ func InventoryTable() formats.Adapters[ds.InventoryTable] {
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.AccessPath = "Rows.DateSk"
 	a.AccessGo = func(v *ds.InventoryTable) float64 {
 		var sum float64
 		for j := range v.Rows {
@@ -866,6 +877,7 @@ func ItemTable() formats.Adapters[ds.ItemTable] {
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.AccessPath = "Rows.ItemSk"
 	a.AccessGo = func(v *ds.ItemTable) float64 {
 		var sum float64
 		for j := range v.Rows {
@@ -935,6 +947,7 @@ func PromotionTable() formats.Adapters[ds.PromotionTable] {
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.AccessPath = "Rows.PromoSk"
 	a.AccessGo = func(v *ds.PromotionTable) float64 {
 		var sum float64
 		for j := range v.Rows {
@@ -1004,6 +1017,7 @@ func ReasonTable() formats.Adapters[ds.ReasonTable] {
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.AccessPath = "Rows.ReasonSk"
 	a.AccessGo = func(v *ds.ReasonTable) float64 {
 		var sum float64
 		for j := range v.Rows {
@@ -1073,6 +1087,7 @@ func ShipModeTable() formats.Adapters[ds.ShipModeTable] {
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.AccessPath = "Rows.ShipModeSk"
 	a.AccessGo = func(v *ds.ShipModeTable) float64 {
 		var sum float64
 		for j := range v.Rows {
@@ -1142,6 +1157,7 @@ func StoreTable() formats.Adapters[ds.StoreTable] {
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.AccessPath = "Rows.StoreSk"
 	a.AccessGo = func(v *ds.StoreTable) float64 {
 		var sum float64
 		for j := range v.Rows {
@@ -1213,6 +1229,7 @@ func StoreReturnsTable() formats.Adapters[ds.StoreReturnsTable] {
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.AccessPath = "Rows.ItemSk"
 	a.AccessGo = func(v *ds.StoreReturnsTable) float64 {
 		var sum float64
 		for j := range v.Rows {
@@ -1284,6 +1301,7 @@ func StoreSalesTable() formats.Adapters[ds.StoreSalesTable] {
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.AccessPath = "Rows.ItemSk"
 	a.AccessGo = func(v *ds.StoreSalesTable) float64 {
 		var sum float64
 		for j := range v.Rows {
@@ -1353,6 +1371,7 @@ func TimeDimTable() formats.Adapters[ds.TimeDimTable] {
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.AccessPath = "Rows.TimeSk"
 	a.AccessGo = func(v *ds.TimeDimTable) float64 {
 		var sum float64
 		for j := range v.Rows {
@@ -1422,6 +1441,7 @@ func WarehouseTable() formats.Adapters[ds.WarehouseTable] {
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.AccessPath = "Rows.WarehouseSk"
 	a.AccessGo = func(v *ds.WarehouseTable) float64 {
 		var sum float64
 		for j := range v.Rows {
@@ -1491,6 +1511,7 @@ func WebPageTable() formats.Adapters[ds.WebPageTable] {
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.AccessPath = "Rows.WebPageSk"
 	a.AccessGo = func(v *ds.WebPageTable) float64 {
 		var sum float64
 		for j := range v.Rows {
@@ -1562,6 +1583,7 @@ func WebReturnsTable() formats.Adapters[ds.WebReturnsTable] {
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.AccessPath = "Rows.ItemSk"
 	a.AccessGo = func(v *ds.WebReturnsTable) float64 {
 		var sum float64
 		for j := range v.Rows {
@@ -1631,6 +1653,7 @@ func WebSalesTable() formats.Adapters[ds.WebSalesTable] {
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.AccessPath = "Rows.ItemSk"
 	a.AccessGo = func(v *ds.WebSalesTable) float64 {
 		var sum float64
 		for j := range v.Rows {
@@ -1700,6 +1723,7 @@ func WebSiteTable() formats.Adapters[ds.WebSiteTable] {
 	} else {
 		a.Skipped[formats.ColbinK8] = err.Error()
 	}
+	a.AccessPath = "Rows.SiteSk"
 	a.AccessGo = func(v *ds.WebSiteTable) float64 {
 		var sum float64
 		for j := range v.Rows {
