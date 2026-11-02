@@ -9,7 +9,8 @@
 #
 # Everything measured is pinned to one hardware thread per physical
 # performance core (--cores, default 0,2 for the i7-1355U this was written on:
-# CPUs 0-3 are its two P cores with hyperthreading, 4-11 its E cores). Web
+# CPUs 0-3 are its two P cores with hyperthreading, 4-11 its E cores; --cores
+# auto picks them from lscpu on a machine without hybrid cores). Web
 # cases run two at a time, one per core; bulk cases one at a time, each after a
 # check that enough memory is free (tpch nested and normalized need over 5 GB).
 #
@@ -77,6 +78,19 @@ out=${out:-results/local/$(date +%Y%m%d-%H%M%S)}
 mkdir -p "$out"
 out=$(cd "$out" && pwd)
 data="$repo/datasets/data"
+# --cores auto: one hardware thread per physical core, at most two cores, and
+# not the core CPU 0 is on when there are three or more (the system's). For a
+# machine with no hybrid cores (EC2); on this laptop the default, 0 and 2, is
+# its two performance cores, which auto cannot tell from efficiency cores.
+if [ "$cores" = auto ]; then
+	firsts=$(lscpu -p=CPU,CORE | grep -v '^#' | sort -t, -k2,2n -k1,1n | awk -F, '!seen[$2]++ { print $1 }')
+	if [ "$(echo "$firsts" | wc -l)" -ge 3 ]; then
+		cpu0_core=$(lscpu -p=CPU,CORE | grep -v '^#' | awk -F, '$1 == 0 { print $2 }')
+		firsts=$(lscpu -p=CPU,CORE | grep -v '^#' | sort -t, -k2,2n -k1,1n | awk -F, -v skip="$cpu0_core" '$2 != skip && !seen[$2]++ { print $1 }')
+	fi
+	cores=$(echo "$firsts" | tail -2 | paste -sd,)
+	echo "cores: auto → $cores"
+fi
 IFS=, read -r -a core_list <<<"$cores"
 warnings=()
 

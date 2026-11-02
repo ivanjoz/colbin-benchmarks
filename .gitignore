@@ -36,3 +36,7 @@ web/fixtures/
 web/node_modules/
 web/bench/dist/
 web/gen/
+
+# cloud/ec2.py: state (the key pair) and the payload.
+cloud/state/
+cloud/build/

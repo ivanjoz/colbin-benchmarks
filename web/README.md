@@ -88,7 +88,8 @@ are reported; neither is the other's operation.
 - Engines are reported apart, never averaged: `JSON.parse` differs by engine.
 - An engine that cannot start is written as `# <engine>: not available: <why>`.
   WebKit's Playwright build needs Ubuntu's libraries (libicu74,
-  libjpeg-turbo8) and does not start on Fedora.
+  libjpeg-turbo8): it does not start on the Fedora laptop, and does on Ubuntu
+  24.04 (cloud/ec2.py).
 
 ## The common representation
 
