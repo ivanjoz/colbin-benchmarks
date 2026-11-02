@@ -29,7 +29,7 @@ import (
 
 func BenchmarkMatrix(b *testing.B) {
 	for _, c := range Cases() {
-		if !c.Timed {
+		if !c.Timed || !Selected(c) {
 			continue
 		}
 		b.Run(c.Name, func(b *testing.B) {

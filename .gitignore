@@ -27,3 +27,6 @@ datasets/data/
 lambda/build/
 lambda/results/
 __pycache__/
+
+# bench/local.sh and web/run.mjs output.
+results/

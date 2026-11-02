@@ -42,6 +42,9 @@ func TestSizes(t *testing.T) {
 		"schema_bytes", "gob_stream_bytes", "colbin_bytes_per_value")
 
 	for _, c := range Cases() {
+		if !Selected(c) {
+			continue
+		}
 		t.Run(c.Name, func(t *testing.T) {
 			loaded, err := c.Load(DataDir())
 			if errors.Is(err, errNotFetched) {

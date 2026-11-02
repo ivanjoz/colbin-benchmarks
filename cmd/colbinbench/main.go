@@ -34,7 +34,12 @@
 // reproduce.sh.
 //
 // Formats other than colbin are a reference that does not move between runs,
-// so they are off unless asked for: -formats colbin,msgpack,vtprotobuf.
+// so they are off unless asked for: -formats colbin,msgpack,vtprotobuf, or
+// -formats all.
+//
+// bench/local.sh runs the whole matrix through it on the performance cores:
+// -cases takes globs ("publicbi/*", or "all"), -list prints each case's
+// regime, and -ops access adds the access aggregate where a case has one.
 package main
 
 import (
@@ -43,6 +48,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"path"
 	"path/filepath"
 	"runtime"
 	"runtime/pprof"
@@ -82,24 +88,37 @@ func main() {
 		abDir   = flag.String("ab", "ab", "with -baseline, where old.txt and new.txt go")
 		rounds  = flag.Int("rounds", 5, "with -baseline, how many turns each build takes")
 		worker  = flag.String("worker", "", "internal: run one case in this process")
+		list    = flag.Bool("list", false, "print each fetched case of -cases with its regime and rows, and exit")
 	)
 	flag.Parse()
 	os.Setenv("COLBIN_DATA", *data)
 
 	if *worker != "" {
-		if err := work(*worker, split(*formatF), split(*ops), *count, *sample, *profile); err != nil {
+		if err := work(*worker, formatList(*formatF), split(*ops), *count, *sample, *profile); err != nil {
 			fmt.Fprintln(os.Stderr, "colbinbench:", *worker+":", err)
 			os.Exit(1)
 		}
 		return
 	}
-	self, err := os.Executable()
+	names, err := expand(split(*cases))
+	if err == nil && *list {
+		err = listCases(names)
+		if err != nil {
+			fmt.Fprintln(os.Stderr, "colbinbench:", err)
+			os.Exit(1)
+		}
+		return
+	}
+	self, err2 := os.Executable()
+	if err == nil {
+		err = err2
+	}
 	if err == nil && *against == "" {
 		var out []byte
-		out, err = drive(self, split(*cases), split(*cores), workerFlags(*count))
+		out, err = drive(self, names, split(*cores), workerFlags(*count))
 		os.Stdout.Write(out)
 	} else if err == nil {
-		err = alternate(*against, self, *abDir, *rounds, *count, split(*cases), split(*cores))
+		err = alternate(*against, self, *abDir, *rounds, *count, names, split(*cores))
 	}
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "colbinbench:", err)
@@ -131,6 +150,67 @@ func alternate(old, new, dir string, rounds, count int, cases, cores []string) e
 		}
 	}
 	return nil
+}
+
+// expand turns case patterns (path.Match globs, so "publicbi/*" is every
+// Public BI table, and "all" every case) into case names, in report order. A pattern that matches
+// nothing is an error, so a typo does not run an empty benchmark.
+func expand(patterns []string) ([]string, error) {
+	var names []string
+	seen := map[string]bool{}
+	for _, pattern := range patterns {
+		matched := false
+		for _, c := range matrix.Cases() {
+			ok, err := path.Match(pattern, c.Name)
+			ok = ok || pattern == "all"
+			if err != nil {
+				return nil, fmt.Errorf("-cases %q: %w", pattern, err)
+			}
+			if ok {
+				matched = true
+				if !seen[c.Name] {
+					seen[c.Name] = true
+					names = append(names, c.Name)
+				}
+			}
+		}
+		if !matched {
+			return nil, fmt.Errorf("-cases %q matches no case", pattern)
+		}
+	}
+	return names, nil
+}
+
+// listCases loads each case in turn and prints "name regime rows", one per
+// line; a case whose data is not fetched is reported on stderr and left out.
+// bench/local.sh splits the run by regime from this.
+func listCases(names []string) error {
+	byName := map[string]matrix.Case{}
+	for _, c := range matrix.Cases() {
+		byName[c.Name] = c
+	}
+	for _, name := range names {
+		loaded, err := byName[name].Load(matrix.DataDir())
+		if matrix.NotFetched(err) {
+			fmt.Fprintf(os.Stderr, "colbinbench: %s: skipped: %v\n", name, err)
+			continue
+		}
+		if err != nil {
+			return fmt.Errorf("%s: %w", name, err)
+		}
+		fmt.Printf("%s %s %d\n", name, loaded.Regime(), loaded.Rows)
+		loaded = nil
+		runtime.GC()
+	}
+	return nil
+}
+
+// formatList is -formats, where "all" is every format.
+func formatList(s string) []string {
+	if s == "all" {
+		return formats.Order
+	}
+	return split(s)
 }
 
 func split(s string) []string {
@@ -251,6 +331,13 @@ func work(name string, formatNames, ops []string, count int, sample time.Duratio
 			continue
 		}
 		prepared, err := prepare(name, instance, loaded, ops)
+		if err != nil && !strings.HasPrefix(instance.Format, formats.Colbin) {
+			// A reference format that does not carry the case (gob's lossy
+			// pointers) is left out, as BenchmarkMatrix does; colbin failing
+			// is what this tool exists to catch, so that stays fatal.
+			fmt.Fprintf(os.Stderr, "colbinbench: %s: %s: not timed: %v\n", name, instance.Format, err)
+			continue
+		}
 		if err != nil {
 			return fmt.Errorf("%s: %w", instance.Format, err)
 		}
@@ -312,9 +399,20 @@ func prepare(name string, instance formats.Instance, loaded *matrix.Loaded, ops 
 		"decode-fresh": func() error { return instance.DecodeFresh(encoded) },
 		"decode-reuse": func() error { return instance.DecodeReuse(encoded) },
 	}
+	// access: the case's access aggregate straight from the bytes, for the
+	// formats and cases that have one; elsewhere the operation is left out.
+	if instance.Access != nil && loaded.AccessGo != nil {
+		bodies["access"] = func() error {
+			_, err := instance.Access(encoded)
+			return err
+		}
+	}
 	var runners []runner
 	for _, op := range ops {
 		body := bodies[op]
+		if body == nil && op == "access" {
+			continue
+		}
 		if body == nil {
 			return nil, fmt.Errorf("no operation %q", op)
 		}

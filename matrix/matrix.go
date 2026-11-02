@@ -9,13 +9,17 @@
 // $COLBIN_DATA.
 //
 // Results go to $COLBIN_RESULTS (a directory) as CSV when it is set.
+// $COLBIN_CASES narrows TestSizes and BenchmarkMatrix to some cases (see Selected).
 package matrix
 
 import (
+	"errors"
 	"fmt"
 	"os"
+	"path"
 	"path/filepath"
 	"reflect"
+	"strings"
 
 	"github.com/ivanjoz/colbin-benchmarks/formats"
 )
@@ -129,3 +133,22 @@ func missing(paths ...string) error {
 }
 
 var errNotFetched = fmt.Errorf("not fetched")
+
+// NotFetched says err is a case's data not having been fetched.
+func NotFetched(err error) bool { return errors.Is(err, errNotFetched) }
+
+// Selected says whether $COLBIN_CASES selects the case: a comma-separated list
+// of case names or path.Match globs ("publicbi/*"). Unset, every case is
+// selected. bench/local.sh uses it to run the bulk cases one process at a time.
+func Selected(c Case) bool {
+	patterns := os.Getenv("COLBIN_CASES")
+	if patterns == "" {
+		return true
+	}
+	for _, pattern := range strings.Split(patterns, ",") {
+		if ok, _ := path.Match(strings.TrimSpace(pattern), c.Name); ok {
+			return true
+		}
+	}
+	return false
+}
