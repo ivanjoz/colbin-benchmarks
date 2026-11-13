@@ -137,7 +137,7 @@ table or a number is missing.
 | `cmd/gen` | generates each format's schema and code from the Go types |
 | `paper/` | the paper |
 | `web/`, `cmd/webfixtures` | the browser benchmark; not part of the paper ([web/README.md](web/README.md)) |
-| `cloud/`, `lambda/` | the same matrix on EC2 and Lambda; not part of the paper |
+| `cloud/`, `lambda/` | the same matrix on OCI Container Instances, EC2 and Lambda; not part of the paper ([cloud/README.md](cloud/README.md)) |
 | `bench/`, `corpusdata/`, `cmd/materialize`, `protogen/` | the earlier synthetic corpus (below) |
 
 ## The synthetic corpus

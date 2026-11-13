@@ -48,6 +48,9 @@
 #   --browser                after the Go matrix, the browser benchmark
 #                            (web/README.md); not part of the paper
 #   --engines LIST           with --browser: chromium,firefox,webkit
+#   --vm                     a virtual machine or container, where the governor and
+#                            turbo are the host's: record them as warnings instead
+#                            of refusing to start; every other check still holds
 #   --no-checks              turn a failed check into a warning that machine.txt
 #                            records: a smoke test, not a measurement
 #
@@ -78,6 +81,7 @@ workspace=0
 browser=0
 engines=chromium,firefox,webkit
 checks=1
+vm=0
 out=""
 
 usage() { sed -n '2,/^set -euo/p' "$0" | sed '$d; s/^# \{0,1\}//'; exit "${1:-0}"; }
@@ -101,6 +105,7 @@ while [ $# -gt 0 ]; do
 	--workspace) workspace=1; shift ;;
 	--browser) browser=1; shift ;;
 	--engines) engines=$2; shift 2 ;;
+	--vm) vm=1; shift ;;
 	--no-checks) checks=0; shift ;;
 	-h | --help) usage ;;
 	*) echo "reproduce.sh: unknown argument $1" >&2; usage 2 ;;
@@ -143,6 +148,16 @@ fail() {
 	fi
 	echo "reproduce.sh: warning: $1" >&2
 	warnings+=("$1")
+}
+
+# The governor and turbo: on a VM they are the host's, out of reach, so --vm
+# records them (the run is then provisional) rather than refusing to start.
+frequency_fail() {
+	if [ "$vm" = 1 ]; then
+		warnings+=("$1 (--vm: the host's setting, not under control)")
+	else
+		fail "$1"
+	fi
 }
 
 mem_available_gb() { awk '/^MemAvailable:/ { printf "%.1f", $2 / 1048576 }' /proc/meminfo; }
@@ -191,7 +206,7 @@ for core in "${core_list[@]}"; do
 	governor=/sys/devices/system/cpu/cpu$core/cpufreq/scaling_governor
 	if [ -r "$governor" ]; then
 		governors="$governors $(cat "$governor")"
-		[ "$(cat "$governor")" = performance ] || fail "cpu$core governor is $(cat "$governor"), not performance (sudo cpupower frequency-set -g performance)"
+		[ "$(cat "$governor")" = performance ] || frequency_fail "cpu$core governor is $(cat "$governor"), not performance (sudo cpupower frequency-set -g performance)"
 	else
 		governors="$governors unknown"
 		warnings+=("cpu$core has no cpufreq governor to check")
@@ -209,7 +224,7 @@ elif [ -r /sys/devices/system/cpu/cpufreq/boost ]; then
 	turbo_hint="echo 0 | sudo tee /sys/devices/system/cpu/cpufreq/boost"
 fi
 case "$turbo" in
-on) fail "turbo is on ($turbo_hint)" ;;
+on) frequency_fail "turbo is on ($turbo_hint)" ;;
 unknown) warnings+=("turbo: no intel_pstate/no_turbo or cpufreq/boost to read") ;;
 esac
 

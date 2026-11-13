@@ -57,3 +57,57 @@ there is no power supply, and usually no cpufreq governor to read, which
 Ubuntu, because Playwright's WebKit build needs Ubuntu's libraries. An engine
 that does not start is written as `# <engine>: not available: <why>` in its
 `bench-browser-<engine>.txt`; WebKit on Linux arm64 is the one to watch.
+
+# The Go matrix on OCI Container Instances
+
+`cloud/ocibench.py` runs `./reproduce.sh` (the whole Go matrix, sizes and
+ablations included; no browser) in an OCI container instance: x86 by
+default, arm on request. Like `ec2.py`, it has no benchmark code of its own.
+
+```sh
+cloud/ocibench.py shapes          # the container shapes this region offers
+cloud/ocibench.py up              # VCN, internet gateway, egress-only subnet, private bucket
+cloud/ocibench.py run             # x86, at HEAD (committed and pushed)
+cloud/ocibench.py run --arch x86,arm -- --regime web   # arguments after -- go to reproduce.sh
+cloud/ocibench.py status          # container state and the tail of each progress.log
+cloud/ocibench.py fetch           # finished runs → results/cloud/oci/<name>/
+cloud/ocibench.py down --bucket   # delete everything, the bucket with it
+```
+
+It needs `uv` (the script's header installs the OCI SDK, on Python 3.13: the
+SDK's `crc32c` has no wheel for 3.15) and an API key in `~/.oci/config`
+(`--profile`, `--compartment`; the default compartment is the tenancy's root).
+
+## What happens
+
+- **up** creates a VCN with an internet gateway, a public subnet whose security
+  list allows egress only (nothing can connect in), and a private bucket. All
+  tagged `colbin-bench-oci`; the ids go to `cloud/state/oci.json`.
+- **run** refuses a dirty tree or a commit GitHub does not have. Per
+  architecture it creates a write-only pre-authenticated URL to the bucket
+  (three days) and a container instance from `golang:1.27.0-trixie`, pinned by
+  digest. The container clones the repository at that commit and runs
+  `cloud/oci-entry.sh` from it, which runs `./reproduce.sh --vm`: it fetches and
+  verifies the datasets itself, as on any clean machine. Every ten minutes it
+  uploads `progress.log`; at the end, the run directory as a tarball and the
+  exit status, whether the run succeeded or not.
+- **down** deletes the container instances (and any tagged ones the state file
+  lost), the URLs and the network; `--bucket` empties and deletes the bucket.
+
+| | shape | default |
+|---|---|---|
+| x86 | `CI.Standard.E4.Flex` (AMD EPYC Milan) | 4 OCPU = 4 cores, 8 threads; 32 GB |
+| arm | `CI.Standard.A1.Flex` (Ampere Altra) | 4 OCPU = 4 cores; 32 GB |
+
+32 GB because TPC-H's nested and normalized cases need over 5 GB and are
+retried under a 9 GiB `GOMEMLIMIT`. reproduce.sh measures on two cores and
+leaves the rest to the system and to the compression of the sizes stage, which
+uses every core: `--ocpus 8` shortens that stage and nothing else.
+
+## What these runs are
+
+A container cannot set the frequency governor or turn turbo off: they are the
+host's. `reproduce.sh --vm` records them as warnings instead of refusing to
+start, so `cmd/summary` marks the run provisional. Other tenants share the
+host's L3 cache and memory bandwidth. These are runs on other machines,
+reported apart from the paper's, never pooled with it.
