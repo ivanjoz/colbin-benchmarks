@@ -441,7 +441,7 @@ func pathCounts(dir, engine string) string {
 
 // writeBreakeven writes wasm-breakeven.csv: per web case, how many responses
 // it takes for the bytes colbin saves against JSON to pay for downloading the
-// colbin module once, each compressed with brotli (both levels).
+// colbin module once, each compressed with each of formats.Compressors.
 func writeBreakeven(p func(string, ...any), dir, wasmPath string, sizes []sizeRow) error {
 	module, err := os.ReadFile(wasmPath)
 	if err != nil {
@@ -476,7 +476,7 @@ func writeBreakeven(p func(string, ...any), dir, wasmPath string, sizes []sizeRo
 	}
 	defer file.Close()
 	out := csv.NewWriter(file)
-	levels := []string{"br5", "br11"}
+	levels := formats.Compressors
 	header := []string{"case"}
 	for _, level := range levels {
 		header = append(header, "json_"+level, "colbin_"+level, "saved_"+level, "responses_"+level)
@@ -511,12 +511,12 @@ func writeBreakeven(p func(string, ...any), dir, wasmPath string, sizes []sizeRo
 	}
 	p("## The colbin module's download against the bytes it saves (web regime)")
 	p("")
-	p("`%s`: %d B, %d B with brotli 5, %d B with brotli 11.", filepath.Base(wasmPath), moduleSize["raw"], moduleSize["br5"], moduleSize["br11"])
+	p("`%s`: %d B, %d B with gzip, %d B with zstd 6.", filepath.Base(wasmPath), moduleSize["raw"], moduleSize["gzip"], moduleSize["zstd6"])
 	p("Responses needed for colbin's savings against JSON, both compressed at the")
 	p("same level, to pay for the module once (colbin's message without its schema")
 	p("section, which travels once per connection). Per case in `wasm-breakeven.csv`.")
 	p("")
-	p("| brotli | median responses | cases where colbin is never smaller |")
+	p("| compressor | median responses | cases where colbin is never smaller |")
 	p("|---|---:|---:|")
 	for _, level := range levels {
 		cell := "n/a"

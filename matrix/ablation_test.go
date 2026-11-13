@@ -10,7 +10,7 @@ package matrix
 //
 //	COLBIN_RESULTS=dir go test -tags colbin_ablation ./matrix -run '^TestAblation$' -timeout 0
 //
-// writes dir/ablation.csv: per case, colbin's bytes (and brotli 5 of them)
+// writes dir/ablation.csv: per case, colbin's bytes (and gzip of them)
 // under each setting, every one checked to decode back to the value. Sizes
 // only: the tag turns two constants on hot paths into loads, so a build with
 // it is not one to time.
@@ -47,7 +47,7 @@ func TestAblation(t *testing.T) {
 			ablationThreshold, ablationTransform, colbinTableThreshold)
 	}
 	defer func() { ablationThreshold, ablationTransform = colbinTableThreshold, -1 }()
-	out := openTable(t, "ablation.csv", "case", "dataset", "regime", "knob", "setting", "bytes", "br5")
+	out := openTable(t, "ablation.csv", "case", "dataset", "regime", "knob", "setting", "bytes", "gzip")
 
 	for _, c := range Cases() {
 		if !Selected(c) {
@@ -92,15 +92,15 @@ func TestAblation(t *testing.T) {
 				if ok, at := formats.Equal(loaded.Value, back); !ok {
 					t.Fatalf("%s=%s does not round-trip: %s", knob, setting, at)
 				}
-				br5, seen := compressed[string(encoded)]
+				gzip, seen := compressed[string(encoded)]
 				if !seen {
-					if br5, err = formats.CompressedSize(encoded, "br5"); err != nil {
+					if gzip, err = formats.CompressedSize(encoded, "gzip"); err != nil {
 						t.Fatal(err)
 					}
-					compressed[string(encoded)] = br5
+					compressed[string(encoded)] = gzip
 				}
-				out.row(c.Name, c.Dataset, loaded.Regime(), knob, setting, strconv.Itoa(len(encoded)), strconv.Itoa(br5))
-				t.Logf("%-9s %-5s %12d B %12d B br5", knob, setting, len(encoded), br5)
+				out.row(c.Name, c.Dataset, loaded.Regime(), knob, setting, strconv.Itoa(len(encoded)), strconv.Itoa(gzip))
+				t.Logf("%-9s %-5s %12d B %12d B gzip", knob, setting, len(encoded), gzip)
 			}
 			for _, threshold := range ablationThresholds {
 				ablationThreshold = threshold

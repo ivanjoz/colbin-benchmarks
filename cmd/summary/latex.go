@@ -6,7 +6,7 @@ package main
 //	<name>.tex    one booktabs tabular each; the paper wraps it in a table
 //	              environment and a caption
 //	numbers.tex   \resultdef{key}{value} lines, for a number quoted in a
-//	              sentence: \result{size.web.colbin.br5}
+//	              sentence: \result{size.web.colbin.gzip}
 //	<name>.dat    whitespace-separated columns under a header line, for pgfplots
 //
 // A table whose input is missing (no bench-web-2.txt, no ablation.csv) is not
@@ -71,7 +71,6 @@ var implementation = map[string][2]string{
 var compressorImplementation = [][3]string{
 	{"gzip (level 6)", "compress/gzip", ""},
 	{"zstd (level 6)", "klauspost/compress", "github.com/klauspost/compress"},
-	{"brotli (levels 5, 11)", "andybalholm/brotli", "github.com/andybalholm/brotli"},
 }
 
 // tex escapes text for LaTeX.
@@ -403,8 +402,8 @@ func latexSizes(out *latexOut, sizes []sizeRow, regime string) {
 	lines = append(lines, `\bottomrule`, `\end{tabular}`)
 	out.file("sizes-"+regime+".tex", "sizes.csv", lines)
 
-	// By dataset: the message as written and under brotli 5.
-	latexByGroup(out, "sizes-datasets-"+regime+".tex", "sizes.csv", "size."+regime, []string{"raw", "br5"},
+	// By dataset: the message as written and under gzip.
+	latexByGroup(out, "sizes-datasets-"+regime+".tex", "sizes.csv", "size."+regime, []string{"raw", "gzip"},
 		func(group string) map[string]map[string][]float64 {
 			return sizeRatios(sizes, func(size sizeRow) bool { return size.Regime == regime && groupOf(size.Case) == group })
 		})
@@ -538,7 +537,7 @@ func latexVersus(out *latexOut, sizes []sizeRow, bench *benchmarks, regime strin
 	}
 	metrics := []metric{}
 	if len(bySize) > 0 {
-		metrics = append(metrics, sizeMetric("raw"), sizeMetric("br5"))
+		metrics = append(metrics, sizeMetric("raw"), sizeMetric("gzip"))
 	}
 	if bench != nil {
 		for _, op := range []string{"encode", "decode-fresh", "access"} {
@@ -603,7 +602,7 @@ func latexVersus(out *latexOut, sizes []sizeRow, bench *benchmarks, regime strin
 }
 
 // latexFigures writes the figures' data. The trade-off figure is one point per
-// format: size under brotli 5 against decode time, both against JSON. The
+// format: size under gzip against decode time, both against JSON. The
 // distribution figures are each format's per-case ratios, sorted, against the
 // fraction of its cases at or below each.
 func latexFigures(out *latexOut, sizes []sizeRow, bench *benchmarks, regime string) {
@@ -613,11 +612,11 @@ func latexFigures(out *latexOut, sizes []sizeRow, bench *benchmarks, regime stri
 		timeOf, _ = timeRatios(bench, formats.JSONv2, "decode-fresh", func(name string) bool { return bench.regime[name] == regime })
 	}
 	if len(sizeOf) > 0 && timeOf != nil {
-		lines := []string{"format raw br5 encode decode"}
+		lines := []string{"format raw gzip encode decode"}
 		for _, format := range formats.Order {
 			fields := []string{format}
 			complete := true
-			for _, ratios := range [][]float64{sizeOf[format]["raw"], sizeOf[format]["br5"], timeOf[format]["encode"], timeOf[format]["decode-fresh"]} {
+			for _, ratios := range [][]float64{sizeOf[format]["raw"], sizeOf[format]["gzip"], timeOf[format]["encode"], timeOf[format]["decode-fresh"]} {
 				mean, count, _ := geomean(ratios)
 				complete = complete && count > 0
 				fields = append(fields, strconv.FormatFloat(mean, 'g', 5, 64))
@@ -642,7 +641,7 @@ func latexFigures(out *latexOut, sizes []sizeRow, bench *benchmarks, regime stri
 		out.file(name, source, lines)
 	}
 	for _, format := range formats.Order {
-		distribution("fig-dist-"+regime+"-br5-"+format+".dat", "sizes.csv", sizeOf[format]["br5"])
+		distribution("fig-dist-"+regime+"-gzip-"+format+".dat", "sizes.csv", sizeOf[format]["gzip"])
 		distribution("fig-dist-"+regime+"-raw-"+format+".dat", "sizes.csv", sizeOf[format]["raw"])
 		if timeOf != nil {
 			distribution("fig-dist-"+regime+"-decode-"+format+".dat", "bench-"+regime+".txt", timeOf[format]["decode-fresh"])
@@ -799,14 +798,14 @@ func latexAblation(out *latexOut, dir string) error {
 		return err
 	}
 	type key struct{ name, knob, setting string }
-	values := map[key][2]float64{} // bytes, br5
+	values := map[key][2]float64{} // bytes, gzip
 	regimeOf := map[string]string{}
 	var names []string
 	settings := map[string][]string{}
 	for _, fields := range rows {
 		size, _ := strconv.ParseFloat(fields["bytes"], 64)
-		br5, _ := strconv.ParseFloat(fields["br5"], 64)
-		values[key{fields["case"], fields["knob"], fields["setting"]}] = [2]float64{size, br5}
+		gzip, _ := strconv.ParseFloat(fields["gzip"], 64)
+		values[key{fields["case"], fields["knob"], fields["setting"]}] = [2]float64{size, gzip}
 		if _, seen := regimeOf[fields["case"]]; !seen {
 			regimeOf[fields["case"]] = fields["regime"]
 			names = append(names, fields["case"])
@@ -823,7 +822,7 @@ func latexAblation(out *latexOut, dir string) error {
 		if len(others) == 0 {
 			continue
 		}
-		head := []string{"", "", "", fmt.Sprintf(`\multicolumn{%d}{c}{as written}`, len(others)), fmt.Sprintf(`\multicolumn{%d}{c}{brotli 5}`, len(others))}
+		head := []string{"", "", "", fmt.Sprintf(`\multicolumn{%d}{c}{as written}`, len(others)), fmt.Sprintf(`\multicolumn{%d}{c}{gzip}`, len(others))}
 		sub := []string{"regime", "dataset", "cases"}
 		sub = append(sub, others...)
 		sub = append(sub, others...)
@@ -832,7 +831,7 @@ func latexAblation(out *latexOut, dir string) error {
 		for _, regime := range regimes {
 			for _, group := range groupOrder {
 				cases := 0
-				ratios := map[[2]string][]float64{} // setting, "raw" or "br5"
+				ratios := map[[2]string][]float64{} // setting, "raw" or "gzip"
 				for _, name := range names {
 					if regimeOf[name] != regime || groupOf(name) != group {
 						continue
@@ -849,7 +848,7 @@ func latexAblation(out *latexOut, dir string) error {
 						}
 						ratios[[2]string{setting, "raw"}] = append(ratios[[2]string{setting, "raw"}], value[0]/reference[0])
 						if reference[1] > 0 {
-							ratios[[2]string{setting, "br5"}] = append(ratios[[2]string{setting, "br5"}], value[1]/reference[1])
+							ratios[[2]string{setting, "gzip"}] = append(ratios[[2]string{setting, "gzip"}], value[1]/reference[1])
 						}
 					}
 				}
@@ -857,7 +856,7 @@ func latexAblation(out *latexOut, dir string) error {
 					continue
 				}
 				cells := []string{regime, groupLabel[group], strconv.Itoa(cases)}
-				for _, column := range []string{"raw", "br5"} {
+				for _, column := range []string{"raw", "gzip"} {
 					for _, setting := range others {
 						cells = append(cells, cell(ratios[[2]string{setting, column}]))
 						out.defRatio("ablation."+knob.name+"."+regime+"."+group+"."+setting+"."+column, ratios[[2]string{setting, column}])

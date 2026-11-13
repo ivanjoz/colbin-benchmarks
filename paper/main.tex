@@ -89,9 +89,9 @@ Public BI Benchmark and the SchemaStore corpus of Viotti and Kinderkhedia, in
 two regimes kept apart: messages of the size a web client receives, and bulk
 tables beyond it. In the web regime \colbin{} messages are
 \result{size.web.colbin.raw} of JSON's bytes as written and
-\result{size.web.colbin.br5} under brotli, and decode in
+\result{size.web.colbin.gzip} under gzip, and decode in
 \result{time.web.colbin.decode-fresh} of JSON's time; in the bulk regime,
-\result{size.bulk.colbin.raw}, \result{size.bulk.colbin.br5} and
+\result{size.bulk.colbin.raw}, \result{size.bulk.colbin.gzip} and
 \result{time.bulk.colbin.decode-fresh}. We report where it loses: against Avro
 on small typed documents, against generated encoders on encode time for small
 messages, and against Arrow and FlatBuffers on access without decoding.%

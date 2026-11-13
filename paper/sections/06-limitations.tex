@@ -9,12 +9,12 @@ in them \colbin{} is a row format with one byte of header per field, and
 Avro, which writes no header at all, is smaller as written
 (\result{size.web.schemastore.avro.raw} against
 \result{size.web.schemastore.colbin.raw} of JSON on SchemaStore's typed
-documents; under brotli 5, \result{size.web.schemastore.avro.br5} against
-\result{size.web.schemastore.colbin.br5}). Avro pays for this with a reader
+documents; under gzip, \result{size.web.schemastore.avro.gzip} against
+\result{size.web.schemastore.colbin.gzip}). Avro pays for this with a reader
 that must have the writer's exact schema. Over the whole web regime under
-brotli the two are within the margin we treat as no difference
-(\result{size.web.avro.br5} and \result{size.web.colbin.br5}, over different
-case counts; \result{vs.web.avro.br5} on common cases).
+gzip the two are within the margin we treat as no difference
+(\result{size.web.avro.gzip} and \result{size.web.colbin.gzip}, over different
+case counts; \result{vs.web.avro.gzip} on common cases).
 \recheck{all three comparisons}
 
 \paragraph{Encode time on small messages, against generated code.} On common
@@ -32,9 +32,9 @@ one field of it. Arrow and FlatBuffers read a column in place and are faster
 at it by orders of magnitude (Section~\ref{sec:time}).
 
 \paragraph{Compressed, schemaless documents.} On SchemaStore's dynamic path
-\colbin{} under brotli 5 is at
-\result{size.web.schemastore-dynamic.colbin.br5} of compressed JSON, and
-CBOR at \result{size.web.schemastore-dynamic.cbor.br5}: with field names on
+\colbin{} under gzip is at
+\result{size.web.schemastore-dynamic.colbin.gzip} of compressed JSON, and
+CBOR at \result{size.web.schemastore-dynamic.cbor.gzip}: with field names on
 the wire and a compressor behind it, no binary format gains much over JSON.
 
 \paragraph{Data with nothing to exploit.} A column of random 64-bit values

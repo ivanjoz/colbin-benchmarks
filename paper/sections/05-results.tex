@@ -32,9 +32,9 @@ message is \result{size.web.colbin.raw} of the JSON's size, against
 \result{size.web.msgpack.raw} for MessagePack and \result{size.web.avro.raw}
 for Avro. Compression narrows every gap, because a general-purpose
 compressor removes much of the redundancy a binary format removes by
-construction: under brotli 5 the same four are \result{size.web.colbin.br5},
-\result{size.web.protobuf.br5}, \result{size.web.msgpack.br5} and
-\result{size.web.avro.br5}. The schemaless formats, and the zero-copy ones,
+construction: under gzip the same four are \result{size.web.colbin.gzip},
+\result{size.web.protobuf.gzip}, \result{size.web.msgpack.gzip} and
+\result{size.web.avro.gzip}. The schemaless formats, and the zero-copy ones,
 are within a few percent of compressed JSON: once a server compresses its
 responses, they save almost nothing on the wire.
 \recheck{the three sentences above describe run1; confirm direction for the
@@ -43,35 +43,35 @@ schemaless and zero-copy formats}
 \paragraph{Bulk regime (Table~\ref{tab:sizes-bulk}).} With more rows per
 table the column layout has more to work with: \colbin{} is
 \result{size.bulk.colbin.raw} of JSON as written and
-\result{size.bulk.colbin.br5} under brotli 5, where the row formats stay
-close to compressed JSON (\result{size.bulk.protobuf.br5} for Protocol
-Buffers, \result{size.bulk.avro.br5} for Avro) and Arrow, columnar but
-uncompressed, is at \result{size.bulk.arrow.br5}. The column transforms and
+\result{size.bulk.colbin.gzip} under gzip, where the row formats stay
+close to compressed JSON (\result{size.bulk.protobuf.gzip} for Protocol
+Buffers, \result{size.bulk.avro.gzip} for Avro) and Arrow, columnar but
+uncompressed, is at \result{size.bulk.arrow.gzip}. The column transforms and
 the general-purpose compressor are complementary rather than redundant:
 delta and frame of reference expose regularities across rows that a
 byte-oriented compressor with a bounded window does not find in a row
-layout. \recheck{complementarity claim: holds if colbin's br5 ratio is well
+layout. \recheck{complementarity claim: holds if colbin's gzip ratio is well
 below the row formats'}
 
 \begin{table}[t]
 \centering\footnotesize
 \resulttable{sizes-datasets-web}
 \caption{Web regime by dataset: size against JSON's, as written and under
-brotli 5.}
+gzip.}
 \label{tab:sizes-datasets-web}
 \end{table}
 
 \paragraph{By dataset (Table~\ref{tab:sizes-datasets-web}).} The mean over
 the web regime hides how different its datasets are. On the tabular datasets
-\colbin{} is at \result{size.web.tpcds.colbin.br5} (TPC-DS) and
-\result{size.web.publicbi.colbin.br5} (Public BI) of brotli-compressed JSON.
+\colbin{} is at \result{size.web.tpcds.colbin.gzip} (TPC-DS) and
+\result{size.web.publicbi.colbin.gzip} (Public BI) of gzip-compressed JSON.
 On SchemaStore's typed documents, which are small and hold no table, it is
-at \result{size.web.schemastore.colbin.br5}, beside
-\result{size.web.schemastore.protobuf.br5} for Protocol Buffers and
-\result{size.web.schemastore.avro.br5} for Avro: here the three schema-driven
+at \result{size.web.schemastore.colbin.gzip}, beside
+\result{size.web.schemastore.protobuf.gzip} for Protocol Buffers and
+\result{size.web.schemastore.avro.gzip} for Avro: here the three schema-driven
 formats do the same thing, and the result is a tie decided by a few bytes
 per message. On the dynamic path, where \colbin{} writes field names like
-any schemaless format, it is at \result{size.web.schemastore-dynamic.colbin.br5}.
+any schemaless format, it is at \result{size.web.schemastore-dynamic.colbin.gzip}.
 Arrow on SchemaStore shows the fixed cost of a format made for large tables
 on a message of a few hundred bytes. The bulk regime by dataset is in the
 artifact (\code{tables/sizes-datasets-bulk.tex}).
@@ -81,20 +81,20 @@ artifact (\code{tables/sizes-datasets-bulk.tex}).
 \centering
 \begin{tikzpicture}
 \begin{axis}[width=0.62\linewidth, height=0.42\linewidth,
-  xlabel={size under brotli 5, against JSON's}, ylabel={fraction of cases},
+  xlabel={size under gzip, against JSON's}, ylabel={fraction of cases},
   xmode=log, log ticks with fixed point, xmin=0.1, xmax=3, ymin=0, ymax=1,
   legend pos=outer north east, legend style={font=\footnotesize, draw=none},
   cycle list name=color list, grid=major, grid style={gray!20}]
-\distcurve{very thick, black}{fig-dist-web-br5-colbin}{colbin}
-\distcurve{thick, blue}{fig-dist-web-br5-protobuf}{protobuf}
-\distcurve{thick, red}{fig-dist-web-br5-avro}{avro}
-\distcurve{thick, orange}{fig-dist-web-br5-msgpack}{msgpack}
-\distcurve{thick, teal}{fig-dist-web-br5-arrow}{arrow}
-\distcurve{thick, gray}{fig-dist-web-br5-flatbuffers}{flatbuffers}
+\distcurve{very thick, black}{fig-dist-web-gzip-colbin}{colbin}
+\distcurve{thick, blue}{fig-dist-web-gzip-protobuf}{protobuf}
+\distcurve{thick, red}{fig-dist-web-gzip-avro}{avro}
+\distcurve{thick, orange}{fig-dist-web-gzip-msgpack}{msgpack}
+\distcurve{thick, teal}{fig-dist-web-gzip-arrow}{arrow}
+\distcurve{thick, gray}{fig-dist-web-gzip-flatbuffers}{flatbuffers}
 \end{axis}
 \end{tikzpicture}
 \caption{Web regime: the distribution over cases of each format's size under
-brotli 5 against JSON's under brotli 5. A curve to the left is smaller; each
+gzip against JSON's under gzip. A curve to the left is smaller; each
 format's curve is over the cases it carries.}
 \label{fig:dist-size}
 \end{figure}
@@ -166,24 +166,24 @@ large message and discards the rest is better served by those formats.
 \centering
 \begin{tikzpicture}
 \begin{axis}[width=0.48\linewidth, height=0.44\linewidth, title={web},
-  xlabel={size under brotli 5}, ylabel={decode-fresh time},
+  xlabel={size under gzip}, ylabel={decode-fresh time},
   xmode=log, ymode=log, log ticks with fixed point,
   nodes near coords, point meta=explicit symbolic,
   every node near coord/.append style={font=\tiny, anchor=west},
   grid=major, grid style={gray!20}, enlarge x limits=0.25]
 \IfFileExists{\tables/fig-tradeoff-web.dat}{
-  \addplot[only marks, mark=*, mark size=1.5pt] table[x=br5, y=decode, meta=format]{\tables/fig-tradeoff-web.dat};}{}
+  \addplot[only marks, mark=*, mark size=1.5pt] table[x=gzip, y=decode, meta=format]{\tables/fig-tradeoff-web.dat};}{}
 \end{axis}
 \end{tikzpicture}\hfill
 \begin{tikzpicture}
 \begin{axis}[width=0.48\linewidth, height=0.44\linewidth, title={bulk},
-  xlabel={size under brotli 5},
+  xlabel={size under gzip},
   xmode=log, ymode=log, log ticks with fixed point,
   nodes near coords, point meta=explicit symbolic,
   every node near coord/.append style={font=\tiny, anchor=west},
   grid=major, grid style={gray!20}, enlarge x limits=0.25]
 \IfFileExists{\tables/fig-tradeoff-bulk.dat}{
-  \addplot[only marks, mark=*, mark size=1.5pt] table[x=br5, y=decode, meta=format]{\tables/fig-tradeoff-bulk.dat};}{}
+  \addplot[only marks, mark=*, mark size=1.5pt] table[x=gzip, y=decode, meta=format]{\tables/fig-tradeoff-bulk.dat};}{}
 \end{axis}
 \end{tikzpicture}
 \caption{Size against decode time, both against JSON's, per format and
@@ -217,11 +217,11 @@ The tables above give each format a mean over its own cases.
 Tables~\ref{tab:versus-web} and~\ref{tab:versus-bulk} remove that
 difference: each row compares \colbin{} with one format on exactly the cases
 both carry, and counts the cases \colbin{} wins outright. In the web regime
-\colbin{} is smaller than Protocol Buffers under brotli 5 in
-\result{vs.web.protobuf.br5.wins} of \result{vs.web.protobuf.br5.n} cases
-(mean ratio \result{vs.web.protobuf.br5}) and smaller than Avro in
-\result{vs.web.avro.br5.wins} of \result{vs.web.avro.br5.n}
-(\result{vs.web.avro.br5}). It encodes faster than \fmt{vtprotobuf} in
+\colbin{} is smaller than Protocol Buffers under gzip in
+\result{vs.web.protobuf.gzip.wins} of \result{vs.web.protobuf.gzip.n} cases
+(mean ratio \result{vs.web.protobuf.gzip}) and smaller than Avro in
+\result{vs.web.avro.gzip.wins} of \result{vs.web.avro.gzip.n}
+(\result{vs.web.avro.gzip}). It encodes faster than \fmt{vtprotobuf} in
 \result{vs.web.vtprotobuf.encode.wins} of
 \result{vs.web.vtprotobuf.encode.n} cases and faster than generated
 MessagePack in \result{vs.web.msgpack.encode.wins} of
@@ -278,8 +278,8 @@ back to the original value.
 \centering\footnotesize
 \resulttable{ablation-threshold}
 \caption{Table threshold: \colbin{}'s size with the threshold at 2, 4, 16
-and 32 rows over its size at the default of 8, as written and under brotli
-5 (geometric mean over cases).}
+and 32 rows over its size at the default of 8, as written and under gzip
+(geometric mean over cases).}
 \label{tab:ablation-threshold}
 \end{table}
 
@@ -296,7 +296,7 @@ full ablation has run; run1 has none}
 \resulttable{ablation-codec}
 \caption{Column transform: \colbin{}'s size with every integer column forced
 to raw, delta or frame of reference, over its size with the transform
-chosen per column, as written and under brotli 5.}
+chosen per column, as written and under gzip.}
 \label{tab:ablation-codec}
 \end{table}
 
@@ -304,7 +304,7 @@ chosen per column, as written and under brotli 5.}
 transform on every column shows what the per-column choice is worth, and
 what the transforms are worth at all: the \emph{raw} column is bit-packing
 alone. \recheck{report the cost of raw and of each single transform against
-the scored choice, as written and under brotli, by dataset}
+the scored choice, as written and under gzip, by dataset}
 
 \paragraph{The other options.} The effect of field tags, of \fmt{packed5}
 and of embedding the schema is read from the variants in the main tables:
@@ -313,8 +313,8 @@ in the web regime \fmt{colbin-untagged} is at
 \result{size.web.colbin.raw} for the tagged default (over the cases each
 carries; Table~\ref{tab:versus-web} compares them on common cases),
 \fmt{colbin+packed5} at \result{size.web.colbin+packed5.raw} as written and
-\result{size.web.colbin+packed5.br5} under brotli 5, and \fmt{colbin-json}
+\result{size.web.colbin+packed5.gzip} under gzip, and \fmt{colbin-json}
 at \result{size.web.colbin-json.raw}. Packing strings at five bits a
 character saves bytes as written and gives them back under compression,
 which does better on plain text than on packed text; it is off by default
-for that reason. \recheck{packed5: confirm raw gain and br5 loss}
+for that reason. \recheck{packed5: confirm raw gain and gzip loss}

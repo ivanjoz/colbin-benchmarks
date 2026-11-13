@@ -48,7 +48,7 @@ with the reason, not dropped.
 
 **For each case and format:**
 
-- *size*: the message as written, and under gzip 6, zstd 6 and brotli 5 and 11;
+- *size*: the message as written, and under gzip 6 and zstd 6;
 - *time*: `encode`, `decode-fresh` (into a new value), `decode-reuse` (into a
   held one) and `access` (the sum of one column, in place where the format
   allows it), each the median of 10 samples of at least 100 ms, pinned to one

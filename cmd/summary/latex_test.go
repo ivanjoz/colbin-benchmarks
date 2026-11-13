@@ -17,13 +17,13 @@ func TestLatex(t *testing.T) {
 			t.Fatal(err)
 		}
 	}
-	write("sizes.csv", `case,dataset,regime,format,bytes,bytes_per_row,gzip,zstd6,br5,br11,status
-tpch/sf0.1/region,tpch,web,json-v2,400,80,200,200,200,200,ok
-tpch/sf0.1/region,tpch,web,colbin,100,20,100,100,100,100,ok
-tpch/sf0.1/region,tpch,web,gob,300,60,150,150,150,150,lossy: $.Rows[0]
-schemastore/empty,schemastore,web,json-v2,2,2,20,20,10,10,ok
-schemastore/empty,schemastore,web,colbin,0,0,20,9,5,5,ok
-schemastore/empty,schemastore,web,arrow,,,,,,,n/a: root is not a table
+	write("sizes.csv", `case,dataset,regime,format,bytes,bytes_per_row,gzip,zstd6,status
+tpch/sf0.1/region,tpch,web,json-v2,400,80,200,200,ok
+tpch/sf0.1/region,tpch,web,colbin,100,20,100,100,ok
+tpch/sf0.1/region,tpch,web,gob,300,60,150,150,lossy: $.Rows[0]
+schemastore/empty,schemastore,web,json-v2,2,2,10,20,ok
+schemastore/empty,schemastore,web,colbin,0,0,5,9,ok
+schemastore/empty,schemastore,web,arrow,,,,,n/a: root is not a table
 `)
 	bench := `regime: web
 BenchmarkColbin/tpch/sf0.1/region/json-v2/decode-fresh 10 1000 ns/op
@@ -32,7 +32,7 @@ BenchmarkColbin/tpch/sf0.1/region/colbin/decode-fresh 10 250 ns/op
 	write("bench-web.txt", bench)
 	write("bench-web-2.txt", strings.ReplaceAll(bench, " 250 ", " 255 "))
 	write("machine.txt", "driver: reproduce.sh\ncolbin: github.com/ivanjoz/colbin v0.12.0\nturbo: off\nWARNING: --no-checks: a smoke test\n\n== lscpu\nModel name: Test CPU\n")
-	write("ablation.csv", `case,dataset,regime,knob,setting,bytes,br5
+	write("ablation.csv", `case,dataset,regime,knob,setting,bytes,gzip
 tpch/sf0.1/region,tpch,web,threshold,8,100,50
 tpch/sf0.1/region,tpch,web,threshold,2,110,55
 tpch/sf0.1/region,tpch,web,codec,auto,100,50
@@ -61,13 +61,13 @@ tpch/sf0.1/region,tpch,web,codec,raw,200,60
 		`\resultdef{size.web.colbin.raw}{0.250}`,
 		`\resultdef{size.web.colbin.raw.x}{4.0}`,
 		// sqrt(100/200 × 5/10).
-		`\resultdef{size.web.colbin.br5}{0.500}`,
+		`\resultdef{size.web.colbin.gzip}{0.500}`,
 		`\resultdef{time.web.colbin.decode-fresh}{0.250}`,
 		`\resultdef{vs.web.json-v2.raw.wins}{2}`,
 		`\resultdef{coverage.web.gob.lossy}{1}`,
 		`\resultdef{coverage.web.arrow.na}{1}`,
 		`\resultdef{ablation.threshold.web.tpch.2.raw}{1.100}`,
-		`\resultdef{ablation.codec.web.tpch.raw.br5}{1.200}`,
+		`\resultdef{ablation.codec.web.tpch.raw.gzip}{1.200}`,
 		`\resultdef{repeat.within3}{100.0}`,
 		`\resultdef{machine.cpu}{Test CPU}`,
 		`\resultdef{machine.colbin-version}{v0.12.0}`,
@@ -79,7 +79,7 @@ tpch/sf0.1/region,tpch,web,codec,raw,200,60
 	}
 	for _, name := range []string{"sizes-web.tex", "times-web.tex", "versus-web.tex", "coverage.tex",
 		"ablation-threshold.tex", "ablation-codec.tex", "repeatability.tex", "baselines.tex",
-		"fig-tradeoff-web.dat", "fig-dist-web-br5-colbin.dat"} {
+		"fig-tradeoff-web.dat", "fig-dist-web-gzip-colbin.dat"} {
 		if _, err := os.Stat(filepath.Join(dir, "tables", name)); err != nil {
 			t.Errorf("tables/%s was not written", name)
 		}

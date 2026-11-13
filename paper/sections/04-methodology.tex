@@ -136,11 +136,11 @@ original value by deep equality; where a case has an access aggregate, each
 format's result is compared with the one computed on the Go value. A format
 that fails a check on a case has no time for it.
 
-\paragraph{Size.} The encoded message in bytes, as written and under four
-general-purpose compressors: gzip~\cite{rfc1952} at level 6,
-Zstandard~\cite{rfc8878} at level 6, and brotli~\cite{rfc7932} at levels 5 and
-11. Brotli 5 stands for what a server applies to a response on the fly, and
-brotli 11 for the most a precompressed asset gets. Compressed sizes matter
+\paragraph{Size.} The encoded message in bytes, as written and under two
+general-purpose compressors at level 6: gzip~\cite{rfc1952}, which every
+browser accepts and every server can apply to a response on the fly, and
+Zstandard~\cite{rfc8878}. The text and the figures quote gzip; the tables
+give both. Compressed sizes matter
 because the realistic alternative to a binary format on the web is not JSON
 but compressed JSON.
 

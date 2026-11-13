@@ -15,7 +15,9 @@
 
 RUN ?=
 TECTONIC := $(firstword $(wildcard ../tools/bin/tectonic) $(shell command -v tectonic 2>/dev/null))
-SOURCES := main.tex related-work.bib $(wildcard sections/*.tex) $(wildcard tables/*)
+# Not tables/*: make would list them before `tables` replaces them, and fail on
+# one the new run does not have. `tables` is phony, so main.pdf is rebuilt anyway.
+SOURCES := main.tex related-work.bib $(wildcard sections/*.tex)
 
 main.pdf: tables $(SOURCES)
 ifneq ($(shell command -v latexmk 2>/dev/null),)
