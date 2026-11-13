@@ -149,7 +149,10 @@ def up(cloud):
     if "subnet" not in state:
         log(f"network in {cloud.region}")
         vcn = net.create_vcn(models.CreateVcnDetails(
-            compartment_id=cloud.compartment, cidr_blocks=[CIDR], display_name=TAG, freeform_tags=tags())).data
+            compartment_id=cloud.compartment, cidr_blocks=[CIDR], display_name=TAG, freeform_tags=tags(),
+            # A DNS label turns on the VCN's resolver; without one a container
+            # cannot resolve the registry and its image is never pulled.
+            dns_label="colbinbench")).data
         state["vcn"] = vcn.id
         save_state(state)
         cloud.wait(net, net.get_vcn(vcn.id), "AVAILABLE")
@@ -172,7 +175,7 @@ def up(cloud):
         subnet = net.create_subnet(models.CreateSubnetDetails(
             compartment_id=cloud.compartment, vcn_id=vcn.id, cidr_block=SUBNET_CIDR, display_name=TAG,
             route_table_id=vcn.default_route_table_id, security_list_ids=[security.id],
-            prohibit_public_ip_on_vnic=False, freeform_tags=tags())).data
+            prohibit_public_ip_on_vnic=False, freeform_tags=tags(), dns_label="bench")).data
         state["subnet"] = subnet.id
         save_state(state)
         cloud.wait(net, net.get_subnet(subnet.id), "AVAILABLE")
@@ -270,6 +273,8 @@ def runs(cloud):
         name = (item.freeform_tags or {}).get("run")
         if TAG in (item.freeform_tags or {}) and name:
             found[name] = item.lifecycle_state.lower()
+            if found[name] == "failed":
+                found[name] += failure(cloud, item.id)
     start = None
     while True:
         page = cloud.storage.list_objects(cloud.namespace, BUCKET, start=start).data
@@ -281,6 +286,14 @@ def runs(cloud):
             break
         start = page.next_start_with
     return dict(sorted(found.items()))
+
+
+def failure(cloud, instance_id):
+    """Why OCI gave up on an instance, from its work requests: ': <message>'."""
+    for request in cloud.containers.list_work_requests(cloud.compartment, resource_id=instance_id).data.items:
+        for error in cloud.containers.list_work_request_errors(request.id).data.items:
+            return f": {error.message}"
+    return ""
 
 
 def status(cloud):
@@ -336,7 +349,10 @@ def logs(cloud, arch):
         sys.exit(f"ocibench: no {arch} run")
     instance = cloud.containers.get_container_instance(runs[-1]["instance"]).data
     for container in instance.containers:
-        output = cloud.containers.retrieve_logs(container.container_id).data
+        try:
+            output = cloud.containers.retrieve_logs(container.container_id).data
+        except cloud.oci.exceptions.ServiceError as error:
+            sys.exit(f"ocibench: no logs ({error.message}){failure(cloud, instance.id)}")
         sys.stdout.write(output.content.decode(errors="replace") if hasattr(output, "content") else str(output))
 
 
