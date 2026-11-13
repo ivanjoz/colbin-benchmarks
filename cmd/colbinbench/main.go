@@ -49,7 +49,6 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
-	"path"
 	"path/filepath"
 	"runtime"
 	"runtime/pprof"
@@ -154,8 +153,8 @@ func alternate(old, new, dir string, rounds, count int, cases, cores []string) e
 	return nil
 }
 
-// expand turns case patterns (path.Match globs, so "publicbi/*" is every
-// Public BI table, and "all" every case) into case names, in report order. A pattern that matches
+// expand turns case patterns (matrix.Matches: "publicbi/*" is every Public
+// BI table, "tpch/*" every TPC-H case, "all" every case) into case names, in report order. A pattern that matches
 // nothing is an error, so a typo does not run an empty benchmark.
 func expand(patterns []string) ([]string, error) {
 	var names []string
@@ -163,8 +162,7 @@ func expand(patterns []string) ([]string, error) {
 	for _, pattern := range patterns {
 		matched := false
 		for _, c := range matrix.Cases() {
-			ok, err := path.Match(pattern, c.Name)
-			ok = ok || pattern == "all"
+			ok, err := matrix.Matches(pattern, c.Name)
 			if err != nil {
 				return nil, fmt.Errorf("-cases %q: %w", pattern, err)
 			}

@@ -26,7 +26,6 @@ import (
 	"flag"
 	"fmt"
 	"os"
-	"path"
 	"path/filepath"
 	"reflect"
 	"runtime"
@@ -154,7 +153,7 @@ func run(patterns, out string) error {
 func selected(patterns, name string) bool {
 	for pattern := range strings.SplitSeq(patterns, ",") {
 		pattern = strings.TrimSpace(pattern)
-		if ok, _ := path.Match(pattern, name); ok || pattern == "all" {
+		if ok, _ := matrix.Matches(pattern, name); ok {
 			return true
 		}
 	}

@@ -141,17 +141,38 @@ var errNotFetched = fmt.Errorf("not fetched")
 func NotFetched(err error) bool { return errors.Is(err, errNotFetched) }
 
 // Selected says whether $COLBIN_CASES selects the case: a comma-separated list
-// of case names or path.Match globs ("publicbi/*"). Unset, every case is
-// selected. reproduce.sh uses it to run the bulk cases one process at a time.
+// of case names or globs (see Matches). Unset, every case is selected.
+// reproduce.sh uses it to run the bulk cases one process at a time.
 func Selected(c Case) bool {
 	patterns := os.Getenv("COLBIN_CASES")
 	if patterns == "" {
 		return true
 	}
 	for _, pattern := range strings.Split(patterns, ",") {
-		if ok, _ := path.Match(strings.TrimSpace(pattern), c.Name); ok {
+		if ok, _ := Matches(strings.TrimSpace(pattern), c.Name); ok {
 			return true
 		}
 	}
 	return false
+}
+
+// Matches says whether a case pattern selects a case name. A pattern is
+// "all", or a path.Match glob matched against the name and against each of
+// its leading parts, as a glob over directories would: "tpch/*" selects
+// tpch/sf0.1/region as well as "tpch/sf0.1/*" does, where path.Match alone,
+// whose * stops at a slash, would select nothing.
+func Matches(pattern, name string) (bool, error) {
+	if pattern == "all" {
+		return true, nil
+	}
+	for at := 0; at <= len(name); at++ {
+		if at < len(name) && name[at] != '/' {
+			continue
+		}
+		ok, err := path.Match(pattern, name[:at])
+		if ok || err != nil {
+			return ok, err
+		}
+	}
+	return false, nil
 }
