@@ -63,8 +63,10 @@ TAG = "colbin-bench-oci"
 BUCKET = TAG
 CIDR = "10.77.0.0/16"
 SUBNET_CIDR = "10.77.0.0/24"
-# The Go of go.mod's toolchain line, pinned by the multi-arch index digest.
-IMAGE = "docker.io/library/golang:1.27.0-trixie@sha256:df98008ecd2b0ecc9f0a94d1b07e3564a9c92b555369b33d9b5f60d0765b2db7"
+# The Go of go.mod's toolchain line (golang:1.27.0-trixie), pinned by the
+# multi-arch index digest. Digest only: Container Instances does not pull a
+# reference with both a tag and a digest, and says the network is at fault.
+IMAGE = "docker.io/library/golang@sha256:df98008ecd2b0ecc9f0a94d1b07e3564a9c92b555369b33d9b5f60d0765b2db7"
 PAR_DAYS = 3
 
 ARCHES = {
@@ -150,8 +152,6 @@ def up(cloud):
         log(f"network in {cloud.region}")
         vcn = net.create_vcn(models.CreateVcnDetails(
             compartment_id=cloud.compartment, cidr_blocks=[CIDR], display_name=TAG, freeform_tags=tags(),
-            # A DNS label turns on the VCN's resolver; without one a container
-            # cannot resolve the registry and its image is never pulled.
             dns_label="colbinbench")).data
         state["vcn"] = vcn.id
         save_state(state)
