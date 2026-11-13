@@ -165,6 +165,17 @@ frequency_fail() {
 	fi
 }
 
+# What cannot be read is a warning on a machine of one's own, and expected on
+# a VM, where cpufreq is the host's and is not exposed: there the probe stands
+# in for it.
+frequency_unknown() {
+	if [ "$vm" = 1 ]; then
+		host_settings+=("$1")
+	else
+		warnings+=("$1")
+	fi
+}
+
 mem_available_gb() { awk '/^MemAvailable:/ { printf "%.1f", $2 / 1048576 }' /proc/meminfo; }
 
 # ---- 1. datasets ----------------------------------------------------------------
@@ -228,7 +239,7 @@ for core in "${core_list[@]}"; do
 		[ "$(cat "$governor")" = performance ] || frequency_fail "cpu$core governor is $(cat "$governor"), not performance (sudo cpupower frequency-set -g performance)"
 	else
 		governors="$governors unknown"
-		warnings+=("cpu$core has no cpufreq governor to check")
+		frequency_unknown "cpu$core has no cpufreq governor to check"
 	fi
 done
 # Turbo (frequency boost): on, a core's frequency depends on what the other
@@ -244,7 +255,7 @@ elif [ -r /sys/devices/system/cpu/cpufreq/boost ]; then
 fi
 case "$turbo" in
 on) frequency_fail "turbo is on ($turbo_hint)" ;;
-unknown) warnings+=("turbo: no intel_pstate/no_turbo or cpufreq/boost to read") ;;
+unknown) frequency_unknown "turbo: no intel_pstate/no_turbo or cpufreq/boost to read" ;;
 esac
 
 commit_of() { # dir → "commit" or "commit (uncommitted changes)"
