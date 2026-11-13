@@ -51,8 +51,12 @@ differ by more than most pairs of formats do. The sizes carry over to other
 languages; the times do not. The Rust and JavaScript implementations of
 \colbin{} are not evaluated.
 
-\paragraph{One machine.} Times come from a single x86-64 laptop-class
-processor. Absolute times were not repeatable to 3\,\% between two passes
+\paragraph{One machine, in the cloud.} Times come from a single x86-64
+server processor in a cloud container instance, whose clock the host
+controls and whose cache and memory bandwidth other tenants share. We
+measured the clock rather than fixed it (Section~\ref{sec:machine}); a
+reader with a dedicated machine and boost disabled would see less variation.
+Absolute times were not repeatable to 3\,\% between two passes
 (Section~\ref{sec:machine}); the ratios this paper reports were, to within
 \result{repeat.ratio-worst}\,\%, and differences below about 4\,\% should
 not be read as differences. No arm64 machine was measured, although the

@@ -13,7 +13,8 @@
 # the paper's tables. In this order, each stage keeping its output in --out the
 # moment it has it:
 #
-#   1. datasets/fetch-all.sh         download or generate, check MANIFEST.sha256
+#   1. datasets/*/fetch.sh           download or generate, check MANIFEST.sha256
+#                                    (only the datasets --cases names)
 #   2. checks, machine.txt           power, governor, turbo, clean tree, versions
 #   3. timings, web                  bench-web.txt
 #   4. timings, bulk                 bench-bulk.txt, one case at a time
@@ -49,14 +50,16 @@
 #                            (web/README.md); not part of the paper
 #   --engines LIST           with --browser: chromium,firefox,webkit
 #   --vm                     a virtual machine or container, where the governor and
-#                            turbo are the host's: record them as warnings instead
-#                            of refusing to start; every other check still holds
+#                            turbo are the host's: record that the host controls the
+#                            clock instead of refusing to start; every other check
+#                            still holds, and colbinbench's probe (probe-*.csv)
+#                            records the clock the measured cores actually ran at
 #   --no-checks              turn a failed check into a warning that machine.txt
 #                            records: a smoke test, not a measurement
 #
 # A run that is the paper's has no warning in machine.txt: mains power, the
-# performance governor on the measured cores, turbo off, a clean working tree,
-# and colbin from go.mod. cmd/summary marks any other run as provisional, and
+# performance governor on the measured cores and turbo off (or --vm), a clean
+# working tree, and colbin from go.mod. cmd/summary marks any other run as provisional, and
 # the paper prints that on its first page.
 set -euo pipefail
 
@@ -151,10 +154,12 @@ fail() {
 }
 
 # The governor and turbo: on a VM they are the host's, out of reach, so --vm
-# records them (the run is then provisional) rather than refusing to start.
+# records what it saw rather than refusing to start. Such a run is not
+# provisional for that: the probe measures the clock it ran at instead.
+host_settings=()
 frequency_fail() {
 	if [ "$vm" = 1 ]; then
-		warnings+=("$1 (--vm: the host's setting, not under control)")
+		host_settings+=("$1")
 	else
 		fail "$1"
 	fi
@@ -165,8 +170,22 @@ mem_available_gb() { awk '/^MemAvailable:/ { printf "%.1f", $2 / 1048576 }' /pro
 # ---- 1. datasets ----------------------------------------------------------------
 
 if [ "$fetch" = 1 ] && ! done_already fetch; then
-	log "datasets: fetch and verify"
-	COLBIN_DATA="$data" datasets/fetch-all.sh >"$out/stages/fetch.log" 2>&1 || {
+	# Only the datasets --cases names, when each of its globs names one.
+	fetchers=()
+	if [ "$cases" != all ]; then
+		IFS=, read -r -a globs <<<"$cases"
+		for glob in "${globs[@]}"; do
+			dataset=${glob%%/*}
+			if [[ $dataset == *[*?[]* ]] || [ ! -x "datasets/$dataset/fetch.sh" ]; then
+				fetchers=()
+				break
+			fi
+			[[ " ${fetchers[*]-} " == *" datasets/$dataset/fetch.sh "* ]] || fetchers+=("datasets/$dataset/fetch.sh")
+		done
+	fi
+	[ "${#fetchers[@]}" -gt 0 ] || fetchers=(datasets/fetch-all.sh)
+	log "datasets: fetch and verify (${fetchers[*]})"
+	(for fetcher in "${fetchers[@]}"; do COLBIN_DATA="$data" "$fetcher" || exit 1; done) >"$out/stages/fetch.log" 2>&1 || {
 		tail -20 "$out/stages/fetch.log" >&2
 		echo "reproduce.sh: a dataset did not fetch or does not match datasets/MANIFEST.sha256; see $out/stages/fetch.log" >&2
 		exit 1
@@ -280,6 +299,12 @@ else
 		echo "colbin-benchmarks: $(commit_of .)"
 		echo "governor:$governors"
 		echo "turbo: $turbo"
+		if [ "$vm" = 1 ]; then
+			echo "frequency control: host"
+			for setting in "${host_settings[@]+"${host_settings[@]}"}"; do echo "host setting: $setting"; done
+		else
+			echo "frequency control: local"
+		fi
 		echo "MemAvailable at start: $(mem_available_gb) GB"
 		for warning in "${warnings[@]+"${warnings[@]}"}"; do echo "WARNING: $warning"; done
 		[ "$checks" = 1 ] || echo "WARNING: --no-checks: a smoke test, not a measurement"
@@ -361,6 +386,9 @@ sampler_stop() {
 }
 
 header() { echo "cpu: $(lscpu | sed -n 's/^Model name: *//p' | head -1)"; }
+# colbinbench appends each case's core clock, before every round of samples,
+# to probe-<file>.csv (cmd/colbinbench/probe.go).
+probe_header="case,round,ns_per_multiply,mhz"
 bench_flags=(-data "$data" -formats "$formats" -ops "$ops" -count "$count" -sample "$sample")
 
 timings_web() { # pass
@@ -369,8 +397,9 @@ timings_web() { # pass
 	[ -n "$web_cases" ] || return 0
 	done_already "$stage" && return 0
 	log "timings: web, pass $1, ${#core_list[@]} at a time on cores $cores"
+	echo "$probe_header" >"$out/probe-${file%.txt}.csv"
 	sampler_start
-	if { header; "$bin/colbinbench" "${bench_flags[@]}" -cases "$web_cases" -cores "$cores"; } >"$out/$file.part" 2>"$out/${file%.txt}.err"; then
+	if { header; "$bin/colbinbench" "${bench_flags[@]}" -probe "$out/probe-${file%.txt}.csv" -cases "$web_cases" -cores "$cores"; } >"$out/$file.part" 2>"$out/${file%.txt}.err"; then
 		mv "$out/$file.part" "$out/$file"
 		mark_done "$stage"
 		log "timings: web, pass $1 done, $(grep -c '^Benchmark' "$out/$file") lines"
@@ -384,6 +413,7 @@ timings_bulk() {
 	[ -n "$bulk_cases" ] || return 0
 	mkdir -p "$out/stages/bench-bulk"
 	local name part index=0 complete=1
+	[ -e "$out/probe-bench-bulk.csv" ] || echo "$probe_header" >"$out/probe-bench-bulk.csv"
 	sampler_start
 	for name in $bulk_cases; do
 		part=$out/stages/bench-bulk/$(printf '%02d' "$index")-$(slug "$name")
@@ -391,7 +421,7 @@ timings_bulk() {
 		[ "$resume" = 1 ] && [ -e "$part.txt" ] && continue
 		wait_memory "$name"
 		log "timings: $name, alone on core ${core_list[0]}"
-		if "$bin/colbinbench" "${bench_flags[@]}" -cases "$name" -cores "${core_list[0]}" >"$part.part" 2>"$part.err"; then
+		if "$bin/colbinbench" "${bench_flags[@]}" -probe "$out/probe-bench-bulk.csv" -cases "$name" -cores "${core_list[0]}" >"$part.part" 2>"$part.err"; then
 			mv "$part.part" "$part.txt"
 		else
 			complete=0

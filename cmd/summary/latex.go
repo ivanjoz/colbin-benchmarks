@@ -197,6 +197,9 @@ func writeLatex(dir string, sizes []sizeRow) error {
 	} else if err != nil && !os.IsNotExist(err) {
 		return err
 	}
+	if err := latexProbe(out, dir); err != nil {
+		return err
+	}
 	// A run is provisional until it is the paper's: the main text says so in
 	// a banner, so a draft built on a smoke test cannot pass for the result.
 	out.def("provisional", strings.Join(provisional, "; "))

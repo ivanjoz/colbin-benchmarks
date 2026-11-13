@@ -3,7 +3,7 @@
 # requires-python = ">=3.10,<3.14"
 # dependencies = ["oci>=2.140"]
 # ///
-"""Run reproduce.sh in OCI Container Instances, one per architecture.
+"""Run reproduce.sh in OCI Container Instances, x86 by default.
 
 Nothing here measures anything. Each container clones this repository from
 GitHub at one pushed commit, runs `./reproduce.sh` there (datasets fetched and
@@ -13,9 +13,10 @@ pre-authenticated URL. The container has no inbound access and no credentials.
 
     cloud/ocibench.py shapes                  # what Container Instances offers here
     cloud/ocibench.py up                      # network (egress only) and the bucket
-    cloud/ocibench.py run                     # one container per architecture, at HEAD
-    cloud/ocibench.py status                  # each container's state, and its progress.log
-    cloud/ocibench.py fetch                   # download finished results to results/cloud/oci/
+    cloud/ocibench.py run                     # one x86 container, at HEAD
+    cloud/ocibench.py run --label tpch -- --cases 'tpch/*'   # one dataset
+    cloud/ocibench.py status                  # each run's state, and its progress.log
+    cloud/ocibench.py fetch [--partial]       # download results to results/cloud/oci/
     cloud/ocibench.py logs --arch x86         # the container's own output, for a run that died early
     cloud/ocibench.py down [--bucket]         # delete the containers and the network (and the bucket)
 
@@ -29,13 +30,17 @@ has two cores to measure on and the rest for the system and compression:
 `run` refuses a dirty tree or a commit that is not on GitHub: the container
 clones from there, so what runs is exactly that commit. Arguments after `--`
 go to reproduce.sh (`run -- --regime web`). A container cannot set the
-frequency governor or turn turbo off, so reproduce.sh records both as unknown
-and cmd/summary marks the run provisional: these are runs on a second and a
-third machine, reported apart, not the paper's.
+frequency governor or turn turbo off; reproduce.sh --vm records that the host
+controls the clock, and colbinbench's probe records the clock it ran at.
+
+Nothing depends on the machine that started a run. The container uploads its
+progress and its results so far every ten minutes, and `status` and `fetch`
+find runs in the bucket and among the tagged instances, not in a local file:
+the laptop can be off for the whole run.
 
 Authentication is the OCI SDK's config file (~/.oci/config, --profile). What
 `up` creates is in cloud/state/oci.json (not committed) and tagged
-colbin-bench-oci, which `down` also finds. Needs uv (the shebang installs the
+colbin-bench-oci, which `down` also finds; `run` and `down` need that file. Needs uv (the shebang installs the
 SDK in a throwaway environment), or `pip install oci` and `python3 cloud/ocibench.py`.
 """
 
@@ -43,6 +48,7 @@ import argparse
 import datetime
 import json
 import pathlib
+import shutil
 import subprocess
 import sys
 import tarfile
@@ -198,7 +204,7 @@ def pushed_commit():
     return commit
 
 
-def run(cloud, arches, ocpus, memory, shapes_override, repro_args):
+def run(cloud, arches, ocpus, memory, shapes_override, repro_args, label):
     state = load_state()
     if "subnet" not in state:
         sys.exit("ocibench: nothing is up; run `up` first")
@@ -216,7 +222,7 @@ def run(cloud, arches, ocpus, memory, shapes_override, repro_args):
         spec["memory"] = memory or spec["memory"]
         if spec["shape"] not in offered:
             sys.exit(f"ocibench: {spec['shape']} is not offered in {ad}; `shapes` lists what is")
-        name = f"oci-{arch}-{stamp}"
+        name = f"oci-{arch}-{label + '-' if label else ''}{stamp}"
         par = cloud.storage.create_preauthenticated_request(cloud.namespace, BUCKET,
             storage_models.CreatePreauthenticatedRequestDetails(
                 name=name, access_type="AnyObjectWrite",
@@ -253,17 +259,35 @@ def object_text(cloud, name):
         raise
 
 
+SUFFIXES = (".progress.log", ".partial.tar.gz", ".results.tar.gz", ".exit")
+
+
+def runs(cloud):
+    """Every run, from the bucket and the tagged container instances, not from
+    the state file: what one machine started, any other can follow."""
+    found = {}
+    for item in cloud.containers.list_container_instances(cloud.compartment).data.items:
+        name = (item.freeform_tags or {}).get("run")
+        if TAG in (item.freeform_tags or {}) and name:
+            found[name] = item.lifecycle_state.lower()
+    start = None
+    while True:
+        page = cloud.storage.list_objects(cloud.namespace, BUCKET, start=start).data
+        for item in page.objects:
+            for suffix in SUFFIXES:
+                if item.name.endswith(suffix):
+                    found.setdefault(item.name[: -len(suffix)], "gone")
+        if not page.next_start_with:
+            break
+        start = page.next_start_with
+    return dict(sorted(found.items()))
+
+
 def status(cloud):
-    state = load_state()
-    for name, info in state.get("runs", {}).items():
-        try:
-            instance = cloud.containers.get_container_instance(info["instance"]).data
-            lifecycle = instance.lifecycle_state
-        except cloud.oci.exceptions.ServiceError as error:
-            lifecycle = "gone" if error.status == 404 else f"error {error.status}"
+    for name, lifecycle in runs(cloud).items():
         exit_code = object_text(cloud, f"{name}.exit")
         fetched = (RESULTS / name).exists()
-        print(f"{name}: {info['shape']}, container {lifecycle}"
+        print(f"{name}: container {lifecycle}"
               + (f", reproduce.sh exited {exit_code.strip()}" if exit_code else ", running or not started")
               + (", fetched" if fetched else ""))
         progress = object_text(cloud, f"{name}.progress.log")
@@ -271,23 +295,38 @@ def status(cloud):
             print(f"    {line}")
 
 
-def fetch(cloud):
-    state = load_state()
-    for name in state.get("runs", {}):
-        target = RESULTS / name
-        if target.exists():
+def fetch(cloud, partial):
+    """Finished runs into results/cloud/oci/<name>/; with partial, also what
+    an unfinished one has uploaded so far, into <name>.partial/."""
+    for name in runs(cloud):
+        finished = object_text(cloud, f"{name}.exit") is not None
+        if finished:
+            target, archive_name = RESULTS / name, f"{name}.results.tar.gz"
+        elif partial:
+            target, archive_name = RESULTS / f"{name}.partial", f"{name}.partial.tar.gz"
+        else:
+            log(f"{name}: not finished (`fetch --partial` takes what it has uploaded)")
             continue
-        if object_text(cloud, f"{name}.exit") is None:
-            log(f"{name}: not finished")
+        if finished and target.exists():
             continue
-        data = cloud.storage.get_object(cloud.namespace, BUCKET, f"{name}.results.tar.gz").data.content
-        RESULTS.mkdir(parents=True, exist_ok=True)
-        archive = RESULTS / f"{name}.tar.gz"
+        try:
+            data = cloud.storage.get_object(cloud.namespace, BUCKET, archive_name).data.content
+        except cloud.oci.exceptions.ServiceError as error:
+            if error.status != 404:
+                raise
+            log(f"{name}: no {archive_name} yet")
+            continue
+        scratch = RESULTS / f".{name}.unpack"
+        shutil.rmtree(scratch, ignore_errors=True)
+        scratch.mkdir(parents=True)
+        archive = scratch / "archive.tar.gz"
         archive.write_bytes(data)
         with tarfile.open(archive) as tar:
-            tar.extractall(RESULTS, filter="data")
-        archive.unlink()
-        log(f"{name}: results in {target.relative_to(REPO)}")
+            tar.extractall(scratch, filter="data")
+        shutil.rmtree(target, ignore_errors=True)
+        (scratch / name).rename(target)
+        shutil.rmtree(scratch)
+        log(f"{name}: {'results' if finished else 'partial results'} in {target.relative_to(REPO)}")
 
 
 def logs(cloud, arch):
@@ -379,9 +418,12 @@ def main():
     run_parser.add_argument("--memory", type=float, help="GB per instance (default 32)")
     run_parser.add_argument("--x86-shape", help=f"default {ARCHES['x86']['shape']}")
     run_parser.add_argument("--arm-shape", help=f"default {ARCHES['arm']['shape']}")
+    run_parser.add_argument("--label", help="a word in the run's name, e.g. tpch")
     run_parser.add_argument("repro_args", nargs=argparse.REMAINDER, help="after --: arguments for reproduce.sh")
     commands.add_parser("status", help="each run's container state and the tail of its progress.log")
-    commands.add_parser("fetch", help="download finished runs to results/cloud/oci/")
+    fetch_parser = commands.add_parser("fetch", help="download finished runs to results/cloud/oci/")
+    fetch_parser.add_argument("--partial", action="store_true",
+                              help="also what unfinished runs uploaded so far, into <name>.partial/")
     logs_parser = commands.add_parser("logs", help="the container's own output")
     logs_parser.add_argument("--arch", default="x86")
     down_parser = commands.add_parser("down", help="delete the containers and the network")
@@ -400,11 +442,11 @@ def main():
                 sys.exit(f"ocibench: --arch is x86, arm or x86,arm, not {arch}")
         overrides = {arch: shape for arch, shape in (("x86", args.x86_shape), ("arm", args.arm_shape)) if shape}
         repro_args = [arg for arg in args.repro_args if arg != "--"]
-        run(cloud, arches, args.ocpus, args.memory, overrides, repro_args)
+        run(cloud, arches, args.ocpus, args.memory, overrides, repro_args, args.label)
     elif args.command == "status":
         status(cloud)
     elif args.command == "fetch":
-        fetch(cloud)
+        fetch(cloud, args.partial)
     elif args.command == "logs":
         logs(cloud, args.arch)
     elif args.command == "down":

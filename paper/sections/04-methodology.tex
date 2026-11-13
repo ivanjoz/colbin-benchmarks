@@ -183,12 +183,30 @@ exactly the cases both have.
 \subsection{Machine and repeatability}
 \label{sec:machine}
 
-The numbers were measured on an \result{machine.cpu},
-\result{machine.kernel}, Go \result{machine.go-version}, with the
-\code{performance} frequency governor and frequency boost
-\result{machine.turbo}, on CPUs \result{machine.measured-cores}. The
-frequency of the measured cores was sampled once a second throughout and is
-part of the artifact, as is the full machine description.
+The numbers were measured in an Oracle Cloud Infrastructure container
+instance of shape \code{CI.Standard.E4.Flex}, 4 OCPUs (physical cores
+dedicated to the instance) and 32\,GB, on an \result{machine.cpu},
+\result{machine.kernel}, Go \result{machine.go-version}, on CPUs
+\result{machine.measured-cores}. The instance was started from a pinned
+container image, cloned this artifact at the commit it reports, and fetched
+and verified the datasets itself. \recheck{shape, OCPUs and memory: as run}
+
+A container cannot fix the clock: the frequency governor and the boost are
+the host's, and how far a core boosts depends on what the host's other
+tenants do. We therefore measured the clock instead of fixing it. Before
+every round of a case's samples, the harness times a chain of dependent
+64-bit multiplies on the measured core, which runs at one multiply per three
+cycles on this processor. Over the first web pass the clock was between
+\result{probe.web.mhz.p5} and \result{probe.web.mhz.p95}\,MHz (5th and 95th
+percentiles; median \result{probe.web.mhz.median}). Within a case, which is
+what a ratio between two formats depends on, the slowest probe was within
+\result{probe.web.spread.median}\,\% of the fastest for the median case and
+within \result{probe.web.spread.p90}\,\% for nine cases in ten;
+\result{probe.web.spread.over5} of \result{probe.web.cases} cases saw the
+clock move by more than 5\,\%. Because samples are taken round-robin, such a
+change falls on every format of the case alike. The probes, the machine
+description and the per-second log of the cores are part of the artifact.
+\recheck{probe numbers: read them before keeping this paragraph's claims}
 
 The web cases were timed twice, several hours apart, to measure how far a
 number moves when nothing changes. Of \result{repeat.lines} benchmarks,

@@ -68,9 +68,10 @@ default, arm on request. Like `ec2.py`, it has no benchmark code of its own.
 cloud/ocibench.py shapes          # the container shapes this region offers
 cloud/ocibench.py up              # VCN, internet gateway, egress-only subnet, private bucket
 cloud/ocibench.py run             # x86, at HEAD (committed and pushed)
-cloud/ocibench.py run --arch x86,arm -- --regime web   # arguments after -- go to reproduce.sh
-cloud/ocibench.py status          # container state and the tail of each progress.log
+cloud/ocibench.py run --label tpch -- --cases 'tpch/*'   # arguments after -- go to reproduce.sh
+cloud/ocibench.py status          # every run's state and the tail of its progress.log
 cloud/ocibench.py fetch           # finished runs → results/cloud/oci/<name>/
+cloud/ocibench.py fetch --partial # and what unfinished ones have uploaded → <name>.partial/
 cloud/ocibench.py down --bucket   # delete everything, the bucket with it
 ```
 
@@ -88,9 +89,14 @@ SDK's `crc32c` has no wheel for 3.15) and an API key in `~/.oci/config`
   (three days) and a container instance from `golang:1.27.0-trixie`, pinned by
   digest. The container clones the repository at that commit and runs
   `cloud/oci-entry.sh` from it, which runs `./reproduce.sh --vm`: it fetches and
-  verifies the datasets itself, as on any clean machine. Every ten minutes it
-  uploads `progress.log`; at the end, the run directory as a tarball and the
-  exit status, whether the run succeeded or not.
+  verifies the datasets `--cases` names itself, as on any clean machine. Every
+  ten minutes it uploads `progress.log` and the run directory so far
+  (`<name>.partial.tar.gz`); at the end, the run directory and the exit status,
+  whether the run succeeded or not.
+- **status** and **fetch** find runs in the bucket and among the tagged
+  container instances, not in the state file. Nothing runs on the machine that
+  started a run: it can be switched off, and another machine with the same
+  `~/.oci/config` can follow and fetch the run.
 - **down** deletes the container instances (and any tagged ones the state file
   lost), the URLs and the network; `--bucket` empties and deletes the bucket.
 
@@ -106,8 +112,17 @@ uses every core: `--ocpus 8` shortens that stage and nothing else.
 
 ## What these runs are
 
-A container cannot set the frequency governor or turn turbo off: they are the
-host's. `reproduce.sh --vm` records them as warnings instead of refusing to
-start, so `cmd/summary` marks the run provisional. Other tenants share the
-host's L3 cache and memory bandwidth. These are runs on other machines,
-reported apart from the paper's, never pooled with it.
+The paper's timings come from such a run. An E4 OCPU is a dedicated physical
+core, but a container cannot set the frequency governor or turn boost off:
+they are the host's, and the host's other tenants, who share its L3 cache and
+memory bandwidth, change how far it boosts. So `reproduce.sh --vm` records
+`frequency control: host` instead of refusing to start, and the run carries
+its own evidence instead:
+
+- colbinbench takes each case's samples in rounds, every format and operation
+  once per round, so a change of clock falls on all of them alike;
+- before every round it times a chain of dependent multiplies on the measured
+  core (`cmd/colbinbench/probe.go`), which gives the clock the core ran at:
+  `probe-bench-*.csv`, summarised in `SUMMARY.md` and as `probe.*` numbers;
+- the web cases are timed twice, and the paper reports how far the ratios
+  moved between the passes.

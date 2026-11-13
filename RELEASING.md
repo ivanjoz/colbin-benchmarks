@@ -55,28 +55,30 @@ using colbin API newer than the required tag:
 
 ### 2. Freeze the numbers (**manual**)
 
-1. Prepare the measurement machine: mains power, the `performance` governor,
-   turbo off, no desktop session, nothing else running. `reproduce.sh` refuses
-   to start otherwise, and says which command fixes each.
+1. The paper's machine is an OCI container instance (`cloud/README.md`):
+   x86, `CI.Standard.E4.Flex`, 4 OCPU, 32 GB. The commit to be tagged must be
+   pushed: the container clones it from GitHub. Nothing runs on the machine
+   that starts it.
 
    ```sh
-   sudo cpupower frequency-set -g performance
-   echo 0 | sudo tee /sys/devices/system/cpu/cpufreq/boost            # amd-pstate, acpi-cpufreq
-   echo 1 | sudo tee /sys/devices/system/cpu/intel_pstate/no_turbo    # intel_pstate
+   cloud/ocibench.py up
+   cloud/ocibench.py run --label paper-v1
+   cloud/ocibench.py status                 # until reproduce.sh has exited
+   cloud/ocibench.py fetch
+   mv results/cloud/oci/oci-x86-paper-v1-* results/paper-v1
    ```
 
-2. From a clean checkout of the commit to be tagged (no uncommitted change, no
-   `go.work` in use), run the whole matrix. About ten hours on the Ryzen 7
-   5700U; a run that stops continues with `--resume`.
-
-   ```sh
-   ./reproduce.sh --out results/paper-v1
-   ```
+2. On a local machine instead (`./reproduce.sh --out results/paper-v1`), it
+   needs mains power, the `performance` governor, turbo off, nothing else
+   running; `reproduce.sh` refuses to start otherwise and says which command
+   fixes each. A run that stops continues with `--resume`.
 
 3. Read `results/paper-v1/SUMMARY.md` and `machine.txt`. The run is the
    paper's only if `machine.txt` has no `WARNING` line and there is no `FAILED`
    file; otherwise `tables/numbers.tex` marks it provisional and the paper
-   prints that on its first page.
+   prints that on its first page. On a cloud run, also read the probe
+   (`SUMMARY.md`, "The measured cores' clock"): no case's clock should have
+   moved by much more than the differences the paper reports.
 4. Build the paper on those numbers, and read every blue `[check: …]` mark
    against them: each is a sentence whose wording depends on which way a number
    fell. Fix the sentence, delete the mark, and when none is left set

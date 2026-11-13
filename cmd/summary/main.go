@@ -246,6 +246,9 @@ func run(dir, wasmPath string) error {
 		p("```")
 		p("")
 	}
+	if err := writeProbe(p, dir); err != nil {
+		return err
+	}
 
 	sizes, err := readSizes(filepath.Join(dir, "sizes.csv"))
 	if err != nil && !os.IsNotExist(err) {

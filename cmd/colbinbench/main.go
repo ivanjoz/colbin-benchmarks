@@ -88,6 +88,7 @@ func main() {
 		against = flag.String("baseline", "", "another build of colbinbench to run in turns with this one")
 		abDir   = flag.String("ab", "ab", "with -baseline, where old.txt and new.txt go")
 		rounds  = flag.Int("rounds", 5, "with -baseline, how many turns each build takes")
+		probe   = flag.String("probe", "", "append each case's core clock, taken before every round of samples and after the last, to this CSV file (probe.go)")
 		worker  = flag.String("worker", "", "internal: run one case in this process")
 		list    = flag.Bool("list", false, "print each fetched case of -cases with its regime and rows, and exit")
 	)
@@ -95,7 +96,7 @@ func main() {
 	os.Setenv("COLBIN_DATA", *data)
 
 	if *worker != "" {
-		if err := work(*worker, formatList(*formatF), split(*ops), *count, *sample, *profile); err != nil {
+		if err := work(*worker, formatList(*formatF), split(*ops), *count, *sample, *profile, *probe); err != nil {
 			fmt.Fprintln(os.Stderr, "colbinbench:", *worker+":", err)
 			os.Exit(1)
 		}
@@ -276,14 +277,14 @@ func workerFlags(count int) []string {
 	out := []string{"-count=" + strconv.Itoa(count)}
 	flag.Visit(func(f *flag.Flag) {
 		switch f.Name {
-		case "formats", "ops", "sample", "data", "cpuprofile":
+		case "formats", "ops", "sample", "data", "cpuprofile", "probe":
 			out = append(out, "-"+f.Name+"="+f.Value.String())
 		}
 	})
 	return out
 }
 
-func work(name string, formatNames, ops []string, count int, sample time.Duration, profile string) error {
+func work(name string, formatNames, ops []string, count int, sample time.Duration, profile, probePath string) error {
 	var found *matrix.Case
 	for _, c := range matrix.Cases() {
 		if c.Name == name {
@@ -344,14 +345,24 @@ func work(name string, formatNames, ops []string, count int, sample time.Duratio
 		}
 		runners = append(runners, prepared...)
 	}
-	for range count {
+	clock, err := newProber(probePath, name)
+	if err != nil {
+		return err
+	}
+	for round := range count {
+		if err := clock.probe(round); err != nil {
+			return err
+		}
 		for _, r := range runners {
 			if err := r.measure(out, sample, loaded.Rows); err != nil {
 				return fmt.Errorf("%s: %s: %w", r.instance.Format, r.op, err)
 			}
 		}
 	}
-	return nil
+	if err := clock.probe(count); err != nil {
+		return err
+	}
+	return clock.close()
 }
 
 // runner is one format's one operation on a case.

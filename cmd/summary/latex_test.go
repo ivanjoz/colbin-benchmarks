@@ -38,6 +38,13 @@ tpch/sf0.1/region,tpch,web,threshold,2,110,55
 tpch/sf0.1/region,tpch,web,codec,auto,100,50
 tpch/sf0.1/region,tpch,web,codec,raw,200,60
 `)
+	// The clock: steady on one case, 10 % slower in one round of the other.
+	write("probe-bench-web.csv", `case,round,ns_per_multiply,mhz
+tpch/sf0.1/region,0,1.0,3000
+tpch/sf0.1/region,1,1.0,3000
+schemastore/empty,0,1.0,3000
+schemastore/empty,1,1.1,2727
+`)
 	sizes, err := readSizes(filepath.Join(dir, "sizes.csv"))
 	if err != nil {
 		t.Fatal(err)
@@ -69,6 +76,10 @@ tpch/sf0.1/region,tpch,web,codec,raw,200,60
 		`\resultdef{ablation.threshold.web.tpch.2.raw}{1.100}`,
 		`\resultdef{ablation.codec.web.tpch.raw.gzip}{1.200}`,
 		`\resultdef{repeat.within3}{100.0}`,
+		`\resultdef{probe.web.cases}{2}`,
+		`\resultdef{probe.web.mhz.median}{3000}`,
+		`\resultdef{probe.web.spread.max}{10.0}`,
+		`\resultdef{probe.web.spread.over5}{1}`,
 		`\resultdef{machine.cpu}{Test CPU}`,
 		`\resultdef{machine.colbin-version}{v0.12.0}`,
 		`\resultdef{provisional}{--no-checks: a smoke test}`,

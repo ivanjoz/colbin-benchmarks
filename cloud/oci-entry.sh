@@ -6,14 +6,20 @@
 # to an Object Storage bucket through a write-only pre-authenticated URL:
 #
 #   <NAME>.progress.log      every ten minutes while it runs, and at the end
+#   <NAME>.partial.tar.gz    the run directory so far, every ten minutes
 #   <NAME>.results.tar.gz    the run directory, at the end, whatever happened
 #   <NAME>.exit              reproduce.sh's exit status, last
+#
+# Nothing depends on the machine that started it: if the container dies, what
+# it measured up to the last ten minutes is in the bucket, and
+# `reproduce.sh --resume` on it goes on from there.
 #
 # The container has no other way out: no ingress, no credentials. Environment:
 #   PAR         the pre-authenticated URL, ending in /o/
 #   NAME        the prefix of every object, and the run directory's name
 #   REPRO_ARGS  extra arguments for reproduce.sh (split on spaces); --vm is
 #               always passed: a container cannot set the governor or turbo
+#   EVERY       seconds between uploads while it runs, default 600
 set -uo pipefail
 : "${PAR:?}" "${NAME:?}"
 
@@ -36,8 +42,10 @@ apt-get -qq update >/dev/null && apt-get -qq install -y --no-install-recommends 
 export GOTOOLCHAIN=auto
 
 (
-	while sleep 600; do
-		[ -f "$out/progress.log" ] && put "$out/progress.log" progress.log
+	while sleep "${EVERY:-600}"; do
+		[ -f "$out/progress.log" ] || continue
+		put "$out/progress.log" progress.log
+		tar -czf /tmp/partial.tar.gz -C "$repo/results" "$NAME" 2>/dev/null && put /tmp/partial.tar.gz partial.tar.gz
 	done
 ) &
 uploader=$!
