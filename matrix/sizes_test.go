@@ -169,6 +169,13 @@ func check(t *testing.T, instance formats.Instance, loaded *Loaded) ([]byte, str
 		return nil, "encode error: " + err.Error()
 	}
 	encoded = bytes.Clone(encoded) // Encode may hand back its own buffer
+	if encoded == nil {
+		// A nil encoding means "no bytes for this format" to the caller, so a
+		// message that is validly empty (protobuf-go's Marshal of a message
+		// whose fields are all defaults returns nil) has to be told apart from
+		// it: it is 0 bytes, like colbin's empty message, not a missing size.
+		encoded = []byte{}
+	}
 	if err := instance.DecodeFresh(encoded); err != nil {
 		t.Errorf("%s: decode: %v", instance.Format, err)
 		return nil, "decode error: " + err.Error()
