@@ -2,8 +2,9 @@ package main
 
 // The clock the measured cores ran at, from colbinbench's probe (probe-*.csv,
 // cmd/colbinbench/probe.go): one line per case and round, the time per
-// multiply of a dependent chain and, where the multiplier's latency is known,
-// the clock in MHz. On a VM the host sets the clock, so this is the evidence
+// multiply of a dependent chain; where the multiplier's latency is known, the
+// clock that implies; and where the core's cycle counter could be read, the
+// cycles the chain took and the clock the hardware counted. On a VM the host sets the clock, so this is the evidence
 // of how far it moved: over the run, and within each case, whose formats are
 // compared against each other.
 
@@ -28,6 +29,8 @@ var probeStages = []struct{ key, file string }{
 type probeStats struct {
 	cases, probes int
 	mhz           []float64 // sorted; empty where the latency is unknown
+	counted       []float64 // sorted, MHz from the cycle counter; empty without one
+	perMultiply   []float64 // sorted, counted cycles per multiply
 	spread        []float64 // per case, sorted: slowest probe over fastest, minus 1
 }
 
@@ -45,7 +48,7 @@ func readProbe(path string) (*probeStats, error) {
 	byCase := map[string][]float64{}
 	var order []string
 	for _, record := range records {
-		if len(record) != 4 {
+		if len(record) < 4 {
 			continue
 		}
 		ns, err := strconv.ParseFloat(record[2], 64)
@@ -60,6 +63,14 @@ func readProbe(path string) (*probeStats, error) {
 		if mhz, err := strconv.ParseFloat(record[3], 64); err == nil {
 			stats.mhz = append(stats.mhz, mhz)
 		}
+		if len(record) >= 6 {
+			if cycles, err := strconv.ParseFloat(record[4], 64); err == nil {
+				stats.perMultiply = append(stats.perMultiply, cycles)
+			}
+			if mhz, err := strconv.ParseFloat(record[5], 64); err == nil {
+				stats.counted = append(stats.counted, mhz)
+			}
+		}
 	}
 	for _, name := range order {
 		values := byCase[name]
@@ -67,6 +78,8 @@ func readProbe(path string) (*probeStats, error) {
 	}
 	stats.cases = len(order)
 	slices.Sort(stats.mhz)
+	slices.Sort(stats.counted)
+	slices.Sort(stats.perMultiply)
 	slices.Sort(stats.spread)
 	if stats.probes == 0 {
 		return nil, nil
@@ -93,6 +106,8 @@ func over(sorted []float64, bound float64) int {
 // latexProbe writes probe.<stage>.* into numbers.tex:
 //
 //	mhz.p5, mhz.median, mhz.p95    the clock over every probe of the stage
+//	counted-mhz.*                  the same, from the cycle counter
+//	cycles-per-multiply            counted, median: 3 where the latency holds
 //	spread.median, .p90, .max      per case, slowest probe over fastest (%)
 //	spread.over5, cases            the cases whose clock moved more than 5 %
 func latexProbe(out *latexOut, dir string) error {
@@ -112,6 +127,15 @@ func latexProbe(out *latexOut, dir string) error {
 			}{{"p5", 0.05}, {"median", 0.5}, {"p95", 0.95}} {
 				out.def(key+"mhz."+q.name, strconv.FormatFloat(at(stats.mhz, q.q), 'f', 0, 64))
 			}
+		}
+		if len(stats.counted) > 0 {
+			for _, q := range []struct {
+				name string
+				q    float64
+			}{{"p5", 0.05}, {"median", 0.5}, {"p95", 0.95}} {
+				out.def(key+"counted-mhz."+q.name, strconv.FormatFloat(at(stats.counted, q.q), 'f', 0, 64))
+			}
+			out.def(key+"cycles-per-multiply", strconv.FormatFloat(at(stats.perMultiply, 0.5), 'f', 2, 64))
 		}
 		percent := func(value float64) string { return strconv.FormatFloat(100*value, 'f', 1, 64) }
 		out.def(key+"spread.median", percent(at(stats.spread, 0.5)))
@@ -134,11 +158,14 @@ func writeProbe(p func(string, ...any), dir string) error {
 		if err != nil {
 			return err
 		}
-		clock := "n/a"
+		clock, counted := "n/a", "n/a"
 		if len(stats.mhz) > 0 {
 			clock = fmt.Sprintf("%.0f / %.0f / %.0f", at(stats.mhz, 0.05), at(stats.mhz, 0.5), at(stats.mhz, 0.95))
 		}
-		rows = append(rows, fmt.Sprintf("| %s | %d | %s | %.1f %% | %.1f %% | %.1f %% | %d |", stage.key, stats.cases, clock,
+		if len(stats.counted) > 0 {
+			counted = fmt.Sprintf("%.0f / %.0f / %.0f (%.2f cycles a multiply)", at(stats.counted, 0.05), at(stats.counted, 0.5), at(stats.counted, 0.95), at(stats.perMultiply, 0.5))
+		}
+		rows = append(rows, fmt.Sprintf("| %s | %d | %s | %s | %.1f %% | %.1f %% | %.1f %% | %d |", stage.key, stats.cases, clock, counted,
 			100*at(stats.spread, 0.5), 100*at(stats.spread, 0.9), 100*stats.spread[len(stats.spread)-1], over(stats.spread, 0.05)))
 	}
 	if len(rows) == 0 {
@@ -148,10 +175,12 @@ func writeProbe(p func(string, ...any), dir string) error {
 	p("")
 	p("Taken before every round of samples of each case, and after the last. The")
 	p("spread of a case is its slowest probe over its fastest: how far the clock")
-	p("moved while its formats were measured against each other.")
+	p("moved while its formats were measured against each other. MHz is inferred")
+	p("from the multiplier's latency; counted MHz is the core's cycle counter, where")
+	p("the kernel lets it be read.")
 	p("")
-	p("| timings | cases | MHz p5 / median / p95 | spread, median | p90 | max | cases over 5 %% |")
-	p("|---|---:|---:|---:|---:|---:|---:|")
+	p("| timings | cases | MHz p5 / median / p95 | counted MHz | spread, median | p90 | max | cases over 5 %% |")
+	p("|---|---:|---:|---:|---:|---:|---:|---:|")
 	for _, row := range rows {
 		p("%s", row)
 	}

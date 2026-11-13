@@ -228,6 +228,7 @@ func latexMachine(out *latexOut, dir string) (provisional []string) {
 		return []string{"no machine.txt"}
 	}
 	fields := map[string]string{}
+	var warnings []string
 	head := true
 	for line := range strings.SplitSeq(string(machine), "\n") {
 		if strings.HasPrefix(line, "== ") {
@@ -237,7 +238,7 @@ func latexMachine(out *latexOut, dir string) (provisional []string) {
 			fields["cpu"] = strings.TrimSpace(strings.TrimPrefix(line, "Model name:"))
 		}
 		if strings.HasPrefix(line, "WARNING: ") {
-			provisional = append(provisional, strings.TrimPrefix(line, "WARNING: "))
+			warnings = append(warnings, strings.TrimPrefix(line, "WARNING: "))
 		}
 		key, value, ok := strings.Cut(line, ": ")
 		if !head || !ok || key == "WARNING" {
@@ -264,6 +265,17 @@ func latexMachine(out *latexOut, dir string) (provisional []string) {
 	sort.Strings(keys)
 	for _, key := range keys {
 		out.def("machine."+key, fields[key])
+	}
+	for _, warning := range warnings {
+		// On a VM (reproduce.sh --vm) the clock is the host's and cpufreq is
+		// often not there to read; the probe measures the clock instead.
+		// reproduce.sh records that as a host setting now; runs from before
+		// it did wrote these two as warnings.
+		if fields["frequency-control"] == "host" && (strings.Contains(warning, "has no cpufreq governor to check") ||
+			strings.HasPrefix(warning, "turbo: no intel_pstate/no_turbo or cpufreq/boost to read")) {
+			continue
+		}
+		provisional = append(provisional, warning)
 	}
 	if strings.Contains(fields["colbin"], "go.work") {
 		provisional = append(provisional, "colbin built from a local checkout through go.work, not from the tag go.mod requires")

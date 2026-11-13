@@ -38,12 +38,13 @@ tpch/sf0.1/region,tpch,web,threshold,2,110,55
 tpch/sf0.1/region,tpch,web,codec,auto,100,50
 tpch/sf0.1/region,tpch,web,codec,raw,200,60
 `)
-	// The clock: steady on one case, 10 % slower in one round of the other.
-	write("probe-bench-web.csv", `case,round,ns_per_multiply,mhz
-tpch/sf0.1/region,0,1.0,3000
-tpch/sf0.1/region,1,1.0,3000
-schemastore/empty,0,1.0,3000
-schemastore/empty,1,1.1,2727
+	// The clock: steady on one case, 10 % slower in one round of the other;
+	// counted by the cycle counter on all but one probe.
+	write("probe-bench-web.csv", `case,round,ns_per_multiply,mhz,cycles_per_multiply,counted_mhz
+tpch/sf0.1/region,0,1.0,3000,3.000,3000
+tpch/sf0.1/region,1,1.0,3000,3.000,3000
+schemastore/empty,0,1.0,3000,3.000,3000
+schemastore/empty,1,1.1,2727,,
 `)
 	sizes, err := readSizes(filepath.Join(dir, "sizes.csv"))
 	if err != nil {
@@ -80,6 +81,8 @@ schemastore/empty,1,1.1,2727
 		`\resultdef{probe.web.mhz.median}{3000}`,
 		`\resultdef{probe.web.spread.max}{10.0}`,
 		`\resultdef{probe.web.spread.over5}{1}`,
+		`\resultdef{probe.web.counted-mhz.median}{3000}`,
+		`\resultdef{probe.web.cycles-per-multiply}{3.00}`,
 		`\resultdef{machine.cpu}{Test CPU}`,
 		`\resultdef{machine.colbin-version}{v0.12.0}`,
 		`\resultdef{provisional}{--no-checks: a smoke test}`,

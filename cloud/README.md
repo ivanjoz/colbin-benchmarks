@@ -123,6 +123,13 @@ its own evidence instead:
   once per round, so a change of clock falls on all of them alike;
 - before every round it times a chain of dependent multiplies on the measured
   core (`cmd/colbinbench/probe.go`), which gives the clock the core ran at:
-  `probe-bench-*.csv`, summarised in `SUMMARY.md` and as `probe.*` numbers;
+  `probe-bench-*.csv`, summarised in `SUMMARY.md` and as `probe.*` numbers.
+  Nothing else in the container measures the clock: no cpufreq, no
+  APERF/MPERF, a TSC at the nominal 2.45 GHz whatever the core does, and
+  `perf_event_open` denied by the runtime although KVM exposes the core's
+  cycle counter (`perfctr_core`; checked 2026-11-13). Where the counter can be
+  read (a VM or a machine of one's own), the probe also counts the chain's
+  cycles: the clock as the hardware counts it, and a check that a multiply is
+  3 cycles (`counted_mhz`, `cycles_per_multiply`);
 - the web cases are timed twice, and the paper reports how far the ratios
   moved between the passes.

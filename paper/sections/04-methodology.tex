@@ -198,7 +198,11 @@ every round of a case's samples, the harness times a chain of dependent
 64-bit multiplies on the measured core, which runs at one multiply per three
 cycles on this processor. Over the first web pass the clock was between
 \result{probe.web.mhz.p5} and \result{probe.web.mhz.p95}\,MHz (5th and 95th
-percentiles; median \result{probe.web.mhz.median}). Within a case, which is
+percentiles; median \result{probe.web.mhz.median}). The container exposes no other measure of the
+clock: no frequency driver, no APERF/MPERF counters, a time-stamp counter
+that runs at the nominal frequency, and no access to the cycle counter. The
+absolute clock rests on the multiplier's documented latency; the variation,
+which is what the ratios depend on, does not. Within a case, which is
 what a ratio between two formats depends on, the slowest probe was within
 \result{probe.web.spread.median}\,\% of the fastest for the median case and
 within \result{probe.web.spread.p90}\,\% for nine cases in ten;

@@ -399,7 +399,7 @@ sampler_stop() {
 header() { echo "cpu: $(lscpu | sed -n 's/^Model name: *//p' | head -1)"; }
 # colbinbench appends each case's core clock, before every round of samples,
 # to probe-<file>.csv (cmd/colbinbench/probe.go).
-probe_header="case,round,ns_per_multiply,mhz"
+probe_header="case,round,ns_per_multiply,mhz,cycles_per_multiply,counted_mhz"
 bench_flags=(-data "$data" -formats "$formats" -ops "$ops" -count "$count" -sample "$sample")
 
 timings_web() { # pass
