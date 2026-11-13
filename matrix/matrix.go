@@ -142,7 +142,7 @@ func NotFetched(err error) bool { return errors.Is(err, errNotFetched) }
 
 // Selected says whether $COLBIN_CASES selects the case: a comma-separated list
 // of case names or path.Match globs ("publicbi/*"). Unset, every case is
-// selected. bench/local.sh uses it to run the bulk cases one process at a time.
+// selected. reproduce.sh uses it to run the bulk cases one process at a time.
 func Selected(c Case) bool {
 	patterns := os.Getenv("COLBIN_CASES")
 	if patterns == "" {

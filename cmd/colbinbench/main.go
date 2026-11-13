@@ -27,19 +27,20 @@
 //	go build -tags purego -o /tmp/cb-purego ./cmd/colbinbench
 //	/tmp/cb-asm -baseline /tmp/cb-purego -ab /tmp/ab
 //
-// The numbers are for comparing two builds of colbin with each other, not for
-// reporting: the cores are this laptop's efficiency cores, run side by side. A
-// case is always pinned to the same core, so a before and an after of one case
-// ran on the same hardware. The paper's numbers come from matrix/ under
-// reproduce.sh.
+// Run with its defaults, the numbers are for comparing two builds of colbin
+// with each other, not for reporting: the default cores are the efficiency
+// cores of the laptop colbin is developed on, run side by side, and the
+// default cases a handful. A case is always pinned to the same core, so a
+// before and an after of one case ran on the same hardware.
 //
 // Formats other than colbin are a reference that does not move between runs,
 // so they are off unless asked for: -formats colbin,msgpack,vtprotobuf, or
 // -formats all.
 //
-// bench/local.sh runs the whole matrix through it on the performance cores:
-// -cases takes globs ("publicbi/*", or "all"), -list prints each case's
-// regime, and -ops access adds the access aggregate where a case has one.
+// The paper's timings come from this command too, run by reproduce.sh with
+// every case and format on the cores it picks: -cases takes globs
+// ("publicbi/*", or "all"), -list prints each case's regime, and -ops access
+// adds the access aggregate where a case has one.
 package main
 
 import (
@@ -183,7 +184,7 @@ func expand(patterns []string) ([]string, error) {
 
 // listCases loads each case in turn and prints "name regime rows", one per
 // line; a case whose data is not fetched is reported on stderr and left out.
-// bench/local.sh splits the run by regime from this.
+// reproduce.sh splits the run by regime from this.
 func listCases(names []string) error {
 	byName := map[string]matrix.Case{}
 	for _, c := range matrix.Cases() {
