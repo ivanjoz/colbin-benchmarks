@@ -50,9 +50,13 @@ export GOTOOLCHAIN=auto
 ) &
 uploader=$!
 
-# shellcheck disable=SC2086 # REPRO_ARGS is a list of words
+# REPRO_ARGS is a list of words, split but not globbed: --cases 'tpch/*'
+# must reach reproduce.sh as it was written.
+set -f
+# shellcheck disable=SC2086
 ./reproduce.sh --vm --out "$out" ${REPRO_ARGS:-} >"$log" 2>&1
 status=$?
+set +f
 kill "$uploader" 2>/dev/null
 
 mkdir -p "$out"
