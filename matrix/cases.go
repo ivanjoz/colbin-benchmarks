@@ -117,6 +117,9 @@ func tpcdsCase[T any](table string, adapters func() formats.Adapters[T]) Case {
 		Name: "tpcds/sf0.1/" + table, Dataset: "tpcds", Timed: true,
 		Fetch: "datasets/tpcds/fetch.sh",
 		Load: func(data string) (*Loaded, error) {
+			if err := missing(tpcds.File(data, table)); err != nil {
+				return nil, err
+			}
 			var value T
 			rows := reflect.ValueOf(&value).Elem().FieldByName("Rows")
 			if err := tpcds.LoadRows(data, table, rows); err != nil {

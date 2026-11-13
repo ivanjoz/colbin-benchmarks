@@ -4,8 +4,8 @@ import (
 	"reflect"
 
 	"github.com/ivanjoz/colbin-benchmarks/datasets/schemastore"
-	"github.com/ivanjoz/colbin-benchmarks/datasets/tpch"
 	"github.com/ivanjoz/colbin-benchmarks/datasets/tpcds"
+	"github.com/ivanjoz/colbin-benchmarks/datasets/tpch"
 )
 
 // targets is every dataset package and the root types measured from it. A new

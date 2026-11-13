@@ -42,6 +42,12 @@ func TestDictCheck(t *testing.T) {
 		if !reflect.DeepEqual(wantV.Interface(), gotV.Interface()) {
 			t.Fatalf("%s: decodes differently with dictionaries", kase.Name)
 		}
+		if len(off) == 0 || len(on) == 0 {
+			// A document whose values are all defaults is 0 bytes either way:
+			// no flag byte to read and no ratio to take.
+			t.Logf("%-40s off %10d  on %10d  (empty message)", kase.Name, len(off), len(on))
+			continue
+		}
 		ratio := float64(len(on)) / float64(len(off))
 		logSum += math.Log(ratio)
 		cases++

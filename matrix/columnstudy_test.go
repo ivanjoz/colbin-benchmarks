@@ -97,8 +97,8 @@ func TestColumnStudy(t *testing.T) {
 	var all, message int
 	var stringsNow, stringsDict, stringsLengths, stringsBest, stringsBestNoLengths int
 	type caseLine struct {
-		name                       string
-		message, strs, best        int
+		name                string
+		message, strs, best int
 	}
 	var lines []caseLine
 	for _, kase := range Cases() {
@@ -153,6 +153,9 @@ func TestColumnStudy(t *testing.T) {
 		}
 		lines = append(lines, line)
 	}
+	if len(lines) == 0 {
+		t.Skip("no Public BI table fetched — run datasets/publicbi/fetch.sh")
+	}
 	t.Logf("messages %d bytes; the columns one by one %d", message, all)
 	kinds := make([]string, 0, len(totals))
 	for kind := range totals {
@@ -174,7 +177,7 @@ func TestColumnStudy(t *testing.T) {
 	t.Logf("best of now/dictionary %d; lengths as a column on top saves %.2f%% of all", stringsBestNoLengths,
 		100*float64(stringsBestNoLengths-stringsBest)/float64(all))
 	sort.Slice(lines, func(i, j int) bool { return lines[i].strs-lines[i].best > lines[j].strs-lines[j].best })
-	for _, l := range lines[:12] {
+	for _, l := range lines[:min(12, len(lines))] {
 		t.Logf("%-28s message %9d  strings %9d  best %9d  (%.0f%% of the message saved)", l.name, l.message, l.strs, l.best,
 			100*float64(l.strs-l.best)/float64(l.message))
 	}

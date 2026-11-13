@@ -64,8 +64,10 @@ func must(data []byte, err error) []byte {
 }
 
 // appendReading is what codec.Generate emits, and what a hot path should run.
+// No root byte: since colbin v0.10 a typed message has one only when its key
+// run begins in the root range 0xD0..0xDF, and this one begins with key 1.
 func appendReading(dst []byte, v *Reading) []byte {
-	w := wire.Writer{Buffer: append(dst, 0xD0)}
+	w := wire.Writer{Buffer: dst}
 	w.Uint(1, v.SensorID)
 	w.Int(2, v.Timestamp)
 	w.F64(3, v.Value)
@@ -77,7 +79,7 @@ func appendReading(dst []byte, v *Reading) []byte {
 
 func readReading(data []byte, v *Reading) error {
 	*v = Reading{}
-	r := wire.NewReader(data[1:])
+	r := wire.NewReader(data)
 	for r.More() {
 		switch r.Key() {
 		case 1:

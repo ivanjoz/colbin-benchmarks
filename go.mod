@@ -15,7 +15,7 @@ require (
 	github.com/fxamacker/cbor/v2 v2.9.6
 	github.com/google/flatbuffers v25.12.19+incompatible
 	github.com/hamba/avro/v2 v2.31.0
-	github.com/ivanjoz/colbin v0.6.3
+	github.com/ivanjoz/colbin v0.12.0
 	github.com/klauspost/compress v1.19.2
 	github.com/planetscale/vtprotobuf v0.6.0
 	github.com/tinylib/msgp v1.6.5
