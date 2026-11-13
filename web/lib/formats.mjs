@@ -16,6 +16,8 @@
 // Nothing here is timed; the page times these functions as they are.
 
 import { Codec } from 'colbin/asset'
+// The plain-JavaScript decoder: no WebAssembly module in the page.
+import { Decoder } from 'colbin/decode'
 import { Unpackr } from 'msgpackr/unpack'
 import { tableFromIPC, Vector, DataType } from 'apache-arrow'
 import { canonicalKey } from './equal.mjs'
@@ -175,6 +177,38 @@ export const formats = [
       return sum ?? sumPath(state.codec.unmarshal(bytes), state.path)
     },
     path: (state) => state.codec.lastPath,
+  },
+  {
+    // colbin decoded in plain JavaScript (colbin/decode): no module to compile,
+    // the same bytes and the same once-per-connection section as `colbin`.
+    name: 'colbin',
+    label: 'colbin-js',
+    open: async () => null,
+    prepare: async (_, files) => {
+      const decoder = new Decoder()
+      decoder.setSchema(files.schema)
+      return { decoder }
+    },
+    decode: (state, bytes) => state.decoder.decode(bytes),
+    columns: (state, bytes) => state.decoder.columns(bytes),
+    access: (state, bytes) => {
+      const table = tableFor(state.decoder.columns(bytes), state.path)
+      const sum = table && columnSum(table, state.path)
+      return sum ?? sumPath(state.decoder.decode(bytes), state.path)
+    },
+  },
+  {
+    name: 'colbin-json',
+    label: 'colbin-js-standalone',
+    open: async () => null,
+    prepare: async () => ({ decoder: new Decoder() }),
+    decode: (state, bytes) => state.decoder.decode(bytes),
+    columns: (state, bytes) => state.decoder.columns(bytes),
+    access: (state, bytes) => {
+      const table = tableFor(state.decoder.columns(bytes), state.path)
+      const sum = table && columnSum(table, state.path)
+      return sum ?? sumPath(state.decoder.decode(bytes), state.path)
+    },
   },
   {
     name: 'msgpack',
