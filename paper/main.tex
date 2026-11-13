@@ -1,0 +1,113 @@
+% colbin: the paper. Build with `make` in this directory (see Makefile).
+%
+% No number in this document is typed in. Tables are \resulttable{name}, which
+% reads tables/<name>.tex; a number in a sentence is \result{key}, defined in
+% tables/numbers.tex. Both are written by cmd/summary from one results
+% directory (`make RUN=../results/<run>` copies its tables/ here). A table or a
+% key the run does not have prints in red and warns in the log.
+\documentclass[10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=2.4cm]{geometry}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+\usepackage[hidelinks]{hyperref}
+\usepackage{url}
+\usepackage{placeins}
+
+% ---- results ---------------------------------------------------------------
+\makeatletter
+\newcommand{\tables}{tables}
+\newcommand{\resultdef}[2]{\expandafter\gdef\csname result@#1\endcsname{#2}}
+\DeclareRobustCommand{\result}[1]{%
+  \ifcsname result@#1\endcsname\csname result@#1\endcsname
+  \else\textcolor{red}{\texttt{[#1?]}}\PackageWarning{results}{no result '#1'}\fi}
+\newcommand{\resulttable}[1]{%
+  \IfFileExists{\tables/#1.tex}{\input{\tables/#1.tex}}%
+  {\fbox{\textcolor{red}{\texttt{\tables/#1.tex} is not in this run}}%
+   \PackageWarning{results}{no table '#1'}}}
+% A run that is not the paper's (cmd/summary says why) is announced on the
+% first page, so a draft built on a smoke test cannot pass for the result.
+\newcommand{\provisionalbanner}{%
+  \ifcsname result@provisional\endcsname
+    \expandafter\ifx\csname result@provisional\endcsname\empty\else
+      \begin{center}\fbox{\parbox{0.92\linewidth}{\small\textcolor{red}{\textbf{Provisional numbers.}}
+      The results in this draft are not the ones to publish:
+      \csname result@provisional\endcsname.}}\end{center}
+    \fi
+  \else
+    \begin{center}\fbox{\textcolor{red}{\textbf{No results:} run \texttt{make RUN=../results/<run>}.}}\end{center}
+  \fi}
+\makeatother
+\IfFileExists{\tables/numbers.tex}{\input{\tables/numbers.tex}}{}
+
+% A sentence whose wording depends on which way a number falls. Visible in a
+% draft; \finaltrue hides the marks once each has been read against the final
+% run.
+\newif\iffinal
+\finalfalse
+\newcommand{\recheck}[1]{\iffinal\else{\footnotesize\color{blue} [check: #1]}\fi}
+
+\newcommand{\colbin}{\textsf{colbin}}
+\newcommand{\fmt}[1]{\textsf{#1}}
+\newcommand{\code}[1]{\texttt{#1}}
+
+% Curves of the distribution figures: one per format, when the run has it.
+\newcommand{\distcurve}[3]{% style, file stem, legend
+  \IfFileExists{\tables/#2.dat}{\addplot+[#1, mark=none] table[x=ratio, y=fraction]{\tables/#2.dat};\addlegendentry{#3}}{}}
+
+\title{colbin: a binary serialization format that writes slices of structs as compressed columns}
+\author{Ivan J. Angulo}
+\date{}
+
+\begin{document}
+\maketitle
+\provisionalbanner
+
+\begin{abstract}
+Serialization formats for messages between services and clients encode a list
+of records row by row: JSON repeats every field name in every record, and
+Protocol Buffers, MessagePack and CBOR repeat a tag or a key. Columnar formats
+remove that repetition and compress each column with the transforms that suit
+it, but they are built for files and analytical batches, with schemas and
+metadata that outweigh a small message. \colbin{} is a binary serialization
+format that makes the choice per field and per value: a slice of structs of
+eight or more rows is written as a table of columns, each integer column
+through a per-column transform (raw, delta, frame of reference or constant)
+and bit-packing in byte-aligned blocks of 128 values, and everything else is
+written as a compact row format with one-byte field headers. The Go struct is
+the schema: there is no interface description file and no code generation
+step. We evaluate \colbin{} against \result{formats.baselines} other formats
+and implementations in Go on \result{cases.total} cases drawn from TPC-H, TPC-DS, the
+Public BI Benchmark and the SchemaStore corpus of Viotti and Kinderkhedia, in
+two regimes kept apart: messages of the size a web client receives, and bulk
+tables beyond it. In the web regime \colbin{} messages are
+\result{size.web.colbin.raw} of JSON's bytes as written and
+\result{size.web.colbin.br5} under brotli, and decode in
+\result{time.web.colbin.decode-fresh} of JSON's time; in the bulk regime,
+\result{size.bulk.colbin.raw}, \result{size.bulk.colbin.br5} and
+\result{time.bulk.colbin.decode-fresh}. We report where it loses: against Avro
+on small typed documents, against generated encoders on encode time for small
+messages, and against Arrow and FlatBuffers on access without decoding.%
+\recheck{the three losses named here}
+Every number regenerates from the tagged artifact with one command.
+\end{abstract}
+
+\input{sections/01-introduction}
+\input{sections/02-format}
+\input{sections/03-related-work}
+\input{sections/04-methodology}
+\input{sections/05-results}
+\input{sections/06-limitations}
+\input{sections/07-availability}
+
+\bibliographystyle{plain}
+\bibliography{related-work}
+
+\end{document}

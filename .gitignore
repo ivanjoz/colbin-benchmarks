@@ -28,8 +28,23 @@ lambda/build/
 lambda/results/
 __pycache__/
 
-# bench/local.sh and web/run.mjs output.
-results/
+# reproduce.sh, bench/local.sh and web/run.mjs output. Every run is ignored but
+# the paper's: a run written to results/paper-vN is the one the tag paper-vN
+# carries, committed as reproduce.sh left it (RELEASING.md, step 2).
+results/*
+!results/paper-v*/
+
+# The paper's build: main.pdf and LaTeX's files, and tables/, a copy of the
+# run's (make -C paper RUN=...).
+paper/tables/
+paper/build/
+paper/main.pdf
+paper/main.aux
+paper/main.bbl
+paper/main.blg
+paper/main.log
+paper/main.fls
+paper/main.fdb_latexmk
 
 # cmd/webfixtures output and the browser page bundle.
 web/fixtures/

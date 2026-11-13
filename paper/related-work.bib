@@ -1,0 +1,427 @@
+% related-work.bib -- bibliography for the colbin paper.
+% Plain BibTeX. Every field below was checked against the source named in the
+% comment above each entry; fields that could not be checked were left out.
+
+% ---------------------------------------------------------------------------
+% Serialization benchmarks
+% ---------------------------------------------------------------------------
+
+% Source: arXiv API (export.arxiv.org), 2201.03051v1, published 2022-01-09.
+@misc{viotti2022benchmark,
+  author        = {Viotti, Juan Cruz and Kinderkhedia, Mital},
+  title         = {A Benchmark of {JSON}-compatible Binary Serialization Specifications},
+  year          = {2022},
+  howpublished  = {arXiv preprint arXiv:2201.03051},
+  eprint        = {2201.03051},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.SE},
+  url           = {https://arxiv.org/abs/2201.03051}
+}
+
+% Source: arXiv API, 2201.02089v2, first published 2022-01-06.
+@misc{viotti2022survey,
+  author        = {Viotti, Juan Cruz and Kinderkhedia, Mital},
+  title         = {A Survey of {JSON}-compatible Binary Serialization Specifications},
+  year          = {2022},
+  howpublished  = {arXiv preprint arXiv:2201.02089},
+  eprint        = {2201.02089},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.DB},
+  url           = {https://arxiv.org/abs/2201.02089}
+}
+
+% Source: arXiv API, 2211.12799v1, published 2022-11-23.
+@misc{viotti2022binpack,
+  author        = {Viotti, Juan Cruz and Kinderkhedia, Mital},
+  title         = {Benchmarking {JSON} {BinPack}},
+  year          = {2022},
+  howpublished  = {arXiv preprint arXiv:2211.12799},
+  eprint        = {2211.12799},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.SE},
+  url           = {https://arxiv.org/abs/2211.12799}
+}
+
+% Source: Crossref record of the ACM DOI 10.1145/3466752.3480051.
+@inproceedings{karandikar2021protoacc,
+  author    = {Karandikar, Sagar and Leary, Chris and Kennelly, Chris and Zhao, Jerry and Parimi, Dinesh and Nikolic, Borivoje and Asanovic, Krste and Ranganathan, Parthasarathy},
+  title     = {A Hardware Accelerator for {P}rotocol {B}uffers},
+  booktitle = {{MICRO}-54: 54th Annual {IEEE/ACM} International Symposium on Microarchitecture},
+  pages     = {462--478},
+  publisher = {ACM},
+  year      = {2021},
+  doi       = {10.1145/3466752.3480051}
+}
+
+% ---------------------------------------------------------------------------
+% Integer compression
+% ---------------------------------------------------------------------------
+
+% Source: Crossref record of the Wiley DOI 10.1002/spe.2203.
+% Online 2013-05-28; printed in volume 45, issue 1, January 2015.
+@article{lemire2015simdbp128,
+  author  = {Lemire, D. and Boytsov, L.},
+  title   = {Decoding billions of integers per second through vectorization},
+  journal = {Software: Practice and Experience},
+  volume  = {45},
+  number  = {1},
+  pages   = {1--29},
+  year    = {2015},
+  doi     = {10.1002/spe.2203}
+}
+
+% Source: Crossref record of the Elsevier DOI 10.1016/j.ipl.2017.09.011.
+@article{lemire2018streamvbyte,
+  author  = {Lemire, Daniel and Kurz, Nathan and Rupp, Christoph},
+  title   = {Stream {VByte}: Faster byte-oriented integer compression},
+  journal = {Information Processing Letters},
+  volume  = {130},
+  pages   = {1--6},
+  year    = {2018},
+  doi     = {10.1016/j.ipl.2017.09.011}
+}
+
+% Source: Crossref record of the IEEE DOI 10.1109/ICDE.2006.150.
+% The record gives initials only and the single page 59.
+@inproceedings{zukowski2006pfor,
+  author    = {Zukowski, M. and Heman, S. and Nes, N. and Boncz, P.},
+  title     = {Super-Scalar {RAM-CPU} Cache Compression},
+  booktitle = {22nd International Conference on Data Engineering ({ICDE}'06)},
+  pages     = {59},
+  publisher = {IEEE},
+  year      = {2006},
+  doi       = {10.1109/ICDE.2006.150}
+}
+
+% Source: Crossref record of the VLDB DOI 10.14778/3598581.3598587.
+@article{afroozeh2023fastlanes,
+  author  = {Afroozeh, Azim and Boncz, Peter},
+  title   = {The {FastLanes} Compression Layout: Decoding {$>$}100 Billion Integers per Second with Scalar Code},
+  journal = {Proceedings of the VLDB Endowment},
+  volume  = {16},
+  number  = {9},
+  pages   = {2132--2144},
+  year    = {2023},
+  doi     = {10.14778/3598581.3598587}
+}
+
+% ---------------------------------------------------------------------------
+% Floating-point compression
+% ---------------------------------------------------------------------------
+
+% Source: Crossref record of the VLDB DOI 10.14778/2824032.2824078.
+@article{pelkonen2015gorilla,
+  author  = {Pelkonen, Tuomas and Franklin, Scott and Teller, Justin and Cavallaro, Paul and Huang, Qi and Meza, Justin and Veeraraghavan, Kaushik},
+  title   = {Gorilla: A Fast, Scalable, In-Memory Time Series Database},
+  journal = {Proceedings of the VLDB Endowment},
+  volume  = {8},
+  number  = {12},
+  pages   = {1816--1827},
+  year    = {2015},
+  doi     = {10.14778/2824032.2824078}
+}
+
+% Source: Crossref record of the VLDB DOI 10.14778/3551793.3551852.
+@article{liakos2022chimp,
+  author  = {Liakos, Panagiotis and Papakonstantinopoulou, Katia and Kotidis, Yannis},
+  title   = {Chimp: Efficient Lossless Floating Point Compression for Time Series Databases},
+  journal = {Proceedings of the VLDB Endowment},
+  volume  = {15},
+  number  = {11},
+  pages   = {3058--3070},
+  year    = {2022},
+  doi     = {10.14778/3551793.3551852}
+}
+
+% Source: Crossref record of the ACM DOI 10.1145/3626717.
+% Proc. ACM Manag. Data (PACMMOD) volume 1, issue 4, December 2023; this is
+% the SIGMOD 2024 issue. Article number not verified, so no pages are given.
+@article{afroozeh2023alp,
+  author  = {Afroozeh, Azim and Kuffo, Leonardo X. and Boncz, Peter},
+  title   = {{ALP}: Adaptive Lossless floating-Point Compression},
+  journal = {Proceedings of the ACM on Management of Data},
+  volume  = {1},
+  number  = {4},
+  year    = {2023},
+  doi     = {10.1145/3626717}
+}
+
+% ---------------------------------------------------------------------------
+% Columnar formats and nested data
+% ---------------------------------------------------------------------------
+
+% Source: Crossref record of the VLDB DOI 10.14778/1920841.1920886.
+@article{melnik2010dremel,
+  author  = {Melnik, Sergey and Gubarev, Andrey and Long, Jing Jing and Romer, Geoffrey and Shivakumar, Shiva and Tolton, Matt and Vassilakis, Theo},
+  title   = {Dremel: Interactive Analysis of Web-Scale Datasets},
+  journal = {Proceedings of the VLDB Endowment},
+  volume  = {3},
+  number  = {1-2},
+  pages   = {330--339},
+  year    = {2010},
+  doi     = {10.14778/1920841.1920886}
+}
+
+% Source: Crossref record of the ACM DOI 10.1145/3589263.
+% PACMMOD volume 1, issue 2, June 2023 (SIGMOD 2023). Article number not
+% verified, so no pages are given.
+@article{kuschewski2023btrblocks,
+  author  = {Kuschewski, Maximilian and Sauerwein, David and Alhomssi, Adnan and Leis, Viktor},
+  title   = {{BtrBlocks}: Efficient Columnar Compression for Data Lakes},
+  journal = {Proceedings of the ACM on Management of Data},
+  volume  = {1},
+  number  = {2},
+  year    = {2023},
+  doi     = {10.1145/3589263}
+}
+
+% Source: Crossref record of the VLDB DOI 10.14778/3626292.3626298.
+@article{zeng2023columnar,
+  author  = {Zeng, Xinyu and Hui, Yulong and Shen, Jiahong and Pavlo, Andrew and McKinney, Wes and Zhang, Huanchen},
+  title   = {An Empirical Evaluation of Columnar Storage Formats},
+  journal = {Proceedings of the VLDB Endowment},
+  volume  = {17},
+  number  = {2},
+  pages   = {148--161},
+  year    = {2023},
+  doi     = {10.14778/3626292.3626298}
+}
+
+% Source: Crossref record of the ACM DOI 10.1145/3448016.3452809.
+@inproceedings{durner2021jsontiles,
+  author    = {Durner, Dominik and Leis, Viktor and Neumann, Thomas},
+  title     = {{JSON} Tiles: Fast Analytics on Semi-Structured Data},
+  booktitle = {Proceedings of the 2021 International Conference on Management of Data ({SIGMOD} '21)},
+  pages     = {445--458},
+  publisher = {ACM},
+  year      = {2021},
+  doi       = {10.1145/3448016.3452809}
+}
+
+% Source: CIDR 2020 program, https://www.cidrdb.org/cidr2020/program.html
+% (January 12-15, 2020, Amsterdam). CIDR papers have no DOI or page numbers.
+@inproceedings{ghita2020whitebox,
+  author    = {Ghita, Bogdan and Tom{\'e}, Diego and Boncz, Peter},
+  title     = {White-box Compression: Learning and Exploiting Compact Table Representations},
+  booktitle = {Conference on Innovative Data Systems Research ({CIDR} 2020)},
+  year      = {2020},
+  url       = {https://www.cidrdb.org/cidr2020/papers/p4-ghita-cidr20.pdf}
+}
+
+% Source: Crossref record of the ACM DOI 10.1145/3209950.3209952.
+@inproceedings{vogelsgesang2018getreal,
+  author    = {Vogelsgesang, Adrian and Haubenschild, Michael and Finis, Jan and Kemper, Alfons and Leis, Viktor and Muehlbauer, Tobias and Neumann, Thomas and Then, Manuel},
+  title     = {Get Real: How Benchmarks Fail to Represent the Real World},
+  booktitle = {Proceedings of the Workshop on Testing Database Systems ({DBTest} '18)},
+  pages     = {1--6},
+  publisher = {ACM},
+  year      = {2018},
+  doi       = {10.1145/3209950.3209952}
+}
+
+% ---------------------------------------------------------------------------
+% Formats and specifications
+% ---------------------------------------------------------------------------
+
+% Source: https://protobuf.dev/ (page title "Protocol Buffers Documentation").
+@misc{protobuf,
+  author       = {{Google}},
+  title        = {Protocol Buffers Documentation},
+  howpublished = {\url{https://protobuf.dev/}}
+}
+
+% Source: https://flatbuffers.dev/ (page title "FlatBuffers Docs", repository google/flatbuffers).
+@misc{flatbuffers,
+  author       = {{Google}},
+  title        = {{FlatBuffers}},
+  howpublished = {\url{https://flatbuffers.dev/}}
+}
+
+% Source: https://capnproto.org/ (page title "Cap'n Proto: Introduction").
+@misc{capnproto,
+  author       = {Varda, Kenton},
+  title        = {{Cap'n Proto}},
+  howpublished = {\url{https://capnproto.org/}}
+}
+
+% Source: https://avro.apache.org/docs/++version++/specification/
+% (page title "Specification | Apache Avro").
+@misc{avro,
+  author       = {{Apache Software Foundation}},
+  title        = {{Apache Avro} Specification},
+  howpublished = {\url{https://avro.apache.org/docs/++version++/specification/}}
+}
+
+% Source: https://arrow.apache.org/docs/format/Columnar.html ("Arrow Columnar
+% Format"); the IPC format is at https://arrow.apache.org/docs/format/IPC.html.
+@misc{arrow,
+  author       = {{Apache Software Foundation}},
+  title        = {{Apache Arrow}: {Arrow} Columnar Format},
+  howpublished = {\url{https://arrow.apache.org/docs/format/Columnar.html}}
+}
+
+% Source: https://parquet.apache.org/docs/file-format/ ("File Format | Parquet").
+@misc{parquet,
+  author       = {{Apache Software Foundation}},
+  title        = {{Apache Parquet}: File Format},
+  howpublished = {\url{https://parquet.apache.org/docs/file-format/}}
+}
+
+% Source: spec.md in github.com/msgpack/msgpack (heading "MessagePack specification").
+@misc{msgpack,
+  author       = {{MessagePack}},
+  title        = {{MessagePack} specification},
+  howpublished = {\url{https://github.com/msgpack/msgpack/blob/master/spec.md}}
+}
+
+% Source for all RFCs: RFC Editor reference files,
+% https://www.rfc-editor.org/refs/bibxml/reference.RFC.<n>.xml
+
+@techreport{rfc8949,
+  author      = {Bormann, C. and Hoffman, P.},
+  title       = {Concise Binary Object Representation ({CBOR})},
+  type        = {{RFC}},
+  number      = {8949},
+  institution = {RFC Editor},
+  month       = dec,
+  year        = {2020},
+  doi         = {10.17487/RFC8949},
+  url         = {https://www.rfc-editor.org/info/rfc8949}
+}
+
+@techreport{rfc8259,
+  author      = {Bray, T.},
+  title       = {The {JavaScript} Object Notation ({JSON}) Data Interchange Format},
+  type        = {{RFC}},
+  number      = {8259},
+  institution = {RFC Editor},
+  month       = dec,
+  year        = {2017},
+  doi         = {10.17487/RFC8259},
+  url         = {https://www.rfc-editor.org/info/rfc8259}
+}
+
+@techreport{rfc7932,
+  author      = {Alakuijala, J. and Szabadka, Z.},
+  title       = {Brotli Compressed Data Format},
+  type        = {{RFC}},
+  number      = {7932},
+  institution = {RFC Editor},
+  month       = jul,
+  year        = {2016},
+  doi         = {10.17487/RFC7932},
+  url         = {https://www.rfc-editor.org/info/rfc7932}
+}
+
+@techreport{rfc8878,
+  author      = {Collet, Y. and Kucherawy, M.},
+  title       = {Zstandard Compression and the 'application/zstd' Media Type},
+  type        = {{RFC}},
+  number      = {8878},
+  institution = {RFC Editor},
+  month       = feb,
+  year        = {2021},
+  doi         = {10.17487/RFC8878},
+  url         = {https://www.rfc-editor.org/info/rfc8878}
+}
+
+@techreport{rfc1952,
+  author      = {Deutsch, P.},
+  title       = {{GZIP} file format specification version 4.3},
+  type        = {{RFC}},
+  number      = {1952},
+  institution = {RFC Editor},
+  month       = may,
+  year        = {1996},
+  doi         = {10.17487/RFC1952},
+  url         = {https://www.rfc-editor.org/info/rfc1952}
+}
+
+% ---------------------------------------------------------------------------
+% Go tooling
+% ---------------------------------------------------------------------------
+
+% Source: https://pkg.go.dev/encoding/gob (page title "gob package - encoding/gob").
+@misc{gob,
+  author       = {{The Go Authors}},
+  title        = {Package gob ({\texttt{encoding/gob}})},
+  howpublished = {\url{https://pkg.go.dev/encoding/gob}}
+}
+
+% Source: https://go.dev/blog/gob (byline "Rob Pike, 24 March 2011").
+@misc{pike2011gobs,
+  author       = {Pike, Rob},
+  title        = {Gobs of data},
+  howpublished = {The Go Blog, \url{https://go.dev/blog/gob}},
+  month        = mar,
+  year         = {2011}
+}
+
+% Source: https://github.com/planetscale/vtprotobuf (repository description).
+@misc{vtprotobuf,
+  author       = {{PlanetScale}},
+  title        = {vtprotobuf: A {Protocol Buffers} compiler that generates optimized marshaling and unmarshaling {Go} code for {ProtoBuf} {APIv2}},
+  howpublished = {\url{https://github.com/planetscale/vtprotobuf}}
+}
+
+% Source: https://pkg.go.dev/golang.org/x/perf/cmd/benchstat
+% (page title "benchstat command - golang.org/x/perf/cmd/benchstat").
+@misc{benchstat,
+  author       = {{The Go Authors}},
+  title        = {benchstat: computes statistical summaries and {A/B} comparisons of {Go} benchmarks},
+  howpublished = {\url{https://pkg.go.dev/golang.org/x/perf/cmd/benchstat}}
+}
+
+% ---------------------------------------------------------------------------
+% Benchmarks and datasets
+% ---------------------------------------------------------------------------
+
+% Source: title page of https://www.tpc.org/TPC_Documents_Current_Versions/pdf/TPC-H_v3.0.1.pdf
+% The title page carries a copyright range (1993-2022) but no release date, so no year is given.
+@misc{tpch,
+  author       = {{Transaction Processing Performance Council}},
+  title        = {{TPC Benchmark H} ({D}ecision {S}upport) Standard Specification, Revision 3.0.1},
+  howpublished = {\url{https://www.tpc.org/tpch/}}
+}
+
+% Source: title page of https://www.tpc.org/TPC_Documents_Current_Versions/pdf/TPC-DS_v4.0.0.pdf
+% ("Version 4.0.0, November, 2024").
+@misc{tpcds,
+  author       = {{Transaction Processing Performance Council}},
+  title        = {{TPC Benchmark DS} Standard Specification, Version 4.0.0},
+  howpublished = {\url{https://www.tpc.org/tpcds/}},
+  month        = nov,
+  year         = {2024}
+}
+
+% Source: the paper itself, https://www.vldb.org/conf/2006/p1049-othayoth.pdf
+% (footer "VLDB '06, September 12-15, 2006, Seoul, Korea"; pages 1049-1058).
+% The byline on the PDF reads "Raghunath Othayoth" and "Meikel Poess"; the
+% first author publishes as Raghunath Othayoth Nambiar.
+@inproceedings{nambiar2006tpcds,
+  author    = {Nambiar, Raghunath Othayoth and Poess, Meikel},
+  title     = {The Making of {TPC-DS}},
+  booktitle = {{VLDB} '06},
+  address   = {Seoul, Korea},
+  pages     = {1049--1058},
+  publisher = {VLDB Endowment},
+  year      = {2006},
+  url       = {https://www.vldb.org/conf/2006/p1049-othayoth.pdf}
+}
+
+% Source: https://www.schemastore.org/ (page title "SchemaStore | JSON Schema
+% Catalog for Editors and Tools").
+@misc{schemastore,
+  author       = {{SchemaStore}},
+  title        = {{SchemaStore}: {JSON} Schema Catalog for Editors and Tools},
+  howpublished = {\url{https://www.schemastore.org/}}
+}
+
+% Source: https://github.com/cwida/public_bi_benchmark (repository description
+% "BI benchmark with user generated data and queries"). The author is the
+% GitHub organization name as shown on the repository.
+@misc{publicbi,
+  author       = {{cwida}},
+  title        = {Public {BI} Benchmark: {BI} benchmark with user generated data and queries},
+  howpublished = {\url{https://github.com/cwida/public_bi_benchmark}}
+}

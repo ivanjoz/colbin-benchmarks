@@ -41,6 +41,17 @@ jobs:
         working-directory: colbin-benchmarks
         run: go vet ./...
 
+      # The ablation moves two of colbin's constants through go:linkname, under
+      # a build tag no ordinary build has: this is the only place it is compiled
+      # outside reproduce.sh, so a colbin release that renames either shows here.
+      - name: the ablation builds against the pinned colbin
+        working-directory: colbin-benchmarks
+        run: go vet -tags colbin_ablation ./matrix && go test -c -tags colbin_ablation -o /dev/null ./matrix
+
+      - name: the runner's scripts parse
+        working-directory: colbin-benchmarks
+        run: bash -n reproduce.sh && bash -n bench/local.sh && bash -n datasets/fetch-all.sh
+
       - name: gofmt
         working-directory: colbin-benchmarks
         # gofmt -l exits 0 whether or not it lists anything, so the listing is

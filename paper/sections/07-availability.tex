@@ -1,0 +1,28 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+A serialization format does not have to choose between being a row format
+that is cheap for a small message and a columnar one that is compact for a
+table. \colbin{} decides per slice, at encode time, with a threshold of
+eight rows, and applies to the columns a small set of integer transforms
+and byte-aligned bit-packing that cost little on a short column and pay
+increasingly on a long one. It needs no schema file and no generated code.
+The evaluation shows where this pays and where it does not, on data the
+author did not design, and the artifact lets a reader check each number.
+
+\section{Code and data availability}
+\label{sec:availability}
+
+The benchmarks, dataset scripts, checksums, raw results and the source of
+this paper are available at
+\url{https://github.com/ivanjoz/colbin-benchmarks/tree/paper-v1}
+% TODO(release, RELEASING.md step 4): the full hash of `git rev-parse paper-v1`,
+% and the Zenodo DOI of the release made from that tag.
+(commit \code{<full hash>}), archived at \url{https://doi.org/<zenodo-doi>}.
+The numbers in this paper were produced at commit
+\code{\result{machine.commit}} of that repository, with \colbin{}
+\result{machine.colbin-version}
+(\url{https://github.com/ivanjoz/colbin}). Running \code{./reproduce.sh} at
+the tag downloads and verifies the datasets, runs every measurement, and
+regenerates every table and figure of this paper; the tables and the numbers
+quoted in the text are generated files, not transcriptions.

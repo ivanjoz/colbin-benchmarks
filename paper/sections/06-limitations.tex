@@ -1,0 +1,113 @@
+\FloatBarrier
+\section{Limitations}
+\label{sec:limitations}
+
+\subsection{Where \colbin{} loses or ties}
+
+\paragraph{Small typed documents, against Avro.} On documents with no table
+in them \colbin{} is a row format with one byte of header per field, and
+Avro, which writes no header at all, is smaller as written
+(\result{size.web.schemastore.avro.raw} against
+\result{size.web.schemastore.colbin.raw} of JSON on SchemaStore's typed
+documents; under brotli 5, \result{size.web.schemastore.avro.br5} against
+\result{size.web.schemastore.colbin.br5}). Avro pays for this with a reader
+that must have the writer's exact schema. Over the whole web regime under
+brotli the two are within the margin we treat as no difference
+(\result{size.web.avro.br5} and \result{size.web.colbin.br5}, over different
+case counts; \result{vs.web.avro.br5} on common cases).
+\recheck{all three comparisons}
+
+\paragraph{Encode time on small messages, against generated code.} On common
+web cases \colbin{}'s encode time over \fmt{vtprotobuf}'s is
+\result{vs.web.vtprotobuf.encode} and over generated MessagePack's
+\result{vs.web.msgpack.encode}; it encodes faster in
+\result{vs.web.vtprotobuf.encode.wins} of \result{vs.web.vtprotobuf.encode.n}
+and \result{vs.web.msgpack.encode.wins} of \result{vs.web.msgpack.encode.n}
+cases. Straight-line generated code beats a plan interpreted per field on a
+message of a few fields; the columnar path is what makes up the difference
+on tables. \recheck{direction}
+
+\paragraph{Access without decoding.} \colbin{} must decode a message to read
+one field of it. Arrow and FlatBuffers read a column in place and are faster
+at it by orders of magnitude (Section~\ref{sec:time}).
+
+\paragraph{Compressed, schemaless documents.} On SchemaStore's dynamic path
+\colbin{} under brotli 5 is at
+\result{size.web.schemastore-dynamic.colbin.br5} of compressed JSON, and
+CBOR at \result{size.web.schemastore-dynamic.cbor.br5}: with field names on
+the wire and a compressor behind it, no binary format gains much over JSON.
+
+\paragraph{Data with nothing to exploit.} A column of random 64-bit values
+costs its eight bytes a value plus a width byte per block; strings are not
+compressed at all by the default format. A table that is mostly long,
+distinct strings is the size of its strings in any format.
+
+\subsection{What the evaluation does not cover}
+
+\paragraph{One language and one implementation per format.} All measurements
+are of Go implementations. A format's speed is its implementation's: the
+two implementations of Protocol Buffers and of MessagePack measured here
+differ by more than most pairs of formats do. The sizes carry over to other
+languages; the times do not. The Rust and JavaScript implementations of
+\colbin{} are not evaluated.
+
+\paragraph{One machine.} Times come from a single x86-64 laptop-class
+processor. Absolute times were not repeatable to 3\,\% between two passes
+(Section~\ref{sec:machine}); the ratios this paper reports were, to within
+\result{repeat.ratio-worst}\,\%, and differences below about 4\,\% should
+not be read as differences. No arm64 machine was measured, although the
+library has kernels for it.
+
+\paragraph{Datasets that were planned and not measured.} The evaluation as
+first planned included a month of the NYC taxi trip records, as a source of
+real timestamps and floats, and the Rust serialization benchmark's datasets,
+as validation against an existing third-party suite. Neither is in this
+paper. Real floats and timestamps are represented by Public BI only, and no
+dataset here was assembled by a third party specifically to compare
+serialization formats except SchemaStore's corpus.
+
+\paragraph{Synthetic distributions.} TPC-H and TPC-DS draw values from
+near-uniform distributions, which under-represent the skew and correlation
+of real data~\cite{vogelsgesang2018getreal}. They are reported per dataset
+so that Public BI, which is real, can be read on its own
+(Table~\ref{tab:sizes-datasets-web}).
+
+\paragraph{Hand-written types for SchemaStore.} The Go structs for the 27
+SchemaStore documents were written by the author, from the corpus's
+Protocol Buffers schemas. Choices of integer width, of pointer or value, and
+of field numbering affect every schema-driven format, not only \colbin{},
+but they are choices. The dynamic path, which involves none, is reported
+beside the typed one. Six documents cannot be given a type \colbin{}
+carries and are reported as not applicable on the typed path, which removes
+from \colbin{}'s typed mean six documents the other formats are averaged
+over; the comparison on common cases (Section~\ref{sec:versus}) is not
+affected.
+
+\paragraph{gob.} \fmt{gob} omits zero values and does not distinguish a nil
+pointer from a pointer to zero, so it does not round-trip a table with a
+nullable column that holds a zero:
+\result{coverage.web.gob.lossy} of \result{cases.web} web cases and
+\result{coverage.bulk.gob.lossy} of \result{cases.bulk} bulk cases. On those
+it is sized but not timed, so its timing means are over fewer cases, and
+they are the cases without nullable columns. Its sizes for messages of tens
+of bytes also depend on what the process encoded before, because \fmt{gob}
+assigns type identifiers per process in order of first use; all cases of a
+regime are sized in one process, in a fixed order, and a different selection
+of cases gives sizes that differ by one to three bytes.
+
+\paragraph{Subset rules changed after seeing results.} Three subset rules
+changed after results under the earlier rule had been seen
+(Section~\ref{sec:datasets}). None was a selection of cases by outcome, and
+the change with the largest effect, sampling Public BI at random instead of
+taking the head, moved the results against \colbin{}; but a reader should
+know it happened.
+
+\paragraph{Stability of the format.} \colbin{} is at version
+\result{machine.colbin-version}, before 1.0, with no compatibility promise
+between minor versions. The numbers are for that version.
+
+\paragraph{Not measured at all.} Memory use and allocation counts are
+recorded in the artifact's raw output but not analysed here. Schema
+evolution, which the tagged row format supports by skipping unknown fields,
+is not evaluated. Neither is the cost of the first use of a type, when the
+encoding plan is built.

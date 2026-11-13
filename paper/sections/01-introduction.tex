@@ -1,0 +1,73 @@
+\section{Introduction}
+\label{sec:introduction}
+
+A response from a server to a client is, more often than not, a list of
+records: the rows of a report, the products of a catalogue page, the events of
+a time window. JSON~\cite{rfc8259} writes such a list with every field name in
+every record and every number as decimal text. The binary formats that replace
+it in practice, Protocol Buffers~\cite{protobuf}, MessagePack~\cite{msgpack}
+and CBOR~\cite{rfc8949}, remove the names or shorten them, and write numbers
+in binary, but they keep the row-by-row layout: a thousand records carry a
+thousand copies of each field's tag, and values of one field, which resemble
+each other, are separated by values of the others, which do not.
+
+Columnar formats solved this for analytical storage long ago. Storing the
+values of one column together removes the per-row tags, and lets each column
+be encoded with lightweight transforms such as delta, frame of reference and
+bit-packing~\cite{zukowski2006pfor,lemire2015simdbp128}, as
+Parquet~\cite{parquet} and, more recently, BtrBlocks~\cite{kuschewski2023btrblocks}
+and FastLanes~\cite{afroozeh2023fastlanes} do for files, and as
+Arrow~\cite{arrow} does for in-memory interchange without compression. These
+formats are designed for tables of millions of rows. Their framing, schema and
+metadata are a fixed cost that a message of a few hundred bytes cannot
+absorb, they do not carry a document that is not a table, and they come with
+a schema language or a builder API that the application's own types have to
+be mapped to.
+
+This paper presents \colbin{}, a serialization format that applies the
+columnar layout inside an ordinary message, where it pays, and nowhere else.
+The unit of decision is the field, at encode time: a slice of structs whose
+fields are scalars or strings is written as a list of rows when it is short,
+and as a table of columns from eight rows up. The rest of the message, the fields of the root,
+nested structs and maps, uses a row format with one-byte field headers and no
+variable-length integers. A three-field configuration document and a
+million-row table are therefore the same format, and the encoder needs no
+hint about which it is writing.
+
+The second design constraint is setup cost. The schema of a \colbin{} message
+is the Go struct itself: field numbers come from optional struct tags or are
+derived from field names, there is no interface description file, no compiler
+step and no generated type. This is the niche of Go's
+\fmt{gob}~\cite{gob,pike2011gobs}, and the reason a format with the size of a
+schema-compiled one is worth having without the compilation. A message can
+also carry its schema, in which case any reader renders it as JSON with no
+type at hand.
+
+\paragraph{Contributions.}
+\begin{itemize}
+\item A message format in which a slice of structs is a list or a columnar
+  table, decided per value, with integer columns encoded by a per-column
+  transform and bit-packed in byte-aligned blocks of 128 values, float columns
+  encoded as decimals where they are decimals, and all sizes read with a
+  single load rather than a variable-length loop (Section~\ref{sec:format}).
+\item An evaluation in Go against \result{formats.baselines} formats and
+  implementations (JSON, \fmt{gob}, CBOR, MessagePack, Protocol Buffers with two
+  implementations, FlatBuffers, Arrow IPC, Avro and Cap'n Proto), raw and
+  under gzip, Zstandard and brotli, on \result{cases.total} cases from four
+  public sources, none of them designed by the author
+  (Sections~\ref{sec:methodology} and~\ref{sec:results}).
+\item Ablations of the two parameters the layout rests on: the row count at
+  which a slice becomes a table, and the choice of column transform
+  (Section~\ref{sec:ablations}).
+\item An account of where the format loses or ties, and of what the
+  evaluation does not cover (Section~\ref{sec:limitations}).
+\item A reproducible artifact: datasets pinned by checksum, the exact subset
+  rules, and one command that regenerates every table and figure of this
+  paper (Section~\ref{sec:availability}).
+\end{itemize}
+
+The intended use, a server sending \colbin{} to a web client in place of JSON,
+bounds the size of a message, and the evaluation is organised around that
+bound: cases of at most $2^{14}$ rows form the \emph{web} regime, by which the
+format is judged, and larger ones the \emph{bulk} regime, which shows how each
+format scales past it. No number in this paper pools the two.

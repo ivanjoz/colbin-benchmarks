@@ -1,0 +1,73 @@
+\section{Related work}
+\label{sec:related}
+
+\paragraph{Serialization formats.} The formats \colbin{} is compared with fall
+in three groups. Schemaless formats, MessagePack~\cite{msgpack} and
+CBOR~\cite{rfc8949}, are binary JSON: they keep field names in every record.
+Schema-driven row formats, Protocol Buffers~\cite{protobuf} and
+Avro~\cite{avro}, remove the names; Protocol Buffers keeps a tag per field,
+which makes fields optional and skippable, and Avro keeps nothing, which makes
+it the smallest row format and ties reader and writer to the same schema.
+Zero-copy formats, FlatBuffers~\cite{flatbuffers} and Cap'n
+Proto~\cite{capnproto}, lay a message out so that a field is read in place,
+at the price of fixed-width fields and alignment. Go's
+\fmt{gob}~\cite{gob,pike2011gobs} is the format closest to \colbin{} in how it
+is used: it takes its schema from the Go type and needs no compilation, and it
+sends type descriptions in the stream. All of these write a list of records
+row by row.
+
+\paragraph{Benchmarks of serialization formats.} Viotti and Kinderkhedia
+survey JSON-compatible binary formats~\cite{viotti2022survey} and benchmark
+their sizes on 27 real documents taken from
+SchemaStore~\cite{viotti2022benchmark,schemastore}, later extended to JSON
+BinPack~\cite{viotti2022binpack}. We use their corpus unchanged, as the
+representative of small, heterogeneous documents, where a columnar layout has
+nothing to work with. Their study measures size only; we add encode and decode
+time. HyperProtoBench~\cite{karandikar2021protoacc} characterises Protocol
+Buffers workloads at a large operator and motivates hardware acceleration of
+varint and field decoding, the per-field costs that \colbin{}'s fixed-width
+sizes are meant to avoid in software.
+
+\paragraph{Lightweight integer compression.} The column codec belongs to the
+family of frame-of-reference and bit-packing schemes. PFOR and
+PFOR-DELTA~\cite{zukowski2006pfor} introduced patched frame of reference with
+decoding loops free of data-dependent branches. Lemire and
+Boytsov~\cite{lemire2015simdbp128} showed that bit-packing blocks of 128
+integers at one width per block decodes at billions of integers per second
+with SIMD; \colbin{} uses their block size and its byte alignment, without
+exceptions and with scalar unpacking. Stream
+VByte~\cite{lemire2018streamvbyte} addresses the cost of variable-length
+integers by separating control bytes from data; \colbin{} avoids such
+integers altogether. FastLanes~\cite{afroozeh2023fastlanes} goes further than
+any of these with a layout that auto-vectorizes across instruction sets.
+\colbin{}'s codec is deliberately simpler than the state of the art: it has to
+pay for itself on a column of eight values as well as on one of a million.
+
+\paragraph{Floating-point compression.} Gorilla~\cite{pelkonen2015gorilla}
+and Chimp~\cite{liakos2022chimp} XOR consecutive values of a time series.
+ALP~\cite{afroozeh2023alp} observes that most doubles in real data are
+decimals and encodes them as integers. \colbin{} adopts ALP's decimal
+encoding in a reduced form (Section~\ref{sec:column-codec}).
+
+\paragraph{Columnar formats and nested data.} Dremel~\cite{melnik2010dremel}
+showed how to shred nested records into columns with repetition and definition
+levels, the basis of Parquet~\cite{parquet}. Arrow~\cite{arrow} defines a
+columnar memory layout and an IPC stream for it. BtrBlocks~\cite{kuschewski2023btrblocks}
+selects among cascades of lightweight encodings per column block by sampling,
+and Zeng et al.~\cite{zeng2023columnar} evaluate Parquet and ORC and find
+their encodings dated against such schemes. JSON
+Tiles~\cite{durner2021jsontiles} extracts columnar structure from collections
+of JSON documents inside a database. These systems target storage and
+analytics: data at rest, read many times, in files whose footers and
+dictionaries are amortised over millions of rows. \colbin{} targets a message
+produced once and read once, usually small, in which a table is one field
+among others; it does not shred nested records, but lets a row hold a list
+column whose elements are again rows.
+
+\paragraph{Benchmark data.} TPC-H~\cite{tpch} and
+TPC-DS~\cite{tpcds,nambiar2006tpcds} are generated from near-uniform
+distributions, and Vogelsgesang et al.~\cite{vogelsgesang2018getreal} show
+how poorly such data represents real workloads for encodings. The Public BI
+Benchmark~\cite{publicbi,ghita2020whitebox}, derived from real Tableau
+workbooks, is the corrective used in the compression literature, including by
+BtrBlocks and ALP, and it is here as well.

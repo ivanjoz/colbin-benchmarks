@@ -1,0 +1,164 @@
+\section{The format}
+\label{sec:format}
+
+This section describes the wire format at the level the evaluation needs. The
+byte-level specification, and the measurements behind each decision, including
+the alternatives that were tried and reverted, are in the library's
+repository (\code{INTERNALS.md} and \code{RATIONALE.md}; see
+Section~\ref{sec:availability}).
+
+\subsection{Messages are key runs}
+
+A message is a \emph{key run}: a sequence of fields, each a key, a descriptor
+and a payload, ended by the length of whatever encloses it. A run uses one of
+two key widths, chosen per struct type and recorded where the run opens. In
+the narrow width a field header is a single byte, four bits of key and four
+of descriptor, which covers types whose field numbers are 1 to 16. In the wide
+width it is two bytes, eight bits each, for numbers up to 255; a type with
+more fields is split into linked pages of 255. A nested struct opens its own
+run, so narrow and wide types nest in either order. In both widths the
+descriptor is enough to step over a field the reader does not know, so
+producer and consumer can add and drop fields independently.
+
+Field numbers come from a struct tag (\code{cb:"3"}) or, without one, from an
+8-bit hash of the field's name with linear probing on collision. Untagged
+types therefore always use the wide width and cost one more byte per field
+present; the evaluation reports both (\fmt{colbin} and
+\fmt{colbin-untagged}).
+
+\subsection{Scalars}
+
+A field holding its type's zero value is not written. An integer is written as
+sign and magnitude in the fewest bytes that hold it, one to eight, with the
+byte count in the descriptor; in the narrow width, the values the descriptor
+itself can name (1 to 4, or 1 to 3 and $-1$ for a signed field) need no
+payload, so a boolean or a small enumeration is one byte with its key. A
+string of up to eight bytes takes its size from the descriptor; a longer one
+carries a length of one, three or five bytes.
+
+No size anywhere in the format is a variable-length integer. Protocol
+Buffers' varints are compact, but each is decoded by a loop whose trip count
+is data, a cost that byte-oriented schemes such as Stream
+VByte~\cite{lemire2018streamvbyte} exist to avoid. In \colbin{} every read of
+a size is one load of a width the header has already given.
+
+A scalar floating-point field is written as its IEEE~754 bit pattern with the
+bytes reversed, in the unsigned integer form. The zero bytes of a float are
+its low mantissa bytes, where an integer's are its high ones, so the trim that
+shortens an integer shortens a round float too: \code{1.0} is two bytes.
+
+\subsection{Composites, lists and tables}
+
+A nested struct, a list, a table or a map is written with its byte length in
+front, patched in after the body is written, which is what lets a reader skip
+it whole. A nil pointer is omitted; a pointer to a zero value is the one case
+in which the format writes a zero, to keep the two apart.
+
+A slice of structs is written in one of two layouts
+(Figure~\ref{fig:layouts}):
+\begin{itemize}
+\item as a \emph{list}, each element its own key run, when it has fewer than
+  eight elements, or when the element type holds something that is not a
+  column (a map, a nested struct, a slice of scalars);
+\item as a \emph{table}, when it has at least eight elements and every field
+  of the element type is a boolean, an integer, a float, a string, a pointer
+  to one of those, or itself a slice of structs that qualifies.
+\end{itemize}
+The decision is taken per value at encode time, and the two layouts have
+different descriptors, so a reader dispatches on what it finds and neither
+side is configured. A table writes one key per column instead of one per field
+per row. A nullable column (a pointer field, which is how a Go type says a value
+may be absent) carries one bit of presence per row and the values of the rows
+present only, so the column codec sees real values and a run of nulls costs a
+bit a row; a column whose values are all zero, or all null, is not written at
+all. A table of more than 4\,096 rows is
+written in groups of 4\,096 rows, each group a complete set of columns, which
+bounds the memory the encoder transposes through and keeps a group's columns
+in cache. The threshold of eight rows is the subject of the first ablation in
+Section~\ref{sec:ablations}.
+
+\begin{figure}[t]
+\centering\small
+\begin{tabular}{@{}l@{\qquad}l@{}}
+\textbf{list} (fewer than 8 rows) & \textbf{table} (8 rows or more)\\[2pt]
+\code{[len]} & \code{[len][rows]}\\
+\code{\ \ [len] k1 v k2 v k3 v} & \code{\ \ k1 [column: v v v v ...]}\\
+\code{\ \ [len] k1 v k2 v k3 v} & \code{\ \ k2 [column: v v v v ...]}\\
+\code{\ \ [len] k1 v k2 v k3 v} & \code{\ \ k3 [column: v v v v ...]}\\
+\end{tabular}
+\caption{The two layouts of a slice of structs with three fields. A list
+repeats each key in every row; a table writes each key once and its values
+together, where a column transform can use what they have in common.}
+\label{fig:layouts}
+\end{figure}
+
+\subsection{The column codec}
+\label{sec:column-codec}
+
+An integer column (and a boolean, date or timestamp column, which are integer
+columns) is one transform followed by blocks of bit-packed residuals:
+\begin{itemize}
+\item \emph{raw}: the values, zigzag-encoded if any is negative;
+\item \emph{delta}: differences between consecutive values, zigzag-encoded,
+  after the first value;
+\item \emph{frame of reference}: each value minus the column's
+  minimum~\cite{zukowski2006pfor};
+\item \emph{constant}: the single value, and no blocks.
+\end{itemize}
+The encoder scores each candidate by the bytes its blocks would occupy and
+keeps the smallest. Residuals are then packed in blocks of 128 values, each
+block at its own bit width, written in one byte ahead of it. The block size is
+that of SIMD-BP128~\cite{lemire2015simdbp128}, and it is chosen for the same
+arithmetic: 128 values of $w$ bits are exactly $16w$ bytes, so every block
+starts and ends on a byte boundary, no state crosses from one block to the
+next, and one outlier widens 128 values rather than the column. A block of
+zeros has width 0 and costs one byte. Unpacking is one unaligned 8-byte load,
+a shift and a mask per value for widths up to 57 bits, with the width switched
+on once per block; there is no patching of exceptions as in PFOR. The second
+ablation in Section~\ref{sec:ablations} forces each transform in turn.
+
+A column of 64-bit floats whose values are decimals, as most floats that
+came out of a database or a CSV file are, is written as integers: the encoder
+looks for one exponent $e$ per column such that $v \cdot 10^e$ is an integer
+that converts back to $v$ exactly, writes those integers through the integer
+codec, and keeps the values that do not fit as exceptions with their position
+and bit pattern. This is the decimal half of ALP~\cite{afroozeh2023alp} with
+one exponent per column and a division on decode rather than a multiplication
+by the inverse, which is slower but exact on every platform. The column is
+written this way only when it is smaller than the bit patterns would be.
+
+String columns are written as the strings one after another, each with its
+size. Dictionary coding of string columns exists in the library as an
+opt-in prototype; it is not part of the format evaluated here, and no result
+of this paper uses it.
+
+\subsection{Optional parts}
+
+\paragraph{The schema section.} The wire carries no names and no types. A
+\emph{schema section}, the type's encoding plan serialized as a key, a name
+and an operation code per field, can be sent once per connection, or embedded
+at the front of a message. With it embedded, the message is self-describing:
+it can be rendered as JSON, or decoded into a different type by matching
+field names, with no knowledge of the producer's type. The evaluation
+measures this mode as \fmt{colbin-json}, and reports the size of the section
+against the message in Section~\ref{sec:composition}.
+
+\paragraph{Dynamic values.} A field of an open type (Go's \code{any},
+\code{[]any}, \code{map[string]any}) is written with a type descriptor per
+value, as schemaless formats do. SchemaStore's documents are measured both
+through hand-written structs and through this path.
+
+\paragraph{packed5.} An opt-in encoding packs strings of letters and digits
+at about five bits per character, when that is shorter. It is off by default
+and reported as a separate variant, \fmt{colbin+packed5}.
+
+\subsection{Implementation}
+
+The Go implementation has no dependencies. It builds an encoding plan per
+type on first use, by reflection, and then runs it over unsafe pointers, so
+the steady state involves no reflection except for maps. The hot loops of the
+column codec have assembly kernels on amd64 and arm64. Decoders treat their
+input as hostile: every length, count and row total is bounded before
+anything is allocated. Implementations in Rust and in JavaScript (through
+WebAssembly) read and write the same bytes; this paper evaluates the Go
+implementation only.
