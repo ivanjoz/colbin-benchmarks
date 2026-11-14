@@ -109,15 +109,17 @@ and implementations in Go on \result{cases.total} cases drawn from TPC-H, TPC-DS
 Public BI Benchmark and the SchemaStore corpus of Viotti and Kinderkhedia,
 comparing it with each format on the cases both carry, by dataset and by
 kind of message. On tables of the size a web client receives, \colbin{}
-messages are \result{vs.categories.web-tables.json-v2.raw} of JSON's bytes as
-written and \result{vs.categories.web-tables.json-v2.gzip} under gzip, and
-decode in \result{vs.categories.web-tables.json-v2.decode-fresh} of JSON's
-time and \result{vs.categories.web-tables.vtprotobuf.decode-fresh} of
-generated Protocol Buffers code's; on bulk tables,
-\result{vs.categories.bulk.json-v2.raw},
-\result{vs.categories.bulk.json-v2.gzip},
-\result{vs.categories.bulk.json-v2.decode-fresh} and
-\result{vs.categories.bulk.vtprotobuf.decode-fresh}. We report where it
+messages are \result{vs.categories.web-tables.json-v2.raw.factor} smaller
+than JSON as written and
+\result{vs.categories.web-tables.json-v2.gzip.factor} smaller under gzip,
+and decode \result{vs.categories.web-tables.json-v2.decode-fresh.factor}
+faster than JSON and
+\result{vs.categories.web-tables.vtprotobuf.decode-fresh.factor} faster than
+generated Protocol Buffers code; on bulk tables,
+\result{vs.categories.bulk.json-v2.raw.factor},
+\result{vs.categories.bulk.json-v2.gzip.factor},
+\result{vs.categories.bulk.json-v2.decode-fresh.factor} and
+\result{vs.categories.bulk.vtprotobuf.decode-fresh.factor}. We report where it
 loses: on single documents that hold no table, against Avro on size and
 against generated code on encode and decode time, and against Arrow and
 FlatBuffers on access without decoding.%

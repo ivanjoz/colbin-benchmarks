@@ -43,7 +43,7 @@ var groupOrder = []string{"tpch", "tpcds", "publicbi", "schemastore"}
 
 var groupLabel = map[string]string{
 	"tpch": "TPC-H", "tpcds": "TPC-DS", "publicbi": "Public BI", "schemastore": "SchemaStore",
-	"bulk": "bulk", "web-tables": "web, tables", "web-documents": "web, documents",
+	"bulk": "bulk", "web-tables": "web tables", "web-documents": "single records",
 }
 
 func groupOf(name string) string {
@@ -637,14 +637,47 @@ func latexVersus(out *latexOut, sizes []sizeRow, bench *benchmarks, regime strin
 	out.file("versus-"+regime+".tex", "sizes.csv and bench-"+regime+".txt", lines)
 }
 
+// factor prints a geometric mean of colbin's number over another format's as
+// the factor a reader says aloud: "2.5×" where colbin is 2.5 times smaller or
+// faster (a mean of 0.4), and "1.25× worse" where the other format is (a mean
+// of 1.25). The mean of the inverses is the inverse of the mean, so the
+// factor is the same number, not another statistic. Two decimals below 2,
+// where one would hide a tie; one from there up. In a table cell (compact) a
+// loss is the bold factor and a down arrow, which the caption explains.
+func factor(ratios []float64, compact bool) string {
+	mean, count, zeros := geomean(ratios)
+	if count == 0 {
+		if zeros > 0 {
+			return `0$^\dagger$`
+		}
+		return "--"
+	}
+	text := ""
+	switch times := 1 / mean; {
+	case mean > 1 && compact:
+		text = fmt.Sprintf(`\textbf{%.2f$\times$}$\downarrow$`, mean)
+	case mean > 1:
+		text = fmt.Sprintf(`\textbf{%.2f$\times$ worse}`, mean)
+	case times < 1.995:
+		text = fmt.Sprintf(`%.2f$\times$`, times)
+	default:
+		text = fmt.Sprintf(`%.1f$\times$`, times)
+	}
+	if zeros > 0 {
+		text += `$^\dagger$`
+	}
+	return text
+}
+
 // latexVersusBy is latexVersus across regimes, cut another way: by dataset
 // (kind "datasets") or by category (kind "categories"). Each case falls in
 // one group and weighs one in its group's mean, whatever its regime. Two
 // tables, sizes (as written and under gzip) and times (encode and
-// decode-fresh), each with a pair of columns per group; a cell is colbin's
-// number over the other format's, as a geometric mean over the cases both
-// carry, and the cases colbin wins. Keys: vs.<kind>.<group>.<format>.<metric>,
-// with .wins and .n. colbin's own variants are left out: they are options of
+// decode-fresh), each with a pair of columns per group; a cell is the
+// geometric mean, over the cases both carry, of colbin's number over the
+// other format's, printed as a factor (see factor), and the cases colbin
+// wins. Keys: vs.<kind>.<group>.<format>.<metric> (the mean), with .factor
+// (for a sentence), .cell (for a table), .wins and .n. colbin's own variants are left out: they are options of
 // colbin, not other formats.
 func latexVersusBy(out *latexOut, sizes []sizeRow, benches map[string]*benchmarks, kind string, groups []string, groupFor func(name, regime string) string) {
 	type pair struct{ mine, theirs float64 }
@@ -769,8 +802,10 @@ func latexVersusBy(out *latexOut, sizes []sizeRow, benches map[string]*benchmark
 					out.defRatio(key, ratios)
 					out.def(key+".wins", strconv.Itoa(wins))
 					out.def(key+".n", strconv.Itoa(len(list)))
-					mean := strings.ReplaceAll(cell(ratios), `\rlap{$^\dagger$}`, `$^\dagger$`)
-					cells = append(cells, fmt.Sprintf(`%s\ {\scriptsize %d/%d}`, mean, wins, len(list)))
+					// Not through def: the factor is LaTeX already.
+					out.numbers = append(out.numbers, fmt.Sprintf(`\resultdef{%s.factor}{%s}`, key, factor(ratios, false)),
+						fmt.Sprintf(`\resultdef{%s.cell}{%s}`, key, factor(ratios, true)))
+					cells = append(cells, fmt.Sprintf(`%s\ {\scriptsize %d/%d}`, factor(ratios, true), wins, len(list)))
 				}
 			}
 			if any {

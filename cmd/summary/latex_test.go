@@ -96,6 +96,8 @@ schemastore/empty/dynamic,0,9.0,333,,
 		// colbin against each format, by dataset and by kind of message.
 		`\resultdef{vs.datasets.tpch.json-v2.raw}{0.250}`,
 		`\resultdef{vs.datasets.tpch.json-v2.decode-fresh}{0.250}`,
+		`\resultdef{vs.datasets.tpch.json-v2.raw.factor}{4.0$\times$}`,
+		`\resultdef{vs.datasets.tpch.gob.gzip.factor}{1.50$\times$}`,
 		`\resultdef{vs.categories.web-tables.json-v2.gzip}{0.500}`,
 		`\resultdef{vs.categories.web-tables.json-v2.gzip.wins}{1}`,
 		`\resultdef{vs.categories.web-documents.json-v2.raw.wins}{1}`,
@@ -119,6 +121,12 @@ schemastore/empty/dynamic,0,9.0,333,,
 	}
 	if _, err := os.Stat(filepath.Join(dir, "tables", "times-bulk.tex")); err == nil {
 		t.Error("a stale table this run has no input for was left in tables/")
+	}
+	if got := factor([]float64{1.25, 1.25}, false); got != `\textbf{1.25$\times$ worse}` {
+		t.Errorf("factor of a loss = %s", got)
+	}
+	if got := factor([]float64{1.25, 1.25}, true); got != `\textbf{1.25$\times$}$\downarrow$` {
+		t.Errorf("factor of a loss in a table = %s", got)
 	}
 	table, _ := os.ReadFile(filepath.Join(dir, "tables", "sizes-web.tex"))
 	if !strings.Contains(string(table), `colbin & 2 & 0.250\rlap{$^\dagger$} &`) {

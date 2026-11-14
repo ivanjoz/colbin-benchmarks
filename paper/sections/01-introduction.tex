@@ -43,6 +43,31 @@ schema-compiled one is worth having without the compilation. A message can
 also carry its schema, in which case any reader renders it as JSON with no
 type at hand.
 
+\paragraph{What it is used for.} \colbin{} is a general-purpose format: any
+place where Protocol Buffers or MessagePack would serve is a candidate. It
+was built for one application, a business system developed by the author
+together with its object-relational mapper, and its design follows the
+places where that system had JSON. They are of three kinds, and the
+evaluation is organised by them.
+\begin{itemize}
+\item \emph{Bulk tables}: archives and backups of whole tables, written once
+  and read rarely, where size is the cost.
+\item \emph{Tables of web size}: the responses a server sends to a web
+  client, a page of records at a time, and the cache of those responses.
+\item \emph{Single records}: a record stored as one binary value in a
+  key-value store (the whole item of a DynamoDB table, in place of a JSON
+  document or one attribute per field), a small object stored in a binary
+  column of a relational table, where a JSON or text column would otherwise
+  hold it, and a message between two services, one in Go and one in Rust.
+\end{itemize}
+The row format's narrow field header, one byte for a type of up to sixteen
+fields (Section~\ref{sec:format}), exists for the last kind: the small
+objects that end up as a field of a larger record are, in a database,
+usually a JSON string, and most of such a string is field names and
+punctuation. A format that is to replace JSON in all three places has to
+be cheap for an object of three fields and compact for a table of a
+million rows, which is the choice per value described above.
+
 \paragraph{Contributions.}
 \begin{itemize}
 \item A message format in which a slice of structs is a list or a columnar
@@ -68,8 +93,7 @@ type at hand.
 
 The evaluation compares \colbin{} with each other format directly, on the
 cases both carry, and reports the comparison two ways: by dataset, and by
-the kind of message. The intended use, a server sending \colbin{} to a web
-client in place of JSON, bounds the size of a message, so the kinds are a
-table of web size (at most $2^{14}$ rows), a single web document that holds
-no table, and, past the bound, a bulk table, which shows how each format
-scales.
+the three kinds of message above. A response to a web client bounds the
+size of a message, so a table of web size is one of at most $2^{14}$ rows
+and a bulk table one past that bound; a single record is a document that
+holds no table.

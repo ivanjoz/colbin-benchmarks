@@ -90,11 +90,15 @@ tables. The bulk regime has \result{cases.bulk}: the other
 two composite cases. The web regime holds two kinds of message that a
 format treats differently, and the results keep them apart: a \emph{web
 table}, a slice of rows (TPC-H, TPC-DS and Public BI;
-\result{cases.categories.web-tables} cases), and a \emph{web document}, a
-single object with no table in it (SchemaStore;
+\result{cases.categories.web-tables} cases), and a \emph{single record}, one
+object with no table in it (SchemaStore;
 \result{cases.categories.web-documents}). With \emph{bulk}
 (\result{cases.categories.bulk}), these are the three kinds of message the
-results are reported by, beside the four datasets.
+results are reported by, beside the four datasets, and the three uses the
+format was built for (Section~\ref{sec:introduction}). SchemaStore's
+documents are configuration files, not database records; they stand in for
+the single record as the public corpus of small typed objects the
+evaluation could use.
 
 \subsection{Baselines}
 
@@ -180,10 +184,13 @@ computed in a separate stage.
 
 \paragraph{Summaries.} The results compare \colbin{} with each other format
 directly: on each case both carry, \colbin{}'s number is divided by the
-other format's for the same case and operation, so that below 1 \colbin{} is
-smaller or faster and above 1 it loses. A summary over cases is the
+other format's for the same case and operation. A summary over cases is the
 geometric mean of those ratios, in which every case weighs the same, with
-the number of cases \colbin{} wins outright beside it. The cases are
+the number of cases \colbin{} wins outright beside it. It is printed as a
+factor, the inverse of that mean where \colbin{} wins ($2.5\times$ smaller,
+or faster, for a mean of 0.4) and the mean itself, marked \emph{worse},
+where it loses; the mean of the inverses is the inverse of the mean, so
+this is the same statistic read the other way. The cases are
 grouped two ways, each case in exactly one group: by dataset, and by kind of
 message (Section~\ref{sec:kinds}). Because the comparison is always on the
 cases both formats carry, a format that carries few cases is compared with

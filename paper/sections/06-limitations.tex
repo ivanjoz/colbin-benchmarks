@@ -7,23 +7,25 @@
 \paragraph{Single documents, against Avro.} On documents with no table in
 them \colbin{} is a row format with one byte of header per field, and Avro,
 which writes no header at all, is smaller as written: on SchemaStore
-\colbin{}'s bytes are \result{vs.datasets.schemastore.avro.raw} of Avro's,
-and \result{vs.datasets.schemastore.avro.gzip} under gzip, smaller in
+\colbin{} against Avro is \result{vs.datasets.schemastore.avro.raw.factor}
+as written and \result{vs.datasets.schemastore.avro.gzip.factor} under
+gzip, smaller in
 \result{vs.datasets.schemastore.avro.gzip.wins} of
 \result{vs.datasets.schemastore.avro.gzip.n} documents. Avro pays for this
 with a reader that must have the writer's exact schema.
 \recheck{direction of both comparisons}
 
 \paragraph{Time on single documents, against generated code.} On SchemaStore
-\colbin{}'s encode time over \fmt{vtprotobuf}'s is
-\result{vs.datasets.schemastore.vtprotobuf.encode} and over generated
-MessagePack's \result{vs.datasets.schemastore.msgpack.encode}; it encodes
+\colbin{}'s encode time against \fmt{vtprotobuf}'s is
+\result{vs.datasets.schemastore.vtprotobuf.encode.factor} and against
+generated MessagePack's
+\result{vs.datasets.schemastore.msgpack.encode.factor}; it encodes
 faster in \result{vs.datasets.schemastore.vtprotobuf.encode.wins} of
 \result{vs.datasets.schemastore.vtprotobuf.encode.n} and
 \result{vs.datasets.schemastore.msgpack.encode.wins} of
-\result{vs.datasets.schemastore.msgpack.encode.n} documents, and decodes in
-\result{vs.datasets.schemastore.msgpack.decode-fresh} of generated
-MessagePack's time. Straight-line generated code beats a plan interpreted
+\result{vs.datasets.schemastore.msgpack.encode.n} documents, and to decode it is
+\result{vs.datasets.schemastore.msgpack.decode-fresh.factor} against
+generated MessagePack. Straight-line generated code beats a plan interpreted
 per field on a message of a few fields; the columnar path is what makes up
 the difference on tables. \recheck{direction}
 
