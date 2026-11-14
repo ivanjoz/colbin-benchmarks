@@ -48,7 +48,12 @@ func main() {
 // but not reported: only the schemaless formats carry it, so it compares
 // colbin with a few formats on cases the others do not have. Its raw results
 // stay in the run's files.
-func reported(name string) bool { return !strings.HasSuffix(name, "/dynamic") }
+//
+// Nor is a sweep case (matrix/sweep.go, sweep/<table>/<rows>) a case of the
+// matrix: its timings go to benchmarks.sweep, for the sweep's own figure.
+func reported(name string) bool { return !strings.HasSuffix(name, "/dynamic") && !isSweep(name) }
+
+func isSweep(name string) bool { return strings.HasPrefix(name, "sweep/") }
 
 // sizeRow is one line of sizes.csv.
 type sizeRow struct {
@@ -98,6 +103,7 @@ func readSizes(path string) ([]sizeRow, error) {
 // the regime each case was under.
 type benchmarks struct {
 	ns      map[string]map[string]map[string]float64
+	sweep   map[string]map[string]map[string]float64 // the same, for the sweep's cases
 	regime  map[string]string
 	config  map[string]string // the first value of each configuration key
 	formats []string          // in order of first appearance
@@ -112,7 +118,8 @@ func readBench(path string) (*benchmarks, error) {
 	}
 	defer file.Close()
 	samples := map[[3]string][]float64{}
-	out := &benchmarks{ns: map[string]map[string]map[string]float64{}, regime: map[string]string{}, config: map[string]string{}}
+	out := &benchmarks{ns: map[string]map[string]map[string]float64{}, sweep: map[string]map[string]map[string]float64{},
+		regime: map[string]string{}, config: map[string]string{}}
 	regime := ""
 	scanner := bufio.NewScanner(file)
 	scanner.Buffer(make([]byte, 1<<20), 1<<20)
@@ -136,7 +143,7 @@ func readBench(path string) (*benchmarks, error) {
 			continue
 		}
 		name := strings.Join(parts[1:len(parts)-2], "/")
-		if !reported(name) {
+		if !reported(name) && !isSweep(name) {
 			continue
 		}
 		format, op := parts[len(parts)-2], parts[len(parts)-1]
@@ -155,13 +162,18 @@ func readBench(path string) (*benchmarks, error) {
 		return nil, err
 	}
 	for key, values := range samples {
-		if out.ns[key[0]] == nil {
-			out.ns[key[0]] = map[string]map[string]float64{}
+		into := out.ns
+		if isSweep(key[0]) {
+			into = out.sweep
+			delete(out.regime, key[0])
 		}
-		if out.ns[key[0]][key[1]] == nil {
-			out.ns[key[0]][key[1]] = map[string]float64{}
+		if into[key[0]] == nil {
+			into[key[0]] = map[string]map[string]float64{}
 		}
-		out.ns[key[0]][key[1]][key[2]] = median(values)
+		if into[key[0]][key[1]] == nil {
+			into[key[0]][key[1]] = map[string]float64{}
+		}
+		into[key[0]][key[1]][key[2]] = median(values)
 	}
 	return out, nil
 }

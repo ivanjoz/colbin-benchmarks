@@ -41,7 +41,7 @@ func TestSizes(t *testing.T) {
 		"table_row_fraction", "values", "colbin_bytes", "table_bytes", "table_byte_fraction",
 		"schema_bytes", "gob_stream_bytes", "colbin_bytes_per_value")
 
-	for _, c := range Cases() {
+	for _, c := range AllCases() {
 		if !Selected(c) {
 			continue
 		}

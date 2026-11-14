@@ -71,6 +71,16 @@ using colbin API newer than the required tag:
    go run ./cmd/summary results/paper-v1
    ```
 
+   The sweep (README, "The sweep") is a run of its own on the same machine,
+   not merged into the paper's run:
+
+   ```sh
+   cloud/ocibench.py run --label sweep -- --cases 'sweep/*' --no-ablation --passes 1
+   ```
+
+   Its directory goes to `make -C paper SWEEP=...`; without it the paper
+   leaves the sweep's figure out.
+
 2. The second machine is a local one, measured at the same commit
    (`results/paper-v1-laptop`). It needs mains power, the `performance`
    governor, turbo off, nothing else running; `reproduce.sh` refuses to start

@@ -38,6 +38,7 @@ results/*
 # tables-laptop/, copies of the runs' (make -C paper RUN=... LAPTOP=...).
 paper/tables/
 paper/tables-laptop/
+paper/tables-sweep/
 paper/build/
 paper/main.pdf
 paper/main.aux

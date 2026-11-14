@@ -204,6 +204,10 @@ func writeLatex(dir string, sizes []sizeRow) error {
 	}
 	latexVersusBy(out, sizes, benches, "datasets", groupOrder, func(name, _ string) string { return groupOf(name) })
 	latexVersusBy(out, sizes, benches, "categories", categoryOrder, categoryOf)
+	if err := latexScaling(out, dir, benches); err != nil {
+		return err
+	}
+	latexSweep(out, benches)
 	if err := latexCoverage(out, dir); err != nil {
 		return err
 	}
@@ -826,6 +830,165 @@ func latexVersusBy(out *latexOut, sizes []sizeRow, benches map[string]*benchmark
 	}
 	for _, group := range groups {
 		out.def("cases."+kind+"."+group, strconv.Itoa(len(counts[group])))
+	}
+}
+
+// scalingBins cut the cases by the rows of their root slice (cases.csv's
+// top_rows): below colbin's table threshold of 8, and from there up. No case
+// has between 31 and 999 rows.
+var scalingBins = []struct {
+	key      string
+	from, to int
+}{
+	{"1", 0, 1}, {"2-7", 2, 7}, {"8-99", 8, 99}, {"1000-16383", 1000, 16383}, {"16384", 16384, 16384}, {"over", 16385, math.MaxInt},
+}
+
+// latexScaling is how colbin's advantage moves with the number of rows in the
+// message: per dataset, a file of one line per case, its rows and colbin's
+// factor over other formats (the other's time over colbin's, above 1 where
+// colbin is faster), for a scatter plot; and the same factors as geometric
+// means over bins of rows, scaling.<bin>.<format>.<op>.factor. Every point is
+// another schema, so the plot shows a trend across cases, not one table
+// growing.
+func latexScaling(out *latexOut, dir string, benches map[string]*benchmarks) error {
+	rows, err := readCSV(filepath.Join(dir, "cases.csv"))
+	if os.IsNotExist(err) || len(rows) == 0 {
+		return nil
+	}
+	if err != nil {
+		return err
+	}
+	columns := []struct{ name, format, op string }{
+		{"decode_json", formats.JSONv2, "decode-fresh"},
+		{"decode_vtprotobuf", formats.VTProtobuf, "decode-fresh"},
+		{"decode_msgpack", formats.MsgPack, "decode-fresh"},
+		{"encode_json", formats.JSONv2, "encode"},
+		{"encode_vtprotobuf", formats.VTProtobuf, "encode"},
+		{"encode_msgpack", formats.MsgPack, "encode"},
+	}
+	head := "rows"
+	for _, column := range columns {
+		head += " " + column.name
+	}
+	lines := map[string][]string{}
+	binned := map[string]map[string][]float64{} // bin → column → colbin's time over the other's
+	counts := map[string]int{}
+	for _, fields := range rows {
+		name := fields["case"]
+		count, err := strconv.Atoi(fields["top_rows"])
+		if err != nil {
+			continue
+		}
+		var byFormat map[string]map[string]float64
+		for _, bench := range benches {
+			if bench != nil && bench.ns[name] != nil {
+				byFormat = bench.ns[name]
+			}
+		}
+		if byFormat[formats.Colbin] == nil {
+			continue
+		}
+		bin := ""
+		for _, candidate := range scalingBins {
+			if count >= candidate.from && count <= candidate.to {
+				bin = candidate.key
+			}
+		}
+		if binned[bin] == nil {
+			binned[bin] = map[string][]float64{}
+		}
+		counts[bin]++
+		// A log axis has no zero: a document that is not a slice is one row.
+		line := strconv.Itoa(max(count, 1))
+		for _, column := range columns {
+			mine, theirs := byFormat[formats.Colbin][column.op], byFormat[column.format][column.op]
+			if mine > 0 && theirs > 0 {
+				line += " " + strconv.FormatFloat(theirs/mine, 'g', 5, 64)
+				binned[bin][column.name] = append(binned[bin][column.name], mine/theirs)
+			} else {
+				line += " nan"
+			}
+		}
+		lines[groupOf(name)] = append(lines[groupOf(name)], line)
+	}
+	for _, group := range groupOrder {
+		if len(lines[group]) > 0 {
+			out.file("fig-scaling-"+group+".dat", "cases.csv, bench-web.txt and bench-bulk.txt", append([]string{head}, lines[group]...))
+		}
+	}
+	for _, bin := range scalingBins {
+		if counts[bin.key] == 0 {
+			continue
+		}
+		out.def("scaling."+bin.key+".n", strconv.Itoa(counts[bin.key]))
+		for _, column := range columns {
+			if ratios := binned[bin.key][column.name]; len(ratios) > 0 {
+				out.numbers = append(out.numbers, fmt.Sprintf(`\resultdef{scaling.%s.%s.%s.factor}{%s}`, bin.key, column.format, column.op, factor(ratios, false)))
+			}
+		}
+	}
+	return nil
+}
+
+// latexSweep is the sweep's figure data (matrix/sweep.go: one table cut to
+// growing row counts, cases named sweep/<table>/<rows>): per table and
+// operation, a file of one line per row count with each format's nanoseconds
+// per row, fig-sweep-<table>-<op>.dat, and colbin's factor over each format
+// at every row count, sweep.<table>.<rows>.<format>.<op>.factor. A run of the
+// matrix has no sweep case and writes none of this.
+func latexSweep(out *latexOut, benches map[string]*benchmarks) {
+	type point struct {
+		rows     int
+		byFormat map[string]map[string]float64
+	}
+	tables := map[string][]point{}
+	for _, bench := range benches {
+		if bench == nil {
+			continue
+		}
+		for name, byFormat := range bench.sweep {
+			parts := strings.Split(name, "/")
+			if len(parts) != 3 {
+				continue
+			}
+			if rows, err := strconv.Atoi(parts[2]); err == nil && rows > 0 {
+				tables[parts[1]] = append(tables[parts[1]], point{rows, byFormat})
+			}
+		}
+	}
+	column := func(format string) string { return strings.NewReplacer("-", "_", "+", "_").Replace(format) }
+	for table, points := range tables {
+		slices.SortFunc(points, func(a, b point) int { return a.rows - b.rows })
+		for _, op := range []string{"encode", "decode-fresh"} {
+			var present []string
+			for _, format := range formats.Order {
+				if slices.ContainsFunc(points, func(p point) bool { return p.byFormat[format][op] > 0 }) {
+					present = append(present, format)
+				}
+			}
+			head := "rows"
+			for _, format := range present {
+				head += " " + column(format)
+			}
+			lines := []string{head}
+			for _, p := range points {
+				line := strconv.Itoa(p.rows)
+				for _, format := range present {
+					if ns := p.byFormat[format][op]; ns > 0 {
+						line += " " + strconv.FormatFloat(ns/float64(p.rows), 'g', 5, 64)
+					} else {
+						line += " nan"
+					}
+					mine := p.byFormat[formats.Colbin][op]
+					if theirs := p.byFormat[format][op]; format != formats.Colbin && mine > 0 && theirs > 0 {
+						out.numbers = append(out.numbers, fmt.Sprintf(`\resultdef{sweep.%s.%d.%s.%s.factor}{%s}`,
+							table, p.rows, format, op, factor([]float64{mine / theirs}, false)))
+					}
+				}
+				lines = append(lines, line)
+			}
+			out.file("fig-sweep-"+table+"-"+op+".dat", "bench-web.txt and bench-bulk.txt", lines)
+		}
 	}
 }
 

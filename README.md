@@ -110,6 +110,21 @@ go run ./cmd/summary results/<run>                      # summarise again, witho
 bench/local.sh --regime web                             # a development run (see the script)
 ```
 
+### The sweep
+
+The matrix shows colbin's advantage growing with the rows of a message, but
+every case is another schema. The sweep fixes the schema and the data and
+moves only the row count: TPC-H's `lineitem` cut to its first 1, 2, 4, …,
+2^19 rows, and a Public BI sample (`Bimbo`) to 1, …, 2^14 (`matrix/sweep.go`,
+35 cases). The cases are not part of the matrix: `all` does not select them
+and no table averages over them. They run only when named, into a directory
+of their own, and the paper draws their figure when it is given that run:
+
+```sh
+./reproduce.sh --cases 'sweep/*' --no-ablation --passes 1 --out results/sweep-v1
+make -C paper SWEEP=../results/sweep-v1      # with RUN= and LAPTOP= as usual
+```
+
 With the datasets fetched, `go test ./...` runs `TestSizes` over every case,
 which takes hours and several gigabytes. Set `COLBIN_CASES` to a few
 (`COLBIN_CASES='schemastore/*' go test ./matrix`), or `COLBIN_DATA` to an empty

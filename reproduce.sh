@@ -187,6 +187,13 @@ if [ "$fetch" = 1 ] && ! done_already fetch; then
 		IFS=, read -r -a globs <<<"$cases"
 		for glob in "${globs[@]}"; do
 			dataset=${glob%%/*}
+			# The sweep cuts one TPC-H table and one Public BI table.
+			if [ "$dataset" = sweep ]; then
+				for fetcher in datasets/tpch/fetch.sh "datasets/publicbi/fetch.sh Bimbo"; do
+					[[ " ${fetchers[*]-} " == *" $fetcher "* ]] || fetchers+=("$fetcher")
+				done
+				continue
+			fi
 			if [[ $dataset == *[*?[]* ]] || [ ! -x "datasets/$dataset/fetch.sh" ]; then
 				fetchers=()
 				break
@@ -196,7 +203,9 @@ if [ "$fetch" = 1 ] && ! done_already fetch; then
 	fi
 	[ "${#fetchers[@]}" -gt 0 ] || fetchers=(datasets/fetch-all.sh)
 	log "datasets: fetch and verify (${fetchers[*]})"
-	(for fetcher in "${fetchers[@]}"; do COLBIN_DATA="$data" "$fetcher" || exit 1; done) >"$out/stages/fetch.log" 2>&1 || {
+	# A fetcher may carry an argument (one table), so it is split on spaces.
+	# shellcheck disable=SC2086
+	(for fetcher in "${fetchers[@]}"; do COLBIN_DATA="$data" $fetcher || exit 1; done) >"$out/stages/fetch.log" 2>&1 || {
 		tail -20 "$out/stages/fetch.log" >&2
 		echo "reproduce.sh: a dataset did not fetch or does not match datasets/MANIFEST.sha256; see $out/stages/fetch.log" >&2
 		exit 1

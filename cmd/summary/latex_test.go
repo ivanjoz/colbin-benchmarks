@@ -34,6 +34,8 @@ BenchmarkColbin/tpch/sf0.1/region/json-v2/decode-fresh 10 1000 ns/op
 BenchmarkColbin/tpch/sf0.1/region/colbin/decode-fresh 10 250 ns/op
 BenchmarkColbin/schemastore/empty/dynamic/json-v2/decode-fresh 10 10 ns/op
 BenchmarkColbin/schemastore/empty/dynamic/colbin/decode-fresh 10 9999 ns/op
+BenchmarkColbin/sweep/t/8/json-v2/decode-fresh 10 800 ns/op
+BenchmarkColbin/sweep/t/8/colbin/decode-fresh 10 400 ns/op
 `
 	write("bench-web.txt", bench)
 	write("bench-web-2.txt", strings.ReplaceAll(bench, " 250 ", " 255 "))
@@ -106,6 +108,8 @@ schemastore/empty/dynamic,0,9.0,333,,
 		`\resultdef{cases.categories.web-documents}{1}`,
 		`\resultdef{cases.categories.bulk}{0}`,
 		`\resultdef{cases.datasets.schemastore}{1}`,
+		// The sweep: 800 ns against 400 at 8 rows.
+		`\resultdef{sweep.t.8.json-v2.decode-fresh.factor}{2.0$\times$}`,
 	} {
 		if !strings.Contains(string(numbers), want+"\n") {
 			t.Errorf("numbers.tex lacks %s", want)

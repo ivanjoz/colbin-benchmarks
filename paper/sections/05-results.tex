@@ -142,6 +142,112 @@ time to generated code (Section~\ref{sec:by-dataset}).
 and losses}
 
 \FloatBarrier
+\subsection{Against the number of rows}
+\label{sec:scaling}
+
+% One dataset's cases in a panel of the scaling figure: style, dataset, column.
+\newcommand{\scalingpoints}[3]{%
+  \IfFileExists{\tables/fig-scaling-#2.dat}{\addplot+[only marks, #1] table[x=rows, y=#3]{\tables/fig-scaling-#2.dat};}{}}
+\newcommand{\scalingpanel}[3]{% title, column, extra axis options
+\begin{tikzpicture}
+\begin{axis}[width=0.5\linewidth, height=0.42\linewidth, title={#1},
+  xlabel={rows in the message}, xmode=log, ymode=log,
+  log ticks with fixed point, xmin=0.6, xmax=2e6,
+  xtick={1,10,100,1000,10000,100000,1000000},
+  xticklabels={1,10,$10^2$,$10^3$,$10^4$,$10^5$,$10^6$},
+  grid=major, grid style={gray!20}, mark size=1.3pt,
+  legend style={font=\scriptsize, draw=none, fill=none, at={(0.98,0.03)}, anchor=south east},
+  legend cell align=left, unbounded coords=discard, #3]
+\scalingpoints{mark=*, gray}{schemastore}{#2}
+\scalingpoints{mark=square*, blue}{tpch}{#2}
+\scalingpoints{mark=triangle*, red}{tpcds}{#2}
+\scalingpoints{mark=diamond*, teal}{publicbi}{#2}
+\legend{SchemaStore, TPC-H, TPC-DS, Public BI}
+\draw[densely dashed, gray] (axis cs:8,0.01) -- (axis cs:8,1000);
+\draw[gray] (axis cs:0.6,1) -- (axis cs:2e6,1);
+\end{axis}
+\end{tikzpicture}}
+
+\begin{figure}[t]
+\centering
+\scalingpanel{decode, against JSON}{decode_json}{ylabel={times faster than the other format}, ymin=1, ymax=60,
+  ytick={1,2,5,10,20,50}, yticklabels={1,2,5,10,20,50}}\hfill
+\scalingpanel{decode, against \fmt{vtprotobuf}}{decode_vtprotobuf}{ymin=0.4, ymax=8,
+  ytick={0.5,1,2,4,8}, yticklabels={0.5,1,2,4,8}}
+\caption{\colbin{}'s decode-fresh time against JSON's and \fmt{vtprotobuf}'s,
+one point per case, by the number of rows in the message's root slice (a
+document that is not a slice is one row). Above 1, \colbin{} is that many
+times faster. The dashed line is the threshold of eight rows from which a
+slice is written as columns. Every point is another schema: the figure shows
+a trend across cases, not one table growing. Public BI's samples are the
+column of points at $2^{14}$ rows; no case has between 31 and 999 rows.}
+\label{fig:scaling}
+\end{figure}
+
+The two kinds of table differ from the single record in one thing above all,
+the number of rows, and Figure~\ref{fig:scaling} plots \colbin{}'s advantage
+against it case by case. Below the threshold of eight rows, where a slice is
+a list of rows, \colbin{} decodes
+\result{scaling.1.vtprotobuf.decode-fresh.factor} against \fmt{vtprotobuf}
+on the \result{scaling.1.n} single documents and
+\result{scaling.2-7.vtprotobuf.decode-fresh.factor} on the
+\result{scaling.2-7.n} cases of two to seven rows: a tie. From eight rows,
+where the slice becomes a table, it is
+\result{scaling.8-99.vtprotobuf.decode-fresh.factor} faster up to a hundred
+rows, \result{scaling.1000-16383.vtprotobuf.decode-fresh.factor} from a
+thousand to $2^{14}$, \result{scaling.16384.vtprotobuf.decode-fresh.factor}
+on the Public BI samples of $2^{14}$ rows and
+\result{scaling.over.vtprotobuf.decode-fresh.factor} past them. Against JSON
+the same bins go from \result{scaling.1.json-v2.decode-fresh.factor} to
+\result{scaling.over.json-v2.decode-fresh.factor}. The fixed cost of a
+table, its header and one descriptor per column, is spread over more rows,
+and the per-row work is a loop over one type. The trend is across cases with
+different schemas, so it mixes the number of rows with what the rows hold.
+\recheck{the bins' direction}
+
+% The sweep: one table cut to growing row counts (matrix/sweep.go), measured
+% apart (make SWEEP=../results/<run>). The figure and its paragraph appear
+% when tables-sweep/ is there.
+\newcommand{\sweepcurve}[4]{% table, op, column, style and legend
+  \addplot+[mark size=1pt, #4] table[x=rows, y=#3]{tables-sweep/fig-sweep-#1-#2.dat};}
+\newcommand{\sweeppanel}[3]{% title, table, extra axis options
+\begin{tikzpicture}
+\begin{axis}[width=0.5\linewidth, height=0.42\linewidth, title={#1},
+  xlabel={rows in the message}, xmode=log, ymode=log,
+  log ticks with fixed point, log basis x=2,
+  xtick={1,8,64,512,4096,32768,262144},
+  xticklabels={1,8,64,512,$2^{12}$,$2^{15}$,$2^{18}$},
+  grid=major, grid style={gray!20},
+  legend style={font=\scriptsize, draw=none, fill=none, at={(0.98,0.98)}, anchor=north east},
+  legend cell align=left, unbounded coords=discard, #3]
+\sweepcurve{#2}{decode-fresh}{json_v2}{gray, mark=o}
+\sweepcurve{#2}{decode-fresh}{msgpack}{orange, mark=triangle*}
+\sweepcurve{#2}{decode-fresh}{vtprotobuf}{blue, mark=square*}
+\sweepcurve{#2}{decode-fresh}{colbin}{black, very thick, mark=*}
+\legend{JSON, msgpack, vtprotobuf, colbin}
+\draw[densely dashed, gray] (axis cs:8,0.001) -- (axis cs:8,1e9);
+\end{axis}
+\end{tikzpicture}}
+\IfFileExists{tables-sweep/fig-sweep-lineitem-decode-fresh.dat}{%
+\begin{figure}[t]
+\centering
+\sweeppanel{TPC-H lineitem}{lineitem}{ylabel={decode-fresh, ns per row}}\hfill
+\sweeppanel{Public BI, Bimbo}{bimbo}{}
+\caption{One table cut to its first 1, 2, 4, \ldots{} rows: nanoseconds per
+row to decode into a fresh value, by the number of rows. The schema and the
+data are the same at every point; only the row count moves. The dashed line
+is the threshold of eight rows from which \colbin{} writes the slice as
+columns.}
+\label{fig:sweep}
+\end{figure}
+
+Figure~\ref{fig:sweep} removes the schema from the comparison: one table,
+cut to its first rows, at every power of two.
+\recheck{write this paragraph from the sweep's run: the cost per row below
+and above eight rows, and where \colbin{} crosses each format}
+}{}
+
+\FloatBarrier
 \subsection{Access without decoding}
 
 The access operation, the sum of one numeric column computed from the

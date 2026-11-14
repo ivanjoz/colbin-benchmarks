@@ -154,19 +154,21 @@ func alternate(old, new, dir string, rounds, count int, cases, cores []string) e
 }
 
 // expand turns case patterns (matrix.Matches: "publicbi/*" is every Public
-// BI table, "tpch/*" every TPC-H case, "all" every case) into case names, in report order. A pattern that matches
-// nothing is an error, so a typo does not run an empty benchmark.
+// BI table, "tpch/*" every TPC-H case, "all" every case of the matrix) into
+// case names, in report order. The sweep (matrix/sweep.go) is selected only
+// by a pattern that names it, "sweep/*". A pattern that matches nothing is an
+// error, so a typo does not run an empty benchmark.
 func expand(patterns []string) ([]string, error) {
 	var names []string
 	seen := map[string]bool{}
 	for _, pattern := range patterns {
 		matched := false
-		for _, c := range matrix.Cases() {
+		for _, c := range matrix.AllCases() {
 			ok, err := matrix.Matches(pattern, c.Name)
 			if err != nil {
 				return nil, fmt.Errorf("-cases %q: %w", pattern, err)
 			}
-			if ok {
+			if ok && matrix.SelectedBy(pattern, c.Name) {
 				matched = true
 				if !seen[c.Name] {
 					seen[c.Name] = true
@@ -186,7 +188,7 @@ func expand(patterns []string) ([]string, error) {
 // reproduce.sh splits the run by regime from this.
 func listCases(names []string) error {
 	byName := map[string]matrix.Case{}
-	for _, c := range matrix.Cases() {
+	for _, c := range matrix.AllCases() {
 		byName[c.Name] = c
 	}
 	for _, name := range names {
@@ -284,7 +286,7 @@ func workerFlags(count int) []string {
 
 func work(name string, formatNames, ops []string, count int, sample time.Duration, profile, probePath string) error {
 	var found *matrix.Case
-	for _, c := range matrix.Cases() {
+	for _, c := range matrix.AllCases() {
 		if c.Name == name {
 			found = &c
 		}

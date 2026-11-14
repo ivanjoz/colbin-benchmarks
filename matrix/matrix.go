@@ -146,14 +146,24 @@ func NotFetched(err error) bool { return errors.Is(err, errNotFetched) }
 func Selected(c Case) bool {
 	patterns := os.Getenv("COLBIN_CASES")
 	if patterns == "" {
-		return true
+		return !IsSweep(c.Name)
 	}
 	for _, pattern := range strings.Split(patterns, ",") {
-		if ok, _ := Matches(strings.TrimSpace(pattern), c.Name); ok {
+		if SelectedBy(strings.TrimSpace(pattern), c.Name) {
 			return true
 		}
 	}
 	return false
+}
+
+// SelectedBy is Matches, except that a sweep case (sweep.go) is selected only
+// by a pattern that names the sweep: "all" and "*" are the matrix.
+func SelectedBy(pattern, name string) bool {
+	if IsSweep(name) && !IsSweep(pattern) {
+		return false
+	}
+	ok, _ := Matches(pattern, name)
+	return ok
 }
 
 // Matches says whether a case pattern selects a case name. A pattern is
