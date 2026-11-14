@@ -24,15 +24,18 @@ absorb, they do not carry a document that is not a table, and they come with
 a schema language or a builder API that the application's own types have to
 be mapped to.
 
-This paper presents \colbin{}, a serialization format that applies the
-columnar layout inside an ordinary message, where it pays, and nowhere else.
-The unit of decision is the field, at encode time: a slice of structs whose
-fields are scalars or strings is written as a list of rows when it is short,
-and as a table of columns from eight rows up. The rest of the message, the fields of the root,
-nested structs and maps, uses a row format with one-byte field headers and no
-variable-length integers. A three-field configuration document and a
+This paper presents \colbin{}, a \emph{hybrid} serialization format: a
+message is written in a row format, and the columnar layout is applied
+inside it, where it pays, and nowhere else. The unit of decision is the
+value, at encode time: a slice of structs whose fields are scalars or
+strings is written as a list of rows when it is short, and as a table of
+columns from eight rows up. The rest of the message, the fields of the root,
+nested structs and maps, uses the row format, with one-byte field headers
+and no variable-length integers. A three-field configuration document and a
 million-row table are therefore the same format, and the encoder needs no
-hint about which it is writing.
+hint about which it is writing. The two halves are evaluated apart: the
+single records of the evaluation measure the row format alone, and the
+collections measure the columns.
 
 The second design constraint is setup cost. The schema of a \colbin{} message
 is the Go struct itself: field numbers come from optional struct tags or are
@@ -45,9 +48,8 @@ type at hand.
 
 \paragraph{What it is used for.} \colbin{} is a general-purpose format: any
 place where Protocol Buffers or MessagePack would serve is a candidate. It
-was built for one application, a business system developed by the author
-together with its object-relational mapper, and its design follows the
-places where that system had JSON. They are of three kinds, and the
+was built for one application, a business system developed by the author,
+and its design follows the places where that system had JSON. They are of three kinds, and the
 evaluation is organised by them.
 \begin{itemize}
 \item \emph{Bulk tables}: archives and backups of whole tables, written once
@@ -55,10 +57,10 @@ evaluation is organised by them.
 \item \emph{Tables of web size}: the responses a server sends to a web
   client, a page of records at a time, and the cache of those responses.
 \item \emph{Single records}: a record stored as one binary value in a
-  key-value store (the whole item of a DynamoDB table, in place of a JSON
-  document or one attribute per field), a small object stored in a binary
-  column of a relational table, where a JSON or text column would otherwise
-  hold it, and a message between two services, one in Go and one in Rust.
+  key-value store, in place of a JSON document or one attribute per field,
+  a small object stored in a binary column of a relational table, where a
+  JSON or text column would otherwise hold it, and a message between two
+  services.
 \end{itemize}
 The row format's narrow field header, one byte for a type of up to sixteen
 fields (Section~\ref{sec:format}), exists for the last kind: the small
@@ -70,11 +72,19 @@ million rows, which is the choice per value described above.
 
 \paragraph{Contributions.}
 \begin{itemize}
-\item A message format in which a slice of structs is a list or a columnar
-  table, decided per value, with integer columns encoded by a per-column
-  transform and bit-packed in byte-aligned blocks of 128 values, float columns
-  encoded as decimals where they are decimals, and all sizes read with a
-  single load rather than a variable-length loop (Section~\ref{sec:format}).
+\item A hybrid message format in which a slice of structs is a list of rows
+  or a columnar table, decided per value, with integer columns encoded by a
+  per-column transform and bit-packed in byte-aligned blocks of 128 values,
+  and float columns encoded as decimals where they are decimals
+  (Section~\ref{sec:format}).
+\item A row format for everything that is not a table: one byte of header
+  per field for types of up to sixteen fields, zero values not written, and
+  every size read with a single load rather than a variable-length loop.
+\item A self-describing mode: a message can embed its schema, a key, a name
+  and an operation code per field, and any reader then renders it as JSON,
+  or decodes it into another type by field name, without the producer's
+  type. Its cost is measured against the message it describes
+  (Section~\ref{sec:composition}).
 \item An evaluation in Go against \result{formats.baselines} formats and
   implementations (JSON, \fmt{gob}, CBOR, MessagePack, Protocol Buffers with two
   implementations, FlatBuffers, Arrow IPC, Avro and Cap'n Proto), raw and

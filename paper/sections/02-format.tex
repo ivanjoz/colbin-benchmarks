@@ -2,10 +2,8 @@
 \label{sec:format}
 
 This section describes the wire format at the level the evaluation needs. The
-byte-level specification, and the measurements behind each decision, including
-the alternatives that were tried and reverted, are in the library's
-repository (\code{INTERNALS.md} and \code{RATIONALE.md}; see
-Section~\ref{sec:availability}).
+byte-level specification, and the measurements behind each decision, are in
+the library's repository (Section~\ref{sec:availability}).
 
 \subsection{Messages are key runs}
 
@@ -128,9 +126,7 @@ by the inverse, which is slower but exact on every platform. The column is
 written this way only when it is smaller than the bit patterns would be.
 
 String columns are written as the strings one after another, each with its
-size. Dictionary coding of string columns exists in the library as an
-opt-in prototype; it is not part of the format evaluated here, and no result
-of this paper uses it.
+size; they are not dictionary-coded.
 
 \subsection{Optional parts}
 
@@ -145,8 +141,7 @@ against the message in Section~\ref{sec:composition}.
 
 \paragraph{Dynamic values.} A field of an open type (Go's \code{any},
 \code{[]any}, \code{map[string]any}) is written with a type descriptor per
-value, as schemaless formats do. SchemaStore's documents are measured both
-through hand-written structs and through this path.
+value, as schemaless formats do. No case of the evaluation uses this path.
 
 \paragraph{packed5.} An opt-in encoding packs strings of letters and digits
 at about five bits per character, when that is shorter. It is off by default

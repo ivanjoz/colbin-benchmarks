@@ -3,8 +3,10 @@ message: "If you use these benchmarks, please cite the paper and the tag you use
 title: "colbin-benchmarks: reproducible benchmarks for the colbin serialization format"
 type: software
 authors:
-  - family-names: Angulo
-    given-names: Ivan J.
+  - family-names: Angulo Reyna
+    given-names: Ivan Joseph
+    affiliation: Independent Researcher
+    email: ivan@un.pe
 repository-code: "https://github.com/ivanjoz/colbin-benchmarks"
 license: MIT
 # Filled in once arXiv announces the paper. See RELEASING.md, step 6.
@@ -12,8 +14,8 @@ license: MIT
 #   type: article
 #   title: "<paper title>"
 #   authors:
-#     - family-names: Angulo
-#       given-names: Ivan J.
+#     - family-names: Angulo Reyna
+#       given-names: Ivan Joseph
 #   year: 2026
 #   identifiers:
 #     - type: other

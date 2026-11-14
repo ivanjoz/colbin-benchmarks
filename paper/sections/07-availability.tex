@@ -3,10 +3,12 @@
 
 A serialization format does not have to choose between being a row format
 that is cheap for a small message and a columnar one that is compact for a
-table. \colbin{} decides per slice, at encode time, with a threshold of
-eight rows, and applies to the columns a small set of integer transforms
-and byte-aligned bit-packing that cost little on a short column and pay
-increasingly on a long one. It needs no schema file and no generated code.
+table. \colbin{} is both: it decides per slice, at encode time, with a
+threshold of eight rows, and applies to the columns a small set of integer
+transforms and byte-aligned bit-packing that cost little on a short column
+and pay increasingly on a long one. It needs no schema file and no generated
+code, and a message that embeds its schema can be read as JSON by a reader
+that has never seen its type.
 The evaluation shows where this pays and where it does not, on data the
 author did not design, and the artifact lets a reader check each number.
 

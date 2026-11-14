@@ -62,7 +62,11 @@ analytics: data at rest, read many times, in files whose footers and
 dictionaries are amortised over millions of rows. \colbin{} targets a message
 produced once and read once, usually small, in which a table is one field
 among others; it does not shred nested records, but lets a row hold a list
-column whose elements are again rows.
+column whose elements are again rows. Mixing the two layouts is not new in
+storage: PAX~\cite{ailamaki2001pax} keeps a relation in row pages and lays
+each page out by column. There the mix is fixed by the storage layout; in
+\colbin{} it is decided per value while a message is encoded, and a message
+with no collection in it has no columnar part at all.
 
 \paragraph{Benchmark data.} TPC-H~\cite{tpch} and
 TPC-DS~\cite{tpcds,nambiar2006tpcds} are generated from near-uniform

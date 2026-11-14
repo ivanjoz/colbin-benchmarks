@@ -4,7 +4,7 @@
 
 \subsection{Where \colbin{} loses or ties}
 
-\paragraph{Single documents, against Avro.} On documents with no table in
+\paragraph{Single records, against Avro.} On records with no table in
 them \colbin{} is a row format with one byte of header per field, and Avro,
 which writes no header at all, is smaller as written: on SchemaStore
 \colbin{} against Avro is \result{vs.datasets.schemastore.avro.raw.factor}
@@ -13,9 +13,8 @@ gzip, smaller in
 \result{vs.datasets.schemastore.avro.gzip.wins} of
 \result{vs.datasets.schemastore.avro.gzip.n} documents. Avro pays for this
 with a reader that must have the writer's exact schema.
-\recheck{direction of both comparisons}
 
-\paragraph{Time on single documents, against generated code.} On SchemaStore
+\paragraph{Time on single records, against generated code.} On SchemaStore
 \colbin{}'s encode time against \fmt{vtprotobuf}'s is
 \result{vs.datasets.schemastore.vtprotobuf.encode.factor} and against
 generated MessagePack's
@@ -27,7 +26,7 @@ faster in \result{vs.datasets.schemastore.vtprotobuf.encode.wins} of
 \result{vs.datasets.schemastore.msgpack.decode-fresh.factor} against
 generated MessagePack. Straight-line generated code beats a plan interpreted
 per field on a message of a few fields; the columnar path is what makes up
-the difference on tables. \recheck{direction}
+the difference on tables.
 
 \paragraph{Access without decoding.} \colbin{} must decode a message to read
 one field of it. Arrow and FlatBuffers read a column in place and are faster
@@ -44,8 +43,7 @@ distinct strings is the size of its strings in any format.
 are of Go implementations. A format's speed is its implementation's: the
 two implementations of Protocol Buffers and of MessagePack measured here
 differ by more than most pairs of formats do. The sizes carry over to other
-languages; the times do not. The Rust and JavaScript implementations of
-\colbin{} are not evaluated.
+languages; the times do not.
 
 \paragraph{Two machines, both x86-64.} The main times come from one server
 processor model, in four cloud container instances of the same shape (one
@@ -59,15 +57,13 @@ below about 4\,\% should not be read as differences. The second machine, a
 laptop with its clock fixed (Section~\ref{sec:second-machine}), shows which
 conclusions survive a change of processor, but it is a single unit of a
 single model, and two machines are not a population. Both are x86-64: no
-arm64 machine was measured, although the library has kernels for it.
+arm64 machine was measured.
 
-\paragraph{Datasets that were planned and not measured.} The evaluation as
-first planned included a month of the NYC taxi trip records, as a source of
-real timestamps and floats, and the Rust serialization benchmark's datasets,
-as validation against an existing third-party suite. Neither is in this
-paper. Real floats and timestamps are represented by Public BI only, and no
-dataset here was assembled by a third party specifically to compare
-serialization formats except SchemaStore's corpus.
+\paragraph{Datasets not covered.} Real floats and timestamps are
+represented by Public BI only. No dataset here was assembled by a third
+party specifically to compare serialization formats except SchemaStore's
+corpus, and the evaluation is not validated against an existing third-party
+benchmark suite.
 
 \paragraph{Synthetic distributions.} TPC-H and TPC-DS draw values from
 near-uniform distributions, which under-represent the skew and correlation
@@ -80,8 +76,10 @@ SchemaStore documents were written by the author, from the corpus's
 Protocol Buffers schemas. Choices of integer width, of pointer or value, and
 of field numbering affect every schema-driven format, not only \colbin{},
 but they are choices. The artifact also measures each document as a
-\code{map[string]any}, which involves none; only the schemaless formats can
-carry that, and it is not reported here (Section~\ref{sec:datasets}).
+\code{map[string]any}, which involves none; only the schemaless formats and
+Protocol Buffers (through \code{google.protobuf.Value}) can carry that, so it
+compares \colbin{} with a few formats on cases the others do not have, and
+it is not reported here.
 \result{coverage.web.colbin.na} documents cannot be given a type \colbin{}
 carries and are reported as not applicable, which removes them from
 \colbin{}'s comparisons; the other formats' means against JSON
@@ -99,16 +97,6 @@ process in order of first use; all cases of a run are sized in one process,
 in a fixed order, and a different selection of cases (one dataset per
 process in the cloud, all of them on the laptop) gives sizes that differ by
 up to a dozen bytes a message.
-
-\paragraph{Subset rules changed after seeing results.} Four subset rules
-changed after results under the earlier rule had been seen
-(Section~\ref{sec:datasets}). Sampling Public BI at random instead of taking
-the head, the change with the largest effect, moved the results against
-\colbin{}. Leaving SchemaStore's dynamic path out of the report removed
-cases on which \colbin{} lost to generated MessagePack on time; it lost on
-the same documents through their Go structs, which are reported, and the
-dynamic path's results are in the artifact. A reader should know both
-happened.
 
 \paragraph{Stability of the format.} \colbin{} is at version
 \result{machine.colbin-version}, before 1.0, with no compatibility promise

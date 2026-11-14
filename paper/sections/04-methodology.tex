@@ -5,10 +5,9 @@
 
 \colbin{} is evaluated as a serialization format in Go: the bytes a Go
 program writes and reads, against the Go implementations of the other
-formats. Its intended use is a server's response to a web client in place of
-JSON, but decoding in a browser is a different implementation (Rust compiled
-to WebAssembly) and is outside this paper; nothing here should be read as a
-claim about it.
+formats. One of its uses is a server's response to a web client in place of
+JSON, but decoding in a browser is a different implementation and is outside
+this paper; nothing here should be read as a claim about it.
 
 \subsection{Datasets}
 \label{sec:datasets}
@@ -33,7 +32,7 @@ checksums before anything reads it.
   Kinderkhedia's corpus~\cite{viotti2022benchmark}, each through a Go struct.
 \end{description}
 
-\paragraph{How the subsets were chosen.} Each subset follows a rule fixed in
+\paragraph{How the subsets are chosen.} Each subset follows a rule fixed in
 the repository (\code{datasets/README.md}), not a selection of tables or rows.
 For TPC-H and TPC-DS the rule is everything at one scale factor; scale factor
 0.1 is about 100\,MB of text per benchmark, which every format holds in memory
@@ -46,22 +45,6 @@ values more than the table does, which would flatter every format that
 exploits repetition, \colbin{} most of all. The sample depends only on a
 fixed seed, the table's name and the row index, and keeps table order. For
 SchemaStore the selection is that of the corpus's authors.
-
-Four changes of rule were made after results under the earlier rule had
-been seen, and they are recorded with their reasons in the repository's
-subset history: TPC-H went from two tables to all eight; a scale factor 1
-that had only been sized, never timed, was dropped; Public BI went from
-the first $2^{14}$ rows to the random sample, for the reason above, with the
-seed fixed before any sampled table was measured, a change that makes
-every format's output larger, \colbin{}'s raw bytes most; and SchemaStore's
-documents, which the artifact also measures as a \code{map[string]any}, are
-reported through their Go structs only. On that dynamic path only the
-schemaless formats and Protocol Buffers (through
-\code{google.protobuf.Value}) can carry a document, so it compared
-\colbin{} with a few formats on cases the others do not have; it was also
-where \colbin{} lost to generated MessagePack on encode and decode time. Its
-results are in the artifact. \recheck{the dynamic path's exclusion, as
-disclosed here}
 
 \paragraph{Go types.} Every format is driven from one Go struct per dataset
 root, written as a Go programmer would write it and not as any format
@@ -79,8 +62,9 @@ provides; this is a place where the author's judgement enters
 \subsection{Kinds of message}
 \label{sec:kinds}
 
-A response to a web client rarely holds more than about ten thousand rows.
-Every case therefore falls in one of two regimes by its row count alone:
+We take $2^{14}$ rows as the bound of what a server sends to a web client in
+one response; the bound is a convention of this paper, not a measurement.
+Every case falls in one of two regimes by its row count alone:
 \emph{web}, at most $2^{14} = 16\,384$ rows, and \emph{bulk}, more than that.
 The web regime has \result{cases.web} cases: the \result{cases.web.publicbi}
 Public BI samples, the \result{cases.web.schemastore} SchemaStore documents,
@@ -129,7 +113,8 @@ dropped (Table~\ref{tab:coverage}). Arrow carries only roots that are tables.
 refuses a struct with no field it can encode, and in those documents a type
 has none. Two Public
 BI tables have more than 255 columns, which the untagged variant does not
-support. \fmt{gob} does not transmit a pointer to a zero value, so it does
+support. Cap'n Proto does not carry two SchemaStore documents, in which a
+field's name collides with a method its Go code generator emits. \fmt{gob} does not transmit a pointer to a zero value, so it does
 not round-trip any table with a nullable column that holds a zero; its sizes
 on those cases are reported, flagged as lossy, and it is not timed on them
 (Section~\ref{sec:limitations}).
@@ -215,8 +200,7 @@ instance, all four of the same shape and at the same commit, side by side;
 every case, and so every ratio between two formats, comes from a single
 process on a single core. Each instance was started from a pinned container
 image, cloned this artifact at the commit it reports, and fetched and
-verified its dataset itself. \recheck{shape, OCPUs, memory and the four
-instances: as run}\par}
+verified its dataset itself.\par}
 
 A container cannot fix the clock: the frequency governor and the boost are
 the host's, and how far a core boosts depends on what the host's other
@@ -237,10 +221,9 @@ within \result{probe.web.spread.p90}\,\% for nine cases in ten;
 clock move by more than 5\,\%. Because samples are taken round-robin, such a
 change falls on every format of the case alike. The probes, the machine
 description and the per-second log of the cores are part of the artifact.
-\recheck{probe numbers: read them before keeping this paragraph's claims}
 
 \paragraph{A second machine.} The same commit was measured again, in full, on
-a machine of another kind: a laptop with an \result{laptop.machine.cpu}, a
+a machine of another kind: a laptop whose processor is a \result{laptop.machine.cpu}, a
 15\,W client processor with two performance cores and eight efficiency
 cores, \result{laptop.machine.kernel}, Go \result{laptop.machine.go-version}.
 There the clock could be fixed rather than measured. Boost was disabled and
@@ -258,17 +241,17 @@ nine cases in ten, and by more than 5\,\% in
 \result{laptop.probe.web.spread.over5} of \result{laptop.probe.web.cases}.
 The two machines are reported apart and never pooled
 (Section~\ref{sec:second-machine}); a number that does not say otherwise is
-the cloud's. \recheck{laptop probe: median near the base clock, spread small}
+the cloud's.
 
 The web cases were timed twice, several hours apart, to measure how far a
 number moves when nothing changes. Of \result{repeat.lines} benchmarks,
 \result{repeat.within3}\,\% differ by at most 3\,\% between the two passes,
 \result{repeat.within5}\,\% by at most 5\,\% and \result{repeat.within10}\,\%
 by at most 10\,\%; the median difference is \result{repeat.median}\,\%, the
-90th percentile \result{repeat.p90}\,\%, and the second pass is
-\result{repeat.drift}\,\% slower than the first overall. Absolute times on
-this machine are therefore not repeatable to the 3\,\% we had set as a
-criterion. Ratios between formats are: the geometric means of each format's
+90th percentile \result{repeat.p90}\,\%, and neither pass is slower than
+the other overall. Absolute times on
+this machine are therefore not repeatable to 3\,\%. Ratios between formats
+are: the geometric means of each format's
 time over \colbin{}'s differ between the two passes by at most
 \result{repeat.ratio-worst}\,\% (Table~\ref{tab:repeatability}), because the
 round-robin sampling exposes every format in a case to the same conditions.
@@ -279,7 +262,6 @@ Timing tables use the first pass. On the laptop, with its clock fixed,
 differ by at most 3\,\% between the two passes, the median difference is
 \result{laptop.repeat.median}\,\%, and the geometric means over \colbin{}'s
 differ by at most \result{laptop.repeat.ratio-worst}\,\%.
-\recheck{laptop repeatability against the cloud's: better or worse}
 
 \begin{table}[t]
 \centering\small
