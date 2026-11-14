@@ -168,7 +168,7 @@ the runtime releases free memory to the kernel lazily
 cases run two at a time on two cores, bulk cases one at a time. Within a
 case, every format and operation is checked and warmed up, the core is kept
 busy for 200\,ms so that its clock is up before the first sample, and then
-samples are taken, each after an untimed run of its own operation, round-robin over all formats and operations, so that each
+samples are taken, each after a collection, round-robin over all formats and operations, so that each
 benchmark sees the same neighbours and the same drift. A benchmark is
 \result{machine.count} samples of at least \result{machine.sample} each, and
 its value is their median. Sizes do not depend on the machine and are
@@ -184,14 +184,17 @@ fixed, repeated that in every round and in both passes. A first version of
 this evaluation was measured that way, and the same decoder on the same
 bytes, \colbin{}'s default and its variants, differed by up to a half on a
 bulk case in decode-fresh while agreeing in decode-reuse, which allocates
-nothing. Two things remove it. With \code{MADV\_FREE} the kernel takes
-the pages only when it is short of memory, and the faults do not occur.
-And every sample is preceded by an untimed run of the same operation for the
-same time, followed by a collection, so that the memory a sample allocates
-from is memory its own format has just used and freed, not another's.
-\colbin{}'s variants, which share a decoder,
-are in the timing tables of Appendix~\ref{sec:against-json} as the control
-of this.
+nothing. With \code{MADV\_FREE} the kernel takes the pages only when it
+is short of memory, and the faults do not occur. We checked that this is
+enough on both machines with an A/A test on four TPC-DS tables: \colbin{}
+and \fmt{colbin-json}, which differs only by the schema section it embeds,
+share a decoder and decode the same rows, so their decode-fresh times should
+match. Before the change \colbin{}, which
+runs right after Cap'n Proto, measured up to half again as slow; after it
+the two matched within the run-to-run noise, and preceding every sample
+with an untimed run of its own operation, of 10 to 100\,ms, changed
+nothing, so it is not done. \colbin{}'s variants are in the timing tables
+of Appendix~\ref{sec:against-json} as the control of this in every run.
 
 \paragraph{Summaries.} The results compare \colbin{} with each other format
 directly: on each case both carry, \colbin{}'s number is divided by the

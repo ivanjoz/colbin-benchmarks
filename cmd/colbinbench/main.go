@@ -81,7 +81,7 @@ func main() {
 		ops     = flag.String("ops", "encode,decode-fresh,decode-reuse", "comma-separated operations")
 		count   = flag.Int("count", 10, "samples per benchmark")
 		sample  = flag.Duration("sample", 100*time.Millisecond, "minimum time per sample")
-		warm    = flag.Duration("warm", -1, "untimed run of a sample's own operation before it (measure); negative: as long as -sample")
+		warm    = flag.Duration("warm", 0, "untimed run of a sample's own operation before it (measure); negative: as long as -sample")
 		cores   = flag.String("cores", "4,5,6,7,8,9,10,11", "cores to pin workers to, one case each")
 		data    = flag.String("data", "datasets/data", "the fetched datasets")
 		profile = flag.String("cpuprofile", "", "write each case's CPU profile, timed loops only, to this directory")
@@ -283,8 +283,7 @@ func drive(build string, cases, cores, flags []string) ([]byte, error) {
 // minor faults a decode against 250, tpcds store_returns). decode-reuse,
 // which allocates nothing, never showed it. With MADV_FREE the kernel takes
 // the pages only when it is short of memory, a decode into a fresh value
-// costs no fault. It still costs something to take such a page back, which
-// measure's untimed pass pays before the clock starts.
+// costs no fault. On the machines the paper reports that is enough (measure).
 func workerGodebug() string {
 	const setting = "madvdontneed=0"
 	if inherited := os.Getenv("GODEBUG"); inherited != "" {
@@ -466,21 +465,24 @@ func prepare(name string, instance formats.Instance, loaded *matrix.Loaded, ops 
 	return runners, nil
 }
 
-// measure takes one sample: the body run for at least sample, at least once.
+// measure takes one sample: the body run for at least sample, at least once,
+// after a collection.
 //
-// Before the clock starts the body runs for as long again, untimed, and what
-// that leaves is collected. The free heap a sample allocates from was last
-// written by another format's benchmark, and the runtime's scavenger has
-// handed part of it back to the kernel since (workerGodebug): the first
-// benchmark to allocate from it pays to take it back, and the one after it
-// does not. Run cold, the same colbin decoder measured 1.12 times slower as
-// the first of colbin's variants than as the others even with no page fault
-// left (4 cases, one core); after this pass, 1.03. The pass allocates what
-// the sample will, so the sample finds the memory as its own format left it.
+// With warm > 0 the body first runs that long, untimed, so that the sample
+// allocates from memory its own format has just used and freed rather than
+// from what another format left and the scavenger handed back. On an Intel
+// laptop, with madvdontneed=0 and no such pass, the same colbin decoder
+// measured 1.12 times slower as the first of colbin's variants than as the
+// others (4 cases, one core). On the two AMD machines the paper reports, the
+// A/A check (colbin against colbin-json in decode-fresh: the same decoder and
+// rows, colbin-json only adding its schema section) gave 0.97-1.02 on four TPC-DS tables with no pass and with
+// 10, 25 and 100 ms (plans/oci-warm-test.md), against 1.24-1.56 with neither
+// remedy: so the default is none. One collection per sample, after the pass:
+// with a second one before it and no pass, store_returns's timings on OCI took
+// 4:24 against 2:46 before either, for nothing a sample could see.
 func (r runner) measure(out *bufio.Writer, sample, warm time.Duration, rows int) error {
 	teardown := r.instance.Enter()
 	defer teardown()
-	runtime.GC()
 	for start := time.Now(); time.Since(start) < warm; {
 		if err := r.body(); err != nil {
 			return err
