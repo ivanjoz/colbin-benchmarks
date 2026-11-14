@@ -51,9 +51,11 @@ differ by more than most pairs of formats do. The sizes carry over to other
 languages; the times do not. The Rust and JavaScript implementations of
 \colbin{} are not evaluated.
 
-\paragraph{One machine, in the cloud.} Times come from a single x86-64
-server processor in a cloud container instance, whose clock the host
-controls and whose cache and memory bandwidth other tenants share. We
+\paragraph{One processor model, in the cloud.} Times come from one x86-64
+server processor model, in four cloud container instances of the same shape
+(one per dataset), whose clock the host controls and whose cache and memory
+bandwidth other tenants share. A summary over a regime pools cases measured
+in different instances; a ratio on one case never does. We
 measured the clock rather than fixed it (Section~\ref{sec:machine}); a
 reader with a dedicated machine and boost disabled would see less variation.
 Absolute times were not repeatable to 3\,\% between two passes

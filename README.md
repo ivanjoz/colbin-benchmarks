@@ -134,6 +134,7 @@ table or a number is missing.
 | `matrix/` | the cases, `TestSizes`, `TestAblation`, and the studies behind colbin's design (`Test*Study`) |
 | `cmd/colbinbench` | the timing harness: one process per case, pinned to a core |
 | `cmd/summary` | a run's `SUMMARY.md` and `tables/` |
+| `cmd/mergeruns` | joins runs of different cases on the same machine (one container per dataset) into one |
 | `cmd/gen` | generates each format's schema and code from the Go types |
 | `paper/` | the paper |
 | `web/`, `cmd/webfixtures` | the browser benchmark; not part of the paper ([web/README.md](web/README.md)) |

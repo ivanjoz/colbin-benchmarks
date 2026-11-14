@@ -183,13 +183,17 @@ exactly the cases both have.
 \subsection{Machine and repeatability}
 \label{sec:machine}
 
-The numbers were measured in an Oracle Cloud Infrastructure container
-instance of shape \code{CI.Standard.E4.Flex}, 4 OCPUs (physical cores
+The numbers were measured in Oracle Cloud Infrastructure container
+instances of shape \code{CI.Standard.E4.Flex}, 4 OCPUs (physical cores
 dedicated to the instance) and 32\,GB, on an \result{machine.cpu},
 \result{machine.kernel}, Go \result{machine.go-version}, on CPUs
-\result{machine.measured-cores}. The instance was started from a pinned
-container image, cloned this artifact at the commit it reports, and fetched
-and verified the datasets itself. \recheck{shape, OCPUs and memory: as run}
+\result{machine.measured-cores}. Each dataset was measured in its own
+instance, all four of the same shape and at the same commit, side by side;
+every case, and so every ratio between two formats, comes from a single
+process on a single core. Each instance was started from a pinned container
+image, cloned this artifact at the commit it reports, and fetched and
+verified its dataset itself. \recheck{shape, OCPUs, memory and the four
+instances: as run}
 
 A container cannot fix the clock: the frequency governor and the boost are
 the host's, and how far a core boosts depends on what the host's other

@@ -62,10 +62,13 @@ using colbin API newer than the required tag:
 
    ```sh
    cloud/ocibench.py up
-   cloud/ocibench.py run --label paper-v1
-   cloud/ocibench.py status                 # until reproduce.sh has exited
+   for d in tpch tpcds publicbi schemastore; do      # one container per dataset
+     cloud/ocibench.py run --label $d -- --cases "$d/*"
+   done
+   cloud/ocibench.py status                 # until every reproduce.sh has exited
    cloud/ocibench.py fetch
-   mv results/cloud/oci/oci-x86-paper-v1-* results/paper-v1
+   go run ./cmd/mergeruns -out results/paper-v1 results/cloud/oci/oci-x86-{tpch,tpcds,publicbi,schemastore}-<stamps>
+   go run ./cmd/summary results/paper-v1
    ```
 
 2. On a local machine instead (`./reproduce.sh --out results/paper-v1`), it

@@ -75,6 +75,18 @@ cloud/ocibench.py fetch --partial # and what unfinished ones have uploaded → <
 cloud/ocibench.py down --bucket   # delete everything, the bucket with it
 ```
 
+One container per dataset takes the longest dataset's time instead of the
+sum (about 2 hours instead of 5); `cmd/mergeruns` joins the parts into one run,
+and refuses parts that differ in the CPU, the commit, Go, colbin or the
+sampling:
+
+```sh
+for d in tpch tpcds publicbi schemastore; do cloud/ocibench.py run --label $d -- --cases "$d/*"; done
+cloud/ocibench.py fetch
+go run ./cmd/mergeruns -out results/paper-v1 results/cloud/oci/oci-x86-{tpch,tpcds,publicbi,schemastore}-<stamps>
+go run ./cmd/summary results/paper-v1
+```
+
 It needs `uv` (the script's header installs the OCI SDK, on Python 3.13: the
 SDK's `crc32c` has no wheel for 3.15) and an API key in `~/.oci/config`
 (`--profile`, `--compartment`; the default compartment is the tenancy's root).
