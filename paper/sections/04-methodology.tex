@@ -30,9 +30,7 @@ checksums before anything reads it.
   workbooks, and from each a seeded uniform random sample of $2^{14}$ rows, or
   the whole table where it is shorter.
 \item[SchemaStore]~\cite{schemastore}: the 27 documents of Viotti and
-  Kinderkhedia's corpus~\cite{viotti2022benchmark}, each measured twice: through a Go
-  struct (the \emph{typed} path) and as a \code{map[string]any} (the
-  \emph{dynamic} path).
+  Kinderkhedia's corpus~\cite{viotti2022benchmark}, each through a Go struct.
 \end{description}
 
 \paragraph{How the subsets were chosen.} Each subset follows a rule fixed in
@@ -49,13 +47,21 @@ exploits repetition, \colbin{} most of all. The sample depends only on a
 fixed seed, the table's name and the row index, and keeps table order. For
 SchemaStore the selection is that of the corpus's authors.
 
-Three changes of rule were made after results under the earlier rule had
+Four changes of rule were made after results under the earlier rule had
 been seen, and they are recorded with their reasons in the repository's
 subset history: TPC-H went from two tables to all eight; a scale factor 1
-that had only been sized, never timed, was dropped; and Public BI went from
+that had only been sized, never timed, was dropped; Public BI went from
 the first $2^{14}$ rows to the random sample, for the reason above, with the
-seed fixed before any sampled table was measured. The last change makes
-every format's output larger, \colbin{}'s raw bytes most.
+seed fixed before any sampled table was measured, a change that makes
+every format's output larger, \colbin{}'s raw bytes most; and SchemaStore's
+documents, which the artifact also measures as a \code{map[string]any}, are
+reported through their Go structs only. On that dynamic path only the
+schemaless formats and Protocol Buffers (through
+\code{google.protobuf.Value}) can carry a document, so it compared
+\colbin{} with a few formats on cases the others do not have; it was also
+where \colbin{} lost to generated MessagePack on encode and decode time. Its
+results are in the artifact. \recheck{the dynamic path's exclusion, as
+disclosed here}
 
 \paragraph{Go types.} Every format is driven from one Go struct per dataset
 root, written as a Go programmer would write it and not as any format
@@ -67,22 +73,28 @@ Avro schemas, generated MessagePack code, Arrow builders) are generated from
 those structs. For TPC-H, TPC-DS and Public BI the structs themselves are
 generated from the sources' \code{CREATE TABLE} statements. For SchemaStore
 they were written by hand, from the Protocol Buffers schemas the corpus
-provides; this is a place where the author's judgement enters, which is why
-the dynamic path, where it does not, is reported beside it.
+provides; this is a place where the author's judgement enters
+(Section~\ref{sec:limitations}).
 
-\subsection{Regimes}
+\subsection{Kinds of message}
+\label{sec:kinds}
 
 A response to a web client rarely holds more than about ten thousand rows.
 Every case therefore falls in one of two regimes by its row count alone:
 \emph{web}, at most $2^{14} = 16\,384$ rows, and \emph{bulk}, more than that.
 The web regime has \result{cases.web} cases: the \result{cases.web.publicbi}
-Public BI samples, the \result{cases.web.schemastore} SchemaStore documents on
-each path, \result{cases.web.tpcds} TPC-DS tables and \result{cases.web.tpch}
-TPC-H tables. The bulk regime has \result{cases.bulk}: the other
+Public BI samples, the \result{cases.web.schemastore} SchemaStore documents,
+\result{cases.web.tpcds} TPC-DS tables and \result{cases.web.tpch} TPC-H
+tables. The bulk regime has \result{cases.bulk}: the other
 \result{cases.bulk.tpcds} TPC-DS tables, and for TPC-H four tables and the
-two composite cases. The web regime is the one the intended use is judged
-by; the bulk regime shows how each format scales past it. They are reported
-apart and never averaged together.
+two composite cases. The web regime holds two kinds of message that a
+format treats differently, and the results keep them apart: a \emph{web
+table}, a slice of rows (TPC-H, TPC-DS and Public BI;
+\result{cases.categories.web-tables} cases), and a \emph{web document}, a
+single object with no table in it (SchemaStore;
+\result{cases.categories.web-documents}). With \emph{bulk}
+(\result{cases.categories.bulk}), these are the three kinds of message the
+results are reported by, beside the four datasets.
 
 \subsection{Baselines}
 
@@ -108,12 +120,10 @@ by the artifact's \code{go.mod}; \colbin{}'s is the one the run recorded.}
 Not every format carries every case, and a format that cannot carry a case is
 reported as not applicable, with the reason, rather than forced or silently
 dropped (Table~\ref{tab:coverage}). Arrow carries only roots that are tables.
-On SchemaStore's dynamic path there is no struct to generate code or a schema
-from, which excludes the formats that need one; Protocol Buffers is measured
-there through \code{google.protobuf.Value}. \colbin{} itself cannot carry six
-of the 27 typed SchemaStore documents: its typed path carries slices of integers, of strings and of
-dynamic values, but not of floats or booleans (four documents, GeoJSON's
-coordinates among them), and it refuses a struct with no field (two). Two Public
+\colbin{} itself cannot carry
+\result{coverage.web.colbin.na} of the 27 SchemaStore documents: it
+refuses a struct with no field it can encode, and in those documents a type
+has none. Two Public
 BI tables have more than 255 columns, which the untagged variant does not
 support. \fmt{gob} does not transmit a pointer to a zero value, so it does
 not round-trip any table with a nullable column that holds a zero; its sizes
@@ -168,23 +178,28 @@ benchmark sees the same neighbours and the same drift. A benchmark is
 its value is their median. Sizes do not depend on the machine and are
 computed in a separate stage.
 
-\paragraph{Summaries.} A format's number on a case is divided by JSON's on
-the same case and operation; for access, which JSON does not have, by JSON's
-decode-fresh, what a client without it does instead. A summary over cases is
-the geometric mean of those ratios over the cases the format has a number
-for, with that count beside it. A message of zero bytes (a document whose
-values are all defaults is zero bytes in \colbin{} and Protocol Buffers) has
-a ratio of zero, which a geometric mean cannot hold; such cases are left out
-of the mean and marked. Because formats differ in the cases they carry, a
-mean against JSON is not directly comparable between two formats;
-Section~\ref{sec:versus} therefore compares \colbin{} with each format on
-exactly the cases both have.
+\paragraph{Summaries.} The results compare \colbin{} with each other format
+directly: on each case both carry, \colbin{}'s number is divided by the
+other format's for the same case and operation, so that below 1 \colbin{} is
+smaller or faster and above 1 it loses. A summary over cases is the
+geometric mean of those ratios, in which every case weighs the same, with
+the number of cases \colbin{} wins outright beside it. The cases are
+grouped two ways, each case in exactly one group: by dataset, and by kind of
+message (Section~\ref{sec:kinds}). Because the comparison is always on the
+cases both formats carry, a format that carries few cases is compared with
+\colbin{} on those cases only. Each format against JSON, over the cases the
+format carries and by regime, is in Appendix~\ref{sec:against-json}; there,
+for access, which JSON does not have, the reference is JSON's decode-fresh,
+what a client without it does instead. A message of zero bytes (a document
+whose values are all defaults is zero bytes in \colbin{} and Protocol
+Buffers) has a ratio of zero, which a geometric mean cannot hold; such cases
+are left out of the mean and marked.
 
 \FloatBarrier
 \subsection{Machine and repeatability}
 \label{sec:machine}
 
-The numbers were measured in Oracle Cloud Infrastructure container
+{\sloppy The main numbers were measured in Oracle Cloud Infrastructure container
 instances of shape \code{CI.Standard.E4.Flex}, 4 OCPUs (physical cores
 dedicated to the instance) and 32\,GB, on an \result{machine.cpu},
 \result{machine.kernel}, Go \result{machine.go-version}, on CPUs
@@ -194,7 +209,7 @@ every case, and so every ratio between two formats, comes from a single
 process on a single core. Each instance was started from a pinned container
 image, cloned this artifact at the commit it reports, and fetched and
 verified its dataset itself. \recheck{shape, OCPUs, memory and the four
-instances: as run}
+instances: as run}\par}
 
 A container cannot fix the clock: the frequency governor and the boost are
 the host's, and how far a core boosts depends on what the host's other
@@ -217,6 +232,27 @@ change falls on every format of the case alike. The probes, the machine
 description and the per-second log of the cores are part of the artifact.
 \recheck{probe numbers: read them before keeping this paragraph's claims}
 
+\paragraph{A second machine.} The same commit was measured again, in full, on
+a machine of another kind: a laptop with an \result{laptop.machine.cpu}, a
+15\,W client processor with two performance cores and eight efficiency
+cores, \result{laptop.machine.kernel}, Go \result{laptop.machine.go-version}.
+There the clock could be fixed rather than measured. Boost was disabled and
+the \code{performance} governor set, so that the performance cores ran at
+their base frequency throughout; the cases ran on one hardware thread of each
+performance core (CPUs \result{laptop.machine.measured-cores}), with the
+same protocol as above, and every other process and every interrupt were
+confined to the efficiency cores. On this machine the processor's cycle
+counter can be read, and it confirms the probe: over the first web pass the
+probe read a median of \result{laptop.probe.web.mhz.median}\,MHz and the
+cycle counter \result{laptop.probe.web.counted-mhz.median}\,MHz, at
+\result{laptop.probe.web.cycles-per-multiply} cycles per multiply. Within a
+case the probe moved by at most \result{laptop.probe.web.spread.p90}\,\% for
+nine cases in ten, and by more than 5\,\% in
+\result{laptop.probe.web.spread.over5} of \result{laptop.probe.web.cases}.
+The two machines are reported apart and never pooled
+(Section~\ref{sec:second-machine}); a number that does not say otherwise is
+the cloud's. \recheck{laptop probe: median near the base clock, spread small}
+
 The web cases were timed twice, several hours apart, to measure how far a
 number moves when nothing changes. Of \result{repeat.lines} benchmarks,
 \result{repeat.within3}\,\% differ by at most 3\,\% between the two passes,
@@ -231,7 +267,12 @@ time over \colbin{}'s differ between the two passes by at most
 round-robin sampling exposes every format in a case to the same conditions.
 For that reason this paper reports ratios, not absolute times, and treats a
 difference between two formats smaller than about 4\,\% as no difference.
-Timing tables use the first pass.
+Timing tables use the first pass. On the laptop, with its clock fixed,
+\result{laptop.repeat.within3}\,\% of \result{laptop.repeat.lines} benchmarks
+differ by at most 3\,\% between the two passes, the median difference is
+\result{laptop.repeat.median}\,\%, and the geometric means over \colbin{}'s
+differ by at most \result{laptop.repeat.ratio-worst}\,\%.
+\recheck{laptop repeatability against the cloud's: better or worse}
 
 \begin{table}[t]
 \centering\small

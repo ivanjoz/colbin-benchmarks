@@ -71,12 +71,34 @@ using colbin API newer than the required tag:
    go run ./cmd/summary results/paper-v1
    ```
 
-2. On a local machine instead (`./reproduce.sh --out results/paper-v1`), it
-   needs mains power, the `performance` governor, turbo off, nothing else
-   running; `reproduce.sh` refuses to start otherwise and says which command
-   fixes each. A run that stops continues with `--resume`.
+2. The second machine is a local one, measured at the same commit
+   (`results/paper-v1-laptop`). It needs mains power, the `performance`
+   governor, turbo off, nothing else running; `reproduce.sh` refuses to start
+   otherwise and says which command fixes each. A run that stops continues
+   with `--resume`. On a hybrid laptop the run must have the performance cores
+   to itself, so the steps are, as root:
+   - stop (mask, until the run ends) `tuned`, `tuned-ppd` and
+     `power-profiles-daemon`: they turn the turbo back on;
+   - turbo off, `performance` governor, sleep targets masked;
+   - interrupts and the `system.slice`, `user.slice` and `init.scope` cgroups
+     confined to the efficiency cores;
+   - the run in its own slice, from a clean worktree at that commit:
 
-3. Read `results/paper-v1/SUMMARY.md` and `machine.txt`. The run is the
+   ```sh
+   git worktree add ../cb-<commit> <commit>
+   sudo systemd-run --unit=colbin-laptop --slice=bench.slice -p AllowedCPUs=0-11 \
+     --uid="$(id -u)" --gid="$(id -g)" -p WorkingDirectory="$PWD/../cb-<commit>" \
+     -E HOME="$HOME" -E PATH="$PATH" -E COLBIN_DATA="$PWD/datasets/data" \
+     ../cb-<commit>/reproduce.sh --out "$PWD/results/paper-v1-laptop"
+   ```
+
+   On Fedora, SELinux does not let systemd execute a script under `$HOME`:
+   `chcon -t bin_t ../cb-<commit>/reproduce.sh` first. `--cores auto` picks
+   one hardware thread of each of the first two performance cores.
+
+3. Read `results/paper-v1/SUMMARY.md` and `machine.txt`, and those of
+   `results/paper-v1-laptop/`. Their `sizes.csv` must match line for line
+   except `gob` on messages of tens of bytes. Each run is the
    paper's only if `machine.txt` has no `WARNING` line and there is no `FAILED`
    file; otherwise `tables/numbers.tex` marks it provisional and the paper
    prints that on its first page. On a cloud run, also read the probe
@@ -88,10 +110,10 @@ using colbin API newer than the required tag:
    `\finaltrue` in `paper/main.tex`.
 
    ```sh
-   make -C paper RUN=../results/paper-v1
+   make -C paper RUN=../results/paper-v1 LAPTOP=../results/paper-v1-laptop
    ```
 
-5. Commit `results/paper-v1/` as `reproduce.sh` left it (`.gitignore` lets
+5. Commit `results/paper-v1/` and `results/paper-v1-laptop/` as `reproduce.sh` left them (`.gitignore` lets
    `results/paper-v*` through and nothing else under `results/`). Do not edit
    a number by hand, in the results or in the paper. If a number looks wrong,
    fix the code, commit, and run again: the commit `machine.txt` names has to

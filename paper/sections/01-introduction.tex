@@ -66,8 +66,10 @@ type at hand.
   paper (Section~\ref{sec:availability}).
 \end{itemize}
 
-The intended use, a server sending \colbin{} to a web client in place of JSON,
-bounds the size of a message, and the evaluation is organised around that
-bound: cases of at most $2^{14}$ rows form the \emph{web} regime, by which the
-format is judged, and larger ones the \emph{bulk} regime, which shows how each
-format scales past it. No number in this paper pools the two.
+The evaluation compares \colbin{} with each other format directly, on the
+cases both carry, and reports the comparison two ways: by dataset, and by
+the kind of message. The intended use, a server sending \colbin{} to a web
+client in place of JSON, bounds the size of a message, so the kinds are a
+table of web size (at most $2^{14}$ rows), a single web document that holds
+no table, and, past the bound, a bulk table, which shows how each format
+scales.

@@ -19,10 +19,14 @@ this paper are available at
 % TODO(release, RELEASING.md step 4): the full hash of `git rev-parse paper-v1`,
 % and the Zenodo DOI of the release made from that tag.
 (commit \code{<full hash>}), archived at \url{https://doi.org/<zenodo-doi>}.
-The numbers in this paper were produced at commit
+{\sloppy The numbers in this paper were produced at commit
 \code{\result{machine.commit}} of that repository, with \colbin{}
 \result{machine.colbin-version}
-(\url{https://github.com/ivanjoz/colbin}). Running \code{./reproduce.sh} at
-the tag downloads and verifies the datasets, runs every measurement, and
-regenerates every table and figure of this paper; the tables and the numbers
-quoted in the text are generated files, not transcriptions.
+(\url{https://github.com/ivanjoz/colbin}), and the second machine's at
+commit \code{\result{laptop.machine.commit}}, with \colbin{}
+\result{laptop.machine.colbin-version}. The raw results of both are in the
+repository, \code{results/paper-v1} and \code{results/paper-v1-laptop}.
+Running \code{./reproduce.sh} at the tag downloads and verifies the
+datasets, runs every measurement, and regenerates every table and figure of
+this paper; the tables and the numbers quoted in the text are generated
+files, not transcriptions.\par}

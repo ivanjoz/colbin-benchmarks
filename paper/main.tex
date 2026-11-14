@@ -3,8 +3,10 @@
 % No number in this document is typed in. Tables are \resulttable{name}, which
 % reads tables/<name>.tex; a number in a sentence is \result{key}, defined in
 % tables/numbers.tex. Both are written by cmd/summary from one results
-% directory (`make RUN=../results/<run>` copies its tables/ here). A table or a
-% key the run does not have prints in red and warns in the log.
+% directory (`make RUN=../results/<run>` copies its tables/ here). The second
+% machine's run is read the same way from tables-laptop/, as \laptoptable{name}
+% and \result{laptop.key} (`make LAPTOP=../results/<run>`). A table or a key
+% a run does not have prints in red and warns in the log.
 \documentclass[10pt]{article}
 
 \usepackage[T1]{fontenc}
@@ -43,9 +45,28 @@
     \fi
   \else
     \begin{center}\fbox{\textcolor{red}{\textbf{No results:} run \texttt{make RUN=../results/<run>}.}}\end{center}
+  \fi
+  \ifcsname result@laptop.provisional\endcsname
+    \expandafter\ifx\csname result@laptop.provisional\endcsname\empty\else
+      \begin{center}\fbox{\parbox{0.92\linewidth}{\small\textcolor{red}{\textbf{Provisional numbers, second machine.}}
+      \csname result@laptop.provisional\endcsname.}}\end{center}
+    \fi
+  \else
+    \begin{center}\fbox{\textcolor{red}{\textbf{No second machine:} run \texttt{make LAPTOP=../results/<run>}.}}\end{center}
   \fi}
+% The second machine's run (Section~\ref{sec:second-machine}): the same keys,
+% read from tables-laptop/ and prefixed laptop., so that \result{laptop.key}
+% is that machine's \result{key}; \laptoptable{name} is its \resulttable{name}.
+\newcommand{\laptoptable}[1]{%
+  \IfFileExists{tables-laptop/#1.tex}{\input{tables-laptop/#1.tex}}%
+  {\fbox{\textcolor{red}{\texttt{tables-laptop/#1.tex} is not in this run}}%
+   \PackageWarning{results}{no table 'laptop.#1'}}}
 \makeatother
 \IfFileExists{\tables/numbers.tex}{\input{\tables/numbers.tex}}{}
+\begingroup
+\renewcommand{\resultdef}[2]{\expandafter\gdef\csname result@laptop.#1\endcsname{#2}}
+\IfFileExists{tables-laptop/numbers.tex}{\input{tables-laptop/numbers.tex}}{}
+\endgroup
 
 % A sentence whose wording depends on which way a number falls. Visible in a
 % draft; \finaltrue hides the marks once each has been read against the final
@@ -85,17 +106,22 @@ written as a compact row format with one-byte field headers. The Go struct is
 the schema: there is no interface description file and no code generation
 step. We evaluate \colbin{} against \result{formats.baselines} other formats
 and implementations in Go on \result{cases.total} cases drawn from TPC-H, TPC-DS, the
-Public BI Benchmark and the SchemaStore corpus of Viotti and Kinderkhedia, in
-two regimes kept apart: messages of the size a web client receives, and bulk
-tables beyond it. In the web regime \colbin{} messages are
-\result{size.web.colbin.raw} of JSON's bytes as written and
-\result{size.web.colbin.gzip} under gzip, and decode in
-\result{time.web.colbin.decode-fresh} of JSON's time; in the bulk regime,
-\result{size.bulk.colbin.raw}, \result{size.bulk.colbin.gzip} and
-\result{time.bulk.colbin.decode-fresh}. We report where it loses: against Avro
-on small typed documents, against generated encoders on encode time for small
-messages, and against Arrow and FlatBuffers on access without decoding.%
-\recheck{the three losses named here}
+Public BI Benchmark and the SchemaStore corpus of Viotti and Kinderkhedia,
+comparing it with each format on the cases both carry, by dataset and by
+kind of message. On tables of the size a web client receives, \colbin{}
+messages are \result{vs.categories.web-tables.json-v2.raw} of JSON's bytes as
+written and \result{vs.categories.web-tables.json-v2.gzip} under gzip, and
+decode in \result{vs.categories.web-tables.json-v2.decode-fresh} of JSON's
+time and \result{vs.categories.web-tables.vtprotobuf.decode-fresh} of
+generated Protocol Buffers code's; on bulk tables,
+\result{vs.categories.bulk.json-v2.raw},
+\result{vs.categories.bulk.json-v2.gzip},
+\result{vs.categories.bulk.json-v2.decode-fresh} and
+\result{vs.categories.bulk.vtprotobuf.decode-fresh}. We report where it
+loses: on single documents that hold no table, against Avro on size and
+against generated code on encode and decode time, and against Arrow and
+FlatBuffers on access without decoding.%
+\recheck{the losses named here}
 Every number regenerates from the tagged artifact with one command.
 \end{abstract}
 
@@ -109,5 +135,8 @@ Every number regenerates from the tagged artifact with one command.
 
 \bibliographystyle{plain}
 \bibliography{related-work}
+
+\appendix
+\input{sections/08-against-json}
 
 \end{document}
