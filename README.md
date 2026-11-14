@@ -182,9 +182,17 @@ citation.
   stream. `TestSizes` encodes every case of a regime in one process, so a small
   gob message's size depends on the cases before it:
   `schemastore/commitlintbasic` is 53 bytes among the 120 web cases and 52
-  alone. It matters only for messages of tens of bytes, and it is what a gob
-  user sees in a long-lived process, but gob's small-message sizes are not
-  reproducible across different case selections.
+  alone. Each message carries its type definitions, so a larger id shifts
+  every message by a few bytes: the paper's cloud run (one dataset per
+  process) and its laptop run (all of them in one) differ by -1 to +12 bytes
+  a gob message. It is what a gob user sees in a long-lived process, but gob's
+  sizes are reproducible only for the same selection of cases.
+- **Compressed sizes on the dynamic path depend on map order.** Go iterates
+  over a map in a random order, and every format on SchemaStore's dynamic path
+  (json-v2 included) writes a map's keys in the order it gets them. Raw sizes
+  do not change; sizes under gzip and zstd do, by up to 3 % between two runs
+  of the same document. The dynamic path is measured but not reported by
+  `cmd/summary` (datasets/README.md, subset history 5).
 - **Zero-byte messages.** Two SchemaStore documents hold only default values,
   and colbin, protobuf and vtprotobuf write them in 0 bytes. A ratio of 0 has
   no logarithm, so the summary leaves such cases out of a geometric mean and

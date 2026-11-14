@@ -12,8 +12,11 @@ package main
 // A table whose input is missing (no bench-web-2.txt, no ablation.csv) is not
 // written, and any stale copy of it is removed, so the paper shows it as
 // missing instead of showing another run's numbers. The rules are the summary's:
-// regimes are never pooled, a ratio is against JSON on the same case, and a
-// summary of ratios is their geometric mean.
+// a ratio is against JSON, or colbin's against another format's, on the same
+// case, and a summary of ratios is their geometric mean, in which every case
+// weighs one. The tables against JSON keep the regimes apart; the tables of
+// colbin against each format cut the cases by dataset and by category
+// (latexVersusBy), each case in exactly one group.
 
 import (
 	"encoding/csv"
@@ -34,21 +37,34 @@ import (
 
 var regimes = []string{"web", "bulk"}
 
-// Groups are what the per-dataset tables break a regime down by: the dataset,
-// with SchemaStore's dynamic path (map[string]any) apart from its typed one.
-var groupOrder = []string{"tpch", "tpcds", "publicbi", "schemastore", "schemastore-dynamic"}
+// Groups are what the per-dataset tables break a regime down by: the dataset.
+// (SchemaStore's dynamic path is not reported: see reported.)
+var groupOrder = []string{"tpch", "tpcds", "publicbi", "schemastore"}
 
 var groupLabel = map[string]string{
-	"tpch": "TPC-H", "tpcds": "TPC-DS", "publicbi": "Public BI",
-	"schemastore": "SchemaStore", "schemastore-dynamic": "SchemaStore (dyn.)",
+	"tpch": "TPC-H", "tpcds": "TPC-DS", "publicbi": "Public BI", "schemastore": "SchemaStore",
+	"bulk": "bulk", "web-tables": "web, tables", "web-documents": "web, documents",
 }
 
 func groupOf(name string) string {
 	dataset, _, _ := strings.Cut(name, "/")
-	if dataset == "schemastore" && strings.HasSuffix(name, "/dynamic") {
-		return "schemastore-dynamic"
-	}
 	return dataset
+}
+
+// Categories cut the cases by what a message is, across datasets: a bulk
+// table (more than 2^14 rows), a web-sized table (TPC-H, TPC-DS and Public BI
+// up to 2^14 rows), and a single web document (SchemaStore), which holds no
+// table and where colbin is a row format.
+var categoryOrder = []string{"bulk", "web-tables", "web-documents"}
+
+func categoryOf(name, regime string) string {
+	switch {
+	case regime == "bulk":
+		return "bulk"
+	case groupOf(name) == "schemastore":
+		return "web-documents"
+	}
+	return "web-tables"
 }
 
 // implementation is the Go package behind each format, and the module whose
@@ -152,6 +168,9 @@ func readCSV(path string) ([]map[string]string, error) {
 				fields[name] = record[index]
 			}
 		}
+		if name, ok := fields["case"]; ok && !reported(name) {
+			continue
+		}
 		rows = append(rows, fields)
 	}
 	return rows, nil
@@ -183,6 +202,8 @@ func writeLatex(dir string, sizes []sizeRow) error {
 		latexVersus(out, sizes, benches[regime], regime)
 		latexFigures(out, sizes, benches[regime], regime)
 	}
+	latexVersusBy(out, sizes, benches, "datasets", groupOrder, func(name, _ string) string { return groupOf(name) })
+	latexVersusBy(out, sizes, benches, "categories", categoryOrder, categoryOf)
 	if err := latexCoverage(out, dir); err != nil {
 		return err
 	}
@@ -614,6 +635,163 @@ func latexVersus(out *latexOut, sizes []sizeRow, bench *benchmarks, regime strin
 	}
 	lines = append(lines, `\bottomrule`, `\end{tabular}`)
 	out.file("versus-"+regime+".tex", "sizes.csv and bench-"+regime+".txt", lines)
+}
+
+// latexVersusBy is latexVersus across regimes, cut another way: by dataset
+// (kind "datasets") or by category (kind "categories"). Each case falls in
+// one group and weighs one in its group's mean, whatever its regime. Two
+// tables, sizes (as written and under gzip) and times (encode and
+// decode-fresh), each with a pair of columns per group; a cell is colbin's
+// number over the other format's, as a geometric mean over the cases both
+// carry, and the cases colbin wins. Keys: vs.<kind>.<group>.<format>.<metric>,
+// with .wins and .n. colbin's own variants are left out: they are options of
+// colbin, not other formats.
+func latexVersusBy(out *latexOut, sizes []sizeRow, benches map[string]*benchmarks, kind string, groups []string, groupFor func(name, regime string) string) {
+	type pair struct{ mine, theirs float64 }
+	// pairs[group][format][metric]
+	pairs := map[string]map[string]map[string][]pair{}
+	add := func(group, format, metric string, mine, theirs float64) {
+		if pairs[group] == nil {
+			pairs[group] = map[string]map[string][]pair{}
+		}
+		if pairs[group][format] == nil {
+			pairs[group][format] = map[string][]pair{}
+		}
+		pairs[group][format][metric] = append(pairs[group][format][metric], pair{mine, theirs})
+	}
+	bySize := map[string]map[string]sizeRow{}
+	regimeOf := map[string]string{}
+	for _, size := range sizes {
+		if bySize[size.Case] == nil {
+			bySize[size.Case] = map[string]sizeRow{}
+		}
+		bySize[size.Case][size.Format] = size
+		regimeOf[size.Case] = size.Regime
+	}
+	for name, byFormat := range bySize {
+		mine, ok := byFormat[formats.Colbin]
+		if !ok {
+			continue
+		}
+		group := groupFor(name, regimeOf[name])
+		for format, theirs := range byFormat {
+			if strings.HasPrefix(format, formats.Colbin) {
+				continue
+			}
+			add(group, format, "raw", float64(mine.Bytes), float64(theirs.Bytes))
+			if _, has := theirs.Compressed["gzip"]; has {
+				add(group, format, "gzip", float64(mine.Compressed["gzip"]), float64(theirs.Compressed["gzip"]))
+			}
+		}
+	}
+	for _, regime := range regimes {
+		bench := benches[regime]
+		if bench == nil {
+			continue
+		}
+		for name, byFormat := range bench.ns {
+			group := groupFor(name, bench.regime[name])
+			for format, byOp := range byFormat {
+				if strings.HasPrefix(format, formats.Colbin) {
+					continue
+				}
+				for _, op := range []string{"encode", "decode-fresh"} {
+					if mine, theirs := byFormat[formats.Colbin][op], byOp[op]; mine > 0 && theirs > 0 {
+						add(group, format, op, mine, theirs)
+					}
+				}
+			}
+		}
+	}
+	short := map[string]string{"decode-fresh": "decode", "raw": "as written"}
+	for _, table := range []struct {
+		name, source string
+		metrics      []string
+	}{
+		{"size", "sizes.csv", []string{"raw", "gzip"}},
+		{"time", "bench-web.txt and bench-bulk.txt", []string{"encode", "decode-fresh"}},
+	} {
+		var shown []string
+		for _, group := range groups {
+			for _, metric := range table.metrics {
+				found := false
+				for _, byMetric := range pairs[group] {
+					found = found || len(byMetric[metric]) > 0
+				}
+				if found && !slices.Contains(shown, group) {
+					shown = append(shown, group)
+				}
+			}
+		}
+		if len(shown) == 0 {
+			continue
+		}
+		width := len(table.metrics)
+		head, rules, sub := []string{"colbin against"}, []string{}, []string{""}
+		for index, group := range shown {
+			first := 2 + index*width
+			head = append(head, fmt.Sprintf(`\multicolumn{%d}{c}{%s}`, width, groupLabel[group]))
+			rules = append(rules, fmt.Sprintf(`\cmidrule(lr){%d-%d}`, first, first+width-1))
+			for _, metric := range table.metrics {
+				label := metric
+				if short[metric] != "" {
+					label = short[metric]
+				}
+				sub = append(sub, label)
+			}
+		}
+		lines := []string{`\begin{tabular}{l` + strings.Repeat("r", len(shown)*width) + `}`, `\toprule`,
+			row(head...), strings.Join(rules, " "), row(sub...), `\midrule`}
+		for _, format := range formats.Order {
+			if strings.HasPrefix(format, formats.Colbin) {
+				continue
+			}
+			cells, any := []string{tex(format)}, false
+			for _, group := range shown {
+				for _, metric := range table.metrics {
+					list := pairs[group][format][metric]
+					if len(list) == 0 {
+						cells = append(cells, "--")
+						continue
+					}
+					any = true
+					var ratios []float64
+					wins := 0
+					for _, p := range list {
+						if p.mine < p.theirs {
+							wins++
+						}
+						if p.theirs > 0 {
+							ratios = append(ratios, p.mine/p.theirs)
+						}
+					}
+					key := "vs." + kind + "." + group + "." + format + "." + metric
+					out.defRatio(key, ratios)
+					out.def(key+".wins", strconv.Itoa(wins))
+					out.def(key+".n", strconv.Itoa(len(list)))
+					mean := strings.ReplaceAll(cell(ratios), `\rlap{$^\dagger$}`, `$^\dagger$`)
+					cells = append(cells, fmt.Sprintf(`%s\ {\scriptsize %d/%d}`, mean, wins, len(list)))
+				}
+			}
+			if any {
+				lines = append(lines, row(cells...))
+			}
+		}
+		lines = append(lines, `\bottomrule`, `\end{tabular}`)
+		out.file("versus-"+kind+"-"+table.name+".tex", table.source, lines)
+	}
+	// How many cases each group has, for the captions.
+	counts := map[string]map[string]bool{}
+	for name := range bySize {
+		group := groupFor(name, regimeOf[name])
+		if counts[group] == nil {
+			counts[group] = map[string]bool{}
+		}
+		counts[group][name] = true
+	}
+	for _, group := range groups {
+		out.def("cases."+kind+"."+group, strconv.Itoa(len(counts[group])))
+	}
 }
 
 // latexFigures writes the figures' data. The trade-off figure is one point per

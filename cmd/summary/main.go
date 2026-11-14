@@ -4,10 +4,12 @@
 //
 //	go run ./cmd/summary -wasm web/node_modules/colbin/dist/colbin.wasm results/<run>
 //
-// Every table keeps the regimes apart, and the browser's engines apart: no
-// number here averages over either. A ratio is a format's against JSON's on
-// the same case, and a summary of ratios is their geometric mean over the
-// cases where both formats have a number (the count is printed beside it).
+// The tables here keep the regimes apart, and the browser's engines apart: no
+// number here averages over either (tables/ also cuts colbin's comparisons by
+// dataset and by category, see latexVersusBy). A ratio is a format's against
+// JSON's on the same case, and a summary of ratios is their geometric mean
+// over the cases where both formats have a number (the count is printed
+// beside it). SchemaStore's dynamic path is left out (reported).
 // The per-case numbers are in the files themselves; benchstat reads them.
 package main
 
@@ -41,6 +43,13 @@ func main() {
 	}
 }
 
+// reported says whether a case is in the summary. SchemaStore's dynamic path
+// (each document as a map[string]any, cases named .../dynamic) is measured
+// but not reported: only the schemaless formats carry it, so it compares
+// colbin with a few formats on cases the others do not have. Its raw results
+// stay in the run's files.
+func reported(name string) bool { return !strings.HasSuffix(name, "/dynamic") }
+
 // sizeRow is one line of sizes.csv.
 type sizeRow struct {
 	Case, Regime, Format string
@@ -69,8 +78,8 @@ func readSizes(path string) ([]sizeRow, error) {
 	var rows []sizeRow
 	for _, record := range records[1:] {
 		size, err := strconv.Atoi(record[column["bytes"]])
-		if err != nil {
-			continue // n/a: no bytes
+		if err != nil || !reported(record[column["case"]]) {
+			continue // n/a (no bytes), or a case the summary leaves out
 		}
 		row := sizeRow{Case: record[column["case"]], Regime: record[column["regime"]], Format: record[column["format"]], Bytes: size, Compressed: map[string]int{}}
 		for _, compressor := range formats.Compressors {
@@ -127,6 +136,9 @@ func readBench(path string) (*benchmarks, error) {
 			continue
 		}
 		name := strings.Join(parts[1:len(parts)-2], "/")
+		if !reported(name) {
+			continue
+		}
 		format, op := parts[len(parts)-2], parts[len(parts)-1]
 		ns, err := strconv.ParseFloat(fields[2], 64)
 		if err != nil {

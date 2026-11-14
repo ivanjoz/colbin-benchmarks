@@ -24,10 +24,16 @@ tpch/sf0.1/region,tpch,web,gob,300,60,150,150,lossy: $.Rows[0]
 schemastore/empty,schemastore,web,json-v2,2,2,10,20,ok
 schemastore/empty,schemastore,web,colbin,0,0,5,9,ok
 schemastore/empty,schemastore,web,arrow,,,,,n/a: root is not a table
+schemastore/empty/dynamic,schemastore,web,json-v2,50,50,40,40,ok
+schemastore/empty/dynamic,schemastore,web,colbin,999,999,999,999,ok
 `)
+	// The dynamic path is measured but never reported: its lines must not
+	// move a number.
 	bench := `regime: web
 BenchmarkColbin/tpch/sf0.1/region/json-v2/decode-fresh 10 1000 ns/op
 BenchmarkColbin/tpch/sf0.1/region/colbin/decode-fresh 10 250 ns/op
+BenchmarkColbin/schemastore/empty/dynamic/json-v2/decode-fresh 10 10 ns/op
+BenchmarkColbin/schemastore/empty/dynamic/colbin/decode-fresh 10 9999 ns/op
 `
 	write("bench-web.txt", bench)
 	write("bench-web-2.txt", strings.ReplaceAll(bench, " 250 ", " 255 "))
@@ -45,6 +51,7 @@ tpch/sf0.1/region,0,1.0,3000,3.000,3000
 tpch/sf0.1/region,1,1.0,3000,3.000,3000
 schemastore/empty,0,1.0,3000,3.000,3000
 schemastore/empty,1,1.1,2727,,
+schemastore/empty/dynamic,0,9.0,333,,
 `)
 	sizes, err := readSizes(filepath.Join(dir, "sizes.csv"))
 	if err != nil {
@@ -86,6 +93,17 @@ schemastore/empty,1,1.1,2727,,
 		`\resultdef{machine.cpu}{Test CPU}`,
 		`\resultdef{machine.colbin-version}{v0.12.0}`,
 		`\resultdef{provisional}{--no-checks: a smoke test}`,
+		// colbin against each format, by dataset and by kind of message.
+		`\resultdef{vs.datasets.tpch.json-v2.raw}{0.250}`,
+		`\resultdef{vs.datasets.tpch.json-v2.decode-fresh}{0.250}`,
+		`\resultdef{vs.categories.web-tables.json-v2.gzip}{0.500}`,
+		`\resultdef{vs.categories.web-tables.json-v2.gzip.wins}{1}`,
+		`\resultdef{vs.categories.web-documents.json-v2.raw.wins}{1}`,
+		`\resultdef{vs.categories.web-documents.json-v2.raw.n}{1}`,
+		`\resultdef{cases.categories.web-tables}{1}`,
+		`\resultdef{cases.categories.web-documents}{1}`,
+		`\resultdef{cases.categories.bulk}{0}`,
+		`\resultdef{cases.datasets.schemastore}{1}`,
 	} {
 		if !strings.Contains(string(numbers), want+"\n") {
 			t.Errorf("numbers.tex lacks %s", want)
@@ -93,7 +111,8 @@ schemastore/empty,1,1.1,2727,,
 	}
 	for _, name := range []string{"sizes-web.tex", "times-web.tex", "versus-web.tex", "coverage.tex",
 		"ablation-threshold.tex", "ablation-codec.tex", "repeatability.tex", "baselines.tex",
-		"fig-tradeoff-web.dat", "fig-dist-web-gzip-colbin.dat"} {
+		"fig-tradeoff-web.dat", "fig-dist-web-gzip-colbin.dat",
+		"versus-datasets-size.tex", "versus-datasets-time.tex", "versus-categories-size.tex", "versus-categories-time.tex"} {
 		if _, err := os.Stat(filepath.Join(dir, "tables", name)); err != nil {
 			t.Errorf("tables/%s was not written", name)
 		}

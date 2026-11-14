@@ -80,7 +80,8 @@ by, and the bulk regime shows how each format scales past it.
   (`publicbi/subset`), so it depends on nothing but the seed and the data, and
   keeps the rows in table order.
 - **SchemaStore: all 27 documents** of Viotti and Kinderkhedia's corpus, which
-  they chose, not this repository. The six colbin cannot carry are reported
+  they chose, not this repository. The two colbin cannot carry (a type with
+  no field it can encode) are reported
   as n/a with the reason, never dropped.
 
 ## Subset history
@@ -105,6 +106,18 @@ seen under the old rule. Results under an old rule are not mixed with new ones.
    type, and so no Go type, changed.
 4. **Two regimes declared** (above), so that the cases far past the intended
    message size are reported apart. A reporting rule; no data changed.
+5. **SchemaStore's dynamic path no longer reported** (2026-11-14). Each
+   document is still measured both through its Go struct and as a
+   `map[string]any`, but `cmd/summary` leaves the `.../dynamic` cases out of
+   every table: only the schemaless formats (and protobuf through
+   `google.protobuf.Value`) carry them, so they compared colbin with a few
+   formats on cases the others do not have. After results: on that path colbin
+   lost to generated msgpack on encode and decode time, as it does on the same
+   documents through their structs. A reporting rule; the raw results keep
+   the dynamic cases. In the same change the results are reported by dataset
+   and by kind of message (bulk table, web table, web document) as colbin
+   against each format on common cases; the tables against JSON by regime
+   stay, in the paper's appendix.
 
 ## How a dataset is built
 

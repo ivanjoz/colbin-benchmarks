@@ -52,8 +52,8 @@ func readProbe(path string) (*probeStats, error) {
 			continue
 		}
 		ns, err := strconv.ParseFloat(record[2], 64)
-		if err != nil || ns <= 0 {
-			continue // the header
+		if err != nil || ns <= 0 || !reported(record[0]) {
+			continue // the header, or a case the summary leaves out
 		}
 		if _, seen := byCase[record[0]]; !seen {
 			order = append(order, record[0])
