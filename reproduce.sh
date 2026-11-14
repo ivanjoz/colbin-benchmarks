@@ -528,7 +528,7 @@ sed -i '/^== frequency of the measured cores/,$d' "$out/machine.txt"
 	echo "== frequency of the measured cores during timings (MHz)"
 	column=2
 	for core in "${core_list[@]}"; do
-		tail -n +2 "$out/freq.csv" | cut -d, -f"$column" | grep . | sort -n | awk -v core="$core" '
+		tail -n +2 "$out/freq.csv" | cut -d, -f"$column" | { grep . || true; } | sort -n | awk -v core="$core" '
 			{ v[NR] = $1 }
 			END {
 				if (NR == 0) { print "cpu" core ": no samples"; exit }
