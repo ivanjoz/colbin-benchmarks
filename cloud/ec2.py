@@ -58,7 +58,7 @@ KEY_NAME = TAG
 GROUP_NAME = TAG
 USER = "ubuntu"
 VOLUME_GB = 60
-GO_VERSION = "1.27.0"  # go.mod's toolchain line
+GO_VERSION = "1.27.4"  # go.mod's toolchain line
 NODE_VERSION = "24.15.0"
 
 ARCHES = {

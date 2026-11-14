@@ -63,10 +63,10 @@ TAG = "colbin-bench-oci"
 BUCKET = TAG
 CIDR = "10.77.0.0/16"
 SUBNET_CIDR = "10.77.0.0/24"
-# The Go of go.mod's toolchain line (golang:1.27.0-trixie), pinned by the
+# The Go of go.mod's toolchain line (golang:1.27.4-trixie), pinned by the
 # multi-arch index digest. Digest only: Container Instances does not pull a
 # reference with both a tag and a digest, and says the network is at fault.
-IMAGE = "docker.io/library/golang@sha256:df98008ecd2b0ecc9f0a94d1b07e3564a9c92b555369b33d9b5f60d0765b2db7"
+IMAGE = "docker.io/library/golang@sha256:b54b2639de8c1bfe538ec5ffc45f29b1932235ac5f6d63c059853646677112d9"
 PAR_DAYS = 3
 
 ARCHES = {

@@ -98,7 +98,7 @@ SDK's `crc32c` has no wheel for 3.15) and an API key in `~/.oci/config`
   tagged `colbin-bench-oci`; the ids go to `cloud/state/oci.json`.
 - **run** refuses a dirty tree or a commit GitHub does not have. Per
   architecture it creates a write-only pre-authenticated URL to the bucket
-  (three days) and a container instance from `golang:1.27.0-trixie`, pinned by
+  (three days) and a container instance from `golang:1.27.4-trixie`, pinned by
   digest. The container clones the repository at that commit and runs
   `cloud/oci-entry.sh` from it, which runs `./reproduce.sh --vm`: it fetches and
   verifies the datasets `--cases` names itself, as on any clean machine. Every

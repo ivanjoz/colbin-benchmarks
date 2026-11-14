@@ -6,7 +6,7 @@ go 1.27
 // the toolchain, and a paper that reports a number has to say which compiler
 // produced it. `go-version-file: go.mod` in CI then resolves to this, not to
 // whatever 1.27.x is newest that week.
-toolchain go1.27.0
+toolchain go1.27.4
 
 require (
 	capnproto.org/go/capnp/v3 v3.1.0-alpha.2
