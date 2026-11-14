@@ -1,0 +1,573 @@
+=== RUN   TestSizes
+=== RUN   TestSizes/sweep/lineitem/1
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                   306    306.00        245        239  ok
+    sizes_test.go:125: gob                       417    417.00        323        329  ok
+    sizes_test.go:125: cbor                      241    241.00        223        216  ok
+    sizes_test.go:125: msgpack                   243    243.00        239        230  ok
+    sizes_test.go:125: msgpack-reflect           277    277.00        249        245  ok
+    sizes_test.go:125: protobuf                   90     90.00        115         99  ok
+    sizes_test.go:125: vtprotobuf                 90     90.00        115         99  ok
+    sizes_test.go:125: flatbuffers               224    224.00        174        163  ok
+    sizes_test.go:125: arrow                    3094   3094.00        729        703  ok
+    sizes_test.go:125: avro                       79     79.00        104         88  ok
+    sizes_test.go:125: capnproto                 192    192.00        151        138  ok
+    sizes_test.go:125: colbin                     82     82.00        107         91  ok
+    sizes_test.go:125: colbin+packed5             68     68.00         93         77  ok
+    sizes_test.go:125: colbin-untagged           101    101.00        126        110  ok
+    sizes_test.go:125: colbin-json               285    285.00        276        271  ok
+    sizes_test.go:155: rows 1 (top level 1), 0 as table rows (0.0000); 16 values; colbin 82 B, of which tables 0 B (0.0000); schema section 202 B; gob stream 99 B
+=== RUN   TestSizes/sweep/lineitem/2
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                   610    305.00        344        330  ok
+    sizes_test.go:125: gob                       520    260.00        412        412  ok
+    sizes_test.go:125: cbor                      486    243.00        325        315  ok
+    sizes_test.go:125: msgpack                   489    244.50        338        327  ok
+    sizes_test.go:125: msgpack-reflect           557    278.50        352        342  ok
+    sizes_test.go:125: protobuf                  189     94.50        214        198  ok
+    sizes_test.go:125: vtprotobuf                189     94.50        214        198  ok
+    sizes_test.go:125: flatbuffers               424    212.00        285        280  ok
+    sizes_test.go:125: arrow                    3206   1603.00        832        781  ok
+    sizes_test.go:125: avro                      162     81.00        187        171  ok
+    sizes_test.go:125: capnproto                 368    184.00        254        248  ok
+    sizes_test.go:125: colbin                    175     87.50        200        184  ok
+    sizes_test.go:125: colbin+packed5            143     71.50        168        152  ok
+    sizes_test.go:125: colbin-untagged           206    103.00        231        215  ok
+    sizes_test.go:125: colbin-json               378    189.00        363        357  ok
+    sizes_test.go:155: rows 2 (top level 2), 0 as table rows (0.0000); 32 values; colbin 175 B, of which tables 0 B (0.0000); schema section 202 B; gob stream 202 B
+=== RUN   TestSizes/sweep/lineitem/4
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                  1191    297.75        469        455  ok
+    sizes_test.go:125: gob                       699    174.75        528        526  ok
+    sizes_test.go:125: cbor                      947    236.75        452        442  ok
+    sizes_test.go:125: msgpack                   953    238.25        466        447  ok
+    sizes_test.go:125: msgpack-reflect          1089    272.25        485        466  ok
+    sizes_test.go:125: protobuf                  360     90.00        346        336  ok
+    sizes_test.go:125: vtprotobuf                360     90.00        346        336  ok
+    sizes_test.go:125: flatbuffers               736    184.00        437        429  ok
+    sizes_test.go:125: arrow                    3414    853.50        944        941  ok
+    sizes_test.go:125: avro                      301     75.25        296        294  ok
+    sizes_test.go:125: capnproto                 680    170.00        389        390  ok
+    sizes_test.go:125: colbin                    330     82.50        324        316  ok
+    sizes_test.go:125: colbin+packed5            274     68.50        279        269  ok
+    sizes_test.go:125: colbin-untagged           389     97.25        371        361  ok
+    sizes_test.go:125: colbin-json               533    133.25        479        473  ok
+    sizes_test.go:155: rows 4 (top level 4), 0 as table rows (0.0000); 64 values; colbin 330 B, of which tables 0 B (0.0000); schema section 202 B; gob stream 381 B
+=== RUN   TestSizes/sweep/lineitem/8
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                  2353    294.12        710        695  ok
+    sizes_test.go:125: gob                      1048    131.00        737        733  ok
+    sizes_test.go:125: cbor                     1868    233.50        687        648  ok
+    sizes_test.go:125: msgpack                  1878    234.75        704        674  ok
+    sizes_test.go:125: msgpack-reflect          2152    269.00        730        679  ok
+    sizes_test.go:125: protobuf                  697     87.12        559        549  ok
+    sizes_test.go:125: vtprotobuf                697     87.12        559        549  ok
+    sizes_test.go:125: flatbuffers              1424    178.00        720        709  ok
+    sizes_test.go:125: arrow                    3846    480.75       1153       1145  ok
+    sizes_test.go:125: avro                      580     72.50        486        477  ok
+    sizes_test.go:125: capnproto                1320    165.00        627        648  ok
+    sizes_test.go:125: colbin                    564     70.50        475        489  ok
+    sizes_test.go:125: colbin+packed5            564     70.50        475        489  ok
+    sizes_test.go:125: colbin-untagged           589     73.62        487        513  ok
+    sizes_test.go:125: colbin-json               767     95.88        622        620  ok
+    sizes_test.go:155: rows 8 (top level 8), 8 as table rows (1.0000); 128 values; colbin 564 B, of which tables 564 B (1.0000); schema section 202 B; gob stream 730 B
+=== RUN   TestSizes/sweep/lineitem/16
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                  4683    292.69       1124       1118  ok
+    sizes_test.go:125: gob                      1754    109.62       1096       1111  ok
+    sizes_test.go:125: cbor                     3713    232.06       1094       1063  ok
+    sizes_test.go:125: msgpack                  3734    233.38       1107       1056  ok
+    sizes_test.go:125: msgpack-reflect          4282    267.62       1143       1041  ok
+    sizes_test.go:125: protobuf                 1378     86.12        944        936  ok
+    sizes_test.go:125: vtprotobuf               1378     86.12        944        936  ok
+    sizes_test.go:125: flatbuffers              2696    168.50       1176       1196  ok
+    sizes_test.go:125: arrow                    4734    295.88       1548       1546  ok
+    sizes_test.go:125: avro                     1142     71.38        817        815  ok
+    sizes_test.go:125: capnproto                2592    162.00       1060       1111  ok
+    sizes_test.go:125: colbin                   1062     66.38        761        793  ok
+    sizes_test.go:125: colbin+packed5           1062     66.38        761        793  ok
+    sizes_test.go:125: colbin-untagged          1087     67.94        777        818  ok
+    sizes_test.go:125: colbin-json              1265     79.06        909        907  ok
+    sizes_test.go:155: rows 16 (top level 16), 16 as table rows (1.0000); 256 values; colbin 1062 B, of which tables 1062 B (1.0000); schema section 202 B; gob stream 1436 B
+=== RUN   TestSizes/sweep/lineitem/32
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                  9397    293.66       1893       1870  ok
+    sizes_test.go:125: gob                      3227    100.84       1766       1788  ok
+    sizes_test.go:125: cbor                     7471    233.47       1866       1799  ok
+    sizes_test.go:125: msgpack                  7503    234.47       1872       1767  ok
+    sizes_test.go:125: msgpack-reflect          8601    268.78       1932       1758  ok
+    sizes_test.go:125: protobuf                 2802     87.56       1663       1676  ok
+    sizes_test.go:125: vtprotobuf               2802     87.56       1663       1676  ok
+    sizes_test.go:125: flatbuffers              5208    162.75       2050       2010  ok
+    sizes_test.go:125: arrow                    6566    205.19       2282       2262  ok
+    sizes_test.go:125: avro                     2319     72.47       1414       1444  ok
+    sizes_test.go:125: capnproto                5208    162.75       1888       1957  ok
+    sizes_test.go:125: colbin                   2110     65.94       1232       1295  ok
+    sizes_test.go:125: colbin+packed5           2110     65.94       1232       1295  ok
+    sizes_test.go:125: colbin-untagged          2135     66.72       1244       1320  ok
+    sizes_test.go:125: colbin-json              2313     72.28       1385       1400  ok
+    sizes_test.go:155: rows 32 (top level 32), 32 as table rows (1.0000); 512 values; colbin 2110 B, of which tables 2110 B (1.0000); schema section 202 B; gob stream 2909 B
+=== RUN   TestSizes/sweep/lineitem/64
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                 18701    292.20       3330       3298  ok
+    sizes_test.go:125: gob                      6020     94.06       2979       3009  ok
+    sizes_test.go:125: cbor                    14843    231.92       3271       3141  ok
+    sizes_test.go:125: msgpack                 14881    232.52       3266       3060  ok
+    sizes_test.go:125: msgpack-reflect         17075    266.80       3364       3034  ok
+    sizes_test.go:125: protobuf                 5491     85.80       2964       2984  ok
+    sizes_test.go:125: vtprotobuf               5491     85.80       2964       2984  ok
+    sizes_test.go:125: flatbuffers             10104    157.88       3693       3656  ok
+    sizes_test.go:125: arrow                   10070    157.34       3626       3630  ok
+    sizes_test.go:125: avro                     4533     70.83       2513       2579  ok
+    sizes_test.go:125: capnproto               10232    159.88       3418       3538  ok
+    sizes_test.go:125: colbin                   4051     63.30       2093       2196  ok
+    sizes_test.go:125: colbin+packed5           4051     63.30       2093       2196  ok
+    sizes_test.go:125: colbin-untagged          4075     63.67       2120       2219  ok
+    sizes_test.go:125: colbin-json              4254     66.47       2243       2259  ok
+    sizes_test.go:155: rows 64 (top level 64), 64 as table rows (1.0000); 1024 values; colbin 4051 B, of which tables 4051 B (1.0000); schema section 202 B; gob stream 5702 B
+=== RUN   TestSizes/sweep/lineitem/128
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                 37623    293.93       6260       6266  ok
+    sizes_test.go:125: gob                     11887     92.87       5437       5490  ok
+    sizes_test.go:125: cbor                    29818    232.95       6079       5844  ok
+    sizes_test.go:125: msgpack                 29889    233.51       6078       5650  ok
+    sizes_test.go:125: msgpack-reflect         34263    267.68       6233       5616  ok
+    sizes_test.go:125: protobuf                11098     86.70       5541       5614  ok
+    sizes_test.go:125: vtprotobuf              11098     86.70       5541       5614  ok
+    sizes_test.go:125: flatbuffers             20216    157.94       6921       6855  ok
+    sizes_test.go:125: arrow                   17310    135.23       6300       6241  ok
+    sizes_test.go:125: avro                     9245     72.23       4752       4863  ok
+    sizes_test.go:125: capnproto               20592    160.88       6425       6668  ok
+    sizes_test.go:125: colbin                   8128     63.50       3733       3872  ok
+    sizes_test.go:125: colbin+packed5           8128     63.50       3733       3872  ok
+    sizes_test.go:125: colbin-untagged          8153     63.70       3757       3898  ok
+    sizes_test.go:125: colbin-json              8331     65.09       3890       4056  ok
+    sizes_test.go:155: rows 128 (top level 128), 128 as table rows (1.0000); 2048 values; colbin 8128 B, of which tables 8128 B (1.0000); schema section 202 B; gob stream 11569 B
+=== RUN   TestSizes/sweep/lineitem/256
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                 75529    295.04      12039      12115  ok
+    sizes_test.go:125: gob                     23761     92.82      10210      10332  ok
+    sizes_test.go:125: cbor                    59819    233.67      11622      11259  ok
+    sizes_test.go:125: msgpack                 60173    235.05      11624      10913  ok
+    sizes_test.go:125: msgpack-reflect         68675    268.26      11970      10813  ok
+    sizes_test.go:125: protobuf                22447     87.68      10556      10831  ok
+    sizes_test.go:125: vtprotobuf              22447     87.68      10556      10831  ok
+    sizes_test.go:125: flatbuffers             40200    157.03      13256      13178  ok
+    sizes_test.go:125: arrow                   31846    124.40      11562      11464  ok
+    sizes_test.go:125: avro                    18705     73.07       9127       9309  ok
+    sizes_test.go:125: capnproto               41240    161.09      12441      12976  ok
+    sizes_test.go:125: colbin                  16344     63.84       7074       7147  ok
+    sizes_test.go:125: colbin+packed5          16344     63.84       7074       7147  ok
+    sizes_test.go:125: colbin-untagged         16399     64.06       7030       7211  ok
+    sizes_test.go:125: colbin-json             16547     64.64       7239       7327  ok
+    sizes_test.go:155: rows 256 (top level 256), 256 as table rows (1.0000); 4096 values; colbin 16344 B, of which tables 16344 B (1.0000); schema section 202 B; gob stream 23443 B
+=== RUN   TestSizes/sweep/lineitem/512
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                151734    296.36      23631      23758  ok
+    sizes_test.go:125: gob                     47994     93.74      19712      20063  ok
+    sizes_test.go:125: cbor                   120527    235.40      22879      22230  ok
+    sizes_test.go:125: msgpack                121201    236.72      22905      21554  ok
+    sizes_test.go:125: msgpack-reflect        137959    269.45      23545      21376  ok
+    sizes_test.go:125: protobuf                45641     89.14      20550      21241  ok
+    sizes_test.go:125: vtprotobuf              45641     89.14      20550      21241  ok
+    sizes_test.go:125: flatbuffers             80792    157.80      26171      25902  ok
+    sizes_test.go:125: arrow                   61334    119.79      22398      21914  ok
+    sizes_test.go:125: avro                    38033     74.28      17933      18282  ok
+    sizes_test.go:125: capnproto               83064    162.23      24143      25670  ok
+    sizes_test.go:125: colbin                  33184     64.81      13807      13881  ok
+    sizes_test.go:125: colbin+packed5          33184     64.81      13807      13881  ok
+    sizes_test.go:125: colbin-untagged         33246     64.93      13774      13851  ok
+    sizes_test.go:125: colbin-json             33387     65.21      13969      14064  ok
+    sizes_test.go:155: rows 512 (top level 512), 512 as table rows (1.0000); 8192 values; colbin 33184 B, of which tables 33184 B (1.0000); schema section 202 B; gob stream 47676 B
+=== RUN   TestSizes/sweep/lineitem/1024
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                303622    296.51      46614      46176  ok
+    sizes_test.go:125: gob                     95710     93.47      38379      38747  ok
+    sizes_test.go:125: cbor                   241179    235.53      45152      43670  ok
+    sizes_test.go:125: msgpack                242515    236.83      45159      42277  ok
+    sizes_test.go:125: msgpack-reflect        275785    269.32      46536      42077  ok
+    sizes_test.go:125: protobuf                91278     89.14      40196      41311  ok
+    sizes_test.go:125: vtprotobuf              91278     89.14      40196      41311  ok
+    sizes_test.go:125: flatbuffers            161096    157.32      51298      50962  ok
+    sizes_test.go:125: arrow                  119598    116.79      42407      42165  ok
+    sizes_test.go:125: avro                    76015     74.23      35200      35648  ok
+    sizes_test.go:125: capnproto              165968    162.08      47147      49848  ok
+    sizes_test.go:125: colbin                  66149     64.60      26743      26829  ok
+    sizes_test.go:125: colbin+packed5          66149     64.60      26743      26829  ok
+    sizes_test.go:125: colbin-untagged         66210     64.66      26748      26541  ok
+    sizes_test.go:125: colbin-json             66352     64.80      26913      26990  ok
+    sizes_test.go:155: rows 1024 (top level 1024), 1024 as table rows (1.0000); 16384 values; colbin 66149 B, of which tables 66149 B (1.0000); schema section 202 B; gob stream 95392 B
+=== RUN   TestSizes/sweep/lineitem/2048
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                607207    296.49      92605      90311  ok
+    sizes_test.go:125: gob                    190061     92.80      75462      75774  ok
+    sizes_test.go:125: cbor                   481324    235.02      89446      86066  ok
+    sizes_test.go:125: msgpack                483958    236.31      89538      83638  ok
+    sizes_test.go:125: msgpack-reflect        550266    268.68      92239      83476  ok
+    sizes_test.go:125: protobuf               181446     88.60      79135      80869  ok
+    sizes_test.go:125: vtprotobuf             181446     88.60      79135      80869  ok
+    sizes_test.go:125: flatbuffers            320840    156.66     101295     100552  ok
+    sizes_test.go:125: arrow                  234998    114.75      84328      80610  ok
+    sizes_test.go:125: avro                   150754     73.61      69810      70203  ok
+    sizes_test.go:125: capnproto              330880    161.56      92572      97666  ok
+    sizes_test.go:125: colbin                 130926     63.93      49808      51430  ok
+    sizes_test.go:125: colbin+packed5         130926     63.93      49808      51430  ok
+    sizes_test.go:125: colbin-untagged        130983     63.96      50088      51693  ok
+    sizes_test.go:125: colbin-json            131129     64.03      50026      51642  ok
+    sizes_test.go:155: rows 2048 (top level 2048), 2048 as table rows (1.0000); 32768 values; colbin 130926 B, of which tables 130926 B (1.0000); schema section 202 B; gob stream 189743 B
+=== RUN   TestSizes/sweep/lineitem/4096
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2               1213751    296.33     183835     176914  ok
+    sizes_test.go:125: gob                    378318     92.36     149479     148784  ok
+    sizes_test.go:125: cbor                   961216    234.67     177597     170773  ok
+    sizes_test.go:125: msgpack                966437    235.95     177755     167179  ok
+    sizes_test.go:125: msgpack-reflect       1098821    268.27     183261     167285  ok
+    sizes_test.go:125: protobuf               361370     88.23     156754     159003  ok
+    sizes_test.go:125: vtprotobuf             361370     88.23     156754     159003  ok
+    sizes_test.go:125: flatbuffers            639800    156.20     201782     199242  ok
+    sizes_test.go:125: arrow                  465406    113.62     158682     157323  ok
+    sizes_test.go:125: avro                   299907     73.22     138594     138645  ok
+    sizes_test.go:125: capnproto              660088    161.15     183789     191397  ok
+    sizes_test.go:125: colbin                 260103     63.50      98888      97265  ok
+    sizes_test.go:125: colbin+packed5         260103     63.50      98888      97265  ok
+    sizes_test.go:125: colbin-untagged        260156     63.51      98520      98500  ok
+    sizes_test.go:125: colbin-json            260306     63.55      99083      97463  ok
+    sizes_test.go:155: rows 4096 (top level 4096), 4096 as table rows (1.0000); 65536 values; colbin 260103 B, of which tables 260103 B (1.0000); schema section 202 B; gob stream 378000 B
+=== RUN   TestSizes/sweep/lineitem/8192
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2               2428413    296.44     367474     348638  ok
+    sizes_test.go:125: gob                    755838     92.27     298182     294057  ok
+    sizes_test.go:125: cbor                  1922071    234.63     355114     338228  ok
+    sizes_test.go:125: msgpack               1932342    235.88     355384     335492  ok
+    sizes_test.go:125: msgpack-reflect       2196930    268.18     366363     335877  ok
+    sizes_test.go:125: protobuf               722247     88.16     312821     314242  ok
+    sizes_test.go:125: vtprotobuf             722247     88.16     312821     314242  ok
+    sizes_test.go:125: flatbuffers           1278672    156.09     403253     396381  ok
+    sizes_test.go:125: arrow                  927198    113.18     334931     305242  ok
+    sizes_test.go:125: avro                   599030     73.12     276689     274562  ok
+    sizes_test.go:125: capnproto             1319248    161.04     366211     381360  ok
+    sizes_test.go:125: colbin                 519531     63.42     196935     192815  ok
+    sizes_test.go:125: colbin+packed5         519531     63.42     196935     192815  ok
+    sizes_test.go:125: colbin-untagged        519636     63.43     196169     194112  ok
+    sizes_test.go:125: colbin-json            519734     63.44     196927     192976  ok
+    sizes_test.go:155: rows 8192 (top level 8192), 8192 as table rows (1.0000); 131072 values; colbin 519531 B, of which tables 519531 B (1.0000); schema section 202 B; gob stream 755520 B
+=== RUN   TestSizes/sweep/lineitem/16384
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2               4863773    296.86     735143     690323  ok
+    sizes_test.go:125: gob                   1510911     92.22     594978     581440  ok
+    sizes_test.go:125: cbor                  3843688    234.60     709342     673983  ok
+    sizes_test.go:125: msgpack               3864219    235.85     710306     669384  ok
+    sizes_test.go:125: msgpack-reflect       4393063    268.13     732439     671390  ok
+    sizes_test.go:125: protobuf              1444053     88.14     624473     620990  ok
+    sizes_test.go:125: vtprotobuf            1444053     88.14     624473     620990  ok
+    sizes_test.go:125: flatbuffers           2556888    156.06     803039     786884  ok
+    sizes_test.go:125: arrow                 1850694    112.96     652024     603951  ok
+    sizes_test.go:125: avro                  1205588     73.58     555949     546223  ok
+    sizes_test.go:125: capnproto             2638152    161.02     731242     756905  ok
+    sizes_test.go:125: colbin                1038297     63.37     392594     385277  ok
+    sizes_test.go:125: colbin+packed5        1038297     63.37     392594     385277  ok
+    sizes_test.go:125: colbin-untagged       1038506     63.39     390369     386563  ok
+    sizes_test.go:125: colbin-json           1038500     63.39     391903     385470  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 262144 values; colbin 1038297 B, of which tables 1038297 B (1.0000); schema section 202 B; gob stream 1510593 B
+=== RUN   TestSizes/sweep/bimbo/1
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                   211    211.00        187        180  ok
+    sizes_test.go:125: gob                       313    313.00        274        273  ok
+    sizes_test.go:125: cbor                      178    178.00        182        181  ok
+    sizes_test.go:125: msgpack                   178    178.00        184        181  ok
+    sizes_test.go:125: msgpack-reflect           194    194.00        199        197  ok
+    sizes_test.go:125: protobuf                   35     35.00         60         44  ok
+    sizes_test.go:125: vtprotobuf                 35     35.00         60         44  ok
+    sizes_test.go:125: flatbuffers                96     96.00        121         80  ok
+    sizes_test.go:125: arrow                    2382   2382.00        579        588  ok
+    sizes_test.go:125: avro                       35     35.00         60         44  ok
+    sizes_test.go:125: capnproto                  80     80.00        105         67  ok
+    sizes_test.go:125: colbin                     29     29.00         54         38  ok
+    sizes_test.go:125: colbin+packed5             29     29.00         54         38  ok
+    sizes_test.go:125: colbin-untagged            44     44.00         69         53  ok
+    sizes_test.go:125: colbin-json               200    200.00        212        209  ok
+    sizes_test.go:155: rows 1 (top level 1), 0 as table rows (0.0000); 12 values; colbin 29 B, of which tables 0 B (0.0000); schema section 170 B; gob stream 44 B
+=== RUN   TestSizes/sweep/bimbo/2
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                   410    205.00        212        204  ok
+    sizes_test.go:125: gob                       351    175.50        303        301  ok
+    sizes_test.go:125: cbor                      347    173.50        208        206  ok
+    sizes_test.go:125: msgpack                   349    174.50        210        206  ok
+    sizes_test.go:125: msgpack-reflect           381    190.50        224        222  ok
+    sizes_test.go:125: protobuf                   69     34.50         94         78  ok
+    sizes_test.go:125: vtprotobuf                 69     34.50         94         78  ok
+    sizes_test.go:125: flatbuffers               168     84.00        151        126  ok
+    sizes_test.go:125: arrow                    2398   1199.00        608        613  ok
+    sizes_test.go:125: avro                       66     33.00         91         66  ok
+    sizes_test.go:125: capnproto                 128     64.00        110         94  ok
+    sizes_test.go:125: colbin                     58     29.00         83         67  ok
+    sizes_test.go:125: colbin+packed5             58     29.00         83         67  ok
+    sizes_test.go:125: colbin-untagged            82     41.00        107         84  ok
+    sizes_test.go:125: colbin-json               229    114.50        237        238  ok
+    sizes_test.go:155: rows 2 (top level 2), 0 as table rows (0.0000); 24 values; colbin 58 B, of which tables 0 B (0.0000); schema section 170 B; gob stream 82 B
+=== RUN   TestSizes/sweep/bimbo/4
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                   810    202.50        261        249  ok
+    sizes_test.go:125: gob                       428    107.00        352        364  ok
+    sizes_test.go:125: cbor                      687    171.75        255        263  ok
+    sizes_test.go:125: msgpack                   691    172.75        257        259  ok
+    sizes_test.go:125: msgpack-reflect           755    188.75        272        275  ok
+    sizes_test.go:125: protobuf                  137     34.25        124        120  ok
+    sizes_test.go:125: vtprotobuf                137     34.25        124        120  ok
+    sizes_test.go:125: flatbuffers               248     62.00        204        180  ok
+    sizes_test.go:125: arrow                    2454    613.50        641        632  ok
+    sizes_test.go:125: avro                      130     32.50        115        105  ok
+    sizes_test.go:125: capnproto                 224     56.00        152        135  ok
+    sizes_test.go:125: colbin                    114     28.50        139        123  ok
+    sizes_test.go:125: colbin+packed5            114     28.50        139        123  ok
+    sizes_test.go:125: colbin-untagged           159     39.75        143        139  ok
+    sizes_test.go:125: colbin-json               285     71.25        296        286  ok
+    sizes_test.go:155: rows 4 (top level 4), 0 as table rows (0.0000); 48 values; colbin 114 B, of which tables 0 B (0.0000); schema section 170 B; gob stream 159 B
+=== RUN   TestSizes/sweep/bimbo/8
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                  1609    201.12        360        340  ok
+    sizes_test.go:125: gob                       570     71.25        445        440  ok
+    sizes_test.go:125: cbor                     1371    171.38        380        364  ok
+    sizes_test.go:125: msgpack                  1375    171.88        387        340  ok
+    sizes_test.go:125: msgpack-reflect          1503    187.88        399        357  ok
+    sizes_test.go:125: protobuf                  276     34.50        233        233  ok
+    sizes_test.go:125: vtprotobuf                276     34.50        233        233  ok
+    sizes_test.go:125: flatbuffers               424     53.00        305        294  ok
+    sizes_test.go:125: arrow                    2622    327.75        713        718  ok
+    sizes_test.go:125: avro                      257     32.12        207        194  ok
+    sizes_test.go:125: capnproto                 416     52.00        241        228  ok
+    sizes_test.go:125: colbin                    138     17.25        163        147  ok
+    sizes_test.go:125: colbin+packed5            138     17.25        163        147  ok
+    sizes_test.go:125: colbin-untagged           150     18.75        175        159  ok
+    sizes_test.go:125: colbin-json               309     38.62        334        320  ok
+    sizes_test.go:155: rows 8 (top level 8), 8 as table rows (1.0000); 96 values; colbin 138 B, of which tables 138 B (1.0000); schema section 170 B; gob stream 301 B
+=== RUN   TestSizes/sweep/bimbo/16
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                  3212    200.75        511        503  ok
+    sizes_test.go:125: gob                       871     54.44        584        591  ok
+    sizes_test.go:125: cbor                     2735    170.94        556        516  ok
+    sizes_test.go:125: msgpack                  2749    171.81        562        499  ok
+    sizes_test.go:125: msgpack-reflect          3001    187.56        567        510  ok
+    sizes_test.go:125: protobuf                  554     34.62        392        384  ok
+    sizes_test.go:125: vtprotobuf                554     34.62        392        384  ok
+    sizes_test.go:125: flatbuffers               776     48.50        485        460  ok
+    sizes_test.go:125: arrow                    2958    184.88        839        834  ok
+    sizes_test.go:125: avro                      513     32.06        354        351  ok
+    sizes_test.go:125: capnproto                 800     50.00        381        371  ok
+    sizes_test.go:125: colbin                    231     14.44        256        240  ok
+    sizes_test.go:125: colbin+packed5            231     14.44        256        240  ok
+    sizes_test.go:125: colbin-untagged           243     15.19        268        252  ok
+    sizes_test.go:125: colbin-json               402     25.12        427        404  ok
+    sizes_test.go:155: rows 16 (top level 16), 16 as table rows (1.0000); 192 values; colbin 231 B, of which tables 231 B (1.0000); schema section 170 B; gob stream 602 B
+=== RUN   TestSizes/sweep/bimbo/32
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                  6417    200.53        856        833  ok
+    sizes_test.go:125: gob                      1477     46.16        917        918  ok
+    sizes_test.go:125: cbor                     5468    170.88        934        858  ok
+    sizes_test.go:125: msgpack                  5493    171.66        946        879  ok
+    sizes_test.go:125: msgpack-reflect          5993    187.28        938        858  ok
+    sizes_test.go:125: protobuf                 1110     34.69        706        742  ok
+    sizes_test.go:125: vtprotobuf               1110     34.69        706        742  ok
+    sizes_test.go:125: flatbuffers              1480     46.25        866        831  ok
+    sizes_test.go:125: arrow                    3630    113.44       1100       1111  ok
+    sizes_test.go:125: avro                     1023     31.97        657        678  ok
+    sizes_test.go:125: capnproto                1568     49.00        689        689  ok
+    sizes_test.go:125: colbin                    422     13.19        447        433  ok
+    sizes_test.go:125: colbin+packed5            422     13.19        447        433  ok
+    sizes_test.go:125: colbin-untagged           436     13.62        461        447  ok
+    sizes_test.go:125: colbin-json               593     18.53        618        587  ok
+    sizes_test.go:155: rows 32 (top level 32), 32 as table rows (1.0000); 384 values; colbin 422 B, of which tables 422 B (1.0000); schema section 170 B; gob stream 1208 B
+=== RUN   TestSizes/sweep/bimbo/64
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                 12839    200.61       1484       1453  ok
+    sizes_test.go:125: gob                      2679     41.86       1468       1478  ok
+    sizes_test.go:125: cbor                    10933    170.83       1568       1431  ok
+    sizes_test.go:125: msgpack                 10991    171.73       1598       1477  ok
+    sizes_test.go:125: msgpack-reflect         11977    187.14       1575       1417  ok
+    sizes_test.go:125: protobuf                 2224     34.75       1280       1336  ok
+    sizes_test.go:125: vtprotobuf               2224     34.75       1280       1336  ok
+    sizes_test.go:125: flatbuffers              2888     45.12       1557       1483  ok
+    sizes_test.go:125: arrow                    4974     77.72       1546       1566  ok
+    sizes_test.go:125: avro                     2048     32.00       1193       1254  ok
+    sizes_test.go:125: capnproto                3104     48.50       1236       1211  ok
+    sizes_test.go:125: colbin                    793     12.39        818        760  ok
+    sizes_test.go:125: colbin+packed5            793     12.39        818        760  ok
+    sizes_test.go:125: colbin-untagged           807     12.61        831        773  ok
+    sizes_test.go:125: colbin-json               964     15.06        974        925  ok
+    sizes_test.go:155: rows 64 (top level 64), 64 as table rows (1.0000); 768 values; colbin 793 B, of which tables 793 B (1.0000); schema section 170 B; gob stream 2410 B
+=== RUN   TestSizes/sweep/bimbo/128
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                 25685    200.66       2778       2702  ok
+    sizes_test.go:125: gob                      5099     39.84       2592       2584  ok
+    sizes_test.go:125: cbor                    21863    170.80       2885       2696  ok
+    sizes_test.go:125: msgpack                 21975    171.68       2933       2808  ok
+    sizes_test.go:125: msgpack-reflect         23945    187.07       2868       2639  ok
+    sizes_test.go:125: protobuf                 4477     34.98       2437       2472  ok
+    sizes_test.go:125: vtprotobuf               4477     34.98       2437       2472  ok
+    sizes_test.go:125: flatbuffers              5760     45.00       2985       2846  ok
+    sizes_test.go:125: arrow                    7662     59.86       2478       2484  ok
+    sizes_test.go:125: avro                     4106     32.08       2300       2291  ok
+    sizes_test.go:125: capnproto                6176     48.25       2318       2330  ok
+    sizes_test.go:125: colbin                   1663     12.99       1571       1556  ok
+    sizes_test.go:125: colbin+packed5           1663     12.99       1571       1556  ok
+    sizes_test.go:125: colbin-untagged          1685     13.16       1590       1660  ok
+    sizes_test.go:125: colbin-json              1834     14.33       1724       1721  ok
+    sizes_test.go:155: rows 128 (top level 128), 128 as table rows (1.0000); 1536 values; colbin 1663 B, of which tables 1663 B (1.0000); schema section 170 B; gob stream 4830 B
+=== RUN   TestSizes/sweep/bimbo/256
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                 51380    200.70       5237       5147  ok
+    sizes_test.go:125: gob                      9955     38.89       4634       4628  ok
+    sizes_test.go:125: cbor                    43752    170.91       5356       5101  ok
+    sizes_test.go:125: msgpack                 43951    171.68       5422       5247  ok
+    sizes_test.go:125: msgpack-reflect         47881    187.04       5307       4997  ok
+    sizes_test.go:125: protobuf                 8977     35.07       4568       4635  ok
+    sizes_test.go:125: vtprotobuf               8977     35.07       4568       4635  ok
+    sizes_test.go:125: flatbuffers             11512     44.97       5736       5445  ok
+    sizes_test.go:125: arrow                   13038     50.93       4241       4238  ok
+    sizes_test.go:125: avro                     8194     32.01       4355       4336  ok
+    sizes_test.go:125: capnproto               12320     48.12       4360       4423  ok
+    sizes_test.go:125: colbin                   3740     14.61       3065       3125  ok
+    sizes_test.go:125: colbin+packed5           3740     14.61       3065       3125  ok
+    sizes_test.go:125: colbin-untagged          3768     14.72       3087       3149  ok
+    sizes_test.go:125: colbin-json              3911     15.28       3217       3290  ok
+    sizes_test.go:155: rows 256 (top level 256), 256 as table rows (1.0000); 3072 values; colbin 3740 B, of which tables 3740 B (1.0000); schema section 170 B; gob stream 9686 B
+=== RUN   TestSizes/sweep/bimbo/512
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                102762    200.71      10128       9832  ok
+    sizes_test.go:125: gob                     19554     38.19       8628       8552  ok
+    sizes_test.go:125: cbor                    87520    170.94      10209       9452  ok
+    sizes_test.go:125: msgpack                 87923    171.72      10406       9622  ok
+    sizes_test.go:125: msgpack-reflect         95753    187.02      10193       9276  ok
+    sizes_test.go:125: protobuf                17968     35.09       8669       8802  ok
+    sizes_test.go:125: vtprotobuf              17968     35.09       8669       8802  ok
+    sizes_test.go:125: flatbuffers             22888     44.70      11086      10542  ok
+    sizes_test.go:125: arrow                   23790     46.46       7612       7578  ok
+    sizes_test.go:125: avro                    16403     32.04       8366       8349  ok
+    sizes_test.go:125: capnproto               24608     48.06       8315       8566  ok
+    sizes_test.go:125: colbin                   7469     14.59       6247       6105  ok
+    sizes_test.go:125: colbin+packed5           7469     14.59       6247       6105  ok
+    sizes_test.go:125: colbin-untagged          7500     14.65       6096       6127  ok
+    sizes_test.go:125: colbin-json              7640     14.92       6404       6270  ok
+    sizes_test.go:155: rows 512 (top level 512), 512 as table rows (1.0000); 6144 values; colbin 7469 B, of which tables 7469 B (1.0000); schema section 170 B; gob stream 19285 B
+=== RUN   TestSizes/sweep/bimbo/1024
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                205600    200.78      19775      18998  ok
+    sizes_test.go:125: gob                     38922     38.01      16206      15927  ok
+    sizes_test.go:125: cbor                   175088    170.98      19833      18216  ok
+    sizes_test.go:125: msgpack                175787    171.67      20036      18474  ok
+    sizes_test.go:125: msgpack-reflect        191497    187.01      19623      18120  ok
+    sizes_test.go:125: protobuf                35934     35.09      16426      16517  ok
+    sizes_test.go:125: vtprotobuf              35934     35.09      16426      16517  ok
+    sizes_test.go:125: flatbuffers             45672     44.60      21555      20100  ok
+    sizes_test.go:125: arrow                   45294     44.23      15110      14044  ok
+    sizes_test.go:125: avro                    32777     32.01      16203      16071  ok
+    sizes_test.go:125: capnproto               49184     48.03      15815      16436  ok
+    sizes_test.go:125: colbin                  14732     14.39      12226      12016  ok
+    sizes_test.go:125: colbin+packed5          14732     14.39      12226      12016  ok
+    sizes_test.go:125: colbin-untagged         14769     14.42      12239      12069  ok
+    sizes_test.go:125: colbin-json             14903     14.55      12382      12180  ok
+    sizes_test.go:155: rows 1024 (top level 1024), 1024 as table rows (1.0000); 12288 values; colbin 14732 B, of which tables 14732 B (1.0000); schema section 170 B; gob stream 38653 B
+=== RUN   TestSizes/sweep/bimbo/2048
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                411398    200.88      39529      37721  ok
+    sizes_test.go:125: gob                     77535     37.86      31782      31021  ok
+    sizes_test.go:125: cbor                   350223    171.01      39429      35992  ok
+    sizes_test.go:125: msgpack                351765    171.76      39894      36515  ok
+    sizes_test.go:125: msgpack-reflect        382985    187.00      39209      35616  ok
+    sizes_test.go:125: protobuf                71931     35.12      32242      32224  ok
+    sizes_test.go:125: vtprotobuf              71931     35.12      32242      32224  ok
+    sizes_test.go:125: flatbuffers             91040     44.45      42719      39777  ok
+    sizes_test.go:125: arrow                   88302     43.12      28744      27226  ok
+    sizes_test.go:125: avro                    65742     32.10      32256      31895  ok
+    sizes_test.go:125: capnproto               98336     48.02      31308      32376  ok
+    sizes_test.go:125: colbin                  30199     14.75      24807      26099  ok
+    sizes_test.go:125: colbin+packed5          30199     14.75      24807      26099  ok
+    sizes_test.go:125: colbin-untagged         30233     14.76      24840      25035  ok
+    sizes_test.go:125: colbin-json             30370     14.83      24965      26264  ok
+    sizes_test.go:155: rows 2048 (top level 2048), 2048 as table rows (1.0000); 24576 values; colbin 30199 B, of which tables 30199 B (1.0000); schema section 170 B; gob stream 77266 B
+=== RUN   TestSizes/sweep/bimbo/4096
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                822931    200.91      78741      74468  ok
+    sizes_test.go:125: gob                    154809     37.80      62675      60415  ok
+    sizes_test.go:125: cbor                   700363    170.99      78446      71449  ok
+    sizes_test.go:125: msgpack                703491    171.75      79211      72509  ok
+    sizes_test.go:125: msgpack-reflect        765961    187.00      78034      70712  ok
+    sizes_test.go:125: protobuf               144083     35.18      63646      62586  ok
+    sizes_test.go:125: vtprotobuf             144083     35.18      63646      62586  ok
+    sizes_test.go:125: flatbuffers            182024     44.44      85197      79217  ok
+    sizes_test.go:125: arrow                  174318     42.56      54583      52748  ok
+    sizes_test.go:125: avro                   131558     32.12      63986      62810  ok
+    sizes_test.go:125: capnproto              196640     48.01      62157      63678  ok
+    sizes_test.go:125: colbin                  60106     14.67      49496      49169  ok
+    sizes_test.go:125: colbin+packed5          60106     14.67      49496      49169  ok
+    sizes_test.go:125: colbin-untagged         60137     14.68      49569      50125  ok
+    sizes_test.go:125: colbin-json             60277     14.72      49655      49334  ok
+    sizes_test.go:155: rows 4096 (top level 4096), 4096 as table rows (1.0000); 49152 values; colbin 60106 B, of which tables 60106 B (1.0000); schema section 170 B; gob stream 154540 B
+=== RUN   TestSizes/sweep/bimbo/8192
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2               1645725    200.89     156561     147765  ok
+    sizes_test.go:125: gob                    308927     37.71     124529     118950  ok
+    sizes_test.go:125: cbor                  1400746    170.99     155922     142089  ok
+    sizes_test.go:125: msgpack               1406831    171.73     157668     144033  ok
+    sizes_test.go:125: msgpack-reflect       1531913    187.00     155090     141076  ok
+    sizes_test.go:125: protobuf               287906     35.14     126402     121973  ok
+    sizes_test.go:125: vtprotobuf             287906     35.14     126402     121973  ok
+    sizes_test.go:125: flatbuffers            363616     44.39     172302     156587  ok
+    sizes_test.go:125: arrow                  346350     42.28     104798     101397  ok
+    sizes_test.go:125: avro                   263065     32.11     127501     124221  ok
+    sizes_test.go:125: capnproto              393248     48.00     123788     125955  ok
+    sizes_test.go:125: colbin                 115733     14.13      99006      98345  ok
+    sizes_test.go:125: colbin+packed5         115733     14.13      99006      98345  ok
+    sizes_test.go:125: colbin-untagged        115791     14.13      99154     102153  ok
+    sizes_test.go:125: colbin-json            115904     14.15      99174      98510  ok
+    sizes_test.go:155: rows 8192 (top level 8192), 8192 as table rows (1.0000); 98304 values; colbin 115733 B, of which tables 115733 B (1.0000); schema section 170 B; gob stream 308658 B
+=== RUN   TestSizes/sweep/bimbo/16384
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2               3292160    200.94     313766     296073  ok
+    sizes_test.go:125: gob                    617602     37.70     249121     236331  ok
+    sizes_test.go:125: cbor                  2801506    170.99     312827     285073  ok
+    sizes_test.go:125: msgpack               2814135    171.76     316717     288034  ok
+    sizes_test.go:125: msgpack-reflect       3063817    187.00     310981     283457  ok
+    sizes_test.go:125: protobuf               576084     35.16     253116     239717  ok
+    sizes_test.go:125: vtprotobuf             576084     35.16     253116     239717  ok
+    sizes_test.go:125: flatbuffers            726824     44.36     337392     312080  ok
+    sizes_test.go:125: arrow                  690414     42.14     201612     197606  ok
+    sizes_test.go:125: avro                   526594     32.14     255301     247044  ok
+    sizes_test.go:125: capnproto              786464     48.00     248032     250367  ok
+    sizes_test.go:125: colbin                 228147     13.92     199209     201134  ok
+    sizes_test.go:125: colbin+packed5         228147     13.92     199209     201134  ok
+    sizes_test.go:125: colbin-untagged        228263     13.93     199508     201047  ok
+    sizes_test.go:125: colbin-json            228318     13.94     199397     201269  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 196608 values; colbin 228147 B, of which tables 228147 B (1.0000); schema section 170 B; gob stream 617333 B
+--- PASS: TestSizes (16.88s)
+    --- PASS: TestSizes/sweep/lineitem/1 (0.88s)
+    --- PASS: TestSizes/sweep/lineitem/2 (0.74s)
+    --- PASS: TestSizes/sweep/lineitem/4 (0.79s)
+    --- PASS: TestSizes/sweep/lineitem/8 (0.87s)
+    --- PASS: TestSizes/sweep/lineitem/16 (0.89s)
+    --- PASS: TestSizes/sweep/lineitem/32 (0.82s)
+    --- PASS: TestSizes/sweep/lineitem/64 (0.88s)
+    --- PASS: TestSizes/sweep/lineitem/128 (0.89s)
+    --- PASS: TestSizes/sweep/lineitem/256 (0.87s)
+    --- PASS: TestSizes/sweep/lineitem/512 (0.85s)
+    --- PASS: TestSizes/sweep/lineitem/1024 (0.93s)
+    --- PASS: TestSizes/sweep/lineitem/2048 (1.04s)
+    --- PASS: TestSizes/sweep/lineitem/4096 (1.05s)
+    --- PASS: TestSizes/sweep/lineitem/8192 (1.53s)
+    --- PASS: TestSizes/sweep/lineitem/16384 (2.14s)
+    --- PASS: TestSizes/sweep/bimbo/1 (0.02s)
+    --- PASS: TestSizes/sweep/bimbo/2 (0.02s)
+    --- PASS: TestSizes/sweep/bimbo/4 (0.02s)
+    --- PASS: TestSizes/sweep/bimbo/8 (0.03s)
+    --- PASS: TestSizes/sweep/bimbo/16 (0.02s)
+    --- PASS: TestSizes/sweep/bimbo/32 (0.03s)
+    --- PASS: TestSizes/sweep/bimbo/64 (0.02s)
+    --- PASS: TestSizes/sweep/bimbo/128 (0.03s)
+    --- PASS: TestSizes/sweep/bimbo/256 (0.03s)
+    --- PASS: TestSizes/sweep/bimbo/512 (0.04s)
+    --- PASS: TestSizes/sweep/bimbo/1024 (0.07s)
+    --- PASS: TestSizes/sweep/bimbo/2048 (0.13s)
+    --- PASS: TestSizes/sweep/bimbo/4096 (0.21s)
+    --- PASS: TestSizes/sweep/bimbo/8192 (0.36s)
+    --- PASS: TestSizes/sweep/bimbo/16384 (0.69s)
+PASS

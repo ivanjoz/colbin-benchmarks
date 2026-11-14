@@ -53,6 +53,12 @@ func main() {
 // matrix: its timings go to benchmarks.sweep, for the sweep's own figure.
 func reported(name string) bool { return !strings.HasSuffix(name, "/dynamic") && !isSweep(name) }
 
+// reportedFormat is false for the one variant the run measures and the
+// summary leaves out: colbin without field tags. That a type needs no tags is
+// said in the paper; a fourth colbin in every table is not worth its column,
+// beside the two variants that are options a user turns on.
+func reportedFormat(format string) bool { return format != formats.ColbinK8 }
+
 func isSweep(name string) bool { return strings.HasPrefix(name, "sweep/") }
 
 // sizeRow is one line of sizes.csv.
@@ -83,7 +89,7 @@ func readSizes(path string) ([]sizeRow, error) {
 	var rows []sizeRow
 	for _, record := range records[1:] {
 		size, err := strconv.Atoi(record[column["bytes"]])
-		if err != nil || !reported(record[column["case"]]) {
+		if err != nil || !reported(record[column["case"]]) || !reportedFormat(record[column["format"]]) {
 			continue // n/a (no bytes), or a case the summary leaves out
 		}
 		row := sizeRow{Case: record[column["case"]], Regime: record[column["regime"]], Format: record[column["format"]], Bytes: size, Compressed: map[string]int{}}
@@ -103,7 +109,9 @@ func readSizes(path string) ([]sizeRow, error) {
 // the regime each case was under.
 type benchmarks struct {
 	ns      map[string]map[string]map[string]float64
-	sweep   map[string]map[string]map[string]float64 // the same, for the sweep's cases
+	bytes   map[string]map[string]map[string]float64 // the same shape: B/op, where the line has it
+	allocs  map[string]map[string]map[string]float64 // allocs/op
+	sweep   map[string]map[string]map[string]float64 // ns/op, for the sweep's cases
 	regime  map[string]string
 	config  map[string]string // the first value of each configuration key
 	formats []string          // in order of first appearance
@@ -118,7 +126,10 @@ func readBench(path string) (*benchmarks, error) {
 	}
 	defer file.Close()
 	samples := map[[3]string][]float64{}
+	// Go's -benchmem columns, by the unit that follows each value.
+	memory := map[string]map[[3]string][]float64{"B/op": {}, "allocs/op": {}}
 	out := &benchmarks{ns: map[string]map[string]map[string]float64{}, sweep: map[string]map[string]map[string]float64{},
+		bytes: map[string]map[string]map[string]float64{}, allocs: map[string]map[string]map[string]float64{},
 		regime: map[string]string{}, config: map[string]string{}}
 	regime := ""
 	scanner := bufio.NewScanner(file)
@@ -147,12 +158,22 @@ func readBench(path string) (*benchmarks, error) {
 			continue
 		}
 		format, op := parts[len(parts)-2], parts[len(parts)-1]
+		if !reportedFormat(format) {
+			continue
+		}
 		ns, err := strconv.ParseFloat(fields[2], 64)
 		if err != nil {
 			continue
 		}
 		key := [3]string{name, format, op}
 		samples[key] = append(samples[key], ns)
+		for index := 5; index < len(fields); index += 2 {
+			if bucket, ok := memory[fields[index]]; ok {
+				if value, err := strconv.ParseFloat(fields[index-1], 64); err == nil {
+					bucket[key] = append(bucket[key], value)
+				}
+			}
+		}
 		out.regime[name] = regime
 		if !slices.Contains(out.formats, format) {
 			out.formats = append(out.formats, format)
@@ -174,6 +195,20 @@ func readBench(path string) (*benchmarks, error) {
 			into[key[0]][key[1]] = map[string]float64{}
 		}
 		into[key[0]][key[1]][key[2]] = median(values)
+	}
+	for unit, into := range map[string]map[string]map[string]map[string]float64{"B/op": out.bytes, "allocs/op": out.allocs} {
+		for key, values := range memory[unit] {
+			if isSweep(key[0]) {
+				continue
+			}
+			if into[key[0]] == nil {
+				into[key[0]] = map[string]map[string]float64{}
+			}
+			if into[key[0]][key[1]] == nil {
+				into[key[0]][key[1]] = map[string]float64{}
+			}
+			into[key[0]][key[1]][key[2]] = median(values)
+		}
 	}
 	return out, nil
 }

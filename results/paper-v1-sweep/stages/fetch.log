@@ -1,0 +1,13 @@
+build   dbgen
+dbgen   SF 0.1
+ok      tpch/sf0.1/orders.tbl
+ok      tpch/sf0.1/lineitem.tbl
+ok      tpch/sf0.1/customer.tbl
+ok      tpch/sf0.1/part.tbl
+ok      tpch/sf0.1/partsupp.tbl
+ok      tpch/sf0.1/supplier.tbl
+ok      tpch/sf0.1/nation.tbl
+ok      tpch/sf0.1/region.tbl
+fetch   https://event.cwi.nl/da/PublicBIbenchmark/Bimbo/Bimbo_1.csv.bz2 (sample of 16384 rows, lbzip2)
+subset: Bimbo_1: 16384 of 74180464 records
+ok      publicbi/Bimbo_1.csv

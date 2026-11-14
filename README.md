@@ -121,8 +121,8 @@ and no table averages over them. They run only when named, into a directory
 of their own, and the paper draws their figure when it is given that run:
 
 ```sh
-./reproduce.sh --cases 'sweep/*' --no-ablation --passes 1 --out results/sweep-v1
-make -C paper SWEEP=../results/sweep-v1      # with RUN= and LAPTOP= as usual
+./reproduce.sh --cases 'sweep/*' --no-ablation --passes 1 --out results/paper-v1-sweep
+make -C paper SWEEP=../results/paper-v1-sweep      # with RUN= and LAPTOP= as usual
 ```
 
 With the datasets fetched, `go test ./...` runs `TestSizes` over every case,

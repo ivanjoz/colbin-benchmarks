@@ -91,10 +91,9 @@ versions measured. Two formats appear with two implementations, because the
 implementation moves the time by more than the format does: Protocol Buffers
 with the reflection-based \fmt{protobuf-go} and with the generated code of
 \fmt{vtprotobuf}~\cite{vtprotobuf}, and MessagePack with generated code and
-with reflection. \colbin{} appears as four variants: the default with field
-tags (\fmt{colbin}), with \fmt{packed5} on, without field tags
-(\fmt{colbin-untagged}), and self-describing with its schema section embedded
-(\fmt{colbin-json}). Only \fmt{colbin}, the default, is the result of this
+with reflection. \colbin{} appears as three variants: the default
+(\fmt{colbin}), with \fmt{packed5} on, and self-describing with its schema
+section embedded (\fmt{colbin-json}). Only \fmt{colbin}, the default, is the result of this
 paper; the others isolate one option each.
 
 \begin{table}[t]
@@ -111,9 +110,7 @@ dropped (Table~\ref{tab:coverage}). Arrow carries only roots that are tables.
 \colbin{} itself cannot carry
 \result{coverage.web.colbin.na} of the 27 SchemaStore documents: it
 refuses a struct with no field it can encode, and in those documents a type
-has none. Two Public
-BI tables have more than 255 columns, which the untagged variant does not
-support. Cap'n Proto does not carry two SchemaStore documents, in which a
+has none. Cap'n Proto does not carry two SchemaStore documents, in which a
 field's name collides with a method its Go code generator emits. \fmt{gob} does not transmit a pointer to a zero value, so it does
 not round-trip any table with a nullable column that holds a zero; its sizes
 on those cases are reported, flagged as lossy, and it is not timed on them

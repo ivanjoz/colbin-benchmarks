@@ -67,6 +67,14 @@
 \renewcommand{\resultdef}[2]{\expandafter\gdef\csname result@laptop.#1\endcsname{#2}}
 \IfFileExists{tables-laptop/numbers.tex}{\input{tables-laptop/numbers.tex}}{}
 \endgroup
+% The sweep's run (Figure~\ref{fig:sweep}), a run of its own: its keys are
+% prefixed sweep-run., so that its machine.* and the rest do not replace the
+% main run's. \sweepvs{table}{rows}{format} is colbin's decode-fresh factor.
+\begingroup
+\renewcommand{\resultdef}[2]{\expandafter\gdef\csname result@sweep-run.#1\endcsname{#2}}
+\IfFileExists{tables-sweep/numbers.tex}{\input{tables-sweep/numbers.tex}}{}
+\endgroup
+\newcommand{\sweepvs}[3]{\result{sweep-run.sweep.#1.#2.#3.decode-fresh.factor}}
 
 % A sentence whose wording depends on which way a number falls. Visible in a
 % draft; \finaltrue hides the marks once each has been read against the final

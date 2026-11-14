@@ -1,0 +1,2 @@
+case,dataset,regime,top_rows,rows,table_rows,table_row_fraction,values,colbin_bytes,table_bytes,table_byte_fraction,schema_bytes,gob_stream_bytes,colbin_bytes_per_value
+sweep/lineitem/262144,sweep,bulk,262144,262144,262144,1.0000,4194304,16620403,16620403,1.0000,202,24404858,3.963

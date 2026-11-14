@@ -1,0 +1,16 @@
+case,dataset,regime,format,bytes,bytes_per_row,gzip,zstd6,status
+sweep/lineitem/131072,sweep,bulk,json-v2,39026601,297.75,5884200,5439894,ok
+sweep/lineitem/131072,sweep,bulk,gob,12190949,93.01,4766957,4481456,ok
+sweep/lineitem/131072,sweep,bulk,cbor,30890993,235.68,5684502,5373096,ok
+sweep/lineitem/131072,sweep,bulk,msgpack,31119859,237.43,5696125,5327149,ok
+sweep/lineitem/131072,sweep,bulk,msgpack-reflect,35152919,268.20,5859070,5375137,ok
+sweep/lineitem/131072,sweep,bulk,protobuf,11673712,89.06,5009085,4757969,ok
+sweep/lineitem/131072,sweep,bulk,vtprotobuf,11673712,89.06,5009085,4757969,ok
+sweep/lineitem/131072,sweep,bulk,flatbuffers,20456744,156.07,6520895,6183526,ok
+sweep/lineitem/131072,sweep,bulk,arrow,14793262,112.86,5695656,4678159,ok
+sweep/lineitem/131072,sweep,bulk,avro,9710241,74.08,4493588,4263017,ok
+sweep/lineitem/131072,sweep,bulk,capnproto,21116984,161.11,5859886,6028597,ok
+sweep/lineitem/131072,sweep,bulk,colbin,8314597,63.44,3163745,3124908,ok
+sweep/lineitem/131072,sweep,bulk,colbin+packed5,8314597,63.44,3163745,3124908,ok
+sweep/lineitem/131072,sweep,bulk,colbin-untagged,8316262,63.45,3161640,3127252,ok
+sweep/lineitem/131072,sweep,bulk,colbin-json,8314800,63.44,3164228,3126107,ok

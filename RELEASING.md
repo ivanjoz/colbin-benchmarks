@@ -76,6 +76,8 @@ using colbin API newer than the required tag:
 
    ```sh
    cloud/ocibench.py run --label sweep -- --cases 'sweep/*' --no-ablation --passes 1
+   cloud/ocibench.py fetch
+   cp -r results/cloud/oci/oci-x86-sweep-<stamp> results/paper-v1-sweep
    ```
 
    Its directory goes to `make -C paper SWEEP=...`; without it the paper

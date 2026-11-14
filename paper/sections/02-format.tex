@@ -21,8 +21,8 @@ producer and consumer can add and drop fields independently.
 Field numbers come from a struct tag (\code{cb:"3"}) or, without one, from an
 8-bit hash of the field's name with linear probing on collision. Untagged
 types therefore always use the wide width and cost one more byte per field
-present; the evaluation reports both (\fmt{colbin} and
-\fmt{colbin-untagged}).
+present, and are limited to 255 fields. Tags are optional; every type in the
+evaluation has them.
 
 \subsection{Scalars}
 
@@ -146,6 +146,53 @@ value, as schemaless formats do. No case of the evaluation uses this path.
 \paragraph{packed5.} An opt-in encoding packs strings of letters and digits
 at about five bits per character, when that is shorter. It is off by default
 and reported as a separate variant, \fmt{colbin+packed5}.
+
+\subsection{Schema evolution}
+\label{sec:evolution}
+
+The writer's type and the reader's need not be the same type. A field is
+found by its key, and a key the reader does not know is stepped over by its
+descriptor, so a field can be added or removed on either side: the reader
+of an older message finds the new field at its zero value, and the reader of
+a newer one skips what it does not know. The same holds for a column of a
+table, which is one key for all its rows. With tags the key is the tag, so a
+field can be renamed freely; without them the key is a hash of the name, and
+a renamed field is another field. An integer is written by its value, not by
+its declared width, so a field can be widened (an \code{int32} read as an
+\code{int64}) or narrowed, as long as the values fit.
+
+Table~\ref{tab:evolution} sets this beside the two formats the evaluation
+compares \colbin{} with most closely. It is close to Protocol Buffers'
+rules~\cite{protobuf}, with tags in the place of field numbers, and with two
+differences against \colbin{}. A value that does not fit the reader's
+narrower integer is an error in a record but is truncated without one in a
+column, where the check is not made per value. And a change of kind, an
+integer to a float or to a string, is not supported and is not always
+detected: the reader may return a wrong value instead of an error.
+Protocol Buffers also keeps the unknown fields of a message it decodes and
+writes again; \colbin{} drops them. The behaviour of \colbin{} in the table
+is checked by a test in the artifact (\code{formats/evolution\_test.go});
+that of the other two is their documentation's, and for MessagePack's
+integers the same test.
+
+\begin{table}[t]
+\centering\footnotesize
+\begin{tabular}{@{}p{0.23\linewidth}p{0.25\linewidth}p{0.21\linewidth}p{0.21\linewidth}@{}}
+\toprule
+change & \colbin{} & Protocol Buffers & MessagePack (generated, keyed by name) \\
+\midrule
+a field or a column added or removed & compatible both ways & compatible both ways & compatible both ways \\
+a field renamed & compatible with tags; another field without & compatible & another field, unless a tag keeps the name \\
+an integer widened & compatible & compatible & compatible \\
+an integer narrowed, a value out of range & error in a record; truncated in a column & truncated & error \\
+a change of kind (integer to float or string) & not supported, not always detected & not compatible & error \\
+\bottomrule
+\end{tabular}
+\caption{What a reader sees when its type is not the writer's. \emph{Compatible
+both ways}: an old reader decodes a new message and a new reader an old one,
+with the missing field at its zero value.}
+\label{tab:evolution}
+\end{table}
 
 \subsection{Implementation}
 

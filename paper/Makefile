@@ -72,7 +72,7 @@ arxiv: main.pdf
 	@# unfinished goes into the archive.
 	@! grep -nE '\\recheck\{|TODO|<full hash>|<zenodo-doi>|^\\finalfalse' main.tex sections/*.tex || \
 		{ echo "unfinished text above: resolve it (RELEASING.md, steps 2 and 4) before packing" >&2; exit 1; }
-	@! grep -n 'resultdef{provisional}{.' tables/numbers.tex tables-laptop/numbers.tex || \
+	@! grep -n 'resultdef{provisional}{.' tables/numbers.tex tables-laptop/numbers.tex $(wildcard tables-sweep/numbers.tex) || \
 		{ echo "a provisional run's tables (above): not the paper's numbers" >&2; exit 1; }
 	rm -rf build && mkdir -p build/arxiv/sections build/arxiv/tables build/arxiv/tables-laptop build/arxiv/tables-sweep
 	cp main.bbl build/arxiv/

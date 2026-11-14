@@ -67,7 +67,6 @@ the kernel lets it be read.
 | capnproto | 0.637 (91) | 0.943 (91) | 1.002 (91) |
 | colbin | 0.267 (89, and 2 at 0) | 0.576 (91) | 0.597 (91) |
 | colbin+packed5 | 0.256 (89, and 2 at 0) | 0.575 (91) | 0.592 (91) |
-| colbin-untagged | 0.279 (89) | 0.611 (89) | 0.634 (89) |
 | colbin-json | 0.385 (91) | 0.742 (91) | 0.823 (91) |
 
 ## Sizes, bulk regime: bytes against JSON's
@@ -87,7 +86,6 @@ the kernel lets it be read.
 | capnproto | 0.590 (14) | 1.094 (14) | 1.050 (14) |
 | colbin | 0.170 (14) | 0.393 (14) | 0.307 (14) |
 | colbin+packed5 | 0.170 (14) | 0.393 (14) | 0.307 (14) |
-| colbin-untagged | 0.171 (14) | 0.393 (14) | 0.304 (14) |
 | colbin-json | 0.171 (14) | 0.393 (14) | 0.309 (14) |
 
 ## Go timings: bench-web.txt
@@ -109,7 +107,6 @@ web regime, 93 cases: time against json-v2's for the same operation (json-v2's d
 | capnproto | 0.880 (91) | 0.479 (91) | 0.508 (91) | 0.475 (20) |
 | colbin | 0.072 (91) | 0.122 (91) | 0.104 (91) | 0.154 (20) |
 | colbin+packed5 | 0.102 (91) | 0.134 (91) | 0.127 (91) | 0.218 (20) |
-| colbin-untagged | 0.076 (89) | 0.116 (89) | 0.109 (89) | 0.155 (20) |
 | colbin-json | 0.133 (91) | 0.113 (91) | 0.111 (91) | 0.156 (20) |
 
 ## Go timings: bench-bulk.txt
@@ -131,7 +128,6 @@ bulk regime, 14 cases: time against json-v2's for the same operation (json-v2's 
 | capnproto | 0.508 (14) | 0.313 (14) | 0.328 (14) | 0.314 (14) |
 | colbin | 0.048 (14) | 0.057 (14) | 0.057 (14) | 0.052 (14) |
 | colbin+packed5 | 0.047 (14) | 0.050 (14) | 0.057 (14) | 0.050 (14) |
-| colbin-untagged | 0.047 (14) | 0.049 (14) | 0.057 (14) | 0.050 (14) |
 | colbin-json | 0.055 (14) | 0.049 (14) | 0.057 (14) | 0.049 (14) |
 
 ## The colbin module's download against the bytes it saves (web regime)

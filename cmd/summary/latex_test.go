@@ -30,8 +30,8 @@ schemastore/empty/dynamic,schemastore,web,colbin,999,999,999,999,ok
 	// The dynamic path is measured but never reported: its lines must not
 	// move a number.
 	bench := `regime: web
-BenchmarkColbin/tpch/sf0.1/region/json-v2/decode-fresh 10 1000 ns/op
-BenchmarkColbin/tpch/sf0.1/region/colbin/decode-fresh 10 250 ns/op
+BenchmarkColbin/tpch/sf0.1/region/json-v2/decode-fresh 10 1000 ns/op 200.0 ns/row 4000 B/op 40 allocs/op
+BenchmarkColbin/tpch/sf0.1/region/colbin/decode-fresh 10 250 ns/op 50.0 ns/row 1000 B/op 4 allocs/op
 BenchmarkColbin/schemastore/empty/dynamic/json-v2/decode-fresh 10 10 ns/op
 BenchmarkColbin/schemastore/empty/dynamic/colbin/decode-fresh 10 9999 ns/op
 BenchmarkColbin/sweep/t/8/json-v2/decode-fresh 10 800 ns/op
@@ -108,6 +108,9 @@ schemastore/empty/dynamic,0,9.0,333,,
 		`\resultdef{cases.categories.web-documents}{1}`,
 		`\resultdef{cases.categories.bulk}{0}`,
 		`\resultdef{cases.datasets.schemastore}{1}`,
+		// What a decode allocates: 1000 B against 4000, 4 allocations against 40.
+		`\resultdef{mem.web-tables.json-v2.bytes}{0.250}`,
+		`\resultdef{mem.web-tables.json-v2.allocs.factor}{10.0$\times$}`,
 		// The sweep: 800 ns against 400 at 8 rows.
 		`\resultdef{sweep.t.8.json-v2.decode-fresh.factor}{2.0$\times$}`,
 	} {
@@ -118,7 +121,7 @@ schemastore/empty/dynamic,0,9.0,333,,
 	for _, name := range []string{"sizes-web.tex", "times-web.tex", "versus-web.tex", "coverage.tex",
 		"ablation-threshold.tex", "ablation-codec.tex", "repeatability.tex", "baselines.tex",
 		"fig-tradeoff-web.dat", "fig-dist-web-gzip-colbin.dat",
-		"versus-datasets-size.tex", "versus-datasets-time.tex", "versus-categories-size.tex", "versus-categories-time.tex"} {
+		"versus-datasets-size.tex", "versus-datasets-time.tex", "versus-categories-size.tex", "versus-categories-time.tex", "memory-categories.tex"} {
 		if _, err := os.Stat(filepath.Join(dir, "tables", name)); err != nil {
 			t.Errorf("tables/%s was not written", name)
 		}

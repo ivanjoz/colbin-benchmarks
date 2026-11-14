@@ -204,6 +204,7 @@ func writeLatex(dir string, sizes []sizeRow) error {
 	}
 	latexVersusBy(out, sizes, benches, "datasets", groupOrder, func(name, _ string) string { return groupOf(name) })
 	latexVersusBy(out, sizes, benches, "categories", categoryOrder, categoryOf)
+	latexMemory(out, benches)
 	if err := latexScaling(out, dir, benches); err != nil {
 		return err
 	}
@@ -664,6 +665,9 @@ func factor(ratios []float64, compact bool) string {
 		text = fmt.Sprintf(`\textbf{%.2f$\times$ worse}`, mean)
 	case times < 1.995:
 		text = fmt.Sprintf(`%.2f$\times$`, times)
+	case times >= 99.95:
+		// Three digits are already more than such a factor is known to.
+		text = fmt.Sprintf(`%.0f$\times$`, times)
 	default:
 		text = fmt.Sprintf(`%.1f$\times$`, times)
 	}
@@ -831,6 +835,121 @@ func latexVersusBy(out *latexOut, sizes []sizeRow, benches map[string]*benchmark
 	for _, group := range groups {
 		out.def("cases."+kind+"."+group, strconv.Itoa(len(counts[group])))
 	}
+}
+
+// latexMemory is what a decode into a fresh value allocates, colbin against
+// each other format by category: the bytes (B/op) and the allocations
+// (allocs/op) Go's benchmark reports beside the time, as the geometric mean
+// over the cases both carry of colbin's number over the other's, printed as a
+// factor, and the cases colbin wins. The numbers come from the same samples
+// as the times and do not depend on the clock. Encode is not in the table:
+// into a reused buffer, most formats allocate nothing, and a ratio of two
+// zeros says nothing; mem.encode.<format>.zero is the number of cases in
+// which a format's encode allocates nothing, of mem.encode.<format>.n.
+// Keys: mem.<category>.<format>.<bytes|allocs>, with .factor, .cell, .wins
+// and .n.
+func latexMemory(out *latexOut, benches map[string]*benchmarks) {
+	type pair struct{ mine, theirs float64 }
+	pairs := map[string]map[string]map[string][]pair{} // category → format → metric
+	zero, encoded := map[string]int{}, map[string]int{}
+	found := false
+	for _, regime := range regimes {
+		bench := benches[regime]
+		if bench == nil {
+			continue
+		}
+		for _, byFormat := range bench.allocs {
+			for format, byOp := range byFormat {
+				if allocs, ok := byOp["encode"]; ok {
+					encoded[format]++
+					if allocs == 0 {
+						zero[format]++
+					}
+				}
+			}
+		}
+		for metric, numbers := range map[string]map[string]map[string]map[string]float64{"bytes": bench.bytes, "allocs": bench.allocs} {
+			for name, byFormat := range numbers {
+				mine, ok := byFormat[formats.Colbin]["decode-fresh"]
+				if !ok {
+					continue
+				}
+				category := categoryOf(name, bench.regime[name])
+				for format, byOp := range byFormat {
+					theirs, ok := byOp["decode-fresh"]
+					if !ok || strings.HasPrefix(format, formats.Colbin) {
+						continue
+					}
+					if pairs[category] == nil {
+						pairs[category] = map[string]map[string][]pair{}
+					}
+					if pairs[category][format] == nil {
+						pairs[category][format] = map[string][]pair{}
+					}
+					pairs[category][format][metric] = append(pairs[category][format][metric], pair{mine, theirs})
+					found = true
+				}
+			}
+		}
+	}
+	if !found {
+		return
+	}
+	for _, format := range formats.Order {
+		if encoded[format] > 0 {
+			out.def("mem.encode."+format+".zero", strconv.Itoa(zero[format]))
+			out.def("mem.encode."+format+".n", strconv.Itoa(encoded[format]))
+		}
+	}
+	metrics := []string{"bytes", "allocs"}
+	head, rules, sub := []string{"colbin against"}, []string{}, []string{""}
+	for index, category := range categoryOrder {
+		first := 2 + index*len(metrics)
+		head = append(head, fmt.Sprintf(`\multicolumn{%d}{c}{%s}`, len(metrics), groupLabel[category]))
+		rules = append(rules, fmt.Sprintf(`\cmidrule(lr){%d-%d}`, first, first+len(metrics)-1))
+		sub = append(sub, "bytes", "allocations")
+	}
+	lines := []string{`\begin{tabular}{l` + strings.Repeat("r", len(categoryOrder)*len(metrics)) + `}`, `\toprule`,
+		row(head...), strings.Join(rules, " "), row(sub...), `\midrule`}
+	for _, format := range formats.Order {
+		if strings.HasPrefix(format, formats.Colbin) {
+			continue
+		}
+		cells, any := []string{tex(format)}, false
+		for _, category := range categoryOrder {
+			for _, metric := range metrics {
+				list := pairs[category][format][metric]
+				if len(list) == 0 {
+					cells = append(cells, "--")
+					continue
+				}
+				any = true
+				var ratios []float64
+				wins := 0
+				for _, p := range list {
+					if p.mine < p.theirs {
+						wins++
+					}
+					// A decode that allocates nothing has no ratio either way.
+					if p.mine > 0 && p.theirs > 0 {
+						ratios = append(ratios, p.mine/p.theirs)
+					}
+				}
+				key := "mem." + category + "." + format + "." + metric
+				out.defRatio(key, ratios)
+				out.def(key+".wins", strconv.Itoa(wins))
+				out.def(key+".n", strconv.Itoa(len(list)))
+				out.numbers = append(out.numbers, fmt.Sprintf(`\resultdef{%s.factor}{%s}`, key, factor(ratios, false)),
+					fmt.Sprintf(`\resultdef{%s.cell}{%s}`, key, factor(ratios, true)))
+				cells = append(cells, fmt.Sprintf(`%s\ {\scriptsize %d/%d}`, factor(ratios, true), wins, len(list)))
+			}
+		}
+		if any {
+			lines = append(lines, row(cells...))
+		}
+	}
+	lines = append(lines, `\bottomrule`, `\end{tabular}`)
+	out.file("memory-categories.tex", "bench-web.txt and bench-bulk.txt", lines)
 }
 
 // scalingBins cut the cases by the rows of their root slice (cases.csv's
@@ -1063,6 +1182,9 @@ func latexCoverage(out *latexOut, dir string) error {
 			kind = "lossy"
 		}
 		format, regime := fields["format"], fields["regime"]
+		if !reportedFormat(format) {
+			continue
+		}
 		if counts[format] == nil {
 			counts[format] = map[string]map[string]int{}
 		}

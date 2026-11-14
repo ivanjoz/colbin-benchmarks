@@ -213,7 +213,7 @@ different schemas, so it mixes the number of rows with what the rows hold.
   \addplot+[mark size=1pt, #4] table[x=rows, y=#3]{tables-sweep/fig-sweep-#1-#2.dat};}
 \newcommand{\sweeppanel}[3]{% title, table, extra axis options
 \begin{tikzpicture}
-\begin{axis}[width=0.5\linewidth, height=0.42\linewidth, title={#1},
+\begin{axis}[width=0.47\linewidth, height=0.42\linewidth, title={#1},
   xlabel={rows in the message}, xmode=log, ymode=log,
   log ticks with fixed point, log basis x=2,
   xtick={1,8,64,512,4096,32768,262144},
@@ -224,8 +224,9 @@ different schemas, so it mixes the number of rows with what the rows hold.
 \sweepcurve{#2}{decode-fresh}{json_v2}{gray, mark=o}
 \sweepcurve{#2}{decode-fresh}{msgpack}{orange, mark=triangle*}
 \sweepcurve{#2}{decode-fresh}{vtprotobuf}{blue, mark=square*}
+\sweepcurve{#2}{decode-fresh}{arrow}{teal, mark=diamond*}
 \sweepcurve{#2}{decode-fresh}{colbin}{black, very thick, mark=*}
-\legend{JSON, msgpack, vtprotobuf, colbin}
+\legend{JSON, msgpack, vtprotobuf, Arrow, colbin}
 \draw[densely dashed, gray] (axis cs:8,0.001) -- (axis cs:8,1e9);
 \end{axis}
 \end{tikzpicture}}
@@ -243,9 +244,40 @@ columns.}
 \end{figure}
 
 Figure~\ref{fig:sweep} removes the schema from the comparison: one table,
-cut to its first rows, at every power of two.
-\recheck{write this paragraph from the sweep's run: the cost per row below
-and above eight rows, and where \colbin{} crosses each format}
+cut to its first rows, at every power of two, TPC-H's \code{lineitem} up to
+$2^{19}$ rows and the Public BI sample \code{Bimbo} up to $2^{14}$. It is a
+run of its own, on an instance of the same shape and image, at a later
+commit of this artifact with the same \colbin{}
+(\result{sweep-run.machine.colbin-version}); the points past $2^{14}$ rows
+are in the bulk regime and were timed alone on one core.
+Below eight rows \colbin{} writes the rows one after another, as the
+row-oriented formats do, and costs about what they cost: at one row it is
+\sweepvs{lineitem}{1}{vtprotobuf} than \fmt{vtprotobuf} on \code{lineitem}
+and \sweepvs{bimbo}{1}{vtprotobuf} on \code{Bimbo}, and it draws level by
+four rows (\sweepvs{lineitem}{4}{vtprotobuf} and
+\sweepvs{bimbo}{4}{vtprotobuf}). At eight the slice becomes a table, whose
+header and column descriptors are paid over only eight rows: on \code{Bimbo}
+the cost per row goes up at that point
+(\sweepvs{bimbo}{8}{vtprotobuf} than \fmt{vtprotobuf}). From there the
+row-oriented formats' cost per row stays nearly flat while \colbin{}'s keeps
+falling: against \fmt{vtprotobuf} it is \sweepvs{lineitem}{16}{vtprotobuf}
+faster at 16 rows of \code{lineitem}, \sweepvs{lineitem}{64}{vtprotobuf} at
+64, \sweepvs{lineitem}{16384}{vtprotobuf} at $2^{14}$ and
+\sweepvs{lineitem}{524288}{vtprotobuf} at $2^{19}$; on \code{Bimbo},
+\sweepvs{bimbo}{16}{vtprotobuf} at 16, \sweepvs{bimbo}{64}{vtprotobuf} at 64
+and \sweepvs{bimbo}{16384}{vtprotobuf} at $2^{14}$. Against JSON the factor
+goes from \sweepvs{lineitem}{1}{json-v2} at one row to
+\sweepvs{lineitem}{524288}{json-v2} on \code{lineitem}, and from
+\sweepvs{bimbo}{1}{json-v2} to \sweepvs{bimbo}{16384}{json-v2} on
+\code{Bimbo}. Arrow, a columnar format with a larger fixed cost, is far
+slower on small messages (\colbin{} is \sweepvs{bimbo}{1}{arrow} faster at
+one row of \code{Bimbo}) and keeps improving after \colbin{} levels off: on
+\code{Bimbo} it overtakes \colbin{} between 256 and 512 rows, and at
+$2^{14}$ rows \colbin{} is \sweepvs{bimbo}{16384}{arrow} than Arrow;
+while on \code{lineitem} \colbin{} stays ahead of it at every size, by
+\sweepvs{lineitem}{8192}{arrow} at its closest. The gain with rows is
+therefore the table's: a fixed cost that a row format does not pay and that
+\colbin{} recovers from a few tens of rows on.
 }{}
 
 \FloatBarrier
@@ -262,6 +294,52 @@ contiguous array. \colbin{} has no access path that avoids decoding: its
 \result{time.web.colbin.access} and \result{time.bulk.colbin.access} are a
 full decode followed by the sum. An application that reads one field of a
 large message and discards the rest is better served by those formats.
+
+\FloatBarrier
+\subsection{What a decode allocates}
+\label{sec:memory}
+
+\begin{table}[t]
+\centering\scriptsize
+\setlength{\tabcolsep}{3pt}
+\resulttable{memory-categories}
+\caption{Memory by kind of message: how many times fewer bytes, and how many
+times fewer allocations, \colbin{} needs than each format to decode a
+message into a fresh value, on the cases both carry, and the cases in which
+\colbin{} needs strictly fewer. Bold with $\downarrow$: the other format
+needs that many times fewer.}
+\label{tab:memory}
+\end{table}
+
+Go's benchmark reports, beside the time of an operation, the bytes it
+allocates and the number of allocations, and both are in the same samples
+the times come from; they do not depend on the clock.
+Table~\ref{tab:memory} gives them for decode-fresh. The two numbers tell
+different things. In bytes \colbin{} is close to the other formats, since
+the decoded value is the same Go value whoever decodes it: against
+\fmt{vtprotobuf}, \result{mem.web-tables.vtprotobuf.bytes.factor} fewer on
+web tables and \result{mem.bulk.vtprotobuf.bytes.factor} on bulk tables, and
+against generated MessagePack
+{\let\textbf\relax\result{mem.web-tables.msgpack.bytes.factor}}. In the
+number of allocations it is far apart. A row format allocates as it meets
+each row and each string, so its allocations grow with the rows; \colbin{}
+decodes a table column by column, and no case of the evaluation, of up to
+$8.7\times10^5$ rows, takes more than two thousand allocations to decode. On web
+tables that is \result{mem.web-tables.vtprotobuf.allocs.factor} fewer
+allocations than \fmt{vtprotobuf} and
+\result{mem.web-tables.msgpack.allocs.factor} fewer than generated
+MessagePack. On single records, where there are no columns, the advantage
+is of the size of the others in this paper:
+\result{mem.web-documents.vtprotobuf.allocs.factor} fewer allocations than
+\fmt{vtprotobuf} and \result{mem.web-documents.msgpack.allocs.factor} fewer
+than MessagePack, which in turn needs fewer bytes, and Avro needs fewer of
+both.
+
+Encode is not in the table because most of its cells would be a ratio of
+two zeros: into a reused buffer, generated MessagePack and both
+implementations of Protocol Buffers allocate nothing in any case, and
+\colbin{} allocates nothing in \result{mem.encode.colbin.zero} of its
+\result{mem.encode.colbin.n} cases and at most nine times in the others.
 
 \FloatBarrier
 \subsection{A second machine}
@@ -411,15 +489,13 @@ mix columns that want different transforms, which is what the choice per
 column is for. SchemaStore has no table and does not
 move.
 
-\paragraph{The other options.} The effect of field tags, of \fmt{packed5}
-and of embedding the schema is read from the variants in the tables against
-JSON (Appendix~\ref{sec:against-json}): in the web regime
-\fmt{colbin-untagged} is at \result{size.web.colbin-untagged.raw} of JSON as
-written against \result{size.web.colbin.raw} for the tagged default (over the
-cases each carries; Table~\ref{tab:versus-web} compares them on common
-cases), \fmt{colbin+packed5} at \result{size.web.colbin+packed5.raw} as
-written and \result{size.web.colbin+packed5.gzip} under gzip, and
-\fmt{colbin-json} at \result{size.web.colbin-json.raw}. Packing strings at
+\paragraph{The other options.} The effect of \fmt{packed5} and of embedding
+the schema is read from the variants in the tables against JSON
+(Appendix~\ref{sec:against-json}): in the web regime the default is at
+\result{size.web.colbin.raw} of JSON as written, \fmt{colbin+packed5} at
+\result{size.web.colbin+packed5.raw} as written and
+\result{size.web.colbin+packed5.gzip} under gzip, and \fmt{colbin-json} at
+\result{size.web.colbin-json.raw}. Packing strings at
 five bits a character saves bytes as written, but under gzip the default is
 already at \result{size.web.colbin.gzip}: compression does as well on plain
 text as on packed text, and packing costs encode time

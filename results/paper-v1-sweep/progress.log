@@ -1,0 +1,19 @@
+[16:10:53] datasets: fetch and verify (datasets/tpch/fetch.sh datasets/publicbi/fetch.sh Bimbo)
+[16:11:26] building colbinbench and the matrix test binaries
+[16:12:24] web cases: 30, bulk cases: 5
+[16:12:24] timings: web, pass 1, 2 at a time on cores 4,6
+[16:26:39] timings: web, pass 1 done, 15750 lines
+[16:26:39] timings: sweep/lineitem/32768, alone on core 4
+[16:28:30] timings: sweep/lineitem/65536, alone on core 4
+[16:31:09] timings: sweep/lineitem/131072, alone on core 4
+[16:35:18] timings: sweep/lineitem/262144, alone on core 4
+[16:42:42] timings: sweep/lineitem/524288, alone on core 4
+[16:56:40] timings: bulk done
+[16:56:40] sizes: web
+[16:56:57] sizes: sweep/lineitem/32768
+[16:57:00] sizes: sweep/lineitem/65536
+[16:57:06] sizes: sweep/lineitem/131072
+[16:57:17] sizes: sweep/lineitem/262144
+[16:57:38] sizes: sweep/lineitem/524288
+[16:58:19] summary
+[16:58:20] done: results in /w/results/oci-x86-sweep-20261114-111016 (start with SUMMARY.md; the paper's tables are in tables/)

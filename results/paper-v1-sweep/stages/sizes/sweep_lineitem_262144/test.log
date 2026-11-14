@@ -1,0 +1,22 @@
+=== RUN   TestSizes
+=== RUN   TestSizes/sweep/lineitem/262144
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              78151886    298.13   11769448   10875214  ok
+    sizes_test.go:125: gob                  24405176     93.10    9533388    8916882  ok
+    sizes_test.go:125: cbor                 61904187    236.15   11375920   10727908  ok
+    sizes_test.go:125: msgpack              62296452    237.64   11395154   10631518  ok
+    sizes_test.go:125: msgpack-reflect      70296762    268.16   11716522   10737785  ok
+    sizes_test.go:125: protobuf             23354398     89.09   10017607    9474674  ok
+    sizes_test.go:125: vtprotobuf           23354398     89.09   10017607    9474674  ok
+    sizes_test.go:125: flatbuffers          40903672    156.04   13040677   12328255  ok
+    sizes_test.go:125: arrow                29574838    112.82   11526194    9395033  ok
+    sizes_test.go:125: avro                 19419524     74.08    8999479    8507578  ok
+    sizes_test.go:125: capnproto            42226400    161.08   11728206   12063294  ok
+    sizes_test.go:125: colbin               16620403     63.40    6326347    6228313  ok
+    sizes_test.go:125: colbin+packed5       16620403     63.40    6326347    6228313  ok
+    sizes_test.go:125: colbin-untagged      16623732     63.41    6327137    6227530  ok
+    sizes_test.go:125: colbin-json          16620606     63.40    6325849    6228493  ok
+    sizes_test.go:155: rows 262144 (top level 262144), 262144 as table rows (1.0000); 4194304 values; colbin 16620403 B, of which tables 16620403 B (1.0000); schema section 202 B; gob stream 24404858 B
+--- PASS: TestSizes (20.83s)
+    --- PASS: TestSizes/sweep/lineitem/262144 (20.83s)
+PASS
