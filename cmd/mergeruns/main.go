@@ -36,7 +36,7 @@ import (
 // mustMatch is the machine.txt keys every part must agree on.
 var mustMatch = []string{
 	"driver", "regime", "measured cores", "passes", "count", "sample", "formats", "ops",
-	"go", "colbin", "colbin-benchmarks", "governor", "turbo", "frequency control", "cpu",
+	"go", "godebug", "colbin", "colbin-benchmarks", "governor", "turbo", "frequency control", "cpu",
 }
 
 // csvFiles are joined under one header; benchFiles are concatenated whole

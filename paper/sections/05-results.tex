@@ -180,8 +180,9 @@ one point per case, by the number of rows in the message's root slice (a
 document that is not a slice is one row). Above 1, \colbin{} is that many
 times faster. The dashed line is the threshold of eight rows from which a
 slice is written as columns. Every point is another schema: the figure shows
-a trend across cases, not one table growing. Public BI's samples are the
-column of points at $2^{14}$ rows; no case has between 31 and 999 rows.}
+a trend across cases, not one table growing. Public BI's tables are measured
+at steps of 350 rows, from 350 to $2^{14}$ (Section~\ref{sec:datasets}); no
+case has between 31 and 349 rows.}
 \label{fig:scaling}
 \end{figure}
 
@@ -195,11 +196,15 @@ on the \result{scaling.1.n} single records and
 \result{scaling.2-7.vtprotobuf.decode-fresh.factor} on the
 \result{scaling.2-7.n} cases of two to seven rows: a tie. From eight rows,
 where the slice becomes a table, it is
-\result{scaling.8-99.vtprotobuf.decode-fresh.factor} faster up to a hundred
-rows, \result{scaling.1000-16383.vtprotobuf.decode-fresh.factor} from a
-thousand to $2^{14}$, \result{scaling.16384.vtprotobuf.decode-fresh.factor}
-on the Public BI samples of $2^{14}$ rows and
-\result{scaling.over.vtprotobuf.decode-fresh.factor} past them. Against JSON
+\result{scaling.8-99.vtprotobuf.decode-fresh.factor} faster on the
+\result{scaling.8-99.n} cases of 8 to 30 rows,
+\result{scaling.100-1999.vtprotobuf.decode-fresh.factor} from 350 rows to
+two thousand (\result{scaling.100-1999.n} cases),
+\result{scaling.2000-7999.vtprotobuf.decode-fresh.factor} from two to eight
+thousand (\result{scaling.2000-7999.n}),
+\result{scaling.8000-16384.vtprotobuf.decode-fresh.factor} from there to
+$2^{14}$ (\result{scaling.8000-16384.n}) and
+\result{scaling.over.vtprotobuf.decode-fresh.factor} past it. Against JSON
 the same bins go from \result{scaling.1.json-v2.decode-fresh.factor} to
 \result{scaling.over.json-v2.decode-fresh.factor}. The fixed cost of a
 table, its header and one descriptor per column, is spread over more rows,

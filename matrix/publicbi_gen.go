@@ -12,186 +12,232 @@ func publicbiCases() []Case {
 	return []Case{
 		publicbiCase("Arade", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadArade(data)
+			value = publicbiCut(value, err, "Arade", PublicBIRows(0, 46))
 			return bind(value, err, publicbigen.Arade())
 		}),
 		publicbiCase("Bimbo", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadBimbo(data)
+			value = publicbiCut(value, err, "Bimbo", PublicBIRows(1, 46))
 			return bind(value, err, publicbigen.Bimbo())
 		}),
 		publicbiCase("CMSprovider", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadCMSprovider(data)
+			value = publicbiCut(value, err, "CMSprovider", PublicBIRows(2, 46))
 			return bind(value, err, publicbigen.CMSprovider())
 		}),
 		publicbiCase("CityMaxCapita", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadCityMaxCapita(data)
+			value = publicbiCut(value, err, "CityMaxCapita", PublicBIRows(3, 46))
 			return bind(value, err, publicbigen.CityMaxCapita())
 		}),
 		publicbiCase("CommonGovernment", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadCommonGovernment(data)
+			value = publicbiCut(value, err, "CommonGovernment", PublicBIRows(4, 46))
 			return bind(value, err, publicbigen.CommonGovernment())
 		}),
 		publicbiCase("Corporations", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadCorporations(data)
+			value = publicbiCut(value, err, "Corporations", PublicBIRows(5, 46))
 			return bind(value, err, publicbigen.Corporations())
 		}),
 		publicbiCase("Eixo", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadEixo(data)
+			value = publicbiCut(value, err, "Eixo", PublicBIRows(6, 46))
 			return bind(value, err, publicbigen.Eixo())
 		}),
 		publicbiCase("Euro2016", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadEuro2016(data)
+			value = publicbiCut(value, err, "Euro2016", PublicBIRows(7, 46))
 			return bind(value, err, publicbigen.Euro2016())
 		}),
 		publicbiCase("Food", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadFood(data)
+			value = publicbiCut(value, err, "Food", PublicBIRows(8, 46))
 			return bind(value, err, publicbigen.Food())
 		}),
 		publicbiCase("Generico", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadGenerico(data)
+			value = publicbiCut(value, err, "Generico", PublicBIRows(9, 46))
 			return bind(value, err, publicbigen.Generico())
 		}),
 		publicbiCase("HashTags", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadHashTags(data)
+			value = publicbiCut(value, err, "HashTags", PublicBIRows(10, 46))
 			return bind(value, err, publicbigen.HashTags())
 		}),
 		publicbiCase("Hatred", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadHatred(data)
+			value = publicbiCut(value, err, "Hatred", PublicBIRows(11, 46))
 			return bind(value, err, publicbigen.Hatred())
 		}),
 		publicbiCase("IGlocations1", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadIGlocations1(data)
+			value = publicbiCut(value, err, "IGlocations1", PublicBIRows(12, 46))
 			return bind(value, err, publicbigen.IGlocations1())
 		}),
 		publicbiCase("IGlocations2", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadIGlocations2(data)
+			value = publicbiCut(value, err, "IGlocations2", PublicBIRows(13, 46))
 			return bind(value, err, publicbigen.IGlocations2())
 		}),
 		publicbiCase("IUBLibrary", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadIUBLibrary(data)
+			value = publicbiCut(value, err, "IUBLibrary", PublicBIRows(14, 46))
 			return bind(value, err, publicbigen.IUBLibrary())
 		}),
 		publicbiCase("MLB", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadMLB(data)
+			value = publicbiCut(value, err, "MLB", PublicBIRows(15, 46))
 			return bind(value, err, publicbigen.MLB())
 		}),
 		publicbiCase("MedPayment1", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadMedPayment1(data)
+			value = publicbiCut(value, err, "MedPayment1", PublicBIRows(16, 46))
 			return bind(value, err, publicbigen.MedPayment1())
 		}),
 		publicbiCase("MedPayment2", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadMedPayment2(data)
+			value = publicbiCut(value, err, "MedPayment2", PublicBIRows(17, 46))
 			return bind(value, err, publicbigen.MedPayment2())
 		}),
 		publicbiCase("Medicare1", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadMedicare1(data)
+			value = publicbiCut(value, err, "Medicare1", PublicBIRows(18, 46))
 			return bind(value, err, publicbigen.Medicare1())
 		}),
 		publicbiCase("Medicare2", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadMedicare2(data)
+			value = publicbiCut(value, err, "Medicare2", PublicBIRows(19, 46))
 			return bind(value, err, publicbigen.Medicare2())
 		}),
 		publicbiCase("Medicare3", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadMedicare3(data)
+			value = publicbiCut(value, err, "Medicare3", PublicBIRows(20, 46))
 			return bind(value, err, publicbigen.Medicare3())
 		}),
 		publicbiCase("Motos", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadMotos(data)
+			value = publicbiCut(value, err, "Motos", PublicBIRows(21, 46))
 			return bind(value, err, publicbigen.Motos())
 		}),
 		publicbiCase("MulheresMil", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadMulheresMil(data)
+			value = publicbiCut(value, err, "MulheresMil", PublicBIRows(22, 46))
 			return bind(value, err, publicbigen.MulheresMil())
 		}),
 		publicbiCase("NYC", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadNYC(data)
+			value = publicbiCut(value, err, "NYC", PublicBIRows(23, 46))
 			return bind(value, err, publicbigen.NYC())
 		}),
 		publicbiCase("PanCreactomy1", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadPanCreactomy1(data)
+			value = publicbiCut(value, err, "PanCreactomy1", PublicBIRows(24, 46))
 			return bind(value, err, publicbigen.PanCreactomy1())
 		}),
 		publicbiCase("PanCreactomy2", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadPanCreactomy2(data)
+			value = publicbiCut(value, err, "PanCreactomy2", PublicBIRows(25, 46))
 			return bind(value, err, publicbigen.PanCreactomy2())
 		}),
 		publicbiCase("Physicians", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadPhysicians(data)
+			value = publicbiCut(value, err, "Physicians", PublicBIRows(26, 46))
 			return bind(value, err, publicbigen.Physicians())
 		}),
 		publicbiCase("Provider", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadProvider(data)
+			value = publicbiCut(value, err, "Provider", PublicBIRows(27, 46))
 			return bind(value, err, publicbigen.Provider())
 		}),
 		publicbiCase("RealEstate1", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadRealEstate1(data)
+			value = publicbiCut(value, err, "RealEstate1", PublicBIRows(28, 46))
 			return bind(value, err, publicbigen.RealEstate1())
 		}),
 		publicbiCase("RealEstate2", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadRealEstate2(data)
+			value = publicbiCut(value, err, "RealEstate2", PublicBIRows(29, 46))
 			return bind(value, err, publicbigen.RealEstate2())
 		}),
 		publicbiCase("Redfin1", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadRedfin1(data)
+			value = publicbiCut(value, err, "Redfin1", PublicBIRows(30, 46))
 			return bind(value, err, publicbigen.Redfin1())
 		}),
 		publicbiCase("Redfin2", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadRedfin2(data)
+			value = publicbiCut(value, err, "Redfin2", PublicBIRows(31, 46))
 			return bind(value, err, publicbigen.Redfin2())
 		}),
 		publicbiCase("Redfin3", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadRedfin3(data)
+			value = publicbiCut(value, err, "Redfin3", PublicBIRows(32, 46))
 			return bind(value, err, publicbigen.Redfin3())
 		}),
 		publicbiCase("Redfin4", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadRedfin4(data)
+			value = publicbiCut(value, err, "Redfin4", PublicBIRows(33, 46))
 			return bind(value, err, publicbigen.Redfin4())
 		}),
 		publicbiCase("Rentabilidad", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadRentabilidad(data)
+			value = publicbiCut(value, err, "Rentabilidad", PublicBIRows(34, 46))
 			return bind(value, err, publicbigen.Rentabilidad())
 		}),
 		publicbiCase("Romance", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadRomance(data)
+			value = publicbiCut(value, err, "Romance", PublicBIRows(35, 46))
 			return bind(value, err, publicbigen.Romance())
 		}),
 		publicbiCase("SalariesFrance", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadSalariesFrance(data)
+			value = publicbiCut(value, err, "SalariesFrance", PublicBIRows(36, 46))
 			return bind(value, err, publicbigen.SalariesFrance())
 		}),
 		publicbiCase("TableroSistemaPenal", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadTableroSistemaPenal(data)
+			value = publicbiCut(value, err, "TableroSistemaPenal", PublicBIRows(37, 46))
 			return bind(value, err, publicbigen.TableroSistemaPenal())
 		}),
 		publicbiCase("Taxpayer", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadTaxpayer(data)
+			value = publicbiCut(value, err, "Taxpayer", PublicBIRows(38, 46))
 			return bind(value, err, publicbigen.Taxpayer())
 		}),
 		publicbiCase("Telco", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadTelco(data)
+			value = publicbiCut(value, err, "Telco", PublicBIRows(39, 46))
 			return bind(value, err, publicbigen.Telco())
 		}),
 		publicbiCase("TrainsUK1", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadTrainsUK1(data)
+			value = publicbiCut(value, err, "TrainsUK1", PublicBIRows(40, 46))
 			return bind(value, err, publicbigen.TrainsUK1())
 		}),
 		publicbiCase("TrainsUK2", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadTrainsUK2(data)
+			value = publicbiCut(value, err, "TrainsUK2", PublicBIRows(41, 46))
 			return bind(value, err, publicbigen.TrainsUK2())
 		}),
 		publicbiCase("USCensus", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadUSCensus(data)
+			value = publicbiCut(value, err, "USCensus", PublicBIRows(42, 46))
 			return bind(value, err, publicbigen.USCensus())
 		}),
 		publicbiCase("Uberlandia", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadUberlandia(data)
+			value = publicbiCut(value, err, "Uberlandia", PublicBIRows(43, 46))
 			return bind(value, err, publicbigen.Uberlandia())
 		}),
 		publicbiCase("Wins", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadWins(data)
+			value = publicbiCut(value, err, "Wins", PublicBIRows(44, 46))
 			return bind(value, err, publicbigen.Wins())
 		}),
 		publicbiCase("YaleLanguages", func(data string) (*Loaded, error) {
 			value, err := publicbi.LoadYaleLanguages(data)
+			value = publicbiCut(value, err, "YaleLanguages", PublicBIRows(45, 46))
 			return bind(value, err, publicbigen.YaleLanguages())
 		}),
 	}

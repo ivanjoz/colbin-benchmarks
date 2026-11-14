@@ -953,13 +953,14 @@ func latexMemory(out *latexOut, benches map[string]*benchmarks) {
 }
 
 // scalingBins cut the cases by the rows of their root slice (cases.csv's
-// top_rows): below colbin's table threshold of 8, and from there up. No case
-// has between 31 and 999 rows.
+// top_rows): below colbin's table threshold of 8, and from there up. Between
+// 31 and 349 rows there is no case; from 350 the Public BI tables, measured
+// at steps of 350 rows (matrix.PublicBIStep), fill the web regime.
 var scalingBins = []struct {
 	key      string
 	from, to int
 }{
-	{"1", 0, 1}, {"2-7", 2, 7}, {"8-99", 8, 99}, {"1000-16383", 1000, 16383}, {"16384", 16384, 16384}, {"over", 16385, math.MaxInt},
+	{"1", 0, 1}, {"2-7", 2, 7}, {"8-99", 8, 99}, {"100-1999", 100, 1999}, {"2000-7999", 2000, 7999}, {"8000-16384", 8000, 16384}, {"over", 16385, math.MaxInt},
 }
 
 // latexScaling is how colbin's advantage moves with the number of rows in the

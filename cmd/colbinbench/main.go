@@ -256,7 +256,7 @@ func drive(build string, cases, cores, flags []string) ([]byte, error) {
 			defer func() { mu.Lock(); taken[core] = false; mu.Unlock() }()
 			args := append([]string{"-c", core, build, "-worker", name}, flags...)
 			command := exec.Command("taskset", args...)
-			command.Env = append(os.Environ(), "GOMAXPROCS=1")
+			command.Env = append(os.Environ(), "GOMAXPROCS=1", "GODEBUG="+workerGodebug())
 			command.Stderr = os.Stderr
 			results[index], errs[index] = command.Output()
 		})
@@ -269,6 +269,27 @@ func drive(build string, cases, cores, flags []string) ([]byte, error) {
 		}
 	}
 	return out, nil
+}
+
+// workerGodebug is the worker's GODEBUG: the caller's, and madvdontneed=0.
+//
+// A worker holds every format's values at once, and between two samples the
+// Go runtime's scavenger hands free heap back to the kernel. With the default
+// MADV_DONTNEED the next benchmark that allocates takes a page fault for each
+// page it gets back, so a sample's time depended on what ran before it: the
+// same colbin decoder on the same bytes measured 1.2 times slower as the
+// first of colbin's variants, after capnproto, than as the second (1 200
+// minor faults a decode against 250, tpcds store_returns). decode-reuse,
+// which allocates nothing, never showed it. With MADV_FREE the kernel takes
+// the pages only when it is short of memory, a decode into a fresh value
+// costs no fault. It still costs something to take such a page back, which
+// measure's untimed pass pays before the clock starts.
+func workerGodebug() string {
+	const setting = "madvdontneed=0"
+	if inherited := os.Getenv("GODEBUG"); inherited != "" {
+		return inherited + "," + setting
+	}
+	return setting
 }
 
 // workerFlags is the flags a worker needs from the driver's command line, with
@@ -442,9 +463,25 @@ func prepare(name string, instance formats.Instance, loaded *matrix.Loaded, ops 
 }
 
 // measure takes one sample: the body run for at least sample, at least once.
+//
+// Before the clock starts the body runs for as long again, untimed, and what
+// that leaves is collected. The free heap a sample allocates from was last
+// written by another format's benchmark, and the runtime's scavenger has
+// handed part of it back to the kernel since (workerGodebug): the first
+// benchmark to allocate from it pays to take it back, and the one after it
+// does not. Run cold, the same colbin decoder measured 1.12 times slower as
+// the first of colbin's variants than as the others even with no page fault
+// left (4 cases, one core); after this pass, 1.03. The pass allocates what
+// the sample will, so the sample finds the memory as its own format left it.
 func (r runner) measure(out *bufio.Writer, sample time.Duration, rows int) error {
 	teardown := r.instance.Enter()
 	defer teardown()
+	runtime.GC()
+	for warm := time.Now(); time.Since(warm) < sample; {
+		if err := r.body(); err != nil {
+			return err
+		}
+	}
 	runtime.GC()
 	var allocs runtime.MemStats
 	runtime.ReadMemStats(&allocs)

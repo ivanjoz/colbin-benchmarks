@@ -56,7 +56,8 @@ type Loaded struct {
 // colbin is evaluated as what a server sends a client instead of JSON, and a
 // response to a web client (a product list, a sales report) rarely holds more
 // than ten thousand rows. 16 384 = 2^14 is that bound, rounded up; it is also
-// the size of every Public BI sample. Cases above it form the bulk regime and
+// the size of every Public BI sample on disk, which the cases cut to
+// staggered row counts (PublicBIRows). Cases above it form the bulk regime and
 // are reported apart, so that neither regime decides the other's summary.
 const WebRows = 16384
 

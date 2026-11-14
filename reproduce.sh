@@ -315,6 +315,8 @@ else
 		echo "ops: $ops"
 		echo "kernel: $(uname -sr)"
 		echo "go: $(go version)"
+		# What cmd/colbinbench sets for its timing workers (workerGodebug).
+		echo "godebug: ${GODEBUG:+$GODEBUG,}madvdontneed=0"
 		echo "colbin: $(colbin_version)"
 		echo "colbin-benchmarks: $(commit_of .)"
 		echo "governor:$governors"

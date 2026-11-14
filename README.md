@@ -27,7 +27,7 @@ against [`datasets/MANIFEST.sha256`](datasets/MANIFEST.sha256).
 |---|---|---:|
 | TPC-H, SF 0.1 | all 8 tables, plus the schema as one message and orders with their lines nested | 10 |
 | TPC-DS, SF 0.1 | all 24 tables | 24 |
-| Public BI Benchmark | the first table of each of the 46 workbooks, a seeded random sample of 16 384 rows | 46 |
+| Public BI Benchmark | the first table of each of the 46 workbooks, a seeded random sample, at staggered sizes: 350, 700, ... rows by table, up to 16 384 | 46 |
 | SchemaStore | the 27 documents of Viotti and Kinderkhedia's corpus, through Go structs and as `map[string]any` | 54 |
 
 [`datasets/README.md`](datasets/README.md) has the rule behind each subset, the

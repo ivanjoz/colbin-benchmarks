@@ -72,13 +72,24 @@ by, and the bulk regime shows how each format scales past it.
   anything in its data.
 - **Public BI: a seeded random sample of 16 384 rows** of each table, or all of
   it where it is shorter (IUBLibrary_1 has 1 795 rows, TrainsUK1_1 has 1). The
-  size is the web regime's bound. The rows are a simple random sample, not the
+  size is the web regime's bound. This is the file `fetch.sh` writes; a case
+  measures a staggered cut of it (next rule). The rows are a simple random sample, not the
   head of the file: the tables are often sorted or grouped by their leading
   columns, so the head repeats values far more than the table does, which
   would flatter the formats that exploit repetition. The sample is bottom-k on
   a splitmix64 key of a fixed seed, the table's name and the row's index
   (`publicbi/subset`), so it depends on nothing but the seed and the data, and
   keeps the rows in table order.
+- **Public BI: staggered row counts.** The 46 tables, in order of name, are
+  measured at 350, 700, 1 050, ... rows (`matrix.PublicBIStep`), the 45th at
+  15 750 and the last at 16 384, or at the whole sample where it is shorter
+  (IUBLibrary, TrainsUK1). So the web regime's tables cover its whole range,
+  from a page of a few hundred records up, instead of all sitting at its
+  bound. Which table gets which size depends on its name alone. The cut is a
+  second bottom-k draw over the sample's rows (`matrix.publicbiCut`, its own
+  seed, the workbook's name and the row's position), so it is a simple random
+  sample of the table too, in table order, and not the sample's head. The
+  sweep (`sweep/bimbo/<n>`) still cuts the whole sample by position.
 - **SchemaStore: all 27 documents** of Viotti and Kinderkhedia's corpus, which
   they chose, not this repository. The two colbin cannot carry (a type with
   no field it can encode) are reported
@@ -118,6 +129,16 @@ seen under the old rule. Results under an old rule are not mixed with new ones.
    and by kind of message (bulk table, web table, web document) as colbin
    against each format on common cases; the tables against JSON by regime
    stay, in the paper's appendix.
+6. **Public BI: 16 384 rows of every table → staggered row counts**
+   (2026-11-15; the rule above). Under the old rule 46 of the 66 web tables
+   sat at the regime's bound and no case had between 31 and 999 rows, so the
+   "web table" summaries were, mostly, tables of 16 384 rows. After results:
+   colbin's advantage over the row formats was known to grow with the rows of
+   a message (in `results/paper-v1`, 1.5× to decode against vtprotobuf at 8 to
+   30 rows and 2.3× at 16 384), so this change is expected to lower colbin's
+   web-table factors, not raise them. The files on disk and their checksums
+   did not move. Results under the old rule (`results/paper-v1`,
+   `results/paper-v1-laptop`) are not mixed with new ones.
 
 ## How a dataset is built
 

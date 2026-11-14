@@ -343,9 +343,10 @@ func casesFile(tables []table) []byte {
 	p("// publicbiCases is one case per Public BI table.")
 	p("func publicbiCases() []Case {")
 	p("return []Case{")
-	for _, t := range tables {
+	for position, t := range tables {
 		p("publicbiCase(%q, func(data string) (*Loaded, error) {", t.workbook)
 		p("value, err := publicbi.Load%s(data)", t.goName)
+		p("value = publicbiCut(value, err, %q, PublicBIRows(%d, %d))", t.workbook, position, len(tables))
 		p("return bind(value, err, publicbigen.%s())", t.goName)
 		p("}),")
 	}

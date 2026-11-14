@@ -4,8 +4,11 @@ package matrix
 // adds its cases here; see datasets/README.md for what each subset is and why.
 
 import (
+	"cmp"
+	"hash/fnv"
 	"path/filepath"
 	"reflect"
+	"slices"
 
 	"github.com/ivanjoz/colbin-benchmarks/datasets/publicbi"
 	"github.com/ivanjoz/colbin-benchmarks/datasets/tpcds"
@@ -128,6 +131,75 @@ func tpcdsCase[T any](table string, adapters func() formats.Adapters[T]) Case {
 			return bind(&value, nil, adapters())
 		},
 	}
+}
+
+// PublicBIStep is the step of the Public BI cases' row counts: the tables, in
+// the order publicbi_gen.go lists them (by name), are measured at 350, 700,
+// 1 050, ... rows, and the last at WebRows, so that the web regime's tables
+// are spread over its whole range rather than all at its bound.
+const PublicBIStep = 350
+
+// PublicBIRows is how many rows the Public BI table at position (from 0) of
+// count is measured at; a table whose sample is shorter keeps all of it.
+func PublicBIRows(position, count int) int {
+	if position == count-1 {
+		return WebRows
+	}
+	return min(PublicBIStep*(position+1), WebRows)
+}
+
+// publicbiSeed keys the cut below. It is not the seed of the samples on disk
+// (publicbi/subset), so the two draws are independent.
+const publicbiSeed uint64 = 20261115
+
+// publicbiCut cuts a Public BI table, a wrapper struct with a Rows field
+// holding the sample fetched (16 384 rows of the table, uniformly at random),
+// to rows of them: the rows with the smallest splitmix64 key of the seed, the
+// workbook's name and the row's position, in the order they have. Every
+// subset of that size is equally likely, so the cut is itself a simple random
+// sample of the table, not the head of one. The sweep (sweep.go) cuts by
+// position instead and loads the sample whole.
+func publicbiCut[T any](value *T, err error, workbook string, rows int) *T {
+	if err != nil || value == nil {
+		return value
+	}
+	field := reflect.ValueOf(value).Elem().FieldByName("Rows")
+	total := field.Len()
+	if total <= rows {
+		return value
+	}
+	name := fnv.New64a()
+	name.Write([]byte(workbook))
+	base := mix64(publicbiSeed ^ name.Sum64())
+	type keyed struct {
+		key      uint64
+		position int
+	}
+	order := make([]keyed, total)
+	for position := range order {
+		order[position] = keyed{mix64(base + uint64(position)), position}
+	}
+	slices.SortFunc(order, func(a, b keyed) int { return cmp.Compare(a.key, b.key) })
+	kept := make([]int, rows)
+	for index := range kept {
+		kept[index] = order[index].position
+	}
+	slices.Sort(kept)
+	// A copy, so that the rest of the sample can be collected.
+	cut := reflect.MakeSlice(field.Type(), rows, rows)
+	for index, position := range kept {
+		cut.Index(index).Set(field.Index(position))
+	}
+	field.Set(cut)
+	return value
+}
+
+// mix64 is splitmix64's finalizer, as in publicbi/subset.
+func mix64(x uint64) uint64 {
+	x += 0x9e3779b97f4a7c15
+	x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9
+	x = (x ^ (x >> 27)) * 0x94d049bb133111eb
+	return x ^ (x >> 31)
 }
 
 // publicbiCase is the case for one Public BI table; publicbi_gen.go lists them.
