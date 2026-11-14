@@ -1,0 +1,2 @@
+case,dataset,regime,top_rows,rows,table_rows,table_row_fraction,values,colbin_bytes,table_bytes,table_byte_fraction,schema_bytes,gob_stream_bytes,colbin_bytes_per_value
+tpcds/sf0.1/date_dim,tpcds,bulk,73049,73049,73049,1.0000,2045372,3959873,3959873,1.0000,325,9091905,1.936

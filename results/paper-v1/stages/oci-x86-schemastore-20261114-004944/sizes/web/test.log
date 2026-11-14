@@ -1,0 +1,948 @@
+=== RUN   TestSizes
+=== RUN   TestSizes/schemastore/circleciblank
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                    13     13.00         38         22  ok
+    sizes_test.go:125: gob                        45     45.00         70         54  ok
+    sizes_test.go:125: cbor                       14     14.00         39         23  ok
+    sizes_test.go:125: msgpack                    14     14.00         39         23  ok
+    sizes_test.go:125: msgpack-reflect            14     14.00         39         23  ok
+    sizes_test.go:125: protobuf                    5      5.00         30         14  ok
+    sizes_test.go:125: vtprotobuf                  5      5.00         30         14  ok
+    sizes_test.go:125: flatbuffers                20     20.00         45         29  ok
+    sizes_test.go:125: avro                        4      4.00         29         13  ok
+    sizes_test.go:125: capnproto                  24     24.00         49         33  ok
+    sizes_test.go:125: colbin                      2      2.00         27         11  ok
+    sizes_test.go:125: colbin+packed5              2      2.00         27         11  ok
+    sizes_test.go:125: colbin-untagged             3      3.00         28         12  ok
+    sizes_test.go:125: colbin-json                17     17.00         42         26  ok
+    sizes_test.go:129: arrow            n/a: root field Version is not a []struct table
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 1 values; colbin 2 B, of which tables 0 B (0.0000); schema section 14 B; gob stream 6 B
+=== RUN   TestSizes/schemastore/circlecimatrix
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                    94     94.00        119         93  ok
+    sizes_test.go:125: gob                       437    437.00        273        273  ok
+    sizes_test.go:125: cbor                       72     72.00         97         81  ok
+    sizes_test.go:125: msgpack                    72     72.00         97         81  ok
+    sizes_test.go:125: msgpack-reflect            84     84.00        109         93  ok
+    sizes_test.go:125: protobuf                   26     26.00         51         35  ok
+    sizes_test.go:125: vtprotobuf                 26     26.00         51         35  ok
+    sizes_test.go:125: flatbuffers               112    112.00         82         79  ok
+    sizes_test.go:125: avro                       17     17.00         42         26  ok
+    sizes_test.go:125: capnproto                 104    104.00         61         57  ok
+    sizes_test.go:125: colbin                     26     26.00         51         35  ok
+    sizes_test.go:125: colbin+packed5             26     26.00         51         35  ok
+    sizes_test.go:125: colbin-untagged            38     38.00         63         47  ok
+    sizes_test.go:125: colbin-json               116    116.00        141        125  ok
+    sizes_test.go:129: arrow            n/a: root field Version is not a []struct table
+    sizes_test.go:155: rows 1 (top level 1), 0 as table rows (0.0000); 4 values; colbin 26 B, of which tables 0 B (0.0000); schema section 89 B; gob stream 32 B
+=== RUN   TestSizes/schemastore/commitlint
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                   337    337.00        135        122  ok
+    sizes_test.go:125: gob                       336    336.00        235        229  ok
+    sizes_test.go:125: cbor                      220    220.00        110        105  ok
+    sizes_test.go:125: msgpack                   220    220.00        111        105  ok
+    sizes_test.go:125: msgpack-reflect           228    228.00        115        109  ok
+    sizes_test.go:125: protobuf                   62     62.00         87         57  ok
+    sizes_test.go:125: vtprotobuf                 62     62.00         87         57  ok
+    sizes_test.go:125: flatbuffers               228    228.00        139        125  ok
+    sizes_test.go:125: avro                       68     68.00         93         52  ok
+    sizes_test.go:125: capnproto                 280    280.00         98         90  ok
+    sizes_test.go:125: colbin                     58     58.00         83         48  ok
+    sizes_test.go:125: colbin+packed5             56     56.00         81         47  ok
+    sizes_test.go:125: colbin-untagged            80     80.00        105         61  ok
+    sizes_test.go:125: colbin-json               143    143.00        135        129  ok
+    sizes_test.go:129: arrow            n/a: root field Rules is not a []struct table
+    sizes_test.go:155: rows 6 (top level 1), 0 as table rows (0.0000); 6 values; colbin 58 B, of which tables 0 B (0.0000); schema section 84 B; gob stream 66 B
+=== RUN   TestSizes/schemastore/commitlintbasic
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                    24     24.00         49         33  ok
+    sizes_test.go:125: gob                        53     53.00         78         62  ok
+    sizes_test.go:125: cbor                       17     17.00         42         26  ok
+    sizes_test.go:125: msgpack                    17     17.00         42         26  ok
+    sizes_test.go:125: msgpack-reflect            17     17.00         42         26  ok
+    sizes_test.go:125: protobuf                    0      0.00         20          9  ok
+    sizes_test.go:125: vtprotobuf                  0      0.00         20          9  ok
+    sizes_test.go:125: flatbuffers                12     12.00         37         21  ok
+    sizes_test.go:125: avro                        1      1.00         26         10  ok
+    sizes_test.go:125: capnproto                  24     24.00         49         25  ok
+    sizes_test.go:125: colbin                      0      0.00         20          9  ok
+    sizes_test.go:125: colbin+packed5              0      0.00         20          9  ok
+    sizes_test.go:125: colbin-untagged             1      1.00         26         10  ok
+    sizes_test.go:125: colbin-json                22     22.00         47         31  ok
+    sizes_test.go:129: arrow            n/a: root field DefaultIgnores is not a []struct table
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 1 values; colbin 0 B, of which tables 0 B (0); schema section 21 B; gob stream 4 B
+=== RUN   TestSizes/schemastore/epr
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                   571    114.20        268        262  ok
+    sizes_test.go:125: gob                       490     98.00        354        356  ok
+    sizes_test.go:125: cbor                      444     88.80        256        250  ok
+    sizes_test.go:125: msgpack                   444     88.80        271        259  ok
+    sizes_test.go:125: msgpack-reflect           444     88.80        271        259  ok
+    sizes_test.go:125: protobuf                  247     49.40        200        190  ok
+    sizes_test.go:125: vtprotobuf                247     49.40        200        190  ok
+    sizes_test.go:125: flatbuffers               516    103.20        288        272  ok
+    sizes_test.go:125: avro                      247     49.40        187        177  ok
+    sizes_test.go:125: capnproto                 536    107.20        267        253  ok
+    sizes_test.go:125: colbin                    238     47.60        197        187  ok
+    sizes_test.go:125: colbin+packed5            207     41.40        191        182  ok
+    sizes_test.go:125: colbin-untagged           272     54.40        227        224  ok
+    sizes_test.go:125: colbin-json               359     71.80        291        285  ok
+    sizes_test.go:129: arrow            n/a: root field Site is not a []struct table
+    sizes_test.go:155: rows 5 (top level 5), 0 as table rows (0.0000); 25 values; colbin 238 B, of which tables 0 B (0.0000); schema section 120 B; gob stream 255 B
+=== RUN   TestSizes/schemastore/eslintrc
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                  1096   1096.00        515        530  ok
+    sizes_test.go:125: gob                      1403   1403.00        759        779  ok
+    sizes_test.go:125: cbor                      912    912.00        525        524  ok
+    sizes_test.go:125: msgpack                   908    908.00        549        549  ok
+    sizes_test.go:125: msgpack-reflect          1064   1064.00        576        577  ok
+    sizes_test.go:125: protobuf                  161    161.00        186        156  ok
+    sizes_test.go:125: vtprotobuf                161    161.00        186        156  ok
+    sizes_test.go:125: flatbuffers               428    428.00        234        204  ok
+    sizes_test.go:125: avro                      104    104.00        129         87  ok
+    sizes_test.go:125: capnproto                 352    352.00        146        144  ok
+    sizes_test.go:125: colbin                    138    138.00        163        147  ok
+    sizes_test.go:125: colbin+packed5            125    125.00        150        134  ok
+    sizes_test.go:125: colbin-untagged           153    153.00        178        162  ok
+    sizes_test.go:125: colbin-json              1052   1052.00        685        689  ok
+    sizes_test.go:129: arrow            n/a: root field Extension is not a []struct table
+    sizes_test.go:155: rows 2 (top level 1), 0 as table rows (0.0000); 47 values; colbin 138 B, of which tables 0 B (0.0000); schema section 913 B; gob stream 145 B
+=== RUN   TestSizes/schemastore/esmrc
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                   101    101.00        126         94  ok
+    sizes_test.go:125: gob                       137    137.00        145        134  ok
+    sizes_test.go:125: cbor                       64     64.00         89         73  ok
+    sizes_test.go:125: msgpack                    64     64.00         89         73  ok
+    sizes_test.go:125: msgpack-reflect            64     64.00         89         73  ok
+    sizes_test.go:125: protobuf                   23     23.00         48         32  ok
+    sizes_test.go:125: vtprotobuf                 23     23.00         48         32  ok
+    sizes_test.go:125: flatbuffers                80     80.00        105         64  ok
+    sizes_test.go:125: avro                       23     23.00         48         32  ok
+    sizes_test.go:125: capnproto                  80     80.00        105         63  ok
+    sizes_test.go:125: colbin                     20     20.00         45         29  ok
+    sizes_test.go:125: colbin+packed5             19     19.00         44         28  ok
+    sizes_test.go:125: colbin-untagged            26     26.00         51         35  ok
+    sizes_test.go:125: colbin-json                79     79.00        104         88  ok
+    sizes_test.go:129: arrow            n/a: root field CJS is not a []struct table
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 7 values; colbin 20 B, of which tables 0 B (0.0000); schema section 58 B; gob stream 27 B
+=== RUN   TestSizes/schemastore/geojson
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                   491    245.50        154        142  ok
+    sizes_test.go:125: gob                       556    278.00        326        321  ok
+    sizes_test.go:125: cbor                      564    282.00        164        168  ok
+    sizes_test.go:125: msgpack                   564    282.00        165        168  ok
+    sizes_test.go:125: msgpack-reflect           564    282.00        165        168  ok
+    sizes_test.go:125: protobuf                  325    162.50        119        131  ok
+    sizes_test.go:125: vtprotobuf                325    162.50        119        131  ok
+    sizes_test.go:125: flatbuffers               680    340.00        246        232  ok
+    sizes_test.go:125: avro                      322    161.00        129        141  ok
+    sizes_test.go:125: capnproto                 496    248.00        173        171  ok
+    sizes_test.go:125: colbin                    321    160.50        125        135  ok
+    sizes_test.go:125: colbin+packed5            318    159.00        122        132  ok
+    sizes_test.go:125: colbin-untagged           368    184.00        142        153  ok
+    sizes_test.go:125: colbin-json               390    195.00        184        195  ok
+    sizes_test.go:129: arrow            n/a: root field Type is not a []struct table
+    sizes_test.go:155: rows 20 (top level 2), 0 as table rows (0.0000); 31 values; colbin 321 B, of which tables 0 B (0.0000); schema section 68 B; gob stream 226 B
+=== RUN   TestSizes/schemastore/githubfundingblank
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                   179    179.00        141        133  ok
+    sizes_test.go:125: gob                       190    190.00        174        178  ok
+    sizes_test.go:125: cbor                      121    121.00        146        116  ok
+    sizes_test.go:125: msgpack                   121    121.00        146        121  ok
+    sizes_test.go:125: msgpack-reflect           121    121.00        146        121  ok
+    sizes_test.go:125: protobuf                   17     17.00         42         26  ok
+    sizes_test.go:125: vtprotobuf                 17     17.00         42         26  ok
+    sizes_test.go:125: flatbuffers                40     40.00         65         47  ok
+    sizes_test.go:125: avro                       25     25.00         50         34  ok
+    sizes_test.go:125: capnproto                 120    120.00         71         54  ok
+    sizes_test.go:125: colbin                     17     17.00         42         26  ok
+    sizes_test.go:125: colbin+packed5             13     13.00         38         22  ok
+    sizes_test.go:125: colbin-untagged            19     19.00         44         28  ok
+    sizes_test.go:125: colbin-json               146    146.00        171        147  ok
+    sizes_test.go:129: arrow            n/a: root field GitHub is not a []struct table
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 1 values; colbin 17 B, of which tables 0 B (0.0000); schema section 128 B; gob stream 21 B
+=== RUN   TestSizes/schemastore/githubworkflow
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                   510    510.00        251        243  ok
+    sizes_test.go:125: gob                       624    624.00        416        422  ok
+    sizes_test.go:125: cbor                      389    389.00        243        236  ok
+    sizes_test.go:125: msgpack                   388    388.00        257        245  ok
+    sizes_test.go:125: msgpack-reflect           388    388.00        257        245  ok
+    sizes_test.go:125: protobuf                  189    189.00        183        168  ok
+    sizes_test.go:125: vtprotobuf                189    189.00        183        168  ok
+    sizes_test.go:125: flatbuffers               428    428.00        278        269  ok
+    sizes_test.go:125: avro                      179    179.00        169        155  ok
+    sizes_test.go:125: capnproto                 464    464.00        253        246  ok
+    sizes_test.go:125: colbin                    183    183.00        181        164  ok
+    sizes_test.go:125: colbin+packed5            148    148.00        173        157  ok
+    sizes_test.go:125: colbin-untagged           207    207.00        212        205  ok
+    sizes_test.go:125: colbin-json               329    329.00        294        287  ok
+    sizes_test.go:129: arrow            n/a: root field Name is not a []struct table
+    sizes_test.go:155: rows 4 (top level 1), 0 as table rows (0.0000); 21 values; colbin 183 B, of which tables 0 B (0.0000); schema section 145 B; gob stream 191 B
+=== RUN   TestSizes/schemastore/gruntcontribclean
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                    91     91.00        116         86  ok
+    sizes_test.go:125: gob                       274    274.00        194        190  ok
+    sizes_test.go:125: cbor                       59     59.00         84         68  ok
+    sizes_test.go:125: msgpack                    59     59.00         84         68  ok
+    sizes_test.go:125: msgpack-reflect            59     59.00         84         68  ok
+    sizes_test.go:125: protobuf                   22     22.00         47         31  ok
+    sizes_test.go:125: vtprotobuf                 22     22.00         47         31  ok
+    sizes_test.go:125: flatbuffers               116    116.00         81         68  ok
+    sizes_test.go:125: avro                       18     18.00         43         27  ok
+    sizes_test.go:125: capnproto                  96     96.00         69         62  ok
+    sizes_test.go:129: arrow            n/a: root field Foo is not a []struct table
+    sizes_test.go:129: colbin           n/a: colbin: GruntContribCleanFiles has no encodable field
+    sizes_test.go:129: colbin+packed5   n/a: colbin: GruntContribCleanFiles has no encodable field
+    sizes_test.go:129: colbin-untagged  n/a: colbin: GruntContribCleanFiles has no encodable field
+    sizes_test.go:129: colbin-json      n/a: colbin: GruntContribCleanFiles has no encodable field
+    sizes_test.go:140: no colbin composition: colbin: GruntContribCleanFiles has no encodable field
+=== RUN   TestSizes/schemastore/imageoptimizerwebjob
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                    81     81.00        106         84  ok
+    sizes_test.go:125: gob                       254    254.00        191        178  ok
+    sizes_test.go:125: cbor                       61     61.00         86         70  ok
+    sizes_test.go:125: msgpack                    61     61.00         86         70  ok
+    sizes_test.go:125: msgpack-reflect            61     61.00         86         70  ok
+    sizes_test.go:125: protobuf                   23     23.00         48         32  ok
+    sizes_test.go:125: vtprotobuf                 23     23.00         48         32  ok
+    sizes_test.go:125: flatbuffers               100    100.00         77         73  ok
+    sizes_test.go:125: arrow                    1142   1142.00        336        338  ok
+    sizes_test.go:125: avro                       27     27.00         52         36  ok
+    sizes_test.go:125: capnproto                  96     96.00         73         66  ok
+    sizes_test.go:125: colbin                     22     22.00         47         31  ok
+    sizes_test.go:125: colbin+packed5             22     22.00         47         31  ok
+    sizes_test.go:125: colbin-untagged            34     34.00         59         43  ok
+    sizes_test.go:125: colbin-json                76     76.00        101         85  ok
+    sizes_test.go:155: rows 1 (top level 1), 0 as table rows (0.0000); 3 values; colbin 22 B, of which tables 0 B (0.0000); schema section 53 B; gob stream 30 B
+=== RUN   TestSizes/schemastore/jsonereversesort
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                    79     79.00        104         80  ok
+    sizes_test.go:125: gob                       283    283.00        195        194  ok
+    sizes_test.go:125: cbor                       47     47.00         72         56  ok
+    sizes_test.go:125: msgpack                    46     46.00         71         55  ok
+    sizes_test.go:125: msgpack-reflect            66     66.00         91         75  ok
+    sizes_test.go:125: protobuf                   21     21.00         46         30  ok
+    sizes_test.go:125: vtprotobuf                 21     21.00         46         30  ok
+    sizes_test.go:125: flatbuffers               104    104.00         75         67  ok
+    sizes_test.go:125: avro                       12     12.00         37         21  ok
+    sizes_test.go:125: capnproto                 112    112.00         65         61  ok
+    sizes_test.go:125: colbin                     19     19.00         44         28  ok
+    sizes_test.go:125: colbin+packed5             19     19.00         44         28  ok
+    sizes_test.go:125: colbin-untagged            27     27.00         52         36  ok
+    sizes_test.go:125: colbin-json                81     81.00        106         90  ok
+    sizes_test.go:129: arrow            n/a: root field Let is not a []struct table
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 7 values; colbin 19 B, of which tables 0 B (0.0000); schema section 61 B; gob stream 25 B
+=== RUN   TestSizes/schemastore/jsonesort
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                    30     30.00         55         39  ok
+    sizes_test.go:125: gob                        79     79.00        104         88  ok
+    sizes_test.go:125: cbor                       18     18.00         43         27  ok
+    sizes_test.go:125: msgpack                    18     18.00         43         27  ok
+    sizes_test.go:125: msgpack-reflect            38     38.00         63         47  ok
+    sizes_test.go:125: protobuf                   10     10.00         35         19  ok
+    sizes_test.go:125: vtprotobuf                 10     10.00         35         19  ok
+    sizes_test.go:125: flatbuffers                56     56.00         81         44  ok
+    sizes_test.go:125: avro                       10     10.00         35         19  ok
+    sizes_test.go:125: capnproto                  64     64.00         89         46  ok
+    sizes_test.go:125: colbin                      9      9.00         34         18  ok
+    sizes_test.go:125: colbin+packed5              9      9.00         34         18  ok
+    sizes_test.go:125: colbin-untagged            12     12.00         37         21  ok
+    sizes_test.go:125: colbin-json                27     27.00         52         36  ok
+    sizes_test.go:129: arrow            n/a: root field Sort is not a []struct table
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 6 values; colbin 9 B, of which tables 0 B (0.0000); schema section 17 B; gob stream 14 B
+=== RUN   TestSizes/schemastore/jsonfeed
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                   566    566.00        338        338  ok
+    sizes_test.go:125: gob                       707    707.00        443        455  ok
+    sizes_test.go:125: cbor                      517    517.00        332        331  ok
+    sizes_test.go:125: msgpack                   511    511.00        342        339  ok
+    sizes_test.go:125: msgpack-reflect           511    511.00        342        339  ok
+    sizes_test.go:125: protobuf                  413    413.00        261        258  ok
+    sizes_test.go:125: vtprotobuf                413    413.00        261        258  ok
+    sizes_test.go:125: flatbuffers               584    584.00        341        336  ok
+    sizes_test.go:125: avro                      402    402.00        251        245  ok
+    sizes_test.go:125: capnproto                 568    568.00        334        328  ok
+    sizes_test.go:125: colbin                    412    412.00        260        258  ok
+    sizes_test.go:125: colbin+packed5            325    325.00        339        291  ok
+    sizes_test.go:125: colbin-untagged           430    430.00        288        278  ok
+    sizes_test.go:125: colbin-json               559    559.00        379        381  ok
+    sizes_test.go:129: arrow            n/a: root field Version is not a []struct table
+    sizes_test.go:155: rows 1 (top level 1), 0 as table rows (0.0000); 12 values; colbin 412 B, of which tables 0 B (0.0000); schema section 146 B; gob stream 420 B
+=== RUN   TestSizes/schemastore/jsonresume
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                  3047    304.70       1586       1636  ok
+    sizes_test.go:125: gob                      4028    402.80       2089       2164  ok
+    sizes_test.go:125: cbor                     2754    275.40       1570       1610  ok
+    sizes_test.go:125: msgpack                  2749    274.90       1621       1659  ok
+    sizes_test.go:125: msgpack-reflect          2749    274.90       1621       1659  ok
+    sizes_test.go:125: protobuf                 2225    222.50       1373       1402  ok
+    sizes_test.go:125: vtprotobuf               2225    222.50       1373       1402  ok
+    sizes_test.go:125: flatbuffers              3092    309.20       1722       1741  ok
+    sizes_test.go:125: avro                     2187    218.70       1343       1372  ok
+    sizes_test.go:125: capnproto                3136    313.60       1654       1686  ok
+    sizes_test.go:125: colbin                   2208    220.80       1369       1397  ok
+    sizes_test.go:125: colbin+packed5           1720    172.00       1669       1661  ok
+    sizes_test.go:125: colbin-untagged          2320    232.00       1493       1514  ok
+    sizes_test.go:125: colbin-json              2926    292.60       1788       1837  ok
+    sizes_test.go:129: arrow            n/a: root field Basics is not a []struct table
+    sizes_test.go:155: rows 12 (top level 10), 0 as table rows (0.0000); 68 values; colbin 2208 B, of which tables 0 B (0.0000); schema section 717 B; gob stream 2232 B
+=== RUN   TestSizes/schemastore/netcoreproject
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                  1010   1010.00        412        419  ok
+    sizes_test.go:125: gob                      1393   1393.00        609        643  ok
+    sizes_test.go:125: cbor                      882    882.00        440        454  ok
+    sizes_test.go:125: msgpack                   880    880.00        462        475  ok
+    sizes_test.go:125: msgpack-reflect           880    880.00        462        475  ok
+    sizes_test.go:125: protobuf                  284    284.00        168        174  ok
+    sizes_test.go:125: vtprotobuf                284    284.00        168        174  ok
+    sizes_test.go:125: flatbuffers               600    600.00        274        254  ok
+    sizes_test.go:125: avro                      242    242.00        104        102  ok
+    sizes_test.go:125: capnproto                 592    592.00        195        204  ok
+    sizes_test.go:125: colbin                    278    278.00        162        172  ok
+    sizes_test.go:125: colbin+packed5            278    278.00        162        172  ok
+    sizes_test.go:125: colbin-untagged           294    294.00        180        197  ok
+    sizes_test.go:125: colbin-json              1002   1002.00        551        580  ok
+    sizes_test.go:129: arrow            n/a: root field Version is not a []struct table
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 27 values; colbin 278 B, of which tables 0 B (0.0000); schema section 723 B; gob stream 286 B
+=== RUN   TestSizes/schemastore/nightwatch
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                  1445   1445.00        642        657  ok
+    sizes_test.go:125: gob                      1606   1606.00        838        859  ok
+    sizes_test.go:125: cbor                     1115   1115.00        637        643  ok
+    sizes_test.go:125: msgpack                  1111   1111.00        669        672  ok
+    sizes_test.go:125: msgpack-reflect          1147   1147.00        673        679  ok
+    sizes_test.go:125: protobuf                  120    120.00        145        129  ok
+    sizes_test.go:125: vtprotobuf                120    120.00        145        129  ok
+    sizes_test.go:125: flatbuffers               380    380.00        256        240  ok
+    sizes_test.go:125: avro                      101    101.00        126        101  ok
+    sizes_test.go:125: capnproto                 360    360.00        179        169  ok
+    sizes_test.go:129: arrow            n/a: root field CustomCommandsPath is not a []struct table
+    sizes_test.go:129: colbin           n/a: colbin: NightwatchEmpty has no encodable field
+    sizes_test.go:129: colbin+packed5   n/a: colbin: NightwatchEmpty has no encodable field
+    sizes_test.go:129: colbin-untagged  n/a: colbin: NightwatchEmpty has no encodable field
+    sizes_test.go:129: colbin-json      n/a: colbin: NightwatchEmpty has no encodable field
+    sizes_test.go:140: no colbin composition: colbin: NightwatchEmpty has no encodable field
+=== RUN   TestSizes/schemastore/openweathermap
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                   490    490.00        354        353  ok
+    sizes_test.go:125: gob                       861    861.00        576        573  ok
+    sizes_test.go:125: cbor                      380    380.00        371        361  ok
+    sizes_test.go:125: msgpack                   379    379.00        378        385  ok
+    sizes_test.go:125: msgpack-reflect           406    406.00        389        402  ok
+    sizes_test.go:125: protobuf                  188    188.00        205        197  ok
+    sizes_test.go:125: vtprotobuf                188    188.00        205        197  ok
+    sizes_test.go:125: flatbuffers               392    392.00        302        283  ok
+    sizes_test.go:125: avro                      153    153.00        170        162  ok
+    sizes_test.go:125: colbin                    171    171.00        196        180  ok
+    sizes_test.go:125: colbin+packed5            163    163.00        188        172  ok
+    sizes_test.go:125: colbin-untagged           204    204.00        229        213  ok
+    sizes_test.go:125: colbin-json               476    476.00        457        454  ok
+    sizes_test.go:129: arrow            n/a: root field Coord is not a []struct table
+    sizes_test.go:129: capnproto        n/a: OpenWeatherMapSys.Message: the field name collides with a method capnpc-go generates
+    sizes_test.go:155: rows 1 (top level 1), 0 as table rows (0.0000); 28 values; colbin 171 B, of which tables 0 B (0.0000); schema section 304 B; gob stream 202 B
+=== RUN   TestSizes/schemastore/openweatherroadrisk
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                   402    201.00        260        247  ok
+    sizes_test.go:125: gob                       661    330.50        462        461  ok
+    sizes_test.go:125: cbor                      370    185.00        298        291  ok
+    sizes_test.go:125: msgpack                   369    184.50        304        290  ok
+    sizes_test.go:125: msgpack-reflect           379    189.50        306        296  ok
+    sizes_test.go:125: protobuf                  173     86.50        179        171  ok
+    sizes_test.go:125: vtprotobuf                173     86.50        179        171  ok
+    sizes_test.go:125: flatbuffers               336    168.00        271        260  ok
+    sizes_test.go:125: arrow                    2694   1347.00        781        740  ok
+    sizes_test.go:125: avro                      167     83.50        166        158  ok
+    sizes_test.go:125: capnproto                 288    144.00        236        229  ok
+    sizes_test.go:125: colbin                    171     85.50        181        174  ok
+    sizes_test.go:125: colbin+packed5            158     79.00        169        161  ok
+    sizes_test.go:125: colbin-untagged           195     97.50        201        190  ok
+    sizes_test.go:125: colbin-json               324    162.00        329        327  ok
+    sizes_test.go:155: rows 3 (top level 2), 0 as table rows (0.0000); 19 values; colbin 171 B, of which tables 0 B (0.0000); schema section 152 B; gob stream 192 B
+=== RUN   TestSizes/schemastore/packagejson
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                  2241   2241.00       1133       1183  ok
+    sizes_test.go:125: gob                      2655   2655.00       1412       1474  ok
+    sizes_test.go:125: cbor                     1973   1973.00       1118       1143  ok
+    sizes_test.go:125: msgpack                  1978   1978.00       1169       1201  ok
+    sizes_test.go:125: msgpack-reflect          1978   1978.00       1169       1201  ok
+    sizes_test.go:125: protobuf                 1581   1581.00        911        926  ok
+    sizes_test.go:125: vtprotobuf               1581   1581.00        911        926  ok
+    sizes_test.go:125: flatbuffers              2268   2268.00       1165       1179  ok
+    sizes_test.go:125: avro                     1503   1503.00        832        847  ok
+    sizes_test.go:125: colbin                   1569   1569.00        933        949  ok
+    sizes_test.go:125: colbin+packed5           1314   1314.00       1223       1217  ok
+    sizes_test.go:125: colbin-untagged          1585   1585.00        960        970  ok
+    sizes_test.go:125: colbin-json              2168   2168.00       1326       1368  ok
+    sizes_test.go:129: arrow            n/a: root field Name is not a []struct table
+    sizes_test.go:129: capnproto        n/a: PackageJSONDependencies.Which: the field name collides with a method capnpc-go generates
+    sizes_test.go:155: rows 1 (top level 1), 0 as table rows (0.0000); 61 values; colbin 1569 B, of which tables 0 B (0.0000); schema section 599 B; gob stream 1567 B
+=== RUN   TestSizes/schemastore/packagejsonlintrc
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                  1759   1759.00        384        388  ok
+    sizes_test.go:125: gob                      1564   1564.00        586        611  ok
+    sizes_test.go:125: cbor                     1396   1396.00        398        409  ok
+    sizes_test.go:125: msgpack                  1392   1392.00        418        426  ok
+    sizes_test.go:125: msgpack-reflect          1392   1392.00        418        426  ok
+    sizes_test.go:125: protobuf                  454    454.00        207        196  ok
+    sizes_test.go:125: vtprotobuf                454    454.00        207        196  ok
+    sizes_test.go:125: flatbuffers              1116   1116.00        358        323  ok
+    sizes_test.go:125: avro                      417    417.00        100        100  ok
+    sizes_test.go:125: capnproto                1264   1264.00        172        165  ok
+    sizes_test.go:125: colbin                    445    445.00        183        185  ok
+    sizes_test.go:125: colbin+packed5            445    445.00        183        185  ok
+    sizes_test.go:125: colbin-untagged           477    477.00        212        199  ok
+    sizes_test.go:125: colbin-json              1177   1177.00        560        582  ok
+    sizes_test.go:129: arrow            n/a: root field Rules is not a []struct table
+    sizes_test.go:155: rows 12 (top level 1), 0 as table rows (0.0000); 42 values; colbin 445 B, of which tables 0 B (0.0000); schema section 731 B; gob stream 438 B
+=== RUN   TestSizes/schemastore/sapcloudsdkpipeline
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                    43     43.00         68         52  ok
+    sizes_test.go:125: gob                        74     74.00         99         83  ok
+    sizes_test.go:125: cbor                       25     25.00         50         34  ok
+    sizes_test.go:125: msgpack                    25     25.00         50         34  ok
+    sizes_test.go:125: msgpack-reflect            25     25.00         50         34  ok
+    sizes_test.go:125: protobuf                    0      0.00         20          9  ok
+    sizes_test.go:125: vtprotobuf                  0      0.00         20          9  ok
+    sizes_test.go:125: flatbuffers                12     12.00         37         21  ok
+    sizes_test.go:125: avro                        3      3.00         28         12  ok
+    sizes_test.go:125: capnproto                  48     48.00         73         27  ok
+    sizes_test.go:125: colbin                      0      0.00         20          9  ok
+    sizes_test.go:125: colbin+packed5              0      0.00         20          9  ok
+    sizes_test.go:125: colbin-untagged             1      1.00         26         10  ok
+    sizes_test.go:125: colbin-json                35     35.00         60         44  ok
+    sizes_test.go:129: arrow            n/a: root field General is not a []struct table
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 0 values; colbin 0 B, of which tables 0 B (0); schema section 34 B; gob stream 5 B
+=== RUN   TestSizes/schemastore/travisnotifications
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                   672    672.00        165        156  ok
+    sizes_test.go:125: gob                       785    785.00        242        235  ok
+    sizes_test.go:125: cbor                      627    627.00        157        153  ok
+    sizes_test.go:125: msgpack                   627    627.00        167        162  ok
+    sizes_test.go:125: msgpack-reflect           627    627.00        167        162  ok
+    sizes_test.go:125: protobuf                  521    521.00        115        102  ok
+    sizes_test.go:125: vtprotobuf                521    521.00        115        102  ok
+    sizes_test.go:125: flatbuffers               660    660.00        177        168  ok
+    sizes_test.go:125: avro                      504    504.00         90         81  ok
+    sizes_test.go:125: capnproto                 640    640.00        131        126  ok
+    sizes_test.go:125: colbin                    521    521.00        116        107  ok
+    sizes_test.go:125: colbin+packed5            353    353.00         96         87  ok
+    sizes_test.go:125: colbin-untagged           539    539.00        126        118  ok
+    sizes_test.go:125: colbin-json               628    628.00        210        206  ok
+    sizes_test.go:129: arrow            n/a: root field Notifications is not a []struct table
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 7 values; colbin 521 B, of which tables 0 B (0.0000); schema section 106 B; gob stream 527 B
+=== RUN   TestSizes/schemastore/tslintbasic
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                    64     64.00         89         63  ok
+    sizes_test.go:125: gob                       217    217.00        153        142  ok
+    sizes_test.go:125: cbor                       49     49.00         74         58  ok
+    sizes_test.go:125: msgpack                    49     49.00         74         58  ok
+    sizes_test.go:125: msgpack-reflect            49     49.00         74         58  ok
+    sizes_test.go:125: protobuf                    8      8.00         33         17  ok
+    sizes_test.go:125: vtprotobuf                  8      8.00         33         17  ok
+    sizes_test.go:125: flatbuffers                52     52.00         77         46  ok
+    sizes_test.go:125: avro                        1      1.00         26         10  ok
+    sizes_test.go:125: capnproto                  48     48.00         73         28  ok
+    sizes_test.go:125: colbin                      7      7.00         32         16  ok
+    sizes_test.go:125: colbin+packed5              7      7.00         32         16  ok
+    sizes_test.go:125: colbin-untagged            12     12.00         37         21  ok
+    sizes_test.go:125: colbin-json                73     73.00         98         81  ok
+    sizes_test.go:129: arrow            n/a: root field Rules is not a []struct table
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 1 values; colbin 7 B, of which tables 0 B (0.0000); schema section 65 B; gob stream 13 B
+=== RUN   TestSizes/schemastore/tslintextend
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                    65     65.00         90         70  ok
+    sizes_test.go:125: gob                       120    120.00        145        120  ok
+    sizes_test.go:125: cbor                       58     58.00         83         64  ok
+    sizes_test.go:125: msgpack                    58     58.00         83         65  ok
+    sizes_test.go:125: msgpack-reflect            58     58.00         83         65  ok
+    sizes_test.go:125: protobuf                   47     47.00         72         53  ok
+    sizes_test.go:125: vtprotobuf                 47     47.00         72         53  ok
+    sizes_test.go:125: flatbuffers                88     88.00        113         72  ok
+    sizes_test.go:125: avro                       48     48.00         73         56  ok
+    sizes_test.go:125: capnproto                  88     88.00        113         70  ok
+    sizes_test.go:125: colbin                     47     47.00         72         53  ok
+    sizes_test.go:125: colbin+packed5             47     47.00         72         53  ok
+    sizes_test.go:125: colbin-untagged            50     50.00         75         59  ok
+    sizes_test.go:125: colbin-json                65     65.00         90         74  ok
+    sizes_test.go:129: arrow            n/a: root field Extensions is not a []struct table
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 2 values; colbin 47 B, of which tables 0 B (0.0000); schema section 17 B; gob stream 52 B
+=== RUN   TestSizes/schemastore/tslintmulti
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                    94     94.00        119         84  ok
+    sizes_test.go:125: gob                       270    270.00        190        185  ok
+    sizes_test.go:125: cbor                       65     65.00         90         74  ok
+    sizes_test.go:125: msgpack                    65     65.00         90         74  ok
+    sizes_test.go:125: msgpack-reflect            65     65.00         90         74  ok
+    sizes_test.go:125: protobuf                   14     14.00         39         23  ok
+    sizes_test.go:125: vtprotobuf                 14     14.00         39         23  ok
+    sizes_test.go:125: flatbuffers                88     88.00        113         62  ok
+    sizes_test.go:125: avro                        9      9.00         34         18  ok
+    sizes_test.go:125: capnproto                  80     80.00         48         41  ok
+    sizes_test.go:125: colbin                     13     13.00         38         22  ok
+    sizes_test.go:125: colbin+packed5             13     13.00         38         22  ok
+    sizes_test.go:125: colbin-untagged            20     20.00         45         29  ok
+    sizes_test.go:125: colbin-json                95     95.00        120        104  ok
+    sizes_test.go:129: arrow            n/a: root field Rules is not a []struct table
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 3 values; colbin 13 B, of which tables 0 B (0.0000); schema section 81 B; gob stream 19 B
+=== RUN   TestSizes/schemastore/circleciblank/dynamic
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                    13     13.00         38         22  ok
+    sizes_test.go:125: gob                       134    134.00        132        125  ok
+    sizes_test.go:125: cbor                       18     18.00         43         27  ok
+    sizes_test.go:125: msgpack                    18     18.00         43         27  ok
+    sizes_test.go:125: protobuf                   24     24.00         49         33  ok
+    sizes_test.go:125: colbin                     10     10.00         35         19  ok
+    sizes_test.go:125: colbin+packed5             10     10.00         35         19  ok
+    sizes_test.go:125: colbin-json                23     23.00         48         32  ok
+    sizes_test.go:129: vtprotobuf       n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+    sizes_test.go:129: flatbuffers      n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+    sizes_test.go:129: arrow            n/a: dynamic path: not tabular
+    sizes_test.go:129: colbin-untagged  n/a: dynamic path: no struct, so no field ids to derive
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 1 values; colbin 10 B, of which tables 0 B (0.0000); schema section 13 B; gob stream -1 B
+=== RUN   TestSizes/schemastore/circlecimatrix/dynamic
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                    94     94.00        119         91  ok
+    sizes_test.go:125: gob                       470    470.00        259        250  ok
+    sizes_test.go:125: cbor                       96     96.00        121         98  ok
+    sizes_test.go:125: msgpack                    96     96.00        121        102  ok
+    sizes_test.go:125: protobuf                  154    154.00        162        152  ok
+    sizes_test.go:125: colbin                     72     72.00         97         81  ok
+    sizes_test.go:125: colbin+packed5             72     72.00         97         81  ok
+    sizes_test.go:125: colbin-json                85     85.00        110         94  ok
+    sizes_test.go:129: vtprotobuf       n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+    sizes_test.go:129: flatbuffers      n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+    sizes_test.go:129: arrow            n/a: dynamic path: not tabular
+    sizes_test.go:129: colbin-untagged  n/a: dynamic path: no struct, so no field ids to derive
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 4 values; colbin 72 B, of which tables 0 B (0.0000); schema section 13 B; gob stream -1 B
+=== RUN   TestSizes/schemastore/commitlint/dynamic
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                    95     95.00        120         71  ok
+    sizes_test.go:125: gob                       376    376.00        212        205  ok
+    sizes_test.go:125: cbor                       90     90.00        115         66  ok
+    sizes_test.go:125: msgpack                    90     90.00        115         66  ok
+    sizes_test.go:125: protobuf                  132    132.00        100         95  ok
+    sizes_test.go:125: colbin                     74     74.00         99         62  ok
+    sizes_test.go:125: colbin+packed5             74     74.00         99         62  ok
+    sizes_test.go:125: colbin-json                87     87.00        112         75  ok
+    sizes_test.go:129: vtprotobuf       n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+    sizes_test.go:129: flatbuffers      n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+    sizes_test.go:129: arrow            n/a: dynamic path: not tabular
+    sizes_test.go:129: colbin-untagged  n/a: dynamic path: no struct, so no field ids to derive
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 6 values; colbin 74 B, of which tables 0 B (0.0000); schema section 13 B; gob stream -1 B
+=== RUN   TestSizes/schemastore/commitlintbasic/dynamic
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                    24     24.00         49         33  ok
+    sizes_test.go:125: gob                       138    138.00        136        129  ok
+    sizes_test.go:125: cbor                       17     17.00         42         26  ok
+    sizes_test.go:125: msgpack                    17     17.00         42         26  ok
+    sizes_test.go:125: protobuf                   24     24.00         49         33  ok
+    sizes_test.go:125: colbin                     17     17.00         42         26  ok
+    sizes_test.go:125: colbin+packed5             17     17.00         42         26  ok
+    sizes_test.go:125: colbin-json                30     30.00         55         39  ok
+    sizes_test.go:129: vtprotobuf       n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+    sizes_test.go:129: flatbuffers      n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+    sizes_test.go:129: arrow            n/a: dynamic path: not tabular
+    sizes_test.go:129: colbin-untagged  n/a: dynamic path: no struct, so no field ids to derive
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 1 values; colbin 17 B, of which tables 0 B (0.0000); schema section 13 B; gob stream -1 B
+=== RUN   TestSizes/schemastore/epr/dynamic
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                   519    519.00        262        253  ok
+    sizes_test.go:125: gob                      1001   1001.00        451        442  ok
+    sizes_test.go:125: cbor                      416    416.00        253        246  ok
+    sizes_test.go:125: msgpack                   416    416.00        274        262  ok
+    sizes_test.go:125: protobuf                  574    574.00        352        346  ok
+    sizes_test.go:125: colbin                    412    412.00        272        259  ok
+    sizes_test.go:125: colbin+packed5            412    412.00        265        248  ok
+    sizes_test.go:125: colbin-json               425    425.00        278        264  ok
+    sizes_test.go:129: vtprotobuf       n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+    sizes_test.go:129: flatbuffers      n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+    sizes_test.go:129: arrow            n/a: dynamic path: not tabular
+    sizes_test.go:129: colbin-untagged  n/a: dynamic path: no struct, so no field ids to derive
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 20 values; colbin 412 B, of which tables 0 B (0.0000); schema section 13 B; gob stream -1 B
+=== RUN   TestSizes/schemastore/eslintrc/dynamic
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                  1140   1140.00        496        509  ok
+    sizes_test.go:125: gob                      1817   1817.00        745        767  ok
+    sizes_test.go:125: cbor                     1291   1291.00        553        569  ok
+    sizes_test.go:125: msgpack                  1283   1283.00        575        595  ok
+    sizes_test.go:125: protobuf                 1555   1555.00        694        718  ok
+    sizes_test.go:125: colbin                    970    970.00        536        550  ok
+    sizes_test.go:125: colbin+packed5            970    970.00        532        547  ok
+    sizes_test.go:125: colbin-json               983    983.00        552        564  ok
+    sizes_test.go:129: vtprotobuf       n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+    sizes_test.go:129: flatbuffers      n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+    sizes_test.go:129: arrow            n/a: dynamic path: not tabular
+    sizes_test.go:129: colbin-untagged  n/a: dynamic path: no struct, so no field ids to derive
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 47 values; colbin 970 B, of which tables 0 B (0.0000); schema section 13 B; gob stream -1 B
+=== RUN   TestSizes/schemastore/esmrc/dynamic
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                   101    101.00        126         89  ok
+    sizes_test.go:125: gob                       274    274.00        211        206  ok
+    sizes_test.go:125: cbor                       64     64.00         89         73  ok
+    sizes_test.go:125: msgpack                    64     64.00         89         73  ok
+    sizes_test.go:125: protobuf                  107    107.00        132        107  ok
+    sizes_test.go:125: colbin                     64     64.00         89         73  ok
+    sizes_test.go:125: colbin+packed5             64     64.00         89         73  ok
+    sizes_test.go:125: colbin-json                77     77.00        102         86  ok
+    sizes_test.go:129: vtprotobuf       n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+    sizes_test.go:129: flatbuffers      n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+    sizes_test.go:129: arrow            n/a: dynamic path: not tabular
+    sizes_test.go:129: colbin-untagged  n/a: dynamic path: no struct, so no field ids to derive
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 7 values; colbin 64 B, of which tables 0 B (0.0000); schema section 13 B; gob stream -1 B
+=== RUN   TestSizes/schemastore/geojson/dynamic
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                   189    189.00        126        119  ok
+    sizes_test.go:125: gob                      1097   1097.00        325        325  ok
+    sizes_test.go:125: cbor                      322    322.00        137        148  ok
+    sizes_test.go:125: msgpack                   322    322.00        138        148  ok
+    sizes_test.go:125: protobuf                  469    469.00        172        182  ok
+    sizes_test.go:125: colbin                    172    172.00        129        124  ok
+    sizes_test.go:125: colbin+packed5            172    172.00        129        124  ok
+    sizes_test.go:125: colbin-json               185    185.00        142        137  ok
+    sizes_test.go:129: vtprotobuf       n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+    sizes_test.go:129: flatbuffers      n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+    sizes_test.go:129: arrow            n/a: dynamic path: not tabular
+    sizes_test.go:129: colbin-untagged  n/a: dynamic path: no struct, so no field ids to derive
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 31 values; colbin 172 B, of which tables 0 B (0.0000); schema section 13 B; gob stream -1 B
+=== RUN   TestSizes/schemastore/githubfundingblank/dynamic
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                   182    182.00        135        126  ok
+    sizes_test.go:125: gob                       248    248.00        214        206  ok
+    sizes_test.go:125: cbor                      124    124.00        149        109  ok
+    sizes_test.go:125: msgpack                   124    124.00        149        116  ok
+    sizes_test.go:125: protobuf                  186    186.00        166        162  ok
+    sizes_test.go:125: colbin                    124    124.00        149        116  ok
+    sizes_test.go:125: colbin+packed5            124    124.00        149        116  ok
+    sizes_test.go:125: colbin-json               137    137.00        162        134  ok
+    sizes_test.go:129: vtprotobuf       n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+    sizes_test.go:129: flatbuffers      n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+    sizes_test.go:129: arrow            n/a: dynamic path: not tabular
+    sizes_test.go:129: colbin-untagged  n/a: dynamic path: no struct, so no field ids to derive
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 1 values; colbin 124 B, of which tables 0 B (0.0000); schema section 13 B; gob stream -1 B
+=== RUN   TestSizes/schemastore/githubworkflow/dynamic
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                   355    355.00        226        221  ok
+    sizes_test.go:125: gob                       815    815.00        390        397  ok
+    sizes_test.go:125: cbor                      288    288.00        210        199  ok
+    sizes_test.go:125: msgpack                   287    287.00        221        212  ok
+    sizes_test.go:125: protobuf                  415    415.00        326        324  ok
+    sizes_test.go:125: colbin                    287    287.00        228        217  ok
+    sizes_test.go:125: colbin+packed5            287    287.00        226        216  ok
+    sizes_test.go:125: colbin-json               300    300.00        244        234  ok
+    sizes_test.go:129: vtprotobuf       n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+    sizes_test.go:129: flatbuffers      n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+    sizes_test.go:129: arrow            n/a: dynamic path: not tabular
+    sizes_test.go:129: colbin-untagged  n/a: dynamic path: no struct, so no field ids to derive
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 12 values; colbin 287 B, of which tables 0 B (0.0000); schema section 13 B; gob stream -1 B
+=== RUN   TestSizes/schemastore/gruntcontribclean/dynamic
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                    92     92.00        117         85  ok
+    sizes_test.go:125: gob                       352    352.00        213        204  ok
+    sizes_test.go:125: cbor                       60     60.00         85         69  ok
+    sizes_test.go:125: msgpack                    60     60.00         85         69  ok
+    sizes_test.go:125: protobuf                  109    109.00        134        102  ok
+    sizes_test.go:125: colbin                     60     60.00         85         69  ok
+    sizes_test.go:125: colbin+packed5             60     60.00         85         69  ok
+    sizes_test.go:125: colbin-json                73     73.00         98         82  ok
+    sizes_test.go:129: vtprotobuf       n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+    sizes_test.go:129: flatbuffers      n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+    sizes_test.go:129: arrow            n/a: dynamic path: not tabular
+    sizes_test.go:129: colbin-untagged  n/a: dynamic path: no struct, so no field ids to derive
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 4 values; colbin 60 B, of which tables 0 B (0.0000); schema section 13 B; gob stream -1 B
+=== RUN   TestSizes/schemastore/imageoptimizerwebjob/dynamic
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                    81     81.00        106         79  ok
+    sizes_test.go:125: gob                       308    308.00        209        203  ok
+    sizes_test.go:125: cbor                       61     61.00         86         70  ok
+    sizes_test.go:125: msgpack                    61     61.00         86         70  ok
+    sizes_test.go:125: protobuf                   95     95.00        120        102  ok
+    sizes_test.go:125: colbin                     61     61.00         86         70  ok
+    sizes_test.go:125: colbin+packed5             61     61.00         86         70  ok
+    sizes_test.go:125: colbin-json                74     74.00         99         83  ok
+    sizes_test.go:129: vtprotobuf       n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+    sizes_test.go:129: flatbuffers      n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+    sizes_test.go:129: arrow            n/a: dynamic path: not tabular
+    sizes_test.go:129: colbin-untagged  n/a: dynamic path: no struct, so no field ids to derive
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 3 values; colbin 61 B, of which tables 0 B (0.0000); schema section 13 B; gob stream -1 B
+=== RUN   TestSizes/schemastore/jsonereversesort/dynamic
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                    85     85.00        110         80  ok
+    sizes_test.go:125: gob                       403    403.00        220        213  ok
+    sizes_test.go:125: cbor                       92     92.00        117         76  ok
+    sizes_test.go:125: msgpack                    92     92.00        117         76  ok
+    sizes_test.go:125: protobuf                  146    146.00        124        122  ok
+    sizes_test.go:125: colbin                     53     53.00         78         62  ok
+    sizes_test.go:125: colbin+packed5             53     53.00         78         62  ok
+    sizes_test.go:125: colbin-json                66     66.00         91         75  ok
+    sizes_test.go:129: vtprotobuf       n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+    sizes_test.go:129: flatbuffers      n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+    sizes_test.go:129: arrow            n/a: dynamic path: not tabular
+    sizes_test.go:129: colbin-untagged  n/a: dynamic path: no struct, so no field ids to derive
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 7 values; colbin 53 B, of which tables 0 B (0.0000); schema section 13 B; gob stream -1 B
+=== RUN   TestSizes/schemastore/jsonesort/dynamic
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                    33     33.00         58         42  ok
+    sizes_test.go:125: gob                       242    242.00        184        181  ok
+    sizes_test.go:125: cbor                       61     61.00         86         47  ok
+    sizes_test.go:125: msgpack                    61     61.00         86         47  ok
+    sizes_test.go:125: protobuf                   84     84.00        109         61  ok
+    sizes_test.go:125: colbin                     21     21.00         46         30  ok
+    sizes_test.go:125: colbin+packed5             21     21.00         46         30  ok
+    sizes_test.go:125: colbin-json                34     34.00         59         43  ok
+    sizes_test.go:129: vtprotobuf       n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+    sizes_test.go:129: flatbuffers      n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+    sizes_test.go:129: arrow            n/a: dynamic path: not tabular
+    sizes_test.go:129: colbin-untagged  n/a: dynamic path: no struct, so no field ids to derive
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 6 values; colbin 21 B, of which tables 0 B (0.0000); schema section 13 B; gob stream -1 B
+=== RUN   TestSizes/schemastore/jsonfeed/dynamic
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                   572    572.00        330        331  ok
+    sizes_test.go:125: gob                       847    847.00        492        495  ok
+    sizes_test.go:125: cbor                      523    523.00        323        323  ok
+    sizes_test.go:125: msgpack                   517    517.00        338        331  ok
+    sizes_test.go:125: protobuf                  610    610.00        415        415  ok
+    sizes_test.go:125: colbin                    517    517.00        340        339  ok
+    sizes_test.go:125: colbin+packed5            517    517.00        336        332  ok
+    sizes_test.go:125: colbin-json               530    530.00        355        350  ok
+    sizes_test.go:129: vtprotobuf       n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+    sizes_test.go:129: flatbuffers      n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+    sizes_test.go:129: arrow            n/a: dynamic path: not tabular
+    sizes_test.go:129: colbin-untagged  n/a: dynamic path: no struct, so no field ids to derive
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 12 values; colbin 517 B, of which tables 0 B (0.0000); schema section 13 B; gob stream -1 B
+=== RUN   TestSizes/schemastore/jsonresume/dynamic
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                  3047   3047.00       1582       1629  ok
+    sizes_test.go:125: gob                      4309   4309.00       2031       2064  ok
+    sizes_test.go:125: cbor                     2754   2754.00       1552       1595  ok
+    sizes_test.go:125: msgpack                  2749   2749.00       1601       1637  ok
+    sizes_test.go:125: protobuf                 3301   3301.00       2038       2087  ok
+    sizes_test.go:125: colbin                   2749   2749.00       1609       1640  ok
+    sizes_test.go:125: colbin+packed5           2749   2749.00       1612       1641  ok
+    sizes_test.go:125: colbin-json              2762   2762.00       1629       1661  ok
+    sizes_test.go:129: vtprotobuf       n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+    sizes_test.go:129: flatbuffers      n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+    sizes_test.go:129: arrow            n/a: dynamic path: not tabular
+    sizes_test.go:129: colbin-untagged  n/a: dynamic path: no struct, so no field ids to derive
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 68 values; colbin 2749 B, of which tables 0 B (0.0000); schema section 13 B; gob stream -1 B
+=== RUN   TestSizes/schemastore/netcoreproject/dynamic
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                  1048   1048.00        413        415  ok
+    sizes_test.go:125: gob                      1507   1507.00        612        618  ok
+    sizes_test.go:125: cbor                      923    923.00        450        454  ok
+    sizes_test.go:125: msgpack                   919    919.00        474        479  ok
+    sizes_test.go:125: protobuf                 1132   1132.00        579        579  ok
+    sizes_test.go:125: colbin                    918    918.00        471        482  ok
+    sizes_test.go:125: colbin+packed5            918    918.00        469        474  ok
+    sizes_test.go:125: colbin-json               931    931.00        489        499  ok
+    sizes_test.go:129: vtprotobuf       n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+    sizes_test.go:129: flatbuffers      n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+    sizes_test.go:129: arrow            n/a: dynamic path: not tabular
+    sizes_test.go:129: colbin-untagged  n/a: dynamic path: no struct, so no field ids to derive
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 27 values; colbin 918 B, of which tables 0 B (0.0000); schema section 13 B; gob stream -1 B
+=== RUN   TestSizes/schemastore/nightwatch/dynamic
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                  1506   1506.00        658        667  ok
+    sizes_test.go:125: gob                      2004   2004.00        860        864  ok
+    sizes_test.go:125: cbor                     1267   1267.00        669        669  ok
+    sizes_test.go:125: msgpack                  1264   1264.00        695        695  ok
+    sizes_test.go:125: protobuf                 1648   1648.00        862        877  ok
+    sizes_test.go:125: colbin                   1179   1179.00        667        668  ok
+    sizes_test.go:125: colbin+packed5           1179   1179.00        664        675  ok
+    sizes_test.go:125: colbin-json              1192   1192.00        679        688  ok
+    sizes_test.go:129: vtprotobuf       n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+    sizes_test.go:129: flatbuffers      n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+    sizes_test.go:129: arrow            n/a: dynamic path: not tabular
+    sizes_test.go:129: colbin-untagged  n/a: dynamic path: no struct, so no field ids to derive
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 47 values; colbin 1179 B, of which tables 0 B (0.0000); schema section 13 B; gob stream -1 B
+=== RUN   TestSizes/schemastore/openweathermap/dynamic
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                   493    493.00        346        346  ok
+    sizes_test.go:125: gob                      1024   1024.00        578        582  ok
+    sizes_test.go:125: cbor                      465    465.00        391        382  ok
+    sizes_test.go:125: msgpack                   465    465.00        405        397  ok
+    sizes_test.go:125: protobuf                  655    655.00        497        500  ok
+    sizes_test.go:125: colbin                    387    387.00        379        368  ok
+    sizes_test.go:125: colbin+packed5            387    387.00        379        368  ok
+    sizes_test.go:125: colbin-json               400    400.00        398        382  ok
+    sizes_test.go:129: vtprotobuf       n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+    sizes_test.go:129: flatbuffers      n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+    sizes_test.go:129: arrow            n/a: dynamic path: not tabular
+    sizes_test.go:129: colbin-untagged  n/a: dynamic path: no struct, so no field ids to derive
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 28 values; colbin 387 B, of which tables 0 B (0.0000); schema section 13 B; gob stream -1 B
+=== RUN   TestSizes/schemastore/openweatherroadrisk/dynamic
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                   374    374.00        256        246  ok
+    sizes_test.go:125: gob                       892    892.00        471        461  ok
+    sizes_test.go:125: cbor                      370    370.00        301        291  ok
+    sizes_test.go:125: msgpack                   369    369.00        299        295  ok
+    sizes_test.go:125: protobuf                  503    503.00        382        391  ok
+    sizes_test.go:125: colbin                    343    343.00        296        285  ok
+    sizes_test.go:125: colbin+packed5            343    343.00        296        289  ok
+    sizes_test.go:125: colbin-json               354    354.00        309        301  ok
+    sizes_test.go:129: vtprotobuf       n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+    sizes_test.go:129: flatbuffers      n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+    sizes_test.go:129: arrow            n/a: dynamic path: not tabular
+    sizes_test.go:129: colbin-untagged  n/a: dynamic path: no struct, so no field ids to derive
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 18 values; colbin 343 B, of which tables 0 B (0.0000); schema section 11 B; gob stream -1 B
+=== RUN   TestSizes/schemastore/packagejson/dynamic
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                  2258   2258.00       1116       1163  ok
+    sizes_test.go:125: gob                      3006   3006.00       1405       1445  ok
+    sizes_test.go:125: cbor                     1990   1990.00       1101       1129  ok
+    sizes_test.go:125: msgpack                  1995   1995.00       1155       1187  ok
+    sizes_test.go:125: protobuf                 2370   2370.00       1352       1402  ok
+    sizes_test.go:125: colbin                   1991   1991.00       1153       1182  ok
+    sizes_test.go:125: colbin+packed5           1991   1991.00       1146       1178  ok
+    sizes_test.go:125: colbin-json              2004   2004.00       1171       1196  ok
+    sizes_test.go:129: vtprotobuf       n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+    sizes_test.go:129: flatbuffers      n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+    sizes_test.go:129: arrow            n/a: dynamic path: not tabular
+    sizes_test.go:129: colbin-untagged  n/a: dynamic path: no struct, so no field ids to derive
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 61 values; colbin 1991 B, of which tables 0 B (0.0000); schema section 13 B; gob stream -1 B
+=== RUN   TestSizes/schemastore/packagejsonlintrc/dynamic
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                  1158   1158.00        336        347  ok
+    sizes_test.go:125: gob                      1805   1805.00        527        533  ok
+    sizes_test.go:125: cbor                      993    993.00        359        364  ok
+    sizes_test.go:125: msgpack                   989    989.00        381        384  ok
+    sizes_test.go:125: protobuf                 1265   1265.00        473        497  ok
+    sizes_test.go:125: colbin                    988    988.00        370        380  ok
+    sizes_test.go:125: colbin+packed5            988    988.00        377        385  ok
+    sizes_test.go:125: colbin-json              1001   1001.00        396        398  ok
+    sizes_test.go:129: vtprotobuf       n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+    sizes_test.go:129: flatbuffers      n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+    sizes_test.go:129: arrow            n/a: dynamic path: not tabular
+    sizes_test.go:129: colbin-untagged  n/a: dynamic path: no struct, so no field ids to derive
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 42 values; colbin 988 B, of which tables 0 B (0.0000); schema section 13 B; gob stream -1 B
+=== RUN   TestSizes/schemastore/sapcloudsdkpipeline/dynamic
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                    43     43.00         68         49  ok
+    sizes_test.go:125: gob                       138    138.00        134        123  ok
+    sizes_test.go:125: cbor                       25     25.00         50         34  ok
+    sizes_test.go:125: msgpack                    25     25.00         50         34  ok
+    sizes_test.go:125: protobuf                   44     44.00         69         53  ok
+    sizes_test.go:125: colbin                     25     25.00         50         34  ok
+    sizes_test.go:125: colbin+packed5             25     25.00         50         34  ok
+    sizes_test.go:125: colbin-json                38     38.00         63         47  ok
+    sizes_test.go:129: vtprotobuf       n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+    sizes_test.go:129: flatbuffers      n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+    sizes_test.go:129: arrow            n/a: dynamic path: not tabular
+    sizes_test.go:129: colbin-untagged  n/a: dynamic path: no struct, so no field ids to derive
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 0 values; colbin 25 B, of which tables 0 B (0.0000); schema section 13 B; gob stream -1 B
+=== RUN   TestSizes/schemastore/travisnotifications/dynamic
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                   672    672.00        154        147  ok
+    sizes_test.go:125: gob                      1039   1039.00        255        254  ok
+    sizes_test.go:125: cbor                      627    627.00        146        145  ok
+    sizes_test.go:125: msgpack                   627    627.00        158        155  ok
+    sizes_test.go:125: protobuf                  715    715.00        195        184  ok
+    sizes_test.go:125: colbin                    627    627.00        159        153  ok
+    sizes_test.go:125: colbin+packed5            627    627.00        161        154  ok
+    sizes_test.go:125: colbin-json               640    640.00        176        169  ok
+    sizes_test.go:129: vtprotobuf       n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+    sizes_test.go:129: flatbuffers      n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+    sizes_test.go:129: arrow            n/a: dynamic path: not tabular
+    sizes_test.go:129: colbin-untagged  n/a: dynamic path: no struct, so no field ids to derive
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 7 values; colbin 627 B, of which tables 0 B (0.0000); schema section 13 B; gob stream -1 B
+=== RUN   TestSizes/schemastore/tslintbasic/dynamic
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                    66     66.00         91         62  ok
+    sizes_test.go:125: gob                       260    260.00        168        161  ok
+    sizes_test.go:125: cbor                       51     51.00         76         57  ok
+    sizes_test.go:125: msgpack                    51     51.00         76         59  ok
+    sizes_test.go:125: protobuf                   76     76.00        101         85  ok
+    sizes_test.go:125: colbin                     51     51.00         76         60  ok
+    sizes_test.go:125: colbin+packed5             51     51.00         76         60  ok
+    sizes_test.go:125: colbin-json                64     64.00         89         73  ok
+    sizes_test.go:129: vtprotobuf       n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+    sizes_test.go:129: flatbuffers      n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+    sizes_test.go:129: arrow            n/a: dynamic path: not tabular
+    sizes_test.go:129: colbin-untagged  n/a: dynamic path: no struct, so no field ids to derive
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 1 values; colbin 51 B, of which tables 0 B (0.0000); schema section 13 B; gob stream -1 B
+=== RUN   TestSizes/schemastore/tslintextend/dynamic
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                    62     62.00         87         67  ok
+    sizes_test.go:125: gob                       223    223.00        182        172  ok
+    sizes_test.go:125: cbor                       55     55.00         80         60  ok
+    sizes_test.go:125: msgpack                    55     55.00         80         63  ok
+    sizes_test.go:125: protobuf                   68     68.00         93         77  ok
+    sizes_test.go:125: colbin                     55     55.00         80         64  ok
+    sizes_test.go:125: colbin+packed5             55     55.00         80         64  ok
+    sizes_test.go:125: colbin-json                68     68.00         93         77  ok
+    sizes_test.go:129: vtprotobuf       n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+    sizes_test.go:129: flatbuffers      n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+    sizes_test.go:129: arrow            n/a: dynamic path: not tabular
+    sizes_test.go:129: colbin-untagged  n/a: dynamic path: no struct, so no field ids to derive
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 2 values; colbin 55 B, of which tables 0 B (0.0000); schema section 13 B; gob stream -1 B
+=== RUN   TestSizes/schemastore/tslintmulti/dynamic
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                    97     97.00        122         83  ok
+    sizes_test.go:125: gob                       349    349.00        213        204  ok
+    sizes_test.go:125: cbor                       68     68.00         93         74  ok
+    sizes_test.go:125: msgpack                    68     68.00         93         76  ok
+    sizes_test.go:125: protobuf                  111    111.00        136        110  ok
+    sizes_test.go:125: colbin                     68     68.00         93         77  ok
+    sizes_test.go:125: colbin+packed5             68     68.00         93         77  ok
+    sizes_test.go:125: colbin-json                81     81.00        106         90  ok
+    sizes_test.go:129: vtprotobuf       n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+    sizes_test.go:129: flatbuffers      n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+    sizes_test.go:129: arrow            n/a: dynamic path: not tabular
+    sizes_test.go:129: colbin-untagged  n/a: dynamic path: no struct, so no field ids to derive
+    sizes_test.go:155: rows 0 (top level 1), 0 as table rows (0); 3 values; colbin 68 B, of which tables 0 B (0.0000); schema section 13 B; gob stream -1 B
+--- PASS: TestSizes (0.13s)
+    --- PASS: TestSizes/schemastore/circleciblank (0.01s)
+    --- PASS: TestSizes/schemastore/circlecimatrix (0.00s)
+    --- PASS: TestSizes/schemastore/commitlint (0.00s)
+    --- PASS: TestSizes/schemastore/commitlintbasic (0.01s)
+    --- PASS: TestSizes/schemastore/epr (0.01s)
+    --- PASS: TestSizes/schemastore/eslintrc (0.00s)
+    --- PASS: TestSizes/schemastore/esmrc (0.00s)
+    --- PASS: TestSizes/schemastore/geojson (0.00s)
+    --- PASS: TestSizes/schemastore/githubfundingblank (0.00s)
+    --- PASS: TestSizes/schemastore/githubworkflow (0.00s)
+    --- PASS: TestSizes/schemastore/gruntcontribclean (0.00s)
+    --- PASS: TestSizes/schemastore/imageoptimizerwebjob (0.00s)
+    --- PASS: TestSizes/schemastore/jsonereversesort (0.00s)
+    --- PASS: TestSizes/schemastore/jsonesort (0.00s)
+    --- PASS: TestSizes/schemastore/jsonfeed (0.00s)
+    --- PASS: TestSizes/schemastore/jsonresume (0.00s)
+    --- PASS: TestSizes/schemastore/netcoreproject (0.00s)
+    --- PASS: TestSizes/schemastore/nightwatch (0.00s)
+    --- PASS: TestSizes/schemastore/openweathermap (0.00s)
+    --- PASS: TestSizes/schemastore/openweatherroadrisk (0.00s)
+    --- PASS: TestSizes/schemastore/packagejson (0.00s)
+    --- PASS: TestSizes/schemastore/packagejsonlintrc (0.00s)
+    --- PASS: TestSizes/schemastore/sapcloudsdkpipeline (0.00s)
+    --- PASS: TestSizes/schemastore/travisnotifications (0.00s)
+    --- PASS: TestSizes/schemastore/tslintbasic (0.00s)
+    --- PASS: TestSizes/schemastore/tslintextend (0.00s)
+    --- PASS: TestSizes/schemastore/tslintmulti (0.00s)
+    --- PASS: TestSizes/schemastore/circleciblank/dynamic (0.00s)
+    --- PASS: TestSizes/schemastore/circlecimatrix/dynamic (0.00s)
+    --- PASS: TestSizes/schemastore/commitlint/dynamic (0.00s)
+    --- PASS: TestSizes/schemastore/commitlintbasic/dynamic (0.00s)
+    --- PASS: TestSizes/schemastore/epr/dynamic (0.00s)
+    --- PASS: TestSizes/schemastore/eslintrc/dynamic (0.00s)
+    --- PASS: TestSizes/schemastore/esmrc/dynamic (0.00s)
+    --- PASS: TestSizes/schemastore/geojson/dynamic (0.00s)
+    --- PASS: TestSizes/schemastore/githubfundingblank/dynamic (0.00s)
+    --- PASS: TestSizes/schemastore/githubworkflow/dynamic (0.00s)
+    --- PASS: TestSizes/schemastore/gruntcontribclean/dynamic (0.00s)
+    --- PASS: TestSizes/schemastore/imageoptimizerwebjob/dynamic (0.00s)
+    --- PASS: TestSizes/schemastore/jsonereversesort/dynamic (0.00s)
+    --- PASS: TestSizes/schemastore/jsonesort/dynamic (0.00s)
+    --- PASS: TestSizes/schemastore/jsonfeed/dynamic (0.00s)
+    --- PASS: TestSizes/schemastore/jsonresume/dynamic (0.00s)
+    --- PASS: TestSizes/schemastore/netcoreproject/dynamic (0.00s)
+    --- PASS: TestSizes/schemastore/nightwatch/dynamic (0.00s)
+    --- PASS: TestSizes/schemastore/openweathermap/dynamic (0.00s)
+    --- PASS: TestSizes/schemastore/openweatherroadrisk/dynamic (0.00s)
+    --- PASS: TestSizes/schemastore/packagejson/dynamic (0.00s)
+    --- PASS: TestSizes/schemastore/packagejsonlintrc/dynamic (0.00s)
+    --- PASS: TestSizes/schemastore/sapcloudsdkpipeline/dynamic (0.00s)
+    --- PASS: TestSizes/schemastore/travisnotifications/dynamic (0.00s)
+    --- PASS: TestSizes/schemastore/tslintbasic/dynamic (0.00s)
+    --- PASS: TestSizes/schemastore/tslintextend/dynamic (0.00s)
+    --- PASS: TestSizes/schemastore/tslintmulti/dynamic (0.00s)
+PASS

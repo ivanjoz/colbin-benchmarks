@@ -1,0 +1,10 @@
+case,dataset,regime,knob,setting,bytes,gzip
+tpch/sf0.1/partsupp,tpch,bulk,threshold,2,10391904,2648705
+tpch/sf0.1/partsupp,tpch,bulk,threshold,4,10391904,2648705
+tpch/sf0.1/partsupp,tpch,bulk,threshold,8,10391904,2648705
+tpch/sf0.1/partsupp,tpch,bulk,threshold,16,10391904,2648705
+tpch/sf0.1/partsupp,tpch,bulk,threshold,32,10391904,2648705
+tpch/sf0.1/partsupp,tpch,bulk,codec,auto,10391904,2648705
+tpch/sf0.1/partsupp,tpch,bulk,codec,raw,10505556,2778819
+tpch/sf0.1/partsupp,tpch,bulk,codec,delta,10422032,2559273
+tpch/sf0.1/partsupp,tpch,bulk,codec,for,10462483,2740231

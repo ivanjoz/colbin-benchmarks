@@ -1,0 +1,2 @@
+case,dataset,regime,top_rows,rows,table_rows,table_row_fraction,values,colbin_bytes,table_bytes,table_byte_fraction,schema_bytes,gob_stream_bytes,colbin_bytes_per_value
+tpch/sf0.1/orders,tpch,bulk,150000,150000,150000,1.0000,1350000,12628985,12628985,1.0000,123,15084551,9.355

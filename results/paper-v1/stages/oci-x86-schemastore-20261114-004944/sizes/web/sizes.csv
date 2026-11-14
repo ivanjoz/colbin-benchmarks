@@ -1,0 +1,730 @@
+case,dataset,regime,format,bytes,bytes_per_row,gzip,zstd6,status
+schemastore/circleciblank,schemastore,web,json-v2,13,13.00,38,22,ok
+schemastore/circleciblank,schemastore,web,gob,45,45.00,70,54,ok
+schemastore/circleciblank,schemastore,web,cbor,14,14.00,39,23,ok
+schemastore/circleciblank,schemastore,web,msgpack,14,14.00,39,23,ok
+schemastore/circleciblank,schemastore,web,msgpack-reflect,14,14.00,39,23,ok
+schemastore/circleciblank,schemastore,web,protobuf,5,5.00,30,14,ok
+schemastore/circleciblank,schemastore,web,vtprotobuf,5,5.00,30,14,ok
+schemastore/circleciblank,schemastore,web,flatbuffers,20,20.00,45,29,ok
+schemastore/circleciblank,schemastore,web,avro,4,4.00,29,13,ok
+schemastore/circleciblank,schemastore,web,capnproto,24,24.00,49,33,ok
+schemastore/circleciblank,schemastore,web,colbin,2,2.00,27,11,ok
+schemastore/circleciblank,schemastore,web,colbin+packed5,2,2.00,27,11,ok
+schemastore/circleciblank,schemastore,web,colbin-untagged,3,3.00,28,12,ok
+schemastore/circleciblank,schemastore,web,colbin-json,17,17.00,42,26,ok
+schemastore/circleciblank,schemastore,web,arrow,,,,,n/a: root field Version is not a []struct table
+schemastore/circlecimatrix,schemastore,web,json-v2,94,94.00,119,93,ok
+schemastore/circlecimatrix,schemastore,web,gob,437,437.00,273,273,ok
+schemastore/circlecimatrix,schemastore,web,cbor,72,72.00,97,81,ok
+schemastore/circlecimatrix,schemastore,web,msgpack,72,72.00,97,81,ok
+schemastore/circlecimatrix,schemastore,web,msgpack-reflect,84,84.00,109,93,ok
+schemastore/circlecimatrix,schemastore,web,protobuf,26,26.00,51,35,ok
+schemastore/circlecimatrix,schemastore,web,vtprotobuf,26,26.00,51,35,ok
+schemastore/circlecimatrix,schemastore,web,flatbuffers,112,112.00,82,79,ok
+schemastore/circlecimatrix,schemastore,web,avro,17,17.00,42,26,ok
+schemastore/circlecimatrix,schemastore,web,capnproto,104,104.00,61,57,ok
+schemastore/circlecimatrix,schemastore,web,colbin,26,26.00,51,35,ok
+schemastore/circlecimatrix,schemastore,web,colbin+packed5,26,26.00,51,35,ok
+schemastore/circlecimatrix,schemastore,web,colbin-untagged,38,38.00,63,47,ok
+schemastore/circlecimatrix,schemastore,web,colbin-json,116,116.00,141,125,ok
+schemastore/circlecimatrix,schemastore,web,arrow,,,,,n/a: root field Version is not a []struct table
+schemastore/commitlint,schemastore,web,json-v2,337,337.00,135,122,ok
+schemastore/commitlint,schemastore,web,gob,336,336.00,235,229,ok
+schemastore/commitlint,schemastore,web,cbor,220,220.00,110,105,ok
+schemastore/commitlint,schemastore,web,msgpack,220,220.00,111,105,ok
+schemastore/commitlint,schemastore,web,msgpack-reflect,228,228.00,115,109,ok
+schemastore/commitlint,schemastore,web,protobuf,62,62.00,87,57,ok
+schemastore/commitlint,schemastore,web,vtprotobuf,62,62.00,87,57,ok
+schemastore/commitlint,schemastore,web,flatbuffers,228,228.00,139,125,ok
+schemastore/commitlint,schemastore,web,avro,68,68.00,93,52,ok
+schemastore/commitlint,schemastore,web,capnproto,280,280.00,98,90,ok
+schemastore/commitlint,schemastore,web,colbin,58,58.00,83,48,ok
+schemastore/commitlint,schemastore,web,colbin+packed5,56,56.00,81,47,ok
+schemastore/commitlint,schemastore,web,colbin-untagged,80,80.00,105,61,ok
+schemastore/commitlint,schemastore,web,colbin-json,143,143.00,135,129,ok
+schemastore/commitlint,schemastore,web,arrow,,,,,n/a: root field Rules is not a []struct table
+schemastore/commitlintbasic,schemastore,web,json-v2,24,24.00,49,33,ok
+schemastore/commitlintbasic,schemastore,web,gob,53,53.00,78,62,ok
+schemastore/commitlintbasic,schemastore,web,cbor,17,17.00,42,26,ok
+schemastore/commitlintbasic,schemastore,web,msgpack,17,17.00,42,26,ok
+schemastore/commitlintbasic,schemastore,web,msgpack-reflect,17,17.00,42,26,ok
+schemastore/commitlintbasic,schemastore,web,protobuf,0,0.00,20,9,ok
+schemastore/commitlintbasic,schemastore,web,vtprotobuf,0,0.00,20,9,ok
+schemastore/commitlintbasic,schemastore,web,flatbuffers,12,12.00,37,21,ok
+schemastore/commitlintbasic,schemastore,web,avro,1,1.00,26,10,ok
+schemastore/commitlintbasic,schemastore,web,capnproto,24,24.00,49,25,ok
+schemastore/commitlintbasic,schemastore,web,colbin,0,0.00,20,9,ok
+schemastore/commitlintbasic,schemastore,web,colbin+packed5,0,0.00,20,9,ok
+schemastore/commitlintbasic,schemastore,web,colbin-untagged,1,1.00,26,10,ok
+schemastore/commitlintbasic,schemastore,web,colbin-json,22,22.00,47,31,ok
+schemastore/commitlintbasic,schemastore,web,arrow,,,,,n/a: root field DefaultIgnores is not a []struct table
+schemastore/epr,schemastore,web,json-v2,571,114.20,268,262,ok
+schemastore/epr,schemastore,web,gob,490,98.00,354,356,ok
+schemastore/epr,schemastore,web,cbor,444,88.80,256,250,ok
+schemastore/epr,schemastore,web,msgpack,444,88.80,271,259,ok
+schemastore/epr,schemastore,web,msgpack-reflect,444,88.80,271,259,ok
+schemastore/epr,schemastore,web,protobuf,247,49.40,200,190,ok
+schemastore/epr,schemastore,web,vtprotobuf,247,49.40,200,190,ok
+schemastore/epr,schemastore,web,flatbuffers,516,103.20,288,272,ok
+schemastore/epr,schemastore,web,avro,247,49.40,187,177,ok
+schemastore/epr,schemastore,web,capnproto,536,107.20,267,253,ok
+schemastore/epr,schemastore,web,colbin,238,47.60,197,187,ok
+schemastore/epr,schemastore,web,colbin+packed5,207,41.40,191,182,ok
+schemastore/epr,schemastore,web,colbin-untagged,272,54.40,227,224,ok
+schemastore/epr,schemastore,web,colbin-json,359,71.80,291,285,ok
+schemastore/epr,schemastore,web,arrow,,,,,n/a: root field Site is not a []struct table
+schemastore/eslintrc,schemastore,web,json-v2,1096,1096.00,515,530,ok
+schemastore/eslintrc,schemastore,web,gob,1403,1403.00,759,779,ok
+schemastore/eslintrc,schemastore,web,cbor,912,912.00,525,524,ok
+schemastore/eslintrc,schemastore,web,msgpack,908,908.00,549,549,ok
+schemastore/eslintrc,schemastore,web,msgpack-reflect,1064,1064.00,576,577,ok
+schemastore/eslintrc,schemastore,web,protobuf,161,161.00,186,156,ok
+schemastore/eslintrc,schemastore,web,vtprotobuf,161,161.00,186,156,ok
+schemastore/eslintrc,schemastore,web,flatbuffers,428,428.00,234,204,ok
+schemastore/eslintrc,schemastore,web,avro,104,104.00,129,87,ok
+schemastore/eslintrc,schemastore,web,capnproto,352,352.00,146,144,ok
+schemastore/eslintrc,schemastore,web,colbin,138,138.00,163,147,ok
+schemastore/eslintrc,schemastore,web,colbin+packed5,125,125.00,150,134,ok
+schemastore/eslintrc,schemastore,web,colbin-untagged,153,153.00,178,162,ok
+schemastore/eslintrc,schemastore,web,colbin-json,1052,1052.00,685,689,ok
+schemastore/eslintrc,schemastore,web,arrow,,,,,n/a: root field Extension is not a []struct table
+schemastore/esmrc,schemastore,web,json-v2,101,101.00,126,94,ok
+schemastore/esmrc,schemastore,web,gob,137,137.00,145,134,ok
+schemastore/esmrc,schemastore,web,cbor,64,64.00,89,73,ok
+schemastore/esmrc,schemastore,web,msgpack,64,64.00,89,73,ok
+schemastore/esmrc,schemastore,web,msgpack-reflect,64,64.00,89,73,ok
+schemastore/esmrc,schemastore,web,protobuf,23,23.00,48,32,ok
+schemastore/esmrc,schemastore,web,vtprotobuf,23,23.00,48,32,ok
+schemastore/esmrc,schemastore,web,flatbuffers,80,80.00,105,64,ok
+schemastore/esmrc,schemastore,web,avro,23,23.00,48,32,ok
+schemastore/esmrc,schemastore,web,capnproto,80,80.00,105,63,ok
+schemastore/esmrc,schemastore,web,colbin,20,20.00,45,29,ok
+schemastore/esmrc,schemastore,web,colbin+packed5,19,19.00,44,28,ok
+schemastore/esmrc,schemastore,web,colbin-untagged,26,26.00,51,35,ok
+schemastore/esmrc,schemastore,web,colbin-json,79,79.00,104,88,ok
+schemastore/esmrc,schemastore,web,arrow,,,,,n/a: root field CJS is not a []struct table
+schemastore/geojson,schemastore,web,json-v2,491,245.50,154,142,ok
+schemastore/geojson,schemastore,web,gob,556,278.00,326,321,ok
+schemastore/geojson,schemastore,web,cbor,564,282.00,164,168,ok
+schemastore/geojson,schemastore,web,msgpack,564,282.00,165,168,ok
+schemastore/geojson,schemastore,web,msgpack-reflect,564,282.00,165,168,ok
+schemastore/geojson,schemastore,web,protobuf,325,162.50,119,131,ok
+schemastore/geojson,schemastore,web,vtprotobuf,325,162.50,119,131,ok
+schemastore/geojson,schemastore,web,flatbuffers,680,340.00,246,232,ok
+schemastore/geojson,schemastore,web,avro,322,161.00,129,141,ok
+schemastore/geojson,schemastore,web,capnproto,496,248.00,173,171,ok
+schemastore/geojson,schemastore,web,colbin,321,160.50,125,135,ok
+schemastore/geojson,schemastore,web,colbin+packed5,318,159.00,122,132,ok
+schemastore/geojson,schemastore,web,colbin-untagged,368,184.00,142,153,ok
+schemastore/geojson,schemastore,web,colbin-json,390,195.00,184,195,ok
+schemastore/geojson,schemastore,web,arrow,,,,,n/a: root field Type is not a []struct table
+schemastore/githubfundingblank,schemastore,web,json-v2,179,179.00,141,133,ok
+schemastore/githubfundingblank,schemastore,web,gob,190,190.00,174,178,ok
+schemastore/githubfundingblank,schemastore,web,cbor,121,121.00,146,116,ok
+schemastore/githubfundingblank,schemastore,web,msgpack,121,121.00,146,121,ok
+schemastore/githubfundingblank,schemastore,web,msgpack-reflect,121,121.00,146,121,ok
+schemastore/githubfundingblank,schemastore,web,protobuf,17,17.00,42,26,ok
+schemastore/githubfundingblank,schemastore,web,vtprotobuf,17,17.00,42,26,ok
+schemastore/githubfundingblank,schemastore,web,flatbuffers,40,40.00,65,47,ok
+schemastore/githubfundingblank,schemastore,web,avro,25,25.00,50,34,ok
+schemastore/githubfundingblank,schemastore,web,capnproto,120,120.00,71,54,ok
+schemastore/githubfundingblank,schemastore,web,colbin,17,17.00,42,26,ok
+schemastore/githubfundingblank,schemastore,web,colbin+packed5,13,13.00,38,22,ok
+schemastore/githubfundingblank,schemastore,web,colbin-untagged,19,19.00,44,28,ok
+schemastore/githubfundingblank,schemastore,web,colbin-json,146,146.00,171,147,ok
+schemastore/githubfundingblank,schemastore,web,arrow,,,,,n/a: root field GitHub is not a []struct table
+schemastore/githubworkflow,schemastore,web,json-v2,510,510.00,251,243,ok
+schemastore/githubworkflow,schemastore,web,gob,624,624.00,416,422,ok
+schemastore/githubworkflow,schemastore,web,cbor,389,389.00,243,236,ok
+schemastore/githubworkflow,schemastore,web,msgpack,388,388.00,257,245,ok
+schemastore/githubworkflow,schemastore,web,msgpack-reflect,388,388.00,257,245,ok
+schemastore/githubworkflow,schemastore,web,protobuf,189,189.00,183,168,ok
+schemastore/githubworkflow,schemastore,web,vtprotobuf,189,189.00,183,168,ok
+schemastore/githubworkflow,schemastore,web,flatbuffers,428,428.00,278,269,ok
+schemastore/githubworkflow,schemastore,web,avro,179,179.00,169,155,ok
+schemastore/githubworkflow,schemastore,web,capnproto,464,464.00,253,246,ok
+schemastore/githubworkflow,schemastore,web,colbin,183,183.00,181,164,ok
+schemastore/githubworkflow,schemastore,web,colbin+packed5,148,148.00,173,157,ok
+schemastore/githubworkflow,schemastore,web,colbin-untagged,207,207.00,212,205,ok
+schemastore/githubworkflow,schemastore,web,colbin-json,329,329.00,294,287,ok
+schemastore/githubworkflow,schemastore,web,arrow,,,,,n/a: root field Name is not a []struct table
+schemastore/gruntcontribclean,schemastore,web,json-v2,91,91.00,116,86,ok
+schemastore/gruntcontribclean,schemastore,web,gob,274,274.00,194,190,ok
+schemastore/gruntcontribclean,schemastore,web,cbor,59,59.00,84,68,ok
+schemastore/gruntcontribclean,schemastore,web,msgpack,59,59.00,84,68,ok
+schemastore/gruntcontribclean,schemastore,web,msgpack-reflect,59,59.00,84,68,ok
+schemastore/gruntcontribclean,schemastore,web,protobuf,22,22.00,47,31,ok
+schemastore/gruntcontribclean,schemastore,web,vtprotobuf,22,22.00,47,31,ok
+schemastore/gruntcontribclean,schemastore,web,flatbuffers,116,116.00,81,68,ok
+schemastore/gruntcontribclean,schemastore,web,avro,18,18.00,43,27,ok
+schemastore/gruntcontribclean,schemastore,web,capnproto,96,96.00,69,62,ok
+schemastore/gruntcontribclean,schemastore,web,arrow,,,,,n/a: root field Foo is not a []struct table
+schemastore/gruntcontribclean,schemastore,web,colbin,,,,,n/a: colbin: GruntContribCleanFiles has no encodable field
+schemastore/gruntcontribclean,schemastore,web,colbin+packed5,,,,,n/a: colbin: GruntContribCleanFiles has no encodable field
+schemastore/gruntcontribclean,schemastore,web,colbin-untagged,,,,,n/a: colbin: GruntContribCleanFiles has no encodable field
+schemastore/gruntcontribclean,schemastore,web,colbin-json,,,,,n/a: colbin: GruntContribCleanFiles has no encodable field
+schemastore/imageoptimizerwebjob,schemastore,web,json-v2,81,81.00,106,84,ok
+schemastore/imageoptimizerwebjob,schemastore,web,gob,254,254.00,191,178,ok
+schemastore/imageoptimizerwebjob,schemastore,web,cbor,61,61.00,86,70,ok
+schemastore/imageoptimizerwebjob,schemastore,web,msgpack,61,61.00,86,70,ok
+schemastore/imageoptimizerwebjob,schemastore,web,msgpack-reflect,61,61.00,86,70,ok
+schemastore/imageoptimizerwebjob,schemastore,web,protobuf,23,23.00,48,32,ok
+schemastore/imageoptimizerwebjob,schemastore,web,vtprotobuf,23,23.00,48,32,ok
+schemastore/imageoptimizerwebjob,schemastore,web,flatbuffers,100,100.00,77,73,ok
+schemastore/imageoptimizerwebjob,schemastore,web,arrow,1142,1142.00,336,338,ok
+schemastore/imageoptimizerwebjob,schemastore,web,avro,27,27.00,52,36,ok
+schemastore/imageoptimizerwebjob,schemastore,web,capnproto,96,96.00,73,66,ok
+schemastore/imageoptimizerwebjob,schemastore,web,colbin,22,22.00,47,31,ok
+schemastore/imageoptimizerwebjob,schemastore,web,colbin+packed5,22,22.00,47,31,ok
+schemastore/imageoptimizerwebjob,schemastore,web,colbin-untagged,34,34.00,59,43,ok
+schemastore/imageoptimizerwebjob,schemastore,web,colbin-json,76,76.00,101,85,ok
+schemastore/jsonereversesort,schemastore,web,json-v2,79,79.00,104,80,ok
+schemastore/jsonereversesort,schemastore,web,gob,283,283.00,195,194,ok
+schemastore/jsonereversesort,schemastore,web,cbor,47,47.00,72,56,ok
+schemastore/jsonereversesort,schemastore,web,msgpack,46,46.00,71,55,ok
+schemastore/jsonereversesort,schemastore,web,msgpack-reflect,66,66.00,91,75,ok
+schemastore/jsonereversesort,schemastore,web,protobuf,21,21.00,46,30,ok
+schemastore/jsonereversesort,schemastore,web,vtprotobuf,21,21.00,46,30,ok
+schemastore/jsonereversesort,schemastore,web,flatbuffers,104,104.00,75,67,ok
+schemastore/jsonereversesort,schemastore,web,avro,12,12.00,37,21,ok
+schemastore/jsonereversesort,schemastore,web,capnproto,112,112.00,65,61,ok
+schemastore/jsonereversesort,schemastore,web,colbin,19,19.00,44,28,ok
+schemastore/jsonereversesort,schemastore,web,colbin+packed5,19,19.00,44,28,ok
+schemastore/jsonereversesort,schemastore,web,colbin-untagged,27,27.00,52,36,ok
+schemastore/jsonereversesort,schemastore,web,colbin-json,81,81.00,106,90,ok
+schemastore/jsonereversesort,schemastore,web,arrow,,,,,n/a: root field Let is not a []struct table
+schemastore/jsonesort,schemastore,web,json-v2,30,30.00,55,39,ok
+schemastore/jsonesort,schemastore,web,gob,79,79.00,104,88,ok
+schemastore/jsonesort,schemastore,web,cbor,18,18.00,43,27,ok
+schemastore/jsonesort,schemastore,web,msgpack,18,18.00,43,27,ok
+schemastore/jsonesort,schemastore,web,msgpack-reflect,38,38.00,63,47,ok
+schemastore/jsonesort,schemastore,web,protobuf,10,10.00,35,19,ok
+schemastore/jsonesort,schemastore,web,vtprotobuf,10,10.00,35,19,ok
+schemastore/jsonesort,schemastore,web,flatbuffers,56,56.00,81,44,ok
+schemastore/jsonesort,schemastore,web,avro,10,10.00,35,19,ok
+schemastore/jsonesort,schemastore,web,capnproto,64,64.00,89,46,ok
+schemastore/jsonesort,schemastore,web,colbin,9,9.00,34,18,ok
+schemastore/jsonesort,schemastore,web,colbin+packed5,9,9.00,34,18,ok
+schemastore/jsonesort,schemastore,web,colbin-untagged,12,12.00,37,21,ok
+schemastore/jsonesort,schemastore,web,colbin-json,27,27.00,52,36,ok
+schemastore/jsonesort,schemastore,web,arrow,,,,,n/a: root field Sort is not a []struct table
+schemastore/jsonfeed,schemastore,web,json-v2,566,566.00,338,338,ok
+schemastore/jsonfeed,schemastore,web,gob,707,707.00,443,455,ok
+schemastore/jsonfeed,schemastore,web,cbor,517,517.00,332,331,ok
+schemastore/jsonfeed,schemastore,web,msgpack,511,511.00,342,339,ok
+schemastore/jsonfeed,schemastore,web,msgpack-reflect,511,511.00,342,339,ok
+schemastore/jsonfeed,schemastore,web,protobuf,413,413.00,261,258,ok
+schemastore/jsonfeed,schemastore,web,vtprotobuf,413,413.00,261,258,ok
+schemastore/jsonfeed,schemastore,web,flatbuffers,584,584.00,341,336,ok
+schemastore/jsonfeed,schemastore,web,avro,402,402.00,251,245,ok
+schemastore/jsonfeed,schemastore,web,capnproto,568,568.00,334,328,ok
+schemastore/jsonfeed,schemastore,web,colbin,412,412.00,260,258,ok
+schemastore/jsonfeed,schemastore,web,colbin+packed5,325,325.00,339,291,ok
+schemastore/jsonfeed,schemastore,web,colbin-untagged,430,430.00,288,278,ok
+schemastore/jsonfeed,schemastore,web,colbin-json,559,559.00,379,381,ok
+schemastore/jsonfeed,schemastore,web,arrow,,,,,n/a: root field Version is not a []struct table
+schemastore/jsonresume,schemastore,web,json-v2,3047,304.70,1586,1636,ok
+schemastore/jsonresume,schemastore,web,gob,4028,402.80,2089,2164,ok
+schemastore/jsonresume,schemastore,web,cbor,2754,275.40,1570,1610,ok
+schemastore/jsonresume,schemastore,web,msgpack,2749,274.90,1621,1659,ok
+schemastore/jsonresume,schemastore,web,msgpack-reflect,2749,274.90,1621,1659,ok
+schemastore/jsonresume,schemastore,web,protobuf,2225,222.50,1373,1402,ok
+schemastore/jsonresume,schemastore,web,vtprotobuf,2225,222.50,1373,1402,ok
+schemastore/jsonresume,schemastore,web,flatbuffers,3092,309.20,1722,1741,ok
+schemastore/jsonresume,schemastore,web,avro,2187,218.70,1343,1372,ok
+schemastore/jsonresume,schemastore,web,capnproto,3136,313.60,1654,1686,ok
+schemastore/jsonresume,schemastore,web,colbin,2208,220.80,1369,1397,ok
+schemastore/jsonresume,schemastore,web,colbin+packed5,1720,172.00,1669,1661,ok
+schemastore/jsonresume,schemastore,web,colbin-untagged,2320,232.00,1493,1514,ok
+schemastore/jsonresume,schemastore,web,colbin-json,2926,292.60,1788,1837,ok
+schemastore/jsonresume,schemastore,web,arrow,,,,,n/a: root field Basics is not a []struct table
+schemastore/netcoreproject,schemastore,web,json-v2,1010,1010.00,412,419,ok
+schemastore/netcoreproject,schemastore,web,gob,1393,1393.00,609,643,ok
+schemastore/netcoreproject,schemastore,web,cbor,882,882.00,440,454,ok
+schemastore/netcoreproject,schemastore,web,msgpack,880,880.00,462,475,ok
+schemastore/netcoreproject,schemastore,web,msgpack-reflect,880,880.00,462,475,ok
+schemastore/netcoreproject,schemastore,web,protobuf,284,284.00,168,174,ok
+schemastore/netcoreproject,schemastore,web,vtprotobuf,284,284.00,168,174,ok
+schemastore/netcoreproject,schemastore,web,flatbuffers,600,600.00,274,254,ok
+schemastore/netcoreproject,schemastore,web,avro,242,242.00,104,102,ok
+schemastore/netcoreproject,schemastore,web,capnproto,592,592.00,195,204,ok
+schemastore/netcoreproject,schemastore,web,colbin,278,278.00,162,172,ok
+schemastore/netcoreproject,schemastore,web,colbin+packed5,278,278.00,162,172,ok
+schemastore/netcoreproject,schemastore,web,colbin-untagged,294,294.00,180,197,ok
+schemastore/netcoreproject,schemastore,web,colbin-json,1002,1002.00,551,580,ok
+schemastore/netcoreproject,schemastore,web,arrow,,,,,n/a: root field Version is not a []struct table
+schemastore/nightwatch,schemastore,web,json-v2,1445,1445.00,642,657,ok
+schemastore/nightwatch,schemastore,web,gob,1606,1606.00,838,859,ok
+schemastore/nightwatch,schemastore,web,cbor,1115,1115.00,637,643,ok
+schemastore/nightwatch,schemastore,web,msgpack,1111,1111.00,669,672,ok
+schemastore/nightwatch,schemastore,web,msgpack-reflect,1147,1147.00,673,679,ok
+schemastore/nightwatch,schemastore,web,protobuf,120,120.00,145,129,ok
+schemastore/nightwatch,schemastore,web,vtprotobuf,120,120.00,145,129,ok
+schemastore/nightwatch,schemastore,web,flatbuffers,380,380.00,256,240,ok
+schemastore/nightwatch,schemastore,web,avro,101,101.00,126,101,ok
+schemastore/nightwatch,schemastore,web,capnproto,360,360.00,179,169,ok
+schemastore/nightwatch,schemastore,web,arrow,,,,,n/a: root field CustomCommandsPath is not a []struct table
+schemastore/nightwatch,schemastore,web,colbin,,,,,n/a: colbin: NightwatchEmpty has no encodable field
+schemastore/nightwatch,schemastore,web,colbin+packed5,,,,,n/a: colbin: NightwatchEmpty has no encodable field
+schemastore/nightwatch,schemastore,web,colbin-untagged,,,,,n/a: colbin: NightwatchEmpty has no encodable field
+schemastore/nightwatch,schemastore,web,colbin-json,,,,,n/a: colbin: NightwatchEmpty has no encodable field
+schemastore/openweathermap,schemastore,web,json-v2,490,490.00,354,353,ok
+schemastore/openweathermap,schemastore,web,gob,861,861.00,576,573,ok
+schemastore/openweathermap,schemastore,web,cbor,380,380.00,371,361,ok
+schemastore/openweathermap,schemastore,web,msgpack,379,379.00,378,385,ok
+schemastore/openweathermap,schemastore,web,msgpack-reflect,406,406.00,389,402,ok
+schemastore/openweathermap,schemastore,web,protobuf,188,188.00,205,197,ok
+schemastore/openweathermap,schemastore,web,vtprotobuf,188,188.00,205,197,ok
+schemastore/openweathermap,schemastore,web,flatbuffers,392,392.00,302,283,ok
+schemastore/openweathermap,schemastore,web,avro,153,153.00,170,162,ok
+schemastore/openweathermap,schemastore,web,colbin,171,171.00,196,180,ok
+schemastore/openweathermap,schemastore,web,colbin+packed5,163,163.00,188,172,ok
+schemastore/openweathermap,schemastore,web,colbin-untagged,204,204.00,229,213,ok
+schemastore/openweathermap,schemastore,web,colbin-json,476,476.00,457,454,ok
+schemastore/openweathermap,schemastore,web,arrow,,,,,n/a: root field Coord is not a []struct table
+schemastore/openweathermap,schemastore,web,capnproto,,,,,n/a: OpenWeatherMapSys.Message: the field name collides with a method capnpc-go generates
+schemastore/openweatherroadrisk,schemastore,web,json-v2,402,201.00,260,247,ok
+schemastore/openweatherroadrisk,schemastore,web,gob,661,330.50,462,461,ok
+schemastore/openweatherroadrisk,schemastore,web,cbor,370,185.00,298,291,ok
+schemastore/openweatherroadrisk,schemastore,web,msgpack,369,184.50,304,290,ok
+schemastore/openweatherroadrisk,schemastore,web,msgpack-reflect,379,189.50,306,296,ok
+schemastore/openweatherroadrisk,schemastore,web,protobuf,173,86.50,179,171,ok
+schemastore/openweatherroadrisk,schemastore,web,vtprotobuf,173,86.50,179,171,ok
+schemastore/openweatherroadrisk,schemastore,web,flatbuffers,336,168.00,271,260,ok
+schemastore/openweatherroadrisk,schemastore,web,arrow,2694,1347.00,781,740,ok
+schemastore/openweatherroadrisk,schemastore,web,avro,167,83.50,166,158,ok
+schemastore/openweatherroadrisk,schemastore,web,capnproto,288,144.00,236,229,ok
+schemastore/openweatherroadrisk,schemastore,web,colbin,171,85.50,181,174,ok
+schemastore/openweatherroadrisk,schemastore,web,colbin+packed5,158,79.00,169,161,ok
+schemastore/openweatherroadrisk,schemastore,web,colbin-untagged,195,97.50,201,190,ok
+schemastore/openweatherroadrisk,schemastore,web,colbin-json,324,162.00,329,327,ok
+schemastore/packagejson,schemastore,web,json-v2,2241,2241.00,1133,1183,ok
+schemastore/packagejson,schemastore,web,gob,2655,2655.00,1412,1474,ok
+schemastore/packagejson,schemastore,web,cbor,1973,1973.00,1118,1143,ok
+schemastore/packagejson,schemastore,web,msgpack,1978,1978.00,1169,1201,ok
+schemastore/packagejson,schemastore,web,msgpack-reflect,1978,1978.00,1169,1201,ok
+schemastore/packagejson,schemastore,web,protobuf,1581,1581.00,911,926,ok
+schemastore/packagejson,schemastore,web,vtprotobuf,1581,1581.00,911,926,ok
+schemastore/packagejson,schemastore,web,flatbuffers,2268,2268.00,1165,1179,ok
+schemastore/packagejson,schemastore,web,avro,1503,1503.00,832,847,ok
+schemastore/packagejson,schemastore,web,colbin,1569,1569.00,933,949,ok
+schemastore/packagejson,schemastore,web,colbin+packed5,1314,1314.00,1223,1217,ok
+schemastore/packagejson,schemastore,web,colbin-untagged,1585,1585.00,960,970,ok
+schemastore/packagejson,schemastore,web,colbin-json,2168,2168.00,1326,1368,ok
+schemastore/packagejson,schemastore,web,arrow,,,,,n/a: root field Name is not a []struct table
+schemastore/packagejson,schemastore,web,capnproto,,,,,n/a: PackageJSONDependencies.Which: the field name collides with a method capnpc-go generates
+schemastore/packagejsonlintrc,schemastore,web,json-v2,1759,1759.00,384,388,ok
+schemastore/packagejsonlintrc,schemastore,web,gob,1564,1564.00,586,611,ok
+schemastore/packagejsonlintrc,schemastore,web,cbor,1396,1396.00,398,409,ok
+schemastore/packagejsonlintrc,schemastore,web,msgpack,1392,1392.00,418,426,ok
+schemastore/packagejsonlintrc,schemastore,web,msgpack-reflect,1392,1392.00,418,426,ok
+schemastore/packagejsonlintrc,schemastore,web,protobuf,454,454.00,207,196,ok
+schemastore/packagejsonlintrc,schemastore,web,vtprotobuf,454,454.00,207,196,ok
+schemastore/packagejsonlintrc,schemastore,web,flatbuffers,1116,1116.00,358,323,ok
+schemastore/packagejsonlintrc,schemastore,web,avro,417,417.00,100,100,ok
+schemastore/packagejsonlintrc,schemastore,web,capnproto,1264,1264.00,172,165,ok
+schemastore/packagejsonlintrc,schemastore,web,colbin,445,445.00,183,185,ok
+schemastore/packagejsonlintrc,schemastore,web,colbin+packed5,445,445.00,183,185,ok
+schemastore/packagejsonlintrc,schemastore,web,colbin-untagged,477,477.00,212,199,ok
+schemastore/packagejsonlintrc,schemastore,web,colbin-json,1177,1177.00,560,582,ok
+schemastore/packagejsonlintrc,schemastore,web,arrow,,,,,n/a: root field Rules is not a []struct table
+schemastore/sapcloudsdkpipeline,schemastore,web,json-v2,43,43.00,68,52,ok
+schemastore/sapcloudsdkpipeline,schemastore,web,gob,74,74.00,99,83,ok
+schemastore/sapcloudsdkpipeline,schemastore,web,cbor,25,25.00,50,34,ok
+schemastore/sapcloudsdkpipeline,schemastore,web,msgpack,25,25.00,50,34,ok
+schemastore/sapcloudsdkpipeline,schemastore,web,msgpack-reflect,25,25.00,50,34,ok
+schemastore/sapcloudsdkpipeline,schemastore,web,protobuf,0,0.00,20,9,ok
+schemastore/sapcloudsdkpipeline,schemastore,web,vtprotobuf,0,0.00,20,9,ok
+schemastore/sapcloudsdkpipeline,schemastore,web,flatbuffers,12,12.00,37,21,ok
+schemastore/sapcloudsdkpipeline,schemastore,web,avro,3,3.00,28,12,ok
+schemastore/sapcloudsdkpipeline,schemastore,web,capnproto,48,48.00,73,27,ok
+schemastore/sapcloudsdkpipeline,schemastore,web,colbin,0,0.00,20,9,ok
+schemastore/sapcloudsdkpipeline,schemastore,web,colbin+packed5,0,0.00,20,9,ok
+schemastore/sapcloudsdkpipeline,schemastore,web,colbin-untagged,1,1.00,26,10,ok
+schemastore/sapcloudsdkpipeline,schemastore,web,colbin-json,35,35.00,60,44,ok
+schemastore/sapcloudsdkpipeline,schemastore,web,arrow,,,,,n/a: root field General is not a []struct table
+schemastore/travisnotifications,schemastore,web,json-v2,672,672.00,165,156,ok
+schemastore/travisnotifications,schemastore,web,gob,785,785.00,242,235,ok
+schemastore/travisnotifications,schemastore,web,cbor,627,627.00,157,153,ok
+schemastore/travisnotifications,schemastore,web,msgpack,627,627.00,167,162,ok
+schemastore/travisnotifications,schemastore,web,msgpack-reflect,627,627.00,167,162,ok
+schemastore/travisnotifications,schemastore,web,protobuf,521,521.00,115,102,ok
+schemastore/travisnotifications,schemastore,web,vtprotobuf,521,521.00,115,102,ok
+schemastore/travisnotifications,schemastore,web,flatbuffers,660,660.00,177,168,ok
+schemastore/travisnotifications,schemastore,web,avro,504,504.00,90,81,ok
+schemastore/travisnotifications,schemastore,web,capnproto,640,640.00,131,126,ok
+schemastore/travisnotifications,schemastore,web,colbin,521,521.00,116,107,ok
+schemastore/travisnotifications,schemastore,web,colbin+packed5,353,353.00,96,87,ok
+schemastore/travisnotifications,schemastore,web,colbin-untagged,539,539.00,126,118,ok
+schemastore/travisnotifications,schemastore,web,colbin-json,628,628.00,210,206,ok
+schemastore/travisnotifications,schemastore,web,arrow,,,,,n/a: root field Notifications is not a []struct table
+schemastore/tslintbasic,schemastore,web,json-v2,64,64.00,89,63,ok
+schemastore/tslintbasic,schemastore,web,gob,217,217.00,153,142,ok
+schemastore/tslintbasic,schemastore,web,cbor,49,49.00,74,58,ok
+schemastore/tslintbasic,schemastore,web,msgpack,49,49.00,74,58,ok
+schemastore/tslintbasic,schemastore,web,msgpack-reflect,49,49.00,74,58,ok
+schemastore/tslintbasic,schemastore,web,protobuf,8,8.00,33,17,ok
+schemastore/tslintbasic,schemastore,web,vtprotobuf,8,8.00,33,17,ok
+schemastore/tslintbasic,schemastore,web,flatbuffers,52,52.00,77,46,ok
+schemastore/tslintbasic,schemastore,web,avro,1,1.00,26,10,ok
+schemastore/tslintbasic,schemastore,web,capnproto,48,48.00,73,28,ok
+schemastore/tslintbasic,schemastore,web,colbin,7,7.00,32,16,ok
+schemastore/tslintbasic,schemastore,web,colbin+packed5,7,7.00,32,16,ok
+schemastore/tslintbasic,schemastore,web,colbin-untagged,12,12.00,37,21,ok
+schemastore/tslintbasic,schemastore,web,colbin-json,73,73.00,98,81,ok
+schemastore/tslintbasic,schemastore,web,arrow,,,,,n/a: root field Rules is not a []struct table
+schemastore/tslintextend,schemastore,web,json-v2,65,65.00,90,70,ok
+schemastore/tslintextend,schemastore,web,gob,120,120.00,145,120,ok
+schemastore/tslintextend,schemastore,web,cbor,58,58.00,83,64,ok
+schemastore/tslintextend,schemastore,web,msgpack,58,58.00,83,65,ok
+schemastore/tslintextend,schemastore,web,msgpack-reflect,58,58.00,83,65,ok
+schemastore/tslintextend,schemastore,web,protobuf,47,47.00,72,53,ok
+schemastore/tslintextend,schemastore,web,vtprotobuf,47,47.00,72,53,ok
+schemastore/tslintextend,schemastore,web,flatbuffers,88,88.00,113,72,ok
+schemastore/tslintextend,schemastore,web,avro,48,48.00,73,56,ok
+schemastore/tslintextend,schemastore,web,capnproto,88,88.00,113,70,ok
+schemastore/tslintextend,schemastore,web,colbin,47,47.00,72,53,ok
+schemastore/tslintextend,schemastore,web,colbin+packed5,47,47.00,72,53,ok
+schemastore/tslintextend,schemastore,web,colbin-untagged,50,50.00,75,59,ok
+schemastore/tslintextend,schemastore,web,colbin-json,65,65.00,90,74,ok
+schemastore/tslintextend,schemastore,web,arrow,,,,,n/a: root field Extensions is not a []struct table
+schemastore/tslintmulti,schemastore,web,json-v2,94,94.00,119,84,ok
+schemastore/tslintmulti,schemastore,web,gob,270,270.00,190,185,ok
+schemastore/tslintmulti,schemastore,web,cbor,65,65.00,90,74,ok
+schemastore/tslintmulti,schemastore,web,msgpack,65,65.00,90,74,ok
+schemastore/tslintmulti,schemastore,web,msgpack-reflect,65,65.00,90,74,ok
+schemastore/tslintmulti,schemastore,web,protobuf,14,14.00,39,23,ok
+schemastore/tslintmulti,schemastore,web,vtprotobuf,14,14.00,39,23,ok
+schemastore/tslintmulti,schemastore,web,flatbuffers,88,88.00,113,62,ok
+schemastore/tslintmulti,schemastore,web,avro,9,9.00,34,18,ok
+schemastore/tslintmulti,schemastore,web,capnproto,80,80.00,48,41,ok
+schemastore/tslintmulti,schemastore,web,colbin,13,13.00,38,22,ok
+schemastore/tslintmulti,schemastore,web,colbin+packed5,13,13.00,38,22,ok
+schemastore/tslintmulti,schemastore,web,colbin-untagged,20,20.00,45,29,ok
+schemastore/tslintmulti,schemastore,web,colbin-json,95,95.00,120,104,ok
+schemastore/tslintmulti,schemastore,web,arrow,,,,,n/a: root field Rules is not a []struct table
+schemastore/circleciblank/dynamic,schemastore,web,json-v2,13,13.00,38,22,ok
+schemastore/circleciblank/dynamic,schemastore,web,gob,134,134.00,132,125,ok
+schemastore/circleciblank/dynamic,schemastore,web,cbor,18,18.00,43,27,ok
+schemastore/circleciblank/dynamic,schemastore,web,msgpack,18,18.00,43,27,ok
+schemastore/circleciblank/dynamic,schemastore,web,protobuf,24,24.00,49,33,ok
+schemastore/circleciblank/dynamic,schemastore,web,colbin,10,10.00,35,19,ok
+schemastore/circleciblank/dynamic,schemastore,web,colbin+packed5,10,10.00,35,19,ok
+schemastore/circleciblank/dynamic,schemastore,web,colbin-json,23,23.00,48,32,ok
+schemastore/circleciblank/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/circleciblank/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/circleciblank/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/circleciblank/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/circlecimatrix/dynamic,schemastore,web,json-v2,94,94.00,119,91,ok
+schemastore/circlecimatrix/dynamic,schemastore,web,gob,470,470.00,259,250,ok
+schemastore/circlecimatrix/dynamic,schemastore,web,cbor,96,96.00,121,98,ok
+schemastore/circlecimatrix/dynamic,schemastore,web,msgpack,96,96.00,121,102,ok
+schemastore/circlecimatrix/dynamic,schemastore,web,protobuf,154,154.00,162,152,ok
+schemastore/circlecimatrix/dynamic,schemastore,web,colbin,72,72.00,97,81,ok
+schemastore/circlecimatrix/dynamic,schemastore,web,colbin+packed5,72,72.00,97,81,ok
+schemastore/circlecimatrix/dynamic,schemastore,web,colbin-json,85,85.00,110,94,ok
+schemastore/circlecimatrix/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/circlecimatrix/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/circlecimatrix/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/circlecimatrix/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/commitlint/dynamic,schemastore,web,json-v2,95,95.00,120,71,ok
+schemastore/commitlint/dynamic,schemastore,web,gob,376,376.00,212,205,ok
+schemastore/commitlint/dynamic,schemastore,web,cbor,90,90.00,115,66,ok
+schemastore/commitlint/dynamic,schemastore,web,msgpack,90,90.00,115,66,ok
+schemastore/commitlint/dynamic,schemastore,web,protobuf,132,132.00,100,95,ok
+schemastore/commitlint/dynamic,schemastore,web,colbin,74,74.00,99,62,ok
+schemastore/commitlint/dynamic,schemastore,web,colbin+packed5,74,74.00,99,62,ok
+schemastore/commitlint/dynamic,schemastore,web,colbin-json,87,87.00,112,75,ok
+schemastore/commitlint/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/commitlint/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/commitlint/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/commitlint/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/commitlintbasic/dynamic,schemastore,web,json-v2,24,24.00,49,33,ok
+schemastore/commitlintbasic/dynamic,schemastore,web,gob,138,138.00,136,129,ok
+schemastore/commitlintbasic/dynamic,schemastore,web,cbor,17,17.00,42,26,ok
+schemastore/commitlintbasic/dynamic,schemastore,web,msgpack,17,17.00,42,26,ok
+schemastore/commitlintbasic/dynamic,schemastore,web,protobuf,24,24.00,49,33,ok
+schemastore/commitlintbasic/dynamic,schemastore,web,colbin,17,17.00,42,26,ok
+schemastore/commitlintbasic/dynamic,schemastore,web,colbin+packed5,17,17.00,42,26,ok
+schemastore/commitlintbasic/dynamic,schemastore,web,colbin-json,30,30.00,55,39,ok
+schemastore/commitlintbasic/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/commitlintbasic/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/commitlintbasic/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/commitlintbasic/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/epr/dynamic,schemastore,web,json-v2,519,519.00,262,253,ok
+schemastore/epr/dynamic,schemastore,web,gob,1001,1001.00,451,442,ok
+schemastore/epr/dynamic,schemastore,web,cbor,416,416.00,253,246,ok
+schemastore/epr/dynamic,schemastore,web,msgpack,416,416.00,274,262,ok
+schemastore/epr/dynamic,schemastore,web,protobuf,574,574.00,352,346,ok
+schemastore/epr/dynamic,schemastore,web,colbin,412,412.00,272,259,ok
+schemastore/epr/dynamic,schemastore,web,colbin+packed5,412,412.00,265,248,ok
+schemastore/epr/dynamic,schemastore,web,colbin-json,425,425.00,278,264,ok
+schemastore/epr/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/epr/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/epr/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/epr/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/eslintrc/dynamic,schemastore,web,json-v2,1140,1140.00,496,509,ok
+schemastore/eslintrc/dynamic,schemastore,web,gob,1817,1817.00,745,767,ok
+schemastore/eslintrc/dynamic,schemastore,web,cbor,1291,1291.00,553,569,ok
+schemastore/eslintrc/dynamic,schemastore,web,msgpack,1283,1283.00,575,595,ok
+schemastore/eslintrc/dynamic,schemastore,web,protobuf,1555,1555.00,694,718,ok
+schemastore/eslintrc/dynamic,schemastore,web,colbin,970,970.00,536,550,ok
+schemastore/eslintrc/dynamic,schemastore,web,colbin+packed5,970,970.00,532,547,ok
+schemastore/eslintrc/dynamic,schemastore,web,colbin-json,983,983.00,552,564,ok
+schemastore/eslintrc/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/eslintrc/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/eslintrc/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/eslintrc/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/esmrc/dynamic,schemastore,web,json-v2,101,101.00,126,89,ok
+schemastore/esmrc/dynamic,schemastore,web,gob,274,274.00,211,206,ok
+schemastore/esmrc/dynamic,schemastore,web,cbor,64,64.00,89,73,ok
+schemastore/esmrc/dynamic,schemastore,web,msgpack,64,64.00,89,73,ok
+schemastore/esmrc/dynamic,schemastore,web,protobuf,107,107.00,132,107,ok
+schemastore/esmrc/dynamic,schemastore,web,colbin,64,64.00,89,73,ok
+schemastore/esmrc/dynamic,schemastore,web,colbin+packed5,64,64.00,89,73,ok
+schemastore/esmrc/dynamic,schemastore,web,colbin-json,77,77.00,102,86,ok
+schemastore/esmrc/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/esmrc/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/esmrc/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/esmrc/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/geojson/dynamic,schemastore,web,json-v2,189,189.00,126,119,ok
+schemastore/geojson/dynamic,schemastore,web,gob,1097,1097.00,325,325,ok
+schemastore/geojson/dynamic,schemastore,web,cbor,322,322.00,137,148,ok
+schemastore/geojson/dynamic,schemastore,web,msgpack,322,322.00,138,148,ok
+schemastore/geojson/dynamic,schemastore,web,protobuf,469,469.00,172,182,ok
+schemastore/geojson/dynamic,schemastore,web,colbin,172,172.00,129,124,ok
+schemastore/geojson/dynamic,schemastore,web,colbin+packed5,172,172.00,129,124,ok
+schemastore/geojson/dynamic,schemastore,web,colbin-json,185,185.00,142,137,ok
+schemastore/geojson/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/geojson/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/geojson/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/geojson/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/githubfundingblank/dynamic,schemastore,web,json-v2,182,182.00,135,126,ok
+schemastore/githubfundingblank/dynamic,schemastore,web,gob,248,248.00,214,206,ok
+schemastore/githubfundingblank/dynamic,schemastore,web,cbor,124,124.00,149,109,ok
+schemastore/githubfundingblank/dynamic,schemastore,web,msgpack,124,124.00,149,116,ok
+schemastore/githubfundingblank/dynamic,schemastore,web,protobuf,186,186.00,166,162,ok
+schemastore/githubfundingblank/dynamic,schemastore,web,colbin,124,124.00,149,116,ok
+schemastore/githubfundingblank/dynamic,schemastore,web,colbin+packed5,124,124.00,149,116,ok
+schemastore/githubfundingblank/dynamic,schemastore,web,colbin-json,137,137.00,162,134,ok
+schemastore/githubfundingblank/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/githubfundingblank/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/githubfundingblank/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/githubfundingblank/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/githubworkflow/dynamic,schemastore,web,json-v2,355,355.00,226,221,ok
+schemastore/githubworkflow/dynamic,schemastore,web,gob,815,815.00,390,397,ok
+schemastore/githubworkflow/dynamic,schemastore,web,cbor,288,288.00,210,199,ok
+schemastore/githubworkflow/dynamic,schemastore,web,msgpack,287,287.00,221,212,ok
+schemastore/githubworkflow/dynamic,schemastore,web,protobuf,415,415.00,326,324,ok
+schemastore/githubworkflow/dynamic,schemastore,web,colbin,287,287.00,228,217,ok
+schemastore/githubworkflow/dynamic,schemastore,web,colbin+packed5,287,287.00,226,216,ok
+schemastore/githubworkflow/dynamic,schemastore,web,colbin-json,300,300.00,244,234,ok
+schemastore/githubworkflow/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/githubworkflow/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/githubworkflow/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/githubworkflow/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/gruntcontribclean/dynamic,schemastore,web,json-v2,92,92.00,117,85,ok
+schemastore/gruntcontribclean/dynamic,schemastore,web,gob,352,352.00,213,204,ok
+schemastore/gruntcontribclean/dynamic,schemastore,web,cbor,60,60.00,85,69,ok
+schemastore/gruntcontribclean/dynamic,schemastore,web,msgpack,60,60.00,85,69,ok
+schemastore/gruntcontribclean/dynamic,schemastore,web,protobuf,109,109.00,134,102,ok
+schemastore/gruntcontribclean/dynamic,schemastore,web,colbin,60,60.00,85,69,ok
+schemastore/gruntcontribclean/dynamic,schemastore,web,colbin+packed5,60,60.00,85,69,ok
+schemastore/gruntcontribclean/dynamic,schemastore,web,colbin-json,73,73.00,98,82,ok
+schemastore/gruntcontribclean/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/gruntcontribclean/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/gruntcontribclean/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/gruntcontribclean/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/imageoptimizerwebjob/dynamic,schemastore,web,json-v2,81,81.00,106,79,ok
+schemastore/imageoptimizerwebjob/dynamic,schemastore,web,gob,308,308.00,209,203,ok
+schemastore/imageoptimizerwebjob/dynamic,schemastore,web,cbor,61,61.00,86,70,ok
+schemastore/imageoptimizerwebjob/dynamic,schemastore,web,msgpack,61,61.00,86,70,ok
+schemastore/imageoptimizerwebjob/dynamic,schemastore,web,protobuf,95,95.00,120,102,ok
+schemastore/imageoptimizerwebjob/dynamic,schemastore,web,colbin,61,61.00,86,70,ok
+schemastore/imageoptimizerwebjob/dynamic,schemastore,web,colbin+packed5,61,61.00,86,70,ok
+schemastore/imageoptimizerwebjob/dynamic,schemastore,web,colbin-json,74,74.00,99,83,ok
+schemastore/imageoptimizerwebjob/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/imageoptimizerwebjob/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/imageoptimizerwebjob/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/imageoptimizerwebjob/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/jsonereversesort/dynamic,schemastore,web,json-v2,85,85.00,110,80,ok
+schemastore/jsonereversesort/dynamic,schemastore,web,gob,403,403.00,220,213,ok
+schemastore/jsonereversesort/dynamic,schemastore,web,cbor,92,92.00,117,76,ok
+schemastore/jsonereversesort/dynamic,schemastore,web,msgpack,92,92.00,117,76,ok
+schemastore/jsonereversesort/dynamic,schemastore,web,protobuf,146,146.00,124,122,ok
+schemastore/jsonereversesort/dynamic,schemastore,web,colbin,53,53.00,78,62,ok
+schemastore/jsonereversesort/dynamic,schemastore,web,colbin+packed5,53,53.00,78,62,ok
+schemastore/jsonereversesort/dynamic,schemastore,web,colbin-json,66,66.00,91,75,ok
+schemastore/jsonereversesort/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/jsonereversesort/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/jsonereversesort/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/jsonereversesort/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/jsonesort/dynamic,schemastore,web,json-v2,33,33.00,58,42,ok
+schemastore/jsonesort/dynamic,schemastore,web,gob,242,242.00,184,181,ok
+schemastore/jsonesort/dynamic,schemastore,web,cbor,61,61.00,86,47,ok
+schemastore/jsonesort/dynamic,schemastore,web,msgpack,61,61.00,86,47,ok
+schemastore/jsonesort/dynamic,schemastore,web,protobuf,84,84.00,109,61,ok
+schemastore/jsonesort/dynamic,schemastore,web,colbin,21,21.00,46,30,ok
+schemastore/jsonesort/dynamic,schemastore,web,colbin+packed5,21,21.00,46,30,ok
+schemastore/jsonesort/dynamic,schemastore,web,colbin-json,34,34.00,59,43,ok
+schemastore/jsonesort/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/jsonesort/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/jsonesort/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/jsonesort/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/jsonfeed/dynamic,schemastore,web,json-v2,572,572.00,330,331,ok
+schemastore/jsonfeed/dynamic,schemastore,web,gob,847,847.00,492,495,ok
+schemastore/jsonfeed/dynamic,schemastore,web,cbor,523,523.00,323,323,ok
+schemastore/jsonfeed/dynamic,schemastore,web,msgpack,517,517.00,338,331,ok
+schemastore/jsonfeed/dynamic,schemastore,web,protobuf,610,610.00,415,415,ok
+schemastore/jsonfeed/dynamic,schemastore,web,colbin,517,517.00,340,339,ok
+schemastore/jsonfeed/dynamic,schemastore,web,colbin+packed5,517,517.00,336,332,ok
+schemastore/jsonfeed/dynamic,schemastore,web,colbin-json,530,530.00,355,350,ok
+schemastore/jsonfeed/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/jsonfeed/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/jsonfeed/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/jsonfeed/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/jsonresume/dynamic,schemastore,web,json-v2,3047,3047.00,1582,1629,ok
+schemastore/jsonresume/dynamic,schemastore,web,gob,4309,4309.00,2031,2064,ok
+schemastore/jsonresume/dynamic,schemastore,web,cbor,2754,2754.00,1552,1595,ok
+schemastore/jsonresume/dynamic,schemastore,web,msgpack,2749,2749.00,1601,1637,ok
+schemastore/jsonresume/dynamic,schemastore,web,protobuf,3301,3301.00,2038,2087,ok
+schemastore/jsonresume/dynamic,schemastore,web,colbin,2749,2749.00,1609,1640,ok
+schemastore/jsonresume/dynamic,schemastore,web,colbin+packed5,2749,2749.00,1612,1641,ok
+schemastore/jsonresume/dynamic,schemastore,web,colbin-json,2762,2762.00,1629,1661,ok
+schemastore/jsonresume/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/jsonresume/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/jsonresume/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/jsonresume/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/netcoreproject/dynamic,schemastore,web,json-v2,1048,1048.00,413,415,ok
+schemastore/netcoreproject/dynamic,schemastore,web,gob,1507,1507.00,612,618,ok
+schemastore/netcoreproject/dynamic,schemastore,web,cbor,923,923.00,450,454,ok
+schemastore/netcoreproject/dynamic,schemastore,web,msgpack,919,919.00,474,479,ok
+schemastore/netcoreproject/dynamic,schemastore,web,protobuf,1132,1132.00,579,579,ok
+schemastore/netcoreproject/dynamic,schemastore,web,colbin,918,918.00,471,482,ok
+schemastore/netcoreproject/dynamic,schemastore,web,colbin+packed5,918,918.00,469,474,ok
+schemastore/netcoreproject/dynamic,schemastore,web,colbin-json,931,931.00,489,499,ok
+schemastore/netcoreproject/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/netcoreproject/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/netcoreproject/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/netcoreproject/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/nightwatch/dynamic,schemastore,web,json-v2,1506,1506.00,658,667,ok
+schemastore/nightwatch/dynamic,schemastore,web,gob,2004,2004.00,860,864,ok
+schemastore/nightwatch/dynamic,schemastore,web,cbor,1267,1267.00,669,669,ok
+schemastore/nightwatch/dynamic,schemastore,web,msgpack,1264,1264.00,695,695,ok
+schemastore/nightwatch/dynamic,schemastore,web,protobuf,1648,1648.00,862,877,ok
+schemastore/nightwatch/dynamic,schemastore,web,colbin,1179,1179.00,667,668,ok
+schemastore/nightwatch/dynamic,schemastore,web,colbin+packed5,1179,1179.00,664,675,ok
+schemastore/nightwatch/dynamic,schemastore,web,colbin-json,1192,1192.00,679,688,ok
+schemastore/nightwatch/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/nightwatch/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/nightwatch/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/nightwatch/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/openweathermap/dynamic,schemastore,web,json-v2,493,493.00,346,346,ok
+schemastore/openweathermap/dynamic,schemastore,web,gob,1024,1024.00,578,582,ok
+schemastore/openweathermap/dynamic,schemastore,web,cbor,465,465.00,391,382,ok
+schemastore/openweathermap/dynamic,schemastore,web,msgpack,465,465.00,405,397,ok
+schemastore/openweathermap/dynamic,schemastore,web,protobuf,655,655.00,497,500,ok
+schemastore/openweathermap/dynamic,schemastore,web,colbin,387,387.00,379,368,ok
+schemastore/openweathermap/dynamic,schemastore,web,colbin+packed5,387,387.00,379,368,ok
+schemastore/openweathermap/dynamic,schemastore,web,colbin-json,400,400.00,398,382,ok
+schemastore/openweathermap/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/openweathermap/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/openweathermap/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/openweathermap/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/openweatherroadrisk/dynamic,schemastore,web,json-v2,374,374.00,256,246,ok
+schemastore/openweatherroadrisk/dynamic,schemastore,web,gob,892,892.00,471,461,ok
+schemastore/openweatherroadrisk/dynamic,schemastore,web,cbor,370,370.00,301,291,ok
+schemastore/openweatherroadrisk/dynamic,schemastore,web,msgpack,369,369.00,299,295,ok
+schemastore/openweatherroadrisk/dynamic,schemastore,web,protobuf,503,503.00,382,391,ok
+schemastore/openweatherroadrisk/dynamic,schemastore,web,colbin,343,343.00,296,285,ok
+schemastore/openweatherroadrisk/dynamic,schemastore,web,colbin+packed5,343,343.00,296,289,ok
+schemastore/openweatherroadrisk/dynamic,schemastore,web,colbin-json,354,354.00,309,301,ok
+schemastore/openweatherroadrisk/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/openweatherroadrisk/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/openweatherroadrisk/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/openweatherroadrisk/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/packagejson/dynamic,schemastore,web,json-v2,2258,2258.00,1116,1163,ok
+schemastore/packagejson/dynamic,schemastore,web,gob,3006,3006.00,1405,1445,ok
+schemastore/packagejson/dynamic,schemastore,web,cbor,1990,1990.00,1101,1129,ok
+schemastore/packagejson/dynamic,schemastore,web,msgpack,1995,1995.00,1155,1187,ok
+schemastore/packagejson/dynamic,schemastore,web,protobuf,2370,2370.00,1352,1402,ok
+schemastore/packagejson/dynamic,schemastore,web,colbin,1991,1991.00,1153,1182,ok
+schemastore/packagejson/dynamic,schemastore,web,colbin+packed5,1991,1991.00,1146,1178,ok
+schemastore/packagejson/dynamic,schemastore,web,colbin-json,2004,2004.00,1171,1196,ok
+schemastore/packagejson/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/packagejson/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/packagejson/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/packagejson/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/packagejsonlintrc/dynamic,schemastore,web,json-v2,1158,1158.00,336,347,ok
+schemastore/packagejsonlintrc/dynamic,schemastore,web,gob,1805,1805.00,527,533,ok
+schemastore/packagejsonlintrc/dynamic,schemastore,web,cbor,993,993.00,359,364,ok
+schemastore/packagejsonlintrc/dynamic,schemastore,web,msgpack,989,989.00,381,384,ok
+schemastore/packagejsonlintrc/dynamic,schemastore,web,protobuf,1265,1265.00,473,497,ok
+schemastore/packagejsonlintrc/dynamic,schemastore,web,colbin,988,988.00,370,380,ok
+schemastore/packagejsonlintrc/dynamic,schemastore,web,colbin+packed5,988,988.00,377,385,ok
+schemastore/packagejsonlintrc/dynamic,schemastore,web,colbin-json,1001,1001.00,396,398,ok
+schemastore/packagejsonlintrc/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/packagejsonlintrc/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/packagejsonlintrc/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/packagejsonlintrc/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/sapcloudsdkpipeline/dynamic,schemastore,web,json-v2,43,43.00,68,49,ok
+schemastore/sapcloudsdkpipeline/dynamic,schemastore,web,gob,138,138.00,134,123,ok
+schemastore/sapcloudsdkpipeline/dynamic,schemastore,web,cbor,25,25.00,50,34,ok
+schemastore/sapcloudsdkpipeline/dynamic,schemastore,web,msgpack,25,25.00,50,34,ok
+schemastore/sapcloudsdkpipeline/dynamic,schemastore,web,protobuf,44,44.00,69,53,ok
+schemastore/sapcloudsdkpipeline/dynamic,schemastore,web,colbin,25,25.00,50,34,ok
+schemastore/sapcloudsdkpipeline/dynamic,schemastore,web,colbin+packed5,25,25.00,50,34,ok
+schemastore/sapcloudsdkpipeline/dynamic,schemastore,web,colbin-json,38,38.00,63,47,ok
+schemastore/sapcloudsdkpipeline/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/sapcloudsdkpipeline/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/sapcloudsdkpipeline/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/sapcloudsdkpipeline/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/travisnotifications/dynamic,schemastore,web,json-v2,672,672.00,154,147,ok
+schemastore/travisnotifications/dynamic,schemastore,web,gob,1039,1039.00,255,254,ok
+schemastore/travisnotifications/dynamic,schemastore,web,cbor,627,627.00,146,145,ok
+schemastore/travisnotifications/dynamic,schemastore,web,msgpack,627,627.00,158,155,ok
+schemastore/travisnotifications/dynamic,schemastore,web,protobuf,715,715.00,195,184,ok
+schemastore/travisnotifications/dynamic,schemastore,web,colbin,627,627.00,159,153,ok
+schemastore/travisnotifications/dynamic,schemastore,web,colbin+packed5,627,627.00,161,154,ok
+schemastore/travisnotifications/dynamic,schemastore,web,colbin-json,640,640.00,176,169,ok
+schemastore/travisnotifications/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/travisnotifications/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/travisnotifications/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/travisnotifications/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/tslintbasic/dynamic,schemastore,web,json-v2,66,66.00,91,62,ok
+schemastore/tslintbasic/dynamic,schemastore,web,gob,260,260.00,168,161,ok
+schemastore/tslintbasic/dynamic,schemastore,web,cbor,51,51.00,76,57,ok
+schemastore/tslintbasic/dynamic,schemastore,web,msgpack,51,51.00,76,59,ok
+schemastore/tslintbasic/dynamic,schemastore,web,protobuf,76,76.00,101,85,ok
+schemastore/tslintbasic/dynamic,schemastore,web,colbin,51,51.00,76,60,ok
+schemastore/tslintbasic/dynamic,schemastore,web,colbin+packed5,51,51.00,76,60,ok
+schemastore/tslintbasic/dynamic,schemastore,web,colbin-json,64,64.00,89,73,ok
+schemastore/tslintbasic/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/tslintbasic/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/tslintbasic/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/tslintbasic/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/tslintextend/dynamic,schemastore,web,json-v2,62,62.00,87,67,ok
+schemastore/tslintextend/dynamic,schemastore,web,gob,223,223.00,182,172,ok
+schemastore/tslintextend/dynamic,schemastore,web,cbor,55,55.00,80,60,ok
+schemastore/tslintextend/dynamic,schemastore,web,msgpack,55,55.00,80,63,ok
+schemastore/tslintextend/dynamic,schemastore,web,protobuf,68,68.00,93,77,ok
+schemastore/tslintextend/dynamic,schemastore,web,colbin,55,55.00,80,64,ok
+schemastore/tslintextend/dynamic,schemastore,web,colbin+packed5,55,55.00,80,64,ok
+schemastore/tslintextend/dynamic,schemastore,web,colbin-json,68,68.00,93,77,ok
+schemastore/tslintextend/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/tslintextend/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/tslintextend/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/tslintextend/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/tslintmulti/dynamic,schemastore,web,json-v2,97,97.00,122,83,ok
+schemastore/tslintmulti/dynamic,schemastore,web,gob,349,349.00,213,204,ok
+schemastore/tslintmulti/dynamic,schemastore,web,cbor,68,68.00,93,74,ok
+schemastore/tslintmulti/dynamic,schemastore,web,msgpack,68,68.00,93,76,ok
+schemastore/tslintmulti/dynamic,schemastore,web,protobuf,111,111.00,136,110,ok
+schemastore/tslintmulti/dynamic,schemastore,web,colbin,68,68.00,93,77,ok
+schemastore/tslintmulti/dynamic,schemastore,web,colbin+packed5,68,68.00,93,77,ok
+schemastore/tslintmulti/dynamic,schemastore,web,colbin-json,81,81.00,106,90,ok
+schemastore/tslintmulti/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/tslintmulti/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/tslintmulti/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/tslintmulti/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"

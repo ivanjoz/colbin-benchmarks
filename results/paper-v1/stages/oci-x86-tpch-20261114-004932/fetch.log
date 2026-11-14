@@ -1,0 +1,10 @@
+build   dbgen
+dbgen   SF 0.1
+ok      tpch/sf0.1/orders.tbl
+ok      tpch/sf0.1/lineitem.tbl
+ok      tpch/sf0.1/customer.tbl
+ok      tpch/sf0.1/part.tbl
+ok      tpch/sf0.1/partsupp.tbl
+ok      tpch/sf0.1/supplier.tbl
+ok      tpch/sf0.1/nation.tbl
+ok      tpch/sf0.1/region.tbl

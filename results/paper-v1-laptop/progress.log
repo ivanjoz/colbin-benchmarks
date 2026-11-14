@@ -1,0 +1,54 @@
+[01:11:53] datasets: fetch and verify (datasets/fetch-all.sh)
+[01:11:55] building colbinbench and the matrix test binaries
+[01:13:06] web cases: 120, bulk cases: 14
+[01:13:06] timings: web, pass 1, 2 at a time on cores 0,2
+[03:29:28] timings: web, pass 1 done, 49150 lines
+[03:29:28] timings: tpch/sf0.1/nested, alone on core 0
+[04:05:14] timings: tpch/sf0.1/normalized, alone on core 0
+[04:37:46] timings: tpch/sf0.1/orders, alone on core 0
+[04:43:16] timings: tpch/sf0.1/lineitem, alone on core 0
+[05:07:29] timings: tpch/sf0.1/part, alone on core 0
+[05:09:28] timings: tpch/sf0.1/partsupp, alone on core 0
+[05:11:39] timings: tpcds/sf0.1/catalog_sales, alone on core 0
+[05:36:18] timings: tpcds/sf0.1/customer_demographics, alone on core 0
+[05:42:14] timings: tpcds/sf0.1/date_dim, alone on core 0
+[05:48:06] timings: tpcds/sf0.1/inventory, alone on core 0
+[05:51:10] timings: tpcds/sf0.1/store_returns, alone on core 0
+[05:54:58] timings: tpcds/sf0.1/store_sales, alone on core 0
+[06:51:12] timings: tpcds/sf0.1/time_dim, alone on core 0
+[06:55:08] timings: tpcds/sf0.1/web_sales, alone on core 0
+[07:07:53] timings: bulk done
+[07:07:53] sizes: web
+[07:14:22] sizes: tpch/sf0.1/nested
+[07:15:59] sizes: tpch/sf0.1/normalized
+[07:17:47] sizes: tpch/sf0.1/orders
+[07:18:04] sizes: tpch/sf0.1/lineitem
+[07:19:25] sizes: tpch/sf0.1/part
+[07:19:29] sizes: tpch/sf0.1/partsupp
+[07:19:37] sizes: tpcds/sf0.1/catalog_sales
+[07:20:24] sizes: tpcds/sf0.1/customer_demographics
+[07:20:37] sizes: tpcds/sf0.1/date_dim
+[07:20:51] sizes: tpcds/sf0.1/inventory
+[07:20:59] sizes: tpcds/sf0.1/store_returns
+[07:21:05] sizes: tpcds/sf0.1/store_sales
+[07:23:51] sizes: tpcds/sf0.1/time_dim
+[07:23:58] sizes: tpcds/sf0.1/web_sales
+[07:24:22] ablation: web
+[07:26:07] ablation: tpch/sf0.1/nested
+[07:26:28] ablation: tpch/sf0.1/normalized
+[07:26:53] ablation: tpch/sf0.1/orders
+[07:26:58] ablation: tpch/sf0.1/lineitem
+[07:27:15] ablation: tpch/sf0.1/part
+[07:27:17] ablation: tpch/sf0.1/partsupp
+[07:27:20] ablation: tpcds/sf0.1/catalog_sales
+[07:27:30] ablation: tpcds/sf0.1/customer_demographics
+[07:27:33] ablation: tpcds/sf0.1/date_dim
+[07:27:36] ablation: tpcds/sf0.1/inventory
+[07:27:38] ablation: tpcds/sf0.1/store_returns
+[07:27:39] ablation: tpcds/sf0.1/store_sales
+[07:27:53] ablation: tpcds/sf0.1/time_dim
+[07:27:55] ablation: tpcds/sf0.1/web_sales
+[07:28:00] timings: web, pass 2, 2 at a time on cores 0,2
+[09:44:25] timings: web, pass 2 done, 49150 lines
+[09:44:25] summary
+[09:44:25] done: results in /home/ivanjoz/projects/colbin-benchmarks/results/paper-v1-laptop (start with SUMMARY.md; the paper's tables are in tables/)

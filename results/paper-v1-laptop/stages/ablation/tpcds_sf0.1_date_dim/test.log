@@ -1,0 +1,14 @@
+=== RUN   TestAblation
+=== RUN   TestAblation/tpcds/sf0.1/date_dim
+    ablation_test.go:103: threshold 2          3959873 B       174138 B gzip
+    ablation_test.go:103: threshold 4          3959873 B       174138 B gzip
+    ablation_test.go:103: threshold 8          3959873 B       174138 B gzip
+    ablation_test.go:103: threshold 16         3959873 B       174138 B gzip
+    ablation_test.go:103: threshold 32         3959873 B       174138 B gzip
+    ablation_test.go:103: codec     auto       3959873 B       174138 B gzip
+    ablation_test.go:103: codec     raw        5487307 B      1144829 B gzip
+    ablation_test.go:103: codec     delta      3983007 B       169328 B gzip
+    ablation_test.go:103: codec     for        4614311 B       681047 B gzip
+--- PASS: TestAblation (3.27s)
+    --- PASS: TestAblation/tpcds/sf0.1/date_dim (3.27s)
+PASS

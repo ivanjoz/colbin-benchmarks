@@ -1,0 +1,2 @@
+case,dataset,regime,top_rows,rows,table_rows,table_row_fraction,values,colbin_bytes,table_bytes,table_byte_fraction,schema_bytes,gob_stream_bytes,colbin_bytes_per_value
+tpcds/sf0.1/web_sales,tpcds,bulk,71632,71632,71632,1.0000,2434938,4492649,4492649,1.0000,515,9557708,1.845

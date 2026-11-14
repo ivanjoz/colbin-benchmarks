@@ -1,0 +1,16 @@
+case,dataset,regime,format,bytes,bytes_per_row,gzip,zstd6,status
+tpcds/sf0.1/inventory,tpcds,bulk,json-v2,16285487,69.33,1258519,1153512,ok
+tpcds/sf0.1/inventory,tpcds,bulk,gob,3643067,15.51,1124768,1040025,lossy: $.Rows[1181].QuantityOnHand: nil against non-nil
+tpcds/sf0.1/inventory,tpcds,bulk,cbor,12562014,53.48,1299018,1205594,ok
+tpcds/sf0.1/inventory,tpcds,bulk,msgpack,12570391,53.51,1287091,1178568,ok
+tpcds/sf0.1/inventory,tpcds,bulk,msgpack-reflect,17335623,73.80,1310446,1102362,ok
+tpcds/sf0.1/inventory,tpcds,bulk,protobuf,3442896,14.66,1120915,1019824,ok
+tpcds/sf0.1/inventory,tpcds,bulk,vtprotobuf,3442896,14.66,1120915,1019824,ok
+tpcds/sf0.1/inventory,tpcds,bulk,flatbuffers,8456448,36.00,2683347,2519849,ok
+tpcds/sf0.1/inventory,tpcds,bulk,arrow,6607582,28.13,419685,421049,ok
+tpcds/sf0.1/inventory,tpcds,bulk,avro,2312201,9.84,1036082,1003041,ok
+tpcds/sf0.1/inventory,tpcds,bulk,capnproto,7516832,32.00,1187869,873068,ok
+tpcds/sf0.1/inventory,tpcds,bulk,colbin,458503,1.95,305367,302028,ok
+tpcds/sf0.1/inventory,tpcds,bulk,colbin+packed5,458503,1.95,305367,302028,ok
+tpcds/sf0.1/inventory,tpcds,bulk,colbin-untagged,459025,1.95,305592,302051,ok
+tpcds/sf0.1/inventory,tpcds,bulk,colbin-json,458568,1.95,305441,302152,ok

@@ -1,0 +1,16 @@
+case,dataset,regime,format,bytes,bytes_per_row,gzip,zstd6,status
+tpch/sf0.1/partsupp,tpch,bulk,json-v2,16208203,202.60,3375041,3152376,ok
+tpch/sf0.1/partsupp,tpch,bulk,gob,11472692,143.41,3273597,3101804,ok
+tpch/sf0.1/partsupp,tpch,bulk,cbor,14628175,182.85,3463819,3252443,ok
+tpch/sf0.1/partsupp,tpch,bulk,msgpack,14682502,183.53,3465446,3253435,ok
+tpch/sf0.1/partsupp,tpch,bulk,msgpack-reflect,15558660,194.48,3484789,3240864,ok
+tpch/sf0.1/partsupp,tpch,bulk,protobuf,11311721,141.40,3439126,3247169,ok
+tpch/sf0.1/partsupp,tpch,bulk,vtprotobuf,11311721,141.40,3439126,3247169,ok
+tpch/sf0.1/partsupp,tpch,bulk,flatbuffers,13118472,163.98,4026115,3812562,ok
+tpch/sf0.1/partsupp,tpch,bulk,arrow,11799790,147.50,2890816,2744666,ok
+tpch/sf0.1/partsupp,tpch,bulk,avro,10803913,135.05,3081627,2895583,ok
+tpch/sf0.1/partsupp,tpch,bulk,capnproto,12798456,159.98,3338686,3265154,ok
+tpch/sf0.1/partsupp,tpch,bulk,colbin,10391904,129.90,2648705,2533281,ok
+tpch/sf0.1/partsupp,tpch,bulk,colbin+packed5,10391904,129.90,2648705,2533281,ok
+tpch/sf0.1/partsupp,tpch,bulk,colbin-untagged,10392186,129.90,2646862,2532258,ok
+tpch/sf0.1/partsupp,tpch,bulk,colbin-json,10391973,129.90,2648952,2533439,ok

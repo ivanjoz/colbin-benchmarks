@@ -1,0 +1,10 @@
+case,dataset,regime,knob,setting,bytes,gzip
+tpcds/sf0.1/catalog_sales,tpcds,bulk,threshold,2,9029096,7088232
+tpcds/sf0.1/catalog_sales,tpcds,bulk,threshold,4,9029096,7088232
+tpcds/sf0.1/catalog_sales,tpcds,bulk,threshold,8,9029096,7088232
+tpcds/sf0.1/catalog_sales,tpcds,bulk,threshold,16,9029096,7088232
+tpcds/sf0.1/catalog_sales,tpcds,bulk,threshold,32,9029096,7088232
+tpcds/sf0.1/catalog_sales,tpcds,bulk,codec,auto,9029096,7088232
+tpcds/sf0.1/catalog_sales,tpcds,bulk,codec,raw,9931460,7469404
+tpcds/sf0.1/catalog_sales,tpcds,bulk,codec,delta,9475602,6915893
+tpcds/sf0.1/catalog_sales,tpcds,bulk,codec,for,9198921,7205958

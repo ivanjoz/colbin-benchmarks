@@ -1,0 +1,1 @@
+colbinbench: tpcds/sf0.1/inventory: gob: not timed: does not round-trip: $.Rows[1181].QuantityOnHand: nil against non-nil

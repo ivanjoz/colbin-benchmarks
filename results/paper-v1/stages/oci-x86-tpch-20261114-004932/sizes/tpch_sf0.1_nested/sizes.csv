@@ -1,0 +1,16 @@
+case,dataset,regime,format,bytes,bytes_per_row,gzip,zstd6,status
+tpch/sf0.1/nested,tpch,bulk,json-v2,203554428,1357.03,32964550,29769065,ok
+tpch/sf0.1/nested,tpch,bulk,gob,68360605,455.74,26822245,24698720,ok
+tpch/sf0.1/nested,tpch,bulk,cbor,162746575,1084.98,31991813,29233588,ok
+tpch/sf0.1/nested,tpch,bulk,msgpack,162291941,1081.95,31934852,28862606,ok
+tpch/sf0.1/nested,tpch,bulk,msgpack-reflect,182288271,1215.26,32666263,29309256,ok
+tpch/sf0.1/nested,tpch,bulk,protobuf,65356713,435.71,28029957,26228485,ok
+tpch/sf0.1/nested,tpch,bulk,vtprotobuf,65356713,435.71,28029957,26228485,ok
+tpch/sf0.1/nested,tpch,bulk,flatbuffers,114086040,760.57,36074320,33240933,ok
+tpch/sf0.1/nested,tpch,bulk,arrow,82881334,552.54,32968412,27205857,ok
+tpch/sf0.1/nested,tpch,bulk,avro,56854669,379.03,24781379,23484908,ok
+tpch/sf0.1/nested,tpch,bulk,capnproto,120993800,806.63,35117197,33217636,ok
+tpch/sf0.1/nested,tpch,bulk,colbin,50287763,335.25,17379024,17267865,ok
+tpch/sf0.1/nested,tpch,bulk,colbin+packed5,50287763,335.25,17379024,17267865,ok
+tpch/sf0.1/nested,tpch,bulk,colbin-untagged,50290502,335.27,17349912,17280455,ok
+tpch/sf0.1/nested,tpch,bulk,colbin-json,50288081,335.25,17356074,17269186,ok

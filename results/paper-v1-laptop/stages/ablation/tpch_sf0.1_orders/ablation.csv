@@ -1,0 +1,10 @@
+case,dataset,regime,knob,setting,bytes,gzip
+tpch/sf0.1/orders,tpch,bulk,threshold,2,12628985,3509950
+tpch/sf0.1/orders,tpch,bulk,threshold,4,12628985,3509950
+tpch/sf0.1/orders,tpch,bulk,threshold,8,12628985,3509950
+tpch/sf0.1/orders,tpch,bulk,threshold,16,12628985,3509950
+tpch/sf0.1/orders,tpch,bulk,threshold,32,12628985,3509950
+tpch/sf0.1/orders,tpch,bulk,codec,auto,12628985,3509950
+tpch/sf0.1/orders,tpch,bulk,codec,raw,12895950,3887913
+tpch/sf0.1/orders,tpch,bulk,codec,delta,12673036,3557670
+tpch/sf0.1/orders,tpch,bulk,codec,for,12761198,3761420

@@ -1,0 +1,1 @@
+colbinbench: tpcds/sf0.1/store_sales: gob: not timed: does not round-trip: $.Rows[2].ExtDiscountAmt: nil against non-nil

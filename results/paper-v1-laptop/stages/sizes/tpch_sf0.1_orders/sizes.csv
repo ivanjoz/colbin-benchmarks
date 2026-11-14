@@ -1,0 +1,16 @@
+case,dataset,regime,format,bytes,bytes_per_row,gzip,zstd6,status
+tpch/sf0.1/orders,tpch,bulk,json-v2,33570813,223.81,5649087,5319543,ok
+tpch/sf0.1/orders,tpch,bulk,gob,15084768,100.57,5050503,4572403,ok
+tpch/sf0.1/orders,tpch,bulk,cbor,27990640,186.60,5494564,5121231,ok
+tpch/sf0.1/orders,tpch,bulk,msgpack,27987447,186.58,5504234,5132550,ok
+tpch/sf0.1/orders,tpch,bulk,msgpack-reflect,29806395,198.71,5553928,5157089,ok
+tpch/sf0.1/orders,tpch,bulk,protobuf,14678282,97.86,5312666,5088590,ok
+tpch/sf0.1/orders,tpch,bulk,vtprotobuf,14678282,97.86,5312666,5088590,ok
+tpch/sf0.1/orders,tpch,bulk,flatbuffers,21635576,144.24,6821206,6288597,ok
+tpch/sf0.1/orders,tpch,bulk,arrow,16940438,112.94,6231784,5434159,ok
+tpch/sf0.1/orders,tpch,bulk,avro,13585649,90.57,4766764,4576596,ok
+tpch/sf0.1/orders,tpch,bulk,capnproto,21861136,145.74,6391477,6285359,ok
+tpch/sf0.1/orders,tpch,bulk,colbin,12628985,84.19,3509950,3450290,ok
+tpch/sf0.1/orders,tpch,bulk,colbin+packed5,12628985,84.19,3509950,3450290,ok
+tpch/sf0.1/orders,tpch,bulk,colbin-untagged,12630059,84.20,3503147,3450280,ok
+tpch/sf0.1/orders,tpch,bulk,colbin-json,12629109,84.19,3509650,3450148,ok

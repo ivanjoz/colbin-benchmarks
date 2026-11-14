@@ -1,0 +1,10 @@
+case,dataset,regime,knob,setting,bytes,gzip
+tpcds/sf0.1/date_dim,tpcds,bulk,threshold,2,3959873,174138
+tpcds/sf0.1/date_dim,tpcds,bulk,threshold,4,3959873,174138
+tpcds/sf0.1/date_dim,tpcds,bulk,threshold,8,3959873,174138
+tpcds/sf0.1/date_dim,tpcds,bulk,threshold,16,3959873,174138
+tpcds/sf0.1/date_dim,tpcds,bulk,threshold,32,3959873,174138
+tpcds/sf0.1/date_dim,tpcds,bulk,codec,auto,3959873,174138
+tpcds/sf0.1/date_dim,tpcds,bulk,codec,raw,5487307,1144829
+tpcds/sf0.1/date_dim,tpcds,bulk,codec,delta,3983007,169328
+tpcds/sf0.1/date_dim,tpcds,bulk,codec,for,4614311,681047

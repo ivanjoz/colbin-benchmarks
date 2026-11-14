@@ -1,0 +1,16 @@
+case,dataset,regime,format,bytes,bytes_per_row,gzip,zstd6,status
+tpcds/sf0.1/date_dim,tpcds,bulk,json-v2,34061723,466.29,1731813,1581028,ok
+tpcds/sf0.1/date_dim,tpcds,bulk,gob,9092359,124.47,1602003,1171867,ok
+tpcds/sf0.1/date_dim,tpcds,bulk,cbor,25824032,353.52,1860534,1326694,ok
+tpcds/sf0.1/date_dim,tpcds,bulk,msgpack,25914256,354.75,1754807,1195236,ok
+tpcds/sf0.1/date_dim,tpcds,bulk,msgpack-reflect,32955546,451.14,1756597,1206249,ok
+tpcds/sf0.1/date_dim,tpcds,bulk,protobuf,9644995,132.03,1776388,1198962,ok
+tpcds/sf0.1/date_dim,tpcds,bulk,vtprotobuf,9644995,132.03,1776388,1198962,ok
+tpcds/sf0.1/date_dim,tpcds,bulk,flatbuffers,22081776,302.29,2794722,1677126,ok
+tpcds/sf0.1/date_dim,tpcds,bulk,arrow,15574742,213.21,3631738,1288197,ok
+tpcds/sf0.1/date_dim,tpcds,bulk,avro,6516096,89.20,1434535,1221795,ok
+tpcds/sf0.1/date_dim,tpcds,bulk,capnproto,24210560,331.43,2387287,1990203,ok
+tpcds/sf0.1/date_dim,tpcds,bulk,colbin,3959873,54.21,174138,81032,ok
+tpcds/sf0.1/date_dim,tpcds,bulk,colbin+packed5,3959873,54.21,174138,81032,ok
+tpcds/sf0.1/date_dim,tpcds,bulk,colbin-untagged,3959874,54.21,174190,78618,ok
+tpcds/sf0.1/date_dim,tpcds,bulk,colbin-json,3960199,54.21,174485,81399,ok

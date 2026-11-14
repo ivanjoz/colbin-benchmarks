@@ -1,0 +1,1 @@
+colbinbench: tpcds/sf0.1/web_sales: gob: not timed: does not round-trip: $.Rows[1].CouponAmt: nil against non-nil

@@ -1,0 +1,10 @@
+case,dataset,regime,knob,setting,bytes,gzip
+tpcds/sf0.1/inventory,tpcds,bulk,threshold,2,458503,305367
+tpcds/sf0.1/inventory,tpcds,bulk,threshold,4,458503,305367
+tpcds/sf0.1/inventory,tpcds,bulk,threshold,8,458503,305367
+tpcds/sf0.1/inventory,tpcds,bulk,threshold,16,458503,305367
+tpcds/sf0.1/inventory,tpcds,bulk,threshold,32,458503,305367
+tpcds/sf0.1/inventory,tpcds,bulk,codec,auto,458503,305367
+tpcds/sf0.1/inventory,tpcds,bulk,codec,raw,1298150,344188
+tpcds/sf0.1/inventory,tpcds,bulk,codec,delta,488621,333218
+tpcds/sf0.1/inventory,tpcds,bulk,codec,for,738273,336180

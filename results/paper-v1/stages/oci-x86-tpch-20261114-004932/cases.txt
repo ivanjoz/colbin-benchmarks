@@ -1,0 +1,10 @@
+tpch/sf0.1/nested bulk 150000
+tpch/sf0.1/normalized bulk 866602
+tpch/sf0.1/orders bulk 150000
+tpch/sf0.1/lineitem bulk 600572
+tpch/sf0.1/customer web 15000
+tpch/sf0.1/part bulk 20000
+tpch/sf0.1/partsupp bulk 80000
+tpch/sf0.1/supplier web 1000
+tpch/sf0.1/nation web 25
+tpch/sf0.1/region web 5

@@ -1,0 +1,16 @@
+case,dataset,regime,format,bytes,bytes_per_row,gzip,zstd6,status
+tpch/sf0.1/normalized,tpch,bulk,json-v2,237227279,273.74,37794475,35095784,ok
+tpch/sf0.1/normalized,tpch,bulk,gob,87481391,100.95,31921707,29833552,ok
+tpch/sf0.1/normalized,tpch,bulk,cbor,191657498,221.16,36893332,34694969,ok
+tpch/sf0.1/normalized,tpch,bulk,msgpack,192500486,222.13,36947993,34513961,ok
+tpch/sf0.1/normalized,tpch,bulk,msgpack-reflect,213801986,246.71,37765509,34799458,ok
+tpch/sf0.1/normalized,tpch,bulk,protobuf,84468527,97.47,33505082,31733637,ok
+tpch/sf0.1/normalized,tpch,bulk,vtprotobuf,84468527,97.47,33505082,31733637,ok
+tpch/sf0.1/normalized,tpch,bulk,flatbuffers,135622048,156.50,43113595,40699999,ok
+tpch/sf0.1/normalized,tpch,bulk,arrow,102012840,117.72,37695145,31524037,ok
+tpch/sf0.1/normalized,tpch,bulk,avro,73476826,84.79,30164029,28628032,ok
+tpch/sf0.1/normalized,tpch,bulk,capnproto,138608936,159.95,38867136,39441649,ok
+tpch/sf0.1/normalized,tpch,bulk,colbin,65539427,75.63,22025715,21576201,ok
+tpch/sf0.1/normalized,tpch,bulk,colbin+packed5,65539303,75.63,22025906,21576363,ok
+tpch/sf0.1/normalized,tpch,bulk,colbin-untagged,65548808,75.64,22058009,21572053,ok
+tpch/sf0.1/normalized,tpch,bulk,colbin-json,65540191,75.63,22027053,21569839,ok

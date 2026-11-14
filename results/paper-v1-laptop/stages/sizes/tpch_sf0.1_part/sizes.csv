@@ -1,0 +1,16 @@
+case,dataset,regime,format,bytes,bytes_per_row,gzip,zstd6,status
+tpch/sf0.1/part,tpch,bulk,json-v2,4271100,213.56,721391,692246,ok
+tpch/sf0.1/part,tpch,bulk,gob,2407702,120.39,687025,651669,ok
+tpch/sf0.1/part,tpch,bulk,cbor,3559429,177.97,761402,715270,ok
+tpch/sf0.1/part,tpch,bulk,msgpack,3539513,176.98,763659,720986,ok
+tpch/sf0.1/part,tpch,bulk,msgpack-reflect,3739767,186.99,773888,724927,ok
+tpch/sf0.1/part,tpch,bulk,protobuf,2392716,119.64,737121,693342,ok
+tpch/sf0.1/part,tpch,bulk,vtprotobuf,2392716,119.64,737121,693342,ok
+tpch/sf0.1/part,tpch,bulk,flatbuffers,3724768,186.24,966397,910486,ok
+tpch/sf0.1/part,tpch,bulk,arrow,2729494,136.47,853215,813042,ok
+tpch/sf0.1/part,tpch,bulk,avro,2180449,109.02,671765,647586,ok
+tpch/sf0.1/part,tpch,bulk,capnproto,3745584,187.28,985546,985493,ok
+tpch/sf0.1/part,tpch,bulk,colbin,2091567,104.58,457326,457960,ok
+tpch/sf0.1/part,tpch,bulk,colbin+packed5,2091567,104.58,457326,457960,ok
+tpch/sf0.1/part,tpch,bulk,colbin-untagged,2091758,104.59,457909,457812,ok
+tpch/sf0.1/part,tpch,bulk,colbin-json,2091664,104.58,457416,458132,ok

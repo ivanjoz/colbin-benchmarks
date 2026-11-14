@@ -1,0 +1,179 @@
+=== RUN   TestAblation
+=== RUN   TestAblation/tpcds/sf0.1/call_center
+    ablation_test.go:103: threshold 2              295 B          287 B gzip
+    ablation_test.go:103: threshold 4              295 B          287 B gzip
+    ablation_test.go:103: threshold 8              295 B          287 B gzip
+    ablation_test.go:103: threshold 16             295 B          287 B gzip
+    ablation_test.go:103: threshold 32             295 B          287 B gzip
+    ablation_test.go:103: codec     auto           295 B          287 B gzip
+    ablation_test.go:103: codec     raw            295 B          287 B gzip
+    ablation_test.go:103: codec     delta          295 B          287 B gzip
+    ablation_test.go:103: codec     for            295 B          287 B gzip
+=== RUN   TestAblation/tpcds/sf0.1/catalog_page
+    ablation_test.go:103: threshold 2          1351800 B       375764 B gzip
+    ablation_test.go:103: threshold 4          1351800 B       375764 B gzip
+    ablation_test.go:103: threshold 8          1351800 B       375764 B gzip
+    ablation_test.go:103: threshold 16         1351800 B       375764 B gzip
+    ablation_test.go:103: threshold 32         1351800 B       375764 B gzip
+    ablation_test.go:103: codec     auto       1351800 B       375764 B gzip
+    ablation_test.go:103: codec     raw        1416717 B       400890 B gzip
+    ablation_test.go:103: codec     delta      1353143 B       372502 B gzip
+    ablation_test.go:103: codec     for        1374549 B       398367 B gzip
+=== RUN   TestAblation/tpcds/sf0.1/catalog_returns
+    ablation_test.go:103: threshold 2           670263 B       634789 B gzip
+    ablation_test.go:103: threshold 4           670263 B       634789 B gzip
+    ablation_test.go:103: threshold 8           670263 B       634789 B gzip
+    ablation_test.go:103: threshold 16          670263 B       634789 B gzip
+    ablation_test.go:103: threshold 32          670263 B       634789 B gzip
+    ablation_test.go:103: codec     auto        670263 B       634789 B gzip
+    ablation_test.go:103: codec     raw         716184 B       675773 B gzip
+    ablation_test.go:103: codec     delta       708987 B       661088 B gzip
+    ablation_test.go:103: codec     for         685580 B       652978 B gzip
+=== RUN   TestAblation/tpcds/sf0.1/customer
+    ablation_test.go:103: threshold 2           869708 B       409121 B gzip
+    ablation_test.go:103: threshold 4           869708 B       409121 B gzip
+    ablation_test.go:103: threshold 8           869708 B       409121 B gzip
+    ablation_test.go:103: threshold 16          869708 B       409121 B gzip
+    ablation_test.go:103: threshold 32          869708 B       409121 B gzip
+    ablation_test.go:103: codec     auto        869708 B       409121 B gzip
+    ablation_test.go:103: codec     raw         927429 B       464108 B gzip
+    ablation_test.go:103: codec     delta       880045 B       422794 B gzip
+    ablation_test.go:103: codec     for         880870 B       424983 B gzip
+=== RUN   TestAblation/tpcds/sf0.1/customer_address
+    ablation_test.go:103: threshold 2           514185 B       110584 B gzip
+    ablation_test.go:103: threshold 4           514185 B       110584 B gzip
+    ablation_test.go:103: threshold 8           514185 B       110584 B gzip
+    ablation_test.go:103: threshold 16          514185 B       110584 B gzip
+    ablation_test.go:103: threshold 32          514185 B       110584 B gzip
+    ablation_test.go:103: codec     auto        514185 B       110584 B gzip
+    ablation_test.go:103: codec     raw         521329 B       120278 B gzip
+    ablation_test.go:103: codec     delta       514788 B       110652 B gzip
+    ablation_test.go:103: codec     for         519602 B       119761 B gzip
+=== RUN   TestAblation/tpcds/sf0.1/household_demographics
+    ablation_test.go:103: threshold 2            70090 B         1881 B gzip
+    ablation_test.go:103: threshold 4            70090 B         1881 B gzip
+    ablation_test.go:103: threshold 8            70090 B         1881 B gzip
+    ablation_test.go:103: threshold 16           70090 B         1881 B gzip
+    ablation_test.go:103: threshold 32           70090 B         1881 B gzip
+    ablation_test.go:103: codec     auto         70090 B         1881 B gzip
+    ablation_test.go:103: codec     raw          81026 B        13784 B gzip
+    ablation_test.go:103: codec     delta        71006 B         1856 B gzip
+    ablation_test.go:103: codec     for          79806 B        12567 B gzip
+=== RUN   TestAblation/tpcds/sf0.1/income_band
+    ablation_test.go:103: threshold 2              116 B          141 B gzip
+    ablation_test.go:103: threshold 4              116 B          141 B gzip
+    ablation_test.go:103: threshold 8              116 B          141 B gzip
+    ablation_test.go:103: threshold 16             116 B          141 B gzip
+    ablation_test.go:103: threshold 32             204 B          229 B gzip
+    ablation_test.go:103: codec     auto           116 B          141 B gzip
+    ablation_test.go:103: codec     raw            118 B          143 B gzip
+    ablation_test.go:103: codec     delta          116 B          141 B gzip
+    ablation_test.go:103: codec     for            142 B          148 B gzip
+=== RUN   TestAblation/tpcds/sf0.1/item
+    ablation_test.go:103: threshold 2           431607 B       124203 B gzip
+    ablation_test.go:103: threshold 4           431607 B       124203 B gzip
+    ablation_test.go:103: threshold 8           431607 B       124203 B gzip
+    ablation_test.go:103: threshold 16          431607 B       124203 B gzip
+    ablation_test.go:103: threshold 32          431607 B       124203 B gzip
+    ablation_test.go:103: codec     auto        431607 B       124203 B gzip
+    ablation_test.go:103: codec     raw         434772 B       127452 B gzip
+    ablation_test.go:103: codec     delta       433501 B       125318 B gzip
+    ablation_test.go:103: codec     for         433440 B       127071 B gzip
+=== RUN   TestAblation/tpcds/sf0.1/promotion
+    ablation_test.go:103: threshold 2             2940 B         1237 B gzip
+    ablation_test.go:103: threshold 4             2940 B         1237 B gzip
+    ablation_test.go:103: threshold 8             2940 B         1237 B gzip
+    ablation_test.go:103: threshold 16            2940 B         1237 B gzip
+    ablation_test.go:103: threshold 32            3768 B         1597 B gzip
+    ablation_test.go:103: codec     auto          2940 B         1237 B gzip
+    ablation_test.go:103: codec     raw           3066 B         1350 B gzip
+    ablation_test.go:103: codec     delta         2961 B         1258 B gzip
+    ablation_test.go:103: codec     for           2964 B         1256 B gzip
+=== RUN   TestAblation/tpcds/sf0.1/reason
+    ablation_test.go:103: threshold 2              294 B          197 B gzip
+    ablation_test.go:103: threshold 4              294 B          197 B gzip
+    ablation_test.go:103: threshold 8              315 B          212 B gzip
+    ablation_test.go:103: threshold 16             315 B          212 B gzip
+    ablation_test.go:103: threshold 32             315 B          212 B gzip
+    ablation_test.go:103: codec     auto           315 B          212 B gzip
+    ablation_test.go:103: codec     raw            315 B          212 B gzip
+    ablation_test.go:103: codec     delta          315 B          212 B gzip
+    ablation_test.go:103: codec     for            315 B          212 B gzip
+=== RUN   TestAblation/tpcds/sf0.1/ship_mode
+    ablation_test.go:103: threshold 2             1075 B          554 B gzip
+    ablation_test.go:103: threshold 4             1075 B          554 B gzip
+    ablation_test.go:103: threshold 8             1075 B          554 B gzip
+    ablation_test.go:103: threshold 16            1075 B          554 B gzip
+    ablation_test.go:103: threshold 32            1145 B          641 B gzip
+    ablation_test.go:103: codec     auto          1075 B          554 B gzip
+    ablation_test.go:103: codec     raw           1075 B          554 B gzip
+    ablation_test.go:103: codec     delta         1075 B          545 B gzip
+    ablation_test.go:103: codec     for           1083 B          561 B gzip
+=== RUN   TestAblation/tpcds/sf0.1/store
+    ablation_test.go:103: threshold 2              272 B          266 B gzip
+    ablation_test.go:103: threshold 4              272 B          266 B gzip
+    ablation_test.go:103: threshold 8              272 B          266 B gzip
+    ablation_test.go:103: threshold 16             272 B          266 B gzip
+    ablation_test.go:103: threshold 32             272 B          266 B gzip
+    ablation_test.go:103: codec     auto           272 B          266 B gzip
+    ablation_test.go:103: codec     raw            272 B          266 B gzip
+    ablation_test.go:103: codec     delta          272 B          266 B gzip
+    ablation_test.go:103: codec     for            272 B          266 B gzip
+=== RUN   TestAblation/tpcds/sf0.1/warehouse
+    ablation_test.go:103: threshold 2              128 B          139 B gzip
+    ablation_test.go:103: threshold 4              128 B          139 B gzip
+    ablation_test.go:103: threshold 8              128 B          139 B gzip
+    ablation_test.go:103: threshold 16             128 B          139 B gzip
+    ablation_test.go:103: threshold 32             128 B          139 B gzip
+    ablation_test.go:103: codec     auto           128 B          139 B gzip
+    ablation_test.go:103: codec     raw            128 B          139 B gzip
+    ablation_test.go:103: codec     delta          128 B          139 B gzip
+    ablation_test.go:103: codec     for            128 B          139 B gzip
+=== RUN   TestAblation/tpcds/sf0.1/web_page
+    ablation_test.go:103: threshold 2              393 B          218 B gzip
+    ablation_test.go:103: threshold 4              393 B          218 B gzip
+    ablation_test.go:103: threshold 8              431 B          240 B gzip
+    ablation_test.go:103: threshold 16             431 B          240 B gzip
+    ablation_test.go:103: threshold 32             431 B          240 B gzip
+    ablation_test.go:103: codec     auto           431 B          240 B gzip
+    ablation_test.go:103: codec     raw            431 B          240 B gzip
+    ablation_test.go:103: codec     delta          431 B          240 B gzip
+    ablation_test.go:103: codec     for            431 B          240 B gzip
+=== RUN   TestAblation/tpcds/sf0.1/web_returns
+    ablation_test.go:103: threshold 2           309143 B       292645 B gzip
+    ablation_test.go:103: threshold 4           309143 B       292645 B gzip
+    ablation_test.go:103: threshold 8           309143 B       292645 B gzip
+    ablation_test.go:103: threshold 16          309143 B       292645 B gzip
+    ablation_test.go:103: threshold 32          309143 B       292645 B gzip
+    ablation_test.go:103: codec     auto        309143 B       292645 B gzip
+    ablation_test.go:103: codec     raw         324867 B       307771 B gzip
+    ablation_test.go:103: codec     delta       328119 B       314464 B gzip
+    ablation_test.go:103: codec     for         315517 B       302183 B gzip
+=== RUN   TestAblation/tpcds/sf0.1/web_site
+    ablation_test.go:103: threshold 2              921 B          606 B gzip
+    ablation_test.go:103: threshold 4              936 B          544 B gzip
+    ablation_test.go:103: threshold 8              936 B          544 B gzip
+    ablation_test.go:103: threshold 16             936 B          544 B gzip
+    ablation_test.go:103: threshold 32             936 B          544 B gzip
+    ablation_test.go:103: codec     auto           936 B          544 B gzip
+    ablation_test.go:103: codec     raw            936 B          544 B gzip
+    ablation_test.go:103: codec     delta          936 B          544 B gzip
+    ablation_test.go:103: codec     for            936 B          544 B gzip
+--- PASS: TestAblation (1.65s)
+    --- PASS: TestAblation/tpcds/sf0.1/call_center (0.00s)
+    --- PASS: TestAblation/tpcds/sf0.1/catalog_page (0.24s)
+    --- PASS: TestAblation/tpcds/sf0.1/catalog_returns (0.52s)
+    --- PASS: TestAblation/tpcds/sf0.1/customer (0.31s)
+    --- PASS: TestAblation/tpcds/sf0.1/customer_address (0.14s)
+    --- PASS: TestAblation/tpcds/sf0.1/household_demographics (0.05s)
+    --- PASS: TestAblation/tpcds/sf0.1/income_band (0.00s)
+    --- PASS: TestAblation/tpcds/sf0.1/item (0.09s)
+    --- PASS: TestAblation/tpcds/sf0.1/promotion (0.00s)
+    --- PASS: TestAblation/tpcds/sf0.1/reason (0.00s)
+    --- PASS: TestAblation/tpcds/sf0.1/ship_mode (0.00s)
+    --- PASS: TestAblation/tpcds/sf0.1/store (0.00s)
+    --- PASS: TestAblation/tpcds/sf0.1/warehouse (0.00s)
+    --- PASS: TestAblation/tpcds/sf0.1/web_page (0.00s)
+    --- PASS: TestAblation/tpcds/sf0.1/web_returns (0.26s)
+    --- PASS: TestAblation/tpcds/sf0.1/web_site (0.00s)
+PASS

@@ -1,0 +1,2 @@
+case,dataset,regime,top_rows,rows,table_rows,table_row_fraction,values,colbin_bytes,table_bytes,table_byte_fraction,schema_bytes,gob_stream_bytes,colbin_bytes_per_value
+tpcds/sf0.1/store_sales,tpcds,bulk,288464,288464,288464,1.0000,6363177,12291947,12291947,1.0000,329,24248204,1.932

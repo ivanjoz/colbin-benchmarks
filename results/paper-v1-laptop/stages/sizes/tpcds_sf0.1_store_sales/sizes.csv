@@ -1,0 +1,16 @@
+case,dataset,regime,format,bytes,bytes_per_row,gzip,zstd6,status
+tpcds/sf0.1/store_sales,tpcds,bulk,json-v2,117928532,408.82,16777004,16715509,ok
+tpcds/sf0.1/store_sales,tpcds,bulk,gob,24248640,84.06,11741455,11465366,lossy: $.Rows[2].ExtDiscountAmt: nil against non-nil
+tpcds/sf0.1/store_sales,tpcds,bulk,cbor,90761750,314.64,16359314,14832197,ok
+tpcds/sf0.1/store_sales,tpcds,bulk,msgpack,92053716,319.12,16349677,14561748,ok
+tpcds/sf0.1/store_sales,tpcds,bulk,msgpack-reflect,128790707,446.47,16471237,14599810,ok
+tpcds/sf0.1/store_sales,tpcds,bulk,protobuf,23213533,80.47,13724775,13271613,ok
+tpcds/sf0.1/store_sales,tpcds,bulk,vtprotobuf,23213533,80.47,13724775,13271613,ok
+tpcds/sf0.1/store_sales,tpcds,bulk,flatbuffers,55564512,192.62,15292091,15324860,ok
+tpcds/sf0.1/store_sales,tpcds,bulk,arrow,53839502,186.64,10962681,10569547,ok
+tpcds/sf0.1/store_sales,tpcds,bulk,avro,20773165,72.01,11337971,11087689,ok
+tpcds/sf0.1/store_sales,tpcds,bulk,capnproto,55385120,192.00,12977275,12915942,ok
+tpcds/sf0.1/store_sales,tpcds,bulk,colbin,12291947,42.61,9358824,8477213,ok
+tpcds/sf0.1/store_sales,tpcds,bulk,colbin+packed5,12291947,42.61,9358824,8477213,ok
+tpcds/sf0.1/store_sales,tpcds,bulk,colbin-untagged,12291948,42.61,9358791,8477171,ok
+tpcds/sf0.1/store_sales,tpcds,bulk,colbin-json,12292277,42.61,9358645,8479002,ok

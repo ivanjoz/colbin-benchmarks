@@ -1,0 +1,16 @@
+case,dataset,regime,format,bytes,bytes_per_row,gzip,zstd6,status
+tpcds/sf0.1/store_returns,tpcds,bulk,json-v2,10308209,359.12,2015532,1908660,ok
+tpcds/sf0.1/store_returns,tpcds,bulk,gob,2197552,76.56,1402361,1398908,lossy: $.Rows[1].ReturnShipCost: nil against non-nil
+tpcds/sf0.1/store_returns,tpcds,bulk,cbor,7941092,276.65,1951001,1665685,ok
+tpcds/sf0.1/store_returns,tpcds,bulk,msgpack,8098951,282.15,1972995,1690556,ok
+tpcds/sf0.1/store_returns,tpcds,bulk,msgpack-reflect,11337945,395.00,1929797,1611412,ok
+tpcds/sf0.1/store_returns,tpcds,bulk,protobuf,1990265,69.34,1572560,1603556,ok
+tpcds/sf0.1/store_returns,tpcds,bulk,vtprotobuf,1990265,69.34,1572560,1603556,ok
+tpcds/sf0.1/store_returns,tpcds,bulk,flatbuffers,4872632,169.75,1711038,1664634,ok
+tpcds/sf0.1/store_returns,tpcds,bulk,arrow,4661926,162.41,1323461,1255188,ok
+tpcds/sf0.1/store_returns,tpcds,bulk,avro,1806472,62.93,1312515,1314959,ok
+tpcds/sf0.1/store_returns,tpcds,bulk,capnproto,4822304,168.00,1506191,1445045,ok
+tpcds/sf0.1/store_returns,tpcds,bulk,colbin,1023631,35.66,978076,983659,ok
+tpcds/sf0.1/store_returns,tpcds,bulk,colbin+packed5,1023631,35.66,978076,983659,ok
+tpcds/sf0.1/store_returns,tpcds,bulk,colbin-untagged,1023632,35.66,978096,983531,ok
+tpcds/sf0.1/store_returns,tpcds,bulk,colbin-json,1023925,35.67,978837,983808,ok

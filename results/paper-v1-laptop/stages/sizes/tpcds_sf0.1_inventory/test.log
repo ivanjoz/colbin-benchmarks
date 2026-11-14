@@ -1,0 +1,23 @@
+=== RUN   TestSizes
+=== RUN   TestSizes/tpcds/sf0.1/inventory
+    sizes_test.go:190: gob does not round-trip (gob does not transmit a pointer to a zero value, or an empty slice inside one): $.Rows[1181].QuantityOnHand: nil against non-nil
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              16285487     69.33    1258519    1153512  ok
+    sizes_test.go:125: gob                   3643067     15.51    1124768    1040025  lossy: $.Rows[1181].QuantityOnHand: nil against non-nil
+    sizes_test.go:125: cbor                 12562014     53.48    1299018    1205594  ok
+    sizes_test.go:125: msgpack              12570391     53.51    1287091    1178568  ok
+    sizes_test.go:125: msgpack-reflect      17335623     73.80    1310446    1102362  ok
+    sizes_test.go:125: protobuf              3442896     14.66    1120915    1019824  ok
+    sizes_test.go:125: vtprotobuf            3442896     14.66    1120915    1019824  ok
+    sizes_test.go:125: flatbuffers           8456448     36.00    2683347    2519849  ok
+    sizes_test.go:125: arrow                 6607582     28.13     419685     421049  ok
+    sizes_test.go:125: avro                  2312201      9.84    1036082    1003041  ok
+    sizes_test.go:125: capnproto             7516832     32.00    1187869     873068  ok
+    sizes_test.go:125: colbin                 458503      1.95     305367     302028  ok
+    sizes_test.go:125: colbin+packed5         458503      1.95     305367     302028  ok
+    sizes_test.go:125: colbin-untagged        459025      1.95     305592     302051  ok
+    sizes_test.go:125: colbin-json            458568      1.95     305441     302152  ok
+    sizes_test.go:155: rows 234900 (top level 234900), 234900 as table rows (1.0000); 927853 values; colbin 458503 B, of which tables 458503 B (1.0000); schema section 64 B; gob stream 3642915 B
+--- PASS: TestSizes (7.86s)
+    --- PASS: TestSizes/tpcds/sf0.1/inventory (7.86s)
+PASS

@@ -1,0 +1,22 @@
+=== RUN   TestSizes
+=== RUN   TestSizes/tpch/sf0.1/nested
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2             203554428   1357.03   32964550   29769065  ok
+    sizes_test.go:125: gob                  68360605    455.74   26822245   24698720  ok
+    sizes_test.go:125: cbor                162746575   1084.98   31991813   29233588  ok
+    sizes_test.go:125: msgpack             162291941   1081.95   31934852   28862606  ok
+    sizes_test.go:125: msgpack-reflect     182288271   1215.26   32666263   29309256  ok
+    sizes_test.go:125: protobuf             65356713    435.71   28029957   26228485  ok
+    sizes_test.go:125: vtprotobuf           65356713    435.71   28029957   26228485  ok
+    sizes_test.go:125: flatbuffers         114086040    760.57   36074320   33240933  ok
+    sizes_test.go:125: arrow                82881334    552.54   32968412   27205857  ok
+    sizes_test.go:125: avro                 56854669    379.03   24781379   23484908  ok
+    sizes_test.go:125: capnproto           120993800    806.63   35117197   33217636  ok
+    sizes_test.go:125: colbin               50287763    335.25   17379024   17267865  ok
+    sizes_test.go:125: colbin+packed5       50287763    335.25   17379024   17267865  ok
+    sizes_test.go:125: colbin-untagged      50290502    335.27   17349912   17280455  ok
+    sizes_test.go:125: colbin-json          50288081    335.25   17356074   17269186  ok
+    sizes_test.go:155: rows 750572 (top level 150000), 750572 as table rows (1.0000); 10358580 values; colbin 50287763 B, of which tables 50287763 B (1.0000); schema section 317 B; gob stream 68360124 B
+--- PASS: TestSizes (95.75s)
+    --- PASS: TestSizes/tpch/sf0.1/nested (95.75s)
+PASS

@@ -1,0 +1,1 @@
+colbinbench: tpcds/sf0.1/store_returns: gob: not timed: does not round-trip: $.Rows[1].ReturnShipCost: nil against non-nil

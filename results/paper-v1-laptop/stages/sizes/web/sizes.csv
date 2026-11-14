@@ -1,0 +1,1720 @@
+case,dataset,regime,format,bytes,bytes_per_row,gzip,zstd6,status
+tpch/sf0.1/customer,tpch,web,json-v2,3776119,251.74,1021215,953328,ok
+tpch/sf0.1/customer,tpch,web,gob,2427780,161.85,1005300,982646,ok
+tpch/sf0.1/customer,tpch,web,cbor,3305029,220.34,1037481,1002434,ok
+tpch/sf0.1/customer,tpch,web,msgpack,3301879,220.13,1040072,1007434,ok
+tpch/sf0.1/customer,tpch,web,msgpack-reflect,3453887,230.26,1048988,1012956,ok
+tpch/sf0.1/customer,tpch,web,protobuf,2426154,161.74,1012452,990636,ok
+tpch/sf0.1/customer,tpch,web,vtprotobuf,2426154,161.74,1012452,990636,ok
+tpch/sf0.1/customer,tpch,web,flatbuffers,3252696,216.85,1266189,1230964,ok
+tpch/sf0.1/customer,tpch,web,arrow,2641486,176.10,1140336,1004444,ok
+tpch/sf0.1/customer,tpch,web,avro,2281199,152.08,950133,916017,ok
+tpch/sf0.1/customer,tpch,web,capnproto,3283688,218.91,1197609,1168442,ok
+tpch/sf0.1/customer,tpch,web,colbin,2227935,148.53,873200,799126,ok
+tpch/sf0.1/customer,tpch,web,colbin+packed5,2227935,148.53,873200,799126,ok
+tpch/sf0.1/customer,tpch,web,colbin-untagged,2228068,148.54,873295,794676,ok
+tpch/sf0.1/customer,tpch,web,colbin-json,2228030,148.54,872355,795633,ok
+tpch/sf0.1/supplier,tpch,web,json-v2,214635,214.63,64352,60611,ok
+tpch/sf0.1/supplier,tpch,web,gob,140114,140.11,63618,63297,ok
+tpch/sf0.1/supplier,tpch,web,cbor,188327,188.33,65947,63721,ok
+tpch/sf0.1/supplier,tpch,web,msgpack,188112,188.11,66177,63793,ok
+tpch/sf0.1/supplier,tpch,web,msgpack-reflect,198476,198.48,66613,64086,ok
+tpch/sf0.1/supplier,tpch,web,protobuf,139677,139.68,64194,63689,ok
+tpch/sf0.1/supplier,tpch,web,vtprotobuf,139677,139.68,64194,63689,ok
+tpch/sf0.1/supplier,tpch,web,flatbuffers,186008,186.01,79879,78104,ok
+tpch/sf0.1/supplier,tpch,web,arrow,153702,153.70,69256,68445,ok
+tpch/sf0.1/supplier,tpch,web,avro,130704,130.70,59110,58039,ok
+tpch/sf0.1/supplier,tpch,web,capnproto,184104,184.10,74956,76698,ok
+tpch/sf0.1/supplier,tpch,web,colbin,127818,127.82,54242,53548,ok
+tpch/sf0.1/supplier,tpch,web,colbin+packed5,127818,127.82,54242,53548,ok
+tpch/sf0.1/supplier,tpch,web,colbin-untagged,127848,127.85,54062,54047,ok
+tpch/sf0.1/supplier,tpch,web,colbin-json,127900,127.90,54298,53633,ok
+tpch/sf0.1/nation,tpch,web,json-v2,3384,135.36,1089,1085,ok
+tpch/sf0.1/nation,tpch,web,gob,2390,95.60,1161,1172,ok
+tpch/sf0.1/nation,tpch,web,cbor,3018,120.72,1131,1117,ok
+tpch/sf0.1/nation,tpch,web,msgpack,3017,120.68,1156,1142,ok
+tpch/sf0.1/nation,tpch,web,msgpack-reflect,3217,128.68,1168,1155,ok
+tpch/sf0.1/nation,tpch,web,protobuf,2274,90.96,1096,1102,ok
+tpch/sf0.1/nation,tpch,web,vtprotobuf,2274,90.96,1096,1102,ok
+tpch/sf0.1/nation,tpch,web,flatbuffers,2984,119.36,1374,1379,ok
+tpch/sf0.1/nation,tpch,web,arrow,3422,136.88,1403,1439,ok
+tpch/sf0.1/nation,tpch,web,avro,2153,86.12,1021,1026,ok
+tpch/sf0.1/nation,tpch,web,capnproto,2840,113.60,1282,1323,ok
+tpch/sf0.1/nation,tpch,web,colbin,2125,85.00,969,984,ok
+tpch/sf0.1/nation,tpch,web,colbin+packed5,2125,85.00,969,984,ok
+tpch/sf0.1/nation,tpch,web,colbin-untagged,2135,85.40,991,996,ok
+tpch/sf0.1/nation,tpch,web,colbin-json,2181,87.24,1017,1030,ok
+tpch/sf0.1/region,tpch,web,json-v2,569,113.80,304,300,ok
+tpch/sf0.1/region,tpch,web,gob,526,105.20,362,371,ok
+tpch/sf0.1/region,tpch,web,cbor,511,102.20,300,294,ok
+tpch/sf0.1/region,tpch,web,msgpack,509,101.80,309,303,ok
+tpch/sf0.1/region,tpch,web,msgpack-reflect,529,105.80,317,308,ok
+tpch/sf0.1/region,tpch,web,protobuf,402,80.40,279,270,ok
+tpch/sf0.1/region,tpch,web,vtprotobuf,402,80.40,279,270,ok
+tpch/sf0.1/region,tpch,web,flatbuffers,564,112.80,357,359,ok
+tpch/sf0.1/region,tpch,web,arrow,1246,249.20,537,548,ok
+tpch/sf0.1/region,tpch,web,avro,385,77.00,266,265,ok
+tpch/sf0.1/region,tpch,web,capnproto,544,108.80,324,326,ok
+tpch/sf0.1/region,tpch,web,colbin,394,78.80,279,271,ok
+tpch/sf0.1/region,tpch,web,colbin+packed5,270,54.00,295,281,ok
+tpch/sf0.1/region,tpch,web,colbin-untagged,416,83.20,304,294,ok
+tpch/sf0.1/region,tpch,web,colbin-json,438,87.60,318,313,ok
+schemastore/circleciblank,schemastore,web,json-v2,13,13.00,38,22,ok
+schemastore/circleciblank,schemastore,web,gob,46,46.00,71,55,ok
+schemastore/circleciblank,schemastore,web,cbor,14,14.00,39,23,ok
+schemastore/circleciblank,schemastore,web,msgpack,14,14.00,39,23,ok
+schemastore/circleciblank,schemastore,web,msgpack-reflect,14,14.00,39,23,ok
+schemastore/circleciblank,schemastore,web,protobuf,5,5.00,30,14,ok
+schemastore/circleciblank,schemastore,web,vtprotobuf,5,5.00,30,14,ok
+schemastore/circleciblank,schemastore,web,flatbuffers,20,20.00,45,29,ok
+schemastore/circleciblank,schemastore,web,avro,4,4.00,29,13,ok
+schemastore/circleciblank,schemastore,web,capnproto,24,24.00,49,33,ok
+schemastore/circleciblank,schemastore,web,colbin,2,2.00,27,11,ok
+schemastore/circleciblank,schemastore,web,colbin+packed5,2,2.00,27,11,ok
+schemastore/circleciblank,schemastore,web,colbin-untagged,3,3.00,28,12,ok
+schemastore/circleciblank,schemastore,web,colbin-json,17,17.00,42,26,ok
+schemastore/circleciblank,schemastore,web,arrow,,,,,n/a: root field Version is not a []struct table
+schemastore/circlecimatrix,schemastore,web,json-v2,94,94.00,119,93,ok
+schemastore/circlecimatrix,schemastore,web,gob,437,437.00,274,273,ok
+schemastore/circlecimatrix,schemastore,web,cbor,72,72.00,97,81,ok
+schemastore/circlecimatrix,schemastore,web,msgpack,72,72.00,97,81,ok
+schemastore/circlecimatrix,schemastore,web,msgpack-reflect,84,84.00,109,93,ok
+schemastore/circlecimatrix,schemastore,web,protobuf,26,26.00,51,35,ok
+schemastore/circlecimatrix,schemastore,web,vtprotobuf,26,26.00,51,35,ok
+schemastore/circlecimatrix,schemastore,web,flatbuffers,112,112.00,82,79,ok
+schemastore/circlecimatrix,schemastore,web,avro,17,17.00,42,26,ok
+schemastore/circlecimatrix,schemastore,web,capnproto,104,104.00,61,57,ok
+schemastore/circlecimatrix,schemastore,web,colbin,26,26.00,51,35,ok
+schemastore/circlecimatrix,schemastore,web,colbin+packed5,26,26.00,51,35,ok
+schemastore/circlecimatrix,schemastore,web,colbin-untagged,38,38.00,63,47,ok
+schemastore/circlecimatrix,schemastore,web,colbin-json,116,116.00,141,125,ok
+schemastore/circlecimatrix,schemastore,web,arrow,,,,,n/a: root field Version is not a []struct table
+schemastore/commitlint,schemastore,web,json-v2,337,337.00,135,122,ok
+schemastore/commitlint,schemastore,web,gob,336,336.00,235,229,ok
+schemastore/commitlint,schemastore,web,cbor,220,220.00,110,105,ok
+schemastore/commitlint,schemastore,web,msgpack,220,220.00,111,105,ok
+schemastore/commitlint,schemastore,web,msgpack-reflect,228,228.00,115,109,ok
+schemastore/commitlint,schemastore,web,protobuf,62,62.00,87,57,ok
+schemastore/commitlint,schemastore,web,vtprotobuf,62,62.00,87,57,ok
+schemastore/commitlint,schemastore,web,flatbuffers,228,228.00,139,125,ok
+schemastore/commitlint,schemastore,web,avro,68,68.00,93,52,ok
+schemastore/commitlint,schemastore,web,capnproto,280,280.00,98,90,ok
+schemastore/commitlint,schemastore,web,colbin,58,58.00,83,48,ok
+schemastore/commitlint,schemastore,web,colbin+packed5,56,56.00,81,47,ok
+schemastore/commitlint,schemastore,web,colbin-untagged,80,80.00,105,61,ok
+schemastore/commitlint,schemastore,web,colbin-json,143,143.00,135,129,ok
+schemastore/commitlint,schemastore,web,arrow,,,,,n/a: root field Rules is not a []struct table
+schemastore/commitlintbasic,schemastore,web,json-v2,24,24.00,49,33,ok
+schemastore/commitlintbasic,schemastore,web,gob,53,53.00,78,62,ok
+schemastore/commitlintbasic,schemastore,web,cbor,17,17.00,42,26,ok
+schemastore/commitlintbasic,schemastore,web,msgpack,17,17.00,42,26,ok
+schemastore/commitlintbasic,schemastore,web,msgpack-reflect,17,17.00,42,26,ok
+schemastore/commitlintbasic,schemastore,web,protobuf,0,0.00,20,9,ok
+schemastore/commitlintbasic,schemastore,web,vtprotobuf,0,0.00,20,9,ok
+schemastore/commitlintbasic,schemastore,web,flatbuffers,12,12.00,37,21,ok
+schemastore/commitlintbasic,schemastore,web,avro,1,1.00,26,10,ok
+schemastore/commitlintbasic,schemastore,web,capnproto,24,24.00,49,25,ok
+schemastore/commitlintbasic,schemastore,web,colbin,0,0.00,20,9,ok
+schemastore/commitlintbasic,schemastore,web,colbin+packed5,0,0.00,20,9,ok
+schemastore/commitlintbasic,schemastore,web,colbin-untagged,1,1.00,26,10,ok
+schemastore/commitlintbasic,schemastore,web,colbin-json,22,22.00,47,31,ok
+schemastore/commitlintbasic,schemastore,web,arrow,,,,,n/a: root field DefaultIgnores is not a []struct table
+schemastore/epr,schemastore,web,json-v2,571,114.20,268,262,ok
+schemastore/epr,schemastore,web,gob,490,98.00,354,356,ok
+schemastore/epr,schemastore,web,cbor,444,88.80,256,250,ok
+schemastore/epr,schemastore,web,msgpack,444,88.80,271,259,ok
+schemastore/epr,schemastore,web,msgpack-reflect,444,88.80,271,259,ok
+schemastore/epr,schemastore,web,protobuf,247,49.40,200,190,ok
+schemastore/epr,schemastore,web,vtprotobuf,247,49.40,200,190,ok
+schemastore/epr,schemastore,web,flatbuffers,516,103.20,288,272,ok
+schemastore/epr,schemastore,web,avro,247,49.40,187,177,ok
+schemastore/epr,schemastore,web,capnproto,536,107.20,267,253,ok
+schemastore/epr,schemastore,web,colbin,238,47.60,197,187,ok
+schemastore/epr,schemastore,web,colbin+packed5,207,41.40,191,182,ok
+schemastore/epr,schemastore,web,colbin-untagged,272,54.40,227,224,ok
+schemastore/epr,schemastore,web,colbin-json,359,71.80,291,285,ok
+schemastore/epr,schemastore,web,arrow,,,,,n/a: root field Site is not a []struct table
+schemastore/eslintrc,schemastore,web,json-v2,1096,1096.00,515,530,ok
+schemastore/eslintrc,schemastore,web,gob,1403,1403.00,759,779,ok
+schemastore/eslintrc,schemastore,web,cbor,912,912.00,525,524,ok
+schemastore/eslintrc,schemastore,web,msgpack,908,908.00,549,549,ok
+schemastore/eslintrc,schemastore,web,msgpack-reflect,1064,1064.00,576,577,ok
+schemastore/eslintrc,schemastore,web,protobuf,161,161.00,186,156,ok
+schemastore/eslintrc,schemastore,web,vtprotobuf,161,161.00,186,156,ok
+schemastore/eslintrc,schemastore,web,flatbuffers,428,428.00,234,204,ok
+schemastore/eslintrc,schemastore,web,avro,104,104.00,129,87,ok
+schemastore/eslintrc,schemastore,web,capnproto,352,352.00,146,144,ok
+schemastore/eslintrc,schemastore,web,colbin,138,138.00,163,147,ok
+schemastore/eslintrc,schemastore,web,colbin+packed5,125,125.00,150,134,ok
+schemastore/eslintrc,schemastore,web,colbin-untagged,153,153.00,178,162,ok
+schemastore/eslintrc,schemastore,web,colbin-json,1052,1052.00,685,689,ok
+schemastore/eslintrc,schemastore,web,arrow,,,,,n/a: root field Extension is not a []struct table
+schemastore/esmrc,schemastore,web,json-v2,101,101.00,126,94,ok
+schemastore/esmrc,schemastore,web,gob,137,137.00,145,134,ok
+schemastore/esmrc,schemastore,web,cbor,64,64.00,89,73,ok
+schemastore/esmrc,schemastore,web,msgpack,64,64.00,89,73,ok
+schemastore/esmrc,schemastore,web,msgpack-reflect,64,64.00,89,73,ok
+schemastore/esmrc,schemastore,web,protobuf,23,23.00,48,32,ok
+schemastore/esmrc,schemastore,web,vtprotobuf,23,23.00,48,32,ok
+schemastore/esmrc,schemastore,web,flatbuffers,80,80.00,105,64,ok
+schemastore/esmrc,schemastore,web,avro,23,23.00,48,32,ok
+schemastore/esmrc,schemastore,web,capnproto,80,80.00,105,63,ok
+schemastore/esmrc,schemastore,web,colbin,20,20.00,45,29,ok
+schemastore/esmrc,schemastore,web,colbin+packed5,19,19.00,44,28,ok
+schemastore/esmrc,schemastore,web,colbin-untagged,26,26.00,51,35,ok
+schemastore/esmrc,schemastore,web,colbin-json,79,79.00,104,88,ok
+schemastore/esmrc,schemastore,web,arrow,,,,,n/a: root field CJS is not a []struct table
+schemastore/geojson,schemastore,web,json-v2,491,245.50,154,142,ok
+schemastore/geojson,schemastore,web,gob,556,278.00,325,320,ok
+schemastore/geojson,schemastore,web,cbor,564,282.00,164,168,ok
+schemastore/geojson,schemastore,web,msgpack,564,282.00,165,168,ok
+schemastore/geojson,schemastore,web,msgpack-reflect,564,282.00,165,168,ok
+schemastore/geojson,schemastore,web,protobuf,325,162.50,119,131,ok
+schemastore/geojson,schemastore,web,vtprotobuf,325,162.50,119,131,ok
+schemastore/geojson,schemastore,web,flatbuffers,680,340.00,246,232,ok
+schemastore/geojson,schemastore,web,avro,322,161.00,129,141,ok
+schemastore/geojson,schemastore,web,capnproto,496,248.00,173,171,ok
+schemastore/geojson,schemastore,web,colbin,321,160.50,125,135,ok
+schemastore/geojson,schemastore,web,colbin+packed5,318,159.00,122,132,ok
+schemastore/geojson,schemastore,web,colbin-untagged,368,184.00,142,153,ok
+schemastore/geojson,schemastore,web,colbin-json,390,195.00,184,195,ok
+schemastore/geojson,schemastore,web,arrow,,,,,n/a: root field Type is not a []struct table
+schemastore/githubfundingblank,schemastore,web,json-v2,179,179.00,141,133,ok
+schemastore/githubfundingblank,schemastore,web,gob,190,190.00,174,178,ok
+schemastore/githubfundingblank,schemastore,web,cbor,121,121.00,146,116,ok
+schemastore/githubfundingblank,schemastore,web,msgpack,121,121.00,146,121,ok
+schemastore/githubfundingblank,schemastore,web,msgpack-reflect,121,121.00,146,121,ok
+schemastore/githubfundingblank,schemastore,web,protobuf,17,17.00,42,26,ok
+schemastore/githubfundingblank,schemastore,web,vtprotobuf,17,17.00,42,26,ok
+schemastore/githubfundingblank,schemastore,web,flatbuffers,40,40.00,65,47,ok
+schemastore/githubfundingblank,schemastore,web,avro,25,25.00,50,34,ok
+schemastore/githubfundingblank,schemastore,web,capnproto,120,120.00,71,54,ok
+schemastore/githubfundingblank,schemastore,web,colbin,17,17.00,42,26,ok
+schemastore/githubfundingblank,schemastore,web,colbin+packed5,13,13.00,38,22,ok
+schemastore/githubfundingblank,schemastore,web,colbin-untagged,19,19.00,44,28,ok
+schemastore/githubfundingblank,schemastore,web,colbin-json,146,146.00,171,147,ok
+schemastore/githubfundingblank,schemastore,web,arrow,,,,,n/a: root field GitHub is not a []struct table
+schemastore/githubworkflow,schemastore,web,json-v2,510,510.00,251,243,ok
+schemastore/githubworkflow,schemastore,web,gob,624,624.00,415,422,ok
+schemastore/githubworkflow,schemastore,web,cbor,389,389.00,243,236,ok
+schemastore/githubworkflow,schemastore,web,msgpack,388,388.00,257,245,ok
+schemastore/githubworkflow,schemastore,web,msgpack-reflect,388,388.00,257,245,ok
+schemastore/githubworkflow,schemastore,web,protobuf,189,189.00,183,168,ok
+schemastore/githubworkflow,schemastore,web,vtprotobuf,189,189.00,183,168,ok
+schemastore/githubworkflow,schemastore,web,flatbuffers,428,428.00,278,269,ok
+schemastore/githubworkflow,schemastore,web,avro,179,179.00,169,155,ok
+schemastore/githubworkflow,schemastore,web,capnproto,464,464.00,253,246,ok
+schemastore/githubworkflow,schemastore,web,colbin,183,183.00,181,164,ok
+schemastore/githubworkflow,schemastore,web,colbin+packed5,148,148.00,173,157,ok
+schemastore/githubworkflow,schemastore,web,colbin-untagged,207,207.00,212,205,ok
+schemastore/githubworkflow,schemastore,web,colbin-json,329,329.00,294,287,ok
+schemastore/githubworkflow,schemastore,web,arrow,,,,,n/a: root field Name is not a []struct table
+schemastore/gruntcontribclean,schemastore,web,json-v2,91,91.00,116,86,ok
+schemastore/gruntcontribclean,schemastore,web,gob,274,274.00,193,190,ok
+schemastore/gruntcontribclean,schemastore,web,cbor,59,59.00,84,68,ok
+schemastore/gruntcontribclean,schemastore,web,msgpack,59,59.00,84,68,ok
+schemastore/gruntcontribclean,schemastore,web,msgpack-reflect,59,59.00,84,68,ok
+schemastore/gruntcontribclean,schemastore,web,protobuf,22,22.00,47,31,ok
+schemastore/gruntcontribclean,schemastore,web,vtprotobuf,22,22.00,47,31,ok
+schemastore/gruntcontribclean,schemastore,web,flatbuffers,116,116.00,81,68,ok
+schemastore/gruntcontribclean,schemastore,web,avro,18,18.00,43,27,ok
+schemastore/gruntcontribclean,schemastore,web,capnproto,96,96.00,69,62,ok
+schemastore/gruntcontribclean,schemastore,web,arrow,,,,,n/a: root field Foo is not a []struct table
+schemastore/gruntcontribclean,schemastore,web,colbin,,,,,n/a: colbin: GruntContribCleanFiles has no encodable field
+schemastore/gruntcontribclean,schemastore,web,colbin+packed5,,,,,n/a: colbin: GruntContribCleanFiles has no encodable field
+schemastore/gruntcontribclean,schemastore,web,colbin-untagged,,,,,n/a: colbin: GruntContribCleanFiles has no encodable field
+schemastore/gruntcontribclean,schemastore,web,colbin-json,,,,,n/a: colbin: GruntContribCleanFiles has no encodable field
+schemastore/imageoptimizerwebjob,schemastore,web,json-v2,81,81.00,106,84,ok
+schemastore/imageoptimizerwebjob,schemastore,web,gob,254,254.00,190,178,ok
+schemastore/imageoptimizerwebjob,schemastore,web,cbor,61,61.00,86,70,ok
+schemastore/imageoptimizerwebjob,schemastore,web,msgpack,61,61.00,86,70,ok
+schemastore/imageoptimizerwebjob,schemastore,web,msgpack-reflect,61,61.00,86,70,ok
+schemastore/imageoptimizerwebjob,schemastore,web,protobuf,23,23.00,48,32,ok
+schemastore/imageoptimizerwebjob,schemastore,web,vtprotobuf,23,23.00,48,32,ok
+schemastore/imageoptimizerwebjob,schemastore,web,flatbuffers,100,100.00,77,73,ok
+schemastore/imageoptimizerwebjob,schemastore,web,arrow,1142,1142.00,336,338,ok
+schemastore/imageoptimizerwebjob,schemastore,web,avro,27,27.00,52,36,ok
+schemastore/imageoptimizerwebjob,schemastore,web,capnproto,96,96.00,73,66,ok
+schemastore/imageoptimizerwebjob,schemastore,web,colbin,22,22.00,47,31,ok
+schemastore/imageoptimizerwebjob,schemastore,web,colbin+packed5,22,22.00,47,31,ok
+schemastore/imageoptimizerwebjob,schemastore,web,colbin-untagged,34,34.00,59,43,ok
+schemastore/imageoptimizerwebjob,schemastore,web,colbin-json,76,76.00,101,85,ok
+schemastore/jsonereversesort,schemastore,web,json-v2,79,79.00,104,80,ok
+schemastore/jsonereversesort,schemastore,web,gob,294,294.00,190,188,ok
+schemastore/jsonereversesort,schemastore,web,cbor,47,47.00,72,56,ok
+schemastore/jsonereversesort,schemastore,web,msgpack,46,46.00,71,55,ok
+schemastore/jsonereversesort,schemastore,web,msgpack-reflect,66,66.00,91,75,ok
+schemastore/jsonereversesort,schemastore,web,protobuf,21,21.00,46,30,ok
+schemastore/jsonereversesort,schemastore,web,vtprotobuf,21,21.00,46,30,ok
+schemastore/jsonereversesort,schemastore,web,flatbuffers,104,104.00,75,67,ok
+schemastore/jsonereversesort,schemastore,web,avro,12,12.00,37,21,ok
+schemastore/jsonereversesort,schemastore,web,capnproto,112,112.00,65,61,ok
+schemastore/jsonereversesort,schemastore,web,colbin,19,19.00,44,28,ok
+schemastore/jsonereversesort,schemastore,web,colbin+packed5,19,19.00,44,28,ok
+schemastore/jsonereversesort,schemastore,web,colbin-untagged,27,27.00,52,36,ok
+schemastore/jsonereversesort,schemastore,web,colbin-json,81,81.00,106,90,ok
+schemastore/jsonereversesort,schemastore,web,arrow,,,,,n/a: root field Let is not a []struct table
+schemastore/jsonesort,schemastore,web,json-v2,30,30.00,55,39,ok
+schemastore/jsonesort,schemastore,web,gob,82,82.00,107,91,ok
+schemastore/jsonesort,schemastore,web,cbor,18,18.00,43,27,ok
+schemastore/jsonesort,schemastore,web,msgpack,18,18.00,43,27,ok
+schemastore/jsonesort,schemastore,web,msgpack-reflect,38,38.00,63,47,ok
+schemastore/jsonesort,schemastore,web,protobuf,10,10.00,35,19,ok
+schemastore/jsonesort,schemastore,web,vtprotobuf,10,10.00,35,19,ok
+schemastore/jsonesort,schemastore,web,flatbuffers,56,56.00,81,44,ok
+schemastore/jsonesort,schemastore,web,avro,10,10.00,35,19,ok
+schemastore/jsonesort,schemastore,web,capnproto,64,64.00,89,46,ok
+schemastore/jsonesort,schemastore,web,colbin,9,9.00,34,18,ok
+schemastore/jsonesort,schemastore,web,colbin+packed5,9,9.00,34,18,ok
+schemastore/jsonesort,schemastore,web,colbin-untagged,12,12.00,37,21,ok
+schemastore/jsonesort,schemastore,web,colbin-json,27,27.00,52,36,ok
+schemastore/jsonesort,schemastore,web,arrow,,,,,n/a: root field Sort is not a []struct table
+schemastore/jsonfeed,schemastore,web,json-v2,566,566.00,338,338,ok
+schemastore/jsonfeed,schemastore,web,gob,719,719.00,441,451,ok
+schemastore/jsonfeed,schemastore,web,cbor,517,517.00,332,331,ok
+schemastore/jsonfeed,schemastore,web,msgpack,511,511.00,342,339,ok
+schemastore/jsonfeed,schemastore,web,msgpack-reflect,511,511.00,342,339,ok
+schemastore/jsonfeed,schemastore,web,protobuf,413,413.00,261,258,ok
+schemastore/jsonfeed,schemastore,web,vtprotobuf,413,413.00,261,258,ok
+schemastore/jsonfeed,schemastore,web,flatbuffers,584,584.00,341,336,ok
+schemastore/jsonfeed,schemastore,web,avro,402,402.00,251,245,ok
+schemastore/jsonfeed,schemastore,web,capnproto,568,568.00,334,328,ok
+schemastore/jsonfeed,schemastore,web,colbin,412,412.00,260,258,ok
+schemastore/jsonfeed,schemastore,web,colbin+packed5,325,325.00,339,291,ok
+schemastore/jsonfeed,schemastore,web,colbin-untagged,430,430.00,288,278,ok
+schemastore/jsonfeed,schemastore,web,colbin-json,559,559.00,379,381,ok
+schemastore/jsonfeed,schemastore,web,arrow,,,,,n/a: root field Version is not a []struct table
+schemastore/jsonresume,schemastore,web,json-v2,3047,304.70,1586,1636,ok
+schemastore/jsonresume,schemastore,web,gob,4038,403.80,2095,2169,ok
+schemastore/jsonresume,schemastore,web,cbor,2754,275.40,1570,1610,ok
+schemastore/jsonresume,schemastore,web,msgpack,2749,274.90,1621,1659,ok
+schemastore/jsonresume,schemastore,web,msgpack-reflect,2749,274.90,1621,1659,ok
+schemastore/jsonresume,schemastore,web,protobuf,2225,222.50,1373,1402,ok
+schemastore/jsonresume,schemastore,web,vtprotobuf,2225,222.50,1373,1402,ok
+schemastore/jsonresume,schemastore,web,flatbuffers,3092,309.20,1722,1741,ok
+schemastore/jsonresume,schemastore,web,avro,2187,218.70,1343,1372,ok
+schemastore/jsonresume,schemastore,web,capnproto,3136,313.60,1654,1686,ok
+schemastore/jsonresume,schemastore,web,colbin,2208,220.80,1369,1397,ok
+schemastore/jsonresume,schemastore,web,colbin+packed5,1720,172.00,1669,1661,ok
+schemastore/jsonresume,schemastore,web,colbin-untagged,2320,232.00,1493,1514,ok
+schemastore/jsonresume,schemastore,web,colbin-json,2926,292.60,1788,1837,ok
+schemastore/jsonresume,schemastore,web,arrow,,,,,n/a: root field Basics is not a []struct table
+schemastore/netcoreproject,schemastore,web,json-v2,1010,1010.00,412,419,ok
+schemastore/netcoreproject,schemastore,web,gob,1393,1393.00,607,642,ok
+schemastore/netcoreproject,schemastore,web,cbor,882,882.00,440,454,ok
+schemastore/netcoreproject,schemastore,web,msgpack,880,880.00,462,475,ok
+schemastore/netcoreproject,schemastore,web,msgpack-reflect,880,880.00,462,475,ok
+schemastore/netcoreproject,schemastore,web,protobuf,284,284.00,168,174,ok
+schemastore/netcoreproject,schemastore,web,vtprotobuf,284,284.00,168,174,ok
+schemastore/netcoreproject,schemastore,web,flatbuffers,600,600.00,274,254,ok
+schemastore/netcoreproject,schemastore,web,avro,242,242.00,104,102,ok
+schemastore/netcoreproject,schemastore,web,capnproto,592,592.00,195,204,ok
+schemastore/netcoreproject,schemastore,web,colbin,278,278.00,162,172,ok
+schemastore/netcoreproject,schemastore,web,colbin+packed5,278,278.00,162,172,ok
+schemastore/netcoreproject,schemastore,web,colbin-untagged,294,294.00,180,197,ok
+schemastore/netcoreproject,schemastore,web,colbin-json,1002,1002.00,551,580,ok
+schemastore/netcoreproject,schemastore,web,arrow,,,,,n/a: root field Version is not a []struct table
+schemastore/nightwatch,schemastore,web,json-v2,1445,1445.00,642,657,ok
+schemastore/nightwatch,schemastore,web,gob,1606,1606.00,833,854,ok
+schemastore/nightwatch,schemastore,web,cbor,1115,1115.00,637,643,ok
+schemastore/nightwatch,schemastore,web,msgpack,1111,1111.00,669,672,ok
+schemastore/nightwatch,schemastore,web,msgpack-reflect,1147,1147.00,673,679,ok
+schemastore/nightwatch,schemastore,web,protobuf,120,120.00,145,129,ok
+schemastore/nightwatch,schemastore,web,vtprotobuf,120,120.00,145,129,ok
+schemastore/nightwatch,schemastore,web,flatbuffers,380,380.00,256,240,ok
+schemastore/nightwatch,schemastore,web,avro,101,101.00,126,101,ok
+schemastore/nightwatch,schemastore,web,capnproto,360,360.00,179,169,ok
+schemastore/nightwatch,schemastore,web,arrow,,,,,n/a: root field CustomCommandsPath is not a []struct table
+schemastore/nightwatch,schemastore,web,colbin,,,,,n/a: colbin: NightwatchEmpty has no encodable field
+schemastore/nightwatch,schemastore,web,colbin+packed5,,,,,n/a: colbin: NightwatchEmpty has no encodable field
+schemastore/nightwatch,schemastore,web,colbin-untagged,,,,,n/a: colbin: NightwatchEmpty has no encodable field
+schemastore/nightwatch,schemastore,web,colbin-json,,,,,n/a: colbin: NightwatchEmpty has no encodable field
+schemastore/openweathermap,schemastore,web,json-v2,490,490.00,354,353,ok
+schemastore/openweathermap,schemastore,web,gob,861,861.00,572,571,ok
+schemastore/openweathermap,schemastore,web,cbor,380,380.00,371,361,ok
+schemastore/openweathermap,schemastore,web,msgpack,379,379.00,378,385,ok
+schemastore/openweathermap,schemastore,web,msgpack-reflect,406,406.00,389,402,ok
+schemastore/openweathermap,schemastore,web,protobuf,188,188.00,205,197,ok
+schemastore/openweathermap,schemastore,web,vtprotobuf,188,188.00,205,197,ok
+schemastore/openweathermap,schemastore,web,flatbuffers,392,392.00,302,283,ok
+schemastore/openweathermap,schemastore,web,avro,153,153.00,170,162,ok
+schemastore/openweathermap,schemastore,web,colbin,171,171.00,196,180,ok
+schemastore/openweathermap,schemastore,web,colbin+packed5,163,163.00,188,172,ok
+schemastore/openweathermap,schemastore,web,colbin-untagged,204,204.00,229,213,ok
+schemastore/openweathermap,schemastore,web,colbin-json,476,476.00,457,454,ok
+schemastore/openweathermap,schemastore,web,arrow,,,,,n/a: root field Coord is not a []struct table
+schemastore/openweathermap,schemastore,web,capnproto,,,,,n/a: OpenWeatherMapSys.Message: the field name collides with a method capnpc-go generates
+schemastore/openweatherroadrisk,schemastore,web,json-v2,402,201.00,260,247,ok
+schemastore/openweatherroadrisk,schemastore,web,gob,661,330.50,456,453,ok
+schemastore/openweatherroadrisk,schemastore,web,cbor,370,185.00,298,291,ok
+schemastore/openweatherroadrisk,schemastore,web,msgpack,369,184.50,304,290,ok
+schemastore/openweatherroadrisk,schemastore,web,msgpack-reflect,379,189.50,306,296,ok
+schemastore/openweatherroadrisk,schemastore,web,protobuf,173,86.50,179,171,ok
+schemastore/openweatherroadrisk,schemastore,web,vtprotobuf,173,86.50,179,171,ok
+schemastore/openweatherroadrisk,schemastore,web,flatbuffers,336,168.00,271,260,ok
+schemastore/openweatherroadrisk,schemastore,web,arrow,2694,1347.00,781,740,ok
+schemastore/openweatherroadrisk,schemastore,web,avro,167,83.50,166,158,ok
+schemastore/openweatherroadrisk,schemastore,web,capnproto,288,144.00,236,229,ok
+schemastore/openweatherroadrisk,schemastore,web,colbin,171,85.50,181,174,ok
+schemastore/openweatherroadrisk,schemastore,web,colbin+packed5,158,79.00,169,161,ok
+schemastore/openweatherroadrisk,schemastore,web,colbin-untagged,195,97.50,201,190,ok
+schemastore/openweatherroadrisk,schemastore,web,colbin-json,324,162.00,329,327,ok
+schemastore/packagejson,schemastore,web,json-v2,2241,2241.00,1133,1183,ok
+schemastore/packagejson,schemastore,web,gob,2655,2655.00,1426,1489,ok
+schemastore/packagejson,schemastore,web,cbor,1973,1973.00,1118,1143,ok
+schemastore/packagejson,schemastore,web,msgpack,1978,1978.00,1169,1201,ok
+schemastore/packagejson,schemastore,web,msgpack-reflect,1978,1978.00,1169,1201,ok
+schemastore/packagejson,schemastore,web,protobuf,1581,1581.00,911,926,ok
+schemastore/packagejson,schemastore,web,vtprotobuf,1581,1581.00,911,926,ok
+schemastore/packagejson,schemastore,web,flatbuffers,2268,2268.00,1165,1179,ok
+schemastore/packagejson,schemastore,web,avro,1503,1503.00,832,847,ok
+schemastore/packagejson,schemastore,web,colbin,1569,1569.00,933,949,ok
+schemastore/packagejson,schemastore,web,colbin+packed5,1314,1314.00,1223,1217,ok
+schemastore/packagejson,schemastore,web,colbin-untagged,1585,1585.00,960,970,ok
+schemastore/packagejson,schemastore,web,colbin-json,2168,2168.00,1326,1368,ok
+schemastore/packagejson,schemastore,web,arrow,,,,,n/a: root field Name is not a []struct table
+schemastore/packagejson,schemastore,web,capnproto,,,,,n/a: PackageJSONDependencies.Which: the field name collides with a method capnpc-go generates
+schemastore/packagejsonlintrc,schemastore,web,json-v2,1759,1759.00,384,388,ok
+schemastore/packagejsonlintrc,schemastore,web,gob,1564,1564.00,592,616,ok
+schemastore/packagejsonlintrc,schemastore,web,cbor,1396,1396.00,398,409,ok
+schemastore/packagejsonlintrc,schemastore,web,msgpack,1392,1392.00,418,426,ok
+schemastore/packagejsonlintrc,schemastore,web,msgpack-reflect,1392,1392.00,418,426,ok
+schemastore/packagejsonlintrc,schemastore,web,protobuf,454,454.00,207,196,ok
+schemastore/packagejsonlintrc,schemastore,web,vtprotobuf,454,454.00,207,196,ok
+schemastore/packagejsonlintrc,schemastore,web,flatbuffers,1116,1116.00,358,323,ok
+schemastore/packagejsonlintrc,schemastore,web,avro,417,417.00,100,100,ok
+schemastore/packagejsonlintrc,schemastore,web,capnproto,1264,1264.00,172,165,ok
+schemastore/packagejsonlintrc,schemastore,web,colbin,445,445.00,183,185,ok
+schemastore/packagejsonlintrc,schemastore,web,colbin+packed5,445,445.00,183,185,ok
+schemastore/packagejsonlintrc,schemastore,web,colbin-untagged,477,477.00,212,199,ok
+schemastore/packagejsonlintrc,schemastore,web,colbin-json,1177,1177.00,560,582,ok
+schemastore/packagejsonlintrc,schemastore,web,arrow,,,,,n/a: root field Rules is not a []struct table
+schemastore/sapcloudsdkpipeline,schemastore,web,json-v2,43,43.00,68,52,ok
+schemastore/sapcloudsdkpipeline,schemastore,web,gob,74,74.00,99,83,ok
+schemastore/sapcloudsdkpipeline,schemastore,web,cbor,25,25.00,50,34,ok
+schemastore/sapcloudsdkpipeline,schemastore,web,msgpack,25,25.00,50,34,ok
+schemastore/sapcloudsdkpipeline,schemastore,web,msgpack-reflect,25,25.00,50,34,ok
+schemastore/sapcloudsdkpipeline,schemastore,web,protobuf,0,0.00,20,9,ok
+schemastore/sapcloudsdkpipeline,schemastore,web,vtprotobuf,0,0.00,20,9,ok
+schemastore/sapcloudsdkpipeline,schemastore,web,flatbuffers,12,12.00,37,21,ok
+schemastore/sapcloudsdkpipeline,schemastore,web,avro,3,3.00,28,12,ok
+schemastore/sapcloudsdkpipeline,schemastore,web,capnproto,48,48.00,73,27,ok
+schemastore/sapcloudsdkpipeline,schemastore,web,colbin,0,0.00,20,9,ok
+schemastore/sapcloudsdkpipeline,schemastore,web,colbin+packed5,0,0.00,20,9,ok
+schemastore/sapcloudsdkpipeline,schemastore,web,colbin-untagged,1,1.00,26,10,ok
+schemastore/sapcloudsdkpipeline,schemastore,web,colbin-json,35,35.00,60,44,ok
+schemastore/sapcloudsdkpipeline,schemastore,web,arrow,,,,,n/a: root field General is not a []struct table
+schemastore/travisnotifications,schemastore,web,json-v2,672,672.00,165,156,ok
+schemastore/travisnotifications,schemastore,web,gob,785,785.00,243,235,ok
+schemastore/travisnotifications,schemastore,web,cbor,627,627.00,157,153,ok
+schemastore/travisnotifications,schemastore,web,msgpack,627,627.00,167,162,ok
+schemastore/travisnotifications,schemastore,web,msgpack-reflect,627,627.00,167,162,ok
+schemastore/travisnotifications,schemastore,web,protobuf,521,521.00,115,102,ok
+schemastore/travisnotifications,schemastore,web,vtprotobuf,521,521.00,115,102,ok
+schemastore/travisnotifications,schemastore,web,flatbuffers,660,660.00,177,168,ok
+schemastore/travisnotifications,schemastore,web,avro,504,504.00,90,81,ok
+schemastore/travisnotifications,schemastore,web,capnproto,640,640.00,131,126,ok
+schemastore/travisnotifications,schemastore,web,colbin,521,521.00,116,107,ok
+schemastore/travisnotifications,schemastore,web,colbin+packed5,353,353.00,96,87,ok
+schemastore/travisnotifications,schemastore,web,colbin-untagged,539,539.00,126,118,ok
+schemastore/travisnotifications,schemastore,web,colbin-json,628,628.00,210,206,ok
+schemastore/travisnotifications,schemastore,web,arrow,,,,,n/a: root field Notifications is not a []struct table
+schemastore/tslintbasic,schemastore,web,json-v2,64,64.00,89,63,ok
+schemastore/tslintbasic,schemastore,web,gob,217,217.00,153,142,ok
+schemastore/tslintbasic,schemastore,web,cbor,49,49.00,74,58,ok
+schemastore/tslintbasic,schemastore,web,msgpack,49,49.00,74,58,ok
+schemastore/tslintbasic,schemastore,web,msgpack-reflect,49,49.00,74,58,ok
+schemastore/tslintbasic,schemastore,web,protobuf,8,8.00,33,17,ok
+schemastore/tslintbasic,schemastore,web,vtprotobuf,8,8.00,33,17,ok
+schemastore/tslintbasic,schemastore,web,flatbuffers,52,52.00,77,46,ok
+schemastore/tslintbasic,schemastore,web,avro,1,1.00,26,10,ok
+schemastore/tslintbasic,schemastore,web,capnproto,48,48.00,73,28,ok
+schemastore/tslintbasic,schemastore,web,colbin,7,7.00,32,16,ok
+schemastore/tslintbasic,schemastore,web,colbin+packed5,7,7.00,32,16,ok
+schemastore/tslintbasic,schemastore,web,colbin-untagged,12,12.00,37,21,ok
+schemastore/tslintbasic,schemastore,web,colbin-json,73,73.00,98,81,ok
+schemastore/tslintbasic,schemastore,web,arrow,,,,,n/a: root field Rules is not a []struct table
+schemastore/tslintextend,schemastore,web,json-v2,65,65.00,90,70,ok
+schemastore/tslintextend,schemastore,web,gob,120,120.00,145,120,ok
+schemastore/tslintextend,schemastore,web,cbor,58,58.00,83,64,ok
+schemastore/tslintextend,schemastore,web,msgpack,58,58.00,83,65,ok
+schemastore/tslintextend,schemastore,web,msgpack-reflect,58,58.00,83,65,ok
+schemastore/tslintextend,schemastore,web,protobuf,47,47.00,72,53,ok
+schemastore/tslintextend,schemastore,web,vtprotobuf,47,47.00,72,53,ok
+schemastore/tslintextend,schemastore,web,flatbuffers,88,88.00,113,72,ok
+schemastore/tslintextend,schemastore,web,avro,48,48.00,73,56,ok
+schemastore/tslintextend,schemastore,web,capnproto,88,88.00,113,70,ok
+schemastore/tslintextend,schemastore,web,colbin,47,47.00,72,53,ok
+schemastore/tslintextend,schemastore,web,colbin+packed5,47,47.00,72,53,ok
+schemastore/tslintextend,schemastore,web,colbin-untagged,50,50.00,75,59,ok
+schemastore/tslintextend,schemastore,web,colbin-json,65,65.00,90,74,ok
+schemastore/tslintextend,schemastore,web,arrow,,,,,n/a: root field Extensions is not a []struct table
+schemastore/tslintmulti,schemastore,web,json-v2,94,94.00,119,84,ok
+schemastore/tslintmulti,schemastore,web,gob,270,270.00,191,185,ok
+schemastore/tslintmulti,schemastore,web,cbor,65,65.00,90,74,ok
+schemastore/tslintmulti,schemastore,web,msgpack,65,65.00,90,74,ok
+schemastore/tslintmulti,schemastore,web,msgpack-reflect,65,65.00,90,74,ok
+schemastore/tslintmulti,schemastore,web,protobuf,14,14.00,39,23,ok
+schemastore/tslintmulti,schemastore,web,vtprotobuf,14,14.00,39,23,ok
+schemastore/tslintmulti,schemastore,web,flatbuffers,88,88.00,113,62,ok
+schemastore/tslintmulti,schemastore,web,avro,9,9.00,34,18,ok
+schemastore/tslintmulti,schemastore,web,capnproto,80,80.00,48,41,ok
+schemastore/tslintmulti,schemastore,web,colbin,13,13.00,38,22,ok
+schemastore/tslintmulti,schemastore,web,colbin+packed5,13,13.00,38,22,ok
+schemastore/tslintmulti,schemastore,web,colbin-untagged,20,20.00,45,29,ok
+schemastore/tslintmulti,schemastore,web,colbin-json,95,95.00,120,104,ok
+schemastore/tslintmulti,schemastore,web,arrow,,,,,n/a: root field Rules is not a []struct table
+schemastore/circleciblank/dynamic,schemastore,web,json-v2,13,13.00,38,22,ok
+schemastore/circleciblank/dynamic,schemastore,web,gob,134,134.00,132,125,ok
+schemastore/circleciblank/dynamic,schemastore,web,cbor,18,18.00,43,27,ok
+schemastore/circleciblank/dynamic,schemastore,web,msgpack,18,18.00,43,27,ok
+schemastore/circleciblank/dynamic,schemastore,web,protobuf,24,24.00,49,33,ok
+schemastore/circleciblank/dynamic,schemastore,web,colbin,10,10.00,35,19,ok
+schemastore/circleciblank/dynamic,schemastore,web,colbin+packed5,10,10.00,35,19,ok
+schemastore/circleciblank/dynamic,schemastore,web,colbin-json,23,23.00,48,32,ok
+schemastore/circleciblank/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/circleciblank/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/circleciblank/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/circleciblank/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/circlecimatrix/dynamic,schemastore,web,json-v2,94,94.00,119,91,ok
+schemastore/circlecimatrix/dynamic,schemastore,web,gob,470,470.00,258,250,ok
+schemastore/circlecimatrix/dynamic,schemastore,web,cbor,96,96.00,121,98,ok
+schemastore/circlecimatrix/dynamic,schemastore,web,msgpack,96,96.00,121,99,ok
+schemastore/circlecimatrix/dynamic,schemastore,web,protobuf,154,154.00,162,152,ok
+schemastore/circlecimatrix/dynamic,schemastore,web,colbin,72,72.00,97,81,ok
+schemastore/circlecimatrix/dynamic,schemastore,web,colbin+packed5,72,72.00,97,81,ok
+schemastore/circlecimatrix/dynamic,schemastore,web,colbin-json,85,85.00,110,94,ok
+schemastore/circlecimatrix/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/circlecimatrix/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/circlecimatrix/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/circlecimatrix/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/commitlint/dynamic,schemastore,web,json-v2,95,95.00,120,71,ok
+schemastore/commitlint/dynamic,schemastore,web,gob,376,376.00,211,204,ok
+schemastore/commitlint/dynamic,schemastore,web,cbor,90,90.00,115,66,ok
+schemastore/commitlint/dynamic,schemastore,web,msgpack,90,90.00,115,66,ok
+schemastore/commitlint/dynamic,schemastore,web,protobuf,132,132.00,100,95,ok
+schemastore/commitlint/dynamic,schemastore,web,colbin,74,74.00,99,62,ok
+schemastore/commitlint/dynamic,schemastore,web,colbin+packed5,74,74.00,99,62,ok
+schemastore/commitlint/dynamic,schemastore,web,colbin-json,87,87.00,112,75,ok
+schemastore/commitlint/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/commitlint/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/commitlint/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/commitlint/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/commitlintbasic/dynamic,schemastore,web,json-v2,24,24.00,49,33,ok
+schemastore/commitlintbasic/dynamic,schemastore,web,gob,138,138.00,136,129,ok
+schemastore/commitlintbasic/dynamic,schemastore,web,cbor,17,17.00,42,26,ok
+schemastore/commitlintbasic/dynamic,schemastore,web,msgpack,17,17.00,42,26,ok
+schemastore/commitlintbasic/dynamic,schemastore,web,protobuf,24,24.00,49,33,ok
+schemastore/commitlintbasic/dynamic,schemastore,web,colbin,17,17.00,42,26,ok
+schemastore/commitlintbasic/dynamic,schemastore,web,colbin+packed5,17,17.00,42,26,ok
+schemastore/commitlintbasic/dynamic,schemastore,web,colbin-json,30,30.00,55,39,ok
+schemastore/commitlintbasic/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/commitlintbasic/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/commitlintbasic/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/commitlintbasic/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/epr/dynamic,schemastore,web,json-v2,519,519.00,267,256,ok
+schemastore/epr/dynamic,schemastore,web,gob,1000,1000.00,435,428,ok
+schemastore/epr/dynamic,schemastore,web,cbor,416,416.00,256,247,ok
+schemastore/epr/dynamic,schemastore,web,msgpack,416,416.00,268,253,ok
+schemastore/epr/dynamic,schemastore,web,protobuf,574,574.00,353,342,ok
+schemastore/epr/dynamic,schemastore,web,colbin,412,412.00,272,257,ok
+schemastore/epr/dynamic,schemastore,web,colbin+packed5,412,412.00,268,251,ok
+schemastore/epr/dynamic,schemastore,web,colbin-json,425,425.00,281,269,ok
+schemastore/epr/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/epr/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/epr/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/epr/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/eslintrc/dynamic,schemastore,web,json-v2,1140,1140.00,504,519,ok
+schemastore/eslintrc/dynamic,schemastore,web,gob,1816,1816.00,747,769,ok
+schemastore/eslintrc/dynamic,schemastore,web,cbor,1291,1291.00,552,567,ok
+schemastore/eslintrc/dynamic,schemastore,web,msgpack,1283,1283.00,579,604,ok
+schemastore/eslintrc/dynamic,schemastore,web,protobuf,1555,1555.00,690,716,ok
+schemastore/eslintrc/dynamic,schemastore,web,colbin,970,970.00,535,549,ok
+schemastore/eslintrc/dynamic,schemastore,web,colbin+packed5,970,970.00,537,560,ok
+schemastore/eslintrc/dynamic,schemastore,web,colbin-json,983,983.00,557,574,ok
+schemastore/eslintrc/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/eslintrc/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/eslintrc/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/eslintrc/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/esmrc/dynamic,schemastore,web,json-v2,101,101.00,126,91,ok
+schemastore/esmrc/dynamic,schemastore,web,gob,274,274.00,212,204,ok
+schemastore/esmrc/dynamic,schemastore,web,cbor,64,64.00,89,73,ok
+schemastore/esmrc/dynamic,schemastore,web,msgpack,64,64.00,89,73,ok
+schemastore/esmrc/dynamic,schemastore,web,protobuf,107,107.00,132,107,ok
+schemastore/esmrc/dynamic,schemastore,web,colbin,64,64.00,89,73,ok
+schemastore/esmrc/dynamic,schemastore,web,colbin+packed5,64,64.00,89,73,ok
+schemastore/esmrc/dynamic,schemastore,web,colbin-json,77,77.00,102,86,ok
+schemastore/esmrc/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/esmrc/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/esmrc/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/esmrc/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/geojson/dynamic,schemastore,web,json-v2,189,189.00,126,119,ok
+schemastore/geojson/dynamic,schemastore,web,gob,1097,1097.00,322,325,ok
+schemastore/geojson/dynamic,schemastore,web,cbor,322,322.00,137,148,ok
+schemastore/geojson/dynamic,schemastore,web,msgpack,322,322.00,138,148,ok
+schemastore/geojson/dynamic,schemastore,web,protobuf,469,469.00,172,182,ok
+schemastore/geojson/dynamic,schemastore,web,colbin,172,172.00,129,124,ok
+schemastore/geojson/dynamic,schemastore,web,colbin+packed5,172,172.00,129,124,ok
+schemastore/geojson/dynamic,schemastore,web,colbin-json,185,185.00,142,137,ok
+schemastore/geojson/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/geojson/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/geojson/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/geojson/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/githubfundingblank/dynamic,schemastore,web,json-v2,182,182.00,136,127,ok
+schemastore/githubfundingblank/dynamic,schemastore,web,gob,248,248.00,214,205,ok
+schemastore/githubfundingblank/dynamic,schemastore,web,cbor,124,124.00,149,109,ok
+schemastore/githubfundingblank/dynamic,schemastore,web,msgpack,124,124.00,149,116,ok
+schemastore/githubfundingblank/dynamic,schemastore,web,protobuf,186,186.00,165,160,ok
+schemastore/githubfundingblank/dynamic,schemastore,web,colbin,124,124.00,149,116,ok
+schemastore/githubfundingblank/dynamic,schemastore,web,colbin+packed5,124,124.00,149,116,ok
+schemastore/githubfundingblank/dynamic,schemastore,web,colbin-json,137,137.00,162,134,ok
+schemastore/githubfundingblank/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/githubfundingblank/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/githubfundingblank/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/githubfundingblank/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/githubworkflow/dynamic,schemastore,web,json-v2,355,355.00,225,220,ok
+schemastore/githubworkflow/dynamic,schemastore,web,gob,815,815.00,392,399,ok
+schemastore/githubworkflow/dynamic,schemastore,web,cbor,288,288.00,210,199,ok
+schemastore/githubworkflow/dynamic,schemastore,web,msgpack,287,287.00,223,212,ok
+schemastore/githubworkflow/dynamic,schemastore,web,protobuf,415,415.00,330,326,ok
+schemastore/githubworkflow/dynamic,schemastore,web,colbin,287,287.00,228,217,ok
+schemastore/githubworkflow/dynamic,schemastore,web,colbin+packed5,287,287.00,226,215,ok
+schemastore/githubworkflow/dynamic,schemastore,web,colbin-json,300,300.00,241,231,ok
+schemastore/githubworkflow/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/githubworkflow/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/githubworkflow/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/githubworkflow/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/gruntcontribclean/dynamic,schemastore,web,json-v2,92,92.00,117,85,ok
+schemastore/gruntcontribclean/dynamic,schemastore,web,gob,352,352.00,213,204,ok
+schemastore/gruntcontribclean/dynamic,schemastore,web,cbor,60,60.00,85,69,ok
+schemastore/gruntcontribclean/dynamic,schemastore,web,msgpack,60,60.00,85,69,ok
+schemastore/gruntcontribclean/dynamic,schemastore,web,protobuf,109,109.00,134,102,ok
+schemastore/gruntcontribclean/dynamic,schemastore,web,colbin,60,60.00,85,69,ok
+schemastore/gruntcontribclean/dynamic,schemastore,web,colbin+packed5,60,60.00,85,69,ok
+schemastore/gruntcontribclean/dynamic,schemastore,web,colbin-json,73,73.00,98,82,ok
+schemastore/gruntcontribclean/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/gruntcontribclean/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/gruntcontribclean/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/gruntcontribclean/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/imageoptimizerwebjob/dynamic,schemastore,web,json-v2,81,81.00,106,79,ok
+schemastore/imageoptimizerwebjob/dynamic,schemastore,web,gob,308,308.00,210,203,ok
+schemastore/imageoptimizerwebjob/dynamic,schemastore,web,cbor,61,61.00,86,70,ok
+schemastore/imageoptimizerwebjob/dynamic,schemastore,web,msgpack,61,61.00,86,70,ok
+schemastore/imageoptimizerwebjob/dynamic,schemastore,web,protobuf,95,95.00,120,102,ok
+schemastore/imageoptimizerwebjob/dynamic,schemastore,web,colbin,61,61.00,86,70,ok
+schemastore/imageoptimizerwebjob/dynamic,schemastore,web,colbin+packed5,61,61.00,86,70,ok
+schemastore/imageoptimizerwebjob/dynamic,schemastore,web,colbin-json,74,74.00,99,83,ok
+schemastore/imageoptimizerwebjob/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/imageoptimizerwebjob/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/imageoptimizerwebjob/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/imageoptimizerwebjob/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/jsonereversesort/dynamic,schemastore,web,json-v2,85,85.00,110,80,ok
+schemastore/jsonereversesort/dynamic,schemastore,web,gob,403,403.00,221,214,ok
+schemastore/jsonereversesort/dynamic,schemastore,web,cbor,92,92.00,117,76,ok
+schemastore/jsonereversesort/dynamic,schemastore,web,msgpack,92,92.00,117,76,ok
+schemastore/jsonereversesort/dynamic,schemastore,web,protobuf,146,146.00,124,122,ok
+schemastore/jsonereversesort/dynamic,schemastore,web,colbin,53,53.00,78,62,ok
+schemastore/jsonereversesort/dynamic,schemastore,web,colbin+packed5,53,53.00,78,62,ok
+schemastore/jsonereversesort/dynamic,schemastore,web,colbin-json,66,66.00,91,75,ok
+schemastore/jsonereversesort/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/jsonereversesort/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/jsonereversesort/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/jsonereversesort/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/jsonesort/dynamic,schemastore,web,json-v2,33,33.00,58,42,ok
+schemastore/jsonesort/dynamic,schemastore,web,gob,242,242.00,184,181,ok
+schemastore/jsonesort/dynamic,schemastore,web,cbor,61,61.00,86,47,ok
+schemastore/jsonesort/dynamic,schemastore,web,msgpack,61,61.00,86,47,ok
+schemastore/jsonesort/dynamic,schemastore,web,protobuf,84,84.00,109,60,ok
+schemastore/jsonesort/dynamic,schemastore,web,colbin,21,21.00,46,30,ok
+schemastore/jsonesort/dynamic,schemastore,web,colbin+packed5,21,21.00,46,30,ok
+schemastore/jsonesort/dynamic,schemastore,web,colbin-json,34,34.00,59,43,ok
+schemastore/jsonesort/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/jsonesort/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/jsonesort/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/jsonesort/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/jsonfeed/dynamic,schemastore,web,json-v2,572,572.00,332,332,ok
+schemastore/jsonfeed/dynamic,schemastore,web,gob,847,847.00,491,495,ok
+schemastore/jsonfeed/dynamic,schemastore,web,cbor,523,523.00,323,322,ok
+schemastore/jsonfeed/dynamic,schemastore,web,msgpack,517,517.00,336,334,ok
+schemastore/jsonfeed/dynamic,schemastore,web,protobuf,610,610.00,412,415,ok
+schemastore/jsonfeed/dynamic,schemastore,web,colbin,517,517.00,338,332,ok
+schemastore/jsonfeed/dynamic,schemastore,web,colbin+packed5,517,517.00,336,332,ok
+schemastore/jsonfeed/dynamic,schemastore,web,colbin-json,530,530.00,352,347,ok
+schemastore/jsonfeed/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/jsonfeed/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/jsonfeed/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/jsonfeed/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/jsonresume/dynamic,schemastore,web,json-v2,3047,3047.00,1585,1651,ok
+schemastore/jsonresume/dynamic,schemastore,web,gob,4309,4309.00,2033,2067,ok
+schemastore/jsonresume/dynamic,schemastore,web,cbor,2754,2754.00,1543,1585,ok
+schemastore/jsonresume/dynamic,schemastore,web,msgpack,2749,2749.00,1603,1647,ok
+schemastore/jsonresume/dynamic,schemastore,web,protobuf,3301,3301.00,2037,2090,ok
+schemastore/jsonresume/dynamic,schemastore,web,colbin,2749,2749.00,1605,1641,ok
+schemastore/jsonresume/dynamic,schemastore,web,colbin+packed5,2749,2749.00,1604,1645,ok
+schemastore/jsonresume/dynamic,schemastore,web,colbin-json,2762,2762.00,1628,1655,ok
+schemastore/jsonresume/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/jsonresume/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/jsonresume/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/jsonresume/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/netcoreproject/dynamic,schemastore,web,json-v2,1048,1048.00,416,422,ok
+schemastore/netcoreproject/dynamic,schemastore,web,gob,1507,1507.00,612,620,ok
+schemastore/netcoreproject/dynamic,schemastore,web,cbor,923,923.00,448,462,ok
+schemastore/netcoreproject/dynamic,schemastore,web,msgpack,919,919.00,472,473,ok
+schemastore/netcoreproject/dynamic,schemastore,web,protobuf,1132,1132.00,570,586,ok
+schemastore/netcoreproject/dynamic,schemastore,web,colbin,918,918.00,475,480,ok
+schemastore/netcoreproject/dynamic,schemastore,web,colbin+packed5,918,918.00,472,478,ok
+schemastore/netcoreproject/dynamic,schemastore,web,colbin-json,931,931.00,486,492,ok
+schemastore/netcoreproject/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/netcoreproject/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/netcoreproject/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/netcoreproject/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/nightwatch/dynamic,schemastore,web,json-v2,1506,1506.00,654,662,ok
+schemastore/nightwatch/dynamic,schemastore,web,gob,2004,2004.00,860,859,ok
+schemastore/nightwatch/dynamic,schemastore,web,cbor,1267,1267.00,665,666,ok
+schemastore/nightwatch/dynamic,schemastore,web,msgpack,1264,1264.00,690,697,ok
+schemastore/nightwatch/dynamic,schemastore,web,protobuf,1648,1648.00,852,869,ok
+schemastore/nightwatch/dynamic,schemastore,web,colbin,1179,1179.00,662,673,ok
+schemastore/nightwatch/dynamic,schemastore,web,colbin+packed5,1179,1179.00,666,673,ok
+schemastore/nightwatch/dynamic,schemastore,web,colbin-json,1192,1192.00,683,687,ok
+schemastore/nightwatch/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/nightwatch/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/nightwatch/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/nightwatch/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/openweathermap/dynamic,schemastore,web,json-v2,493,493.00,344,345,ok
+schemastore/openweathermap/dynamic,schemastore,web,gob,1024,1024.00,589,590,ok
+schemastore/openweathermap/dynamic,schemastore,web,cbor,465,465.00,393,381,ok
+schemastore/openweathermap/dynamic,schemastore,web,msgpack,465,465.00,399,394,ok
+schemastore/openweathermap/dynamic,schemastore,web,protobuf,655,655.00,505,507,ok
+schemastore/openweathermap/dynamic,schemastore,web,colbin,387,387.00,379,368,ok
+schemastore/openweathermap/dynamic,schemastore,web,colbin+packed5,387,387.00,379,368,ok
+schemastore/openweathermap/dynamic,schemastore,web,colbin-json,400,400.00,396,382,ok
+schemastore/openweathermap/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/openweathermap/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/openweathermap/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/openweathermap/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/openweatherroadrisk/dynamic,schemastore,web,json-v2,374,374.00,250,237,ok
+schemastore/openweatherroadrisk/dynamic,schemastore,web,gob,892,892.00,467,458,ok
+schemastore/openweatherroadrisk/dynamic,schemastore,web,cbor,370,370.00,301,287,ok
+schemastore/openweatherroadrisk/dynamic,schemastore,web,msgpack,369,369.00,307,304,ok
+schemastore/openweatherroadrisk/dynamic,schemastore,web,protobuf,503,503.00,383,388,ok
+schemastore/openweatherroadrisk/dynamic,schemastore,web,colbin,343,343.00,296,288,ok
+schemastore/openweatherroadrisk/dynamic,schemastore,web,colbin+packed5,343,343.00,303,292,ok
+schemastore/openweatherroadrisk/dynamic,schemastore,web,colbin-json,354,354.00,308,299,ok
+schemastore/openweatherroadrisk/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/openweatherroadrisk/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/openweatherroadrisk/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/openweatherroadrisk/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/packagejson/dynamic,schemastore,web,json-v2,2258,2258.00,1127,1176,ok
+schemastore/packagejson/dynamic,schemastore,web,gob,3005,3005.00,1401,1449,ok
+schemastore/packagejson/dynamic,schemastore,web,cbor,1990,1990.00,1108,1129,ok
+schemastore/packagejson/dynamic,schemastore,web,msgpack,1995,1995.00,1156,1189,ok
+schemastore/packagejson/dynamic,schemastore,web,protobuf,2370,2370.00,1372,1415,ok
+schemastore/packagejson/dynamic,schemastore,web,colbin,1991,1991.00,1154,1179,ok
+schemastore/packagejson/dynamic,schemastore,web,colbin+packed5,1991,1991.00,1156,1187,ok
+schemastore/packagejson/dynamic,schemastore,web,colbin-json,2004,2004.00,1174,1206,ok
+schemastore/packagejson/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/packagejson/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/packagejson/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/packagejson/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/packagejsonlintrc/dynamic,schemastore,web,json-v2,1158,1158.00,332,332,ok
+schemastore/packagejsonlintrc/dynamic,schemastore,web,gob,1804,1804.00,529,531,ok
+schemastore/packagejsonlintrc/dynamic,schemastore,web,cbor,993,993.00,358,363,ok
+schemastore/packagejsonlintrc/dynamic,schemastore,web,msgpack,989,989.00,379,383,ok
+schemastore/packagejsonlintrc/dynamic,schemastore,web,protobuf,1265,1265.00,476,498,ok
+schemastore/packagejsonlintrc/dynamic,schemastore,web,colbin,988,988.00,376,376,ok
+schemastore/packagejsonlintrc/dynamic,schemastore,web,colbin+packed5,988,988.00,378,378,ok
+schemastore/packagejsonlintrc/dynamic,schemastore,web,colbin-json,1001,1001.00,396,392,ok
+schemastore/packagejsonlintrc/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/packagejsonlintrc/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/packagejsonlintrc/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/packagejsonlintrc/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/sapcloudsdkpipeline/dynamic,schemastore,web,json-v2,43,43.00,68,49,ok
+schemastore/sapcloudsdkpipeline/dynamic,schemastore,web,gob,138,138.00,134,123,ok
+schemastore/sapcloudsdkpipeline/dynamic,schemastore,web,cbor,25,25.00,50,34,ok
+schemastore/sapcloudsdkpipeline/dynamic,schemastore,web,msgpack,25,25.00,50,34,ok
+schemastore/sapcloudsdkpipeline/dynamic,schemastore,web,protobuf,44,44.00,69,53,ok
+schemastore/sapcloudsdkpipeline/dynamic,schemastore,web,colbin,25,25.00,50,34,ok
+schemastore/sapcloudsdkpipeline/dynamic,schemastore,web,colbin+packed5,25,25.00,50,34,ok
+schemastore/sapcloudsdkpipeline/dynamic,schemastore,web,colbin-json,38,38.00,63,47,ok
+schemastore/sapcloudsdkpipeline/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/sapcloudsdkpipeline/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/sapcloudsdkpipeline/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/sapcloudsdkpipeline/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/travisnotifications/dynamic,schemastore,web,json-v2,672,672.00,155,147,ok
+schemastore/travisnotifications/dynamic,schemastore,web,gob,1039,1039.00,257,252,ok
+schemastore/travisnotifications/dynamic,schemastore,web,cbor,627,627.00,146,145,ok
+schemastore/travisnotifications/dynamic,schemastore,web,msgpack,627,627.00,157,153,ok
+schemastore/travisnotifications/dynamic,schemastore,web,protobuf,715,715.00,191,181,ok
+schemastore/travisnotifications/dynamic,schemastore,web,colbin,627,627.00,159,153,ok
+schemastore/travisnotifications/dynamic,schemastore,web,colbin+packed5,627,627.00,158,154,ok
+schemastore/travisnotifications/dynamic,schemastore,web,colbin-json,640,640.00,176,168,ok
+schemastore/travisnotifications/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/travisnotifications/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/travisnotifications/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/travisnotifications/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/tslintbasic/dynamic,schemastore,web,json-v2,66,66.00,91,62,ok
+schemastore/tslintbasic/dynamic,schemastore,web,gob,260,260.00,169,161,ok
+schemastore/tslintbasic/dynamic,schemastore,web,cbor,51,51.00,76,57,ok
+schemastore/tslintbasic/dynamic,schemastore,web,msgpack,51,51.00,76,59,ok
+schemastore/tslintbasic/dynamic,schemastore,web,protobuf,76,76.00,101,85,ok
+schemastore/tslintbasic/dynamic,schemastore,web,colbin,51,51.00,76,60,ok
+schemastore/tslintbasic/dynamic,schemastore,web,colbin+packed5,51,51.00,76,60,ok
+schemastore/tslintbasic/dynamic,schemastore,web,colbin-json,64,64.00,89,73,ok
+schemastore/tslintbasic/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/tslintbasic/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/tslintbasic/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/tslintbasic/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/tslintextend/dynamic,schemastore,web,json-v2,62,62.00,87,67,ok
+schemastore/tslintextend/dynamic,schemastore,web,gob,223,223.00,182,172,ok
+schemastore/tslintextend/dynamic,schemastore,web,cbor,55,55.00,80,60,ok
+schemastore/tslintextend/dynamic,schemastore,web,msgpack,55,55.00,80,63,ok
+schemastore/tslintextend/dynamic,schemastore,web,protobuf,68,68.00,93,77,ok
+schemastore/tslintextend/dynamic,schemastore,web,colbin,55,55.00,80,64,ok
+schemastore/tslintextend/dynamic,schemastore,web,colbin+packed5,55,55.00,80,64,ok
+schemastore/tslintextend/dynamic,schemastore,web,colbin-json,68,68.00,93,77,ok
+schemastore/tslintextend/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/tslintextend/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/tslintextend/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/tslintextend/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+schemastore/tslintmulti/dynamic,schemastore,web,json-v2,97,97.00,122,83,ok
+schemastore/tslintmulti/dynamic,schemastore,web,gob,349,349.00,215,205,ok
+schemastore/tslintmulti/dynamic,schemastore,web,cbor,68,68.00,93,74,ok
+schemastore/tslintmulti/dynamic,schemastore,web,msgpack,68,68.00,93,76,ok
+schemastore/tslintmulti/dynamic,schemastore,web,protobuf,111,111.00,136,105,ok
+schemastore/tslintmulti/dynamic,schemastore,web,colbin,68,68.00,93,77,ok
+schemastore/tslintmulti/dynamic,schemastore,web,colbin+packed5,68,68.00,93,77,ok
+schemastore/tslintmulti/dynamic,schemastore,web,colbin-json,81,81.00,106,90,ok
+schemastore/tslintmulti/dynamic,schemastore,web,vtprotobuf,,,,,n/a: dynamic path: google.protobuf.Value is measured through protobuf-go only
+schemastore/tslintmulti/dynamic,schemastore,web,flatbuffers,,,,,n/a: dynamic path: FlexBuffers has no Go implementation in google/flatbuffers
+schemastore/tslintmulti/dynamic,schemastore,web,arrow,,,,,n/a: dynamic path: not tabular
+schemastore/tslintmulti/dynamic,schemastore,web,colbin-untagged,,,,,"n/a: dynamic path: no struct, so no field ids to derive"
+publicbi/Arade,publicbi,web,json-v2,2525629,154.15,449017,439247,ok
+publicbi/Arade,publicbi,web,gob,789396,48.18,430124,422124,ok
+publicbi/Arade,publicbi,web,cbor,1549796,94.59,471985,426123,ok
+publicbi/Arade,publicbi,web,msgpack,1549796,94.59,471480,426020,ok
+publicbi/Arade,publicbi,web,msgpack-reflect,1615332,98.59,473657,426514,ok
+publicbi/Arade,publicbi,web,protobuf,757480,46.23,411236,464730,ok
+publicbi/Arade,publicbi,web,vtprotobuf,757480,46.23,411236,464730,ok
+publicbi/Arade,publicbi,web,flatbuffers,1101640,67.24,468788,490829,ok
+publicbi/Arade,publicbi,web,arrow,851406,51.97,442004,376028,ok
+publicbi/Arade,publicbi,web,avro,616487,37.63,403634,422635,ok
+publicbi/Arade,publicbi,web,capnproto,1310752,80.00,464398,486429,ok
+publicbi/Arade,publicbi,web,colbin,459287,28.03,290635,278729,ok
+publicbi/Arade,publicbi,web,colbin+packed5,459287,28.03,290635,278729,ok
+publicbi/Arade,publicbi,web,colbin-untagged,459384,28.04,290626,255768,ok
+publicbi/Arade,publicbi,web,colbin-json,459377,28.04,291724,278955,ok
+publicbi/Bimbo,publicbi,web,json-v2,3292160,200.94,313766,296073,ok
+publicbi/Bimbo,publicbi,web,gob,617611,37.70,249118,236335,ok
+publicbi/Bimbo,publicbi,web,cbor,2801506,170.99,312827,285073,ok
+publicbi/Bimbo,publicbi,web,msgpack,2814135,171.76,316717,288034,ok
+publicbi/Bimbo,publicbi,web,msgpack-reflect,3063817,187.00,310981,283457,ok
+publicbi/Bimbo,publicbi,web,protobuf,576084,35.16,253116,239717,ok
+publicbi/Bimbo,publicbi,web,vtprotobuf,576084,35.16,253116,239717,ok
+publicbi/Bimbo,publicbi,web,flatbuffers,726824,44.36,337392,312080,ok
+publicbi/Bimbo,publicbi,web,arrow,690414,42.14,201612,197606,ok
+publicbi/Bimbo,publicbi,web,avro,526594,32.14,255301,247044,ok
+publicbi/Bimbo,publicbi,web,capnproto,786464,48.00,248032,250367,ok
+publicbi/Bimbo,publicbi,web,colbin,228147,13.92,199209,201134,ok
+publicbi/Bimbo,publicbi,web,colbin+packed5,228147,13.92,199209,201134,ok
+publicbi/Bimbo,publicbi,web,colbin-untagged,228263,13.93,199508,201047,ok
+publicbi/Bimbo,publicbi,web,colbin-json,228318,13.94,199397,201269,ok
+publicbi/CMSprovider,publicbi,web,json-v2,12902931,787.53,1714659,1243390,ok
+publicbi/CMSprovider,publicbi,web,gob,3593517,219.33,1437912,1191695,lossy: $.Rows[0].STDEVMEDICAREALLOWEDAMT: nil against non-nil
+publicbi/CMSprovider,publicbi,web,cbor,11541473,704.44,1802294,1305703,ok
+publicbi/CMSprovider,publicbi,web,msgpack,11493813,701.53,1805221,1303713,ok
+publicbi/CMSprovider,publicbi,web,msgpack-reflect,11646975,710.87,1800535,1297519,ok
+publicbi/CMSprovider,publicbi,web,protobuf,4030442,246.00,1537998,1282816,ok
+publicbi/CMSprovider,publicbi,web,vtprotobuf,4030442,246.00,1537998,1282816,ok
+publicbi/CMSprovider,publicbi,web,flatbuffers,5889336,359.46,1847116,1507537,ok
+publicbi/CMSprovider,publicbi,web,arrow,4191102,255.80,1642810,1389892,ok
+publicbi/CMSprovider,publicbi,web,avro,3803878,232.17,1465170,1224418,ok
+publicbi/CMSprovider,publicbi,web,capnproto,6420592,391.88,1756404,1594691,ok
+publicbi/CMSprovider,publicbi,web,colbin,2983823,182.12,1008939,950613,ok
+publicbi/CMSprovider,publicbi,web,colbin+packed5,2983823,182.12,1008939,950613,ok
+publicbi/CMSprovider,publicbi,web,colbin-untagged,2983824,182.12,1006691,951217,ok
+publicbi/CMSprovider,publicbi,web,colbin-json,2984400,182.15,1013505,950596,ok
+publicbi/CityMaxCapita,publicbi,web,json-v2,12653099,772.28,2940762,2552646,ok
+publicbi/CityMaxCapita,publicbi,web,gob,5793492,353.61,2689944,2440879,lossy: $.Rows[1].ListedNumber: nil against non-nil
+publicbi/CityMaxCapita,publicbi,web,cbor,10474723,639.33,2938055,2537416,ok
+publicbi/CityMaxCapita,publicbi,web,msgpack,10517223,641.92,2961773,2553519,ok
+publicbi/CityMaxCapita,publicbi,web,msgpack-reflect,10849873,662.22,2961320,2550281,ok
+publicbi/CityMaxCapita,publicbi,web,protobuf,5928011,361.82,2795547,2539752,ok
+publicbi/CityMaxCapita,publicbi,web,vtprotobuf,5928011,361.82,2795547,2539752,ok
+publicbi/CityMaxCapita,publicbi,web,flatbuffers,8157744,497.91,3258912,2905615,ok
+publicbi/CityMaxCapita,publicbi,web,arrow,6718038,410.04,2846738,2623249,ok
+publicbi/CityMaxCapita,publicbi,web,avro,5592765,341.36,2672417,2415407,ok
+publicbi/CityMaxCapita,publicbi,web,capnproto,9089024,554.75,3279532,3012506,ok
+publicbi/CityMaxCapita,publicbi,web,colbin,5108859,311.82,2178377,2012239,ok
+publicbi/CityMaxCapita,publicbi,web,colbin+packed5,5108859,311.82,2178377,2012239,ok
+publicbi/CityMaxCapita,publicbi,web,colbin-untagged,5108860,311.82,2176634,2011246,ok
+publicbi/CityMaxCapita,publicbi,web,colbin-json,5109255,311.84,2177085,2011877,ok
+publicbi/CommonGovernment,publicbi,web,json-v2,28190656,1720.62,2661096,1519323,ok
+publicbi/CommonGovernment,publicbi,web,gob,12915343,788.29,2139952,1306959,lossy: $.Rows[0].Obligatedamount1: nil against non-nil
+publicbi/CommonGovernment,publicbi,web,cbor,25735954,1570.80,2723103,1515632,ok
+publicbi/CommonGovernment,publicbi,web,msgpack,25695657,1568.34,2725985,1519495,ok
+publicbi/CommonGovernment,publicbi,web,msgpack-reflect,25986933,1586.12,2719928,1504807,ok
+publicbi/CommonGovernment,publicbi,web,protobuf,13579758,828.84,2382606,1425741,ok
+publicbi/CommonGovernment,publicbi,web,vtprotobuf,13579758,828.84,2382606,1425741,ok
+publicbi/CommonGovernment,publicbi,web,flatbuffers,18438064,1125.37,3011828,1747682,ok
+publicbi/CommonGovernment,publicbi,web,arrow,14931526,911.35,3206629,2220127,ok
+publicbi/CommonGovernment,publicbi,web,avro,13109450,800.14,2157796,1268482,ok
+publicbi/CommonGovernment,publicbi,web,capnproto,20604592,1257.60,3789416,2919051,ok
+publicbi/CommonGovernment,publicbi,web,colbin,11984708,731.49,1534547,1297126,ok
+publicbi/CommonGovernment,publicbi,web,colbin+packed5,11984708,731.49,1534547,1297126,ok
+publicbi/CommonGovernment,publicbi,web,colbin-untagged,11984709,731.49,1534648,1297139,ok
+publicbi/CommonGovernment,publicbi,web,colbin-json,11985606,731.54,1535105,1298591,ok
+publicbi/Corporations,publicbi,web,json-v2,10870082,663.46,1342521,1235408,ok
+publicbi/Corporations,publicbi,web,gob,3642714,222.33,1236797,1163538,ok
+publicbi/Corporations,publicbi,web,cbor,8762117,534.80,1380960,1277094,ok
+publicbi/Corporations,publicbi,web,msgpack,8765959,535.03,1387650,1286701,ok
+publicbi/Corporations,publicbi,web,msgpack-reflect,8977053,547.92,1389976,1285908,ok
+publicbi/Corporations,publicbi,web,protobuf,3729833,227.65,1292440,1209392,ok
+publicbi/Corporations,publicbi,web,vtprotobuf,3729833,227.65,1292440,1209392,ok
+publicbi/Corporations,publicbi,web,flatbuffers,5092792,310.84,1590336,1476634,ok
+publicbi/Corporations,publicbi,web,arrow,4883790,298.08,1432944,1309190,ok
+publicbi/Corporations,publicbi,web,avro,3776217,230.48,1243419,1166818,ok
+publicbi/Corporations,publicbi,web,capnproto,7121280,434.65,1656959,1560813,ok
+publicbi/Corporations,publicbi,web,colbin,3403096,207.71,1118050,1028531,ok
+publicbi/Corporations,publicbi,web,colbin+packed5,3403096,207.71,1118050,1028531,ok
+publicbi/Corporations,publicbi,web,colbin-untagged,3403097,207.71,1118058,1028524,ok
+publicbi/Corporations,publicbi,web,colbin-json,3403495,207.73,1118502,1028433,ok
+publicbi/Eixo,publicbi,web,json-v2,40238159,2455.94,4076775,2616404,ok
+publicbi/Eixo,publicbi,web,gob,13634186,832.16,3085371,2251174,lossy: $.Rows[0].StExtemporaneoMatricula: nil against non-nil
+publicbi/Eixo,publicbi,web,cbor,34711247,2118.61,4046409,2596988,ok
+publicbi/Eixo,publicbi,web,msgpack,34600581,2111.85,4045938,2582174,ok
+publicbi/Eixo,publicbi,web,msgpack-reflect,34924755,2131.64,4059556,2591555,ok
+publicbi/Eixo,publicbi,web,protobuf,14402217,879.04,3257826,2350739,ok
+publicbi/Eixo,publicbi,web,vtprotobuf,14402217,879.04,3257826,2350739,ok
+publicbi/Eixo,publicbi,web,flatbuffers,20472552,1249.55,4530629,3178182,ok
+publicbi/Eixo,publicbi,web,arrow,15990590,975.99,4284787,3754219,ok
+publicbi/Eixo,publicbi,web,avro,13197585,805.52,3025614,2227342,ok
+publicbi/Eixo,publicbi,web,capnproto,23600376,1440.45,5361990,4577948,ok
+publicbi/Eixo,publicbi,web,colbin,12214332,745.50,2092659,1926537,ok
+publicbi/Eixo,publicbi,web,colbin+packed5,12214332,745.50,2092659,1926537,ok
+publicbi/Eixo,publicbi,web,colbin-untagged,12214333,745.50,2091897,1926737,ok
+publicbi/Eixo,publicbi,web,colbin-json,12215877,745.60,2093276,1931600,ok
+publicbi/Euro2016,publicbi,web,json-v2,5691049,347.35,1325200,1197284,ok
+publicbi/Euro2016,publicbi,web,gob,2656909,162.16,1220136,1133779,ok
+publicbi/Euro2016,publicbi,web,cbor,4627183,282.42,1297303,1181928,ok
+publicbi/Euro2016,publicbi,web,msgpack,4626924,282.41,1297791,1182765,ok
+publicbi/Euro2016,publicbi,web,msgpack-reflect,4659732,284.41,1299106,1182908,ok
+publicbi/Euro2016,publicbi,web,protobuf,2671943,163.08,1270641,1191141,ok
+publicbi/Euro2016,publicbi,web,vtprotobuf,2671943,163.08,1270641,1191141,ok
+publicbi/Euro2016,publicbi,web,flatbuffers,3404560,207.80,1437165,1346167,ok
+publicbi/Euro2016,publicbi,web,arrow,2854174,174.20,1259593,1173069,ok
+publicbi/Euro2016,publicbi,web,avro,2608182,159.19,1247538,1167644,ok
+publicbi/Euro2016,publicbi,web,capnproto,3587296,218.95,1346732,1269484,ok
+publicbi/Euro2016,publicbi,web,colbin,2339189,142.77,1025030,972569,ok
+publicbi/Euro2016,publicbi,web,colbin+packed5,2339189,142.77,1025030,972569,ok
+publicbi/Euro2016,publicbi,web,colbin-untagged,2339306,142.78,1025135,972643,ok
+publicbi/Euro2016,publicbi,web,colbin-json,2339356,142.78,1025238,972755,ok
+publicbi/Food,publicbi,web,json-v2,2212585,135.05,271558,226344,ok
+publicbi/Food,publicbi,web,gob,692210,42.25,244724,233292,ok
+publicbi/Food,publicbi,web,cbor,1909158,116.53,292343,250653,ok
+publicbi/Food,publicbi,web,msgpack,1905048,116.27,294396,251605,ok
+publicbi/Food,publicbi,web,msgpack-reflect,2009746,122.67,293849,251489,ok
+publicbi/Food,publicbi,web,protobuf,745064,45.48,259804,248539,ok
+publicbi/Food,publicbi,web,vtprotobuf,745064,45.48,259804,248539,ok
+publicbi/Food,publicbi,web,flatbuffers,1227160,74.90,377437,362311,ok
+publicbi/Food,publicbi,web,arrow,784094,47.86,303110,279088,ok
+publicbi/Food,publicbi,web,avro,633732,38.68,238893,229190,ok
+publicbi/Food,publicbi,web,capnproto,1189080,72.58,306282,292450,ok
+publicbi/Food,publicbi,web,colbin,542583,33.12,177788,169539,ok
+publicbi/Food,publicbi,web,colbin+packed5,542583,33.12,177788,169539,ok
+publicbi/Food,publicbi,web,colbin-untagged,542642,33.12,177850,169433,ok
+publicbi/Food,publicbi,web,colbin-json,542687,33.12,181619,169606,ok
+publicbi/Generico,publicbi,web,json-v2,17937784,1094.84,2193820,1440927,ok
+publicbi/Generico,publicbi,web,gob,9638740,588.30,1888193,1322042,lossy: $.Rows[17].Duracion: nil against non-nil
+publicbi/Generico,publicbi,web,cbor,15393894,939.57,2251520,1453899,ok
+publicbi/Generico,publicbi,web,msgpack,15358821,937.43,2247666,1443851,ok
+publicbi/Generico,publicbi,web,msgpack-reflect,15736473,960.48,2267978,1447906,ok
+publicbi/Generico,publicbi,web,protobuf,10037243,612.62,2002256,1355938,ok
+publicbi/Generico,publicbi,web,vtprotobuf,10037243,612.62,2002256,1355938,ok
+publicbi/Generico,publicbi,web,flatbuffers,12784120,780.28,2603812,1792726,ok
+publicbi/Generico,publicbi,web,arrow,10715166,654.00,2333634,2029460,ok
+publicbi/Generico,publicbi,web,avro,9470664,578.04,1864462,1316216,ok
+publicbi/Generico,publicbi,web,capnproto,13897952,848.26,3042785,2453180,ok
+publicbi/Generico,publicbi,web,colbin,8753081,534.25,1315494,1126450,ok
+publicbi/Generico,publicbi,web,colbin+packed5,8753081,534.25,1315494,1126450,ok
+publicbi/Generico,publicbi,web,colbin-untagged,8753082,534.25,1315483,1126572,ok
+publicbi/Generico,publicbi,web,colbin-json,8753571,534.28,1315862,1126504,ok
+publicbi/HashTags,publicbi,web,json-v2,65678491,4008.70,6516730,5153272,ok
+publicbi/HashTags,publicbi,web,gob,18204490,1111.11,5093676,4256192,lossy: $.Rows[143].TwitterNumUserNumUtcOffset: nil against non-nil
+publicbi/HashTags,publicbi,web,cbor,59451710,3628.64,6711543,5085194,ok
+publicbi/HashTags,publicbi,web,msgpack,58634396,3578.76,6686482,5133055,ok
+publicbi/HashTags,publicbi,web,msgpack-reflect,60034008,3664.19,6699162,5080530,ok
+publicbi/HashTags,publicbi,web,protobuf,18772533,1145.78,5437587,4516172,ok
+publicbi/HashTags,publicbi,web,vtprotobuf,18772533,1145.78,5437587,4516172,ok
+publicbi/HashTags,publicbi,web,flatbuffers,23896832,1458.55,6538764,5255995,ok
+publicbi/HashTags,publicbi,web,arrow,22312310,1361.84,6770298,5489596,ok
+publicbi/HashTags,publicbi,web,avro,18683508,1140.35,5061795,4242456,ok
+publicbi/HashTags,publicbi,web,capnproto,27622208,1685.93,6949487,5996970,ok
+publicbi/HashTags,publicbi,web,colbin,17171340,1048.06,5384439,3327771,ok
+publicbi/HashTags,publicbi,web,colbin+packed5,17171340,1048.06,5384439,3327771,ok
+publicbi/HashTags,publicbi,web,colbin-untagged,17171341,1048.06,5384296,3327925,ok
+publicbi/HashTags,publicbi,web,colbin-json,17174031,1048.22,5382794,3329666,ok
+publicbi/Hatred,publicbi,web,json-v2,11877436,724.94,2917721,2559638,ok
+publicbi/Hatred,publicbi,web,gob,5642973,344.42,2726077,2473468,lossy: $.Rows[9].Listed: nil against non-nil
+publicbi/Hatred,publicbi,web,cbor,9752839,595.27,2966272,2592562,ok
+publicbi/Hatred,publicbi,web,msgpack,9795869,597.89,2989762,2610491,ok
+publicbi/Hatred,publicbi,web,msgpack-reflect,10101425,616.54,2971696,2594949,ok
+publicbi/Hatred,publicbi,web,protobuf,5794078,353.64,2850355,2585757,ok
+publicbi/Hatred,publicbi,web,vtprotobuf,5794078,353.64,2850355,2585757,ok
+publicbi/Hatred,publicbi,web,flatbuffers,7795256,475.78,3329375,3004109,ok
+publicbi/Hatred,publicbi,web,arrow,6465246,394.61,2832429,2626829,ok
+publicbi/Hatred,publicbi,web,avro,5307619,323.95,2686601,2450694,ok
+publicbi/Hatred,publicbi,web,capnproto,8832784,539.11,3226255,3013310,ok
+publicbi/Hatred,publicbi,web,colbin,4884789,298.14,2196726,2107698,ok
+publicbi/Hatred,publicbi,web,colbin+packed5,4884789,298.14,2196726,2107698,ok
+publicbi/Hatred,publicbi,web,colbin-untagged,4884790,298.14,2196777,2107005,ok
+publicbi/Hatred,publicbi,web,colbin-json,4885145,298.17,2196992,2107951,ok
+publicbi/IGlocations1,publicbi,web,json-v2,5513752,336.53,685605,596075,ok
+publicbi/IGlocations1,publicbi,web,gob,1230111,75.08,498761,469330,lossy: $.Rows[95].CENSUS2010POP: nil against non-nil
+publicbi/IGlocations1,publicbi,web,cbor,4431114,270.45,689409,571926,ok
+publicbi/IGlocations1,publicbi,web,msgpack,4468771,272.75,698670,580867,ok
+publicbi/IGlocations1,publicbi,web,msgpack-reflect,4986941,304.38,707324,552134,ok
+publicbi/IGlocations1,publicbi,web,protobuf,1160336,70.82,538194,504970,ok
+publicbi/IGlocations1,publicbi,web,vtprotobuf,1160336,70.82,538194,504970,ok
+publicbi/IGlocations1,publicbi,web,flatbuffers,1825252,111.40,626567,576268,ok
+publicbi/IGlocations1,publicbi,web,arrow,1437038,87.71,538102,495253,ok
+publicbi/IGlocations1,publicbi,web,avro,911007,55.60,453346,435847,ok
+publicbi/IGlocations1,publicbi,web,capnproto,1997472,121.92,594615,570784,ok
+publicbi/IGlocations1,publicbi,web,colbin,826364,50.44,396212,371531,ok
+publicbi/IGlocations1,publicbi,web,colbin+packed5,826364,50.44,396212,371531,ok
+publicbi/IGlocations1,publicbi,web,colbin-untagged,826365,50.44,396213,371538,ok
+publicbi/IGlocations1,publicbi,web,colbin-json,826628,50.45,396388,371725,ok
+publicbi/IGlocations2,publicbi,web,json-v2,12725684,776.71,2812808,2576370,ok
+publicbi/IGlocations2,publicbi,web,gob,6983329,426.23,2732680,2583148,ok
+publicbi/IGlocations2,publicbi,web,cbor,11291800,689.20,2888831,2644236,ok
+publicbi/IGlocations2,publicbi,web,msgpack,11289205,689.04,2897556,2649769,ok
+publicbi/IGlocations2,publicbi,web,msgpack-reflect,11457687,699.32,2896503,2648577,ok
+publicbi/IGlocations2,publicbi,web,protobuf,7013778,428.09,2849369,2686002,ok
+publicbi/IGlocations2,publicbi,web,vtprotobuf,7013778,428.09,2849369,2686002,ok
+publicbi/IGlocations2,publicbi,web,flatbuffers,8783888,536.13,3073023,2853991,ok
+publicbi/IGlocations2,publicbi,web,arrow,7397758,451.52,2689239,2498755,ok
+publicbi/IGlocations2,publicbi,web,avro,6638676,405.19,2732457,2581156,ok
+publicbi/IGlocations2,publicbi,web,capnproto,9058472,552.89,3171005,2942415,ok
+publicbi/IGlocations2,publicbi,web,colbin,6452689,393.84,2201326,2098733,ok
+publicbi/IGlocations2,publicbi,web,colbin+packed5,6452689,393.84,2201326,2098733,ok
+publicbi/IGlocations2,publicbi,web,colbin-untagged,6452690,393.84,2201360,2098591,ok
+publicbi/IGlocations2,publicbi,web,colbin-json,6453020,393.86,2201169,2098599,ok
+publicbi/IUBLibrary,publicbi,web,json-v2,1156627,644.36,207267,194619,ok
+publicbi/IUBLibrary,publicbi,web,gob,409813,228.31,188941,184860,ok
+publicbi/IUBLibrary,publicbi,web,cbor,956686,532.97,214506,199558,ok
+publicbi/IUBLibrary,publicbi,web,msgpack,955371,532.24,213712,198592,ok
+publicbi/IUBLibrary,publicbi,web,msgpack-reflect,980345,546.15,214609,199474,ok
+publicbi/IUBLibrary,publicbi,web,protobuf,424679,236.59,197153,194155,ok
+publicbi/IUBLibrary,publicbi,web,vtprotobuf,424679,236.59,197153,194155,ok
+publicbi/IUBLibrary,publicbi,web,flatbuffers,665220,370.60,240369,224092,ok
+publicbi/IUBLibrary,publicbi,web,arrow,464950,259.03,227527,219223,ok
+publicbi/IUBLibrary,publicbi,web,avro,368733,205.42,184921,182605,ok
+publicbi/IUBLibrary,publicbi,web,capnproto,714832,398.24,248961,243308,ok
+publicbi/IUBLibrary,publicbi,web,colbin,342672,190.90,152215,158183,ok
+publicbi/IUBLibrary,publicbi,web,colbin+packed5,342672,190.90,152215,158183,ok
+publicbi/IUBLibrary,publicbi,web,colbin-untagged,342673,190.90,152224,158186,ok
+publicbi/IUBLibrary,publicbi,web,colbin-json,343075,191.13,152614,158545,ok
+publicbi/MLB,publicbi,web,json-v2,9157302,558.92,1345885,1024732,ok
+publicbi/MLB,publicbi,web,gob,2205060,134.59,961525,735809,lossy: $.Rows[0].ISO: nil against non-nil
+publicbi/MLB,publicbi,web,cbor,6457311,394.12,1307664,922279,ok
+publicbi/MLB,publicbi,web,msgpack,6409779,391.22,1312134,933810,ok
+publicbi/MLB,publicbi,web,msgpack-reflect,7874199,480.60,1323616,948816,ok
+publicbi/MLB,publicbi,web,protobuf,2532585,154.58,1076821,820725,ok
+publicbi/MLB,publicbi,web,vtprotobuf,2532585,154.58,1076821,820725,ok
+publicbi/MLB,publicbi,web,flatbuffers,3673952,224.24,1225543,920743,ok
+publicbi/MLB,publicbi,web,arrow,3065766,187.12,953760,903539,ok
+publicbi/MLB,publicbi,web,avro,1923112,117.38,918933,709837,ok
+publicbi/MLB,publicbi,web,capnproto,4056088,247.56,1167801,977127,ok
+publicbi/MLB,publicbi,web,colbin,1431389,87.37,635167,596574,ok
+publicbi/MLB,publicbi,web,colbin+packed5,1431389,87.37,635167,596574,ok
+publicbi/MLB,publicbi,web,colbin-untagged,1431390,87.37,635201,596521,ok
+publicbi/MLB,publicbi,web,colbin-json,1431786,87.39,635396,596940,ok
+publicbi/MedPayment1,publicbi,web,json-v2,13359965,815.43,1868929,1422261,ok
+publicbi/MedPayment1,publicbi,web,gob,3213177,196.12,1569565,1321128,lossy: $.Rows[0].StdevSubmittedChrgAmt: nil against non-nil
+publicbi/MedPayment1,publicbi,web,cbor,11920515,727.57,1965728,1485583,ok
+publicbi/MedPayment1,publicbi,web,msgpack,11848334,723.16,1970974,1483888,ok
+publicbi/MedPayment1,publicbi,web,msgpack-reflect,12001430,732.51,1968498,1477884,ok
+publicbi/MedPayment1,publicbi,web,protobuf,3710967,226.50,1674325,1421388,ok
+publicbi/MedPayment1,publicbi,web,vtprotobuf,3710967,226.50,1674325,1421388,ok
+publicbi/MedPayment1,publicbi,web,flatbuffers,5710696,348.55,2033026,1678940,ok
+publicbi/MedPayment1,publicbi,web,arrow,3922550,239.41,1802405,1542142,ok
+publicbi/MedPayment1,publicbi,web,avro,3454383,210.84,1597909,1325461,ok
+publicbi/MedPayment1,publicbi,web,capnproto,6362312,388.32,2057796,1896260,ok
+publicbi/MedPayment1,publicbi,web,colbin,2612370,159.45,1087907,1063395,ok
+publicbi/MedPayment1,publicbi,web,colbin+packed5,2612370,159.45,1087907,1063395,ok
+publicbi/MedPayment1,publicbi,web,colbin-untagged,2612371,159.45,1088349,1063405,ok
+publicbi/MedPayment1,publicbi,web,colbin-json,2612998,159.48,1089225,1063691,ok
+publicbi/MedPayment2,publicbi,web,json-v2,14016442,855.50,1940696,1484804,ok
+publicbi/MedPayment2,publicbi,web,gob,3369795,205.68,1612554,1360132,lossy: $.Rows[5].StdevSubmittedChrgAmt: nil against non-nil
+publicbi/MedPayment2,publicbi,web,cbor,12544262,765.64,2049418,1540798,ok
+publicbi/MedPayment2,publicbi,web,msgpack,12455428,760.22,2048443,1543650,ok
+publicbi/MedPayment2,publicbi,web,msgpack-reflect,12609068,769.60,2050023,1533546,ok
+publicbi/MedPayment2,publicbi,web,protobuf,3875758,236.56,1725002,1458771,ok
+publicbi/MedPayment2,publicbi,web,vtprotobuf,3875758,236.56,1725002,1458771,ok
+publicbi/MedPayment2,publicbi,web,flatbuffers,5842352,356.59,2078573,1719193,ok
+publicbi/MedPayment2,publicbi,web,arrow,4055230,247.51,1908285,1544449,ok
+publicbi/MedPayment2,publicbi,web,avro,3602877,219.90,1631128,1352196,ok
+publicbi/MedPayment2,publicbi,web,capnproto,6496080,396.49,2098298,1940839,ok
+publicbi/MedPayment2,publicbi,web,colbin,2701907,164.91,1171488,1053829,ok
+publicbi/MedPayment2,publicbi,web,colbin+packed5,2701907,164.91,1171488,1053829,ok
+publicbi/MedPayment2,publicbi,web,colbin-untagged,2701908,164.91,1171385,1053855,ok
+publicbi/MedPayment2,publicbi,web,colbin-json,2702566,164.95,1172914,1054268,ok
+publicbi/Medicare1,publicbi,web,json-v2,12450239,759.90,1644912,1274757,ok
+publicbi/Medicare1,publicbi,web,gob,2772097,169.20,1243734,1136947,lossy: $.Rows[74].BENECOUNTGE65: nil against non-nil
+publicbi/Medicare1,publicbi,web,cbor,10498609,640.78,1617055,1257716,ok
+publicbi/Medicare1,publicbi,web,msgpack,10390783,634.20,1611594,1259257,ok
+publicbi/Medicare1,publicbi,web,msgpack-reflect,10623409,648.40,1608353,1250780,ok
+publicbi/Medicare1,publicbi,web,protobuf,2838641,173.26,1334157,1228658,ok
+publicbi/Medicare1,publicbi,web,vtprotobuf,2838641,173.26,1334157,1228658,ok
+publicbi/Medicare1,publicbi,web,flatbuffers,4145440,253.02,1541695,1400331,ok
+publicbi/Medicare1,publicbi,web,arrow,3062686,186.93,1429050,1267851,ok
+publicbi/Medicare1,publicbi,web,avro,2481926,151.48,1212503,1133359,ok
+publicbi/Medicare1,publicbi,web,capnproto,4563032,278.51,1505441,1475787,ok
+publicbi/Medicare1,publicbi,web,colbin,2046166,124.89,940406,866966,ok
+publicbi/Medicare1,publicbi,web,colbin+packed5,2046166,124.89,940406,866966,ok
+publicbi/Medicare1,publicbi,web,colbin-untagged,2046167,124.89,919695,867083,ok
+publicbi/Medicare1,publicbi,web,colbin-json,2046728,124.92,931062,867577,ok
+publicbi/Medicare2,publicbi,web,json-v2,13328282,813.49,1867654,1431536,ok
+publicbi/Medicare2,publicbi,web,gob,3143622,191.87,1553671,1319321,lossy: $.Rows[1].StdevMedicareAllowedAmt: nil against non-nil
+publicbi/Medicare2,publicbi,web,cbor,11778466,718.90,1948341,1474915,ok
+publicbi/Medicare2,publicbi,web,msgpack,11702024,714.23,1954340,1485090,ok
+publicbi/Medicare2,publicbi,web,msgpack-reflect,11915012,727.23,1945220,1468430,ok
+publicbi/Medicare2,publicbi,web,protobuf,3545342,216.39,1648960,1410567,ok
+publicbi/Medicare2,publicbi,web,vtprotobuf,3545342,216.39,1648960,1410567,ok
+publicbi/Medicare2,publicbi,web,flatbuffers,5438808,331.96,1976537,1694371,ok
+publicbi/Medicare2,publicbi,web,arrow,3779494,230.68,1733380,1470857,ok
+publicbi/Medicare2,publicbi,web,avro,3293913,201.04,1570483,1318931,ok
+publicbi/Medicare2,publicbi,web,capnproto,6103008,372.50,2014673,1856999,ok
+publicbi/Medicare2,publicbi,web,colbin,2549448,155.61,1098457,1066311,ok
+publicbi/Medicare2,publicbi,web,colbin+packed5,2549448,155.61,1098457,1066311,ok
+publicbi/Medicare2,publicbi,web,colbin-untagged,2549449,155.61,1098569,1066345,ok
+publicbi/Medicare2,publicbi,web,colbin-json,2550076,155.64,1098204,1065574,ok
+publicbi/Medicare3,publicbi,web,json-v2,14431864,880.85,2059897,1477089,ok
+publicbi/Medicare3,publicbi,web,gob,3907011,238.47,1717108,1391728,lossy: $.Rows[0].STDEVMEDICAREALLOWEDAMT: nil against non-nil
+publicbi/Medicare3,publicbi,web,cbor,12881966,786.25,2175999,1546748,ok
+publicbi/Medicare3,publicbi,web,msgpack,12817876,782.34,2184895,1547429,ok
+publicbi/Medicare3,publicbi,web,msgpack-reflect,12971088,791.69,2177219,1541677,ok
+publicbi/Medicare3,publicbi,web,protobuf,4388208,267.83,1837843,1492505,ok
+publicbi/Medicare3,publicbi,web,vtprotobuf,4388208,267.83,1837843,1492505,ok
+publicbi/Medicare3,publicbi,web,flatbuffers,6576736,401.41,2236389,1767606,ok
+publicbi/Medicare3,publicbi,web,arrow,4616374,281.76,1866703,1603111,ok
+publicbi/Medicare3,publicbi,web,avro,4122729,251.63,1750721,1405457,ok
+publicbi/Medicare3,publicbi,web,capnproto,7230240,441.30,2128298,1869883,ok
+publicbi/Medicare3,publicbi,web,colbin,3254044,198.61,1169949,1098880,ok
+publicbi/Medicare3,publicbi,web,colbin+packed5,3254044,198.61,1169949,1098880,ok
+publicbi/Medicare3,publicbi,web,colbin-untagged,3254045,198.61,1167242,1098370,ok
+publicbi/Medicare3,publicbi,web,colbin-json,3254694,198.65,1171032,1098840,ok
+publicbi/Motos,publicbi,web,json-v2,18256656,1114.30,2150104,1386329,ok
+publicbi/Motos,publicbi,web,gob,9580753,584.76,1845337,1271311,lossy: $.Rows[1].DeNpags: nil against non-nil
+publicbi/Motos,publicbi,web,cbor,15614012,953.00,2220780,1394231,ok
+publicbi/Motos,publicbi,web,msgpack,15579889,950.92,2216277,1383987,ok
+publicbi/Motos,publicbi,web,msgpack-reflect,15958483,974.03,2236264,1387904,ok
+publicbi/Motos,publicbi,web,protobuf,9978946,609.07,1959028,1301853,ok
+publicbi/Motos,publicbi,web,vtprotobuf,9978946,609.07,1959028,1301853,ok
+publicbi/Motos,publicbi,web,flatbuffers,12728432,776.88,2572090,1729785,ok
+publicbi/Motos,publicbi,web,arrow,10725670,654.64,2280849,1961073,ok
+publicbi/Motos,publicbi,web,avro,9430421,575.59,1823014,1264497,ok
+publicbi/Motos,publicbi,web,capnproto,13979152,853.22,3002827,2406270,ok
+publicbi/Motos,publicbi,web,colbin,8695153,530.71,1271610,1087127,ok
+publicbi/Motos,publicbi,web,colbin+packed5,8695153,530.71,1271610,1087127,ok
+publicbi/Motos,publicbi,web,colbin-untagged,8695154,530.71,1272562,1087259,ok
+publicbi/Motos,publicbi,web,colbin-json,8695662,530.74,1265794,1086016,ok
+publicbi/MulheresMil,publicbi,web,json-v2,41017116,2503.49,4117194,2652187,ok
+publicbi/MulheresMil,publicbi,web,gob,13872208,846.69,3112887,2269112,lossy: $.Rows[0].StExtemporaneoMatricula: nil against non-nil
+publicbi/MulheresMil,publicbi,web,cbor,35443581,2163.30,4079395,2633373,ok
+publicbi/MulheresMil,publicbi,web,msgpack,35315875,2155.51,4076828,2621680,ok
+publicbi/MulheresMil,publicbi,web,msgpack-reflect,35639553,2175.27,4096223,2625279,ok
+publicbi/MulheresMil,publicbi,web,protobuf,14657356,894.61,3291012,2375141,ok
+publicbi/MulheresMil,publicbi,web,vtprotobuf,14657356,894.61,3291012,2375141,ok
+publicbi/MulheresMil,publicbi,web,flatbuffers,20861120,1273.26,4617926,3215713,ok
+publicbi/MulheresMil,publicbi,web,arrow,16265438,992.76,4380122,3811088,ok
+publicbi/MulheresMil,publicbi,web,avro,13436014,820.07,3053793,2249849,ok
+publicbi/MulheresMil,publicbi,web,capnproto,23992248,1464.37,5454304,4655878,ok
+publicbi/MulheresMil,publicbi,web,colbin,12438562,759.19,2119089,1930696,ok
+publicbi/MulheresMil,publicbi,web,colbin+packed5,12438562,759.19,2119089,1930696,ok
+publicbi/MulheresMil,publicbi,web,colbin-untagged,12438563,759.19,2119150,1930850,ok
+publicbi/MulheresMil,publicbi,web,colbin-json,12440140,759.29,2120898,1930844,ok
+publicbi/NYC,publicbi,web,json-v2,26183861,1598.14,1844042,1461776,ok
+publicbi/NYC,publicbi,web,gob,9253774,564.81,1742939,1468038,ok
+publicbi/NYC,publicbi,web,cbor,21637200,1320.63,2023989,1588387,ok
+publicbi/NYC,publicbi,web,msgpack,21611248,1319.05,2026953,1586990,ok
+publicbi/NYC,publicbi,web,msgpack-reflect,21734000,1326.54,2029155,1586564,ok
+publicbi/NYC,publicbi,web,protobuf,9621365,587.24,1892559,1580924,ok
+publicbi/NYC,publicbi,web,vtprotobuf,9621365,587.24,1892559,1580924,ok
+publicbi/NYC,publicbi,web,flatbuffers,12998168,793.35,2242287,1816038,ok
+publicbi/NYC,publicbi,web,arrow,11314198,690.56,2525764,2178644,ok
+publicbi/NYC,publicbi,web,avro,9214281,562.40,1764194,1466637,ok
+publicbi/NYC,publicbi,web,capnproto,16104728,982.95,2740177,2448100,ok
+publicbi/NYC,publicbi,web,colbin,8365934,510.62,1248185,1160575,ok
+publicbi/NYC,publicbi,web,colbin+packed5,8365934,510.62,1248185,1160575,ok
+publicbi/NYC,publicbi,web,colbin-untagged,8365935,510.62,1251499,1160633,ok
+publicbi/NYC,publicbi,web,colbin-json,8366862,510.67,1249320,1163135,ok
+publicbi/PanCreactomy1,publicbi,web,json-v2,14368938,877.01,2020190,1443333,ok
+publicbi/PanCreactomy1,publicbi,web,gob,3865664,235.94,1664689,1339497,lossy: $.Rows[0].STDEVMEDICAREALLOWEDAMT: nil against non-nil
+publicbi/PanCreactomy1,publicbi,web,cbor,12874504,785.80,2126893,1500779,ok
+publicbi/PanCreactomy1,publicbi,web,msgpack,12810511,781.89,2136782,1502514,ok
+publicbi/PanCreactomy1,publicbi,web,msgpack-reflect,12963691,791.24,2128472,1496937,ok
+publicbi/PanCreactomy1,publicbi,web,protobuf,4382522,267.49,1788713,1438936,ok
+publicbi/PanCreactomy1,publicbi,web,vtprotobuf,4382522,267.49,1788713,1438936,ok
+publicbi/PanCreactomy1,publicbi,web,flatbuffers,6576056,401.37,2182449,1719089,ok
+publicbi/PanCreactomy1,publicbi,web,arrow,4609174,281.32,1864728,1561105,ok
+publicbi/PanCreactomy1,publicbi,web,avro,4116354,251.24,1700045,1345092,ok
+publicbi/PanCreactomy1,publicbi,web,capnproto,7227208,441.11,2078392,1808578,ok
+publicbi/PanCreactomy1,publicbi,web,colbin,3250954,198.42,1139979,1073339,ok
+publicbi/PanCreactomy1,publicbi,web,colbin+packed5,3250954,198.42,1139979,1073339,ok
+publicbi/PanCreactomy1,publicbi,web,colbin-untagged,3250955,198.42,1140634,1073793,ok
+publicbi/PanCreactomy1,publicbi,web,colbin-json,3251604,198.46,1140809,1074727,ok
+publicbi/PanCreactomy2,publicbi,web,json-v2,14374365,877.34,2018239,1436952,ok
+publicbi/PanCreactomy2,publicbi,web,gob,3870334,236.23,1663914,1339090,lossy: $.Rows[1].STDEVMEDICAREALLOWEDAMT: nil against non-nil
+publicbi/PanCreactomy2,publicbi,web,cbor,12878791,786.06,2125526,1502923,ok
+publicbi/PanCreactomy2,publicbi,web,msgpack,12814689,782.15,2133166,1502669,ok
+publicbi/PanCreactomy2,publicbi,web,msgpack-reflect,12968075,791.51,2125678,1497708,ok
+publicbi/PanCreactomy2,publicbi,web,protobuf,4386998,267.76,1787298,1436978,ok
+publicbi/PanCreactomy2,publicbi,web,vtprotobuf,4386998,267.76,1787298,1436978,ok
+publicbi/PanCreactomy2,publicbi,web,flatbuffers,6581272,401.69,2183155,1717996,ok
+publicbi/PanCreactomy2,publicbi,web,arrow,4613550,281.59,1844305,1550097,ok
+publicbi/PanCreactomy2,publicbi,web,avro,4120599,251.50,1697862,1346582,ok
+publicbi/PanCreactomy2,publicbi,web,capnproto,7230664,441.32,2076868,1812915,ok
+publicbi/PanCreactomy2,publicbi,web,colbin,3255147,198.68,1138803,1074155,ok
+publicbi/PanCreactomy2,publicbi,web,colbin+packed5,3255147,198.68,1138803,1074155,ok
+publicbi/PanCreactomy2,publicbi,web,colbin-untagged,3255148,198.68,1139072,1074596,ok
+publicbi/PanCreactomy2,publicbi,web,colbin-json,3255797,198.72,1136784,1074859,ok
+publicbi/Physicians,publicbi,web,json-v2,13359688,815.41,1866623,1422742,ok
+publicbi/Physicians,publicbi,web,gob,3214340,196.19,1570033,1322562,lossy: $.Rows[0].StdevSubmittedChrgAmt: nil against non-nil
+publicbi/Physicians,publicbi,web,cbor,11922097,727.67,1963130,1484721,ok
+publicbi/Physicians,publicbi,web,msgpack,11849482,723.23,1968819,1481171,ok
+publicbi/Physicians,publicbi,web,msgpack-reflect,12002844,732.60,1966068,1474522,ok
+publicbi/Physicians,publicbi,web,protobuf,3712666,226.60,1676218,1423462,ok
+publicbi/Physicians,publicbi,web,vtprotobuf,3712666,226.60,1676218,1423462,ok
+publicbi/Physicians,publicbi,web,flatbuffers,5713760,348.74,2030529,1681220,ok
+publicbi/Physicians,publicbi,web,arrow,3924046,239.50,1810522,1544499,ok
+publicbi/Physicians,publicbi,web,avro,3455958,210.93,1599082,1326871,ok
+publicbi/Physicians,publicbi,web,capnproto,6366088,388.56,2059263,1904930,ok
+publicbi/Physicians,publicbi,web,colbin,2614612,159.58,1094103,1061282,ok
+publicbi/Physicians,publicbi,web,colbin+packed5,2614612,159.58,1094103,1061282,ok
+publicbi/Physicians,publicbi,web,colbin-untagged,2614613,159.58,1094147,1061355,ok
+publicbi/Physicians,publicbi,web,colbin-json,2615240,159.62,1094492,1061292,ok
+publicbi/Provider,publicbi,web,json-v2,13317875,812.86,1863175,1425197,ok
+publicbi/Provider,publicbi,web,gob,3138669,191.57,1547914,1310327,lossy: $.Rows[0].StdevSubmittedChrgAmt: nil against non-nil
+publicbi/Provider,publicbi,web,cbor,11776527,718.78,1940916,1475117,ok
+publicbi/Provider,publicbi,web,msgpack,11700447,714.14,1947359,1478495,ok
+publicbi/Provider,publicbi,web,msgpack-reflect,11913617,727.15,1938267,1465576,ok
+publicbi/Provider,publicbi,web,protobuf,3545852,216.42,1644876,1407327,ok
+publicbi/Provider,publicbi,web,vtprotobuf,3545852,216.42,1644876,1407327,ok
+publicbi/Provider,publicbi,web,flatbuffers,5446216,332.41,1974736,1686404,ok
+publicbi/Provider,publicbi,web,arrow,3777862,230.58,1743385,1463662,ok
+publicbi/Provider,publicbi,web,avro,3293329,201.01,1565694,1310699,ok
+publicbi/Provider,publicbi,web,capnproto,6103736,372.54,2010744,1848391,ok
+publicbi/Provider,publicbi,web,colbin,2552096,155.77,1094367,1063875,ok
+publicbi/Provider,publicbi,web,colbin+packed5,2552096,155.77,1094367,1063875,ok
+publicbi/Provider,publicbi,web,colbin-untagged,2552097,155.77,1094383,1063875,ok
+publicbi/Provider,publicbi,web,colbin-json,2552724,155.81,1099618,1063995,ok
+publicbi/RealEstate1,publicbi,web,json-v2,12523458,764.37,1807150,1380506,ok
+publicbi/RealEstate1,publicbi,web,gob,4077522,248.87,1664461,1305683,ok
+publicbi/RealEstate1,publicbi,web,cbor,10343620,631.32,1950409,1461873,ok
+publicbi/RealEstate1,publicbi,web,msgpack,10266872,626.64,1946767,1465979,ok
+publicbi/RealEstate1,publicbi,web,msgpack-reflect,10366662,632.73,1946489,1467031,ok
+publicbi/RealEstate1,publicbi,web,protobuf,4215592,257.30,1733570,1357831,ok
+publicbi/RealEstate1,publicbi,web,vtprotobuf,4215592,257.30,1733570,1357831,ok
+publicbi/RealEstate1,publicbi,web,flatbuffers,6357496,388.03,2116106,1703707,ok
+publicbi/RealEstate1,publicbi,web,arrow,4543990,277.34,1943100,1853374,ok
+publicbi/RealEstate1,publicbi,web,avro,3631476,221.65,1612072,1290350,ok
+publicbi/RealEstate1,publicbi,web,capnproto,6896384,420.92,2145114,1830876,ok
+publicbi/RealEstate1,publicbi,web,colbin,3262890,199.15,1146682,1140156,ok
+publicbi/RealEstate1,publicbi,web,colbin+packed5,3262890,199.15,1146682,1140156,ok
+publicbi/RealEstate1,publicbi,web,colbin-untagged,3262891,199.15,1146684,1140147,ok
+publicbi/RealEstate1,publicbi,web,colbin-json,3263368,199.18,1147275,1141102,ok
+publicbi/RealEstate2,publicbi,web,json-v2,12451379,759.97,2153816,1774533,ok
+publicbi/RealEstate2,publicbi,web,gob,4264331,260.27,1893645,1562069,ok
+publicbi/RealEstate2,publicbi,web,cbor,10515045,641.79,2236484,1775904,ok
+publicbi/RealEstate2,publicbi,web,msgpack,10439628,637.18,2248307,1773886,ok
+publicbi/RealEstate2,publicbi,web,msgpack-reflect,10505278,641.19,2249065,1774090,ok
+publicbi/RealEstate2,publicbi,web,protobuf,4414512,269.44,1979121,1618749,ok
+publicbi/RealEstate2,publicbi,web,vtprotobuf,4414512,269.44,1979121,1618749,ok
+publicbi/RealEstate2,publicbi,web,flatbuffers,7177632,438.09,2428137,1978983,ok
+publicbi/RealEstate2,publicbi,web,arrow,4945334,301.84,2389503,2006508,ok
+publicbi/RealEstate2,publicbi,web,avro,4008527,244.66,1861295,1526249,ok
+publicbi/RealEstate2,publicbi,web,capnproto,7996744,488.08,2561388,2333108,ok
+publicbi/RealEstate2,publicbi,web,colbin,3737363,228.11,1564966,1432346,ok
+publicbi/RealEstate2,publicbi,web,colbin+packed5,3737363,228.11,1564966,1432346,ok
+publicbi/RealEstate2,publicbi,web,colbin-untagged,3737364,228.11,1558461,1432182,ok
+publicbi/RealEstate2,publicbi,web,colbin-json,3737841,228.14,1556036,1432981,ok
+publicbi/Redfin1,publicbi,web,json-v2,18947127,1156.44,3975245,3274838,ok
+publicbi/Redfin1,publicbi,web,gob,4655863,284.17,2739978,2470162,lossy: $.Rows[0].SoldAboveList: nil against non-nil
+publicbi/Redfin1,publicbi,web,cbor,14535467,887.17,3601945,2868324,ok
+publicbi/Redfin1,publicbi,web,msgpack,14524585,886.51,3598261,2865794,ok
+publicbi/Redfin1,publicbi,web,msgpack-reflect,14959125,913.03,3609736,2848577,ok
+publicbi/Redfin1,publicbi,web,protobuf,5234833,319.51,2972322,2809547,ok
+publicbi/Redfin1,publicbi,web,vtprotobuf,5234833,319.51,2972322,2809547,ok
+publicbi/Redfin1,publicbi,web,flatbuffers,5860352,357.69,2925173,2668324,ok
+publicbi/Redfin1,publicbi,web,arrow,5633742,343.86,2544266,2502501,ok
+publicbi/Redfin1,publicbi,web,avro,4821929,294.31,2734751,2452984,ok
+publicbi/Redfin1,publicbi,web,capnproto,6489032,396.06,2980402,2872912,ok
+publicbi/Redfin1,publicbi,web,colbin,3932439,240.02,2361008,2275143,ok
+publicbi/Redfin1,publicbi,web,colbin+packed5,3932439,240.02,2361008,2275143,ok
+publicbi/Redfin1,publicbi,web,colbin-untagged,3932440,240.02,2358733,2275263,ok
+publicbi/Redfin1,publicbi,web,colbin-json,3933179,240.06,2362629,2275921,ok
+publicbi/Redfin2,publicbi,web,json-v2,18937487,1155.85,3961707,3266653,ok
+publicbi/Redfin2,publicbi,web,gob,4644200,283.46,2729175,2461466,lossy: $.Rows[6].NewListingsMom: nil against non-nil
+publicbi/Redfin2,publicbi,web,cbor,14526848,886.65,3587910,2857659,ok
+publicbi/Redfin2,publicbi,web,msgpack,14515639,885.96,3583364,2855771,ok
+publicbi/Redfin2,publicbi,web,msgpack-reflect,14949406,912.44,3595047,2838346,ok
+publicbi/Redfin2,publicbi,web,protobuf,5223312,318.81,2961287,2798996,ok
+publicbi/Redfin2,publicbi,web,vtprotobuf,5223312,318.81,2961287,2798996,ok
+publicbi/Redfin2,publicbi,web,flatbuffers,5849368,357.02,2915626,2657566,ok
+publicbi/Redfin2,publicbi,web,arrow,5634878,343.93,2536040,2493729,ok
+publicbi/Redfin2,publicbi,web,avro,4813095,293.77,2726120,2443892,ok
+publicbi/Redfin2,publicbi,web,capnproto,6489968,396.12,2970954,2864674,ok
+publicbi/Redfin2,publicbi,web,colbin,3925875,239.62,2332780,2245475,ok
+publicbi/Redfin2,publicbi,web,colbin+packed5,3925875,239.62,2332780,2245475,ok
+publicbi/Redfin2,publicbi,web,colbin-untagged,3925876,239.62,2330898,2245458,ok
+publicbi/Redfin2,publicbi,web,colbin-json,3926615,239.66,2333428,2245875,ok
+publicbi/Redfin3,publicbi,web,json-v2,20127817,1228.50,4088158,3353523,ok
+publicbi/Redfin3,publicbi,web,gob,4717430,287.93,2771122,2498316,lossy: $.Rows[5].SoldAboveList: nil against non-nil
+publicbi/Redfin3,publicbi,web,cbor,15476448,944.61,3665672,2914172,ok
+publicbi/Redfin3,publicbi,web,msgpack,15463286,943.80,3659898,2912125,ok
+publicbi/Redfin3,publicbi,web,msgpack-reflect,15909614,971.05,3687815,2894812,ok
+publicbi/Redfin3,publicbi,web,protobuf,5309572,324.07,3007806,2834970,ok
+publicbi/Redfin3,publicbi,web,vtprotobuf,5309572,324.07,3007806,2834970,ok
+publicbi/Redfin3,publicbi,web,flatbuffers,5952200,363.29,2961205,2694771,ok
+publicbi/Redfin3,publicbi,web,arrow,5979182,364.94,2570240,2525571,ok
+publicbi/Redfin3,publicbi,web,avro,4928330,300.80,2773228,2485315,ok
+publicbi/Redfin3,publicbi,web,capnproto,6893016,420.72,3023836,2898167,ok
+publicbi/Redfin3,publicbi,web,colbin,3965484,242.03,2380361,2297288,ok
+publicbi/Redfin3,publicbi,web,colbin+packed5,3965484,242.03,2380361,2297288,ok
+publicbi/Redfin3,publicbi,web,colbin-untagged,3965485,242.03,2378069,2297578,ok
+publicbi/Redfin3,publicbi,web,colbin-json,3966284,242.08,2379061,2297940,ok
+publicbi/Redfin4,publicbi,web,json-v2,20904226,1275.89,4143839,3413377,ok
+publicbi/Redfin4,publicbi,web,gob,4845751,295.76,2792699,2520380,lossy: $.Rows[1].SoldAboveList: nil against non-nil
+publicbi/Redfin4,publicbi,web,cbor,16121201,983.96,3752428,2947521,ok
+publicbi/Redfin4,publicbi,web,msgpack,16091613,982.15,3743388,2944037,ok
+publicbi/Redfin4,publicbi,web,msgpack-reflect,16537927,1009.39,3789520,2932842,ok
+publicbi/Redfin4,publicbi,web,protobuf,5461083,333.32,3050050,2869231,ok
+publicbi/Redfin4,publicbi,web,vtprotobuf,5461083,333.32,3050050,2869231,ok
+publicbi/Redfin4,publicbi,web,flatbuffers,6071448,370.57,2985921,2720462,ok
+publicbi/Redfin4,publicbi,web,arrow,6109270,372.88,2650969,2520349,ok
+publicbi/Redfin4,publicbi,web,avro,5065538,309.18,2796828,2507822,ok
+publicbi/Redfin4,publicbi,web,capnproto,7021904,428.58,3044795,2921389,ok
+publicbi/Redfin4,publicbi,web,colbin,4083560,249.24,2385698,2300480,ok
+publicbi/Redfin4,publicbi,web,colbin+packed5,4083560,249.24,2385698,2300480,ok
+publicbi/Redfin4,publicbi,web,colbin-untagged,4083561,249.24,2385260,2300414,ok
+publicbi/Redfin4,publicbi,web,colbin-json,4084393,249.29,2385397,2300794,ok
+publicbi/Rentabilidad,publicbi,web,json-v2,68555324,4184.28,5930355,4571064,ok
+publicbi/Rentabilidad,publicbi,web,gob,10434730,636.89,4368035,3913724,lossy: $.Rows[1].PREVENTANCBCostoDePrevendedorNCB: nil against non-nil
+publicbi/Rentabilidad,publicbi,web,cbor,60442168,3689.10,5504508,4219787,ok
+publicbi/Rentabilidad,publicbi,web,msgpack,60097298,3668.05,5531860,4212969,ok
+publicbi/Rentabilidad,publicbi,web,msgpack-reflect,62224920,3797.91,5569494,4204129,ok
+publicbi/Rentabilidad,publicbi,web,protobuf,11569680,706.16,4615573,4165028,ok
+publicbi/Rentabilidad,publicbi,web,vtprotobuf,11569680,706.16,4615573,4165028,ok
+publicbi/Rentabilidad,publicbi,web,flatbuffers,16134072,984.75,5056162,4455679,ok
+publicbi/Rentabilidad,publicbi,web,arrow,17529958,1069.94,4959508,4323918,ok
+publicbi/Rentabilidad,publicbi,web,avro,12913587,788.18,4355967,3890974,ok
+publicbi/Rentabilidad,publicbi,web,capnproto,24066640,1468.91,6067311,5537542,ok
+publicbi/Rentabilidad,publicbi,web,colbin,9351295,570.76,3610910,3496641,ok
+publicbi/Rentabilidad,publicbi,web,colbin+packed5,9351295,570.76,3610910,3496641,ok
+publicbi/Rentabilidad,publicbi,web,colbin-untagged,9351296,570.76,3611042,3496890,ok
+publicbi/Rentabilidad,publicbi,web,colbin-json,9354466,570.95,3612725,3496802,ok
+publicbi/Romance,publicbi,web,json-v2,7699524,469.94,2277858,2068325,ok
+publicbi/Romance,publicbi,web,gob,5482442,334.62,2301854,2154035,lossy: $.Rows[6711].Lng: nil against non-nil
+publicbi/Romance,publicbi,web,cbor,6752232,412.12,2365080,2161129,ok
+publicbi/Romance,publicbi,web,msgpack,6747963,411.86,2374141,2167042,ok
+publicbi/Romance,publicbi,web,msgpack-reflect,6833865,417.11,2370445,2159819,ok
+publicbi/Romance,publicbi,web,protobuf,5486343,334.86,2352683,2185465,ok
+publicbi/Romance,publicbi,web,vtprotobuf,5486343,334.86,2352683,2185465,ok
+publicbi/Romance,publicbi,web,flatbuffers,6363232,388.38,2562348,2354390,ok
+publicbi/Romance,publicbi,web,arrow,5943150,362.74,2160663,1997116,ok
+publicbi/Romance,publicbi,web,avro,5487926,334.96,2310787,2134995,ok
+publicbi/Romance,publicbi,web,capnproto,6775472,413.54,2514658,2329295,ok
+publicbi/Romance,publicbi,web,colbin,5255373,320.76,1962102,1853174,ok
+publicbi/Romance,publicbi,web,colbin+packed5,5255373,320.76,1962102,1853174,ok
+publicbi/Romance,publicbi,web,colbin-untagged,5255492,320.77,1962186,1853333,ok
+publicbi/Romance,publicbi,web,colbin-json,5255502,320.77,1962460,1853426,ok
+publicbi/SalariesFrance,publicbi,web,json-v2,27707357,1691.12,5280716,3632307,ok
+publicbi/SalariesFrance,publicbi,web,gob,10930885,667.17,3978767,2935325,lossy: $.Rows[0].EMPSALNP1: nil against non-nil
+publicbi/SalariesFrance,publicbi,web,cbor,22611463,1380.09,4953756,3104513,ok
+publicbi/SalariesFrance,publicbi,web,msgpack,22498473,1373.20,4952265,3099418,ok
+publicbi/SalariesFrance,publicbi,web,msgpack-reflect,22725619,1387.06,4966653,3090437,ok
+publicbi/SalariesFrance,publicbi,web,protobuf,11873705,724.71,4340384,3250209,ok
+publicbi/SalariesFrance,publicbi,web,vtprotobuf,11873705,724.71,4340384,3250209,ok
+publicbi/SalariesFrance,publicbi,web,flatbuffers,14108920,861.14,4666049,3351570,ok
+publicbi/SalariesFrance,publicbi,web,arrow,12378222,755.51,4083694,3729539,ok
+publicbi/SalariesFrance,publicbi,web,avro,11107250,677.93,3986807,2864848,ok
+publicbi/SalariesFrance,publicbi,web,capnproto,15274536,932.28,4579585,3825944,ok
+publicbi/SalariesFrance,publicbi,web,colbin,10180224,621.35,3036017,2910608,ok
+publicbi/SalariesFrance,publicbi,web,colbin+packed5,10180224,621.35,3036017,2910608,ok
+publicbi/SalariesFrance,publicbi,web,colbin-untagged,10180225,621.35,3035939,2910440,ok
+publicbi/SalariesFrance,publicbi,web,colbin-json,10181098,621.40,3036740,2911221,ok
+publicbi/TableroSistemaPenal,publicbi,web,json-v2,11069947,675.66,795020,477803,ok
+publicbi/TableroSistemaPenal,publicbi,web,gob,4666695,284.83,607515,374179,ok
+publicbi/TableroSistemaPenal,publicbi,web,cbor,9527004,581.48,810726,470885,ok
+publicbi/TableroSistemaPenal,publicbi,web,msgpack,9481195,578.69,809007,466638,ok
+publicbi/TableroSistemaPenal,publicbi,web,msgpack-reflect,9776567,596.71,816989,467396,ok
+publicbi/TableroSistemaPenal,publicbi,web,protobuf,4907311,299.52,618826,368270,ok
+publicbi/TableroSistemaPenal,publicbi,web,vtprotobuf,4907311,299.52,618826,368270,ok
+publicbi/TableroSistemaPenal,publicbi,web,flatbuffers,7538808,460.13,1008964,654798,ok
+publicbi/TableroSistemaPenal,publicbi,web,arrow,5478174,334.36,1212908,1024056,ok
+publicbi/TableroSistemaPenal,publicbi,web,avro,4396127,268.32,582886,348331,ok
+publicbi/TableroSistemaPenal,publicbi,web,capnproto,8181408,499.35,1356634,1120088,ok
+publicbi/TableroSistemaPenal,publicbi,web,colbin,4153466,253.51,354047,321148,ok
+publicbi/TableroSistemaPenal,publicbi,web,colbin+packed5,4153466,253.51,354047,321148,ok
+publicbi/TableroSistemaPenal,publicbi,web,colbin-untagged,4153467,253.51,354602,321097,ok
+publicbi/TableroSistemaPenal,publicbi,web,colbin-json,4153852,253.53,354558,321057,ok
+publicbi/Taxpayer,publicbi,web,json-v2,13318278,812.88,1860026,1430844,ok
+publicbi/Taxpayer,publicbi,web,gob,3136480,191.44,1545303,1313500,lossy: $.Rows[0].StdevSubmittedChrgAmt: nil against non-nil
+publicbi/Taxpayer,publicbi,web,cbor,11772611,718.54,1939255,1478773,ok
+publicbi/Taxpayer,publicbi,web,msgpack,11696309,713.89,1945393,1479232,ok
+publicbi/Taxpayer,publicbi,web,msgpack-reflect,11909639,726.91,1936053,1468867,ok
+publicbi/Taxpayer,publicbi,web,protobuf,3541220,216.14,1641471,1408295,ok
+publicbi/Taxpayer,publicbi,web,vtprotobuf,3541220,216.14,1641471,1408295,ok
+publicbi/Taxpayer,publicbi,web,flatbuffers,5439240,331.98,1970279,1685025,ok
+publicbi/Taxpayer,publicbi,web,arrow,3776158,230.48,1749768,1458930,ok
+publicbi/Taxpayer,publicbi,web,avro,3289151,200.75,1563269,1313093,ok
+publicbi/Taxpayer,publicbi,web,capnproto,6098880,372.25,2008363,1851139,ok
+publicbi/Taxpayer,publicbi,web,colbin,2545103,155.34,1096894,1057183,ok
+publicbi/Taxpayer,publicbi,web,colbin+packed5,2545103,155.34,1096894,1057183,ok
+publicbi/Taxpayer,publicbi,web,colbin-untagged,2545104,155.34,1090850,1056886,ok
+publicbi/Taxpayer,publicbi,web,colbin-json,2545731,155.38,1088066,1057586,ok
+publicbi/Telco,publicbi,web,json-v2,60265453,3678.31,11381739,9429383,ok
+publicbi/Telco,publicbi,web,gob,11405027,696.11,6143966,5929553,lossy: $.Rows[2].BALANCEENDP2: nil against non-nil
+publicbi/Telco,publicbi,web,cbor,56535350,3450.64,11270883,8694804,ok
+publicbi/Telco,publicbi,web,msgpack,56515219,3449.42,11236169,8647046,ok
+publicbi/Telco,publicbi,web,msgpack-reflect,62101917,3790.40,12199439,8341329,ok
+publicbi/Telco,publicbi,web,protobuf,14311419,873.50,8003009,7202008,ok
+publicbi/Telco,publicbi,web,vtprotobuf,14311419,873.50,8003009,7202008,ok
+publicbi/Telco,publicbi,web,flatbuffers,17288264,1055.19,7168913,6465205,ok
+publicbi/Telco,publicbi,web,arrow,18085782,1103.87,5524015,5491767,ok
+publicbi/Telco,publicbi,web,avro,13545555,826.76,5936703,5873325,ok
+publicbi/Telco,publicbi,web,capnproto,18245624,1113.62,6551602,6297705,ok
+publicbi/Telco,publicbi,web,colbin,5993322,365.80,4318563,4134011,ok
+publicbi/Telco,publicbi,web,colbin+packed5,5993322,365.80,4318563,4134011,ok
+publicbi/Telco,publicbi,web,colbin-untagged,5993323,365.80,4321887,4113048,ok
+publicbi/Telco,publicbi,web,colbin-json,5996218,365.98,4331735,4075067,ok
+publicbi/TrainsUK1,publicbi,web,json-v2,54,54.00,79,63,ok
+publicbi/TrainsUK1,publicbi,web,gob,162,162.00,156,143,ok
+publicbi/TrainsUK1,publicbi,web,cbor,39,39.00,64,48,ok
+publicbi/TrainsUK1,publicbi,web,msgpack,39,39.00,64,48,ok
+publicbi/TrainsUK1,publicbi,web,msgpack-reflect,45,45.00,70,54,ok
+publicbi/TrainsUK1,publicbi,web,protobuf,10,10.00,35,19,ok
+publicbi/TrainsUK1,publicbi,web,vtprotobuf,10,10.00,35,19,ok
+publicbi/TrainsUK1,publicbi,web,flatbuffers,52,52.00,77,40,ok
+publicbi/TrainsUK1,publicbi,web,arrow,830,830.00,280,276,ok
+publicbi/TrainsUK1,publicbi,web,avro,8,8.00,33,17,ok
+publicbi/TrainsUK1,publicbi,web,capnproto,40,40.00,65,32,ok
+publicbi/TrainsUK1,publicbi,web,colbin,7,7.00,32,16,ok
+publicbi/TrainsUK1,publicbi,web,colbin+packed5,7,7.00,32,16,ok
+publicbi/TrainsUK1,publicbi,web,colbin-untagged,15,15.00,40,24,ok
+publicbi/TrainsUK1,publicbi,web,colbin-json,54,54.00,79,63,ok
+publicbi/TrainsUK2,publicbi,web,json-v2,19132344,1167.75,2145474,1290801,ok
+publicbi/TrainsUK2,publicbi,web,gob,4556368,278.10,1542578,1041640,lossy: $.Rows[0].VOriginLatenessGBTT: nil against non-nil
+publicbi/TrainsUK2,publicbi,web,cbor,16328461,996.61,2272658,1304634,ok
+publicbi/TrainsUK2,publicbi,web,msgpack,16121547,983.98,2275091,1305271,ok
+publicbi/TrainsUK2,publicbi,web,msgpack-reflect,16592092,1012.70,2307835,1302799,ok
+publicbi/TrainsUK2,publicbi,web,protobuf,4904303,299.33,1749594,1161201,ok
+publicbi/TrainsUK2,publicbi,web,vtprotobuf,4904303,299.33,1749594,1161201,ok
+publicbi/TrainsUK2,publicbi,web,flatbuffers,6719768,410.14,1980128,1330178,ok
+publicbi/TrainsUK2,publicbi,web,arrow,5088982,310.61,1866961,1476680,ok
+publicbi/TrainsUK2,publicbi,web,avro,4558056,278.20,1551182,1080326,ok
+publicbi/TrainsUK2,publicbi,web,capnproto,6998392,427.15,1739621,1451849,ok
+publicbi/TrainsUK2,publicbi,web,colbin,3487418,212.86,1198602,1060307,ok
+publicbi/TrainsUK2,publicbi,web,colbin+packed5,3487418,212.86,1198602,1060307,ok
+publicbi/TrainsUK2,publicbi,web,colbin-untagged,3487419,212.86,1198834,1060576,ok
+publicbi/TrainsUK2,publicbi,web,colbin-json,3488263,212.91,1198934,1061118,ok
+publicbi/USCensus,publicbi,web,json-v2,97519299,5952.11,12882158,10427409,ok
+publicbi/USCensus,publicbi,web,gob,13474450,822.42,5622121,5199896,lossy: $.Rows[0].FHINS3C: nil against non-nil
+publicbi/USCensus,publicbi,web,cbor,67171381,4099.82,12276853,8485828,ok
+publicbi/USCensus,publicbi,web,msgpack,66047276,4031.21,12064067,8280275,ok
+publicbi/USCensus,publicbi,web,msgpack-reflect,79078051,4826.54,12762002,6928610,ok
+publicbi/USCensus,publicbi,web,protobuf,19906981,1215.03,9388033,8544929,ok
+publicbi/USCensus,publicbi,web,vtprotobuf,19906981,1215.03,9388033,8544929,ok
+publicbi/USCensus,publicbi,web,flatbuffers,27559660,1682.11,7200701,6001434,ok
+publicbi/USCensus,publicbi,web,arrow,19014918,1160.58,5100336,4856923,ok
+publicbi/USCensus,publicbi,web,avro,13561198,827.71,5389191,4913383,ok
+publicbi/USCensus,publicbi,web,capnproto,19815984,1209.47,6005703,5494687,ok
+publicbi/USCensus,publicbi,web,colbin,5819797,355.21,4265565,4267856,ok
+publicbi/USCensus,publicbi,web,colbin+packed5,5819797,355.21,4265565,4267856,ok
+publicbi/USCensus,publicbi,web,colbin-json,5824441,355.50,4273571,4271216,ok
+publicbi/USCensus,publicbi,web,colbin-untagged,,,,,"n/a: colbin: USCensusRow has 519 encodable fields, and a one-byte key holds 256: number them, and ids past 255 put the type on pages"
+publicbi/Uberlandia,publicbi,web,json-v2,40935539,2498.51,4125850,2640136,ok
+publicbi/Uberlandia,publicbi,web,gob,13769299,840.41,3065113,2257617,lossy: $.Rows[0].StExtemporaneoMatricula: nil against non-nil
+publicbi/Uberlandia,publicbi,web,cbor,35343472,2157.19,4057977,2611607,ok
+publicbi/Uberlandia,publicbi,web,msgpack,35227182,2150.10,4050976,2610999,ok
+publicbi/Uberlandia,publicbi,web,msgpack-reflect,35583605,2171.85,4069802,2616151,ok
+publicbi/Uberlandia,publicbi,web,protobuf,14526017,886.60,3268938,2356523,ok
+publicbi/Uberlandia,publicbi,web,vtprotobuf,14526017,886.60,3268938,2356523,ok
+publicbi/Uberlandia,publicbi,web,flatbuffers,20298208,1238.90,4395427,3074748,ok
+publicbi/Uberlandia,publicbi,web,arrow,16013750,977.40,4255683,3634778,ok
+publicbi/Uberlandia,publicbi,web,avro,13307909,812.25,3012886,2241451,ok
+publicbi/Uberlandia,publicbi,web,capnproto,23495256,1434.04,5277504,4468252,ok
+publicbi/Uberlandia,publicbi,web,colbin,12271153,748.97,2079090,1894113,ok
+publicbi/Uberlandia,publicbi,web,colbin+packed5,12271153,748.97,2079090,1894113,ok
+publicbi/Uberlandia,publicbi,web,colbin-untagged,12271154,748.97,2078733,1894228,ok
+publicbi/Uberlandia,publicbi,web,colbin-json,12272731,749.07,2077619,1895469,ok
+publicbi/Wins,publicbi,web,json-v2,51174601,3123.45,9435469,6708709,ok
+publicbi/Wins,publicbi,web,gob,11056890,674.86,5825112,4918176,lossy: $.Rows[0].NABOUT: nil against non-nil
+publicbi/Wins,publicbi,web,cbor,37429256,2284.50,8725535,6197361,ok
+publicbi/Wins,publicbi,web,msgpack,37118344,2265.52,8729123,6060765,ok
+publicbi/Wins,publicbi,web,msgpack-reflect,44353423,2707.12,8912354,6091074,ok
+publicbi/Wins,publicbi,web,protobuf,14131094,862.49,7040029,5474557,ok
+publicbi/Wins,publicbi,web,vtprotobuf,14131094,862.49,7040029,5474557,ok
+publicbi/Wins,publicbi,web,flatbuffers,23415440,1429.17,7752035,5891668,ok
+publicbi/Wins,publicbi,web,arrow,13852838,845.51,4640725,4332038,ok
+publicbi/Wins,publicbi,web,avro,10918175,666.39,5821631,4893671,ok
+publicbi/Wins,publicbi,web,capnproto,16933232,1033.52,6476687,5746050,ok
+publicbi/Wins,publicbi,web,colbin,6478907,395.44,3550040,3449257,ok
+publicbi/Wins,publicbi,web,colbin+packed5,6478907,395.44,3550040,3449257,ok
+publicbi/Wins,publicbi,web,colbin-json,6481267,395.59,3555844,3452251,ok
+publicbi/Wins,publicbi,web,colbin-untagged,,,,,"n/a: colbin: WinsRow has 257 encodable fields, and a one-byte key holds 256: number them, and ids past 255 put the type on pages"
+publicbi/YaleLanguages,publicbi,web,json-v2,11954508,729.65,827570,561821,ok
+publicbi/YaleLanguages,publicbi,web,gob,4052910,247.37,588290,445317,ok
+publicbi/YaleLanguages,publicbi,web,cbor,9861788,601.92,763048,519586,ok
+publicbi/YaleLanguages,publicbi,web,msgpack,9825137,599.68,758993,516086,ok
+publicbi/YaleLanguages,publicbi,web,msgpack-reflect,9970097,608.53,760245,518072,ok
+publicbi/YaleLanguages,publicbi,web,protobuf,4276115,260.99,635367,463233,ok
+publicbi/YaleLanguages,publicbi,web,vtprotobuf,4276115,260.99,635367,463233,ok
+publicbi/YaleLanguages,publicbi,web,flatbuffers,6927952,422.85,947467,668897,ok
+publicbi/YaleLanguages,publicbi,web,arrow,4673798,285.27,1376962,1099468,ok
+publicbi/YaleLanguages,publicbi,web,avro,3899986,238.04,584641,449121,ok
+publicbi/YaleLanguages,publicbi,web,capnproto,7765144,473.95,1359075,1227103,ok
+publicbi/YaleLanguages,publicbi,web,colbin,3426324,209.13,482132,442502,ok
+publicbi/YaleLanguages,publicbi,web,colbin+packed5,3426324,209.13,482132,442502,ok
+publicbi/YaleLanguages,publicbi,web,colbin-untagged,3426325,209.13,482160,442518,ok
+publicbi/YaleLanguages,publicbi,web,colbin-json,3426797,209.16,482665,442806,ok
+tpcds/sf0.1/call_center,tpcds,web,json-v2,690,690.00,438,447,ok
+tpcds/sf0.1/call_center,tpcds,web,gob,822,822.00,551,569,ok
+tpcds/sf0.1/call_center,tpcds,web,cbor,563,563.00,415,419,ok
+tpcds/sf0.1/call_center,tpcds,web,msgpack,564,564.00,441,443,ok
+tpcds/sf0.1/call_center,tpcds,web,msgpack-reflect,630,630.00,463,471,ok
+tpcds/sf0.1/call_center,tpcds,web,protobuf,302,302.00,295,282,ok
+tpcds/sf0.1/call_center,tpcds,web,vtprotobuf,302,302.00,295,282,ok
+tpcds/sf0.1/call_center,tpcds,web,flatbuffers,600,600.00,411,402,ok
+tpcds/sf0.1/call_center,tpcds,web,arrow,5974,5974.00,1332,1236,ok
+tpcds/sf0.1/call_center,tpcds,web,avro,260,260.00,248,236,ok
+tpcds/sf0.1/call_center,tpcds,web,capnproto,584,584.00,345,351,ok
+tpcds/sf0.1/call_center,tpcds,web,colbin,295,295.00,287,298,ok
+tpcds/sf0.1/call_center,tpcds,web,colbin+packed5,246,246.00,271,255,ok
+tpcds/sf0.1/call_center,tpcds,web,colbin-untagged,305,305.00,307,308,ok
+tpcds/sf0.1/call_center,tpcds,web,colbin-json,672,672.00,537,547,ok
+tpcds/sf0.1/catalog_page,tpcds,web,json-v2,3239562,276.46,541080,472684,ok
+tpcds/sf0.1/catalog_page,tpcds,web,gob,1582051,135.01,486135,455939,ok
+tpcds/sf0.1/catalog_page,tpcds,web,cbor,2810180,239.82,555038,479525,ok
+tpcds/sf0.1/catalog_page,tpcds,web,msgpack,2791936,238.26,554236,478356,ok
+tpcds/sf0.1/catalog_page,tpcds,web,msgpack-reflect,3141134,268.06,564771,483803,ok
+tpcds/sf0.1/catalog_page,tpcds,web,protobuf,1579274,134.77,526905,478887,ok
+tpcds/sf0.1/catalog_page,tpcds,web,vtprotobuf,1579274,134.77,526905,478887,ok
+tpcds/sf0.1/catalog_page,tpcds,web,flatbuffers,2425616,207.00,679247,614869,ok
+tpcds/sf0.1/catalog_page,tpcds,web,arrow,1926470,164.40,508531,484133,ok
+tpcds/sf0.1/catalog_page,tpcds,web,avro,1548263,132.13,502315,457327,ok
+tpcds/sf0.1/catalog_page,tpcds,web,capnproto,2446680,208.80,616888,570099,ok
+tpcds/sf0.1/catalog_page,tpcds,web,colbin,1351800,115.36,375764,344225,ok
+tpcds/sf0.1/catalog_page,tpcds,web,colbin+packed5,1351800,115.36,375764,344225,ok
+tpcds/sf0.1/catalog_page,tpcds,web,colbin-untagged,1351867,115.37,375799,342279,ok
+tpcds/sf0.1/catalog_page,tpcds,web,colbin-json,1351950,115.37,375895,344324,ok
+tpcds/sf0.1/catalog_returns,tpcds,web,json-v2,7960965,552.23,1357391,1303773,ok
+tpcds/sf0.1/catalog_returns,tpcds,web,gob,1475059,102.32,882410,890374,lossy: $.Rows[6].ReturnTax: nil against non-nil
+tpcds/sf0.1/catalog_returns,tpcds,web,cbor,6423533,445.58,1244235,1089251,ok
+tpcds/sf0.1/catalog_returns,tpcds,web,msgpack,6483309,449.73,1252729,1095442,ok
+tpcds/sf0.1/catalog_returns,tpcds,web,msgpack-reflect,8755081,607.32,1253831,1020549,ok
+tpcds/sf0.1/catalog_returns,tpcds,web,protobuf,1394385,96.72,1007402,1020074,ok
+tpcds/sf0.1/catalog_returns,tpcds,web,vtprotobuf,1394385,96.72,1007402,1020074,ok
+tpcds/sf0.1/catalog_returns,tpcds,web,flatbuffers,3265480,226.52,1064215,1038162,ok
+tpcds/sf0.1/catalog_returns,tpcds,web,arrow,3161486,219.30,838488,806613,ok
+tpcds/sf0.1/catalog_returns,tpcds,web,avro,1178585,81.76,823229,825470,ok
+tpcds/sf0.1/catalog_returns,tpcds,web,capnproto,3229216,224.00,969035,935458,ok
+tpcds/sf0.1/catalog_returns,tpcds,web,colbin,670263,46.49,634789,639380,ok
+tpcds/sf0.1/catalog_returns,tpcds,web,colbin+packed5,670263,46.49,634789,639380,ok
+tpcds/sf0.1/catalog_returns,tpcds,web,colbin-untagged,670264,46.49,634756,639358,ok
+tpcds/sf0.1/catalog_returns,tpcds,web,colbin-json,670724,46.53,635331,638936,ok
+tpcds/sf0.1/customer,tpcds,web,json-v2,4118593,411.86,728684,628089,ok
+tpcds/sf0.1/customer,tpcds,web,gob,1201038,120.10,591445,549939,ok
+tpcds/sf0.1/customer,tpcds,web,cbor,3372699,337.27,711135,601377,ok
+tpcds/sf0.1/customer,tpcds,web,msgpack,3388889,338.89,715283,600434,ok
+tpcds/sf0.1/customer,tpcds,web,msgpack-reflect,3900429,390.04,731038,603864,ok
+tpcds/sf0.1/customer,tpcds,web,protobuf,1183302,118.33,609453,557943,ok
+tpcds/sf0.1/customer,tpcds,web,vtprotobuf,1183302,118.33,609453,557943,ok
+tpcds/sf0.1/customer,tpcds,web,flatbuffers,2298704,229.87,803836,712693,ok
+tpcds/sf0.1/customer,tpcds,web,arrow,1768798,176.88,652884,613246,ok
+tpcds/sf0.1/customer,tpcds,web,avro,1130308,113.03,572184,520361,ok
+tpcds/sf0.1/customer,tpcds,web,capnproto,2444152,244.42,767407,735357,ok
+tpcds/sf0.1/customer,tpcds,web,colbin,869708,86.97,409121,406256,ok
+tpcds/sf0.1/customer,tpcds,web,colbin+packed5,869708,86.97,409121,406256,ok
+tpcds/sf0.1/customer,tpcds,web,colbin-untagged,869709,86.97,409183,406219,ok
+tpcds/sf0.1/customer,tpcds,web,colbin-json,870005,87.00,409473,406374,ok
+tpcds/sf0.1/customer_address,tpcds,web,json-v2,1403644,280.73,179611,153936,ok
+tpcds/sf0.1/customer_address,tpcds,web,gob,598424,119.68,155587,139041,ok
+tpcds/sf0.1/customer_address,tpcds,web,cbor,1136272,227.25,183288,156393,ok
+tpcds/sf0.1/customer_address,tpcds,web,msgpack,1136274,227.25,185359,157239,ok
+tpcds/sf0.1/customer_address,tpcds,web,msgpack-reflect,1195628,239.13,187507,157656,ok
+tpcds/sf0.1/customer_address,tpcds,web,protobuf,593793,118.76,170310,148216,ok
+tpcds/sf0.1/customer_address,tpcds,web,vtprotobuf,593793,118.76,170310,148216,ok
+tpcds/sf0.1/customer_address,tpcds,web,flatbuffers,1148728,229.75,256490,222015,ok
+tpcds/sf0.1/customer_address,tpcds,web,arrow,756414,151.28,272386,253461,ok
+tpcds/sf0.1/customer_address,tpcds,web,avro,575251,115.05,159539,139327,ok
+tpcds/sf0.1/customer_address,tpcds,web,capnproto,1252152,250.43,277680,254812,ok
+tpcds/sf0.1/customer_address,tpcds,web,colbin,514185,102.84,110584,113467,ok
+tpcds/sf0.1/customer_address,tpcds,web,colbin+packed5,514185,102.84,110584,113467,ok
+tpcds/sf0.1/customer_address,tpcds,web,colbin-untagged,514246,102.85,110918,113550,ok
+tpcds/sf0.1/customer_address,tpcds,web,colbin-json,514357,102.87,110830,113648,ok
+tpcds/sf0.1/household_demographics,tpcds,web,json-v2,641263,89.06,25478,22180,ok
+tpcds/sf0.1/household_demographics,tpcds,web,gob,143797,19.97,26873,25414,ok
+tpcds/sf0.1/household_demographics,tpcds,web,cbor,507331,70.46,34236,27034,ok
+tpcds/sf0.1/household_demographics,tpcds,web,msgpack,507355,70.47,34521,27172,ok
+tpcds/sf0.1/household_demographics,tpcds,web,msgpack-reflect,694809,96.50,35710,26617,ok
+tpcds/sf0.1/household_demographics,tpcds,web,protobuf,143633,19.95,36572,29128,ok
+tpcds/sf0.1/household_demographics,tpcds,web,vtprotobuf,143633,19.95,36572,29128,ok
+tpcds/sf0.1/household_demographics,tpcds,web,flatbuffers,418632,58.14,71419,60005,ok
+tpcds/sf0.1/household_demographics,tpcds,web,arrow,285558,39.66,31515,31696,ok
+tpcds/sf0.1/household_demographics,tpcds,web,avro,97426,13.53,36304,25487,ok
+tpcds/sf0.1/household_demographics,tpcds,web,capnproto,374432,52.00,42664,27561,ok
+tpcds/sf0.1/household_demographics,tpcds,web,colbin,70090,9.73,1881,499,ok
+tpcds/sf0.1/household_demographics,tpcds,web,colbin+packed5,70090,9.73,1881,499,ok
+tpcds/sf0.1/household_demographics,tpcds,web,colbin-untagged,70121,9.74,1902,536,ok
+tpcds/sf0.1/household_demographics,tpcds,web,colbin-json,70170,9.75,1970,586,ok
+tpcds/sf0.1/income_band,tpcds,web,json-v2,1178,58.90,233,219,ok
+tpcds/sf0.1/income_band,tpcds,web,gob,411,20.55,313,319,ok
+tpcds/sf0.1/income_band,tpcds,web,cbor,919,45.95,284,224,ok
+tpcds/sf0.1/income_band,tpcds,web,msgpack,933,46.65,283,227,ok
+tpcds/sf0.1/income_band,tpcds,web,msgpack-reflect,1189,59.45,293,217,ok
+tpcds/sf0.1/income_band,tpcds,web,protobuf,234,11.70,207,203,ok
+tpcds/sf0.1/income_band,tpcds,web,vtprotobuf,234,11.70,207,203,ok
+tpcds/sf0.1/income_band,tpcds,web,flatbuffers,608,30.40,364,332,ok
+tpcds/sf0.1/income_band,tpcds,web,arrow,1214,60.70,469,460,ok
+tpcds/sf0.1/income_band,tpcds,web,avro,142,7.10,167,151,ok
+tpcds/sf0.1/income_band,tpcds,web,capnproto,512,25.60,226,219,ok
+tpcds/sf0.1/income_band,tpcds,web,colbin,116,5.80,141,73,ok
+tpcds/sf0.1/income_band,tpcds,web,colbin+packed5,116,5.80,141,73,ok
+tpcds/sf0.1/income_band,tpcds,web,colbin-untagged,121,6.05,146,78,ok
+tpcds/sf0.1/income_band,tpcds,web,colbin-json,172,8.60,127,125,ok
+tpcds/sf0.1/item,tpcds,web,json-v2,974314,541.29,182735,157807,ok
+tpcds/sf0.1/item,tpcds,web,gob,487996,271.11,165696,150016,ok
+tpcds/sf0.1/item,tpcds,web,cbor,817715,454.29,189527,163609,ok
+tpcds/sf0.1/item,tpcds,web,msgpack,820367,455.76,190563,163504,ok
+tpcds/sf0.1/item,tpcds,web,msgpack-reflect,921745,512.08,194400,165078,ok
+tpcds/sf0.1/item,tpcds,web,protobuf,496246,275.69,169456,153852,ok
+tpcds/sf0.1/item,tpcds,web,vtprotobuf,496246,275.69,169456,153852,ok
+tpcds/sf0.1/item,tpcds,web,flatbuffers,780312,433.51,220686,199492,ok
+tpcds/sf0.1/item,tpcds,web,arrow,609206,338.45,196586,189176,ok
+tpcds/sf0.1/item,tpcds,web,avro,477439,265.24,162865,147306,ok
+tpcds/sf0.1/item,tpcds,web,capnproto,791480,439.71,222134,212919,ok
+tpcds/sf0.1/item,tpcds,web,colbin,431607,239.78,124203,122606,ok
+tpcds/sf0.1/item,tpcds,web,colbin+packed5,431607,239.78,124203,122606,ok
+tpcds/sf0.1/item,tpcds,web,colbin-untagged,431608,239.78,124170,122625,ok
+tpcds/sf0.1/item,tpcds,web,colbin-json,431893,239.94,124457,122854,ok
+tpcds/sf0.1/promotion,tpcds,web,json-v2,12080,402.67,1748,1696,ok
+tpcds/sf0.1/promotion,tpcds,web,gob,4118,137.27,1756,1780,ok
+tpcds/sf0.1/promotion,tpcds,web,cbor,9757,325.23,1739,1677,ok
+tpcds/sf0.1/promotion,tpcds,web,msgpack,9803,326.77,1756,1695,ok
+tpcds/sf0.1/promotion,tpcds,web,msgpack-reflect,10785,359.50,1766,1703,ok
+tpcds/sf0.1/promotion,tpcds,web,protobuf,3819,127.30,1603,1644,ok
+tpcds/sf0.1/promotion,tpcds,web,vtprotobuf,3819,127.30,1603,1644,ok
+tpcds/sf0.1/promotion,tpcds,web,flatbuffers,8384,279.47,2300,2147,ok
+tpcds/sf0.1/promotion,tpcds,web,arrow,8998,299.93,2480,2418,ok
+tpcds/sf0.1/promotion,tpcds,web,avro,3593,119.77,1517,1557,ok
+tpcds/sf0.1/promotion,tpcds,web,capnproto,9448,314.93,1975,1986,ok
+tpcds/sf0.1/promotion,tpcds,web,colbin,2940,98.00,1237,1259,ok
+tpcds/sf0.1/promotion,tpcds,web,colbin+packed5,2940,98.00,1237,1259,ok
+tpcds/sf0.1/promotion,tpcds,web,colbin-untagged,2944,98.13,1241,1262,ok
+tpcds/sf0.1/promotion,tpcds,web,colbin-json,3229,107.63,1431,1439,ok
+tpcds/sf0.1/reason,tpcds,web,json-v2,590,84.29,231,224,ok
+tpcds/sf0.1/reason,tpcds,web,gob,459,65.57,291,299,ok
+tpcds/sf0.1/reason,tpcds,web,cbor,505,72.14,220,217,ok
+tpcds/sf0.1/reason,tpcds,web,msgpack,504,72.00,232,227,ok
+tpcds/sf0.1/reason,tpcds,web,msgpack-reflect,560,80.00,236,232,ok
+tpcds/sf0.1/reason,tpcds,web,protobuf,321,45.86,212,206,ok
+tpcds/sf0.1/reason,tpcds,web,vtprotobuf,321,45.86,212,206,ok
+tpcds/sf0.1/reason,tpcds,web,flatbuffers,568,81.14,315,299,ok
+tpcds/sf0.1/reason,tpcds,web,arrow,1206,172.29,466,472,ok
+tpcds/sf0.1/reason,tpcds,web,avro,290,41.43,191,191,ok
+tpcds/sf0.1/reason,tpcds,web,capnproto,544,77.71,273,269,ok
+tpcds/sf0.1/reason,tpcds,web,colbin,315,45.00,212,210,ok
+tpcds/sf0.1/reason,tpcds,web,colbin+packed5,225,32.14,201,194,ok
+tpcds/sf0.1/reason,tpcds,web,colbin-untagged,343,49.00,235,227,ok
+tpcds/sf0.1/reason,tpcds,web,colbin-json,365,52.14,248,246,ok
+tpcds/sf0.1/ship_mode,tpcds,web,json-v2,2563,128.15,690,689,ok
+tpcds/sf0.1/ship_mode,tpcds,web,gob,1385,69.25,763,780,ok
+tpcds/sf0.1/ship_mode,tpcds,web,cbor,2069,103.45,700,703,ok
+tpcds/sf0.1/ship_mode,tpcds,web,msgpack,2071,103.55,725,733,ok
+tpcds/sf0.1/ship_mode,tpcds,web,msgpack-reflect,2231,111.55,725,738,ok
+tpcds/sf0.1/ship_mode,tpcds,web,protobuf,1222,61.10,657,657,ok
+tpcds/sf0.1/ship_mode,tpcds,web,vtprotobuf,1222,61.10,657,657,ok
+tpcds/sf0.1/ship_mode,tpcds,web,flatbuffers,2400,120.00,1013,997,ok
+tpcds/sf0.1/ship_mode,tpcds,web,arrow,2838,141.90,1119,1116,ok
+tpcds/sf0.1/ship_mode,tpcds,web,avro,1066,53.30,587,612,ok
+tpcds/sf0.1/ship_mode,tpcds,web,capnproto,2416,120.80,969,981,ok
+tpcds/sf0.1/ship_mode,tpcds,web,colbin,1075,53.75,554,550,ok
+tpcds/sf0.1/ship_mode,tpcds,web,colbin+packed5,1075,53.75,554,550,ok
+tpcds/sf0.1/ship_mode,tpcds,web,colbin-untagged,1090,54.50,575,567,ok
+tpcds/sf0.1/ship_mode,tpcds,web,colbin-json,1151,57.55,619,618,ok
+tpcds/sf0.1/store,tpcds,web,json-v2,665,665.00,417,423,ok
+tpcds/sf0.1/store,tpcds,web,gob,784,784.00,533,542,ok
+tpcds/sf0.1/store,tpcds,web,cbor,548,548.00,404,409,ok
+tpcds/sf0.1/store,tpcds,web,msgpack,550,550.00,429,430,ok
+tpcds/sf0.1/store,tpcds,web,msgpack-reflect,612,612.00,442,447,ok
+tpcds/sf0.1/store,tpcds,web,protobuf,279,279.00,272,272,ok
+tpcds/sf0.1/store,tpcds,web,vtprotobuf,279,279.00,272,272,ok
+tpcds/sf0.1/store,tpcds,web,flatbuffers,568,568.00,390,371,ok
+tpcds/sf0.1/store,tpcds,web,arrow,5582,5582.00,1268,1230,ok
+tpcds/sf0.1/store,tpcds,web,avro,240,240.00,231,230,ok
+tpcds/sf0.1/store,tpcds,web,capnproto,528,528.00,312,314,ok
+tpcds/sf0.1/store,tpcds,web,colbin,272,272.00,266,266,ok
+tpcds/sf0.1/store,tpcds,web,colbin+packed5,226,226.00,237,230,ok
+tpcds/sf0.1/store,tpcds,web,colbin-untagged,282,282.00,278,276,ok
+tpcds/sf0.1/store,tpcds,web,colbin-json,651,651.00,519,528,ok
+tpcds/sf0.1/warehouse,tpcds,web,json-v2,327,327.00,229,230,ok
+tpcds/sf0.1/warehouse,tpcds,web,gob,443,443.00,319,326,ok
+tpcds/sf0.1/warehouse,tpcds,web,cbor,268,268.00,220,218,ok
+tpcds/sf0.1/warehouse,tpcds,web,msgpack,268,268.00,230,231,ok
+tpcds/sf0.1/warehouse,tpcds,web,msgpack-reflect,286,286.00,241,240,ok
+tpcds/sf0.1/warehouse,tpcds,web,protobuf,135,135.00,145,144,ok
+tpcds/sf0.1/warehouse,tpcds,web,vtprotobuf,135,135.00,145,144,ok
+tpcds/sf0.1/warehouse,tpcds,web,flatbuffers,312,312.00,243,225,ok
+tpcds/sf0.1/warehouse,tpcds,web,arrow,2830,2830.00,732,719,ok
+tpcds/sf0.1/warehouse,tpcds,web,avro,122,122.00,147,131,ok
+tpcds/sf0.1/warehouse,tpcds,web,capnproto,296,296.00,202,203,ok
+tpcds/sf0.1/warehouse,tpcds,web,colbin,128,128.00,139,137,ok
+tpcds/sf0.1/warehouse,tpcds,web,colbin+packed5,105,105.00,130,114,ok
+tpcds/sf0.1/warehouse,tpcds,web,colbin-untagged,145,145.00,158,154,ok
+tpcds/sf0.1/warehouse,tpcds,web,colbin-json,310,310.00,271,275,ok
+tpcds/sf0.1/web_page,tpcds,web,json-v2,1664,277.33,387,379,ok
+tpcds/sf0.1/web_page,tpcds,web,gob,786,131.00,439,445,ok
+tpcds/sf0.1/web_page,tpcds,web,cbor,1303,217.17,363,347,ok
+tpcds/sf0.1/web_page,tpcds,web,msgpack,1303,217.17,376,364,ok
+tpcds/sf0.1/web_page,tpcds,web,msgpack-reflect,1579,263.17,397,382,ok
+tpcds/sf0.1/web_page,tpcds,web,protobuf,475,79.17,252,256,ok
+tpcds/sf0.1/web_page,tpcds,web,vtprotobuf,475,79.17,252,256,ok
+tpcds/sf0.1/web_page,tpcds,web,flatbuffers,1080,180.00,393,361,ok
+tpcds/sf0.1/web_page,tpcds,web,arrow,3446,574.33,852,833,ok
+tpcds/sf0.1/web_page,tpcds,web,avro,440,73.33,245,242,ok
+tpcds/sf0.1/web_page,tpcds,web,capnproto,1056,176.00,364,347,ok
+tpcds/sf0.1/web_page,tpcds,web,colbin,431,71.83,240,233,ok
+tpcds/sf0.1/web_page,tpcds,web,colbin+packed5,369,61.50,220,221,ok
+tpcds/sf0.1/web_page,tpcds,web,colbin-untagged,503,83.83,269,271,ok
+tpcds/sf0.1/web_page,tpcds,web,colbin-json,628,104.67,401,408,ok
+tpcds/sf0.1/web_returns,tpcds,web,json-v2,3495954,495.11,639175,613238,ok
+tpcds/sf0.1/web_returns,tpcds,web,gob,648512,91.84,367341,367545,lossy: $.Rows[6].ReturnTax: nil against non-nil
+tpcds/sf0.1/web_returns,tpcds,web,cbor,2811547,398.18,612510,519478,ok
+tpcds/sf0.1/web_returns,tpcds,web,msgpack,2840038,402.21,617115,521190,ok
+tpcds/sf0.1/web_returns,tpcds,web,msgpack-reflect,3773756,534.45,623313,473213,ok
+tpcds/sf0.1/web_returns,tpcds,web,protobuf,596275,84.45,481569,493234,ok
+tpcds/sf0.1/web_returns,tpcds,web,vtprotobuf,596275,84.45,481569,493234,ok
+tpcds/sf0.1/web_returns,tpcds,web,flatbuffers,1412384,200.03,448176,441920,ok
+tpcds/sf0.1/web_returns,tpcds,web,arrow,1379846,195.42,422103,345553,ok
+tpcds/sf0.1/web_returns,tpcds,web,avro,527526,74.71,338929,337697,ok
+tpcds/sf0.1/web_returns,tpcds,web,capnproto,1412232,200.00,398117,389117,ok
+tpcds/sf0.1/web_returns,tpcds,web,colbin,309143,43.78,292645,291079,ok
+tpcds/sf0.1/web_returns,tpcds,web,colbin+packed5,309143,43.78,292645,291079,ok
+tpcds/sf0.1/web_returns,tpcds,web,colbin-untagged,309144,43.78,294277,291077,ok
+tpcds/sf0.1/web_returns,tpcds,web,colbin-json,309556,43.84,292514,291445,ok
+tpcds/sf0.1/web_site,tpcds,web,json-v2,1881,627.00,674,670,ok
+tpcds/sf0.1/web_site,tpcds,web,gob,1350,450.00,762,767,ok
+tpcds/sf0.1/web_site,tpcds,web,cbor,1568,522.67,660,645,ok
+tpcds/sf0.1/web_site,tpcds,web,msgpack,1571,523.67,688,672,ok
+tpcds/sf0.1/web_site,tpcds,web,msgpack-reflect,1713,571.00,703,684,ok
+tpcds/sf0.1/web_site,tpcds,web,protobuf,932,310.67,549,533,ok
+tpcds/sf0.1/web_site,tpcds,web,vtprotobuf,932,310.67,549,533,ok
+tpcds/sf0.1/web_site,tpcds,web,flatbuffers,1656,552.00,768,736,ok
+tpcds/sf0.1/web_site,tpcds,web,arrow,5758,1919.33,1532,1499,ok
+tpcds/sf0.1/web_site,tpcds,web,avro,831,277.00,494,482,ok
+tpcds/sf0.1/web_site,tpcds,web,capnproto,1600,533.33,700,687,ok
+tpcds/sf0.1/web_site,tpcds,web,colbin,936,312.00,544,541,ok
+tpcds/sf0.1/web_site,tpcds,web,colbin+packed5,734,244.67,611,522,ok
+tpcds/sf0.1/web_site,tpcds,web,colbin-untagged,940,313.33,558,548,ok
+tpcds/sf0.1/web_site,tpcds,web,colbin-json,1249,416.33,761,759,ok

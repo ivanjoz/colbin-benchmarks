@@ -1,0 +1,910 @@
+=== RUN   TestSizes
+=== RUN   TestSizes/publicbi/Arade
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2               2525629    154.15     449017     439247  ok
+    sizes_test.go:125: gob                    789386     48.18     430128     422119  ok
+    sizes_test.go:125: cbor                  1549796     94.59     471985     426123  ok
+    sizes_test.go:125: msgpack               1549796     94.59     471480     426020  ok
+    sizes_test.go:125: msgpack-reflect       1615332     98.59     473657     426514  ok
+    sizes_test.go:125: protobuf               757480     46.23     411236     464730  ok
+    sizes_test.go:125: vtprotobuf             757480     46.23     411236     464730  ok
+    sizes_test.go:125: flatbuffers           1101640     67.24     468788     490829  ok
+    sizes_test.go:125: arrow                  851406     51.97     442004     376028  ok
+    sizes_test.go:125: avro                   616487     37.63     403634     422635  ok
+    sizes_test.go:125: capnproto             1310752     80.00     464398     486429  ok
+    sizes_test.go:125: colbin                 459287     28.03     290635     278729  ok
+    sizes_test.go:125: colbin+packed5         459287     28.03     290635     278729  ok
+    sizes_test.go:125: colbin-untagged        459384     28.04     290626     255768  ok
+    sizes_test.go:125: colbin-json            459377     28.04     291724     278955  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 147456 values; colbin 459287 B, of which tables 459287 B (1.0000); schema section 89 B; gob stream 789204 B
+=== RUN   TestSizes/publicbi/Bimbo
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2               3292160    200.94     313766     296073  ok
+    sizes_test.go:125: gob                    617602     37.70     249121     236331  ok
+    sizes_test.go:125: cbor                  2801506    170.99     312827     285073  ok
+    sizes_test.go:125: msgpack               2814135    171.76     316717     288034  ok
+    sizes_test.go:125: msgpack-reflect       3063817    187.00     310981     283457  ok
+    sizes_test.go:125: protobuf               576084     35.16     253116     239717  ok
+    sizes_test.go:125: vtprotobuf             576084     35.16     253116     239717  ok
+    sizes_test.go:125: flatbuffers            726824     44.36     337392     312080  ok
+    sizes_test.go:125: arrow                  690414     42.14     201612     197606  ok
+    sizes_test.go:125: avro                   526594     32.14     255301     247044  ok
+    sizes_test.go:125: capnproto              786464     48.00     248032     250367  ok
+    sizes_test.go:125: colbin                 228147     13.92     199209     201134  ok
+    sizes_test.go:125: colbin+packed5         228147     13.92     199209     201134  ok
+    sizes_test.go:125: colbin-untagged        228263     13.93     199508     201047  ok
+    sizes_test.go:125: colbin-json            228318     13.94     199397     201269  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 196608 values; colbin 228147 B, of which tables 228147 B (1.0000); schema section 170 B; gob stream 617333 B
+=== RUN   TestSizes/publicbi/CMSprovider
+    sizes_test.go:190: gob does not round-trip (gob does not transmit a pointer to a zero value, or an empty slice inside one): $.Rows[0].STDEVMEDICAREALLOWEDAMT: nil against non-nil
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              12902931    787.53    1714659    1243390  ok
+    sizes_test.go:125: gob                   3593508    219.33    1437892    1191668  lossy: $.Rows[0].STDEVMEDICAREALLOWEDAMT: nil against non-nil
+    sizes_test.go:125: cbor                 11541473    704.44    1802294    1305703  ok
+    sizes_test.go:125: msgpack              11493813    701.53    1805221    1303713  ok
+    sizes_test.go:125: msgpack-reflect      11646975    710.87    1800535    1297519  ok
+    sizes_test.go:125: protobuf              4030442    246.00    1537998    1282816  ok
+    sizes_test.go:125: vtprotobuf            4030442    246.00    1537998    1282816  ok
+    sizes_test.go:125: flatbuffers           5889336    359.46    1847116    1507537  ok
+    sizes_test.go:125: arrow                 4191102    255.80    1642810    1389892  ok
+    sizes_test.go:125: avro                  3803878    232.17    1465170    1224418  ok
+    sizes_test.go:125: capnproto             6420592    391.88    1756404    1594691  ok
+    sizes_test.go:125: colbin                2983823    182.12    1008939     950613  ok
+    sizes_test.go:125: colbin+packed5        2983823    182.12    1008939     950613  ok
+    sizes_test.go:125: colbin-untagged       2983824    182.12    1006691     951217  ok
+    sizes_test.go:125: colbin-json           2984400    182.15    1013505     950596  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 415069 values; colbin 2983823 B, of which tables 2983823 B (1.0000); schema section 576 B; gob stream 3592814 B
+=== RUN   TestSizes/publicbi/CityMaxCapita
+    sizes_test.go:190: gob does not round-trip (gob does not transmit a pointer to a zero value, or an empty slice inside one): $.Rows[1].ListedNumber: nil against non-nil
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              12653099    772.28    2940762    2552646  ok
+    sizes_test.go:125: gob                   5793483    353.61    2689940    2441073  lossy: $.Rows[1].ListedNumber: nil against non-nil
+    sizes_test.go:125: cbor                 10474723    639.33    2938055    2537416  ok
+    sizes_test.go:125: msgpack              10517223    641.92    2961773    2553519  ok
+    sizes_test.go:125: msgpack-reflect      10849873    662.22    2961320    2550281  ok
+    sizes_test.go:125: protobuf              5928011    361.82    2795547    2539752  ok
+    sizes_test.go:125: vtprotobuf            5928011    361.82    2795547    2539752  ok
+    sizes_test.go:125: flatbuffers           8157744    497.91    3258912    2905615  ok
+    sizes_test.go:125: arrow                 6718038    410.04    2846738    2623249  ok
+    sizes_test.go:125: avro                  5592765    341.36    2672417    2415407  ok
+    sizes_test.go:125: capnproto             9089024    554.75    3279532    3012506  ok
+    sizes_test.go:125: colbin                5108859    311.82    2178377    2012239  ok
+    sizes_test.go:125: colbin+packed5        5108859    311.82    2178377    2012239  ok
+    sizes_test.go:125: colbin-untagged       5108860    311.82    2176634    2011246  ok
+    sizes_test.go:125: colbin-json           5109255    311.84    2177085    2011877  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 438528 values; colbin 5108859 B, of which tables 5108859 B (1.0000); schema section 395 B; gob stream 5792946 B
+=== RUN   TestSizes/publicbi/CommonGovernment
+    sizes_test.go:190: gob does not round-trip (gob does not transmit a pointer to a zero value, or an empty slice inside one): $.Rows[0].Obligatedamount1: nil against non-nil
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              28190656   1720.62    2661096    1519323  ok
+    sizes_test.go:125: gob                  12915334    788.29    2139808    1306747  lossy: $.Rows[0].Obligatedamount1: nil against non-nil
+    sizes_test.go:125: cbor                 25735954   1570.80    2723103    1515632  ok
+    sizes_test.go:125: msgpack              25695657   1568.34    2725985    1519495  ok
+    sizes_test.go:125: msgpack-reflect      25986933   1586.12    2719928    1504807  ok
+    sizes_test.go:125: protobuf             13579758    828.84    2382606    1425741  ok
+    sizes_test.go:125: vtprotobuf           13579758    828.84    2382606    1425741  ok
+    sizes_test.go:125: flatbuffers          18438064   1125.37    3011828    1747682  ok
+    sizes_test.go:125: arrow                14931526    911.35    3206629    2220127  ok
+    sizes_test.go:125: avro                 13109450    800.14    2157796    1268482  ok
+    sizes_test.go:125: capnproto            20604592   1257.60    3789416    2919051  ok
+    sizes_test.go:125: colbin               11984708    731.49    1534547    1297126  ok
+    sizes_test.go:125: colbin+packed5       11984708    731.49    1534547    1297126  ok
+    sizes_test.go:125: colbin-untagged      11984709    731.49    1534648    1297139  ok
+    sizes_test.go:125: colbin-json          11985606    731.54    1535105    1298591  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 912302 values; colbin 11984708 B, of which tables 11984708 B (1.0000); schema section 897 B; gob stream 12914232 B
+=== RUN   TestSizes/publicbi/Corporations
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              10870082    663.46    1342521    1235408  ok
+    sizes_test.go:125: gob                   3642705    222.33    1236796    1163526  ok
+    sizes_test.go:125: cbor                  8762117    534.80    1380960    1277094  ok
+    sizes_test.go:125: msgpack               8765959    535.03    1387650    1286701  ok
+    sizes_test.go:125: msgpack-reflect       8977053    547.92    1389976    1285908  ok
+    sizes_test.go:125: protobuf              3729833    227.65    1292440    1209392  ok
+    sizes_test.go:125: vtprotobuf            3729833    227.65    1292440    1209392  ok
+    sizes_test.go:125: flatbuffers           5092792    310.84    1590336    1476634  ok
+    sizes_test.go:125: arrow                 4883790    298.08    1432944    1309190  ok
+    sizes_test.go:125: avro                  3776217    230.48    1243419    1166818  ok
+    sizes_test.go:125: capnproto             7121280    434.65    1656959    1560813  ok
+    sizes_test.go:125: colbin                3403096    207.71    1118050    1028531  ok
+    sizes_test.go:125: colbin+packed5        3403096    207.71    1118050    1028531  ok
+    sizes_test.go:125: colbin-untagged       3403097    207.71    1118058    1028524  ok
+    sizes_test.go:125: colbin-json           3403495    207.73    1118502    1028433  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 232304 values; colbin 3403096 B, of which tables 3403096 B (1.0000); schema section 398 B; gob stream 3642181 B
+=== RUN   TestSizes/publicbi/Eixo
+    sizes_test.go:190: gob does not round-trip (gob does not transmit a pointer to a zero value, or an empty slice inside one): $.Rows[0].StExtemporaneoMatricula: nil against non-nil
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              40238159   2455.94    4076775    2616404  ok
+    sizes_test.go:125: gob                  13634177    832.16    3085408    2251281  lossy: $.Rows[0].StExtemporaneoMatricula: nil against non-nil
+    sizes_test.go:125: cbor                 34711247   2118.61    4046409    2596988  ok
+    sizes_test.go:125: msgpack              34600581   2111.85    4045938    2582174  ok
+    sizes_test.go:125: msgpack-reflect      34924755   2131.64    4059556    2591555  ok
+    sizes_test.go:125: protobuf             14402217    879.04    3257826    2350739  ok
+    sizes_test.go:125: vtprotobuf           14402217    879.04    3257826    2350739  ok
+    sizes_test.go:125: flatbuffers          20472552   1249.55    4530629    3178182  ok
+    sizes_test.go:125: arrow                15990590    975.99    4284787    3754219  ok
+    sizes_test.go:125: avro                 13197585    805.52    3025614    2227342  ok
+    sizes_test.go:125: capnproto            23600376   1440.45    5361990    4577948  ok
+    sizes_test.go:125: colbin               12214332    745.50    2092659    1926537  ok
+    sizes_test.go:125: colbin+packed5       12214332    745.50    2092659    1926537  ok
+    sizes_test.go:125: colbin-untagged      12214333    745.50    2091897    1926737  ok
+    sizes_test.go:125: colbin-json          12215877    745.60    2093276    1931600  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 1115645 values; colbin 12214332 B, of which tables 12214332 B (1.0000); schema section 1544 B; gob stream 13632449 B
+=== RUN   TestSizes/publicbi/Euro2016
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2               5691049    347.35    1325200    1197284  ok
+    sizes_test.go:125: gob                   2656900    162.16    1220151    1133757  ok
+    sizes_test.go:125: cbor                  4627183    282.42    1297303    1181928  ok
+    sizes_test.go:125: msgpack               4626924    282.41    1297791    1182765  ok
+    sizes_test.go:125: msgpack-reflect       4659732    284.41    1299106    1182908  ok
+    sizes_test.go:125: protobuf              2671943    163.08    1270641    1191141  ok
+    sizes_test.go:125: vtprotobuf            2671943    163.08    1270641    1191141  ok
+    sizes_test.go:125: flatbuffers           3404560    207.80    1437165    1346167  ok
+    sizes_test.go:125: arrow                 2854174    174.20    1259593    1173069  ok
+    sizes_test.go:125: avro                  2608182    159.19    1247538    1167644  ok
+    sizes_test.go:125: capnproto             3587296    218.95    1346732    1269484  ok
+    sizes_test.go:125: colbin                2339189    142.77    1025030     972569  ok
+    sizes_test.go:125: colbin+packed5        2339189    142.77    1025030     972569  ok
+    sizes_test.go:125: colbin-untagged       2339306    142.78    1025135     972643  ok
+    sizes_test.go:125: colbin-json           2339356    142.78    1025238     972755  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 144054 values; colbin 2339189 B, of which tables 2339189 B (1.0000); schema section 166 B; gob stream 2656635 B
+=== RUN   TestSizes/publicbi/Food
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2               2212585    135.05     271558     226344  ok
+    sizes_test.go:125: gob                    692201     42.25     244747     233237  ok
+    sizes_test.go:125: cbor                  1909158    116.53     292343     250653  ok
+    sizes_test.go:125: msgpack               1905048    116.27     294396     251605  ok
+    sizes_test.go:125: msgpack-reflect       2009746    122.67     293849     251489  ok
+    sizes_test.go:125: protobuf               745064     45.48     259804     248539  ok
+    sizes_test.go:125: vtprotobuf             745064     45.48     259804     248539  ok
+    sizes_test.go:125: flatbuffers           1227160     74.90     377437     362311  ok
+    sizes_test.go:125: arrow                  784094     47.86     303110     279088  ok
+    sizes_test.go:125: avro                   633732     38.68     238893     229190  ok
+    sizes_test.go:125: capnproto             1189080     72.58     306282     292450  ok
+    sizes_test.go:125: colbin                 542583     33.12     177788     169539  ok
+    sizes_test.go:125: colbin+packed5         542583     33.12     177788     169539  ok
+    sizes_test.go:125: colbin-untagged        542642     33.12     177850     169433  ok
+    sizes_test.go:125: colbin-json            542687     33.12     181619     169606  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 98214 values; colbin 542583 B, of which tables 542583 B (1.0000); schema section 103 B; gob stream 692016 B
+=== RUN   TestSizes/publicbi/Generico
+    sizes_test.go:190: gob does not round-trip (gob does not transmit a pointer to a zero value, or an empty slice inside one): $.Rows[17].Duracion: nil against non-nil
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              17937784   1094.84    2193820    1440927  ok
+    sizes_test.go:125: gob                   9638731    588.30    1888201    1322056  lossy: $.Rows[17].Duracion: nil against non-nil
+    sizes_test.go:125: cbor                 15393894    939.57    2251520    1453899  ok
+    sizes_test.go:125: msgpack              15358821    937.43    2247666    1443851  ok
+    sizes_test.go:125: msgpack-reflect      15736473    960.48    2267978    1447906  ok
+    sizes_test.go:125: protobuf             10037243    612.62    2002256    1355938  ok
+    sizes_test.go:125: vtprotobuf           10037243    612.62    2002256    1355938  ok
+    sizes_test.go:125: flatbuffers          12784120    780.28    2603812    1792726  ok
+    sizes_test.go:125: arrow                10715166    654.00    2333634    2029460  ok
+    sizes_test.go:125: avro                  9470664    578.04    1864462    1316216  ok
+    sizes_test.go:125: capnproto            13897952    848.26    3042785    2453180  ok
+    sizes_test.go:125: colbin                8753081    534.25    1315494    1126450  ok
+    sizes_test.go:125: colbin+packed5        8753081    534.25    1315494    1126450  ok
+    sizes_test.go:125: colbin-untagged       8753082    534.25    1315483    1126572  ok
+    sizes_test.go:125: colbin-json           8753571    534.28    1315862    1126504  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 622599 values; colbin 8753081 B, of which tables 8753081 B (1.0000); schema section 489 B; gob stream 9638097 B
+=== RUN   TestSizes/publicbi/HashTags
+    sizes_test.go:190: gob does not round-trip (gob does not transmit a pointer to a zero value, or an empty slice inside one): $.Rows[143].TwitterNumUserNumUtcOffset: nil against non-nil
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              65678491   4008.70    6516730    5153272  ok
+    sizes_test.go:125: gob                  18204481   1111.11    5093792    4256247  lossy: $.Rows[143].TwitterNumUserNumUtcOffset: nil against non-nil
+    sizes_test.go:125: cbor                 59451710   3628.64    6711543    5085194  ok
+    sizes_test.go:125: msgpack              58634396   3578.76    6686482    5133055  ok
+    sizes_test.go:125: msgpack-reflect      60034008   3664.19    6699162    5080530  ok
+    sizes_test.go:125: protobuf             18772533   1145.78    5437587    4516172  ok
+    sizes_test.go:125: vtprotobuf           18772533   1145.78    5437587    4516172  ok
+    sizes_test.go:125: flatbuffers          23896832   1458.55    6538764    5255995  ok
+    sizes_test.go:125: arrow                22312310   1361.84    6770298    5489596  ok
+    sizes_test.go:125: avro                 18683508   1140.35    5061795    4242456  ok
+    sizes_test.go:125: capnproto            27622208   1685.93    6949487    5996970  ok
+    sizes_test.go:125: colbin               17171340   1048.06    5384439    3327771  ok
+    sizes_test.go:125: colbin+packed5       17171340   1048.06    5384439    3327771  ok
+    sizes_test.go:125: colbin-untagged      17171341   1048.06    5384296    3327925  ok
+    sizes_test.go:125: colbin-json          17174031   1048.22    5382794    3329666  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 1269590 values; colbin 17171340 B, of which tables 17171340 B (1.0000); schema section 2690 B; gob stream 18201545 B
+=== RUN   TestSizes/publicbi/Hatred
+    sizes_test.go:190: gob does not round-trip (gob does not transmit a pointer to a zero value, or an empty slice inside one): $.Rows[9].Listed: nil against non-nil
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              11877436    724.94    2917721    2559638  ok
+    sizes_test.go:125: gob                   5642964    344.42    2726075    2473507  lossy: $.Rows[9].Listed: nil against non-nil
+    sizes_test.go:125: cbor                  9752839    595.27    2966272    2592562  ok
+    sizes_test.go:125: msgpack               9795869    597.89    2989762    2610491  ok
+    sizes_test.go:125: msgpack-reflect      10101425    616.54    2971696    2594949  ok
+    sizes_test.go:125: protobuf              5794078    353.64    2850355    2585757  ok
+    sizes_test.go:125: vtprotobuf            5794078    353.64    2850355    2585757  ok
+    sizes_test.go:125: flatbuffers           7795256    475.78    3329375    3004109  ok
+    sizes_test.go:125: arrow                 6465246    394.61    2832429    2626829  ok
+    sizes_test.go:125: avro                  5307619    323.95    2686601    2450694  ok
+    sizes_test.go:125: capnproto             8832784    539.11    3226255    3013310  ok
+    sizes_test.go:125: colbin                4884789    298.14    2196726    2107698  ok
+    sizes_test.go:125: colbin+packed5        4884789    298.14    2196726    2107698  ok
+    sizes_test.go:125: colbin-untagged       4884790    298.14    2196777    2107005  ok
+    sizes_test.go:125: colbin-json           4885145    298.17    2196992    2107951  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 438797 values; colbin 4884789 B, of which tables 4884789 B (1.0000); schema section 355 B; gob stream 5642482 B
+=== RUN   TestSizes/publicbi/IGlocations1
+    sizes_test.go:190: gob does not round-trip (gob does not transmit a pointer to a zero value, or an empty slice inside one): $.Rows[95].CENSUS2010POP: nil against non-nil
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2               5513752    336.53     685605     596075  ok
+    sizes_test.go:125: gob                   1230102     75.08     498784     469344  lossy: $.Rows[95].CENSUS2010POP: nil against non-nil
+    sizes_test.go:125: cbor                  4431114    270.45     689409     571926  ok
+    sizes_test.go:125: msgpack               4468771    272.75     698670     580867  ok
+    sizes_test.go:125: msgpack-reflect       4986941    304.38     707324     552134  ok
+    sizes_test.go:125: protobuf              1160336     70.82     538194     504970  ok
+    sizes_test.go:125: vtprotobuf            1160336     70.82     538194     504970  ok
+    sizes_test.go:125: flatbuffers           1825252    111.40     626567     576268  ok
+    sizes_test.go:125: arrow                 1437038     87.71     538102     495253  ok
+    sizes_test.go:125: avro                   911007     55.60     453346     435847  ok
+    sizes_test.go:125: capnproto             1997472    121.92     594615     570784  ok
+    sizes_test.go:125: colbin                 826364     50.44     396212     371531  ok
+    sizes_test.go:125: colbin+packed5         826364     50.44     396212     371531  ok
+    sizes_test.go:125: colbin-untagged        826365     50.44     396213     371538  ok
+    sizes_test.go:125: colbin-json            826628     50.45     396388     371725  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 294880 values; colbin 826364 B, of which tables 826364 B (1.0000); schema section 263 B; gob stream 1229711 B
+=== RUN   TestSizes/publicbi/IGlocations2
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              12725684    776.71    2812808    2576370  ok
+    sizes_test.go:125: gob                   6983320    426.23    2732654    2583129  ok
+    sizes_test.go:125: cbor                 11291800    689.20    2888831    2644236  ok
+    sizes_test.go:125: msgpack              11289205    689.04    2897556    2649769  ok
+    sizes_test.go:125: msgpack-reflect      11457687    699.32    2896503    2648577  ok
+    sizes_test.go:125: protobuf              7013778    428.09    2849369    2686002  ok
+    sizes_test.go:125: vtprotobuf            7013778    428.09    2849369    2686002  ok
+    sizes_test.go:125: flatbuffers           8783888    536.13    3073023    2853991  ok
+    sizes_test.go:125: arrow                 7397758    451.52    2689239    2498755  ok
+    sizes_test.go:125: avro                  6638676    405.19    2732457    2581156  ok
+    sizes_test.go:125: capnproto             9058472    552.89    3171005    2942415  ok
+    sizes_test.go:125: colbin                6452689    393.84    2201326    2098733  ok
+    sizes_test.go:125: colbin+packed5        6452689    393.84    2201326    2098733  ok
+    sizes_test.go:125: colbin-untagged       6452690    393.84    2201360    2098591  ok
+    sizes_test.go:125: colbin-json           6453020    393.86    2201169    2098599  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 314577 values; colbin 6452689 B, of which tables 6452689 B (1.0000); schema section 330 B; gob stream 6982859 B
+=== RUN   TestSizes/publicbi/IUBLibrary
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2               1156627    644.36     207267     194619  ok
+    sizes_test.go:125: gob                    409804    228.30     188946     184864  ok
+    sizes_test.go:125: cbor                   956686    532.97     214506     199558  ok
+    sizes_test.go:125: msgpack                955371    532.24     213712     198592  ok
+    sizes_test.go:125: msgpack-reflect        980345    546.15     214609     199474  ok
+    sizes_test.go:125: protobuf               424679    236.59     197153     194155  ok
+    sizes_test.go:125: vtprotobuf             424679    236.59     197153     194155  ok
+    sizes_test.go:125: flatbuffers            665220    370.60     240369     224092  ok
+    sizes_test.go:125: arrow                  464950    259.03     227527     219223  ok
+    sizes_test.go:125: avro                   368733    205.42     184921     182605  ok
+    sizes_test.go:125: capnproto              714832    398.24     248961     243308  ok
+    sizes_test.go:125: colbin                 342672    190.90     152215     158183  ok
+    sizes_test.go:125: colbin+packed5         342672    190.90     152215     158183  ok
+    sizes_test.go:125: colbin-untagged        342673    190.90     152224     158186  ok
+    sizes_test.go:125: colbin-json            343075    191.13     152614     158545  ok
+    sizes_test.go:155: rows 1795 (top level 1795), 1795 as table rows (1.0000); 47541 values; colbin 342672 B, of which tables 342672 B (1.0000); schema section 402 B; gob stream 409267 B
+=== RUN   TestSizes/publicbi/MLB
+    sizes_test.go:190: gob does not round-trip (gob does not transmit a pointer to a zero value, or an empty slice inside one): $.Rows[0].ISO: nil against non-nil
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2               9157302    558.92    1345885    1024732  ok
+    sizes_test.go:125: gob                   2205051    134.59     961516     735819  lossy: $.Rows[0].ISO: nil against non-nil
+    sizes_test.go:125: cbor                  6457311    394.12    1307664     922279  ok
+    sizes_test.go:125: msgpack               6409779    391.22    1312134     933810  ok
+    sizes_test.go:125: msgpack-reflect       7874199    480.60    1323616     948816  ok
+    sizes_test.go:125: protobuf              2532585    154.58    1076821     820725  ok
+    sizes_test.go:125: vtprotobuf            2532585    154.58    1076821     820725  ok
+    sizes_test.go:125: flatbuffers           3673952    224.24    1225543     920743  ok
+    sizes_test.go:125: arrow                 3065766    187.12     953760     903539  ok
+    sizes_test.go:125: avro                  1923112    117.38     918933     709837  ok
+    sizes_test.go:125: capnproto             4056088    247.56    1167801     977127  ok
+    sizes_test.go:125: colbin                1431389     87.37     635167     596574  ok
+    sizes_test.go:125: colbin+packed5        1431389     87.37     635167     596574  ok
+    sizes_test.go:125: colbin-untagged       1431390     87.37     635201     596521  ok
+    sizes_test.go:125: colbin-json           1431786     87.39     635396     596940  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 778236 values; colbin 1431389 B, of which tables 1431389 B (1.0000); schema section 396 B; gob stream 2204503 B
+=== RUN   TestSizes/publicbi/MedPayment1
+    sizes_test.go:190: gob does not round-trip (gob does not transmit a pointer to a zero value, or an empty slice inside one): $.Rows[0].StdevSubmittedChrgAmt: nil against non-nil
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              13359965    815.43    1868929    1422261  ok
+    sizes_test.go:125: gob                   3213168    196.12    1569578    1321077  lossy: $.Rows[0].StdevSubmittedChrgAmt: nil against non-nil
+    sizes_test.go:125: cbor                 11920515    727.57    1965728    1485583  ok
+    sizes_test.go:125: msgpack              11848334    723.16    1970974    1483888  ok
+    sizes_test.go:125: msgpack-reflect      12001430    732.51    1968498    1477884  ok
+    sizes_test.go:125: protobuf              3710967    226.50    1674325    1421388  ok
+    sizes_test.go:125: vtprotobuf            3710967    226.50    1674325    1421388  ok
+    sizes_test.go:125: flatbuffers           5710696    348.55    2033026    1678940  ok
+    sizes_test.go:125: arrow                 3922550    239.41    1802405    1542142  ok
+    sizes_test.go:125: avro                  3454383    210.84    1597909    1325461  ok
+    sizes_test.go:125: capnproto             6362312    388.32    2057796    1896260  ok
+    sizes_test.go:125: colbin                2612370    159.45    1087907    1063395  ok
+    sizes_test.go:125: colbin+packed5        2612370    159.45    1087907    1063395  ok
+    sizes_test.go:125: colbin-untagged       2612371    159.45    1088349    1063405  ok
+    sizes_test.go:125: colbin-json           2612998    159.48    1089225    1063691  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 442924 values; colbin 2612370 B, of which tables 2612370 B (1.0000); schema section 627 B; gob stream 3212421 B
+=== RUN   TestSizes/publicbi/MedPayment2
+    sizes_test.go:190: gob does not round-trip (gob does not transmit a pointer to a zero value, or an empty slice inside one): $.Rows[5].StdevSubmittedChrgAmt: nil against non-nil
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              14016442    855.50    1940696    1484804  ok
+    sizes_test.go:125: gob                   3369786    205.68    1612566    1360152  lossy: $.Rows[5].StdevSubmittedChrgAmt: nil against non-nil
+    sizes_test.go:125: cbor                 12544262    765.64    2049418    1540798  ok
+    sizes_test.go:125: msgpack              12455428    760.22    2048443    1543650  ok
+    sizes_test.go:125: msgpack-reflect      12609068    769.60    2050023    1533546  ok
+    sizes_test.go:125: protobuf              3875758    236.56    1725002    1458771  ok
+    sizes_test.go:125: vtprotobuf            3875758    236.56    1725002    1458771  ok
+    sizes_test.go:125: flatbuffers           5842352    356.59    2078573    1719193  ok
+    sizes_test.go:125: arrow                 4055230    247.51    1908285    1544449  ok
+    sizes_test.go:125: avro                  3602877    219.90    1631128    1352196  ok
+    sizes_test.go:125: capnproto             6496080    396.49    2098298    1940839  ok
+    sizes_test.go:125: colbin                2701907    164.91    1171488    1053829  ok
+    sizes_test.go:125: colbin+packed5        2701907    164.91    1171488    1053829  ok
+    sizes_test.go:125: colbin-untagged       2701908    164.91    1171385    1053855  ok
+    sizes_test.go:125: colbin-json           2702566    164.95    1172914    1054268  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 459259 values; colbin 2701907 B, of which tables 2701907 B (1.0000); schema section 658 B; gob stream 3369007 B
+=== RUN   TestSizes/publicbi/Medicare1
+    sizes_test.go:190: gob does not round-trip (gob does not transmit a pointer to a zero value, or an empty slice inside one): $.Rows[74].BENECOUNTGE65: nil against non-nil
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              12450239    759.90    1644912    1274757  ok
+    sizes_test.go:125: gob                   2772088    169.19    1243734    1136972  lossy: $.Rows[74].BENECOUNTGE65: nil against non-nil
+    sizes_test.go:125: cbor                 10498609    640.78    1617055    1257716  ok
+    sizes_test.go:125: msgpack              10390783    634.20    1611594    1259257  ok
+    sizes_test.go:125: msgpack-reflect      10623409    648.40    1608353    1250780  ok
+    sizes_test.go:125: protobuf              2838641    173.26    1334157    1228658  ok
+    sizes_test.go:125: vtprotobuf            2838641    173.26    1334157    1228658  ok
+    sizes_test.go:125: flatbuffers           4145440    253.02    1541695    1400331  ok
+    sizes_test.go:125: arrow                 3062686    186.93    1429050    1267851  ok
+    sizes_test.go:125: avro                  2481926    151.48    1212503    1133359  ok
+    sizes_test.go:125: capnproto             4563032    278.51    1505441    1475787  ok
+    sizes_test.go:125: colbin                2046166    124.89     940406     866966  ok
+    sizes_test.go:125: colbin+packed5        2046166    124.89     940406     866966  ok
+    sizes_test.go:125: colbin-untagged       2046167    124.89     919695     867083  ok
+    sizes_test.go:125: colbin-json           2046728    124.92     931062     867577  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 379734 values; colbin 2046166 B, of which tables 2046166 B (1.0000); schema section 561 B; gob stream 2771401 B
+=== RUN   TestSizes/publicbi/Medicare2
+    sizes_test.go:190: gob does not round-trip (gob does not transmit a pointer to a zero value, or an empty slice inside one): $.Rows[1].StdevMedicareAllowedAmt: nil against non-nil
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              13328282    813.49    1867654    1431536  ok
+    sizes_test.go:125: gob                   3143613    191.87    1553666    1319319  lossy: $.Rows[1].StdevMedicareAllowedAmt: nil against non-nil
+    sizes_test.go:125: cbor                 11778466    718.90    1948341    1474915  ok
+    sizes_test.go:125: msgpack              11702024    714.23    1954340    1485090  ok
+    sizes_test.go:125: msgpack-reflect      11915012    727.23    1945220    1468430  ok
+    sizes_test.go:125: protobuf              3545342    216.39    1648960    1410567  ok
+    sizes_test.go:125: vtprotobuf            3545342    216.39    1648960    1410567  ok
+    sizes_test.go:125: flatbuffers           5438808    331.96    1976537    1694371  ok
+    sizes_test.go:125: arrow                 3779494    230.68    1733380    1470857  ok
+    sizes_test.go:125: avro                  3293913    201.04    1570483    1318931  ok
+    sizes_test.go:125: capnproto             6103008    372.50    2014673    1856999  ok
+    sizes_test.go:125: colbin                2549448    155.61    1098457    1066311  ok
+    sizes_test.go:125: colbin+packed5        2549448    155.61    1098457    1066311  ok
+    sizes_test.go:125: colbin-untagged       2549449    155.61    1098569    1066345  ok
+    sizes_test.go:125: colbin-json           2550076    155.64    1098204    1065574  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 440944 values; colbin 2549448 B, of which tables 2549448 B (1.0000); schema section 627 B; gob stream 3142872 B
+=== RUN   TestSizes/publicbi/Medicare3
+    sizes_test.go:190: gob does not round-trip (gob does not transmit a pointer to a zero value, or an empty slice inside one): $.Rows[0].STDEVMEDICAREALLOWEDAMT: nil against non-nil
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              14431864    880.85    2059897    1477089  ok
+    sizes_test.go:125: gob                   3907002    238.46    1717073    1391736  lossy: $.Rows[0].STDEVMEDICAREALLOWEDAMT: nil against non-nil
+    sizes_test.go:125: cbor                 12881966    786.25    2175999    1546748  ok
+    sizes_test.go:125: msgpack              12817876    782.34    2184895    1547429  ok
+    sizes_test.go:125: msgpack-reflect      12971088    791.69    2177219    1541677  ok
+    sizes_test.go:125: protobuf              4388208    267.83    1837843    1492505  ok
+    sizes_test.go:125: vtprotobuf            4388208    267.83    1837843    1492505  ok
+    sizes_test.go:125: flatbuffers           6576736    401.41    2236389    1767606  ok
+    sizes_test.go:125: arrow                 4616374    281.76    1866703    1603111  ok
+    sizes_test.go:125: avro                  4122729    251.63    1750721    1405457  ok
+    sizes_test.go:125: capnproto             7230240    441.30    2128298    1869883  ok
+    sizes_test.go:125: colbin                3254044    198.61    1169949    1098880  ok
+    sizes_test.go:125: colbin+packed5        3254044    198.61    1169949    1098880  ok
+    sizes_test.go:125: colbin-untagged       3254045    198.61    1167242    1098370  ok
+    sizes_test.go:125: colbin-json           3254694    198.65    1171032    1098840  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 459007 values; colbin 3254044 B, of which tables 3254044 B (1.0000); schema section 649 B; gob stream 3906238 B
+=== RUN   TestSizes/publicbi/Motos
+    sizes_test.go:190: gob does not round-trip (gob does not transmit a pointer to a zero value, or an empty slice inside one): $.Rows[1].DeNpags: nil against non-nil
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              18256656   1114.30    2150104    1386329  ok
+    sizes_test.go:125: gob                   9580749    584.76    1845319    1271358  lossy: $.Rows[1].DeNpags: nil against non-nil
+    sizes_test.go:125: cbor                 15614012    953.00    2220780    1394231  ok
+    sizes_test.go:125: msgpack              15579889    950.92    2216277    1383987  ok
+    sizes_test.go:125: msgpack-reflect      15958483    974.03    2236264    1387904  ok
+    sizes_test.go:125: protobuf              9978946    609.07    1959028    1301853  ok
+    sizes_test.go:125: vtprotobuf            9978946    609.07    1959028    1301853  ok
+    sizes_test.go:125: flatbuffers          12728432    776.88    2572090    1729785  ok
+    sizes_test.go:125: arrow                10725670    654.64    2280849    1961073  ok
+    sizes_test.go:125: avro                  9430421    575.59    1823014    1264497  ok
+    sizes_test.go:125: capnproto            13979152    853.22    3002827    2406270  ok
+    sizes_test.go:125: colbin                8695153    530.71    1271610    1087127  ok
+    sizes_test.go:125: colbin+packed5        8695153    530.71    1271610    1087127  ok
+    sizes_test.go:125: colbin-untagged       8695154    530.71    1272562    1087259  ok
+    sizes_test.go:125: colbin-json           8695662    530.74    1265794    1086016  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 622008 values; colbin 8695153 B, of which tables 8695153 B (1.0000); schema section 508 B; gob stream 9580099 B
+=== RUN   TestSizes/publicbi/MulheresMil
+    sizes_test.go:190: gob does not round-trip (gob does not transmit a pointer to a zero value, or an empty slice inside one): $.Rows[0].StExtemporaneoMatricula: nil against non-nil
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              41017116   2503.49    4117194    2652187  ok
+    sizes_test.go:125: gob                  13872208    846.69    3112884    2269111  lossy: $.Rows[0].StExtemporaneoMatricula: nil against non-nil
+    sizes_test.go:125: cbor                 35443581   2163.30    4079395    2633373  ok
+    sizes_test.go:125: msgpack              35315875   2155.51    4076828    2621680  ok
+    sizes_test.go:125: msgpack-reflect      35639553   2175.27    4096223    2625279  ok
+    sizes_test.go:125: protobuf             14657356    894.61    3291012    2375141  ok
+    sizes_test.go:125: vtprotobuf           14657356    894.61    3291012    2375141  ok
+    sizes_test.go:125: flatbuffers          20861120   1273.26    4617926    3215713  ok
+    sizes_test.go:125: arrow                16265438    992.76    4380122    3811088  ok
+    sizes_test.go:125: avro                 13436014    820.07    3053793    2249849  ok
+    sizes_test.go:125: capnproto            23992248   1464.37    5454304    4655878  ok
+    sizes_test.go:125: colbin               12438562    759.19    2119089    1930696  ok
+    sizes_test.go:125: colbin+packed5       12438562    759.19    2119089    1930696  ok
+    sizes_test.go:125: colbin-untagged      12438563    759.19    2119150    1930850  ok
+    sizes_test.go:125: colbin-json          12440140    759.29    2120898    1930844  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 1132172 values; colbin 12438562 B, of which tables 12438562 B (1.0000); schema section 1577 B; gob stream 13870417 B
+=== RUN   TestSizes/publicbi/NYC
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              26183861   1598.14    1844042    1461776  ok
+    sizes_test.go:125: gob                   9253774    564.81    1742939    1468037  ok
+    sizes_test.go:125: cbor                 21637200   1320.63    2023989    1588387  ok
+    sizes_test.go:125: msgpack              21611248   1319.05    2026953    1586990  ok
+    sizes_test.go:125: msgpack-reflect      21734000   1326.54    2029155    1586564  ok
+    sizes_test.go:125: protobuf              9621365    587.24    1892559    1580924  ok
+    sizes_test.go:125: vtprotobuf            9621365    587.24    1892559    1580924  ok
+    sizes_test.go:125: flatbuffers          12998168    793.35    2242287    1816038  ok
+    sizes_test.go:125: arrow                11314198    690.56    2525764    2178644  ok
+    sizes_test.go:125: avro                  9214281    562.40    1764194    1466637  ok
+    sizes_test.go:125: capnproto            16104728    982.95    2740177    2448100  ok
+    sizes_test.go:125: colbin                8365934    510.62    1248185    1160575  ok
+    sizes_test.go:125: colbin+packed5        8365934    510.62    1248185    1160575  ok
+    sizes_test.go:125: colbin-untagged       8365935    510.62    1251499    1160633  ok
+    sizes_test.go:125: colbin-json           8366862    510.67    1249320    1163135  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 600159 values; colbin 8365934 B, of which tables 8365934 B (1.0000); schema section 927 B; gob stream 9252703 B
+=== RUN   TestSizes/publicbi/PanCreactomy1
+    sizes_test.go:190: gob does not round-trip (gob does not transmit a pointer to a zero value, or an empty slice inside one): $.Rows[0].STDEVMEDICAREALLOWEDAMT: nil against non-nil
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              14368938    877.01    2020190    1443333  ok
+    sizes_test.go:125: gob                   3865664    235.94    1664690    1339496  lossy: $.Rows[0].STDEVMEDICAREALLOWEDAMT: nil against non-nil
+    sizes_test.go:125: cbor                 12874504    785.80    2126893    1500779  ok
+    sizes_test.go:125: msgpack              12810511    781.89    2136782    1502514  ok
+    sizes_test.go:125: msgpack-reflect      12963691    791.24    2128472    1496937  ok
+    sizes_test.go:125: protobuf              4382522    267.49    1788713    1438936  ok
+    sizes_test.go:125: vtprotobuf            4382522    267.49    1788713    1438936  ok
+    sizes_test.go:125: flatbuffers           6576056    401.37    2182449    1719089  ok
+    sizes_test.go:125: arrow                 4609174    281.32    1864728    1561105  ok
+    sizes_test.go:125: avro                  4116354    251.24    1700045    1345092  ok
+    sizes_test.go:125: capnproto             7227208    441.11    2078392    1808578  ok
+    sizes_test.go:125: colbin                3250954    198.42    1139979    1073339  ok
+    sizes_test.go:125: colbin+packed5        3250954    198.42    1139979    1073339  ok
+    sizes_test.go:125: colbin-untagged       3250955    198.42    1140634    1073793  ok
+    sizes_test.go:125: colbin-json           3251604    198.46    1140809    1074727  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 459538 values; colbin 3250954 B, of which tables 3250954 B (1.0000); schema section 649 B; gob stream 3864880 B
+=== RUN   TestSizes/publicbi/PanCreactomy2
+    sizes_test.go:190: gob does not round-trip (gob does not transmit a pointer to a zero value, or an empty slice inside one): $.Rows[1].STDEVMEDICAREALLOWEDAMT: nil against non-nil
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              14374365    877.34    2018239    1436952  ok
+    sizes_test.go:125: gob                   3870334    236.23    1663914    1339091  lossy: $.Rows[1].STDEVMEDICAREALLOWEDAMT: nil against non-nil
+    sizes_test.go:125: cbor                 12878791    786.06    2125526    1502923  ok
+    sizes_test.go:125: msgpack              12814689    782.15    2133166    1502669  ok
+    sizes_test.go:125: msgpack-reflect      12968075    791.51    2125678    1497708  ok
+    sizes_test.go:125: protobuf              4386998    267.76    1787298    1436978  ok
+    sizes_test.go:125: vtprotobuf            4386998    267.76    1787298    1436978  ok
+    sizes_test.go:125: flatbuffers           6581272    401.69    2183155    1717996  ok
+    sizes_test.go:125: arrow                 4613550    281.59    1844305    1550097  ok
+    sizes_test.go:125: avro                  4120599    251.50    1697862    1346582  ok
+    sizes_test.go:125: capnproto             7230664    441.32    2076868    1812915  ok
+    sizes_test.go:125: colbin                3255147    198.68    1138803    1074155  ok
+    sizes_test.go:125: colbin+packed5        3255147    198.68    1138803    1074155  ok
+    sizes_test.go:125: colbin-untagged       3255148    198.68    1139072    1074596  ok
+    sizes_test.go:125: colbin-json           3255797    198.72    1136784    1074859  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 459655 values; colbin 3255147 B, of which tables 3255147 B (1.0000); schema section 649 B; gob stream 3869550 B
+=== RUN   TestSizes/publicbi/Physicians
+    sizes_test.go:190: gob does not round-trip (gob does not transmit a pointer to a zero value, or an empty slice inside one): $.Rows[0].StdevSubmittedChrgAmt: nil against non-nil
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              13359688    815.41    1866623    1422742  ok
+    sizes_test.go:125: gob                   3214340    196.19    1570031    1322559  lossy: $.Rows[0].StdevSubmittedChrgAmt: nil against non-nil
+    sizes_test.go:125: cbor                 11922097    727.67    1963130    1484721  ok
+    sizes_test.go:125: msgpack              11849482    723.23    1968819    1481171  ok
+    sizes_test.go:125: msgpack-reflect      12002844    732.60    1966068    1474522  ok
+    sizes_test.go:125: protobuf              3712666    226.60    1676218    1423462  ok
+    sizes_test.go:125: vtprotobuf            3712666    226.60    1676218    1423462  ok
+    sizes_test.go:125: flatbuffers           5713760    348.74    2030529    1681220  ok
+    sizes_test.go:125: arrow                 3924046    239.50    1810522    1544499  ok
+    sizes_test.go:125: avro                  3455958    210.93    1599082    1326871  ok
+    sizes_test.go:125: capnproto             6366088    388.56    2059263    1904930  ok
+    sizes_test.go:125: colbin                2614612    159.58    1094103    1061282  ok
+    sizes_test.go:125: colbin+packed5        2614612    159.58    1094103    1061282  ok
+    sizes_test.go:125: colbin-untagged       2614613    159.58    1094147    1061355  ok
+    sizes_test.go:125: colbin-json           2615240    159.62    1094492    1061292  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 443031 values; colbin 2614612 B, of which tables 2614612 B (1.0000); schema section 627 B; gob stream 3213588 B
+=== RUN   TestSizes/publicbi/Provider
+    sizes_test.go:190: gob does not round-trip (gob does not transmit a pointer to a zero value, or an empty slice inside one): $.Rows[0].StdevSubmittedChrgAmt: nil against non-nil
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              13317875    812.86    1863175    1425197  ok
+    sizes_test.go:125: gob                   3138669    191.57    1547913    1310326  lossy: $.Rows[0].StdevSubmittedChrgAmt: nil against non-nil
+    sizes_test.go:125: cbor                 11776527    718.78    1940916    1475117  ok
+    sizes_test.go:125: msgpack              11700447    714.14    1947359    1478495  ok
+    sizes_test.go:125: msgpack-reflect      11913617    727.15    1938267    1465576  ok
+    sizes_test.go:125: protobuf              3545852    216.42    1644876    1407327  ok
+    sizes_test.go:125: vtprotobuf            3545852    216.42    1644876    1407327  ok
+    sizes_test.go:125: flatbuffers           5446216    332.41    1974736    1686404  ok
+    sizes_test.go:125: arrow                 3777862    230.58    1743385    1463662  ok
+    sizes_test.go:125: avro                  3293329    201.01    1565694    1310699  ok
+    sizes_test.go:125: capnproto             6103736    372.54    2010744    1848391  ok
+    sizes_test.go:125: colbin                2552096    155.77    1094367    1063875  ok
+    sizes_test.go:125: colbin+packed5        2552096    155.77    1094367    1063875  ok
+    sizes_test.go:125: colbin-untagged       2552097    155.77    1094383    1063875  ok
+    sizes_test.go:125: colbin-json           2552724    155.81    1099618    1063995  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 441662 values; colbin 2552096 B, of which tables 2552096 B (1.0000); schema section 627 B; gob stream 3137923 B
+=== RUN   TestSizes/publicbi/RealEstate1
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              12523458    764.37    1807150    1380506  ok
+    sizes_test.go:125: gob                   4077522    248.87    1664455    1305682  ok
+    sizes_test.go:125: cbor                 10343620    631.32    1950409    1461873  ok
+    sizes_test.go:125: msgpack              10266872    626.64    1946767    1465979  ok
+    sizes_test.go:125: msgpack-reflect      10366662    632.73    1946489    1467031  ok
+    sizes_test.go:125: protobuf              4215592    257.30    1733570    1357831  ok
+    sizes_test.go:125: vtprotobuf            4215592    257.30    1733570    1357831  ok
+    sizes_test.go:125: flatbuffers           6357496    388.03    2116106    1703707  ok
+    sizes_test.go:125: arrow                 4543990    277.34    1943100    1853374  ok
+    sizes_test.go:125: avro                  3631476    221.65    1612072    1290350  ok
+    sizes_test.go:125: capnproto             6896384    420.92    2145114    1830876  ok
+    sizes_test.go:125: colbin                3262890    199.15    1146682    1140156  ok
+    sizes_test.go:125: colbin+packed5        3262890    199.15    1146682    1140156  ok
+    sizes_test.go:125: colbin-untagged       3262891    199.15    1146684    1140147  ok
+    sizes_test.go:125: colbin-json           3263368    199.18    1147275    1141102  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 430824 values; colbin 3262890 B, of which tables 3262890 B (1.0000); schema section 477 B; gob stream 4076897 B
+=== RUN   TestSizes/publicbi/RealEstate2
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              12451379    759.97    2153816    1774533  ok
+    sizes_test.go:125: gob                   4264331    260.27    1893641    1562063  ok
+    sizes_test.go:125: cbor                 10515045    641.79    2236484    1775904  ok
+    sizes_test.go:125: msgpack              10439628    637.18    2248307    1773886  ok
+    sizes_test.go:125: msgpack-reflect      10505278    641.19    2249065    1774090  ok
+    sizes_test.go:125: protobuf              4414512    269.44    1979121    1618749  ok
+    sizes_test.go:125: vtprotobuf            4414512    269.44    1979121    1618749  ok
+    sizes_test.go:125: flatbuffers           7177632    438.09    2428137    1978983  ok
+    sizes_test.go:125: arrow                 4945334    301.84    2389503    2006508  ok
+    sizes_test.go:125: avro                  4008527    244.66    1861295    1526249  ok
+    sizes_test.go:125: capnproto             7996744    488.08    2561388    2333108  ok
+    sizes_test.go:125: colbin                3737363    228.11    1564966    1432346  ok
+    sizes_test.go:125: colbin+packed5        3737363    228.11    1564966    1432346  ok
+    sizes_test.go:125: colbin-untagged       3737364    228.11    1558461    1432182  ok
+    sizes_test.go:125: colbin-json           3737841    228.14    1556036    1432981  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 420253 values; colbin 3737363 B, of which tables 3737363 B (1.0000); schema section 477 B; gob stream 4263713 B
+=== RUN   TestSizes/publicbi/Redfin1
+    sizes_test.go:190: gob does not round-trip (gob does not transmit a pointer to a zero value, or an empty slice inside one): $.Rows[0].SoldAboveList: nil against non-nil
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              18947127   1156.44    3975245    3274838  ok
+    sizes_test.go:125: gob                   4655863    284.17    2739978    2470161  lossy: $.Rows[0].SoldAboveList: nil against non-nil
+    sizes_test.go:125: cbor                 14535467    887.17    3601945    2868324  ok
+    sizes_test.go:125: msgpack              14524585    886.51    3598261    2865794  ok
+    sizes_test.go:125: msgpack-reflect      14959125    913.03    3609736    2848577  ok
+    sizes_test.go:125: protobuf              5234833    319.51    2972322    2809547  ok
+    sizes_test.go:125: vtprotobuf            5234833    319.51    2972322    2809547  ok
+    sizes_test.go:125: flatbuffers           5860352    357.69    2925173    2668324  ok
+    sizes_test.go:125: arrow                 5633742    343.86    2544266    2502501  ok
+    sizes_test.go:125: avro                  4821929    294.31    2734751    2452984  ok
+    sizes_test.go:125: capnproto             6489032    396.06    2980402    2872912  ok
+    sizes_test.go:125: colbin                3932439    240.02    2361008    2275143  ok
+    sizes_test.go:125: colbin+packed5        3932439    240.02    2361008    2275143  ok
+    sizes_test.go:125: colbin-untagged       3932440    240.02    2358733    2275263  ok
+    sizes_test.go:125: colbin-json           3933179    240.06    2362629    2275921  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 614594 values; colbin 3932439 B, of which tables 3932439 B (1.0000); schema section 739 B; gob stream 4654987 B
+=== RUN   TestSizes/publicbi/Redfin2
+    sizes_test.go:190: gob does not round-trip (gob does not transmit a pointer to a zero value, or an empty slice inside one): $.Rows[6].NewListingsMom: nil against non-nil
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              18937487   1155.85    3961707    3266653  ok
+    sizes_test.go:125: gob                   4644200    283.46    2729174    2461463  lossy: $.Rows[6].NewListingsMom: nil against non-nil
+    sizes_test.go:125: cbor                 14526848    886.65    3587910    2857659  ok
+    sizes_test.go:125: msgpack              14515639    885.96    3583364    2855771  ok
+    sizes_test.go:125: msgpack-reflect      14949406    912.44    3595047    2838346  ok
+    sizes_test.go:125: protobuf              5223312    318.81    2961287    2798996  ok
+    sizes_test.go:125: vtprotobuf            5223312    318.81    2961287    2798996  ok
+    sizes_test.go:125: flatbuffers           5849368    357.02    2915626    2657566  ok
+    sizes_test.go:125: arrow                 5634878    343.93    2536040    2493729  ok
+    sizes_test.go:125: avro                  4813095    293.77    2726120    2443892  ok
+    sizes_test.go:125: capnproto             6489968    396.12    2970954    2864674  ok
+    sizes_test.go:125: colbin                3925875    239.62    2332780    2245475  ok
+    sizes_test.go:125: colbin+packed5        3925875    239.62    2332780    2245475  ok
+    sizes_test.go:125: colbin-untagged       3925876    239.62    2330898    2245458  ok
+    sizes_test.go:125: colbin-json           3926615    239.66    2333428    2245875  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 612976 values; colbin 3925875 B, of which tables 3925875 B (1.0000); schema section 739 B; gob stream 4643324 B
+=== RUN   TestSizes/publicbi/Redfin3
+    sizes_test.go:190: gob does not round-trip (gob does not transmit a pointer to a zero value, or an empty slice inside one): $.Rows[5].SoldAboveList: nil against non-nil
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              20127817   1228.50    4088158    3353523  ok
+    sizes_test.go:125: gob                   4717430    287.93    2771120    2498311  lossy: $.Rows[5].SoldAboveList: nil against non-nil
+    sizes_test.go:125: cbor                 15476448    944.61    3665672    2914172  ok
+    sizes_test.go:125: msgpack              15463286    943.80    3659898    2912125  ok
+    sizes_test.go:125: msgpack-reflect      15909614    971.05    3687815    2894812  ok
+    sizes_test.go:125: protobuf              5309572    324.07    3007806    2834970  ok
+    sizes_test.go:125: vtprotobuf            5309572    324.07    3007806    2834970  ok
+    sizes_test.go:125: flatbuffers           5952200    363.29    2961205    2694771  ok
+    sizes_test.go:125: arrow                 5979182    364.94    2570240    2525571  ok
+    sizes_test.go:125: avro                  4928330    300.80    2773228    2485315  ok
+    sizes_test.go:125: capnproto             6893016    420.72    3023836    2898167  ok
+    sizes_test.go:125: colbin                3965484    242.03    2380361    2297288  ok
+    sizes_test.go:125: colbin+packed5        3965484    242.03    2380361    2297288  ok
+    sizes_test.go:125: colbin-untagged       3965485    242.03    2378069    2297578  ok
+    sizes_test.go:125: colbin-json           3966284    242.08    2379061    2297940  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 623130 values; colbin 3965484 B, of which tables 3965484 B (1.0000); schema section 799 B; gob stream 4716491 B
+=== RUN   TestSizes/publicbi/Redfin4
+    sizes_test.go:190: gob does not round-trip (gob does not transmit a pointer to a zero value, or an empty slice inside one): $.Rows[1].SoldAboveList: nil against non-nil
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              20904226   1275.89    4143839    3413377  ok
+    sizes_test.go:125: gob                   4845751    295.76    2792697    2520377  lossy: $.Rows[1].SoldAboveList: nil against non-nil
+    sizes_test.go:125: cbor                 16121201    983.96    3752428    2947521  ok
+    sizes_test.go:125: msgpack              16091613    982.15    3743388    2944037  ok
+    sizes_test.go:125: msgpack-reflect      16537927   1009.39    3789520    2932842  ok
+    sizes_test.go:125: protobuf              5461083    333.32    3050050    2869231  ok
+    sizes_test.go:125: vtprotobuf            5461083    333.32    3050050    2869231  ok
+    sizes_test.go:125: flatbuffers           6071448    370.57    2985921    2720462  ok
+    sizes_test.go:125: arrow                 6109270    372.88    2650969    2520349  ok
+    sizes_test.go:125: avro                  5065538    309.18    2796828    2507822  ok
+    sizes_test.go:125: capnproto             7021904    428.58    3044795    2921389  ok
+    sizes_test.go:125: colbin                4083560    249.24    2385698    2300480  ok
+    sizes_test.go:125: colbin+packed5        4083560    249.24    2385698    2300480  ok
+    sizes_test.go:125: colbin-untagged       4083561    249.24    2385260    2300414  ok
+    sizes_test.go:125: colbin-json           4084393    249.29    2385397    2300794  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 638398 values; colbin 4083560 B, of which tables 4083560 B (1.0000); schema section 832 B; gob stream 4844778 B
+=== RUN   TestSizes/publicbi/Rentabilidad
+    sizes_test.go:190: gob does not round-trip (gob does not transmit a pointer to a zero value, or an empty slice inside one): $.Rows[1].PREVENTANCBCostoDePrevendedorNCB: nil against non-nil
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              68555324   4184.28    5930355    4571064  ok
+    sizes_test.go:125: gob                  10434730    636.89    4368032    3913720  lossy: $.Rows[1].PREVENTANCBCostoDePrevendedorNCB: nil against non-nil
+    sizes_test.go:125: cbor                 60442168   3689.10    5504508    4219787  ok
+    sizes_test.go:125: msgpack              60097298   3668.05    5531860    4212969  ok
+    sizes_test.go:125: msgpack-reflect      62224920   3797.91    5569494    4204129  ok
+    sizes_test.go:125: protobuf             11569680    706.16    4615573    4165028  ok
+    sizes_test.go:125: vtprotobuf           11569680    706.16    4615573    4165028  ok
+    sizes_test.go:125: flatbuffers          16134072    984.75    5056162    4455679  ok
+    sizes_test.go:125: arrow                17529958   1069.94    4959508    4323918  ok
+    sizes_test.go:125: avro                 12913587    788.18    4355967    3890974  ok
+    sizes_test.go:125: capnproto            24066640   1468.91    6067311    5537542  ok
+    sizes_test.go:125: colbin                9351295    570.76    3610910    3496641  ok
+    sizes_test.go:125: colbin+packed5        9351295    570.76    3610910    3496641  ok
+    sizes_test.go:125: colbin-untagged       9351296    570.76    3611042    3496890  ok
+    sizes_test.go:125: colbin-json           9354466    570.95    3612725    3496802  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 1825056 values; colbin 9351295 B, of which tables 9351295 B (1.0000); schema section 3170 B; gob stream 10431228 B
+=== RUN   TestSizes/publicbi/Romance
+    sizes_test.go:190: gob does not round-trip (gob does not transmit a pointer to a zero value, or an empty slice inside one): $.Rows[6711].Lng: nil against non-nil
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2               7699524    469.94    2277858    2068325  ok
+    sizes_test.go:125: gob                   5482442    334.62    2301849    2154030  lossy: $.Rows[6711].Lng: nil against non-nil
+    sizes_test.go:125: cbor                  6752232    412.12    2365080    2161129  ok
+    sizes_test.go:125: msgpack               6747963    411.86    2374141    2167042  ok
+    sizes_test.go:125: msgpack-reflect       6833865    417.11    2370445    2159819  ok
+    sizes_test.go:125: protobuf              5486343    334.86    2352683    2185465  ok
+    sizes_test.go:125: vtprotobuf            5486343    334.86    2352683    2185465  ok
+    sizes_test.go:125: flatbuffers           6363232    388.38    2562348    2354390  ok
+    sizes_test.go:125: arrow                 5943150    362.74    2160663    1997116  ok
+    sizes_test.go:125: avro                  5487926    334.96    2310787    2134995  ok
+    sizes_test.go:125: capnproto             6775472    413.54    2514658    2329295  ok
+    sizes_test.go:125: colbin                5255373    320.76    1962102    1853174  ok
+    sizes_test.go:125: colbin+packed5        5255373    320.76    1962102    1853174  ok
+    sizes_test.go:125: colbin-untagged       5255492    320.77    1962186    1853333  ok
+    sizes_test.go:125: colbin-json           5255502    320.77    1962460    1853426  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 140282 values; colbin 5255373 B, of which tables 5255373 B (1.0000); schema section 128 B; gob stream 5482212 B
+=== RUN   TestSizes/publicbi/SalariesFrance
+    sizes_test.go:190: gob does not round-trip (gob does not transmit a pointer to a zero value, or an empty slice inside one): $.Rows[0].EMPSALNP1: nil against non-nil
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              27707357   1691.12    5280716    3632307  ok
+    sizes_test.go:125: gob                  10930885    667.17    3978764    2935323  lossy: $.Rows[0].EMPSALNP1: nil against non-nil
+    sizes_test.go:125: cbor                 22611463   1380.09    4953756    3104513  ok
+    sizes_test.go:125: msgpack              22498473   1373.20    4952265    3099418  ok
+    sizes_test.go:125: msgpack-reflect      22725619   1387.06    4966653    3090437  ok
+    sizes_test.go:125: protobuf             11873705    724.71    4340384    3250209  ok
+    sizes_test.go:125: vtprotobuf           11873705    724.71    4340384    3250209  ok
+    sizes_test.go:125: flatbuffers          14108920    861.14    4666049    3351570  ok
+    sizes_test.go:125: arrow                12378222    755.51    4083694    3729539  ok
+    sizes_test.go:125: avro                 11107250    677.93    3986807    2864848  ok
+    sizes_test.go:125: capnproto            15274536    932.28    4579585    3825944  ok
+    sizes_test.go:125: colbin               10180224    621.35    3036017    2910608  ok
+    sizes_test.go:125: colbin+packed5       10180224    621.35    3036017    2910608  ok
+    sizes_test.go:125: colbin-untagged      10180225    621.35    3035939    2910440  ok
+    sizes_test.go:125: colbin-json          10181098    621.40    3036740    2911221  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 825509 values; colbin 10180224 B, of which tables 10180224 B (1.0000); schema section 873 B; gob stream 10929833 B
+=== RUN   TestSizes/publicbi/TableroSistemaPenal
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              11069947    675.66     795020     477803  ok
+    sizes_test.go:125: gob                   4666695    284.83     607511     374174  ok
+    sizes_test.go:125: cbor                  9527004    581.48     810726     470885  ok
+    sizes_test.go:125: msgpack               9481195    578.69     809007     466638  ok
+    sizes_test.go:125: msgpack-reflect       9776567    596.71     816989     467396  ok
+    sizes_test.go:125: protobuf              4907311    299.52     618826     368270  ok
+    sizes_test.go:125: vtprotobuf            4907311    299.52     618826     368270  ok
+    sizes_test.go:125: flatbuffers           7538808    460.13    1008964     654798  ok
+    sizes_test.go:125: arrow                 5478174    334.36    1212908    1024056  ok
+    sizes_test.go:125: avro                  4396127    268.32     582886     348331  ok
+    sizes_test.go:125: capnproto             8181408    499.35    1356634    1120088  ok
+    sizes_test.go:125: colbin                4153466    253.51     354047     321148  ok
+    sizes_test.go:125: colbin+packed5        4153466    253.51     354047     321148  ok
+    sizes_test.go:125: colbin-untagged       4153467    253.51     354602     321097  ok
+    sizes_test.go:125: colbin-json           4153852    253.53     354558     321057  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 422858 values; colbin 4153466 B, of which tables 4153466 B (1.0000); schema section 385 B; gob stream 4666139 B
+=== RUN   TestSizes/publicbi/Taxpayer
+    sizes_test.go:190: gob does not round-trip (gob does not transmit a pointer to a zero value, or an empty slice inside one): $.Rows[0].StdevSubmittedChrgAmt: nil against non-nil
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              13318278    812.88    1860026    1430844  ok
+    sizes_test.go:125: gob                   3136480    191.44    1545303    1313497  lossy: $.Rows[0].StdevSubmittedChrgAmt: nil against non-nil
+    sizes_test.go:125: cbor                 11772611    718.54    1939255    1478773  ok
+    sizes_test.go:125: msgpack              11696309    713.89    1945393    1479232  ok
+    sizes_test.go:125: msgpack-reflect      11909639    726.91    1936053    1468867  ok
+    sizes_test.go:125: protobuf              3541220    216.14    1641471    1408295  ok
+    sizes_test.go:125: vtprotobuf            3541220    216.14    1641471    1408295  ok
+    sizes_test.go:125: flatbuffers           5439240    331.98    1970279    1685025  ok
+    sizes_test.go:125: arrow                 3776158    230.48    1749768    1458930  ok
+    sizes_test.go:125: avro                  3289151    200.75    1563269    1313093  ok
+    sizes_test.go:125: capnproto             6098880    372.25    2008363    1851139  ok
+    sizes_test.go:125: colbin                2545103    155.34    1096894    1057183  ok
+    sizes_test.go:125: colbin+packed5        2545103    155.34    1096894    1057183  ok
+    sizes_test.go:125: colbin-untagged       2545104    155.34    1090850    1056886  ok
+    sizes_test.go:125: colbin-json           2545731    155.38    1088066    1057586  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 441419 values; colbin 2545103 B, of which tables 2545103 B (1.0000); schema section 627 B; gob stream 3135734 B
+=== RUN   TestSizes/publicbi/Telco
+    sizes_test.go:190: gob does not round-trip (gob does not transmit a pointer to a zero value, or an empty slice inside one): $.Rows[2].BALANCEENDP2: nil against non-nil
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              60265453   3678.31   11381739    9429383  ok
+    sizes_test.go:125: gob                  11405027    696.11    6143971    5929551  lossy: $.Rows[2].BALANCEENDP2: nil against non-nil
+    sizes_test.go:125: cbor                 56535350   3450.64   11270883    8694804  ok
+    sizes_test.go:125: msgpack              56515219   3449.42   11236169    8647046  ok
+    sizes_test.go:125: msgpack-reflect      62101917   3790.40   12199439    8341329  ok
+    sizes_test.go:125: protobuf             14311419    873.50    8003009    7202008  ok
+    sizes_test.go:125: vtprotobuf           14311419    873.50    8003009    7202008  ok
+    sizes_test.go:125: flatbuffers          17288264   1055.19    7168913    6465205  ok
+    sizes_test.go:125: arrow                18085782   1103.87    5524015    5491767  ok
+    sizes_test.go:125: avro                 13545555    826.76    5936703    5873325  ok
+    sizes_test.go:125: capnproto            18245624   1113.62    6551602    6297705  ok
+    sizes_test.go:125: colbin                5993322    365.80    4318563    4134011  ok
+    sizes_test.go:125: colbin+packed5        5993322    365.80    4318563    4134011  ok
+    sizes_test.go:125: colbin-untagged       5993323    365.80    4321887    4113048  ok
+    sizes_test.go:125: colbin-json           5996218    365.98    4331735    4075067  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 2960763 values; colbin 5993322 B, of which tables 5993322 B (1.0000); schema section 2895 B; gob stream 11401694 B
+=== RUN   TestSizes/publicbi/TrainsUK1
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                    54     54.00         79         63  ok
+    sizes_test.go:125: gob                       162    162.00        150        140  ok
+    sizes_test.go:125: cbor                       39     39.00         64         48  ok
+    sizes_test.go:125: msgpack                    39     39.00         64         48  ok
+    sizes_test.go:125: msgpack-reflect            45     45.00         70         54  ok
+    sizes_test.go:125: protobuf                   10     10.00         35         19  ok
+    sizes_test.go:125: vtprotobuf                 10     10.00         35         19  ok
+    sizes_test.go:125: flatbuffers                52     52.00         77         40  ok
+    sizes_test.go:125: arrow                     830    830.00        280        276  ok
+    sizes_test.go:125: avro                        8      8.00         33         17  ok
+    sizes_test.go:125: capnproto                  40     40.00         65         32  ok
+    sizes_test.go:125: colbin                      7      7.00         32         16  ok
+    sizes_test.go:125: colbin+packed5              7      7.00         32         16  ok
+    sizes_test.go:125: colbin-untagged            15     15.00         40         24  ok
+    sizes_test.go:125: colbin-json                54     54.00         79         63  ok
+    sizes_test.go:155: rows 1 (top level 1), 0 as table rows (0.0000); 3 values; colbin 7 B, of which tables 0 B (0.0000); schema section 46 B; gob stream 16 B
+=== RUN   TestSizes/publicbi/TrainsUK2
+    sizes_test.go:190: gob does not round-trip (gob does not transmit a pointer to a zero value, or an empty slice inside one): $.Rows[0].VOriginLatenessGBTT: nil against non-nil
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              19132344   1167.75    2145474    1290801  ok
+    sizes_test.go:125: gob                   4556368    278.10    1542577    1041640  lossy: $.Rows[0].VOriginLatenessGBTT: nil against non-nil
+    sizes_test.go:125: cbor                 16328461    996.61    2272658    1304634  ok
+    sizes_test.go:125: msgpack              16121547    983.98    2275091    1305271  ok
+    sizes_test.go:125: msgpack-reflect      16592092   1012.70    2307835    1302799  ok
+    sizes_test.go:125: protobuf              4904303    299.33    1749594    1161201  ok
+    sizes_test.go:125: vtprotobuf            4904303    299.33    1749594    1161201  ok
+    sizes_test.go:125: flatbuffers           6719768    410.14    1980128    1330178  ok
+    sizes_test.go:125: arrow                 5088982    310.61    1866961    1476680  ok
+    sizes_test.go:125: avro                  4558056    278.20    1551182    1080326  ok
+    sizes_test.go:125: capnproto             6998392    427.15    1739621    1451849  ok
+    sizes_test.go:125: colbin                3487418    212.86    1198602    1060307  ok
+    sizes_test.go:125: colbin+packed5        3487418    212.86    1198602    1060307  ok
+    sizes_test.go:125: colbin-untagged       3487419    212.86    1198834    1060576  ok
+    sizes_test.go:125: colbin-json           3488263    212.91    1198934    1061118  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 594834 values; colbin 3487418 B, of which tables 3487418 B (1.0000); schema section 844 B; gob stream 4555390 B
+=== RUN   TestSizes/publicbi/USCensus
+    sizes_test.go:190: gob does not round-trip (gob does not transmit a pointer to a zero value, or an empty slice inside one): $.Rows[0].FHINS3C: nil against non-nil
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              97519299   5952.11   12882158   10427409  ok
+    sizes_test.go:125: gob                  13474450    822.42    5622117    5199893  lossy: $.Rows[0].FHINS3C: nil against non-nil
+    sizes_test.go:125: cbor                 67171381   4099.82   12276853    8485828  ok
+    sizes_test.go:125: msgpack              66047276   4031.21   12064067    8280275  ok
+    sizes_test.go:125: msgpack-reflect      79078051   4826.54   12762002    6928610  ok
+    sizes_test.go:125: protobuf             19906981   1215.03    9388033    8544929  ok
+    sizes_test.go:125: vtprotobuf           19906981   1215.03    9388033    8544929  ok
+    sizes_test.go:125: flatbuffers          27559660   1682.11    7200701    6001434  ok
+    sizes_test.go:125: arrow                19014918   1160.58    5100336    4856923  ok
+    sizes_test.go:125: avro                 13561198    827.71    5389191    4913383  ok
+    sizes_test.go:125: capnproto            19815984   1209.47    6005703    5494687  ok
+    sizes_test.go:125: colbin                5819797    355.21    4265565    4267856  ok
+    sizes_test.go:125: colbin+packed5        5819797    355.21    4265565    4267856  ok
+    sizes_test.go:125: colbin-json           5824441    355.50    4273571    4271216  ok
+    sizes_test.go:129: colbin-untagged  n/a: colbin: USCensusRow has 519 encodable fields, and a one-byte key holds 256: number them, and ids past 255 put the type on pages
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 7420617 values; colbin 5819797 B, of which tables 5819797 B (1.0000); schema section 4643 B; gob stream 13468921 B
+=== RUN   TestSizes/publicbi/Uberlandia
+    sizes_test.go:190: gob does not round-trip (gob does not transmit a pointer to a zero value, or an empty slice inside one): $.Rows[0].StExtemporaneoMatricula: nil against non-nil
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              40935539   2498.51    4125850    2640136  ok
+    sizes_test.go:125: gob                  13769299    840.41    3065113    2257615  lossy: $.Rows[0].StExtemporaneoMatricula: nil against non-nil
+    sizes_test.go:125: cbor                 35343472   2157.19    4057977    2611607  ok
+    sizes_test.go:125: msgpack              35227182   2150.10    4050976    2610999  ok
+    sizes_test.go:125: msgpack-reflect      35583605   2171.85    4069802    2616151  ok
+    sizes_test.go:125: protobuf             14526017    886.60    3268938    2356523  ok
+    sizes_test.go:125: vtprotobuf           14526017    886.60    3268938    2356523  ok
+    sizes_test.go:125: flatbuffers          20298208   1238.90    4395427    3074748  ok
+    sizes_test.go:125: arrow                16013750    977.40    4255683    3634778  ok
+    sizes_test.go:125: avro                 13307909    812.25    3012886    2241451  ok
+    sizes_test.go:125: capnproto            23495256   1434.04    5277504    4468252  ok
+    sizes_test.go:125: colbin               12271153    748.97    2079090    1894113  ok
+    sizes_test.go:125: colbin+packed5       12271153    748.97    2079090    1894113  ok
+    sizes_test.go:125: colbin-untagged      12271154    748.97    2078733    1894228  ok
+    sizes_test.go:125: colbin-json          12272731    749.07    2077619    1895469  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 1133483 values; colbin 12271153 B, of which tables 12271153 B (1.0000); schema section 1577 B; gob stream 13767511 B
+=== RUN   TestSizes/publicbi/Wins
+    sizes_test.go:190: gob does not round-trip (gob does not transmit a pointer to a zero value, or an empty slice inside one): $.Rows[0].NABOUT: nil against non-nil
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              51174601   3123.45    9435469    6708709  ok
+    sizes_test.go:125: gob                  11056890    674.86    5825111    4918175  lossy: $.Rows[0].NABOUT: nil against non-nil
+    sizes_test.go:125: cbor                 37429256   2284.50    8725535    6197361  ok
+    sizes_test.go:125: msgpack              37118344   2265.52    8729123    6060765  ok
+    sizes_test.go:125: msgpack-reflect      44353423   2707.12    8912354    6091074  ok
+    sizes_test.go:125: protobuf             14131094    862.49    7040029    5474557  ok
+    sizes_test.go:125: vtprotobuf           14131094    862.49    7040029    5474557  ok
+    sizes_test.go:125: flatbuffers          23415440   1429.17    7752035    5891668  ok
+    sizes_test.go:125: arrow                13852838    845.51    4640725    4332038  ok
+    sizes_test.go:125: avro                 10918175    666.39    5821631    4893671  ok
+    sizes_test.go:125: capnproto            16933232   1033.52    6476687    5746050  ok
+    sizes_test.go:125: colbin                6478907    395.44    3550040    3449257  ok
+    sizes_test.go:125: colbin+packed5        6478907    395.44    3550040    3449257  ok
+    sizes_test.go:125: colbin-json           6481267    395.59    3555844    3452251  ok
+    sizes_test.go:129: colbin-untagged  n/a: colbin: WinsRow has 257 encodable fields, and a one-byte key holds 256: number them, and ids past 255 put the type on pages
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 4200794 values; colbin 6478907 B, of which tables 6478907 B (1.0000); schema section 2359 B; gob stream 11054079 B
+=== RUN   TestSizes/publicbi/YaleLanguages
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              11954508    729.65     827570     561821  ok
+    sizes_test.go:125: gob                   4052910    247.37     588288     445317  ok
+    sizes_test.go:125: cbor                  9861788    601.92     763048     519586  ok
+    sizes_test.go:125: msgpack               9825137    599.68     758993     516086  ok
+    sizes_test.go:125: msgpack-reflect       9970097    608.53     760245     518072  ok
+    sizes_test.go:125: protobuf              4276115    260.99     635367     463233  ok
+    sizes_test.go:125: vtprotobuf            4276115    260.99     635367     463233  ok
+    sizes_test.go:125: flatbuffers           6927952    422.85     947467     668897  ok
+    sizes_test.go:125: arrow                 4673798    285.27    1376962    1099468  ok
+    sizes_test.go:125: avro                  3899986    238.04     584641     449121  ok
+    sizes_test.go:125: capnproto             7765144    473.95    1359075    1227103  ok
+    sizes_test.go:125: colbin                3426324    209.13     482132     442502  ok
+    sizes_test.go:125: colbin+packed5        3426324    209.13     482132     442502  ok
+    sizes_test.go:125: colbin-untagged       3426325    209.13     482160     442518  ok
+    sizes_test.go:125: colbin-json           3426797    209.16     482665     442806  ok
+    sizes_test.go:155: rows 16384 (top level 16384), 16384 as table rows (1.0000); 479513 values; colbin 3426324 B, of which tables 3426324 B (1.0000); schema section 472 B; gob stream 4052295 B
+--- PASS: TestSizes (224.12s)
+    --- PASS: TestSizes/publicbi/Arade (0.84s)
+    --- PASS: TestSizes/publicbi/Bimbo (0.72s)
+    --- PASS: TestSizes/publicbi/CMSprovider (2.79s)
+    --- PASS: TestSizes/publicbi/CityMaxCapita (3.40s)
+    --- PASS: TestSizes/publicbi/CommonGovernment (5.23s)
+    --- PASS: TestSizes/publicbi/Corporations (2.63s)
+    --- PASS: TestSizes/publicbi/Eixo (8.42s)
+    --- PASS: TestSizes/publicbi/Euro2016 (1.37s)
+    --- PASS: TestSizes/publicbi/Food (0.56s)
+    --- PASS: TestSizes/publicbi/Generico (4.55s)
+    --- PASS: TestSizes/publicbi/HashTags (10.11s)
+    --- PASS: TestSizes/publicbi/Hatred (3.12s)
+    --- PASS: TestSizes/publicbi/IGlocations1 (1.15s)
+    --- PASS: TestSizes/publicbi/IGlocations2 (2.84s)
+    --- PASS: TestSizes/publicbi/IUBLibrary (0.30s)
+    --- PASS: TestSizes/publicbi/MLB (2.95s)
+    --- PASS: TestSizes/publicbi/MedPayment1 (3.25s)
+    --- PASS: TestSizes/publicbi/MedPayment2 (3.27s)
+    --- PASS: TestSizes/publicbi/Medicare1 (2.30s)
+    --- PASS: TestSizes/publicbi/Medicare2 (3.14s)
+    --- PASS: TestSizes/publicbi/Medicare3 (3.47s)
+    --- PASS: TestSizes/publicbi/Motos (4.43s)
+    --- PASS: TestSizes/publicbi/MulheresMil (8.54s)
+    --- PASS: TestSizes/publicbi/NYC (5.22s)
+    --- PASS: TestSizes/publicbi/PanCreactomy1 (3.13s)
+    --- PASS: TestSizes/publicbi/PanCreactomy2 (3.31s)
+    --- PASS: TestSizes/publicbi/Physicians (3.15s)
+    --- PASS: TestSizes/publicbi/Provider (3.02s)
+    --- PASS: TestSizes/publicbi/RealEstate1 (2.77s)
+    --- PASS: TestSizes/publicbi/RealEstate2 (3.08s)
+    --- PASS: TestSizes/publicbi/Redfin1 (4.45s)
+    --- PASS: TestSizes/publicbi/Redfin2 (4.44s)
+    --- PASS: TestSizes/publicbi/Redfin3 (4.70s)
+    --- PASS: TestSizes/publicbi/Redfin4 (4.78s)
+    --- PASS: TestSizes/publicbi/Rentabilidad (11.01s)
+    --- PASS: TestSizes/publicbi/Romance (1.97s)
+    --- PASS: TestSizes/publicbi/SalariesFrance (6.42s)
+    --- PASS: TestSizes/publicbi/TableroSistemaPenal (2.37s)
+    --- PASS: TestSizes/publicbi/Taxpayer (3.06s)
+    --- PASS: TestSizes/publicbi/Telco (12.95s)
+    --- PASS: TestSizes/publicbi/TrainsUK1 (0.00s)
+    --- PASS: TestSizes/publicbi/TrainsUK2 (3.75s)
+    --- PASS: TestSizes/publicbi/USCensus (31.74s)
+    --- PASS: TestSizes/publicbi/Uberlandia (7.76s)
+    --- PASS: TestSizes/publicbi/Wins (18.83s)
+    --- PASS: TestSizes/publicbi/YaleLanguages (2.85s)
+PASS

@@ -1,0 +1,10 @@
+case,dataset,regime,knob,setting,bytes,gzip
+tpcds/sf0.1/customer_demographics,tpcds,bulk,threshold,2,4639212,93787
+tpcds/sf0.1/customer_demographics,tpcds,bulk,threshold,4,4639212,93787
+tpcds/sf0.1/customer_demographics,tpcds,bulk,threshold,8,4639212,93787
+tpcds/sf0.1/customer_demographics,tpcds,bulk,threshold,16,4639212,93787
+tpcds/sf0.1/customer_demographics,tpcds,bulk,threshold,32,4639212,93787
+tpcds/sf0.1/customer_demographics,tpcds,bulk,codec,auto,4639212,93787
+tpcds/sf0.1/customer_demographics,tpcds,bulk,codec,raw,5132318,484145
+tpcds/sf0.1/customer_demographics,tpcds,bulk,codec,delta,4640673,92456
+tpcds/sf0.1/customer_demographics,tpcds,bulk,codec,for,4920433,387371
