@@ -194,24 +194,32 @@ def up(cloud):
     log("up: network and bucket ready")
 
 
-def pushed_commit():
-    """HEAD, if the tree is clean and GitHub has it."""
+def pushed_commit(wanted=None):
+    """wanted, or HEAD if the tree is clean, if GitHub has it. A run at another
+    commit than HEAD is how one part of a per-dataset run is measured again at
+    the commit of the others."""
     def git(*args):
         return subprocess.run(["git", "-C", str(REPO), *args], check=True, capture_output=True, text=True).stdout.strip()
-    if git("status", "--porcelain"):
+    if wanted:
+        try:
+            commit = git("rev-parse", "--verify", wanted + "^{commit}")
+        except subprocess.CalledProcessError:
+            sys.exit(f"ocibench: no commit {wanted}")
+    elif git("status", "--porcelain"):
         sys.exit("ocibench: uncommitted changes; the container clones from GitHub, so commit and push first")
-    commit = git("rev-parse", "HEAD")
+    else:
+        commit = git("rev-parse", "HEAD")
     git("fetch", "-q", "origin")
     if not git("branch", "-r", "--contains", commit):
         sys.exit(f"ocibench: {commit[:7]} is not on origin; push it first")
     return commit
 
 
-def run(cloud, arches, ocpus, memory, shapes_override, repro_args, label):
+def run(cloud, arches, ocpus, memory, shapes_override, repro_args, label, wanted):
     state = load_state()
     if "subnet" not in state:
         sys.exit("ocibench: nothing is up; run `up` first")
-    commit = pushed_commit()
+    commit = pushed_commit(wanted)
     ad = cloud.availability_domain()
     offered = {shape.name for shape in cloud.shapes(ad)}
     stamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
@@ -435,6 +443,7 @@ def main():
     run_parser.add_argument("--x86-shape", help=f"default {ARCHES['x86']['shape']}")
     run_parser.add_argument("--arm-shape", help=f"default {ARCHES['arm']['shape']}")
     run_parser.add_argument("--label", help="a word in the run's name, e.g. tpch")
+    run_parser.add_argument("--commit", help="a commit GitHub has (default: HEAD, with a clean tree)")
     run_parser.add_argument("repro_args", nargs=argparse.REMAINDER, help="after --: arguments for reproduce.sh")
     commands.add_parser("status", help="each run's container state and the tail of its progress.log")
     fetch_parser = commands.add_parser("fetch", help="download finished runs to results/cloud/oci/")
@@ -458,7 +467,7 @@ def main():
                 sys.exit(f"ocibench: --arch is x86, arm or x86,arm, not {arch}")
         overrides = {arch: shape for arch, shape in (("x86", args.x86_shape), ("arm", args.arm_shape)) if shape}
         repro_args = [arg for arg in args.repro_args if arg != "--"]
-        run(cloud, arches, args.ocpus, args.memory, overrides, repro_args, args.label)
+        run(cloud, arches, args.ocpus, args.memory, overrides, repro_args, args.label, args.commit)
     elif args.command == "status":
         status(cloud)
     elif args.command == "fetch":
