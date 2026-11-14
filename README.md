@@ -63,8 +63,9 @@ build tag (`matrix/ablation_test.go`).
 ## Reproducing
 
 Requirements: Linux, Go (the toolchain `go.mod` names is downloaded
-automatically), `curl`, `git`, `bzip2`, and `make` with `gcc` for TPC-H's
-`dbgen`; about 16 GB of memory for the bulk regime, and 2 GB of disk (the
+automatically), `curl`, `git`, `bzip2` (or `lbzip2`, which decompresses Public
+BI's tables on every core: install it if you can), and `make` with `gcc` for
+TPC-H's `dbgen`; about 16 GB of memory for the bulk regime, and 2 GB of disk (the
 datasets are 1.3 GB).
 
 ```sh

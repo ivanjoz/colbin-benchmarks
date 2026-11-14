@@ -48,6 +48,19 @@ func multiplyChain(x, k uint64, n int) uint64 {
 	return x
 }
 
+// warmup is how long warmCore keeps the core busy before a case's first
+// round: long enough for a host's governor to raise an idle core's clock,
+// which takes milliseconds, and short against a case's rounds.
+const warmup = 200 * time.Millisecond
+
+// warmCore runs the probe's chain for d, so that the clock is up when the
+// first round of samples starts.
+func warmCore(d time.Duration) {
+	for start := time.Now(); time.Since(start) < d; {
+		probeSink += multiplyChain(probeSink|1, probeFactor, probeChain/8)
+	}
+}
+
 // probeNs is the fastest of a few runs of the chain: its nanoseconds per
 // multiply and, where the cycle counter can be read, its cycles per multiply
 // (0 where it cannot).

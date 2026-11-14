@@ -36,7 +36,7 @@ put() { # file, object suffix
 echo "oci-entry: $(uname -m), $(nproc) CPUs, $(awk '/MemTotal/ { printf "%.1f GB", $2 / 1048576 }' /proc/meminfo), commit $(git rev-parse HEAD)"
 # What reproduce.sh and the dataset scripts need beyond the golang image.
 export DEBIAN_FRONTEND=noninteractive
-apt-get -qq update >/dev/null && apt-get -qq install -y --no-install-recommends bzip2 procps util-linux >/dev/null ||
+apt-get -qq update >/dev/null && apt-get -qq install -y --no-install-recommends bzip2 lbzip2 procps util-linux >/dev/null ||
 	echo "oci-entry: apt-get failed; going on with what the image has" >&2
 # go.mod names the toolchain; the image's is the same, and this lets go fetch it if not.
 export GOTOOLCHAIN=auto

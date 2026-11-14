@@ -160,8 +160,9 @@ Go struct is outside the timed region.
 hardware thread of a physical core with \code{taskset} and
 \code{GOMAXPROCS=1}; the garbage collector is at its default setting. Web
 cases run two at a time on two cores, bulk cases one at a time. Within a
-case, every format and operation is checked and warmed up, and then samples
-are taken round-robin over all formats and operations, so that each
+case, every format and operation is checked and warmed up, the core is kept
+busy for 200\,ms so that its clock is up before the first sample, and then
+samples are taken round-robin over all formats and operations, so that each
 benchmark sees the same neighbours and the same drift. A benchmark is
 \result{machine.count} samples of at least \result{machine.sample} each, and
 its value is their median. Sizes do not depend on the machine and are

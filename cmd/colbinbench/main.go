@@ -347,6 +347,11 @@ func work(name string, formatNames, ops []string, count int, sample time.Duratio
 	if err != nil {
 		return err
 	}
+	// The core was idle while this process started, and a small case loads
+	// and warms up in microseconds: its first round would start before the
+	// clock has come back up. On OCI the probe read the first round of most
+	// SchemaStore cases 3 to 18 % slow and every later one at full speed.
+	warmCore(warmup)
 	for round := range count {
 		if err := clock.probe(round); err != nil {
 			return err
