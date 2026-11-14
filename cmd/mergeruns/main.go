@@ -35,7 +35,7 @@ import (
 
 // mustMatch is the machine.txt keys every part must agree on.
 var mustMatch = []string{
-	"driver", "regime", "measured cores", "passes", "count", "sample", "formats", "ops",
+	"driver", "regime", "measured cores", "passes", "count", "sample", "warm", "formats", "ops",
 	"go", "godebug", "colbin", "colbin-benchmarks", "governor", "turbo", "frequency control", "cpu",
 }
 

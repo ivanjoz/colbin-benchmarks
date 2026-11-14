@@ -38,6 +38,8 @@
 #   --out DIR                default results/<host>-<YYYYMMDD-HHMMSS>
 #   --passes N               timing passes over the web cases, default 2
 #   --count N --sample D     samples per benchmark and their minimum time (10, 100ms)
+#   --warm D                 the untimed run of a sample's own operation before
+#                            it (cmd/colbinbench -warm); default as long as --sample
 #   --formats LIST --ops LIST
 #   --min-mem-gb N           free memory a bulk case waits for, default 8
 #   --mem-limit SIZE         GOMEMLIMIT of the retry, default 9GiB
@@ -73,6 +75,7 @@ cores=auto
 passes=2
 count=10
 sample=100ms
+warm=""
 formats=all
 ops=encode,decode-fresh,decode-reuse,access
 min_mem_gb=8
@@ -98,6 +101,7 @@ while [ $# -gt 0 ]; do
 	--passes) passes=$2; shift 2 ;;
 	--count) count=$2; shift 2 ;;
 	--sample) sample=$2; shift 2 ;;
+	--warm) warm=$2; shift 2 ;;
 	--formats) formats=$2; shift 2 ;;
 	--ops) ops=$2; shift 2 ;;
 	--min-mem-gb) min_mem_gb=$2; shift 2 ;;
@@ -311,6 +315,7 @@ else
 		echo "passes: $passes"
 		echo "count: $count"
 		echo "sample: $sample"
+		echo "warm: ${warm:-$sample}"
 		echo "formats: $formats"
 		echo "ops: $ops"
 		echo "kernel: $(uname -sr)"
@@ -411,7 +416,7 @@ header() { echo "cpu: $(lscpu | sed -n 's/^Model name: *//p' | head -1)"; }
 # colbinbench appends each case's core clock, before every round of samples,
 # to probe-<file>.csv (cmd/colbinbench/probe.go).
 probe_header="case,round,ns_per_multiply,mhz,cycles_per_multiply,counted_mhz"
-bench_flags=(-data "$data" -formats "$formats" -ops "$ops" -count "$count" -sample "$sample")
+bench_flags=(-data "$data" -formats "$formats" -ops "$ops" -count "$count" -sample "$sample" -warm "${warm:-$sample}")
 
 timings_web() { # pass
 	local stage=bench-web file=bench-web.txt

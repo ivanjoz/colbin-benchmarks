@@ -81,6 +81,7 @@ func main() {
 		ops     = flag.String("ops", "encode,decode-fresh,decode-reuse", "comma-separated operations")
 		count   = flag.Int("count", 10, "samples per benchmark")
 		sample  = flag.Duration("sample", 100*time.Millisecond, "minimum time per sample")
+		warm    = flag.Duration("warm", -1, "untimed run of a sample's own operation before it (measure); negative: as long as -sample")
 		cores   = flag.String("cores", "4,5,6,7,8,9,10,11", "cores to pin workers to, one case each")
 		data    = flag.String("data", "datasets/data", "the fetched datasets")
 		profile = flag.String("cpuprofile", "", "write each case's CPU profile, timed loops only, to this directory")
@@ -95,7 +96,7 @@ func main() {
 	os.Setenv("COLBIN_DATA", *data)
 
 	if *worker != "" {
-		if err := work(*worker, formatList(*formatF), split(*ops), *count, *sample, *profile, *probe); err != nil {
+		if err := work(*worker, formatList(*formatF), split(*ops), *count, *sample, *warm, *profile, *probe); err != nil {
 			fmt.Fprintln(os.Stderr, "colbinbench:", *worker+":", err)
 			os.Exit(1)
 		}
@@ -298,14 +299,17 @@ func workerFlags(count int) []string {
 	out := []string{"-count=" + strconv.Itoa(count)}
 	flag.Visit(func(f *flag.Flag) {
 		switch f.Name {
-		case "formats", "ops", "sample", "data", "cpuprofile", "probe":
+		case "formats", "ops", "sample", "warm", "data", "cpuprofile", "probe":
 			out = append(out, "-"+f.Name+"="+f.Value.String())
 		}
 	})
 	return out
 }
 
-func work(name string, formatNames, ops []string, count int, sample time.Duration, profile, probePath string) error {
+func work(name string, formatNames, ops []string, count int, sample, warm time.Duration, profile, probePath string) error {
+	if warm < 0 {
+		warm = sample
+	}
 	var found *matrix.Case
 	for _, c := range matrix.AllCases() {
 		if c.Name == name {
@@ -380,7 +384,7 @@ func work(name string, formatNames, ops []string, count int, sample time.Duratio
 			return err
 		}
 		for _, r := range runners {
-			if err := r.measure(out, sample, loaded.Rows); err != nil {
+			if err := r.measure(out, sample, warm, loaded.Rows); err != nil {
 				return fmt.Errorf("%s: %s: %w", r.instance.Format, r.op, err)
 			}
 		}
@@ -473,11 +477,11 @@ func prepare(name string, instance formats.Instance, loaded *matrix.Loaded, ops 
 // the first of colbin's variants than as the others even with no page fault
 // left (4 cases, one core); after this pass, 1.03. The pass allocates what
 // the sample will, so the sample finds the memory as its own format left it.
-func (r runner) measure(out *bufio.Writer, sample time.Duration, rows int) error {
+func (r runner) measure(out *bufio.Writer, sample, warm time.Duration, rows int) error {
 	teardown := r.instance.Enter()
 	defer teardown()
 	runtime.GC()
-	for warm := time.Now(); time.Since(warm) < sample; {
+	for start := time.Now(); time.Since(start) < warm; {
 		if err := r.body(); err != nil {
 			return err
 		}
