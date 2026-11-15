@@ -192,6 +192,15 @@ func writeLatex(dir string, sizes []sizeRow) error {
 	}
 
 	provisional := latexMachine(out, dir)
+	// Messages of zero bytes (a document whose values are all defaults): they
+	// have no ratio, and the text says how many there are.
+	empty := 0
+	for _, size := range sizes {
+		if size.Format == formats.Colbin && size.Bytes == 0 && reported(size.Case) {
+			empty++
+		}
+	}
+	out.def("cases.zero-bytes", strconv.Itoa(empty))
 	latexBaselines(out, dir)
 	latexCounts(out, sizes, benches)
 	for _, regime := range regimes {
@@ -204,6 +213,7 @@ func writeLatex(dir string, sizes []sizeRow) error {
 	}
 	latexVersusBy(out, sizes, benches, "datasets", groupOrder, func(name, _ string) string { return groupOf(name) })
 	latexVersusBy(out, sizes, benches, "categories", categoryOrder, categoryOf)
+	latexControl(out, benches)
 	latexMemory(out, benches)
 	if err := latexScaling(out, dir, benches); err != nil {
 		return err
@@ -624,6 +634,9 @@ func latexVersus(out *latexOut, sizes []sizeRow, bench *benchmarks, regime strin
 				}
 				if pair[1] > 0 {
 					ratios = append(ratios, pair[0]/pair[1])
+				} else if pair[0] == 0 {
+					// Both wrote zero bytes: no ratio, left out and marked.
+					ratios = append(ratios, 0)
 				}
 			}
 			key := "vs." + regime + "." + other + "." + metric.name
@@ -648,7 +661,8 @@ func latexVersus(out *latexOut, sizes []sizeRow, bench *benchmarks, regime strin
 // of 1.25). The mean of the inverses is the inverse of the mean, so the
 // factor is the same number, not another statistic. Two decimals below 2,
 // where one would hide a tie; one from there up. In a table cell (compact) a
-// loss is the bold factor and a down arrow, which the caption explains.
+// loss stays on the table's one scale: the factor below 1, in bold ("0.80×"
+// for a mean of 1.25: colbin is 0.8 times as small or as fast).
 func factor(ratios []float64, compact bool) string {
 	mean, count, zeros := geomean(ratios)
 	if count == 0 {
@@ -660,7 +674,7 @@ func factor(ratios []float64, compact bool) string {
 	text := ""
 	switch times := 1 / mean; {
 	case mean > 1 && compact:
-		text = fmt.Sprintf(`\textbf{%.2f$\times$}$\downarrow$`, mean)
+		text = fmt.Sprintf(`\textbf{%.2f$\times$}`, times)
 	case mean > 1:
 		text = fmt.Sprintf(`\textbf{%.2f$\times$ worse}`, mean)
 	case times < 1.995:
@@ -804,6 +818,9 @@ func latexVersusBy(out *latexOut, sizes []sizeRow, benches map[string]*benchmark
 						}
 						if p.theirs > 0 {
 							ratios = append(ratios, p.mine/p.theirs)
+						} else if p.mine == 0 {
+							// Both wrote zero bytes: no ratio, left out and marked.
+							ratios = append(ratios, 0)
 						}
 					}
 					key := "vs." + kind + "." + group + "." + format + "." + metric
@@ -1462,4 +1479,49 @@ func latexRepeatability(out *latexOut, first, second *benchmarks) {
 	lines = append(lines, `\bottomrule`, `\end{tabular}`)
 	out.file("repeatability.tex", "bench-web.txt and bench-web-2.txt", lines)
 	out.def("repeat.ratio-worst", strconv.FormatFloat(worst, 'f', 1, 64))
+}
+
+// latexControl is the A/A control of decode-fresh: colbin and colbin-json run
+// the same decoder over the same rows (colbin-json only steps over the schema
+// section it embeds), so their times should match; a ratio away from 1 that
+// decode-reuse, which allocates nothing, does not share is a cost that
+// depends on a benchmark's position among the others. Tables only: on a
+// document of tens of bytes, stepping over the section is a real part of the
+// time. control.<category>.<op>.mean is the geometric mean of colbin's time
+// over colbin-json's, .worst the largest departure from 1 in percent, and
+// .slower the cases, of .n, in which colbin is the slower of the two.
+func latexControl(out *latexOut, benches map[string]*benchmarks) {
+	for _, op := range []string{"decode-fresh", "decode-reuse"} {
+		ratios := map[string][]float64{}
+		for regime, bench := range benches {
+			for name, byFormat := range bench.ns {
+				if !reported(name) {
+					continue
+				}
+				mine, same := byFormat[formats.Colbin][op], byFormat[formats.ColbinSD][op]
+				if mine > 0 && same > 0 {
+					category := categoryOf(name, regime)
+					ratios[category] = append(ratios[category], mine/same)
+				}
+			}
+		}
+		for _, category := range []string{"bulk", "web-tables"} {
+			if len(ratios[category]) == 0 {
+				continue
+			}
+			mean, _, _ := geomean(ratios[category])
+			worst, slower := 0.0, 0
+			for _, ratio := range ratios[category] {
+				worst = max(worst, math.Abs(ratio-1))
+				if ratio > 1 {
+					slower++
+				}
+			}
+			key := "control." + category + "." + op
+			out.def(key+".mean", strconv.FormatFloat(mean, 'f', 2, 64))
+			out.def(key+".worst", strconv.FormatFloat(100*worst, 'f', 0, 64))
+			out.def(key+".n", strconv.Itoa(len(ratios[category])))
+			out.def(key+".slower", strconv.Itoa(slower))
+		}
+	}
 }

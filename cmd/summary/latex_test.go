@@ -132,7 +132,7 @@ schemastore/empty/dynamic,0,9.0,333,,
 	if got := factor([]float64{1.25, 1.25}, false); got != `\textbf{1.25$\times$ worse}` {
 		t.Errorf("factor of a loss = %s", got)
 	}
-	if got := factor([]float64{1.25, 1.25}, true); got != `\textbf{1.25$\times$}$\downarrow$` {
+	if got := factor([]float64{1.25, 1.25}, true); got != `\textbf{0.80$\times$}` {
 		t.Errorf("factor of a loss in a table = %s", got)
 	}
 	table, _ := os.ReadFile(filepath.Join(dir, "tables", "sizes-web.tex"))
