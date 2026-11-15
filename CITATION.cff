@@ -9,6 +9,12 @@ authors:
     email: ivan@un.pe
 repository-code: "https://github.com/ivanjoz/colbin-benchmarks"
 license: MIT
+# Zenodo concept DOI: resolves to the latest archived release.
+doi: 10.5281/zenodo.24261123
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.24261124
+    description: "Archive of tag paper-v1 (the artifact of the paper's arXiv v1)"
 # Filled in once arXiv announces the paper. See RELEASING.md, step 6.
 # preferred-citation:
 #   type: article

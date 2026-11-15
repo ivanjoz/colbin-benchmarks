@@ -16,19 +16,20 @@ author did not design, and the artifact lets a reader check each number.
 \label{sec:availability}
 
 The benchmarks, dataset scripts, checksums, raw results and the source of
-this paper are available at
-\url{https://github.com/ivanjoz/colbin-benchmarks/tree/paper-v1}
-% TODO(release, RELEASING.md step 4): the full hash of `git rev-parse paper-v1`,
-% and the Zenodo DOI of the release made from that tag.
-(commit \code{<full hash>}), archived at \url{https://doi.org/<zenodo-doi>}.
-{\sloppy The numbers in this paper were produced at commit
-\code{\result{machine.commit}} of that repository, with \colbin{}
-\result{machine.colbin-version}
-(\url{https://github.com/ivanjoz/colbin}), and the second machine's at
-commit \code{\result{laptop.machine.commit}}, with \colbin{}
-\result{laptop.machine.colbin-version}. The raw results of both are in the
-repository, \code{results/paper-v1} and \code{results/paper-v1-laptop}.
+this paper are available at the tag \code{paper-v1} of its repository:
+\begin{itemize}
+\item repository: \url{https://github.com/ivanjoz/colbin-benchmarks/tree/paper-v1}
+\item commit of the tag: \code{625207318491c32bf36d2894117e6a22697443ba}
+\item archive: \url{https://doi.org/10.5281/zenodo.24261124}
+\item main machine measured at: \code{\result{machine.commit}},
+  \colbin{} \result{machine.colbin-version}
+\item second machine measured at: \code{\result{laptop.machine.commit}},
+  \colbin{} \result{laptop.machine.colbin-version}
+\item \colbin{}: \url{https://github.com/ivanjoz/colbin}
+\end{itemize}
+The raw results of both machines are in the repository,
+\code{results/paper-v1} and \code{results/paper-v1-laptop}.
 Running \code{./reproduce.sh} at the tag downloads and verifies the
 datasets, runs every measurement, and regenerates every table and figure of
 this paper; the tables and the numbers quoted in the text are generated
-files, not transcriptions.\par}
+files, not transcriptions.

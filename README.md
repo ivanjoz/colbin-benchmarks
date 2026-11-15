@@ -1,5 +1,7 @@
 # colbin-benchmarks
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24261123.svg)](https://doi.org/10.5281/zenodo.24261123)
+
 The evaluation of [colbin](https://github.com/ivanjoz/colbin), a compact,
 hybrid row-columnar serialization format with a self-describing mode, and
 the reproducible artifact behind its paper: the datasets, the measurements,
