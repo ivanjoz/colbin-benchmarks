@@ -859,16 +859,18 @@ func latexVersusBy(out *latexOut, sizes []sizeRow, benches map[string]*benchmark
 // (allocs/op) Go's benchmark reports beside the time, as the geometric mean
 // over the cases both carry of colbin's number over the other's, printed as a
 // factor, and the cases colbin wins. The numbers come from the same samples
-// as the times and do not depend on the clock. Encode is not in the table:
+// as the times and do not depend on the clock. Encode is not in that table:
 // into a reused buffer, most formats allocate nothing, and a ratio of two
 // zeros says nothing; mem.encode.<format>.zero is the number of cases in
-// which a format's encode allocates nothing, of mem.encode.<format>.n.
+// which a format's encode allocates nothing, of mem.encode.<format>.n, and
+// memory-encode.tex lists them with each format's allocations per encode.
 // Keys: mem.<category>.<format>.<bytes|allocs>, with .factor, .cell, .wins
 // and .n.
 func latexMemory(out *latexOut, benches map[string]*benchmarks) {
 	type pair struct{ mine, theirs float64 }
 	pairs := map[string]map[string]map[string][]pair{} // category → format → metric
 	zero, encoded := map[string]int{}, map[string]int{}
+	encodeAllocs := map[string][]float64{}
 	found := false
 	for _, regime := range regimes {
 		bench := benches[regime]
@@ -879,6 +881,7 @@ func latexMemory(out *latexOut, benches map[string]*benchmarks) {
 			for format, byOp := range byFormat {
 				if allocs, ok := byOp["encode"]; ok {
 					encoded[format]++
+					encodeAllocs[format] = append(encodeAllocs[format], allocs)
 					if allocs == 0 {
 						zero[format]++
 					}
@@ -918,6 +921,23 @@ func latexMemory(out *latexOut, benches map[string]*benchmarks) {
 			out.def("mem.encode."+format+".n", strconv.Itoa(encoded[format]))
 		}
 	}
+	// Encode has its own table, of counts rather than ratios: against the
+	// formats that allocate nothing a ratio would be a division by zero.
+	// colbin's variants are left out: colbin-json is called through the
+	// allocating entry point, which is not the format's cost.
+	encodeLines := []string{`\begin{tabular}{lrrrr}`, `\toprule`,
+		row("", "", `\multicolumn{1}{c}{cases with}`, `\multicolumn{2}{c}{allocations per encode}`), `\cmidrule(lr){4-5}`,
+		row("format", "cases", "no allocation", "median", "most"), `\midrule`}
+	for _, format := range formats.Order {
+		if encoded[format] == 0 || (strings.HasPrefix(format, formats.Colbin) && format != formats.Colbin) {
+			continue
+		}
+		encodeLines = append(encodeLines, row(tex(format), strconv.Itoa(encoded[format]), strconv.Itoa(zero[format]),
+			strconv.FormatFloat(median(encodeAllocs[format]), 'f', -1, 64),
+			strconv.FormatFloat(slices.Max(encodeAllocs[format]), 'f', -1, 64)))
+	}
+	encodeLines = append(encodeLines, `\bottomrule`, `\end{tabular}`)
+	out.file("memory-encode.tex", "bench-web.txt and bench-bulk.txt", encodeLines)
 	metrics := []string{"bytes", "allocs"}
 	head, rules, sub := []string{"colbin against"}, []string{}, []string{""}
 	for index, category := range categoryOrder {
