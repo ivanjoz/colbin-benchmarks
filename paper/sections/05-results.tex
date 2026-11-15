@@ -353,11 +353,24 @@ repeated message as a slice of pointers, one allocation per row. Part of
 the gap on tables is therefore that binding's representation rather than
 the wire format; it is what a Go program that uses the library pays.
 
-Encode is not in the table because most of its cells would be a ratio of
-two zeros: into a reused buffer, generated MessagePack and both
-implementations of Protocol Buffers allocate nothing in any case, and
-\colbin{} allocates nothing in \result{mem.encode.colbin.zero} of its
-\result{mem.encode.colbin.n} cases and at most nine times in the others.
+\begin{table}[t]
+\centering\footnotesize
+\resulttable{memory-encode}
+\caption{Allocations to encode a message into a reused buffer, by format:
+the cases the format encodes, those in which it allocates nothing, and the
+median and the largest number of allocations per encode over its cases.}
+\label{tab:memory-encode}
+\end{table}
+
+Encode is not in Table~\ref{tab:memory} because most of its cells would be a
+ratio of two zeros; Table~\ref{tab:memory-encode} gives the counts instead.
+Into a reused buffer, generated MessagePack and both implementations of
+Protocol Buffers allocate nothing in any case. \colbin{} does not reach
+that: it allocates nothing in \result{mem.encode.colbin.zero} of its
+\result{mem.encode.colbin.n} cases and a few times in the others, all of
+them tables of more than 2.5\,MB encoded, though not every table of that
+size. Every other format allocates
+in every case or nearly, Arrow hundreds of times per message.
 
 \FloatBarrier
 \subsection{A second machine}

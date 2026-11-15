@@ -179,26 +179,21 @@ computed in a separate stage.
 format's values of a case at once, and between two samples Go's runtime
 returns free heap to the kernel. With its default on Linux
 (\code{MADV\_DONTNEED}) the next benchmark that allocates takes a page
-fault for every page it gets back, so what a decode into a fresh value cost
-depended on which benchmark ran before it, and the round-robin order, being
-fixed, repeated that in every round and in both passes. A first version of
-this evaluation was measured that way, and the same decoder on the same
-bytes, \colbin{}'s default and its variants, differed by up to a half on a
-bulk case in decode-fresh while agreeing in decode-reuse, which allocates
-nothing. With \code{MADV\_FREE} the kernel takes the pages only when it
-is short of memory, and the faults do not occur.
+fault for every page it gets back, so what a decode into a fresh value
+costs depends on which benchmark ran before it, and the round-robin order,
+being fixed, repeats that in every round and in both passes. Decode-reuse,
+which allocates nothing, is not affected.
 
-Three measures remove that bias, and every number in this paper was measured
-again with them, on both machines. The workers run with
-\code{GODEBUG=madvdontneed=0}, so that memory released between samples costs
-nothing to take back. Every sample starts right after a collection, so that
-no benchmark inherits the garbage of the one before it. And every run
-carries an A/A control: \colbin{} and \fmt{colbin-json}, which differs only
-by the schema section it embeds, share a decoder and decode the same rows,
-so on a table their times should match, and a difference in decode-fresh
-that decode-reuse does not show is a cost of position. In the first version
-\colbin{}, which runs right after Cap'n Proto, measured up to half again as
-slow as \fmt{colbin-json} on a bulk table. In the runs reported here, over
+Three measures keep that bias out of the numbers. The workers run with
+\code{GODEBUG=madvdontneed=0} (\code{MADV\_FREE}), under which the kernel
+takes the pages only when it is short of memory, so that memory released
+between samples costs nothing to take back. Every sample starts right after
+a collection, so that no benchmark inherits the garbage of the one before
+it. And every run carries an A/A control: \colbin{} and \fmt{colbin-json},
+which differs only by the schema section it embeds, share a decoder and
+decode the same rows, so on a table their times should match, and a
+difference in decode-fresh that decode-reuse does not show is a cost of
+position. Over
 the \result{control.bulk.decode-fresh.n} bulk cases, \colbin{}'s
 decode-fresh time over \fmt{colbin-json}'s has a geometric mean of
 \result{control.bulk.decode-fresh.mean} on the cloud and
@@ -232,10 +227,7 @@ to a reused one, and it builds and writes the schema section each time, a
 fixed cost that weighs most on small messages; its encode times in
 Appendix~\ref{sec:against-json} measure that, not position.
 
-A fourth measure was tried and dropped: preceding
-every sample with an untimed run of its own operation, of 10 to 100\,ms,
-changed the control on neither machine and lengthened the runs, so it is
-not done. \colbin{}'s variants are in the timing tables of
+\colbin{}'s variants are in the timing tables of
 Appendix~\ref{sec:against-json}, where the control can be read by regime.
 
 \paragraph{Summaries.} The results compare \colbin{} with each other format
