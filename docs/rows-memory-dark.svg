@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 430" width="960" height="430" role="img" aria-label="Allocations per decode by rows, and bytes allocated to decode the largest table, by format" font-family='system-ui, -apple-system, "Segoe UI", sans-serif'>
+<line x1="8" y1="14" x2="26" y2="14" stroke="#3987e5" stroke-width="3.5" stroke-linecap="round"/>
+<text x="33.0" y="18.0" fill="#f0efec" font-size="13" text-anchor="start" font-weight="600">colbin</text>
+<line x1="95.4" y1="14" x2="113.4" y2="14" stroke="#d95926" stroke-width="2.5" stroke-linecap="round"/>
+<text x="120.4" y="18.0" fill="#c3c2b7" font-size="13" text-anchor="start" font-weight="400">vtprotobuf</text>
+<line x1="212.4" y1="14" x2="230.4" y2="14" stroke="#199e70" stroke-width="2.5" stroke-linecap="round"/>
+<text x="237.4" y="18.0" fill="#c3c2b7" font-size="13" text-anchor="start" font-weight="400">msgpack</text>
+<line x1="307.20000000000005" y1="14" x2="325.20000000000005" y2="14" stroke="#c98500" stroke-width="2.5" stroke-linecap="round"/>
+<text x="332.2" y="18.0" fill="#c3c2b7" font-size="13" text-anchor="start" font-weight="400">Arrow</text>
+<line x1="387.20000000000005" y1="14" x2="405.20000000000005" y2="14" stroke="#d55181" stroke-width="2.5" stroke-linecap="round"/>
+<text x="412.2" y="18.0" fill="#c3c2b7" font-size="13" text-anchor="start" font-weight="400">JSON</text>
+<text x="8.0" y="46.0" fill="#f0efec" font-size="14" text-anchor="start" font-weight="600">Allocations to decode TPC-H lineitem</text>
+<text x="8.0" y="64.0" fill="#898781" font-size="12" text-anchor="start" font-weight="400">allocations per decode</text>
+<line x1="54" y1="378.0" x2="384" y2="378.0" stroke="#2c2c2a"/>
+<text x="46.0" y="382.0" fill="#898781" font-size="12" text-anchor="end" font-weight="400">1</text>
+<line x1="54" y1="333.7" x2="384" y2="333.7" stroke="#2c2c2a"/>
+<text x="46.0" y="337.7" fill="#898781" font-size="12" text-anchor="end" font-weight="400">10</text>
+<line x1="54" y1="289.5" x2="384" y2="289.5" stroke="#2c2c2a"/>
+<text x="46.0" y="293.5" fill="#898781" font-size="12" text-anchor="end" font-weight="400">100</text>
+<line x1="54" y1="245.2" x2="384" y2="245.2" stroke="#2c2c2a"/>
+<text x="46.0" y="249.2" fill="#898781" font-size="12" text-anchor="end" font-weight="400">1 000</text>
+<line x1="54" y1="201.0" x2="384" y2="201.0" stroke="#2c2c2a"/>
+<text x="46.0" y="205.0" fill="#898781" font-size="12" text-anchor="end" font-weight="400">10k</text>
+<line x1="54" y1="156.7" x2="384" y2="156.7" stroke="#2c2c2a"/>
+<text x="46.0" y="160.7" fill="#898781" font-size="12" text-anchor="end" font-weight="400">100k</text>
+<line x1="54" y1="112.4" x2="384" y2="112.4" stroke="#2c2c2a"/>
+<text x="46.0" y="116.4" fill="#898781" font-size="12" text-anchor="end" font-weight="400">1M</text>
+<line x1="54" y1="378" x2="384" y2="378" stroke="#383835"/>
+<text x="54.0" y="396.0" fill="#898781" font-size="12" text-anchor="middle" font-weight="400">1</text>
+<text x="106.1" y="396.0" fill="#898781" font-size="12" text-anchor="middle" font-weight="400">8</text>
+<text x="158.2" y="396.0" fill="#898781" font-size="12" text-anchor="middle" font-weight="400">64</text>
+<text x="210.3" y="396.0" fill="#898781" font-size="12" text-anchor="middle" font-weight="400">512</text>
+<text x="262.4" y="396.0" fill="#898781" font-size="12" text-anchor="middle" font-weight="400">4k</text>
+<text x="314.5" y="396.0" fill="#898781" font-size="12" text-anchor="middle" font-weight="400">32k</text>
+<text x="366.6" y="396.0" fill="#898781" font-size="12" text-anchor="middle" font-weight="400">256k</text>
+<text x="219.0" y="418.0" fill="#c3c2b7" font-size="12" text-anchor="middle" font-weight="400">rows in the message</text>
+<line x1="106.1" y1="78" x2="106.1" y2="378" stroke="#898781" stroke-dasharray="4 4"/>
+<text x="112.1" y="90.0" fill="#898781" font-size="11" text-anchor="start" font-weight="400">8 rows: a table from here</text>
+<clipPath id="clip1"><rect x="54" y="78" width="336" height="300"/></clipPath>
+<polyline points="54.0,364.7 71.4,356.9 88.7,351.4 106.1,347.1 123.5,343.6 140.8,330.2 158.2,316.1 175.6,295.8 192.9,278.2 210.3,259.5 227.7,244.1 245.1,230.6 262.4,217.2 279.8,203.9 297.2,190.6 314.5,177.3 331.9,164.0 349.3,150.7 366.6,137.4 384.0,124.1" fill="none" stroke="#d55181" clip-path="url(#clip1)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="54.0,277.9 71.4,277.3 88.7,276.3 106.1,274.5 123.5,271.3 140.8,266.1 158.2,258.6 175.6,249.1 192.9,238.0 210.3,225.9 227.7,213.2 245.1,200.2 262.4,187.0 279.8,173.8 297.2,160.5 314.5,147.2 331.9,133.9 349.3,120.6 366.6,107.2 384.0,93.9" fill="none" stroke="#c98500" clip-path="url(#clip1)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="54.0,347.1 71.4,338.0 88.7,327.3 106.1,315.4 123.5,302.8 140.8,289.9 158.2,276.7 175.6,263.5 192.9,250.2 210.3,236.9 227.7,223.6 245.1,210.3 262.4,197.0 279.8,183.7 297.2,170.4 314.5,157.0 331.9,143.7 349.3,130.4 366.6,117.1 384.0,103.7" fill="none" stroke="#199e70" clip-path="url(#clip1)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="54.0,343.6 71.4,331.9 88.7,320.4 106.1,308.6 123.5,296.3 140.8,283.7 158.2,270.8 175.6,257.8 192.9,244.6 210.3,231.3 227.7,218.1 245.1,204.8 262.4,191.5 279.8,178.1 297.2,164.8 314.5,151.5 331.9,138.2 349.3,124.9 366.6,111.5 384.0,98.2" fill="none" stroke="#d95926" clip-path="url(#clip1)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="54.0,356.9 71.4,356.9 88.7,356.9 106.1,338.0 123.5,338.0 140.8,338.0 158.2,338.0 175.6,338.0 192.9,338.0 210.3,338.0 227.7,338.0 245.1,338.0 262.4,338.0 279.8,327.3 297.2,315.4 314.5,302.8 331.9,289.9 349.3,276.7 366.6,263.5 384.0,250.2" fill="none" stroke="#3987e5" clip-path="url(#clip1)" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="384.0" cy="93.9" r="4.5" fill="#c98500"/>
+<text x="399" y="97.9" font-size="12" fill="#c3c2b7"><tspan font-weight="400" fill="#c3c2b7">Arrow</tspan><tspan dx="5" font-weight="600" fill="#f0efec">2.6M</tspan></text>
+<circle cx="384.0" cy="98.2" r="4.5" fill="#d95926"/>
+<line x1="390" y1="98.2" x2="396" y2="109.9" stroke="#383835"/>
+<text x="399" y="113.9" font-size="12" fill="#c3c2b7"><tspan font-weight="400" fill="#c3c2b7">vtprotobuf</tspan><tspan dx="5" font-weight="600" fill="#f0efec">2.1M</tspan></text>
+<circle cx="384.0" cy="103.7" r="4.5" fill="#199e70"/>
+<line x1="390" y1="103.7" x2="396" y2="125.9" stroke="#383835"/>
+<text x="399" y="129.9" font-size="12" fill="#c3c2b7"><tspan font-weight="400" fill="#c3c2b7">msgpack</tspan><tspan dx="5" font-weight="600" fill="#f0efec">1.6M</tspan></text>
+<circle cx="384.0" cy="124.1" r="4.5" fill="#d55181"/>
+<line x1="390" y1="124.1" x2="396" y2="141.9" stroke="#383835"/>
+<text x="399" y="145.9" font-size="12" fill="#c3c2b7"><tspan font-weight="400" fill="#c3c2b7">JSON</tspan><tspan dx="5" font-weight="600" fill="#f0efec">546k</tspan></text>
+<circle cx="384.0" cy="250.2" r="4.5" fill="#3987e5"/>
+<text x="399" y="254.2" font-size="12" fill="#c3c2b7"><tspan font-weight="700" fill="#f0efec">colbin</tspan><tspan dx="5" font-weight="600" fill="#f0efec">772</tspan></text>
+<text x="548.0" y="46.0" fill="#f0efec" font-size="14" text-anchor="start" font-weight="600">Memory to decode 524 288 rows</text>
+<text x="548.0" y="64.0" fill="#898781" font-size="12" text-anchor="start" font-weight="400">bytes allocated, decoding into a fresh value</text>
+<line x1="632.0" y1="82" x2="632.0" y2="302" stroke="#2c2c2a"/>
+<text x="632.0" y="320.0" fill="#898781" font-size="12" text-anchor="middle" font-weight="400">0</text>
+<line x1="682.0" y1="82" x2="682.0" y2="302" stroke="#2c2c2a"/>
+<text x="682.0" y="320.0" fill="#898781" font-size="12" text-anchor="middle" font-weight="400">100</text>
+<line x1="732.0" y1="82" x2="732.0" y2="302" stroke="#2c2c2a"/>
+<text x="732.0" y="320.0" fill="#898781" font-size="12" text-anchor="middle" font-weight="400">200</text>
+<line x1="782.0" y1="82" x2="782.0" y2="302" stroke="#2c2c2a"/>
+<text x="782.0" y="320.0" fill="#898781" font-size="12" text-anchor="middle" font-weight="400">300</text>
+<line x1="832.0" y1="82" x2="832.0" y2="302" stroke="#2c2c2a"/>
+<text x="832.0" y="320.0" fill="#898781" font-size="12" text-anchor="middle" font-weight="400">400</text>
+<line x1="882.0" y1="82" x2="882.0" y2="302" stroke="#2c2c2a"/>
+<text x="882.0" y="320.0" fill="#898781" font-size="12" text-anchor="middle" font-weight="400">500</text>
+<text x="757.0" y="342.0" fill="#c3c2b7" font-size="12" text-anchor="middle" font-weight="400">MB allocated per decode</text>
+<line x1="632" y1="82" x2="632" y2="302" stroke="#383835"/>
+<path d="M632,92 h45.1 a4,4 0 0 1 4,4 v14 a4,4 0 0 1 -4,4 h-45.1 z" fill="#199e70"/>
+<text x="622.0" y="107.0" fill="#c3c2b7" font-size="13" text-anchor="end" font-weight="400">msgpack</text>
+<text x="689.1" y="107.0" fill="#f0efec" font-size="12" text-anchor="start" font-weight="600">98 MB</text>
+<path d="M632,136 h45.2 a4,4 0 0 1 4,4 v14 a4,4 0 0 1 -4,4 h-45.2 z" fill="#3987e5"/>
+<text x="622.0" y="151.0" fill="#f0efec" font-size="13" text-anchor="end" font-weight="700">colbin</text>
+<text x="689.2" y="151.0" fill="#f0efec" font-size="12" text-anchor="start" font-weight="600">98 MB</text>
+<path d="M632,180 h45.8 a4,4 0 0 1 4,4 v14 a4,4 0 0 1 -4,4 h-45.8 z" fill="#c98500"/>
+<text x="622.0" y="195.0" fill="#c3c2b7" font-size="13" text-anchor="end" font-weight="400">Arrow</text>
+<text x="689.8" y="195.0" fill="#f0efec" font-size="12" text-anchor="start" font-weight="600">100 MB</text>
+<path d="M632,224 h67.0 a4,4 0 0 1 4,4 v14 a4,4 0 0 1 -4,4 h-67.0 z" fill="#d95926"/>
+<text x="622.0" y="239.0" fill="#c3c2b7" font-size="13" text-anchor="end" font-weight="400">vtprotobuf</text>
+<text x="711.0" y="239.0" fill="#f0efec" font-size="12" text-anchor="start" font-weight="600">142 MB</text>
+<path d="M632,268 h212.5 a4,4 0 0 1 4,4 v14 a4,4 0 0 1 -4,4 h-212.5 z" fill="#d55181"/>
+<text x="622.0" y="283.0" fill="#c3c2b7" font-size="13" text-anchor="end" font-weight="400">JSON</text>
+<text x="856.5" y="283.0" fill="#f0efec" font-size="12" text-anchor="start" font-weight="600">433 MB</text>
+</svg>
