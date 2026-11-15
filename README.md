@@ -2,6 +2,8 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24261123.svg)](https://doi.org/10.5281/zenodo.24261123)
 
+**[Read the paper](paper/paper.md)**
+
 The evaluation of [colbin](https://github.com/ivanjoz/colbin), a compact,
 hybrid row-columnar serialization format with a self-describing mode, and
 the reproducible artifact behind its paper: the datasets, the measurements,
@@ -388,6 +390,11 @@ which takes hours and several gigabytes. Set `COLBIN_CASES` to a few
 directory to skip them all, which is what a clean clone and CI do.
 
 ## The paper
+
+**Read it here: [`paper/paper.md`](paper/paper.md)**, the whole paper as
+Markdown, with its tables and figures, generated from the same source and
+the same run as the PDF (`make -C paper md`, then copied from
+`paper/build/md/`).
 
 [`paper/`](paper/) holds the LaTeX source. No number in it is typed in: tables
 are `\input` from the run's `tables/`, and a number in a sentence is

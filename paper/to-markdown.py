@@ -494,6 +494,9 @@ def main():
 
     results = resultdefs(os.path.join(HERE, "tables", "numbers.tex"))
     results.update(resultdefs(os.path.join(HERE, "tables-laptop", "numbers.tex"), "laptop."))
+    sweep_numbers = os.path.join(HERE, "tables-sweep", "numbers.tex")
+    if os.path.exists(sweep_numbers):
+        results.update(resultdefs(sweep_numbers, "sweep-run."))
     labels, cites = aux_refs(os.path.join(HERE, "main.aux"))
     final = re.findall(r"^\\final(true|false)", strip_comments(preamble), re.M)
     final = bool(final) and final[-1] == "true"
@@ -540,7 +543,9 @@ def main():
     s = flatten_tables(s)
     # Markdown has no math: pandoc writes it as Unicode text, which bolds
     # \mathbf{1.25\times} digit by digit. Bold text with a × in it instead.
-    s = re.sub(r"\$\\mathbf\{([^{}$]*?)\\times\}(\\!)?", r"\\textbf{\1$\\times$}$", s)
+    # The math that follows stays math; a $ that closed it at once is dropped.
+    s = re.sub(r"\$\\mathbf\{([^{}$]*?)\\times\}(?:\\!)?(\$)?",
+               lambda m: f"\\textbf{{{m.group(1)}$\\times$}}" + ("" if m.group(2) else "$"), s)
 
     s = replace_cmd(s, "recheck", 1,
                     lambda a: "" if final else f" \\emph{{[check: {a[0]}]}}")
