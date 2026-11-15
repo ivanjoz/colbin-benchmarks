@@ -1,0 +1,23 @@
+=== RUN   TestSizes
+=== RUN   TestSizes/tpcds/sf0.1/web_sales
+    sizes_test.go:190: gob does not round-trip (gob does not transmit a pointer to a zero value, or an empty slice inside one): $.Rows[1].CouponAmt: nil against non-nil
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2              46251752    645.69    6350047    6343928  ok
+    sizes_test.go:125: gob                   9558338    133.44    4468612    4421101  lossy: $.Rows[1].CouponAmt: nil against non-nil
+    sizes_test.go:125: cbor                 36624254    511.28    6205957    5339300  ok
+    sizes_test.go:125: msgpack              36919650    515.41    6190264    5231295  ok
+    sizes_test.go:125: msgpack-reflect      50782699    708.94    6085501    4879533  ok
+    sizes_test.go:125: protobuf              9501012    132.64    5188650    5181314  ok
+    sizes_test.go:125: vtprotobuf            9501012    132.64    5188650    5181314  ok
+    sizes_test.go:125: flatbuffers          20341800    283.98    5389984    5271820  ok
+    sizes_test.go:125: arrow                19749774    275.71    3899416    3617121  ok
+    sizes_test.go:125: avro                  7779177    108.60    4222717    4165515  ok
+    sizes_test.go:125: capnproto            20056992    280.00    4831620    4619491  ok
+    sizes_test.go:125: colbin                4492649     62.72    3588877    3321168  ok
+    sizes_test.go:125: colbin+packed5        4492649     62.72    3588877    3321168  ok
+    sizes_test.go:125: colbin-untagged       4492650     62.72    3594371    3318608  ok
+    sizes_test.go:125: colbin-json           4493165     62.73    3579688    3322038  ok
+    sizes_test.go:155: rows 71632 (top level 71632), 71632 as table rows (1.0000); 2434938 values; colbin 4492649 B, of which tables 4492649 B (1.0000); schema section 515 B; gob stream 9557708 B
+--- PASS: TestSizes (35.52s)
+    --- PASS: TestSizes/tpcds/sf0.1/web_sales (35.52s)
+PASS

@@ -28,8 +28,9 @@ checksums before anything reads it.
 \item[Public BI Benchmark]~\cite{publicbi}: the first table of each of the 46
   workbooks, and from each a seeded uniform random sample whose size depends
   on the table's place in the list: 350 rows of the first table by name, 700
-  of the second, and so on in steps of 350, the last at $2^{14}$; or the
-  whole table where it is shorter.
+  of the second, and so on in steps of 350 up to 15\,750 for the 45th, and
+  the regime's bound of $2^{14}$ for the last; or the whole table where it
+  is shorter (two tables, of 1\,795 rows and of one row).
 \item[SchemaStore]~\cite{schemastore}: the 27 documents of Viotti and
   Kinderkhedia's corpus~\cite{viotti2022benchmark}, each through a Go struct.
 \end{description}
@@ -143,8 +144,8 @@ that fails a check on a case has no time for it.
 \paragraph{Size.} The encoded message in bytes, as written and under two
 general-purpose compressors at level 6: gzip~\cite{rfc1952}, which every
 browser accepts and every server can apply to a response on the fly, and
-Zstandard~\cite{rfc8878}. The text and the figures quote gzip; the tables
-give both. Compressed sizes matter
+Zstandard~\cite{rfc8878}. The text and the figures quote gzip unless they
+say ``as written''; the tables give both. Compressed sizes matter
 because the realistic alternative to a binary format on the web is not JSON
 but compressed JSON.
 
@@ -185,26 +186,72 @@ this evaluation was measured that way, and the same decoder on the same
 bytes, \colbin{}'s default and its variants, differed by up to a half on a
 bulk case in decode-fresh while agreeing in decode-reuse, which allocates
 nothing. With \code{MADV\_FREE} the kernel takes the pages only when it
-is short of memory, and the faults do not occur. We checked that this is
-enough on both machines with an A/A test on four TPC-DS tables: \colbin{}
-and \fmt{colbin-json}, which differs only by the schema section it embeds,
-share a decoder and decode the same rows, so their decode-fresh times should
-match. Before the change \colbin{}, which
-runs right after Cap'n Proto, measured up to half again as slow; after it
-the two matched within the run-to-run noise, and preceding every sample
-with an untimed run of its own operation, of 10 to 100\,ms, changed
-nothing, so it is not done. \colbin{}'s variants are in the timing tables
-of Appendix~\ref{sec:against-json} as the control of this in every run.
+is short of memory, and the faults do not occur.
+
+Three measures remove that bias, and every number in this paper was measured
+again with them, on both machines. The workers run with
+\code{GODEBUG=madvdontneed=0}, so that memory released between samples costs
+nothing to take back. Every sample starts right after a collection, so that
+no benchmark inherits the garbage of the one before it. And every run
+carries an A/A control: \colbin{} and \fmt{colbin-json}, which differs only
+by the schema section it embeds, share a decoder and decode the same rows,
+so on a table their times should match, and a difference in decode-fresh
+that decode-reuse does not show is a cost of position. In the first version
+\colbin{}, which runs right after Cap'n Proto, measured up to half again as
+slow as \fmt{colbin-json} on a bulk table. In the runs reported here, over
+the \result{control.bulk.decode-fresh.n} bulk cases, \colbin{}'s
+decode-fresh time over \fmt{colbin-json}'s has a geometric mean of
+\result{control.bulk.decode-fresh.mean} on the cloud and
+\result{laptop.control.bulk.decode-fresh.mean} on the second machine, and
+is within \result{control.bulk.decode-fresh.worst}\,\% and
+\result{laptop.control.bulk.decode-fresh.worst}\,\% of 1 on every case;
+decode-reuse, the reference, is at
+\result{control.bulk.decode-reuse.mean} and
+\result{laptop.control.bulk.decode-reuse.mean}. Over the
+\result{control.web-tables.decode-fresh.n} web tables the means are
+\result{control.web-tables.decode-fresh.mean} and
+\result{laptop.control.web-tables.decode-fresh.mean} in decode-fresh, and
+\result{control.web-tables.decode-reuse.mean} and
+\result{laptop.control.web-tables.decode-reuse.mean} in decode-reuse.
+
+The control does not come out at exactly 1, and what is left has a
+direction. On bulk tables \colbin{} is the slower of the two in decode-fresh
+in \result{control.bulk.decode-fresh.slower} of
+\result{control.bulk.decode-fresh.n} cases on the cloud and
+\result{laptop.control.bulk.decode-fresh.slower} on the second machine,
+against \result{control.bulk.decode-reuse.slower} and
+\result{laptop.control.bulk.decode-reuse.slower} in decode-reuse, although
+\fmt{colbin-json} has the section to step over. A cost of position of one
+to two percent therefore remains in decode-fresh on bulk tables, against
+\colbin{}; it is inside the band of 4\,\% below which this paper reads no
+difference, and no conclusion here rests on a difference that small. The
+control covers decode only. In encode the two variants are not the same
+work: \fmt{colbin-json} is called through the library's allocating entry
+point, which returns a new buffer for every message where \colbin{} appends
+to a reused one, and it builds and writes the schema section each time, a
+fixed cost that weighs most on small messages; its encode times in
+Appendix~\ref{sec:against-json} measure that, not position.
+
+A fourth measure was tried and dropped: preceding
+every sample with an untimed run of its own operation, of 10 to 100\,ms,
+changed the control on neither machine and lengthened the runs, so it is
+not done. \colbin{}'s variants are in the timing tables of
+Appendix~\ref{sec:against-json}, where the control can be read by regime.
 
 \paragraph{Summaries.} The results compare \colbin{} with each other format
 directly: on each case both carry, \colbin{}'s number is divided by the
 other format's for the same case and operation. A summary over cases is the
 geometric mean of those ratios, in which every case weighs the same, with
-the number of cases \colbin{} wins outright beside it. It is printed as a
+the number of cases \colbin{} wins outright beside it. That count takes
+any difference, however small, with no band for ties: where the factor is
+within the 4\,\% two passes differ by (Section~\ref{sec:machine}), a count
+near half says the same thing as the factor, a tie, and nothing more. It is printed as a
 factor, the inverse of that mean where \colbin{} wins ($2.5\times$ smaller,
-or faster, for a mean of 0.4) and the mean itself, marked \emph{worse},
-where it loses; the mean of the inverses is the inverse of the mean, so
-this is the same statistic read the other way. The cases are
+or faster, for a mean of 0.4). Where \colbin{} loses, a table keeps the same
+scale and prints the factor below 1 in bold ($0.80\times$ for a mean of
+1.25), and the text gives the mean itself, marked \emph{worse}
+($1.25\times$ worse); the mean of the inverses is the inverse of the mean,
+so this is the same statistic read the other way. The cases are
 grouped two ways, each case in exactly one group: by dataset, and by kind of
 message (Section~\ref{sec:kinds}). Because the comparison is always on the
 cases both formats carry, a format that carries few cases is compared with
@@ -212,9 +259,14 @@ cases both formats carry, a format that carries few cases is compared with
 format carries and by regime, is in Appendix~\ref{sec:against-json}; there,
 for access, which JSON does not have, the reference is JSON's decode-fresh,
 what a client without it does instead. A message of zero bytes (a document
-whose values are all defaults is zero bytes in \colbin{} and Protocol
-Buffers) has a ratio of zero, which a geometric mean cannot hold; such cases
-are left out of the mean and marked.
+whose values are all defaults is zero bytes in \colbin{} and in Protocol
+Buffers; there are \result{cases.zero-bytes} such documents) has a ratio of
+zero against a format that writes something, which a geometric mean cannot
+hold, and no ratio at all against a format that also writes nothing. Either
+way the case is left out of that mean, which is marked $\dagger$, stays in
+the count of cases, and is not a win. A format whose count of cases is
+below its group's does not carry the others
+(Table~\ref{tab:coverage}).
 
 \FloatBarrier
 \subsection{Machine and repeatability}
@@ -253,14 +305,18 @@ description and the per-second log of the cores are part of the artifact.
 
 \paragraph{A second machine.} The same commit was measured again, in full, on
 a machine of another kind: a laptop whose processor is a \result{laptop.machine.cpu}, a
-15\,W client processor with two performance cores and eight efficiency
-cores, \result{laptop.machine.kernel}, Go \result{laptop.machine.go-version}.
-There the clock could be fixed rather than measured. Boost was disabled and
-the \code{performance} governor set, so that the performance cores ran at
-their base frequency throughout; the cases ran on one hardware thread of each
-performance core (CPUs \result{laptop.machine.measured-cores}), with the
+15\,W client processor of eight cores in two groups of four, each group
+with a 4\,MB last-level cache of its own, \result{laptop.machine.kernel},
+Go \result{laptop.machine.go-version}.
+There the clock could be fixed rather than measured. Boost was disabled, the
+\code{performance} governor set and the frequency limits pinned to the
+nominal frequency, so that the cores ran at their base clock throughout;
+the cases ran on one hardware thread of each of two cores of one group
+(CPUs \result{laptop.machine.measured-cores}), with the
 same protocol as above, and every other process and every interrupt were
-confined to the efficiency cores. On this machine the processor's cycle
+confined to the other group, so that the measured cores shared their cache
+with nothing else. The machine ran on mains power with its services, its
+desktop and its swap off. On this machine the processor's cycle
 counter can be read, and it confirms the probe: over the first web pass the
 probe read a median of \result{laptop.probe.web.mhz.median}\,MHz and the
 cycle counter \result{laptop.probe.web.counted-mhz.median}\,MHz, at

@@ -5,16 +5,16 @@ colbin against & \multicolumn{2}{c}{bulk} & \multicolumn{2}{c}{web tables} & \mu
 \cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
  & encode & decode & encode & decode & encode & decode \\
 \midrule
-json-v2 & 21.0$\times$\ {\scriptsize 14/14} & 17.7$\times$\ {\scriptsize 14/14} & 16.3$\times$\ {\scriptsize 66/66} & 10.8$\times$\ {\scriptsize 66/66} & 9.3$\times$\ {\scriptsize 25/25} & 4.0$\times$\ {\scriptsize 25/25} \\
-gob & 6.6$\times$\ {\scriptsize 9/9} & 4.6$\times$\ {\scriptsize 9/9} & 10.9$\times$\ {\scriptsize 31/31} & 5.9$\times$\ {\scriptsize 31/31} & 39.3$\times$\ {\scriptsize 25/25} & 52.1$\times$\ {\scriptsize 25/25} \\
-cbor & 9.9$\times$\ {\scriptsize 14/14} & 14.8$\times$\ {\scriptsize 14/14} & 6.9$\times$\ {\scriptsize 66/66} & 8.7$\times$\ {\scriptsize 66/66} & 4.3$\times$\ {\scriptsize 25/25} & 3.8$\times$\ {\scriptsize 25/25} \\
-msgpack & 1.62$\times$\ {\scriptsize 14/14} & 2.7$\times$\ {\scriptsize 14/14} & 1.21$\times$\ {\scriptsize 52/66} & 2.1$\times$\ {\scriptsize 59/66} & \textbf{1.49$\times$}$\downarrow$\ {\scriptsize 0/25} & \textbf{1.17$\times$}$\downarrow$\ {\scriptsize 7/25} \\
-msgpack-reflect & 13.5$\times$\ {\scriptsize 14/14} & 13.9$\times$\ {\scriptsize 14/14} & 10.3$\times$\ {\scriptsize 66/66} & 8.2$\times$\ {\scriptsize 66/66} & 8.1$\times$\ {\scriptsize 25/25} & 4.1$\times$\ {\scriptsize 25/25} \\
-protobuf & 5.6$\times$\ {\scriptsize 14/14} & 4.0$\times$\ {\scriptsize 14/14} & 4.1$\times$\ {\scriptsize 66/66} & 2.6$\times$\ {\scriptsize 66/66} & 2.6$\times$\ {\scriptsize 25/25} & 1.80$\times$\ {\scriptsize 25/25} \\
-vtprotobuf & 1.49$\times$\ {\scriptsize 14/14} & 2.6$\times$\ {\scriptsize 14/14} & 1.10$\times$\ {\scriptsize 47/66} & 1.87$\times$\ {\scriptsize 61/66} & \textbf{1.40$\times$}$\downarrow$\ {\scriptsize 3/25} & 1.10$\times$\ {\scriptsize 16/25} \\
-flatbuffers & 10.1$\times$\ {\scriptsize 14/14} & 2.7$\times$\ {\scriptsize 14/14} & 6.0$\times$\ {\scriptsize 66/66} & 2.0$\times$\ {\scriptsize 59/66} & 2.8$\times$\ {\scriptsize 25/25} & \textbf{1.19$\times$}$\downarrow$\ {\scriptsize 3/25} \\
-arrow & 3.8$\times$\ {\scriptsize 14/14} & 1.47$\times$\ {\scriptsize 13/14} & 6.1$\times$\ {\scriptsize 66/66} & 2.0$\times$\ {\scriptsize 57/66} & 212$\times$\ {\scriptsize 2/2} & 18.3$\times$\ {\scriptsize 2/2} \\
-avro & 3.4$\times$\ {\scriptsize 14/14} & 5.3$\times$\ {\scriptsize 14/14} & 2.7$\times$\ {\scriptsize 66/66} & 3.6$\times$\ {\scriptsize 64/66} & 2.6$\times$\ {\scriptsize 25/25} & 1.20$\times$\ {\scriptsize 17/25} \\
-capnproto & 10.7$\times$\ {\scriptsize 14/14} & 5.5$\times$\ {\scriptsize 14/14} & 11.6$\times$\ {\scriptsize 66/66} & 4.2$\times$\ {\scriptsize 66/66} & 14.3$\times$\ {\scriptsize 23/23} & 3.4$\times$\ {\scriptsize 23/23} \\
+json-v2 & 23.1$\times$\ {\scriptsize 14/14} & 30.1$\times$\ {\scriptsize 14/14} & 13.9$\times$\ {\scriptsize 66/66} & 16.4$\times$\ {\scriptsize 66/66} & 2.8$\times$\ {\scriptsize 25/25} & 2.3$\times$\ {\scriptsize 25/25} \\
+gob & 7.0$\times$\ {\scriptsize 9/9} & 6.4$\times$\ {\scriptsize 9/9} & 7.3$\times$\ {\scriptsize 31/31} & 6.8$\times$\ {\scriptsize 31/31} & 7.4$\times$\ {\scriptsize 25/25} & 18.9$\times$\ {\scriptsize 25/25} \\
+cbor & 9.7$\times$\ {\scriptsize 14/14} & 25.3$\times$\ {\scriptsize 14/14} & 5.5$\times$\ {\scriptsize 66/66} & 13.5$\times$\ {\scriptsize 66/66} & 1.73$\times$\ {\scriptsize 25/25} & 2.2$\times$\ {\scriptsize 25/25} \\
+msgpack & 1.51$\times$\ {\scriptsize 14/14} & 3.8$\times$\ {\scriptsize 14/14} & 1.28$\times$\ {\scriptsize 51/66} & 2.8$\times$\ {\scriptsize 60/66} & \textbf{0.90$\times$}\ {\scriptsize 1/25} & \textbf{0.91$\times$}\ {\scriptsize 6/25} \\
+msgpack-reflect & 14.5$\times$\ {\scriptsize 14/14} & 22.7$\times$\ {\scriptsize 14/14} & 8.3$\times$\ {\scriptsize 66/66} & 12.1$\times$\ {\scriptsize 66/66} & 2.5$\times$\ {\scriptsize 25/25} & 2.3$\times$\ {\scriptsize 25/25} \\
+protobuf & 5.9$\times$\ {\scriptsize 14/14} & 6.2$\times$\ {\scriptsize 14/14} & 3.5$\times$\ {\scriptsize 66/66} & 3.6$\times$\ {\scriptsize 65/66} & 1.29$\times$\ {\scriptsize 25/25} & 1.31$\times$\ {\scriptsize 25/25} \\
+vtprotobuf & 1.96$\times$\ {\scriptsize 14/14} & 3.4$\times$\ {\scriptsize 14/14} & 1.29$\times$\ {\scriptsize 51/66} & 2.4$\times$\ {\scriptsize 60/66} & \textbf{0.92$\times$}\ {\scriptsize 1/25} & \textbf{0.99$\times$}\ {\scriptsize 10/25} \\
+flatbuffers & 11.1$\times$\ {\scriptsize 14/14} & 3.5$\times$\ {\scriptsize 14/14} & 4.8$\times$\ {\scriptsize 66/66} & 2.6$\times$\ {\scriptsize 58/66} & 1.37$\times$\ {\scriptsize 25/25} & \textbf{0.87$\times$}\ {\scriptsize 2/25} \\
+arrow & 3.3$\times$\ {\scriptsize 14/14} & 1.76$\times$\ {\scriptsize 14/14} & 4.7$\times$\ {\scriptsize 66/66} & 2.5$\times$\ {\scriptsize 62/66} & 38.2$\times$\ {\scriptsize 2/2} & 8.0$\times$\ {\scriptsize 2/2} \\
+avro & 3.2$\times$\ {\scriptsize 14/14} & 6.2$\times$\ {\scriptsize 14/14} & 2.3$\times$\ {\scriptsize 66/66} & 5.1$\times$\ {\scriptsize 60/66} & 1.28$\times$\ {\scriptsize 25/25} & \textbf{0.99$\times$}\ {\scriptsize 15/25} \\
+capnproto & 9.2$\times$\ {\scriptsize 14/14} & 6.3$\times$\ {\scriptsize 14/14} & 7.6$\times$\ {\scriptsize 66/66} & 4.4$\times$\ {\scriptsize 66/66} & 2.9$\times$\ {\scriptsize 23/23} & 1.54$\times$\ {\scriptsize 23/23} \\
 \bottomrule
 \end{tabular}

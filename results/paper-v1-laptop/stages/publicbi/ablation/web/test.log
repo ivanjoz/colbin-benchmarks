@@ -1,0 +1,509 @@
+=== RUN   TestAblation
+=== RUN   TestAblation/publicbi/Arade
+    ablation_test.go:103: threshold 2             9936 B         7002 B gzip
+    ablation_test.go:103: threshold 4             9936 B         7002 B gzip
+    ablation_test.go:103: threshold 8             9936 B         7002 B gzip
+    ablation_test.go:103: threshold 16            9936 B         7002 B gzip
+    ablation_test.go:103: threshold 32            9936 B         7002 B gzip
+    ablation_test.go:103: codec     auto          9936 B         7002 B gzip
+    ablation_test.go:103: codec     raw          10464 B         8202 B gzip
+    ablation_test.go:103: codec     delta        10097 B         7098 B gzip
+    ablation_test.go:103: codec     for          10123 B         7863 B gzip
+=== RUN   TestAblation/publicbi/Bimbo
+    ablation_test.go:103: threshold 2            10903 B         8855 B gzip
+    ablation_test.go:103: threshold 4            10903 B         8855 B gzip
+    ablation_test.go:103: threshold 8            10903 B         8855 B gzip
+    ablation_test.go:103: threshold 16           10903 B         8855 B gzip
+    ablation_test.go:103: threshold 32           10903 B         8855 B gzip
+    ablation_test.go:103: codec     auto         10903 B         8855 B gzip
+    ablation_test.go:103: codec     raw          19338 B        10263 B gzip
+    ablation_test.go:103: codec     delta        19767 B        10797 B gzip
+    ablation_test.go:103: codec     for          19251 B        10055 B gzip
+=== RUN   TestAblation/publicbi/CMSprovider
+    ablation_test.go:103: threshold 2           190935 B        78313 B gzip
+    ablation_test.go:103: threshold 4           190935 B        78313 B gzip
+    ablation_test.go:103: threshold 8           190935 B        78313 B gzip
+    ablation_test.go:103: threshold 16          190935 B        78313 B gzip
+    ablation_test.go:103: threshold 32          190935 B        78313 B gzip
+    ablation_test.go:103: codec     auto        190935 B        78313 B gzip
+    ablation_test.go:103: codec     raw         214119 B        86562 B gzip
+    ablation_test.go:103: codec     delta       211161 B        89133 B gzip
+    ablation_test.go:103: codec     for         210177 B        83782 B gzip
+=== RUN   TestAblation/publicbi/CityMaxCapita
+    ablation_test.go:103: threshold 2           435298 B       206466 B gzip
+    ablation_test.go:103: threshold 4           435298 B       206466 B gzip
+    ablation_test.go:103: threshold 8           435298 B       206466 B gzip
+    ablation_test.go:103: threshold 16          435298 B       206466 B gzip
+    ablation_test.go:103: threshold 32          435298 B       206466 B gzip
+    ablation_test.go:103: codec     auto        435298 B       206466 B gzip
+    ablation_test.go:103: codec     raw         448273 B       214532 B gzip
+    ablation_test.go:103: codec     delta       446044 B       210265 B gzip
+    ablation_test.go:103: codec     for         444515 B       209446 B gzip
+=== RUN   TestAblation/publicbi/CommonGovernment
+    ablation_test.go:103: threshold 2          1284161 B       200631 B gzip
+    ablation_test.go:103: threshold 4          1284161 B       200631 B gzip
+    ablation_test.go:103: threshold 8          1284161 B       200631 B gzip
+    ablation_test.go:103: threshold 16         1284161 B       200631 B gzip
+    ablation_test.go:103: threshold 32         1284161 B       200631 B gzip
+    ablation_test.go:103: codec     auto       1284161 B       200631 B gzip
+    ablation_test.go:103: codec     raw        1355209 B       195656 B gzip
+    ablation_test.go:103: codec     delta      1354953 B       199829 B gzip
+    ablation_test.go:103: codec     for        1372847 B       201234 B gzip
+=== RUN   TestAblation/publicbi/Corporations
+    ablation_test.go:103: threshold 2           442277 B       152528 B gzip
+    ablation_test.go:103: threshold 4           442277 B       152528 B gzip
+    ablation_test.go:103: threshold 8           442277 B       152528 B gzip
+    ablation_test.go:103: threshold 16          442277 B       152528 B gzip
+    ablation_test.go:103: threshold 32          442277 B       152528 B gzip
+    ablation_test.go:103: codec     auto        442277 B       152528 B gzip
+    ablation_test.go:103: codec     raw         442572 B       152595 B gzip
+    ablation_test.go:103: codec     delta       442937 B       153247 B gzip
+    ablation_test.go:103: codec     for         442354 B       152523 B gzip
+=== RUN   TestAblation/publicbi/Eixo
+    ablation_test.go:103: threshold 2          1836752 B       346006 B gzip
+    ablation_test.go:103: threshold 4          1836752 B       346006 B gzip
+    ablation_test.go:103: threshold 8          1836752 B       346006 B gzip
+    ablation_test.go:103: threshold 16         1836752 B       346006 B gzip
+    ablation_test.go:103: threshold 32         1836752 B       346006 B gzip
+    ablation_test.go:103: codec     auto       1836752 B       346006 B gzip
+    ablation_test.go:103: codec     raw        1845811 B       352617 B gzip
+    ablation_test.go:103: codec     delta      1839061 B       345492 B gzip
+    ablation_test.go:103: codec     for        1839056 B       348154 B gzip
+=== RUN   TestAblation/publicbi/Euro2016
+    ablation_test.go:103: threshold 2           401334 B       186301 B gzip
+    ablation_test.go:103: threshold 4           401334 B       186301 B gzip
+    ablation_test.go:103: threshold 8           401334 B       186301 B gzip
+    ablation_test.go:103: threshold 16          401334 B       186301 B gzip
+    ablation_test.go:103: threshold 32          401334 B       186301 B gzip
+    ablation_test.go:103: codec     auto        401334 B       186301 B gzip
+    ablation_test.go:103: codec     raw         407933 B       193977 B gzip
+    ablation_test.go:103: codec     delta       401890 B       189660 B gzip
+    ablation_test.go:103: codec     for         403534 B       191369 B gzip
+=== RUN   TestAblation/publicbi/Food
+    ablation_test.go:103: threshold 2           104574 B        41532 B gzip
+    ablation_test.go:103: threshold 4           104574 B        41532 B gzip
+    ablation_test.go:103: threshold 8           104574 B        41532 B gzip
+    ablation_test.go:103: threshold 16          104574 B        41532 B gzip
+    ablation_test.go:103: threshold 32          104574 B        41532 B gzip
+    ablation_test.go:103: codec     auto        104574 B        41532 B gzip
+    ablation_test.go:103: codec     raw         117583 B        46125 B gzip
+    ablation_test.go:103: codec     delta       115867 B        48146 B gzip
+    ablation_test.go:103: codec     for         114857 B        45020 B gzip
+=== RUN   TestAblation/publicbi/Generico
+    ablation_test.go:103: threshold 2          1879111 B       303072 B gzip
+    ablation_test.go:103: threshold 4          1879111 B       303072 B gzip
+    ablation_test.go:103: threshold 8          1879111 B       303072 B gzip
+    ablation_test.go:103: threshold 16         1879111 B       303072 B gzip
+    ablation_test.go:103: threshold 32         1879111 B       303072 B gzip
+    ablation_test.go:103: codec     auto       1879111 B       303072 B gzip
+    ablation_test.go:103: codec     raw        1926814 B       318768 B gzip
+    ablation_test.go:103: codec     delta      1921267 B       316437 B gzip
+    ablation_test.go:103: codec     for        1920828 B       317781 B gzip
+=== RUN   TestAblation/publicbi/HashTags
+    ablation_test.go:103: threshold 2          4039820 B      1313664 B gzip
+    ablation_test.go:103: threshold 4          4039820 B      1313664 B gzip
+    ablation_test.go:103: threshold 8          4039820 B      1313664 B gzip
+    ablation_test.go:103: threshold 16         4039820 B      1313664 B gzip
+    ablation_test.go:103: threshold 32         4039820 B      1313664 B gzip
+    ablation_test.go:103: codec     auto       4039820 B      1313664 B gzip
+    ablation_test.go:103: codec     raw        4109064 B      1361796 B gzip
+    ablation_test.go:103: codec     delta      4083104 B      1331131 B gzip
+    ablation_test.go:103: codec     for        4082974 B      1324739 B gzip
+=== RUN   TestAblation/publicbi/Hatred
+    ablation_test.go:103: threshold 2          1251678 B       588635 B gzip
+    ablation_test.go:103: threshold 4          1251678 B       588635 B gzip
+    ablation_test.go:103: threshold 8          1251678 B       588635 B gzip
+    ablation_test.go:103: threshold 16         1251678 B       588635 B gzip
+    ablation_test.go:103: threshold 32         1251678 B       588635 B gzip
+    ablation_test.go:103: codec     auto       1251678 B       588635 B gzip
+    ablation_test.go:103: codec     raw        1292726 B       605010 B gzip
+    ablation_test.go:103: codec     delta      1283915 B       597542 B gzip
+    ablation_test.go:103: codec     for        1281110 B       593776 B gzip
+=== RUN   TestAblation/publicbi/IGlocations1
+    ablation_test.go:103: threshold 2           236699 B       115176 B gzip
+    ablation_test.go:103: threshold 4           236699 B       115176 B gzip
+    ablation_test.go:103: threshold 8           236699 B       115176 B gzip
+    ablation_test.go:103: threshold 16          236699 B       115176 B gzip
+    ablation_test.go:103: threshold 32          236699 B       115176 B gzip
+    ablation_test.go:103: codec     auto        236699 B       115176 B gzip
+    ablation_test.go:103: codec     raw         239783 B       116030 B gzip
+    ablation_test.go:103: codec     delta       243078 B       123319 B gzip
+    ablation_test.go:103: codec     for         238915 B       116708 B gzip
+=== RUN   TestAblation/publicbi/IGlocations2
+    ablation_test.go:103: threshold 2          1937829 B       686686 B gzip
+    ablation_test.go:103: threshold 4          1937829 B       686686 B gzip
+    ablation_test.go:103: threshold 8          1937829 B       686686 B gzip
+    ablation_test.go:103: threshold 16         1937829 B       686686 B gzip
+    ablation_test.go:103: threshold 32         1937829 B       686686 B gzip
+    ablation_test.go:103: codec     auto       1937829 B       686686 B gzip
+    ablation_test.go:103: codec     raw        1947996 B       699732 B gzip
+    ablation_test.go:103: codec     delta      1939448 B       686738 B gzip
+    ablation_test.go:103: codec     for        1940288 B       693196 B gzip
+=== RUN   TestAblation/publicbi/IUBLibrary
+    ablation_test.go:103: threshold 2           342672 B       152215 B gzip
+    ablation_test.go:103: threshold 4           342672 B       152215 B gzip
+    ablation_test.go:103: threshold 8           342672 B       152215 B gzip
+    ablation_test.go:103: threshold 16          342672 B       152215 B gzip
+    ablation_test.go:103: threshold 32          342672 B       152215 B gzip
+    ablation_test.go:103: codec     auto        342672 B       152215 B gzip
+    ablation_test.go:103: codec     raw         345230 B       153296 B gzip
+    ablation_test.go:103: codec     delta       344502 B       152373 B gzip
+    ablation_test.go:103: codec     for         343236 B       154085 B gzip
+=== RUN   TestAblation/publicbi/MLB
+    ablation_test.go:103: threshold 2           491281 B       230124 B gzip
+    ablation_test.go:103: threshold 4           491281 B       230124 B gzip
+    ablation_test.go:103: threshold 8           491281 B       230124 B gzip
+    ablation_test.go:103: threshold 16          491281 B       230124 B gzip
+    ablation_test.go:103: threshold 32          491281 B       230124 B gzip
+    ablation_test.go:103: codec     auto        491281 B       230124 B gzip
+    ablation_test.go:103: codec     raw         500399 B       232376 B gzip
+    ablation_test.go:103: codec     delta       511317 B       259021 B gzip
+    ablation_test.go:103: codec     for         492364 B       230596 B gzip
+=== RUN   TestAblation/publicbi/MedPayment1
+    ablation_test.go:103: threshold 2           950490 B       414733 B gzip
+    ablation_test.go:103: threshold 4           950490 B       414733 B gzip
+    ablation_test.go:103: threshold 8           950490 B       414733 B gzip
+    ablation_test.go:103: threshold 16          950490 B       414733 B gzip
+    ablation_test.go:103: threshold 32          950490 B       414733 B gzip
+    ablation_test.go:103: codec     auto        950490 B       414733 B gzip
+    ablation_test.go:103: codec     raw        1081569 B       451906 B gzip
+    ablation_test.go:103: codec     delta      1065485 B       483306 B gzip
+    ablation_test.go:103: codec     for        1059131 B       443839 B gzip
+=== RUN   TestAblation/publicbi/MedPayment2
+    ablation_test.go:103: threshold 2          1039073 B       461855 B gzip
+    ablation_test.go:103: threshold 4          1039073 B       461855 B gzip
+    ablation_test.go:103: threshold 8          1039073 B       461855 B gzip
+    ablation_test.go:103: threshold 16         1039073 B       461855 B gzip
+    ablation_test.go:103: threshold 32         1039073 B       461855 B gzip
+    ablation_test.go:103: codec     auto       1039073 B       461855 B gzip
+    ablation_test.go:103: codec     raw        1194740 B       515066 B gzip
+    ablation_test.go:103: codec     delta      1172521 B       546464 B gzip
+    ablation_test.go:103: codec     for        1165702 B       501102 B gzip
+=== RUN   TestAblation/publicbi/Medicare1
+    ablation_test.go:103: threshold 2           832005 B       402922 B gzip
+    ablation_test.go:103: threshold 4           832005 B       402922 B gzip
+    ablation_test.go:103: threshold 8           832005 B       402922 B gzip
+    ablation_test.go:103: threshold 16          832005 B       402922 B gzip
+    ablation_test.go:103: threshold 32          832005 B       402922 B gzip
+    ablation_test.go:103: codec     auto        832005 B       402922 B gzip
+    ablation_test.go:103: codec     raw         904556 B       412000 B gzip
+    ablation_test.go:103: codec     delta       883560 B       427058 B gzip
+    ablation_test.go:103: codec     for         879084 B       413484 B gzip
+=== RUN   TestAblation/publicbi/Medicare2
+    ablation_test.go:103: threshold 2          1092130 B       476501 B gzip
+    ablation_test.go:103: threshold 4          1092130 B       476501 B gzip
+    ablation_test.go:103: threshold 8          1092130 B       476501 B gzip
+    ablation_test.go:103: threshold 16         1092130 B       476501 B gzip
+    ablation_test.go:103: threshold 32         1092130 B       476501 B gzip
+    ablation_test.go:103: codec     auto       1092130 B       476501 B gzip
+    ablation_test.go:103: codec     raw        1201015 B       518912 B gzip
+    ablation_test.go:103: codec     delta      1189678 B       546513 B gzip
+    ablation_test.go:103: codec     for        1181258 B       506539 B gzip
+=== RUN   TestAblation/publicbi/Medicare3
+    ablation_test.go:103: threshold 2          1461119 B       537774 B gzip
+    ablation_test.go:103: threshold 4          1461119 B       537774 B gzip
+    ablation_test.go:103: threshold 8          1461119 B       537774 B gzip
+    ablation_test.go:103: threshold 16         1461119 B       537774 B gzip
+    ablation_test.go:103: threshold 32         1461119 B       537774 B gzip
+    ablation_test.go:103: codec     auto       1461119 B       537774 B gzip
+    ablation_test.go:103: codec     raw        1622506 B       591338 B gzip
+    ablation_test.go:103: codec     delta      1601522 B       609854 B gzip
+    ablation_test.go:103: codec     for        1594944 B       575607 B gzip
+=== RUN   TestAblation/publicbi/Motos
+    ablation_test.go:103: threshold 2          4081933 B       618143 B gzip
+    ablation_test.go:103: threshold 4          4081933 B       618143 B gzip
+    ablation_test.go:103: threshold 8          4081933 B       618143 B gzip
+    ablation_test.go:103: threshold 16         4081933 B       618143 B gzip
+    ablation_test.go:103: threshold 32         4081933 B       618143 B gzip
+    ablation_test.go:103: codec     auto       4081933 B       618143 B gzip
+    ablation_test.go:103: codec     raw        4188610 B       648511 B gzip
+    ablation_test.go:103: codec     delta      4174533 B       641271 B gzip
+    ablation_test.go:103: codec     for        4172431 B       644627 B gzip
+=== RUN   TestAblation/publicbi/MulheresMil
+    ablation_test.go:103: threshold 2          6116605 B      1075538 B gzip
+    ablation_test.go:103: threshold 4          6116605 B      1075538 B gzip
+    ablation_test.go:103: threshold 8          6116605 B      1075538 B gzip
+    ablation_test.go:103: threshold 16         6116605 B      1075538 B gzip
+    ablation_test.go:103: threshold 32         6116605 B      1075538 B gzip
+    ablation_test.go:103: codec     auto       6116605 B      1075538 B gzip
+    ablation_test.go:103: codec     raw        6148660 B      1101683 B gzip
+    ablation_test.go:103: codec     delta      6123511 B      1078598 B gzip
+    ablation_test.go:103: codec     for        6125288 B      1088039 B gzip
+=== RUN   TestAblation/publicbi/NYC
+    ablation_test.go:103: threshold 2          4296930 B       674254 B gzip
+    ablation_test.go:103: threshold 4          4296930 B       674254 B gzip
+    ablation_test.go:103: threshold 8          4296930 B       674254 B gzip
+    ablation_test.go:103: threshold 16         4296930 B       674254 B gzip
+    ablation_test.go:103: threshold 32         4296930 B       674254 B gzip
+    ablation_test.go:103: codec     auto       4296930 B       674254 B gzip
+    ablation_test.go:103: codec     raw        4334420 B       721367 B gzip
+    ablation_test.go:103: codec     delta      4300219 B       686334 B gzip
+    ablation_test.go:103: codec     for        4302585 B       680365 B gzip
+=== RUN   TestAblation/publicbi/PanCreactomy1
+    ablation_test.go:103: threshold 2          1731220 B       622710 B gzip
+    ablation_test.go:103: threshold 4          1731220 B       622710 B gzip
+    ablation_test.go:103: threshold 8          1731220 B       622710 B gzip
+    ablation_test.go:103: threshold 16         1731220 B       622710 B gzip
+    ablation_test.go:103: threshold 32         1731220 B       622710 B gzip
+    ablation_test.go:103: codec     auto       1731220 B       622710 B gzip
+    ablation_test.go:103: codec     raw        1925926 B       681140 B gzip
+    ablation_test.go:103: codec     delta      1901223 B       716270 B gzip
+    ablation_test.go:103: codec     for        1892347 B       662207 B gzip
+=== RUN   TestAblation/publicbi/PanCreactomy2
+    ablation_test.go:103: threshold 2          1808820 B       645509 B gzip
+    ablation_test.go:103: threshold 4          1808820 B       645509 B gzip
+    ablation_test.go:103: threshold 8          1808820 B       645509 B gzip
+    ablation_test.go:103: threshold 16         1808820 B       645509 B gzip
+    ablation_test.go:103: threshold 32         1808820 B       645509 B gzip
+    ablation_test.go:103: codec     auto       1808820 B       645509 B gzip
+    ablation_test.go:103: codec     raw        2008808 B       706519 B gzip
+    ablation_test.go:103: codec     delta      1983154 B       747069 B gzip
+    ablation_test.go:103: codec     for        1974401 B       693438 B gzip
+=== RUN   TestAblation/publicbi/Physicians
+    ablation_test.go:103: threshold 2          1508557 B       648995 B gzip
+    ablation_test.go:103: threshold 4          1508557 B       648995 B gzip
+    ablation_test.go:103: threshold 8          1508557 B       648995 B gzip
+    ablation_test.go:103: threshold 16         1508557 B       648995 B gzip
+    ablation_test.go:103: threshold 32         1508557 B       648995 B gzip
+    ablation_test.go:103: codec     auto       1508557 B       648995 B gzip
+    ablation_test.go:103: codec     raw        1717737 B       710114 B gzip
+    ablation_test.go:103: codec     delta      1692369 B       756354 B gzip
+    ablation_test.go:103: codec     for        1683348 B       697131 B gzip
+=== RUN   TestAblation/publicbi/Provider
+    ablation_test.go:103: threshold 2          1525676 B       674667 B gzip
+    ablation_test.go:103: threshold 4          1525676 B       674667 B gzip
+    ablation_test.go:103: threshold 8          1525676 B       674667 B gzip
+    ablation_test.go:103: threshold 16         1525676 B       674667 B gzip
+    ablation_test.go:103: threshold 32         1525676 B       674667 B gzip
+    ablation_test.go:103: codec     auto       1525676 B       674667 B gzip
+    ablation_test.go:103: codec     raw        1679004 B       722636 B gzip
+    ablation_test.go:103: codec     delta      1663517 B       768126 B gzip
+    ablation_test.go:103: codec     for        1651391 B       711494 B gzip
+=== RUN   TestAblation/publicbi/RealEstate1
+    ablation_test.go:103: threshold 2          2024765 B       724232 B gzip
+    ablation_test.go:103: threshold 4          2024765 B       724232 B gzip
+    ablation_test.go:103: threshold 8          2024765 B       724232 B gzip
+    ablation_test.go:103: threshold 16         2024765 B       724232 B gzip
+    ablation_test.go:103: threshold 32         2024765 B       724232 B gzip
+    ablation_test.go:103: codec     auto       2024765 B       724232 B gzip
+    ablation_test.go:103: codec     raw        2130026 B       864265 B gzip
+    ablation_test.go:103: codec     delta      2080846 B       811429 B gzip
+    ablation_test.go:103: codec     for        2088991 B       814513 B gzip
+=== RUN   TestAblation/publicbi/RealEstate2
+    ablation_test.go:103: threshold 2          2397183 B      1003298 B gzip
+    ablation_test.go:103: threshold 4          2397183 B      1003298 B gzip
+    ablation_test.go:103: threshold 8          2397183 B      1003298 B gzip
+    ablation_test.go:103: threshold 16         2397183 B      1003298 B gzip
+    ablation_test.go:103: threshold 32         2397183 B      1003298 B gzip
+    ablation_test.go:103: codec     auto       2397183 B      1003298 B gzip
+    ablation_test.go:103: codec     raw        2413455 B      1015272 B gzip
+    ablation_test.go:103: codec     delta      2399723 B      1006338 B gzip
+    ablation_test.go:103: codec     for        2402197 B      1008595 B gzip
+=== RUN   TestAblation/publicbi/Redfin1
+    ablation_test.go:103: threshold 2          2607028 B      1569971 B gzip
+    ablation_test.go:103: threshold 4          2607028 B      1569971 B gzip
+    ablation_test.go:103: threshold 8          2607028 B      1569971 B gzip
+    ablation_test.go:103: threshold 16         2607028 B      1569971 B gzip
+    ablation_test.go:103: threshold 32         2607028 B      1569971 B gzip
+    ablation_test.go:103: codec     auto       2607028 B      1569971 B gzip
+    ablation_test.go:103: codec     raw        2768016 B      1578192 B gzip
+    ablation_test.go:103: codec     delta      2713491 B      1596172 B gzip
+    ablation_test.go:103: codec     for        2715646 B      1567535 B gzip
+=== RUN   TestAblation/publicbi/Redfin2
+    ablation_test.go:103: threshold 2          2681238 B      1609388 B gzip
+    ablation_test.go:103: threshold 4          2681238 B      1609388 B gzip
+    ablation_test.go:103: threshold 8          2681238 B      1609388 B gzip
+    ablation_test.go:103: threshold 16         2681238 B      1609388 B gzip
+    ablation_test.go:103: threshold 32         2681238 B      1609388 B gzip
+    ablation_test.go:103: codec     auto       2681238 B      1609388 B gzip
+    ablation_test.go:103: codec     raw        2847249 B      1617495 B gzip
+    ablation_test.go:103: codec     delta      2790769 B      1634466 B gzip
+    ablation_test.go:103: codec     for        2794946 B      1598364 B gzip
+=== RUN   TestAblation/publicbi/Redfin3
+    ablation_test.go:103: threshold 2          2799243 B      1679901 B gzip
+    ablation_test.go:103: threshold 4          2799243 B      1679901 B gzip
+    ablation_test.go:103: threshold 8          2799243 B      1679901 B gzip
+    ablation_test.go:103: threshold 16         2799243 B      1679901 B gzip
+    ablation_test.go:103: threshold 32         2799243 B      1679901 B gzip
+    ablation_test.go:103: codec     auto       2799243 B      1679901 B gzip
+    ablation_test.go:103: codec     raw        2995939 B      1695462 B gzip
+    ablation_test.go:103: codec     delta      2937971 B      1714226 B gzip
+    ablation_test.go:103: codec     for        2940062 B      1674624 B gzip
+=== RUN   TestAblation/publicbi/Redfin4
+    ablation_test.go:103: threshold 2          2969943 B      1737764 B gzip
+    ablation_test.go:103: threshold 4          2969943 B      1737764 B gzip
+    ablation_test.go:103: threshold 8          2969943 B      1737764 B gzip
+    ablation_test.go:103: threshold 16         2969943 B      1737764 B gzip
+    ablation_test.go:103: threshold 32         2969943 B      1737764 B gzip
+    ablation_test.go:103: codec     auto       2969943 B      1737764 B gzip
+    ablation_test.go:103: codec     raw        3172842 B      1743446 B gzip
+    ablation_test.go:103: codec     delta      3112788 B      1765851 B gzip
+    ablation_test.go:103: codec     for        3115953 B      1724983 B gzip
+=== RUN   TestAblation/publicbi/Rentabilidad
+    ablation_test.go:103: threshold 2          7121696 B      2763289 B gzip
+    ablation_test.go:103: threshold 4          7121696 B      2763289 B gzip
+    ablation_test.go:103: threshold 8          7121696 B      2763289 B gzip
+    ablation_test.go:103: threshold 16         7121696 B      2763289 B gzip
+    ablation_test.go:103: threshold 32         7121696 B      2763289 B gzip
+    ablation_test.go:103: codec     auto       7121696 B      2763289 B gzip
+    ablation_test.go:103: codec     raw        7547285 B      2945965 B gzip
+    ablation_test.go:103: codec     delta      7390178 B      2837747 B gzip
+    ablation_test.go:103: codec     for        7459090 B      2840326 B gzip
+=== RUN   TestAblation/publicbi/Romance
+    ablation_test.go:103: threshold 2          4031792 B      1519526 B gzip
+    ablation_test.go:103: threshold 4          4031792 B      1519526 B gzip
+    ablation_test.go:103: threshold 8          4031792 B      1519526 B gzip
+    ablation_test.go:103: threshold 16         4031792 B      1519526 B gzip
+    ablation_test.go:103: threshold 32         4031792 B      1519526 B gzip
+    ablation_test.go:103: codec     auto       4031792 B      1519526 B gzip
+    ablation_test.go:103: codec     raw        4041711 B      1530492 B gzip
+    ablation_test.go:103: codec     delta      4038631 B      1524840 B gzip
+    ablation_test.go:103: codec     for        4037684 B      1526587 B gzip
+=== RUN   TestAblation/publicbi/SalariesFrance
+    ablation_test.go:103: threshold 2          8046191 B      2408050 B gzip
+    ablation_test.go:103: threshold 4          8046191 B      2408050 B gzip
+    ablation_test.go:103: threshold 8          8046191 B      2408050 B gzip
+    ablation_test.go:103: threshold 16         8046191 B      2408050 B gzip
+    ablation_test.go:103: threshold 32         8046191 B      2408050 B gzip
+    ablation_test.go:103: codec     auto       8046191 B      2408050 B gzip
+    ablation_test.go:103: codec     raw        8191137 B      2459284 B gzip
+    ablation_test.go:103: codec     delta      8121479 B      2492945 B gzip
+    ablation_test.go:103: codec     for        8111045 B      2411385 B gzip
+=== RUN   TestAblation/publicbi/TableroSistemaPenal
+    ablation_test.go:103: threshold 2          3377272 B       300818 B gzip
+    ablation_test.go:103: threshold 4          3377272 B       300818 B gzip
+    ablation_test.go:103: threshold 8          3377272 B       300818 B gzip
+    ablation_test.go:103: threshold 16         3377272 B       300818 B gzip
+    ablation_test.go:103: threshold 32         3377272 B       300818 B gzip
+    ablation_test.go:103: codec     auto       3377272 B       300818 B gzip
+    ablation_test.go:103: codec     raw        3465843 B       307984 B gzip
+    ablation_test.go:103: codec     delta      3456821 B       310383 B gzip
+    ablation_test.go:103: codec     for        3457991 B       306791 B gzip
+=== RUN   TestAblation/publicbi/Taxpayer
+    ablation_test.go:103: threshold 2          2122478 B       915726 B gzip
+    ablation_test.go:103: threshold 4          2122478 B       915726 B gzip
+    ablation_test.go:103: threshold 8          2122478 B       915726 B gzip
+    ablation_test.go:103: threshold 16         2122478 B       915726 B gzip
+    ablation_test.go:103: threshold 32         2122478 B       915726 B gzip
+    ablation_test.go:103: codec     auto       2122478 B       915726 B gzip
+    ablation_test.go:103: codec     raw        2336922 B      1003845 B gzip
+    ablation_test.go:103: codec     delta      2314603 B      1055120 B gzip
+    ablation_test.go:103: codec     for        2298228 B       972550 B gzip
+=== RUN   TestAblation/publicbi/Telco
+    ablation_test.go:103: threshold 2          5123151 B      3689004 B gzip
+    ablation_test.go:103: threshold 4          5123151 B      3689004 B gzip
+    ablation_test.go:103: threshold 8          5123151 B      3689004 B gzip
+    ablation_test.go:103: threshold 16         5123151 B      3689004 B gzip
+    ablation_test.go:103: threshold 32         5123151 B      3689004 B gzip
+    ablation_test.go:103: codec     auto       5123151 B      3689004 B gzip
+    ablation_test.go:103: codec     raw       11319585 B      5012578 B gzip
+    ablation_test.go:103: codec     delta     11362023 B      5386666 B gzip
+    ablation_test.go:103: codec     for       11217790 B      4942572 B gzip
+=== RUN   TestAblation/publicbi/TrainsUK1
+    ablation_test.go:103: threshold 2                7 B           32 B gzip
+    ablation_test.go:103: threshold 4                7 B           32 B gzip
+    ablation_test.go:103: threshold 8                7 B           32 B gzip
+    ablation_test.go:103: threshold 16               7 B           32 B gzip
+    ablation_test.go:103: threshold 32               7 B           32 B gzip
+    ablation_test.go:103: codec     auto             7 B           32 B gzip
+    ablation_test.go:103: codec     raw              7 B           32 B gzip
+    ablation_test.go:103: codec     delta            7 B           32 B gzip
+    ablation_test.go:103: codec     for              7 B           32 B gzip
+=== RUN   TestAblation/publicbi/TrainsUK2
+    ablation_test.go:103: threshold 2          3128993 B      1091234 B gzip
+    ablation_test.go:103: threshold 4          3128993 B      1091234 B gzip
+    ablation_test.go:103: threshold 8          3128993 B      1091234 B gzip
+    ablation_test.go:103: threshold 16         3128993 B      1091234 B gzip
+    ablation_test.go:103: threshold 32         3128993 B      1091234 B gzip
+    ablation_test.go:103: codec     auto       3128993 B      1091234 B gzip
+    ablation_test.go:103: codec     raw        3326027 B      1424500 B gzip
+    ablation_test.go:103: codec     delta      3150327 B      1113166 B gzip
+    ablation_test.go:103: codec     for        3190414 B      1271520 B gzip
+=== RUN   TestAblation/publicbi/USCensus
+    ablation_test.go:103: threshold 2          5293487 B      3905334 B gzip
+    ablation_test.go:103: threshold 4          5293487 B      3905334 B gzip
+    ablation_test.go:103: threshold 8          5293487 B      3905334 B gzip
+    ablation_test.go:103: threshold 16         5293487 B      3905334 B gzip
+    ablation_test.go:103: threshold 32         5293487 B      3905334 B gzip
+    ablation_test.go:103: codec     auto       5293487 B      3905334 B gzip
+    ablation_test.go:103: codec     raw        5563239 B      3973853 B gzip
+    ablation_test.go:103: codec     delta      5966118 B      4273041 B gzip
+    ablation_test.go:103: codec     for        5316959 B      3885220 B gzip
+=== RUN   TestAblation/publicbi/Uberlandia
+    ablation_test.go:103: threshold 2         11533173 B      1981221 B gzip
+    ablation_test.go:103: threshold 4         11533173 B      1981221 B gzip
+    ablation_test.go:103: threshold 8         11533173 B      1981221 B gzip
+    ablation_test.go:103: threshold 16        11533173 B      1981221 B gzip
+    ablation_test.go:103: threshold 32        11533173 B      1981221 B gzip
+    ablation_test.go:103: codec     auto      11533173 B      1981221 B gzip
+    ablation_test.go:103: codec     raw       11598352 B      2013910 B gzip
+    ablation_test.go:103: codec     delta     11550940 B      1956585 B gzip
+    ablation_test.go:103: codec     for       11549483 B      1993140 B gzip
+=== RUN   TestAblation/publicbi/Wins
+    ablation_test.go:103: threshold 2          6229281 B      3416659 B gzip
+    ablation_test.go:103: threshold 4          6229281 B      3416659 B gzip
+    ablation_test.go:103: threshold 8          6229281 B      3416659 B gzip
+    ablation_test.go:103: threshold 16         6229281 B      3416659 B gzip
+    ablation_test.go:103: threshold 32         6229281 B      3416659 B gzip
+    ablation_test.go:103: codec     auto       6229281 B      3416659 B gzip
+    ablation_test.go:103: codec     raw        6487659 B      3548661 B gzip
+    ablation_test.go:103: codec     delta      6789732 B      3754435 B gzip
+    ablation_test.go:103: codec     for        6407619 B      3463153 B gzip
+=== RUN   TestAblation/publicbi/YaleLanguages
+    ablation_test.go:103: threshold 2          3426324 B       482132 B gzip
+    ablation_test.go:103: threshold 4          3426324 B       482132 B gzip
+    ablation_test.go:103: threshold 8          3426324 B       482132 B gzip
+    ablation_test.go:103: threshold 16         3426324 B       482132 B gzip
+    ablation_test.go:103: threshold 32         3426324 B       482132 B gzip
+    ablation_test.go:103: codec     auto       3426324 B       482132 B gzip
+    ablation_test.go:103: codec     raw        3446765 B       599244 B gzip
+    ablation_test.go:103: codec     delta      3435260 B       483665 B gzip
+    ablation_test.go:103: codec     for        3431050 B       570598 B gzip
+--- PASS: TestAblation (90.52s)
+    --- PASS: TestAblation/publicbi/Arade (0.10s)
+    --- PASS: TestAblation/publicbi/Bimbo (0.08s)
+    --- PASS: TestAblation/publicbi/CMSprovider (0.29s)
+    --- PASS: TestAblation/publicbi/CityMaxCapita (0.38s)
+    --- PASS: TestAblation/publicbi/CommonGovernment (0.69s)
+    --- PASS: TestAblation/publicbi/Corporations (0.41s)
+    --- PASS: TestAblation/publicbi/Eixo (1.30s)
+    --- PASS: TestAblation/publicbi/Euro2016 (0.25s)
+    --- PASS: TestAblation/publicbi/Food (0.12s)
+    --- PASS: TestAblation/publicbi/Generico (0.84s)
+    --- PASS: TestAblation/publicbi/HashTags (1.90s)
+    --- PASS: TestAblation/publicbi/Hatred (0.68s)
+    --- PASS: TestAblation/publicbi/IGlocations1 (0.30s)
+    --- PASS: TestAblation/publicbi/IGlocations2 (0.65s)
+    --- PASS: TestAblation/publicbi/IUBLibrary (0.19s)
+    --- PASS: TestAblation/publicbi/MLB (0.87s)
+    --- PASS: TestAblation/publicbi/MedPayment1 (0.81s)
+    --- PASS: TestAblation/publicbi/MedPayment2 (0.87s)
+    --- PASS: TestAblation/publicbi/Medicare1 (0.67s)
+    --- PASS: TestAblation/publicbi/Medicare2 (0.90s)
+    --- PASS: TestAblation/publicbi/Medicare3 (0.98s)
+    --- PASS: TestAblation/publicbi/Motos (1.43s)
+    --- PASS: TestAblation/publicbi/MulheresMil (2.86s)
+    --- PASS: TestAblation/publicbi/NYC (1.78s)
+    --- PASS: TestAblation/publicbi/PanCreactomy1 (1.08s)
+    --- PASS: TestAblation/publicbi/PanCreactomy2 (1.19s)
+    --- PASS: TestAblation/publicbi/Physicians (1.14s)
+    --- PASS: TestAblation/publicbi/Provider (1.14s)
+    --- PASS: TestAblation/publicbi/RealEstate1 (1.13s)
+    --- PASS: TestAblation/publicbi/RealEstate2 (1.23s)
+    --- PASS: TestAblation/publicbi/Redfin1 (1.87s)
+    --- PASS: TestAblation/publicbi/Redfin2 (1.91s)
+    --- PASS: TestAblation/publicbi/Redfin3 (2.05s)
+    --- PASS: TestAblation/publicbi/Redfin4 (2.17s)
+    --- PASS: TestAblation/publicbi/Rentabilidad (5.36s)
+    --- PASS: TestAblation/publicbi/Romance (1.10s)
+    --- PASS: TestAblation/publicbi/SalariesFrance (3.05s)
+    --- PASS: TestAblation/publicbi/TableroSistemaPenal (1.20s)
+    --- PASS: TestAblation/publicbi/Taxpayer (1.52s)
+    --- PASS: TestAblation/publicbi/Telco (6.48s)
+    --- PASS: TestAblation/publicbi/TrainsUK1 (0.00s)
+    --- PASS: TestAblation/publicbi/TrainsUK2 (2.02s)
+    --- PASS: TestAblation/publicbi/USCensus (19.03s)
+    --- PASS: TestAblation/publicbi/Uberlandia (4.48s)
+    --- PASS: TestAblation/publicbi/Wins (10.36s)
+    --- PASS: TestAblation/publicbi/YaleLanguages (1.65s)
+PASS

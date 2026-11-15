@@ -1,0 +1,11 @@
+[20:43:44] datasets: fetch and verify (datasets/publicbi/fetch.sh)
+[20:43:46] building colbinbench and the matrix test binaries
+[20:44:12] web cases: 46, bulk cases: 0
+[20:44:12] timings: web, pass 1, 2 at a time on cores 12,14
+[22:11:13] timings: web, pass 1 done, 19650 lines
+[22:11:13] sizes: web
+[22:17:00] ablation: web
+[22:18:31] timings: web, pass 2, 2 at a time on cores 12,14
+[23:45:32] timings: web, pass 2 done, 19650 lines
+[23:45:32] summary
+[23:45:33] done: results in /home/ivanjoz/projects/colbin-benchmarks/results/paper-v2-homelab-parts/publicbi (start with SUMMARY.md; the paper's tables are in tables/)

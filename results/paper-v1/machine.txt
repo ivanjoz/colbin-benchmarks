@@ -1,4 +1,4 @@
-date: 2026-11-14T05:50:17+00:00
+date: 2026-11-14T20:06:54+00:00
 driver: reproduce.sh
 command: cmd/mergeruns of 4 reproduce.sh runs, one per part below
 regime: all
@@ -7,20 +7,22 @@ measured cores: 4,6
 passes: 2
 count: 10
 sample: 100ms
+warm: 0s
 formats: all
 ops: encode,decode-fresh,decode-reuse,access
 kernel: Linux 6.12.0-204.92.4.4.el9uek.container
-go: go version go1.27.0 linux/amd64
+go: go version go1.27.4 linux/amd64
+godebug: madvdontneed=0
 colbin: github.com/ivanjoz/colbin v0.13.1
-colbin-benchmarks: 7597b156b197d5b82e4d16999d365561cc8d8d1f
+colbin-benchmarks: 60845882328de3e0741cba0699242c108c198e95
 governor: unknown unknown
 turbo: unknown
 frequency control: host
 MemAvailable at start: 30.6 GB
-part: oci-x86-tpch-20261114-004932, cases tpch/*, started 2026-11-14T05:50:17+00:00, commit 7597b156b197d5b82e4d16999d365561cc8d8d1f, MemAvailable at start 30.6 GB
-part: oci-x86-schemastore-20261114-004944, cases schemastore/*, started 2026-11-14T05:50:22+00:00, commit 7597b156b197d5b82e4d16999d365561cc8d8d1f, MemAvailable at start 30.5 GB
-part: oci-x86-publicbi-20261114-004940, cases publicbi/*, started 2026-11-14T05:57:37+00:00, commit 7597b156b197d5b82e4d16999d365561cc8d8d1f, MemAvailable at start 30.4 GB
-part: oci-x86-tpcds-20261114-004936, cases tpcds/*, started 2026-11-14T05:50:18+00:00, commit 7597b156b197d5b82e4d16999d365561cc8d8d1f, MemAvailable at start 30.5 GB
+part: oci-x86-tpch-20261114-150609, cases tpch/*, started 2026-11-14T20:06:54+00:00, commit 60845882328de3e0741cba0699242c108c198e95, MemAvailable at start 30.6 GB
+part: oci-x86-schemastore-20261114-150621, cases schemastore/*, started 2026-11-14T20:07:03+00:00, commit 60845882328de3e0741cba0699242c108c198e95, MemAvailable at start 29.8 GB
+part: oci-x86-publicbi-20261114-150617, cases publicbi/*, started 2026-11-14T20:15:00+00:00, commit 60845882328de3e0741cba0699242c108c198e95, MemAvailable at start 30.3 GB
+part: oci-x86-tpcds-20261114-150613, cases tpcds/*, started 2026-11-14T20:06:51+00:00, commit 60845882328de3e0741cba0699242c108c198e95, MemAvailable at start 30.1 GB
 host setting: cpu4 has no cpufreq governor to check
 host setting: cpu6 has no cpufreq governor to check
 host setting: turbo: no intel_pstate/no_turbo or cpufreq/boost to read
@@ -40,7 +42,7 @@ Thread(s) per core:                      2
 Core(s) per socket:                      4
 Socket(s):                               1
 Stepping:                                1
-BogoMIPS:                                4890.82
+BogoMIPS:                                4890.80
 Flags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm rep_good nopl xtopology cpuid extd_apicid tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm cmp_legacy svm cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw topoext perfctr_core ssbd ibrs ibpb stibp vmmcall fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 xsaves clzero xsaveerptr wbnoinvd arat npt lbrv nrip_save tsc_scale vmcb_clean flushbyasid pausefilter pfthreshold v_vmsave_vmload vgif umip pku vaes vpclmulqdq rdpid overflow_recov succor fsrm arch_capabilities
 Virtualization:                          AMD-V
 Hypervisor vendor:                       KVM
@@ -69,21 +71,21 @@ Vulnerability Vmscape:                   Not affected
 
 == busiest processes at start
 %CPU     PID COMMAND
- 0.1       1 bash
- 0.0      84 bash
- 0.0      85 bash
- 0.0      86 sleep
- 0.0     232 go
+ 0.0       1 bash
+ 0.0      88 bash
+ 0.0      89 bash
+ 0.0      90 sleep
+ 0.0     239 bash
 
-== frequency of the measured cores during timings (MHz), oci-x86-tpch-20261114-004932
+== frequency of the measured cores during timings (MHz), oci-x86-tpch-20261114-150609
 cpu4: no samples
 cpu6: no samples
-== frequency of the measured cores during timings (MHz), oci-x86-schemastore-20261114-004944
+== frequency of the measured cores during timings (MHz), oci-x86-schemastore-20261114-150621
 cpu4: no samples
 cpu6: no samples
-== frequency of the measured cores during timings (MHz), oci-x86-publicbi-20261114-004940
+== frequency of the measured cores during timings (MHz), oci-x86-publicbi-20261114-150617
 cpu4: no samples
 cpu6: no samples
-== frequency of the measured cores during timings (MHz), oci-x86-tpcds-20261114-004936
+== frequency of the measured cores during timings (MHz), oci-x86-tpcds-20261114-150613
 cpu4: no samples
 cpu6: no samples

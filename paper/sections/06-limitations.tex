@@ -24,7 +24,9 @@ faster in \result{vs.datasets.schemastore.vtprotobuf.encode.wins} of
 \result{vs.datasets.schemastore.msgpack.encode.wins} of
 \result{vs.datasets.schemastore.msgpack.encode.n} documents, and to decode it is
 \result{vs.datasets.schemastore.msgpack.decode-fresh.factor} against
-generated MessagePack. Straight-line generated code beats a plan interpreted
+generated MessagePack and
+\result{vs.datasets.schemastore.flatbuffers.decode-fresh.factor} against
+FlatBuffers. Straight-line generated code beats a plan interpreted
 per field on a message of a few fields; the columnar path is what makes up
 the difference on tables.
 
@@ -71,7 +73,7 @@ two implementations of Protocol Buffers and of MessagePack measured here
 differ by more than most pairs of formats do. The sizes carry over to other
 languages; the times do not.
 
-\paragraph{Two machines, both x86-64.} The main times come from one server
+\paragraph{Two machines, both x86-64 and of one vendor.} The main times come from one server
 processor model, in four cloud container instances of the same shape (one
 per dataset), whose clock the host controls and whose cache and memory
 bandwidth other tenants share. A summary over a regime pools cases measured
@@ -82,8 +84,9 @@ reports were, to within \result{repeat.ratio-worst}\,\%, and differences
 below about 4\,\% should not be read as differences. The second machine, a
 laptop with its clock fixed (Section~\ref{sec:second-machine}), shows which
 conclusions survive a change of processor, but it is a single unit of a
-single model, and two machines are not a population. Both are x86-64: no
-arm64 machine was measured.
+single model, and two machines are not a population. Both are x86-64
+processors of AMD, one generation apart: no Intel processor and no arm64
+machine was measured.
 
 \paragraph{Datasets not covered.} Real floats and timestamps are
 represented by Public BI only. No dataset here was assembled by a third
@@ -120,9 +123,9 @@ it is sized but not timed, so its timing means are over fewer cases, and
 they are the cases without nullable columns. Its sizes also depend on what
 the process encoded before, because \fmt{gob} assigns type identifiers per
 process in order of first use; all cases of a run are sized in one process,
-in a fixed order, and a different selection of cases (one dataset per
-process in the cloud, all of them on the laptop) gives sizes that differ by
-up to a dozen bytes a message.
+in a fixed order, and a different selection of cases gives sizes that
+differ by up to a dozen bytes a message. Both machines sized one dataset
+per process, so their sizes agree on every case reported here.
 
 \paragraph{Stability of the format.} \colbin{} is at version
 \result{machine.colbin-version}, before 1.0, with no compatibility promise

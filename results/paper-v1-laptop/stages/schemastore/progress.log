@@ -1,0 +1,11 @@
+[23:45:33] datasets: fetch and verify (datasets/schemastore/fetch.sh)
+[23:45:34] building colbinbench and the matrix test binaries
+[23:45:43] web cases: 54, bulk cases: 0
+[23:45:43] timings: web, pass 1, 2 at a time on cores 12,14
+[00:04:43] timings: web, pass 1 done, 17580 lines
+[00:04:43] sizes: web
+[00:04:43] ablation: web
+[00:04:43] timings: web, pass 2, 2 at a time on cores 12,14
+[00:23:43] timings: web, pass 2 done, 17580 lines
+[00:23:43] summary
+[00:23:44] done: results in /home/ivanjoz/projects/colbin-benchmarks/results/paper-v2-homelab-parts/schemastore (start with SUMMARY.md; the paper's tables are in tables/)

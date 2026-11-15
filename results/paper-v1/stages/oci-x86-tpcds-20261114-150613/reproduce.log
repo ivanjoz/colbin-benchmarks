@@ -1,0 +1,74 @@
+[20:06:48] datasets: fetch and verify (datasets/tpcds/fetch.sh)
+cores: auto → 4,6
+busiest processes before the run:
+%CPU     PID COMMAND
+ 0.2       1 bash
+ 0.0      88 bash
+ 0.0      89 bash
+ 0.0      90 sleep
+ 0.0     390 go
+close browsers, IDEs and sync clients before measuring
+[20:06:52] building colbinbench and the matrix test binaries
+go: downloading golang.org/x/sys v0.47.0
+go: downloading github.com/ivanjoz/colbin v0.13.1
+go: downloading capnproto.org/go/capnp/v3 v3.1.0-alpha.2
+go: downloading github.com/apache/arrow-go/v18 v18.8.0
+go: downloading github.com/fxamacker/cbor/v2 v2.9.6
+go: downloading github.com/google/flatbuffers v25.12.19+incompatible
+go: downloading github.com/hamba/avro/v2 v2.31.0
+go: downloading github.com/klauspost/compress v1.19.2
+go: downloading github.com/tinylib/msgp v1.6.5
+go: downloading github.com/vmihailenco/msgpack/v5 v5.4.1
+go: downloading google.golang.org/protobuf v1.36.12
+go: downloading github.com/x448/float16 v0.8.4
+go: downloading github.com/go-viper/mapstructure/v2 v2.4.0
+go: downloading github.com/json-iterator/go v1.1.12
+go: downloading github.com/modern-go/reflect2 v1.0.2
+go: downloading github.com/philhofer/fwd v1.2.0
+go: downloading github.com/vmihailenco/tagparser/v2 v2.0.0
+go: downloading github.com/colega/zeropool v0.0.0-20230505084239-6fb4a4f75381
+go: downloading golang.org/x/sync v0.22.0
+go: downloading github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd
+go: downloading github.com/planetscale/vtprotobuf v0.6.0
+go: downloading golang.org/x/exp v0.0.0-20260112195511-716be5621a96
+go: downloading github.com/pierrec/lz4/v4 v4.1.29
+go: downloading github.com/goccy/go-json v0.10.6
+go: downloading github.com/zeebo/xxh3 v1.1.0
+go: downloading github.com/klauspost/cpuid/v2 v2.4.0
+[20:07:53] web cases: 16, bulk cases: 8
+[20:07:53] timings: web, pass 1, 2 at a time on cores 4,6
+[20:18:31] timings: web, pass 1 done, 9520 lines
+[20:18:31] timings: tpcds/sf0.1/catalog_sales, alone on core 4
+[20:33:59] timings: tpcds/sf0.1/customer_demographics, alone on core 4
+[20:38:22] timings: tpcds/sf0.1/date_dim, alone on core 4
+[20:42:44] timings: tpcds/sf0.1/inventory, alone on core 4
+[20:45:08] timings: tpcds/sf0.1/store_returns, alone on core 4
+[20:47:54] timings: tpcds/sf0.1/store_sales, alone on core 4
+[21:18:32] timings: tpcds/sf0.1/time_dim, alone on core 4
+[21:21:30] timings: tpcds/sf0.1/web_sales, alone on core 4
+[21:29:32] timings: bulk done
+[21:29:32] sizes: web
+[21:29:39] sizes: tpcds/sf0.1/catalog_sales
+[21:30:07] sizes: tpcds/sf0.1/customer_demographics
+[21:30:14] sizes: tpcds/sf0.1/date_dim
+[21:30:23] sizes: tpcds/sf0.1/inventory
+[21:30:27] sizes: tpcds/sf0.1/store_returns
+[21:30:31] sizes: tpcds/sf0.1/store_sales
+[21:31:52] sizes: tpcds/sf0.1/time_dim
+[21:31:56] sizes: tpcds/sf0.1/web_sales
+[21:32:10] ablation: web
+[21:32:12] ablation: tpcds/sf0.1/catalog_sales
+[21:32:18] ablation: tpcds/sf0.1/customer_demographics
+[21:32:20] ablation: tpcds/sf0.1/date_dim
+[21:32:22] ablation: tpcds/sf0.1/inventory
+[21:32:23] ablation: tpcds/sf0.1/store_returns
+[21:32:24] ablation: tpcds/sf0.1/store_sales
+[21:32:33] ablation: tpcds/sf0.1/time_dim
+[21:32:34] ablation: tpcds/sf0.1/web_sales
+[21:32:37] timings: web, pass 2, 2 at a time on cores 4,6
+[21:43:12] timings: web, pass 2 done, 9520 lines
+[21:43:12] summary
+
+[21:43:12] done: results in /w/results/oci-x86-tpcds-20261114-150613 (start with SUMMARY.md; the paper's tables are in tables/)
+per-case statistics:  benchstat -filter 'regime:web' /w/results/oci-x86-tpcds-20261114-150613/bench-web.txt
+the paper:            make -C paper RUN=/w/results/oci-x86-tpcds-20261114-150613

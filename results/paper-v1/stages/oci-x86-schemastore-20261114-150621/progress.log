@@ -1,0 +1,11 @@
+[20:06:59] datasets: fetch and verify (datasets/schemastore/fetch.sh)
+[20:07:03] building colbinbench and the matrix test binaries
+[20:08:01] web cases: 54, bulk cases: 0
+[20:08:01] timings: web, pass 1, 2 at a time on cores 4,6
+[20:26:48] timings: web, pass 1 done, 17580 lines
+[20:26:48] sizes: web
+[20:26:48] ablation: web
+[20:26:48] timings: web, pass 2, 2 at a time on cores 4,6
+[20:45:35] timings: web, pass 2 done, 17580 lines
+[20:45:35] summary
+[20:45:36] done: results in /w/results/oci-x86-schemastore-20261114-150621 (start with SUMMARY.md; the paper's tables are in tables/)

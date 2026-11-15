@@ -1,0 +1,30 @@
+[15:03:48] datasets: fetch and verify (datasets/tpch/fetch.sh)
+[15:03:48] building colbinbench and the matrix test binaries
+[15:05:31] web cases: 4, bulk cases: 6
+[15:05:31] timings: web, pass 1, 2 at a time on cores 12,14
+[15:08:26] timings: web, pass 1 done, 2400 lines
+[15:08:26] timings: tpch/sf0.1/nested, alone on core 12
+[15:56:53] timings: tpch/sf0.1/normalized, alone on core 12
+[16:41:30] timings: tpch/sf0.1/orders, alone on core 12
+[16:48:45] timings: tpch/sf0.1/lineitem, alone on core 12
+[17:22:49] timings: tpch/sf0.1/part, alone on core 12
+[17:25:03] timings: tpch/sf0.1/partsupp, alone on core 12
+[17:27:35] timings: bulk done
+[17:27:35] sizes: web
+[17:27:46] sizes: tpch/sf0.1/nested
+[17:30:13] sizes: tpch/sf0.1/normalized
+[17:32:57] sizes: tpch/sf0.1/orders
+[17:33:22] sizes: tpch/sf0.1/lineitem
+[17:35:26] sizes: tpch/sf0.1/part
+[17:35:32] sizes: tpch/sf0.1/partsupp
+[17:35:44] ablation: web
+[17:35:52] ablation: tpch/sf0.1/nested
+[17:36:24] ablation: tpch/sf0.1/normalized
+[17:37:02] ablation: tpch/sf0.1/orders
+[17:37:09] ablation: tpch/sf0.1/lineitem
+[17:37:36] ablation: tpch/sf0.1/part
+[17:37:39] ablation: tpch/sf0.1/partsupp
+[17:37:43] timings: web, pass 2, 2 at a time on cores 12,14
+[17:40:38] timings: web, pass 2 done, 2400 lines
+[17:40:38] summary
+[17:40:40] done: results in /home/ivanjoz/projects/colbin-benchmarks/results/paper-v2-homelab-parts/tpch (start with SUMMARY.md; the paper's tables are in tables/)

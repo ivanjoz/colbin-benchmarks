@@ -1,0 +1,30 @@
+fetch   duckdb 2.0.0
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100 23.2M  100 23.2M    0     0   173M      0 --:--:-- --:--:-- --:--:--  173M
+dsdgen  SF 0.1
+ok      tpcds/sf0.1/call_center.csv
+ok      tpcds/sf0.1/catalog_page.csv
+ok      tpcds/sf0.1/catalog_returns.csv
+ok      tpcds/sf0.1/catalog_sales.csv
+ok      tpcds/sf0.1/customer.csv
+ok      tpcds/sf0.1/customer_address.csv
+ok      tpcds/sf0.1/customer_demographics.csv
+ok      tpcds/sf0.1/date_dim.csv
+ok      tpcds/sf0.1/household_demographics.csv
+ok      tpcds/sf0.1/income_band.csv
+ok      tpcds/sf0.1/inventory.csv
+ok      tpcds/sf0.1/item.csv
+ok      tpcds/sf0.1/promotion.csv
+ok      tpcds/sf0.1/reason.csv
+ok      tpcds/sf0.1/ship_mode.csv
+ok      tpcds/sf0.1/store.csv
+ok      tpcds/sf0.1/store_returns.csv
+ok      tpcds/sf0.1/store_sales.csv
+ok      tpcds/sf0.1/time_dim.csv
+ok      tpcds/sf0.1/warehouse.csv
+ok      tpcds/sf0.1/web_page.csv
+ok      tpcds/sf0.1/web_returns.csv
+ok      tpcds/sf0.1/web_sales.csv
+ok      tpcds/sf0.1/web_site.csv

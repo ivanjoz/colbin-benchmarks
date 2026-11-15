@@ -17,6 +17,6 @@
     sizes_test.go:125: colbin-untagged       2078851     63.44     787466     775629  ok
     sizes_test.go:125: colbin-json           2078637     63.43     785842     774081  ok
     sizes_test.go:155: rows 32768 (top level 32768), 32768 as table rows (1.0000); 524288 values; colbin 2078434 B, of which tables 2078434 B (1.0000); schema section 202 B; gob stream 3022910 B
---- PASS: TestSizes (3.38s)
-    --- PASS: TestSizes/sweep/lineitem/32768 (3.38s)
+--- PASS: TestSizes (3.44s)
+    --- PASS: TestSizes/sweep/lineitem/32768 (3.44s)
 PASS

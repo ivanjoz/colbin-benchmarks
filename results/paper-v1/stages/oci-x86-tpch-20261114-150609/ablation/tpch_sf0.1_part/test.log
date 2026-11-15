@@ -1,0 +1,14 @@
+=== RUN   TestAblation
+=== RUN   TestAblation/tpch/sf0.1/part
+    ablation_test.go:103: threshold 2          2091567 B       457326 B gzip
+    ablation_test.go:103: threshold 4          2091567 B       457326 B gzip
+    ablation_test.go:103: threshold 8          2091567 B       457326 B gzip
+    ablation_test.go:103: threshold 16         2091567 B       457326 B gzip
+    ablation_test.go:103: threshold 32         2091567 B       457326 B gzip
+    ablation_test.go:103: codec     auto       2091567 B       457326 B gzip
+    ablation_test.go:103: codec     raw        2141247 B       554757 B gzip
+    ablation_test.go:103: codec     delta      2094107 B       460069 B gzip
+    ablation_test.go:103: codec     for        2131607 B       533959 B gzip
+--- PASS: TestAblation (1.18s)
+    --- PASS: TestAblation/tpch/sf0.1/part (1.18s)
+PASS

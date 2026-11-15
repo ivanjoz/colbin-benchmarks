@@ -1,5 +1,0 @@
-colbinbench: tpcds/sf0.1/catalog_sales: gob: not timed: does not round-trip: $.Rows[0].CouponAmt: nil against non-nil
-colbinbench: tpcds/sf0.1/inventory: gob: not timed: does not round-trip: $.Rows[1181].QuantityOnHand: nil against non-nil
-colbinbench: tpcds/sf0.1/store_returns: gob: not timed: does not round-trip: $.Rows[1].ReturnShipCost: nil against non-nil
-colbinbench: tpcds/sf0.1/store_sales: gob: not timed: does not round-trip: $.Rows[2].ExtDiscountAmt: nil against non-nil
-colbinbench: tpcds/sf0.1/web_sales: gob: not timed: does not round-trip: $.Rows[1].CouponAmt: nil against non-nil

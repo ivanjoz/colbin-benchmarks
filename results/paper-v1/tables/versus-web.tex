@@ -3,18 +3,18 @@
 \toprule
 colbin against & raw & gzip & encode & decode-fresh & access \\
 \midrule
-json-v2 & 0.267$^\dagger$\ {\scriptsize 91/91} & 0.576\ {\scriptsize 91/91} & 0.074\ {\scriptsize 91/91} & 0.130\ {\scriptsize 91/91} & 0.172\ {\scriptsize 20/20} \\
-gob & 0.494$^\dagger$\ {\scriptsize 91/91} & 0.563\ {\scriptsize 90/91} & 0.052\ {\scriptsize 56/56} & 0.066\ {\scriptsize 56/56} & 0.129\ {\scriptsize 18/18} \\
-cbor & 0.324$^\dagger$\ {\scriptsize 91/91} & 0.589\ {\scriptsize 91/91} & 0.167\ {\scriptsize 91/91} & 0.148\ {\scriptsize 91/91} & 0.185\ {\scriptsize 20/20} \\
-msgpack & 0.325$^\dagger$\ {\scriptsize 91/91} & 0.583\ {\scriptsize 91/91} & 0.972\ {\scriptsize 52/91} & 0.628\ {\scriptsize 66/91} & 0.794\ {\scriptsize 16/20} \\
-msgpack-reflect & 0.304$^\dagger$\ {\scriptsize 91/91} & 0.572\ {\scriptsize 91/91} & 0.097\ {\scriptsize 91/91} & 0.150\ {\scriptsize 91/91} & 0.184\ {\scriptsize 20/20} \\
-protobuf & 0.794\ {\scriptsize 84/91} & 0.768\ {\scriptsize 80/91} & 0.286\ {\scriptsize 91/91} & 0.437\ {\scriptsize 91/91} & 0.505\ {\scriptsize 20/20} \\
-vtprotobuf & 0.794\ {\scriptsize 84/91} & 0.768\ {\scriptsize 80/91} & 0.835\ {\scriptsize 62/91} & 0.621\ {\scriptsize 72/91} & 0.736\ {\scriptsize 15/20} \\
-flatbuffers & 0.441$^\dagger$\ {\scriptsize 91/91} & 0.568\ {\scriptsize 91/91} & 0.206\ {\scriptsize 91/91} & 0.677\ {\scriptsize 61/91} & 13.553\ {\scriptsize 0/20} \\
-arrow & 0.434\ {\scriptsize 68/68} & 0.539\ {\scriptsize 68/68} & 0.129\ {\scriptsize 68/68} & 0.459\ {\scriptsize 60/68} & 2.421\ {\scriptsize 11/20} \\
-avro & 0.898$^\dagger$\ {\scriptsize 70/91} & 0.839\ {\scriptsize 70/91} & 0.367\ {\scriptsize 91/91} & 0.385\ {\scriptsize 80/91} & 0.516\ {\scriptsize 19/20} \\
-capnproto & 0.416$^\dagger$\ {\scriptsize 89/89} & 0.597\ {\scriptsize 87/89} & 0.079\ {\scriptsize 89/89} & 0.295\ {\scriptsize 89/89} & 0.392\ {\scriptsize 20/20} \\
-colbin+packed5 & 1.042\ {\scriptsize 0/91} & 1.001\ {\scriptsize 5/91} & 0.698\ {\scriptsize 45/91} & 0.935\ {\scriptsize 33/91} & 0.709\ {\scriptsize 9/20} \\
-colbin-json & 0.707$^\dagger$\ {\scriptsize 91/91} & 0.776\ {\scriptsize 76/91} & 0.544\ {\scriptsize 91/91} & 1.123\ {\scriptsize 35/91} & 0.986\ {\scriptsize 12/20} \\
+json-v2 & 0.268$^\dagger$\ {\scriptsize 91/91} & 0.580\ {\scriptsize 91/91} & 0.078\ {\scriptsize 91/91} & 0.125\ {\scriptsize 91/91} & 0.174\ {\scriptsize 20/20} \\
+gob & 0.495$^\dagger$\ {\scriptsize 91/91} & 0.567\ {\scriptsize 90/91} & 0.052\ {\scriptsize 56/56} & 0.061\ {\scriptsize 56/56} & 0.125\ {\scriptsize 18/18} \\
+cbor & 0.325$^\dagger$\ {\scriptsize 91/91} & 0.593\ {\scriptsize 91/91} & 0.180\ {\scriptsize 91/91} & 0.139\ {\scriptsize 91/91} & 0.181\ {\scriptsize 20/20} \\
+msgpack & 0.326$^\dagger$\ {\scriptsize 91/91} & 0.587\ {\scriptsize 91/91} & 0.963\ {\scriptsize 52/91} & 0.613\ {\scriptsize 63/91} & 0.808\ {\scriptsize 13/20} \\
+msgpack-reflect & 0.305$^\dagger$\ {\scriptsize 91/91} & 0.576\ {\scriptsize 91/91} & 0.104\ {\scriptsize 91/91} & 0.145\ {\scriptsize 91/91} & 0.188\ {\scriptsize 20/20} \\
+protobuf & 0.796$^\dagger$\ {\scriptsize 84/91} & 0.772\ {\scriptsize 80/91} & 0.287\ {\scriptsize 91/91} & 0.432\ {\scriptsize 90/91} & 0.511\ {\scriptsize 19/20} \\
+vtprotobuf & 0.796$^\dagger$\ {\scriptsize 84/91} & 0.772\ {\scriptsize 80/91} & 0.832\ {\scriptsize 63/91} & 0.593\ {\scriptsize 73/91} & 0.729\ {\scriptsize 16/20} \\
+flatbuffers & 0.441$^\dagger$\ {\scriptsize 91/91} & 0.571\ {\scriptsize 91/91} & 0.212\ {\scriptsize 91/91} & 0.652\ {\scriptsize 63/91} & 13.294\ {\scriptsize 0/20} \\
+arrow & 0.433\ {\scriptsize 68/68} & 0.544\ {\scriptsize 68/68} & 0.135\ {\scriptsize 68/68} & 0.433\ {\scriptsize 61/68} & 2.406\ {\scriptsize 11/20} \\
+avro & 0.900$^\dagger$\ {\scriptsize 70/91} & 0.845\ {\scriptsize 70/91} & 0.387\ {\scriptsize 91/91} & 0.367\ {\scriptsize 81/91} & 0.516\ {\scriptsize 18/20} \\
+capnproto & 0.417$^\dagger$\ {\scriptsize 89/89} & 0.602\ {\scriptsize 87/89} & 0.085\ {\scriptsize 89/89} & 0.272\ {\scriptsize 89/89} & 0.382\ {\scriptsize 20/20} \\
+colbin+packed5 & 1.042$^\dagger$\ {\scriptsize 0/91} & 1.001\ {\scriptsize 5/91} & 0.687\ {\scriptsize 62/91} & 0.837\ {\scriptsize 38/91} & 0.702\ {\scriptsize 13/20} \\
+colbin-json & 0.706$^\dagger$\ {\scriptsize 91/91} & 0.776\ {\scriptsize 83/91} & 0.539\ {\scriptsize 91/91} & 0.961\ {\scriptsize 53/91} & 0.974\ {\scriptsize 17/20} \\
 \bottomrule
 \end{tabular}

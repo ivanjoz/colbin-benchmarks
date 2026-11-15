@@ -5,12 +5,13 @@ Every table in this section compares \colbin{} with one other format on the
 cases both carry. A cell is a factor: $2.5\times$ means that \colbin{}'s
 message is 2.5 times smaller than the other format's, or that \colbin{} is
 2.5 times faster; where the other format is the smaller or the faster one,
-the cell gives its factor over \colbin{} in bold with a down arrow
-($\mathbf{1.25\times}\!\downarrow$: \colbin{} is 1.25 times worse). The
+the factor is below 1 and in bold ($\mathbf{0.80\times}$: the other format
+is 1.25 times smaller or faster, which the text writes as
+``$1.25\times$ worse''). The
 factor is the geometric
 mean, over those cases, of the two formats' ratio, and in small type is the
-number of those cases \colbin{} wins outright. A factor below about
-$1.04\times$ either way is within what two passes of the same measurement
+number of those cases \colbin{} wins outright. A factor between about
+$0.96\times$ and $1.04\times$ is within what two passes of the same measurement
 differ by (Section~\ref{sec:machine}) and should be read as a tie. The
 cases are grouped by dataset (Section~\ref{sec:by-dataset}) and by kind of
 message (Section~\ref{sec:by-kind}); each format against JSON, by regime, is
@@ -33,7 +34,7 @@ in Appendix~\ref{sec:against-json}.
 each format's, as written and under gzip, on the cases both carry
 ($\dagger$: cases where \colbin{} writes zero bytes are left out of the
 mean), and in small type the cases in which \colbin{} is strictly smaller.
-Bold with $\downarrow$: the other format is that many times smaller.}
+Bold, below 1: the other format is the smaller one.}
 \label{tab:versus-datasets-size}
 \end{table}
 
@@ -43,8 +44,8 @@ Bold with $\downarrow$: the other format is that many times smaller.}
 \resulttable{versus-datasets-time}
 \caption{Time by dataset: how many times faster \colbin{} is than each
 format, to encode and to decode into a fresh value, on the cases both carry,
-and the cases in which \colbin{} is strictly faster. Bold with
-$\downarrow$: the other format is that many times faster.}
+and the cases in which \colbin{} is strictly faster. Bold, below 1: the
+other format is the faster one.}
 \label{tab:versus-datasets-time}
 \end{table}
 
@@ -139,8 +140,13 @@ There it is within a tenth of the other schema-driven formats on size,
 \vs{categories.web-documents.vtprotobuf.raw} smaller than Protocol Buffers
 and \vs{categories.web-documents.avro.raw} against Avro as written; on time
 it loses to generated MessagePack on both operations and to \fmt{vtprotobuf}
-on encode, and ties with \fmt{vtprotobuf} on decode
-(Section~\ref{sec:by-dataset}).
+on encode, ties with \fmt{vtprotobuf} on decode
+(Section~\ref{sec:by-dataset}), and decodes
+{\let\textbf\relax\vs{categories.web-documents.flatbuffers.decode-fresh}}
+than FlatBuffers, whose decode into its generated type is the faster one
+in all but \result{vs.categories.web-documents.flatbuffers.decode-fresh.wins}
+of \result{vs.categories.web-documents.flatbuffers.decode-fresh.n}
+documents.
 
 \FloatBarrier
 \subsection{Against the number of rows}
@@ -192,7 +198,8 @@ against it case by case. It is the hybrid design seen in one picture: the
 row format to the left of the threshold, the columns to the right. Below the threshold of eight rows, where a slice is
 a list of rows, \colbin{} decodes
 \result{scaling.1.vtprotobuf.decode-fresh.factor} against \fmt{vtprotobuf}
-on the \result{scaling.1.n} single records and
+on the \result{scaling.1.n} messages of one row (single records, and four
+tables that hold one row) and
 \result{scaling.2-7.vtprotobuf.decode-fresh.factor} on the
 \result{scaling.2-7.n} cases of two to seven rows: a tie. From eight rows,
 where the slice becomes a table, it is
@@ -251,8 +258,8 @@ columns.}
 Figure~\ref{fig:sweep} removes the schema from the comparison: one table,
 cut to its first rows, at every power of two, TPC-H's \code{lineitem} up to
 $2^{19}$ rows and the Public BI sample \code{Bimbo} up to $2^{14}$. It is a
-run of its own, on an instance of the same shape and image, at a later
-commit of this artifact with the same \colbin{}
+run of its own, on an instance of the same shape and image, at the same
+commit of this artifact and with the same \colbin{}
 (\result{sweep-run.machine.colbin-version}); the points past $2^{14}$ rows
 are in the bulk regime and were timed alone on one core.
 Below eight rows \colbin{} writes the rows one after another, as the
@@ -280,7 +287,7 @@ one row of \code{Bimbo}) and keeps improving after \colbin{} levels off: on
 \code{Bimbo} it overtakes \colbin{} between 256 and 512 rows, and at
 $2^{14}$ rows \colbin{} is \sweepvs{bimbo}{16384}{arrow} than Arrow;
 while on \code{lineitem} \colbin{} stays ahead of it at every size, by
-\sweepvs{lineitem}{8192}{arrow} at its closest. The gain with rows is
+\sweepvs{lineitem}{16384}{arrow} at its closest, at $2^{14}$ rows. The gain with rows is
 therefore the table's: a fixed cost that a row format does not pay and that
 \colbin{} recovers from a few tens of rows on.
 }{}
@@ -311,8 +318,8 @@ large message and discards the rest is better served by those formats.
 \caption{Memory by kind of message: how many times fewer bytes, and how many
 times fewer allocations, \colbin{} needs than each format to decode a
 message into a fresh value, on the cases both carry, and the cases in which
-\colbin{} needs strictly fewer. Bold with $\downarrow$: the other format
-needs that many times fewer.}
+\colbin{} needs strictly fewer. Bold, below 1: the other format needs
+fewer.}
 \label{tab:memory}
 \end{table}
 
@@ -321,7 +328,7 @@ allocates and the number of allocations, and both are in the same samples
 the times come from; they do not depend on the clock.
 Table~\ref{tab:memory} gives them for decode-fresh. The two numbers tell
 different things. In bytes \colbin{} is close to the other formats, since
-the decoded value is the same Go value whoever decodes it: against
+every decoder has to hold the same data: against
 \fmt{vtprotobuf}, \result{mem.web-tables.vtprotobuf.bytes.factor} fewer on
 web tables and \result{mem.bulk.vtprotobuf.bytes.factor} on bulk tables, and
 against generated MessagePack
@@ -338,7 +345,13 @@ is of the size of the others in this paper:
 \result{mem.web-documents.vtprotobuf.allocs.factor} fewer allocations than
 \fmt{vtprotobuf} and \result{mem.web-documents.msgpack.allocs.factor} fewer
 than MessagePack, which in turn needs fewer bytes, and Avro needs fewer of
-both.
+both. These counts are of each library decoding into the type it decodes
+into: \colbin{}, JSON and the reflection-based libraries fill the Go struct,
+and the code-generated ones fill their own generated types
+(Section~\ref{sec:methodology}), in which Protocol Buffers' Go binding holds a
+repeated message as a slice of pointers, one allocation per row. Part of
+the gap on tables is therefore that binding's representation rather than
+the wire format; it is what a Go program that uses the library pays.
 
 Encode is not in the table because most of its cells would be a ratio of
 two zeros: into a reused buffer, generated MessagePack and both
@@ -379,27 +392,40 @@ type.}
 \end{table}
 
 The second machine (Section~\ref{sec:machine}) differs from the first in
-nearly everything a time depends on: a client processor of another vendor
-and microarchitecture, at about half the clock, with a fixed frequency where
-the first had a host's boost, and a smaller cache shared with the system's
-other cores. The sizes do not depend on the machine, and they came out the
-same byte for byte on both, except \fmt{gob}'s, which depend on what the
-process encoded before (Section~\ref{sec:limitations}).
+much of what a time depends on: a client processor of the same vendor but
+an earlier microarchitecture (Zen~2 against the server's Zen~3), at about
+half the clock, with a fixed frequency where the first had a host's boost,
+and a last-level cache of 4\,MB. The sizes do not depend on the machine, and they came out the
+same byte for byte on both for every case reported here.
 Table~\ref{tab:machines} sets the times of the two side by side; the
 laptop's full tables are in the artifact
 (\code{results/paper-v1-laptop/tables/}).
 
 The conclusions hold on both machines: on tables, bulk and of web size,
-\colbin{} is faster than generated code on the laptop as on the cloud, and on
-single records it encodes slower than generated code on both. What moves is
-the margin against
-\fmt{vtprotobuf}, which is narrower on the laptop: \colbin{} encodes web
-tables \result{laptop.vs.categories.web-tables.vtprotobuf.encode.factor}
-faster there, against \vs{categories.web-tables.vtprotobuf.encode} on the
-cloud, and bulk tables
+\colbin{} encodes and decodes faster than each of the four formats on the
+laptop as on the cloud, and on single records it encodes slower than
+generated code on both and decodes at \fmt{vtprotobuf}'s speed on both. What
+moves is the size of the margins, and not all one way. Against
+\fmt{vtprotobuf}, encode is slightly narrower on the laptop (web tables
+\result{laptop.vs.categories.web-tables.vtprotobuf.encode.factor} against
+\vs{categories.web-tables.vtprotobuf.encode} on the cloud, bulk tables
 \result{laptop.vs.categories.bulk.vtprotobuf.encode.factor} against
-\vs{categories.bulk.vtprotobuf.encode}. The factors against JSON,
-MessagePack and Avro move by about a tenth at most.
+\vs{categories.bulk.vtprotobuf.encode}) and decode is wider
+(\result{laptop.vs.categories.web-tables.vtprotobuf.decode-fresh.factor}
+against \vs{categories.web-tables.vtprotobuf.decode-fresh}, and
+\result{laptop.vs.categories.bulk.vtprotobuf.decode-fresh.factor} against
+\vs{categories.bulk.vtprotobuf.decode-fresh}). On tables the laptop widens
+\colbin{}'s lead in decode over every format, JSON most of all
+(\result{laptop.vs.categories.web-tables.json-v2.decode-fresh.factor}
+against \vs{categories.web-tables.json-v2.decode-fresh} on web tables). On
+single records everything is closer together on the laptop: \colbin{}'s
+lead over JSON and Avro is smaller there
+(\result{laptop.vs.categories.web-documents.json-v2.encode.factor} against
+\vs{categories.web-documents.json-v2.encode} to encode against JSON), and
+so is its deficit to encode against generated code
+(\result{laptop.vs.categories.web-documents.vtprotobuf.encode.factor}
+against \vs{categories.web-documents.vtprotobuf.encode} for
+\fmt{vtprotobuf}).
 
 \FloatBarrier
 \subsection{What a message is made of}

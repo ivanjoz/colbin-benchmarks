@@ -1,0 +1,79 @@
+=== RUN   TestSizes
+=== RUN   TestSizes/tpch/sf0.1/customer
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2               3776119    251.74    1021215     953328  ok
+    sizes_test.go:125: gob                   2427780    161.85    1005300     982646  ok
+    sizes_test.go:125: cbor                  3305029    220.34    1037481    1002434  ok
+    sizes_test.go:125: msgpack               3301879    220.13    1040072    1007434  ok
+    sizes_test.go:125: msgpack-reflect       3453887    230.26    1048988    1012956  ok
+    sizes_test.go:125: protobuf              2426154    161.74    1012452     990636  ok
+    sizes_test.go:125: vtprotobuf            2426154    161.74    1012452     990636  ok
+    sizes_test.go:125: flatbuffers           3252696    216.85    1266189    1230964  ok
+    sizes_test.go:125: arrow                 2641486    176.10    1140336    1004444  ok
+    sizes_test.go:125: avro                  2281199    152.08     950133     916017  ok
+    sizes_test.go:125: capnproto             3283688    218.91    1197609    1168442  ok
+    sizes_test.go:125: colbin                2227935    148.53     873200     799126  ok
+    sizes_test.go:125: colbin+packed5        2227935    148.53     873200     799126  ok
+    sizes_test.go:125: colbin-untagged       2228068    148.54     873295     794676  ok
+    sizes_test.go:125: colbin-json           2228030    148.54     872355     795633  ok
+    sizes_test.go:155: rows 15000 (top level 15000), 15000 as table rows (1.0000); 120000 values; colbin 2227935 B, of which tables 2227935 B (1.0000); schema section 94 B; gob stream 2427593 B
+=== RUN   TestSizes/tpch/sf0.1/supplier
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                214635    214.63      64352      60611  ok
+    sizes_test.go:125: gob                    140114    140.11      63618      63297  ok
+    sizes_test.go:125: cbor                   188327    188.33      65947      63721  ok
+    sizes_test.go:125: msgpack                188112    188.11      66177      63793  ok
+    sizes_test.go:125: msgpack-reflect        198476    198.48      66613      64086  ok
+    sizes_test.go:125: protobuf               139677    139.68      64194      63689  ok
+    sizes_test.go:125: vtprotobuf             139677    139.68      64194      63689  ok
+    sizes_test.go:125: flatbuffers            186008    186.01      79879      78104  ok
+    sizes_test.go:125: arrow                  153702    153.70      69256      68445  ok
+    sizes_test.go:125: avro                   130704    130.70      59110      58039  ok
+    sizes_test.go:125: capnproto              184104    184.10      74956      76698  ok
+    sizes_test.go:125: colbin                 127818    127.82      54242      53548  ok
+    sizes_test.go:125: colbin+packed5         127818    127.82      54242      53548  ok
+    sizes_test.go:125: colbin-untagged        127848    127.85      54062      54047  ok
+    sizes_test.go:125: colbin-json            127900    127.90      54298      53633  ok
+    sizes_test.go:155: rows 1000 (top level 1000), 1000 as table rows (1.0000); 7000 values; colbin 127818 B, of which tables 127818 B (1.0000); schema section 81 B; gob stream 139941 B
+=== RUN   TestSizes/tpch/sf0.1/nation
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                  3384    135.36       1089       1085  ok
+    sizes_test.go:125: gob                      2390     95.60       1161       1172  ok
+    sizes_test.go:125: cbor                     3018    120.72       1131       1117  ok
+    sizes_test.go:125: msgpack                  3017    120.68       1156       1142  ok
+    sizes_test.go:125: msgpack-reflect          3217    128.68       1168       1155  ok
+    sizes_test.go:125: protobuf                 2274     90.96       1096       1102  ok
+    sizes_test.go:125: vtprotobuf               2274     90.96       1096       1102  ok
+    sizes_test.go:125: flatbuffers              2984    119.36       1374       1379  ok
+    sizes_test.go:125: arrow                    3422    136.88       1403       1439  ok
+    sizes_test.go:125: avro                     2153     86.12       1021       1026  ok
+    sizes_test.go:125: capnproto                2840    113.60       1282       1323  ok
+    sizes_test.go:125: colbin                   2125     85.00        969        984  ok
+    sizes_test.go:125: colbin+packed5           2125     85.00        969        984  ok
+    sizes_test.go:125: colbin-untagged          2135     85.40        991        996  ok
+    sizes_test.go:125: colbin-json              2181     87.24       1017       1030  ok
+    sizes_test.go:155: rows 25 (top level 25), 25 as table rows (1.0000); 100 values; colbin 2125 B, of which tables 2125 B (1.0000); schema section 55 B; gob stream 2255 B
+=== RUN   TestSizes/tpch/sf0.1/region
+    sizes_test.go:108: format                  bytes     B/row       gzip      zstd6  status
+    sizes_test.go:125: json-v2                   569    113.80        304        300  ok
+    sizes_test.go:125: gob                       526    105.20        362        371  ok
+    sizes_test.go:125: cbor                      511    102.20        300        294  ok
+    sizes_test.go:125: msgpack                   509    101.80        309        303  ok
+    sizes_test.go:125: msgpack-reflect           529    105.80        317        308  ok
+    sizes_test.go:125: protobuf                  402     80.40        279        270  ok
+    sizes_test.go:125: vtprotobuf                402     80.40        279        270  ok
+    sizes_test.go:125: flatbuffers               564    112.80        357        359  ok
+    sizes_test.go:125: arrow                    1246    249.20        537        548  ok
+    sizes_test.go:125: avro                      385     77.00        266        265  ok
+    sizes_test.go:125: capnproto                 544    108.80        324        326  ok
+    sizes_test.go:125: colbin                    394     78.80        279        271  ok
+    sizes_test.go:125: colbin+packed5            270     54.00        295        281  ok
+    sizes_test.go:125: colbin-untagged           416     83.20        304        294  ok
+    sizes_test.go:125: colbin-json               438     87.60        318        313  ok
+    sizes_test.go:155: rows 5 (top level 5), 0 as table rows (0.0000); 15 values; colbin 394 B, of which tables 0 B (0.0000); schema section 43 B; gob stream 405 B
+--- PASS: TestSizes (4.36s)
+    --- PASS: TestSizes/tpch/sf0.1/customer (1.94s)
+    --- PASS: TestSizes/tpch/sf0.1/supplier (0.90s)
+    --- PASS: TestSizes/tpch/sf0.1/nation (0.72s)
+    --- PASS: TestSizes/tpch/sf0.1/region (0.79s)
+PASS

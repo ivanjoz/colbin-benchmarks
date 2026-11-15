@@ -1,0 +1,68 @@
+[20:06:43] datasets: fetch and verify (datasets/tpch/fetch.sh)
+cores: auto → 4,6
+busiest processes before the run:
+%CPU     PID COMMAND
+ 0.0       1 bash
+ 0.0      88 bash
+ 0.0      89 bash
+ 0.0      90 sleep
+ 0.0     239 bash
+close browsers, IDEs and sync clients before measuring
+[20:06:54] building colbinbench and the matrix test binaries
+go: downloading golang.org/x/sys v0.47.0
+go: downloading github.com/ivanjoz/colbin v0.13.1
+go: downloading capnproto.org/go/capnp/v3 v3.1.0-alpha.2
+go: downloading github.com/apache/arrow-go/v18 v18.8.0
+go: downloading github.com/fxamacker/cbor/v2 v2.9.6
+go: downloading github.com/google/flatbuffers v25.12.19+incompatible
+go: downloading github.com/hamba/avro/v2 v2.31.0
+go: downloading github.com/klauspost/compress v1.19.2
+go: downloading github.com/tinylib/msgp v1.6.5
+go: downloading github.com/vmihailenco/msgpack/v5 v5.4.1
+go: downloading google.golang.org/protobuf v1.36.12
+go: downloading github.com/x448/float16 v0.8.4
+go: downloading github.com/go-viper/mapstructure/v2 v2.4.0
+go: downloading github.com/json-iterator/go v1.1.12
+go: downloading github.com/modern-go/reflect2 v1.0.2
+go: downloading github.com/philhofer/fwd v1.2.0
+go: downloading github.com/vmihailenco/tagparser/v2 v2.0.0
+go: downloading golang.org/x/exp v0.0.0-20260112195511-716be5621a96
+go: downloading github.com/pierrec/lz4/v4 v4.1.29
+go: downloading github.com/colega/zeropool v0.0.0-20230505084239-6fb4a4f75381
+go: downloading golang.org/x/sync v0.22.0
+go: downloading github.com/planetscale/vtprotobuf v0.6.0
+go: downloading github.com/goccy/go-json v0.10.6
+go: downloading github.com/zeebo/xxh3 v1.1.0
+go: downloading github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd
+go: downloading github.com/klauspost/cpuid/v2 v2.4.0
+[20:08:02] web cases: 4, bulk cases: 6
+[20:08:02] timings: web, pass 1, 2 at a time on cores 4,6
+[20:10:32] timings: web, pass 1 done, 2400 lines
+[20:10:32] timings: tpch/sf0.1/nested, alone on core 4
+[20:34:47] timings: tpch/sf0.1/normalized, alone on core 4
+[20:55:40] timings: tpch/sf0.1/orders, alone on core 4
+[20:59:33] timings: tpch/sf0.1/lineitem, alone on core 4
+[21:15:31] timings: tpch/sf0.1/part, alone on core 4
+[21:17:11] timings: tpch/sf0.1/partsupp, alone on core 4
+[21:18:58] timings: bulk done
+[21:18:58] sizes: web
+[21:19:02] sizes: tpch/sf0.1/nested
+[21:19:57] sizes: tpch/sf0.1/normalized
+[21:20:58] sizes: tpch/sf0.1/orders
+[21:21:07] sizes: tpch/sf0.1/lineitem
+[21:21:54] sizes: tpch/sf0.1/part
+[21:21:56] sizes: tpch/sf0.1/partsupp
+[21:22:00] ablation: web
+[21:22:04] ablation: tpch/sf0.1/nested
+[21:22:17] ablation: tpch/sf0.1/normalized
+[21:22:32] ablation: tpch/sf0.1/orders
+[21:22:35] ablation: tpch/sf0.1/lineitem
+[21:22:46] ablation: tpch/sf0.1/part
+[21:22:48] ablation: tpch/sf0.1/partsupp
+[21:22:49] timings: web, pass 2, 2 at a time on cores 4,6
+[21:25:21] timings: web, pass 2 done, 2400 lines
+[21:25:21] summary
+
+[21:25:22] done: results in /w/results/oci-x86-tpch-20261114-150609 (start with SUMMARY.md; the paper's tables are in tables/)
+per-case statistics:  benchstat -filter 'regime:web' /w/results/oci-x86-tpch-20261114-150609/bench-web.txt
+the paper:            make -C paper RUN=/w/results/oci-x86-tpch-20261114-150609

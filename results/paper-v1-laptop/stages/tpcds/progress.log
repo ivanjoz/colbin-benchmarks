@@ -1,0 +1,36 @@
+[17:40:41] datasets: fetch and verify (datasets/tpcds/fetch.sh)
+[17:40:41] building colbinbench and the matrix test binaries
+[17:40:59] web cases: 16, bulk cases: 8
+[17:40:59] timings: web, pass 1, 2 at a time on cores 12,14
+[17:54:01] timings: web, pass 1 done, 9520 lines
+[17:54:01] timings: tpcds/sf0.1/catalog_sales, alone on core 12
+[18:25:51] timings: tpcds/sf0.1/customer_demographics, alone on core 12
+[18:34:13] timings: tpcds/sf0.1/date_dim, alone on core 12
+[18:42:40] timings: tpcds/sf0.1/inventory, alone on core 12
+[18:46:46] timings: tpcds/sf0.1/store_returns, alone on core 12
+[18:51:29] timings: tpcds/sf0.1/store_sales, alone on core 12
+[20:01:32] timings: tpcds/sf0.1/time_dim, alone on core 12
+[20:06:37] timings: tpcds/sf0.1/web_sales, alone on core 12
+[20:22:40] timings: bulk done
+[20:22:40] sizes: web
+[20:22:57] sizes: tpcds/sf0.1/catalog_sales
+[20:24:11] sizes: tpcds/sf0.1/customer_demographics
+[20:24:31] sizes: tpcds/sf0.1/date_dim
+[20:24:53] sizes: tpcds/sf0.1/inventory
+[20:25:06] sizes: tpcds/sf0.1/store_returns
+[20:25:15] sizes: tpcds/sf0.1/store_sales
+[20:28:52] sizes: tpcds/sf0.1/time_dim
+[20:29:03] sizes: tpcds/sf0.1/web_sales
+[20:29:39] ablation: web
+[20:29:43] ablation: tpcds/sf0.1/catalog_sales
+[20:29:57] ablation: tpcds/sf0.1/customer_demographics
+[20:30:02] ablation: tpcds/sf0.1/date_dim
+[20:30:07] ablation: tpcds/sf0.1/inventory
+[20:30:11] ablation: tpcds/sf0.1/store_returns
+[20:30:12] ablation: tpcds/sf0.1/store_sales
+[20:30:32] ablation: tpcds/sf0.1/time_dim
+[20:30:35] ablation: tpcds/sf0.1/web_sales
+[20:30:42] timings: web, pass 2, 2 at a time on cores 12,14
+[20:43:44] timings: web, pass 2 done, 9520 lines
+[20:43:44] summary
+[20:43:44] done: results in /home/ivanjoz/projects/colbin-benchmarks/results/paper-v2-homelab-parts/tpcds (start with SUMMARY.md; the paper's tables are in tables/)

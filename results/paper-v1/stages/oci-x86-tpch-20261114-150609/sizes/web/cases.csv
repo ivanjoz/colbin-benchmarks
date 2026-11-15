@@ -1,0 +1,5 @@
+case,dataset,regime,top_rows,rows,table_rows,table_row_fraction,values,colbin_bytes,table_bytes,table_byte_fraction,schema_bytes,gob_stream_bytes,colbin_bytes_per_value
+tpch/sf0.1/customer,tpch,web,15000,15000,15000,1.0000,120000,2227935,2227935,1.0000,94,2427593,18.566
+tpch/sf0.1/supplier,tpch,web,1000,1000,1000,1.0000,7000,127818,127818,1.0000,81,139941,18.260
+tpch/sf0.1/nation,tpch,web,25,25,25,1.0000,100,2125,2125,1.0000,55,2255,21.250
+tpch/sf0.1/region,tpch,web,5,5,0,0.0000,15,394,0,0.0000,43,405,26.267

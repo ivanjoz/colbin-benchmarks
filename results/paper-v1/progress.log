@@ -1,92 +1,92 @@
-== oci-x86-tpch-20261114-004932
-[05:50:06] datasets: fetch and verify (datasets/tpch/fetch.sh)
-[05:50:18] building colbinbench and the matrix test binaries
-[05:51:25] web cases: 4, bulk cases: 6
-[05:51:25] timings: web, pass 1, 2 at a time on cores 4,6
-[05:53:55] timings: web, pass 1 done, 2400 lines
-[05:53:55] timings: tpch/sf0.1/nested, alone on core 4
-[06:17:52] timings: tpch/sf0.1/normalized, alone on core 4
-[06:38:43] timings: tpch/sf0.1/orders, alone on core 4
-[06:42:38] timings: tpch/sf0.1/lineitem, alone on core 4
-[06:58:38] timings: tpch/sf0.1/part, alone on core 4
-[07:00:19] timings: tpch/sf0.1/partsupp, alone on core 4
-[07:02:06] timings: bulk done
-[07:02:06] sizes: web
-[07:02:10] sizes: tpch/sf0.1/nested
-[07:03:04] sizes: tpch/sf0.1/normalized
-[07:04:05] sizes: tpch/sf0.1/orders
-[07:04:14] sizes: tpch/sf0.1/lineitem
-[07:05:00] sizes: tpch/sf0.1/part
-[07:05:02] sizes: tpch/sf0.1/partsupp
-[07:05:07] ablation: web
-[07:05:10] ablation: tpch/sf0.1/nested
-[07:05:23] ablation: tpch/sf0.1/normalized
-[07:05:38] ablation: tpch/sf0.1/orders
-[07:05:41] ablation: tpch/sf0.1/lineitem
-[07:05:52] ablation: tpch/sf0.1/part
-[07:05:53] ablation: tpch/sf0.1/partsupp
-[07:05:55] timings: web, pass 2, 2 at a time on cores 4,6
-[07:08:25] timings: web, pass 2 done, 2400 lines
-[07:08:25] summary
-[07:08:25] done: results in /w/results/oci-x86-tpch-20261114-004932 (start with SUMMARY.md; the paper's tables are in tables/)
-== oci-x86-schemastore-20261114-004944
-[05:50:18] datasets: fetch and verify (datasets/schemastore/fetch.sh)
-[05:50:22] building colbinbench and the matrix test binaries
-[05:51:19] web cases: 54, bulk cases: 0
-[05:51:19] timings: web, pass 1, 2 at a time on cores 4,6
-[06:10:05] timings: web, pass 1 done, 17580 lines
-[06:10:05] sizes: web
-[06:10:05] ablation: web
-[06:10:05] timings: web, pass 2, 2 at a time on cores 4,6
-[06:28:52] timings: web, pass 2 done, 17580 lines
-[06:28:52] summary
-[06:28:53] done: results in /w/results/oci-x86-schemastore-20261114-004944 (start with SUMMARY.md; the paper's tables are in tables/)
-== oci-x86-publicbi-20261114-004940
-[05:50:15] datasets: fetch and verify (datasets/publicbi/fetch.sh)
-[05:57:37] building colbinbench and the matrix test binaries
-[05:58:38] web cases: 46, bulk cases: 0
-[05:58:38] timings: web, pass 1, 2 at a time on cores 4,6
-[07:10:20] timings: web, pass 1 done, 19650 lines
-[07:10:20] sizes: web
-[07:14:04] ablation: web
-[07:15:09] timings: web, pass 2, 2 at a time on cores 4,6
-[08:26:40] timings: web, pass 2 done, 19650 lines
-[08:26:40] summary
-[08:26:41] done: results in /w/results/oci-x86-publicbi-20261114-004940 (start with SUMMARY.md; the paper's tables are in tables/)
-== oci-x86-tpcds-20261114-004936
-[05:50:14] datasets: fetch and verify (datasets/tpcds/fetch.sh)
-[05:50:18] building colbinbench and the matrix test binaries
-[05:51:19] web cases: 16, bulk cases: 8
-[05:51:19] timings: web, pass 1, 2 at a time on cores 4,6
-[06:01:49] timings: web, pass 1 done, 9520 lines
-[06:01:49] timings: tpcds/sf0.1/catalog_sales, alone on core 4
-[06:17:09] timings: tpcds/sf0.1/customer_demographics, alone on core 4
-[06:21:33] timings: tpcds/sf0.1/date_dim, alone on core 4
-[06:25:51] timings: tpcds/sf0.1/inventory, alone on core 4
-[06:28:15] timings: tpcds/sf0.1/store_returns, alone on core 4
-[06:31:01] timings: tpcds/sf0.1/store_sales, alone on core 4
-[07:01:46] timings: tpcds/sf0.1/time_dim, alone on core 4
-[07:04:45] timings: tpcds/sf0.1/web_sales, alone on core 4
-[07:12:44] timings: bulk done
-[07:12:44] sizes: web
-[07:12:51] sizes: tpcds/sf0.1/catalog_sales
-[07:13:19] sizes: tpcds/sf0.1/customer_demographics
-[07:13:27] sizes: tpcds/sf0.1/date_dim
-[07:13:35] sizes: tpcds/sf0.1/inventory
-[07:13:40] sizes: tpcds/sf0.1/store_returns
-[07:13:43] sizes: tpcds/sf0.1/store_sales
-[07:15:05] sizes: tpcds/sf0.1/time_dim
-[07:15:09] sizes: tpcds/sf0.1/web_sales
-[07:15:23] ablation: web
-[07:15:25] ablation: tpcds/sf0.1/catalog_sales
-[07:15:31] ablation: tpcds/sf0.1/customer_demographics
-[07:15:33] ablation: tpcds/sf0.1/date_dim
-[07:15:35] ablation: tpcds/sf0.1/inventory
-[07:15:36] ablation: tpcds/sf0.1/store_returns
-[07:15:37] ablation: tpcds/sf0.1/store_sales
-[07:15:46] ablation: tpcds/sf0.1/time_dim
-[07:15:47] ablation: tpcds/sf0.1/web_sales
-[07:15:50] timings: web, pass 2, 2 at a time on cores 4,6
-[07:26:19] timings: web, pass 2 done, 9520 lines
-[07:26:19] summary
-[07:26:19] done: results in /w/results/oci-x86-tpcds-20261114-004936 (start with SUMMARY.md; the paper's tables are in tables/)
+== oci-x86-tpch-20261114-150609
+[20:06:43] datasets: fetch and verify (datasets/tpch/fetch.sh)
+[20:06:54] building colbinbench and the matrix test binaries
+[20:08:02] web cases: 4, bulk cases: 6
+[20:08:02] timings: web, pass 1, 2 at a time on cores 4,6
+[20:10:32] timings: web, pass 1 done, 2400 lines
+[20:10:32] timings: tpch/sf0.1/nested, alone on core 4
+[20:34:47] timings: tpch/sf0.1/normalized, alone on core 4
+[20:55:40] timings: tpch/sf0.1/orders, alone on core 4
+[20:59:33] timings: tpch/sf0.1/lineitem, alone on core 4
+[21:15:31] timings: tpch/sf0.1/part, alone on core 4
+[21:17:11] timings: tpch/sf0.1/partsupp, alone on core 4
+[21:18:58] timings: bulk done
+[21:18:58] sizes: web
+[21:19:02] sizes: tpch/sf0.1/nested
+[21:19:57] sizes: tpch/sf0.1/normalized
+[21:20:58] sizes: tpch/sf0.1/orders
+[21:21:07] sizes: tpch/sf0.1/lineitem
+[21:21:54] sizes: tpch/sf0.1/part
+[21:21:56] sizes: tpch/sf0.1/partsupp
+[21:22:00] ablation: web
+[21:22:04] ablation: tpch/sf0.1/nested
+[21:22:17] ablation: tpch/sf0.1/normalized
+[21:22:32] ablation: tpch/sf0.1/orders
+[21:22:35] ablation: tpch/sf0.1/lineitem
+[21:22:46] ablation: tpch/sf0.1/part
+[21:22:48] ablation: tpch/sf0.1/partsupp
+[21:22:49] timings: web, pass 2, 2 at a time on cores 4,6
+[21:25:21] timings: web, pass 2 done, 2400 lines
+[21:25:21] summary
+[21:25:22] done: results in /w/results/oci-x86-tpch-20261114-150609 (start with SUMMARY.md; the paper's tables are in tables/)
+== oci-x86-schemastore-20261114-150621
+[20:06:59] datasets: fetch and verify (datasets/schemastore/fetch.sh)
+[20:07:03] building colbinbench and the matrix test binaries
+[20:08:01] web cases: 54, bulk cases: 0
+[20:08:01] timings: web, pass 1, 2 at a time on cores 4,6
+[20:26:48] timings: web, pass 1 done, 17580 lines
+[20:26:48] sizes: web
+[20:26:48] ablation: web
+[20:26:48] timings: web, pass 2, 2 at a time on cores 4,6
+[20:45:35] timings: web, pass 2 done, 17580 lines
+[20:45:35] summary
+[20:45:36] done: results in /w/results/oci-x86-schemastore-20261114-150621 (start with SUMMARY.md; the paper's tables are in tables/)
+== oci-x86-publicbi-20261114-150617
+[20:06:53] datasets: fetch and verify (datasets/publicbi/fetch.sh)
+[20:15:00] building colbinbench and the matrix test binaries
+[20:16:01] web cases: 46, bulk cases: 0
+[20:16:02] timings: web, pass 1, 2 at a time on cores 4,6
+[21:05:54] timings: web, pass 1 done, 19650 lines
+[21:05:54] sizes: web
+[21:08:15] ablation: web
+[21:08:57] timings: web, pass 2, 2 at a time on cores 4,6
+[21:58:54] timings: web, pass 2 done, 19650 lines
+[21:58:54] summary
+[21:58:55] done: results in /w/results/oci-x86-publicbi-20261114-150617 (start with SUMMARY.md; the paper's tables are in tables/)
+== oci-x86-tpcds-20261114-150613
+[20:06:48] datasets: fetch and verify (datasets/tpcds/fetch.sh)
+[20:06:52] building colbinbench and the matrix test binaries
+[20:07:53] web cases: 16, bulk cases: 8
+[20:07:53] timings: web, pass 1, 2 at a time on cores 4,6
+[20:18:31] timings: web, pass 1 done, 9520 lines
+[20:18:31] timings: tpcds/sf0.1/catalog_sales, alone on core 4
+[20:33:59] timings: tpcds/sf0.1/customer_demographics, alone on core 4
+[20:38:22] timings: tpcds/sf0.1/date_dim, alone on core 4
+[20:42:44] timings: tpcds/sf0.1/inventory, alone on core 4
+[20:45:08] timings: tpcds/sf0.1/store_returns, alone on core 4
+[20:47:54] timings: tpcds/sf0.1/store_sales, alone on core 4
+[21:18:32] timings: tpcds/sf0.1/time_dim, alone on core 4
+[21:21:30] timings: tpcds/sf0.1/web_sales, alone on core 4
+[21:29:32] timings: bulk done
+[21:29:32] sizes: web
+[21:29:39] sizes: tpcds/sf0.1/catalog_sales
+[21:30:07] sizes: tpcds/sf0.1/customer_demographics
+[21:30:14] sizes: tpcds/sf0.1/date_dim
+[21:30:23] sizes: tpcds/sf0.1/inventory
+[21:30:27] sizes: tpcds/sf0.1/store_returns
+[21:30:31] sizes: tpcds/sf0.1/store_sales
+[21:31:52] sizes: tpcds/sf0.1/time_dim
+[21:31:56] sizes: tpcds/sf0.1/web_sales
+[21:32:10] ablation: web
+[21:32:12] ablation: tpcds/sf0.1/catalog_sales
+[21:32:18] ablation: tpcds/sf0.1/customer_demographics
+[21:32:20] ablation: tpcds/sf0.1/date_dim
+[21:32:22] ablation: tpcds/sf0.1/inventory
+[21:32:23] ablation: tpcds/sf0.1/store_returns
+[21:32:24] ablation: tpcds/sf0.1/store_sales
+[21:32:33] ablation: tpcds/sf0.1/time_dim
+[21:32:34] ablation: tpcds/sf0.1/web_sales
+[21:32:37] timings: web, pass 2, 2 at a time on cores 4,6
+[21:43:12] timings: web, pass 2 done, 9520 lines
+[21:43:12] summary
+[21:43:12] done: results in /w/results/oci-x86-tpcds-20261114-150613 (start with SUMMARY.md; the paper's tables are in tables/)

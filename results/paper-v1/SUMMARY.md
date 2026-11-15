@@ -11,7 +11,7 @@ mixed in one number.
 ## Machine
 
 ```
-date: 2026-11-14T05:50:17+00:00
+date: 2026-11-14T20:06:54+00:00
 driver: reproduce.sh
 command: cmd/mergeruns of 4 reproduce.sh runs, one per part below
 regime: all
@@ -20,33 +20,35 @@ measured cores: 4,6
 passes: 2
 count: 10
 sample: 100ms
+warm: 0s
 formats: all
 ops: encode,decode-fresh,decode-reuse,access
 kernel: Linux 6.12.0-204.92.4.4.el9uek.container
-go: go version go1.27.0 linux/amd64
+go: go version go1.27.4 linux/amd64
+godebug: madvdontneed=0
 colbin: github.com/ivanjoz/colbin v0.13.1
-colbin-benchmarks: 7597b156b197d5b82e4d16999d365561cc8d8d1f
+colbin-benchmarks: 60845882328de3e0741cba0699242c108c198e95
 governor: unknown unknown
 turbo: unknown
 frequency control: host
 MemAvailable at start: 30.6 GB
-part: oci-x86-tpch-20261114-004932, cases tpch/*, started 2026-11-14T05:50:17+00:00, commit 7597b156b197d5b82e4d16999d365561cc8d8d1f, MemAvailable at start 30.6 GB
-part: oci-x86-schemastore-20261114-004944, cases schemastore/*, started 2026-11-14T05:50:22+00:00, commit 7597b156b197d5b82e4d16999d365561cc8d8d1f, MemAvailable at start 30.5 GB
-part: oci-x86-publicbi-20261114-004940, cases publicbi/*, started 2026-11-14T05:57:37+00:00, commit 7597b156b197d5b82e4d16999d365561cc8d8d1f, MemAvailable at start 30.4 GB
-part: oci-x86-tpcds-20261114-004936, cases tpcds/*, started 2026-11-14T05:50:18+00:00, commit 7597b156b197d5b82e4d16999d365561cc8d8d1f, MemAvailable at start 30.5 GB
+part: oci-x86-tpch-20261114-150609, cases tpch/*, started 2026-11-14T20:06:54+00:00, commit 60845882328de3e0741cba0699242c108c198e95, MemAvailable at start 30.6 GB
+part: oci-x86-schemastore-20261114-150621, cases schemastore/*, started 2026-11-14T20:07:03+00:00, commit 60845882328de3e0741cba0699242c108c198e95, MemAvailable at start 29.8 GB
+part: oci-x86-publicbi-20261114-150617, cases publicbi/*, started 2026-11-14T20:15:00+00:00, commit 60845882328de3e0741cba0699242c108c198e95, MemAvailable at start 30.3 GB
+part: oci-x86-tpcds-20261114-150613, cases tpcds/*, started 2026-11-14T20:06:51+00:00, commit 60845882328de3e0741cba0699242c108c198e95, MemAvailable at start 30.1 GB
 host setting: cpu4 has no cpufreq governor to check
 host setting: cpu6 has no cpufreq governor to check
 host setting: turbo: no intel_pstate/no_turbo or cpufreq/boost to read
-== frequency of the measured cores during timings (MHz), oci-x86-tpch-20261114-004932
+== frequency of the measured cores during timings (MHz), oci-x86-tpch-20261114-150609
 cpu4: no samples
 cpu6: no samples
-== frequency of the measured cores during timings (MHz), oci-x86-schemastore-20261114-004944
+== frequency of the measured cores during timings (MHz), oci-x86-schemastore-20261114-150621
 cpu4: no samples
 cpu6: no samples
-== frequency of the measured cores during timings (MHz), oci-x86-publicbi-20261114-004940
+== frequency of the measured cores during timings (MHz), oci-x86-publicbi-20261114-150617
 cpu4: no samples
 cpu6: no samples
-== frequency of the measured cores during timings (MHz), oci-x86-tpcds-20261114-004936
+== frequency of the measured cores during timings (MHz), oci-x86-tpcds-20261114-150613
 cpu4: no samples
 cpu6: no samples
 Model name: AMD EPYC 7J13 64-Core Processor
@@ -62,28 +64,28 @@ the kernel lets it be read.
 
 | timings | cases | MHz p5 / median / p95 | counted MHz | spread, median | p90 | max | cases over 5 % |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| web | 93 | 3171 / 3185 / 3198 | n/a | 0.9 % | 2.5 % | 21.3 % | 4 |
-| web-2 | 93 | 3171 / 3185 / 3199 | n/a | 0.9 % | 2.1 % | 20.3 % | 1 |
-| bulk | 14 | 3170 / 3185 / 3202 | n/a | 0.9 % | 3.6 % | 6.1 % | 1 |
+| web | 93 | 3166 / 3184 / 3198 | n/a | 0.9 % | 3.2 % | 21.8 % | 5 |
+| web-2 | 93 | 3170 / 3184 / 3198 | n/a | 0.8 % | 2.1 % | 70.4 % | 3 |
+| bulk | 14 | 3167 / 3185 / 3195 | n/a | 1.1 % | 3.2 % | 19.6 % | 1 |
 
 ## Sizes, web regime: bytes against JSON's
 
 | format | raw | gzip | zstd6 |
 |---|---:|---:|---:|
 | json-v2 | 1.000 (93) | 1.000 (93) | 1.000 (93) |
-| gob | 0.571 (93) | 1.031 (93) | 1.120 (93) |
-| cbor | 0.816 (93) | 0.975 (93) | 0.961 (93) |
-| msgpack | 0.815 (93) | 0.986 (93) | 0.970 (93) |
-| msgpack-reflect | 0.868 (93) | 1.003 (93) | 0.981 (93) |
-| protobuf | 0.330 (91, and 2 at 0) | 0.736 (93) | 0.734 (93) |
-| vtprotobuf | 0.330 (91, and 2 at 0) | 0.736 (93) | 0.734 (93) |
-| flatbuffers | 0.599 (93) | 1.000 (93) | 1.008 (93) |
-| arrow | 0.595 (68) | 1.106 (68) | 1.227 (68) |
-| avro | 0.281 (93) | 0.673 (93) | 0.660 (93) |
-| capnproto | 0.637 (91) | 0.943 (91) | 1.002 (91) |
-| colbin | 0.267 (89, and 2 at 0) | 0.576 (91) | 0.597 (91) |
-| colbin+packed5 | 0.256 (89, and 2 at 0) | 0.575 (91) | 0.592 (91) |
-| colbin-json | 0.385 (91) | 0.742 (91) | 0.823 (91) |
+| gob | 0.571 (93) | 1.031 (93) | 1.126 (93) |
+| cbor | 0.816 (93) | 0.975 (93) | 0.963 (93) |
+| msgpack | 0.815 (93) | 0.985 (93) | 0.972 (93) |
+| msgpack-reflect | 0.868 (93) | 1.003 (93) | 0.982 (93) |
+| protobuf | 0.330 (91, and 2 at 0) | 0.736 (93) | 0.738 (93) |
+| vtprotobuf | 0.330 (91, and 2 at 0) | 0.736 (93) | 0.738 (93) |
+| flatbuffers | 0.600 (93) | 1.000 (93) | 1.007 (93) |
+| arrow | 0.597 (68) | 1.105 (68) | 1.218 (68) |
+| avro | 0.281 (93) | 0.672 (93) | 0.662 (93) |
+| capnproto | 0.637 (91) | 0.941 (91) | 0.996 (91) |
+| colbin | 0.268 (89, and 2 at 0) | 0.580 (91) | 0.599 (91) |
+| colbin+packed5 | 0.257 (89, and 2 at 0) | 0.579 (91) | 0.594 (91) |
+| colbin-json | 0.386 (91) | 0.747 (91) | 0.827 (91) |
 
 ## Sizes, bulk regime: bytes against JSON's
 
@@ -111,19 +113,19 @@ web regime, 93 cases: time against json-v2's for the same operation (json-v2's d
 | format | encode | decode-fresh | decode-reuse | access |
 |---|---:|---:|---:|---:|
 | json-v2 | 1.000 (93) | 1.000 (93) | 1.000 (93) | 1.000 (20) |
-| gob | 1.707 (58) | 3.094 (58) | 3.065 (58) | 1.505 (18) |
-| cbor | 0.442 (93) | 0.881 (93) | 0.789 (93) | 0.932 (20) |
-| msgpack | 0.076 (93) | 0.206 (93) | 0.156 (93) | 0.217 (20) |
-| msgpack-reflect | 0.769 (93) | 0.863 (93) | 0.747 (93) | 0.936 (20) |
-| protobuf | 0.258 (93) | 0.298 (93) | 0.299 (93) | 0.341 (20) |
-| vtprotobuf | 0.088 (93) | 0.209 (93) | 0.211 (93) | 0.234 (20) |
-| flatbuffers | 0.358 (93) | 0.191 (93) | 0.166 (93) | 0.013 (20) |
-| arrow | 0.493 (68) | 0.226 (68) | 0.210 (68) | 0.071 (20) |
-| avro | 0.202 (93) | 0.334 (93) | 0.256 (93) | 0.334 (20) |
-| capnproto | 0.934 (91) | 0.436 (91) | 0.454 (91) | 0.440 (20) |
-| colbin | 0.074 (91) | 0.130 (91) | 0.103 (91) | 0.172 (20) |
-| colbin+packed5 | 0.106 (91) | 0.139 (91) | 0.123 (91) | 0.243 (20) |
-| colbin-json | 0.136 (91) | 0.115 (91) | 0.107 (91) | 0.175 (20) |
+| gob | 1.697 (58) | 3.249 (58) | 3.210 (58) | 1.565 (18) |
+| cbor | 0.431 (93) | 0.900 (93) | 0.788 (93) | 0.960 (20) |
+| msgpack | 0.080 (93) | 0.203 (93) | 0.159 (93) | 0.215 (20) |
+| msgpack-reflect | 0.749 (93) | 0.861 (93) | 0.738 (93) | 0.925 (20) |
+| protobuf | 0.270 (93) | 0.290 (93) | 0.298 (93) | 0.341 (20) |
+| vtprotobuf | 0.093 (93) | 0.210 (93) | 0.218 (93) | 0.239 (20) |
+| flatbuffers | 0.366 (93) | 0.191 (93) | 0.172 (93) | 0.013 (20) |
+| arrow | 0.509 (68) | 0.225 (68) | 0.216 (68) | 0.072 (20) |
+| avro | 0.201 (93) | 0.337 (93) | 0.263 (93) | 0.337 (20) |
+| capnproto | 0.912 (91) | 0.454 (91) | 0.466 (91) | 0.456 (20) |
+| colbin | 0.078 (91) | 0.125 (91) | 0.111 (91) | 0.174 (20) |
+| colbin+packed5 | 0.113 (91) | 0.149 (91) | 0.137 (91) | 0.248 (20) |
+| colbin-json | 0.144 (91) | 0.130 (91) | 0.118 (91) | 0.179 (20) |
 
 ## Go timings: bench-bulk.txt
 
@@ -132,19 +134,19 @@ bulk regime, 14 cases: time against json-v2's for the same operation (json-v2's 
 | format | encode | decode-fresh | decode-reuse | access |
 |---|---:|---:|---:|---:|
 | json-v2 | 1.000 (14) | 1.000 (14) | 1.000 (14) | 1.000 (14) |
-| gob | 0.361 (9) | 0.326 (9) | 0.287 (9) | 0.315 (9) |
-| cbor | 0.457 (14) | 0.906 (14) | 0.846 (14) | 0.907 (14) |
-| msgpack | 0.074 (14) | 0.164 (14) | 0.132 (14) | 0.157 (14) |
-| msgpack-reflect | 0.689 (14) | 0.845 (14) | 0.769 (14) | 0.852 (14) |
-| protobuf | 0.272 (14) | 0.240 (14) | 0.234 (14) | 0.227 (14) |
-| vtprotobuf | 0.104 (14) | 0.156 (14) | 0.151 (14) | 0.143 (14) |
-| flatbuffers | 0.506 (14) | 0.151 (14) | 0.139 (14) | 0.0096 (14) |
-| arrow | 0.185 (14) | 0.093 (14) | 0.077 (14) | 0.00067 (14) |
-| avro | 0.163 (14) | 0.319 (14) | 0.192 (14) | 0.298 (14) |
-| capnproto | 0.497 (14) | 0.292 (14) | 0.296 (14) | 0.293 (14) |
-| colbin | 0.048 (14) | 0.061 (14) | 0.057 (14) | 0.055 (14) |
-| colbin+packed5 | 0.048 (14) | 0.053 (14) | 0.057 (14) | 0.053 (14) |
-| colbin-json | 0.056 (14) | 0.051 (14) | 0.056 (14) | 0.052 (14) |
+| gob | 0.383 (9) | 0.316 (9) | 0.293 (9) | 0.316 (9) |
+| cbor | 0.467 (14) | 0.900 (14) | 0.813 (14) | 0.895 (14) |
+| msgpack | 0.085 (14) | 0.154 (14) | 0.131 (14) | 0.153 (14) |
+| msgpack-reflect | 0.701 (14) | 0.822 (14) | 0.751 (14) | 0.823 (14) |
+| protobuf | 0.316 (14) | 0.227 (14) | 0.231 (14) | 0.227 (14) |
+| vtprotobuf | 0.120 (14) | 0.139 (14) | 0.140 (14) | 0.140 (14) |
+| flatbuffers | 0.598 (14) | 0.145 (14) | 0.139 (14) | 0.0096 (14) |
+| arrow | 0.199 (14) | 0.083 (14) | 0.077 (14) | 0.00067 (14) |
+| avro | 0.177 (14) | 0.268 (14) | 0.190 (14) | 0.267 (14) |
+| capnproto | 0.526 (14) | 0.300 (14) | 0.298 (14) | 0.300 (14) |
+| colbin | 0.058 (14) | 0.051 (14) | 0.056 (14) | 0.051 (14) |
+| colbin+packed5 | 0.058 (14) | 0.050 (14) | 0.056 (14) | 0.051 (14) |
+| colbin-json | 0.064 (14) | 0.050 (14) | 0.056 (14) | 0.051 (14) |
 
 ## The colbin module's download against the bytes it saves (web regime)
 
@@ -155,8 +157,8 @@ section, which travels once per connection). Per case in `wasm-breakeven.csv`.
 
 | compressor | median responses | cases where colbin is never smaller |
 |---|---:|---:|
-| gzip | 1 | 0 |
-| zstd6 | 1 | 0 |
+| gzip | 3 | 0 |
+| zstd6 | 4 | 0 |
 
 ## For the paper
 

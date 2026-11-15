@@ -1,0 +1,11 @@
+[20:06:53] datasets: fetch and verify (datasets/publicbi/fetch.sh)
+[20:15:00] building colbinbench and the matrix test binaries
+[20:16:01] web cases: 46, bulk cases: 0
+[20:16:02] timings: web, pass 1, 2 at a time on cores 4,6
+[21:05:54] timings: web, pass 1 done, 19650 lines
+[21:05:54] sizes: web
+[21:08:15] ablation: web
+[21:08:57] timings: web, pass 2, 2 at a time on cores 4,6
+[21:58:54] timings: web, pass 2 done, 19650 lines
+[21:58:54] summary
+[21:58:55] done: results in /w/results/oci-x86-publicbi-20261114-150617 (start with SUMMARY.md; the paper's tables are in tables/)

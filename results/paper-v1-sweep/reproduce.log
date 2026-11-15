@@ -1,4 +1,4 @@
-[16:10:53] datasets: fetch and verify (datasets/tpch/fetch.sh datasets/publicbi/fetch.sh Bimbo)
+[20:06:59] datasets: fetch and verify (datasets/tpch/fetch.sh datasets/publicbi/fetch.sh Bimbo)
 cores: auto → 4,6
 busiest processes before the run:
 %CPU     PID COMMAND
@@ -6,9 +6,9 @@ busiest processes before the run:
  0.0      88 bash
  0.0      89 bash
  0.0      90 sleep
- 0.0    1095 bash
+ 0.0    1079 bash
 close browsers, IDEs and sync clients before measuring
-[16:11:26] building colbinbench and the matrix test binaries
+[20:07:31] building colbinbench and the matrix test binaries
 go: downloading golang.org/x/sys v0.47.0
 go: downloading github.com/ivanjoz/colbin v0.13.1
 go: downloading capnproto.org/go/capnp/v3 v3.1.0-alpha.2
@@ -24,8 +24,8 @@ go: downloading github.com/x448/float16 v0.8.4
 go: downloading github.com/go-viper/mapstructure/v2 v2.4.0
 go: downloading github.com/json-iterator/go v1.1.12
 go: downloading github.com/modern-go/reflect2 v1.0.2
-go: downloading github.com/vmihailenco/tagparser/v2 v2.0.0
 go: downloading github.com/philhofer/fwd v1.2.0
+go: downloading github.com/vmihailenco/tagparser/v2 v2.0.0
 go: downloading github.com/colega/zeropool v0.0.0-20230505084239-6fb4a4f75381
 go: downloading golang.org/x/sync v0.22.0
 go: downloading golang.org/x/exp v0.0.0-20260112195511-716be5621a96
@@ -35,23 +35,23 @@ go: downloading github.com/goccy/go-json v0.10.6
 go: downloading github.com/zeebo/xxh3 v1.1.0
 go: downloading github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd
 go: downloading github.com/klauspost/cpuid/v2 v2.4.0
-[16:12:24] web cases: 30, bulk cases: 5
-[16:12:24] timings: web, pass 1, 2 at a time on cores 4,6
-[16:26:39] timings: web, pass 1 done, 15750 lines
-[16:26:39] timings: sweep/lineitem/32768, alone on core 4
-[16:28:30] timings: sweep/lineitem/65536, alone on core 4
-[16:31:09] timings: sweep/lineitem/131072, alone on core 4
-[16:35:18] timings: sweep/lineitem/262144, alone on core 4
-[16:42:42] timings: sweep/lineitem/524288, alone on core 4
-[16:56:40] timings: bulk done
-[16:56:40] sizes: web
-[16:56:57] sizes: sweep/lineitem/32768
-[16:57:00] sizes: sweep/lineitem/65536
-[16:57:06] sizes: sweep/lineitem/131072
-[16:57:17] sizes: sweep/lineitem/262144
-[16:57:38] sizes: sweep/lineitem/524288
-[16:58:19] summary
+[20:08:31] web cases: 30, bulk cases: 5
+[20:08:31] timings: web, pass 1, 2 at a time on cores 4,6
+[20:22:45] timings: web, pass 1 done, 15750 lines
+[20:22:45] timings: sweep/lineitem/32768, alone on core 4
+[20:24:36] timings: sweep/lineitem/65536, alone on core 4
+[20:27:15] timings: sweep/lineitem/131072, alone on core 4
+[20:31:25] timings: sweep/lineitem/262144, alone on core 4
+[20:38:52] timings: sweep/lineitem/524288, alone on core 4
+[20:52:51] timings: bulk done
+[20:52:51] sizes: web
+[20:53:09] sizes: sweep/lineitem/32768
+[20:53:13] sizes: sweep/lineitem/65536
+[20:53:19] sizes: sweep/lineitem/131072
+[20:53:30] sizes: sweep/lineitem/262144
+[20:53:51] sizes: sweep/lineitem/524288
+[20:54:32] summary
 
-[16:58:20] done: results in /w/results/oci-x86-sweep-20261114-111016 (start with SUMMARY.md; the paper's tables are in tables/)
-per-case statistics:  benchstat -filter 'regime:web' /w/results/oci-x86-sweep-20261114-111016/bench-web.txt
-the paper:            make -C paper RUN=/w/results/oci-x86-sweep-20261114-111016
+[20:54:33] done: results in /w/results/oci-x86-sweep-20261114-150625 (start with SUMMARY.md; the paper's tables are in tables/)
+per-case statistics:  benchstat -filter 'regime:web' /w/results/oci-x86-sweep-20261114-150625/bench-web.txt
+the paper:            make -C paper RUN=/w/results/oci-x86-sweep-20261114-150625

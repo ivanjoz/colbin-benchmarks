@@ -1,0 +1,17 @@
+case,dataset,regime,top_rows,rows,table_rows,table_row_fraction,values,colbin_bytes,table_bytes,table_byte_fraction,schema_bytes,gob_stream_bytes,colbin_bytes_per_value
+tpcds/sf0.1/call_center,tpcds,web,1,1,0,0.0000,29,295,0,0.0000,376,294,10.172
+tpcds/sf0.1/catalog_page,tpcds,web,11718,11718,11718,1.0000,104694,1351800,1351800,1.0000,149,1581793,12.912
+tpcds/sf0.1/catalog_returns,tpcds,web,14416,14416,14416,1.0000,382594,670263,670263,1.0000,460,1474464,1.752
+tpcds/sf0.1/customer,tpcds,web,10000,10000,10000,1.0000,175430,869708,869708,1.0000,296,1200634,4.958
+tpcds/sf0.1/customer_address,tpcds,web,5000,5000,5000,1.0000,63394,514185,514185,1.0000,171,598128,8.111
+tpcds/sf0.1/household_demographics,tpcds,web,7200,7200,7200,1.0000,36000,70090,70090,1.0000,79,143581,1.947
+tpcds/sf0.1/income_band,tpcds,web,20,20,20,1.0000,60,116,116,1.0000,55,256,1.933
+tpcds/sf0.1/item,tpcds,web,1800,1800,1800,1.0000,38610,431607,431607,1.0000,285,487613,11.179
+tpcds/sf0.1/promotion,tpcds,web,30,30,30,1.0000,551,2940,2940,1.0000,288,3720,5.336
+tpcds/sf0.1/reason,tpcds,web,7,7,0,0.0000,21,315,0,0.0000,49,322,15.000
+tpcds/sf0.1/ship_mode,tpcds,web,20,20,20,1.0000,120,1075,1075,1.0000,75,1210,8.958
+tpcds/sf0.1/store,tpcds,web,1,1,0,0.0000,28,272,0,0.0000,378,273,9.714
+tpcds/sf0.1/warehouse,tpcds,web,1,1,0,0.0000,14,128,0,0.0000,181,142,9.143
+tpcds/sf0.1/web_page,tpcds,web,6,6,0,0.0000,76,431,0,0.0000,196,484,5.671
+tpcds/sf0.1/web_returns,tpcds,web,7061,7061,7061,1.0000,161917,309143,309143,1.0000,412,647982,1.909
+tpcds/sf0.1/web_site,tpcds,web,3,3,0,0.0000,75,936,0,0.0000,312,905,12.480

@@ -11,21 +11,23 @@ mixed in one number.
 ## Machine
 
 ```
-date: 2026-11-14T16:11:26+00:00
+date: 2026-11-14T20:07:31+00:00
 driver: reproduce.sh
-command: ./reproduce.sh --vm --out /w/results/oci-x86-sweep-20261114-111016 --cases sweep/* --no-ablation --passes 1
+command: ./reproduce.sh --vm --out /w/results/oci-x86-sweep-20261114-150625 --cases sweep/* --no-ablation --passes 1
 regime: all
 cases: sweep/*
 measured cores: 4,6
 passes: 1
 count: 10
 sample: 100ms
+warm: 0s
 formats: all
 ops: encode,decode-fresh,decode-reuse,access
 kernel: Linux 6.12.0-204.92.4.4.el9uek.container
-go: go version go1.27.0 linux/amd64
+go: go version go1.27.4 linux/amd64
+godebug: madvdontneed=0
 colbin: github.com/ivanjoz/colbin v0.13.1
-colbin-benchmarks: c0cf5dbe53264824408a349e3681b6cdbaf0e7b6
+colbin-benchmarks: 60845882328de3e0741cba0699242c108c198e95
 governor: unknown unknown
 turbo: unknown
 frequency control: host
