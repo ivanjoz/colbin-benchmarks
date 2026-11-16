@@ -540,6 +540,10 @@ def main():
     if missing:
         warn("no result for: " + ", ".join(sorted(missing)))
 
+    # {\let\textbf\relax \result{key}} prints a bold result plain (the
+    # abstract); pandoc drops the whole group, so unwrap it here.
+    s = re.sub(r"\{\\let\\textbf\\relax\s*\\textbf\{((?:[^{}]|\{[^{}]*\})*)\}\s*\}", r"\1", s)
+
     s = flatten_tables(s)
     # Markdown has no math: pandoc writes it as Unicode text, which bolds
     # \mathbf{1.25\times} digit by digit. Bold text with a × in it instead.
